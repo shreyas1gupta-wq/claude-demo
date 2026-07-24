@@ -7,3 +7,4 @@ template/node_modules/
 template/assets/preview/
 template/*.pdf
 template/__pycache__/
+template/assets/overview.png
