@@ -1,0 +1,3 @@
+# Local working copies of confidential client material (deck, scorecard, extracted
+# holdings) and intermediate analysis. Must never be pushed to the remote.
+scratch_review/
