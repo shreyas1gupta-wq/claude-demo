@@ -469,8 +469,89 @@ def uhni_goals():
     ax.tick_params(length=0); [s.set_visible(False) for s in ax.spines.values()]
     save(fig, "uhni_goals")
 
+def drift_bars():
+    """Diverging gap bars: current minus target, per asset-class sleeve."""
+    dr = D["drift"]
+    fig, ax = plt.subplots(figsize=(9.2, 4.6))
+    labels = [x[0] for x in dr][::-1]
+    gaps = [round(x[1] - x[2], 1) for x in dr][::-1]
+    cur = [x[1] for x in dr][::-1]; tgt = [x[2] for x in dr][::-1]
+    y = range(len(labels))
+    for i, g in enumerate(gaps):
+        c = P["amber"] if g > 0 else P["indigo"]
+        ax.barh(i, g, color=c, height=0.6, zorder=3)
+        ha = "left" if g > 0 else "right"
+        ax.text(g + (0.6 if g > 0 else -0.6), i, f"{cur[i]:.0f}% → {tgt[i]:.0f}%",
+                va="center", ha=ha, fontsize=11, color=P["navy"], fontweight="bold")
+    ax.axvline(0, color=P["slate"], lw=1.2, zorder=4)
+    ax.set_yticks(list(y)); ax.set_yticklabels(labels, fontsize=12, color=P["navy"])
+    mx = max(abs(min(gaps)), abs(max(gaps))) * 1.5
+    ax.set_xlim(-mx, mx); ax.set_xticks([])
+    ax.text(mx * 0.98, len(labels) - 0.4, "over-weight ▸", ha="right", color=P["amber"], fontsize=11, fontweight="bold")
+    ax.text(-mx * 0.98, len(labels) - 0.4, "◂ under-weight", ha="left", color=P["indigo"], fontsize=11, fontweight="bold")
+    bare(ax); save(fig, "drift_bars")
+
+def risk_return_sleeve():
+    rs = D["risk_sleeves"]
+    fig, ax = plt.subplots(figsize=(8.8, 5.0))
+    for name, vol, ret, w in rs:
+        ax.scatter(vol, ret, s=max(120, w * 26), color=P["indigo"], alpha=0.75,
+                   edgecolor="white", linewidth=1.2, zorder=3)
+        ax.annotate(name, (vol, ret), fontsize=11, color=P["navy"], fontweight="bold",
+                    xytext=(9, 5), textcoords="offset points")
+    ax.scatter([D["risk"]["vol"]], [11.0], marker="*", s=520, color=P["amber"],
+               edgecolor=P["navy"], linewidth=1, zorder=5)
+    ax.annotate("Portfolio today", (D["risk"]["vol"], 11.0), fontsize=11.5, fontweight="bold",
+                color=P["navy"], xytext=(10, -16), textcoords="offset points")
+    ax.set_xlabel("Risk  (annualised volatility, %)"); ax.set_ylabel("Expected return  (%)")
+    ax.grid(color=P["grid"], lw=0.7); ax.set_axisbelow(True); bare(ax, keep=("bottom", "left"))
+    save(fig, "risk_return_sleeve")
+
+def stress_scenarios():
+    st = D["stress"]
+    fig, ax = plt.subplots(figsize=(9.4, 4.8))
+    labels = [x[0] for x in st][::-1]
+    today = [x[1] for x in st][::-1]; tgt = [x[2] for x in st][::-1]
+    y = np.arange(len(labels)); bw = 0.38
+    ax.barh(y + bw / 2, today, height=bw, color=P["red"], zorder=3, label="Portfolio today")
+    ax.barh(y - bw / 2, tgt, height=bw, color=P["green"], zorder=3, label="House-view target")
+    for i in range(len(labels)):
+        ax.text(today[i] - 0.6, i + bw / 2, f"{today[i]:+d}%", va="center", ha="right", fontsize=10, color=P["navy"])
+        ax.text(tgt[i] - 0.6 if tgt[i] < 0 else tgt[i] + 0.6, i - bw / 2, f"{tgt[i]:+d}%",
+                va="center", ha="right" if tgt[i] < 0 else "left", fontsize=10, color=P["navy"])
+    ax.axvline(0, color=P["slate"], lw=1)
+    ax.set_yticks(y); ax.set_yticklabels(labels, fontsize=11.5, color=P["navy"])
+    ax.set_xlim(min(today) * 1.25, 12); ax.set_xticks([])
+    ax.legend(loc="lower left", frameon=False, fontsize=11)
+    bare(ax); save(fig, "stress_scenarios")
+
+def esg_bar():
+    e = D["esg"]; fig, ax = plt.subplots(figsize=(9.2, 1.9))
+    cols = [P["green"], P["indigo_t"], P["amber"]]; left = 0
+    for (name, v), c in zip(e, cols):
+        ax.barh(0, v, left=left, color=c, height=0.5, edgecolor="white", linewidth=1.5)
+        ax.text(left + v / 2, 0, f"{name}\n{v}%", ha="center", va="center",
+                color="white" if c != P["amber"] else P["navy"], fontsize=12, fontweight="bold")
+        left += v
+    ax.set_xlim(0, 100); ax.set_ylim(-0.5, 0.5); ax.axis("off"); save(fig, "esg_bar", pad=0.05)
+
+def liquidity_ladder():
+    lq = D["liquidity"]; fig, ax = plt.subplots(figsize=(9.2, 4.6))
+    yrs = [x[0] for x in lq]; avail = [x[1] for x in lq]; out = [x[2] for x in lq]
+    x = np.arange(len(yrs)); bw = 0.4
+    ax.bar(x - bw / 2, avail, bw, color=P["indigo"], zorder=3, label="Liquid assets available")
+    ax.bar(x + bw / 2, out, bw, color=P["amber"], zorder=3, label="Planned outflow")
+    for i in range(len(yrs)):
+        ax.text(x[i] - bw / 2, avail[i] + 0.3, f"{avail[i]:.0f}", ha="center", fontsize=10, color=P["navy"])
+        ax.text(x[i] + bw / 2, out[i] + 0.3, f"{out[i]:.0f}", ha="center", fontsize=10, color=P["navy"])
+    ax.set_xticks(x); ax.set_xticklabels(yrs, fontsize=12, color=P["navy"])
+    ax.set_ylabel("₹ Cr"); ax.legend(loc="upper left", frameon=False, fontsize=11)
+    ax.grid(axis="y", color=P["grid"], lw=0.7); ax.set_axisbelow(True); bare(ax, keep=("left",))
+    save(fig, "liquidity_ladder")
+
 if __name__ == "__main__":
     print("Rendering charts →", OUT)
+    drift_bars(); risk_return_sleeve(); stress_scenarios(); esg_bar(); liquidity_ladder()
     donut_split(); score_hist(); concentration_bubble(); sector_bar(); mcap_bar(); treemap()
     radar(D["spot_hold"], "radar_titan", sell=False)
     radar(D["spot_sell"], "radar_reliance", sell=True)

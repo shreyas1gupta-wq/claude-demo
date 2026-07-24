@@ -5,7 +5,7 @@ Ionic Wealth house style (palette, logo and chart aesthetic extracted from the e
 **`AZBY Family` is fictional and every holding is illustrative dummy data** — the deck exists to
 standardise layout, content and charts, not to depict a real client.
 
-## What's in the deck (46 slides, one tiered master)
+## What's in the deck (53 slides, one tiered master)
 
 Each content slide carries a tier chip so an advisor knows what to show:
 
@@ -18,6 +18,12 @@ Each content slide carries a tier chip so an advisor knows what to show:
 
 Two personas run through it: an **HNI business family** (~₹5.3 Cr) anchors the IPS and the main
 review; a **UHNI family office** (~₹78 Cr, five entities) anchors Section 07.
+
+Beyond the core review it carries a full analytics layer: a *what-changed-since-last-review*
+delta, *allocation drift & rebalancing bands*, *portfolio risk analytics* (vol / beta / Sharpe /
+Sortino / VaR / drawdown), *stress & scenario testing* (2008, COVID, rate shock, INR, derating),
+an *ESG profile*, a UHNI *liquidity ladder*, an *engagement & next-steps* closer, and a reusable
+appendix chart library (glidepath, drawdown, correlation, Monte-Carlo, Sankey, efficient frontier).
 
 ## Regenerating
 

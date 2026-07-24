@@ -129,11 +129,11 @@ function zebra(rows, startFill = C.near) {
   const secs = [
     ["01", "Foundations", "IPS · gaps up front · mandate · how we score"],
     ["02", "The Portfolio", "snapshot · concentration · sector & cap"],
-    ["03", "Direct Equity", "the book scored · spotlights · the sells · quality"],
+    ["03", "Direct Equity", "the book scored · spotlights · the sells · quality · ESG"],
     ["04", "Mutual Funds", "the fund book · how we evaluate · fund actions"],
-    ["05", "The Plan", "house-view fit · cost · tax · deployment · order sheet"],
-    ["06", "Growth & Frontier", "opportunity set · projection"],
-    ["07", "Family Office", "consolidation · governance · goal funding"],
+    ["05", "The Plan", "house-view fit · drift · cost · tax · deployment · order sheet"],
+    ["06", "Risk, Growth & Frontier", "risk analytics · stress tests · frontier · projection"],
+    ["07", "Family Office", "consolidation · governance · goal funding · liquidity"],
     ["A",  "Appendix", "chart library · registers · methodology"],
   ];
   let y = 1.85;
@@ -165,8 +165,14 @@ function divider(num, title, tagline, items) {
   s.addText(`SECTION ${num}`, { x: 0.62, y: 2.5, w: 6, h: 0.4, fontSize: 14, color: C.amber, fontFace: F, charSpacing: 3, margin: 0 });
   s.addText(title, { x: 0.6, y: 2.9, w: 10, h: 1.0, fontSize: 44, bold: true, color: "FFFFFF", fontFace: F, margin: 0 });
   s.addText(tagline, { x: 0.62, y: 4.0, w: 9.5, h: 0.5, fontSize: 15, color: C.indigo_t, fontFace: F, italic: true, margin: 0 });
-  if (items) s.addText(items.map((t) => ({ text: t, options: { breakLine: true, paraSpaceAfter: 4 } })),
-    { x: 0.62, y: 4.8, w: 9, h: 1.6, fontSize: 12.5, color: "FFFFFF", fontFace: F, margin: 0 });
+  if (items) {
+    let iy = 4.72;
+    items.forEach((t) => {
+      s.addShape(pres.ShapeType.donut, { x: 0.64, y: iy + 0.05, w: 0.15, h: 0.15, fill: { color: C.amber }, line: { type: "none" } });
+      s.addText(t, { x: 0.95, y: iy - 0.05, w: 9, h: 0.3, fontSize: 12.5, color: "FFFFFF", fontFace: F, margin: 0, valign: "middle" });
+      iy += 0.35;
+    });
+  }
   footer(s);
 }
 
@@ -358,6 +364,26 @@ divider("02", "The Portfolio", "Where the money sits, and where it is over-conce
   });
 })();
 
+// 8b — WHAT CHANGED SINCE LAST REVIEW ---------------------------------------
+(() => {
+  const s = head("What changed since last review", "The book is reviewed every quarter — here is the delta", "RM");
+  const ch = D.changes;
+  kpi(s, 0.55, 1.75, 2.85, `${ch.upgrades}`, "score upgrades", C.green);
+  kpi(s, 3.55, 1.75, 2.85, `${ch.downgrades}`, "score downgrades", C.red);
+  kpi(s, 6.55, 1.75, 2.85, `${ch.new_sells}`, "new Sell flags", C.amber);
+  kpi(s, 9.55, 1.75, 3.15, `${ch.actions_done}`, "prior actions completed", C.indigo);
+  const rows = [
+    [hcell("Name"), hcell("Move"), hcell("Why it moved")],
+    ...ch.moves.map((m) => [cell(m[0], { fontSize: 12, bold: true }),
+      { text: m[1], options: { fontSize: 12, bold: true, color: m[1].includes("→ Sell") ? C.red : (m[1].includes("→ Hold") && m[1].includes("Sell →") ? C.green : C.slate) } },
+      cell(m[2], { fontSize: 12, color: C.navy })]),
+  ];
+  zebra(rows);
+  table(s, rows, 0.55, 3.15, 12.2, [3.2, 2.6, 6.4], { rowH: 0.45, fontSize: 12 });
+  s.addText("A Hold moves to a Sell only on the quarterly refresh, a governance flag, or a breach of the single-name guideline on price alone. Nothing here is permanent.",
+    { x: 0.55, y: 6.55, w: 12, h: 0.35, fontSize: 10.5, italic: true, color: C.slate, fontFace: F, margin: 0 });
+})();
+
 // 9 — CONCENTRATION ----------------------------------------------------------
 (() => {
   const s = head("Concentration & risk", "The top ten names carry a third of the book", "RM");
@@ -478,6 +504,28 @@ divider("03", "Direct Equity", `${M.n_stocks} names, one bar to clear: a score o
   const f = D.factor;
   s.addText(`Weighted across the equity book, the strongest pillar is quality (${f.Quality}) and the weakest is price-trend (${f["Price-trend"]}). A quality-led, trend-light profile is consistent with a large-cap growth book; it also explains why a stretch in price-trend is a common reason names fall below the line. The dashed ring marks the market average (50).`,
     { x: 6.6, y: 2.5, w: 6.1, h: 3.5, fontSize: 12.5, color: C.navy, fontFace: F, margin: 0 });
+})();
+
+// 16b — ESG & RESPONSIBILITY -------------------------------------------------
+(() => {
+  const s = head("ESG & responsibility profile", "Where the equity book sits on environmental, social and governance quality", "STD");
+  s.addText("By ESG tier (share of the equity book)", { x: 0.55, y: 1.75, w: 8, h: 0.3, fontSize: 12.5, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+  chart(s, "esg_bar", 0.4, 2.1, 9.0, 1.5);
+  s.addShape(pres.ShapeType.roundRect, { x: 9.7, y: 1.75, w: 3.05, h: 4.7, fill: { color: C.near }, line: { color: C.grid, pt: 1 }, rectRadius: 0.08 });
+  s.addText("How we use it", { x: 9.95, y: 1.95, w: 2.6, h: 0.3, fontSize: 12.5, bold: true, color: C.navy, fontFace: F, margin: 0 });
+  s.addText("ESG ratings are third-party, blended with our own governance read. Leaders can be held with confidence; laggards are flagged for engagement or review, not an automatic sell — the Ionic Score still governs the call.",
+    { x: 9.95, y: 2.35, w: 2.6, h: 4.0, fontSize: 11.5, color: C.navy, fontFace: F, margin: 0 });
+  const cols = [["Leaders — held with confidence", C.green, ["Titan Company", "Infosys", "TCS", "Bharti Airtel", "Hero MotoCorp"]],
+               ["Flagged for review / engagement", C.amber, ["Adani Enterprises", "Coal-linked utilities", "Balrampur Chini", "VIP Industries"]]];
+  let x = 0.55;
+  cols.forEach(([t, col, names]) => {
+    s.addText(t, { x, y: 4.0, w: 4.3, h: 0.3, fontSize: 12.5, bold: true, color: col, fontFace: F, margin: 0 });
+    s.addText(names.map(nm => ({ text: nm, options: { bullet: { code: "2022", indent: 12 }, breakLine: true, paraSpaceAfter: 5, fontSize: 12, color: C.navy } })),
+      { x, y: 4.35, w: 4.3, h: 2.0, fontFace: F, margin: 0, valign: "top" });
+    x += 4.6;
+  });
+  s.addText("Illustrative ESG tiers for template design; a live review sources ratings from the client's chosen ESG provider.",
+    { x: 0.55, y: 6.55, w: 9, h: 0.3, fontSize: 10, italic: true, color: C.slate, fontFace: F, margin: 0 });
 })();
 
 // ============ SECTION 04 — MUTUAL FUNDS ====================================
@@ -610,6 +658,22 @@ divider("05", "The Plan", "The sells, the fund actions, the cost, the tax, and w
     { x: 0.55, y: 5.9, w: 12, h: 0.3, fontSize: 11, italic: true, color: C.slate, fontFace: F, margin: 0 });
 })();
 
+// 22b — ALLOCATION DRIFT & REBALANCING --------------------------------------
+(() => {
+  const s = head("Allocation drift & rebalancing", "Where the book has drifted from policy, and the bands that trigger a rebalance", "STD");
+  chart(s, "drift_bars", 0.3, 1.95, 7.7, 4.6);
+  s.addShape(pres.ShapeType.roundRect, { x: 8.15, y: 1.95, w: 4.6, h: 2.5, fill: { color: C.near }, line: { color: C.grid, pt: 1 }, rectRadius: 0.08 });
+  s.addText("Rebalancing policy", { x: 8.4, y: 2.15, w: 4.1, h: 0.3, fontSize: 13, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+  s.addText([
+    "Rebalance a sleeve when it drifts more than ±5 percentage points from its policy weight, or at the quarterly review — whichever comes first.",
+    "Fund the moves from the Sell proceeds and the anticipated liquidity event, staged to manage entry and tax.",
+  ].map(t => ({ text: t, options: { bullet: { code: "2022", indent: 12 }, breakLine: true, paraSpaceAfter: 8, fontSize: 11.5, color: C.navy } })),
+    { x: 8.4, y: 2.55, w: 4.1, h: 1.8, fontFace: F, margin: 0, valign: "top" });
+  s.addText([{ text: "Reading the chart.  ", options: { bold: true, color: C.navy } },
+    { text: "Domestic equity is the one materially over-weight sleeve; foreign equity and gold are the biggest shortfalls. The plan's redeployment closes exactly these gaps — the same story as house-view fit, expressed as drift.", options: { color: C.navy } }],
+    { x: 8.15, y: 4.7, w: 4.6, h: 1.7, fontSize: 11.5, fontFace: F, margin: 0, valign: "top" });
+})();
+
 // 23 — COST ------------------------------------------------------------------
 (() => {
   const s = head("What you pay today", "Most of the book is already low-cost; the saving is consolidation + one transparent fee", "RM");
@@ -735,9 +799,44 @@ divider("05", "The Plan", "The sells, the fund actions, the cost, the tax, and w
     { x: 0.55, y: 6.5, w: 12, h: 0.3, fontSize: 10, italic: true, color: C.slate, fontFace: F, margin: 0 });
 })();
 
-// ============ SECTION 06 — GROWTH & FRONTIER ===============================
-divider("06", "Growth & Frontier", "Where the book sits against the frontier, and where it could grow.",
-  ["The opportunity set", "Growth projection"]);
+// ============ SECTION 06 — RISK, GROWTH & FRONTIER =========================
+divider("06", "Risk, Growth & Frontier", "How much risk the book carries, how it behaves under stress, and where it could grow.",
+  ["Portfolio risk analytics", "Stress & scenario analysis", "The opportunity set", "Growth projection"]);
+
+// 27b — PORTFOLIO RISK ANALYTICS ---------------------------------------------
+(() => {
+  const s = head("Portfolio risk analytics", "How much risk the book carries, and of what kind", "STD");
+  const R = D.risk;
+  const rows = [
+    [hcell("Measure"), hcell("Value", "center"), hcell("Reading")],
+    ...[
+      ["Annualised volatility", `${R.vol}%`, "moderate for an aggressive equity book"],
+      ["Beta vs Nifty", `${R.beta}`, "moves broadly with the market"],
+      ["Sharpe ratio", `${R.sharpe}`, "reward per unit of total risk"],
+      ["Sortino ratio", `${R.sortino}`, "reward per unit of downside risk"],
+      ["Maximum drawdown", `${R.maxdd}%`, "worst peak-to-trough over the window"],
+      ["1-month VaR (95%)", `${R.var95}%`, "loss not expected to be exceeded 19 months in 20"],
+      ["Tracking error", `${R.te}%`, "active risk vs the reference index"],
+    ].map(r => [cell(r[0], { fontSize: 11.5, bold: true }), cell(r[1], { align: "center", bold: true, color: C.navy }),
+      cell(r[2], { fontSize: 11, color: C.slate })]),
+  ];
+  zebra(rows);
+  table(s, rows, 0.55, 2.0, 6.1, [2.6, 1.1, 2.4], { rowH: 0.53, fontSize: 11.5 });
+  s.addText("Risk & return by sleeve", { x: 6.95, y: 1.75, w: 6, h: 0.3, fontSize: 12.5, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+  chart(s, "risk_return_sleeve", 6.8, 2.05, 6.0, 4.5);
+})();
+
+// 27c — STRESS & SCENARIO ANALYSIS -------------------------------------------
+(() => {
+  const s = head("Stress & scenario analysis", "How the book behaves in historical and hypothetical shocks", "STD");
+  chart(s, "stress_scenarios", 0.35, 1.95, 7.7, 4.7);
+  s.addShape(pres.ShapeType.roundRect, { x: 8.25, y: 1.95, w: 4.5, h: 4.5, fill: { color: C.near }, line: { color: C.grid, pt: 1 }, rectRadius: 0.08 });
+  s.addText("Why the target is more resilient", { x: 8.5, y: 2.15, w: 4.0, h: 0.3, fontSize: 12.5, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+  s.addText("In every drawdown scenario the house-view target loses less than the book today. The reason is diversification: the foreign-equity, gold and debt sleeves the plan adds are exactly what cushion a single-market equity shock. One scenario — a sharp INR depreciation — actually helps the target, because unhedged foreign assets gain in rupee terms.",
+    { x: 8.5, y: 2.55, w: 4.0, h: 2.6, fontSize: 12, color: C.navy, fontFace: F, margin: 0 });
+  s.addText("Shocks applied to current vs target allocation using long-run asset-class assumptions; illustrative, not a forecast.",
+    { x: 8.5, y: 5.6, w: 4.0, h: 0.8, fontSize: 10, italic: true, color: C.slate, fontFace: F, margin: 0 });
+})();
 
 // 28 — EFFICIENT FRONTIER ----------------------------------------------------
 (() => {
@@ -809,6 +908,18 @@ divider("07", "Family Office", "For the UHNI family office: consolidation, gover
     { x: 9.0, y: 2.5, w: 3.7, h: 3.5, fontSize: 12, color: C.navy, fontFace: F, margin: 0 });
   s.addText("Illustrative Monte-Carlo simulation on long-run assumptions; not a forecast or a guarantee.",
     { x: 9.0, y: 5.95, w: 3.7, h: 0.6, fontSize: 9.5, italic: true, color: C.slate, fontFace: F, margin: 0 });
+})();
+
+// 32b — LIQUIDITY LADDER (UHNI) ----------------------------------------------
+(() => {
+  const s = head("Liquidity ladder", "Matching liquid assets to the family's planned outflows", "UHNI");
+  chart(s, "liquidity_ladder", 0.4, 1.95, 7.8, 4.6);
+  s.addShape(pres.ShapeType.roundRect, { x: 8.35, y: 1.95, w: 4.4, h: 4.5, fill: { color: C.near }, line: { color: C.grid, pt: 1 }, rectRadius: 0.08 });
+  s.addText("The one year to plan for", { x: 8.6, y: 2.15, w: 3.9, h: 0.3, fontSize: 12.5, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+  s.addText("Standing liquid assets cover planned outflows in every year except 2027, when the ₹25 Cr next-gen reinvestment lands. That is pre-funded from the anticipated promoter liquidity event and staged into the house-view sleeves over several quarters, rather than deployed in one tranche.",
+    { x: 8.6, y: 2.55, w: 3.9, h: 2.6, fontSize: 12, color: C.navy, fontFace: F, margin: 0 });
+  s.addText("A liquidity ladder is refreshed each review as goals and dates firm up.",
+    { x: 8.6, y: 5.5, w: 3.9, h: 0.8, fontSize: 10.5, italic: true, color: C.slate, fontFace: F, margin: 0 });
 })();
 
 // ============ APPENDIX ======================================================
@@ -883,6 +994,30 @@ registerSlide(2, byW.slice(38));
     "Tax estimates cover the fund book until a demat trade file supplies equity acquisition lots and costs.",
     "Fund look-through (overlap) is pending each scheme's latest portfolio disclosure.",
   ]), { x: 6.8, y: 2.15, w: 6.0, h: 3.2, fontFace: F, margin: 0, valign: "top" });
+})();
+
+// 37b — ENGAGEMENT & NEXT STEPS ----------------------------------------------
+(() => {
+  const s = head("Engagement & next steps", "How we work together from here", "RM");
+  const steps = [
+    ["1", "Confirm & sign off", "Review the order sheet together and confirm the actions you're comfortable with. Nothing is executed without your instruction."],
+    ["2", "Share the demat trade file", "Acquisition dates and costs per lot unlock the exact equity tax estimate and the harvest set — the one open data item."],
+    ["3", "Execute, tax-aware", "We sequence the sells and redeployment across two financial years to use both LTCG exemptions and stage entry."],
+    ["4", "Monitor & refresh", "Quarterly rescore and rebalance-band checks via Ionic CoPilot; a full review each quarter, or sooner on a material change."],
+  ];
+  let x = 0.55;
+  steps.forEach(([n, t, b]) => {
+    s.addShape(pres.ShapeType.roundRect, { x, y: 2.0, w: 2.95, h: 3.4, fill: { color: "FFFFFF" }, line: { color: C.grid, pt: 1.2 }, rectRadius: 0.1 });
+    s.addShape(pres.ShapeType.donut, { x: x + 0.25, y: 2.25, w: 0.62, h: 0.62, fill: { color: C.amber }, line: { type: "none" } });
+    s.addText(n, { x: x + 0.25, y: 2.25, w: 0.62, h: 0.62, align: "center", valign: "middle", fontSize: 20, bold: true, color: C.navy, fontFace: F, margin: 0 });
+    s.addText(t, { x: x + 0.25, y: 3.05, w: 2.45, h: 0.55, fontSize: 14, bold: true, color: C.indigo, fontFace: F, margin: 0 });
+    s.addText(b, { x: x + 0.25, y: 3.65, w: 2.45, h: 1.65, fontSize: 11.5, color: C.navy, fontFace: F, margin: 0 });
+    x += 3.05;
+  });
+  s.addShape(pres.ShapeType.roundRect, { x: 0.55, y: 5.65, w: 12.2, h: 0.95, fill: { color: C.navy }, line: { type: "none" }, rectRadius: 0.1 });
+  s.addText([{ text: "Your Ionic Wealth team   ", options: { bold: true, color: "FFFFFF", fontSize: 13 } },
+    { text: "Relationship manager · [name]   ·   [email]   ·   [direct line]      Review cadence: quarterly", options: { color: C.indigo_t, fontSize: 12 } }],
+    { x: 0.85, y: 5.65, w: 11.6, h: 0.95, valign: "middle", fontFace: F, margin: 0 });
 })();
 
 // 38 — DISCLAIMER ------------------------------------------------------------

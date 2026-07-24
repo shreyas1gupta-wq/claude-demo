@@ -8,3 +8,4 @@ template/assets/preview/
 template/*.pdf
 template/__pycache__/
 template/assets/overview.png
+template/assets/new*.png

@@ -2841,5 +2841,184 @@
     "2027"
    ]
   ]
+ },
+ "drift": [
+  [
+   "Domestic equity",
+   86.6,
+   62
+  ],
+  [
+   "Foreign equity",
+   4.4,
+   18
+  ],
+  [
+   "Gold & silver",
+   0.8,
+   8
+  ],
+  [
+   "Fixed income / hybrid",
+   8.1,
+   10
+  ],
+  [
+   "Cash",
+   0.1,
+   2
+  ]
+ ],
+ "risk": {
+  "vol": 12.8,
+  "beta": 0.98,
+  "sharpe": 0.71,
+  "sortino": 0.94,
+  "maxdd": -16.6,
+  "var95": -6.9,
+  "te": 3.4
+ },
+ "risk_sleeves": [
+  [
+   "Large-cap equity",
+   15.0,
+   11.5,
+   76.0
+  ],
+  [
+   "Mid/small equity",
+   22.0,
+   13.0,
+   10.5
+  ],
+  [
+   "International equity",
+   16.0,
+   10.0,
+   4.4
+  ],
+  [
+   "Hybrid / arbitrage",
+   6.0,
+   7.5,
+   8.1
+  ],
+  [
+   "Gold",
+   12.0,
+   7.0,
+   0.8
+  ]
+ ],
+ "stress": [
+  [
+   "Global financial crisis, 2008",
+   -55,
+   -43
+  ],
+  [
+   "COVID crash, 2020",
+   -34,
+   -26
+  ],
+  [
+   "Rate shock, +200 bps",
+   -13,
+   -9
+  ],
+  [
+   "INR depreciation, 10%",
+   -5,
+   2
+  ],
+  [
+   "Growth-stock derating",
+   -19,
+   -13
+  ]
+ ],
+ "liquidity": [
+  [
+   "2026",
+   6.0,
+   2.0
+  ],
+  [
+   "2027",
+   8.0,
+   25.0
+  ],
+  [
+   "2028",
+   7.5,
+   3.0
+  ],
+  [
+   "2029",
+   9.0,
+   6.0
+  ],
+  [
+   "2030",
+   11.0,
+   4.0
+  ],
+  [
+   "2031",
+   13.0,
+   8.0
+  ]
+ ],
+ "esg": [
+  [
+   "ESG leaders",
+   34
+  ],
+  [
+   "Average",
+   51
+  ],
+  [
+   "Laggards / flagged",
+   15
+  ]
+ ],
+ "changes": {
+  "upgrades": 6,
+  "downgrades": 3,
+  "new_sells": 2,
+  "actions_done": 4,
+  "moves": [
+   [
+    "Bharti Airtel",
+    "Hold \u2192 Hold",
+    "score 55 \u2192 59, momentum firming"
+   ],
+   [
+    "Tata Power",
+    "Hold \u2192 Sell",
+    "1Y growth stalled; crossed below 40"
+   ],
+   [
+    "HCL Technologies",
+    "Sell \u2192 Hold",
+    "1Y growth firmed to 51; upgraded"
+   ],
+   [
+    "Adani Enterprises",
+    "Hold \u2192 Sell",
+    "growth slowing against the price"
+   ],
+   [
+    "Coforge",
+    "Hold \u2192 Hold",
+    "score 51 \u2192 56 on the IT re-rating"
+   ],
+   [
+    "VIP Industries",
+    "Sell \u2192 Sell",
+    "still the weakest name; ROE negative"
+   ]
+  ]
  }
 }

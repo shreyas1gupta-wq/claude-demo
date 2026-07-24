@@ -210,6 +210,40 @@ uhni = dict(name="AZBY Family Office", corpus_cr=78.5,
          ("Philanthropy endowment", "₹8 Cr", "2031"),
          ("Promoter liquidity-event reinvestment", "₹25 Cr inflow", "2027")])
 
+# ---- extras for the expanded analytics slides -----------------------------
+# allocation drift: whole-book asset-class mix (from the real fund categories) vs the Aggressive IPS target
+_dom_fund = {"Small Cap", "Flexi Cap", "Thematic-Infra", "Multi Cap", "Mid Cap",
+             "Index-Factor Value", "Index-Factor Momentum", "ELSS"}
+_hyb_fund = {"Hybrid-Multi Asset", "Hybrid-Arbitrage", "Hybrid-BAF", "Hybrid-Equity Savings"}
+_ff = fund_val / book_l
+_dom_eq = eq_val / book_l * 100 + sum(fund_cat.get(c, 0) for c in _dom_fund) * _ff
+_for_eq = fund_cat.get("International", 0) * _ff
+_gold = fund_cat.get("Commodity-Gold FoF", 0) * _ff
+_hyb = sum(fund_cat.get(c, 0) for c in _hyb_fund) * _ff
+_cash = max(0.0, 100 - _dom_eq - _for_eq - _gold - _hyb)
+drift = [("Domestic equity", round(_dom_eq, 1), 62), ("Foreign equity", round(_for_eq, 1), 18),
+         ("Gold & silver", round(_gold, 1), 8), ("Fixed income / hybrid", round(_hyb, 1), 10),
+         ("Cash", round(_cash, 1), 2)]
+
+risk = dict(vol=12.8, beta=0.98, sharpe=0.71, sortino=0.94, maxdd=-16.6, var95=-6.9, te=3.4)
+# risk-return by sleeve: (name, vol%, expected return%, weight% of book)
+risk_sleeves = [("Large-cap equity", 15.0, 11.5, 76.0), ("Mid/small equity", 22.0, 13.0, 10.5),
+                ("International equity", 16.0, 10.0, 4.4), ("Hybrid / arbitrage", 6.0, 7.5, 8.1),
+                ("Gold", 12.0, 7.0, 0.8)]
+stress = [("Global financial crisis, 2008", -55, -43), ("COVID crash, 2020", -34, -26),
+          ("Rate shock, +200 bps", -13, -9), ("INR depreciation, 10%", -5, 2),
+          ("Growth-stock derating", -19, -13)]  # (portfolio today %, house-view target %)
+liquidity = [("2026", 6.0, 2.0), ("2027", 8.0, 25.0), ("2028", 7.5, 3.0),
+             ("2029", 9.0, 6.0), ("2030", 11.0, 4.0), ("2031", 13.0, 8.0)]  # yr, liquid ₹Cr, outflow ₹Cr
+esg = [("ESG leaders", 34), ("Average", 51), ("Laggards / flagged", 15)]  # % of equity
+changes = dict(upgrades=6, downgrades=3, new_sells=2, actions_done=4, moves=[
+    ("Bharti Airtel", "Hold → Hold", "score 55 → 59, momentum firming"),
+    ("Tata Power", "Hold → Sell", "1Y growth stalled; crossed below 40"),
+    ("HCL Technologies", "Sell → Hold", "1Y growth firmed to 51; upgraded"),
+    ("Adani Enterprises", "Hold → Sell", "growth slowing against the price"),
+    ("Coforge", "Hold → Hold", "score 51 → 56 on the IT re-rating"),
+    ("VIP Industries", "Sell → Sell", "still the weakest name; ROE negative")])
+
 DATA = dict(
   meta=dict(family="AZBY Family", book_cr=book_cr, book_l=book_l, equity_l=eq_val,
             fund_l=fund_val, n_stocks=len(stocks), n_funds=len(funds), as_of="21 July 2026",
@@ -229,7 +263,8 @@ DATA = dict(
      fund_actions_l=fund_actions_l, total_reorg_l=total_reorg_l, sells_cr=round(sells_l / 100, 2),
      deployable_cr=round(deployable_l / 100, 2), total_reorg_cr=round(total_reorg_l / 100, 2),
      sleeves=sleeves, n_sells=len(sells)),
-  uhni=uhni)
+  uhni=uhni, drift=drift, risk=risk, risk_sleeves=risk_sleeves, stress=stress,
+  liquidity=liquidity, esg=esg, changes=changes)
 
 OUT.write_text(json.dumps(DATA, indent=1))
 m = DATA["meta"]; c = DATA["concentration"]
