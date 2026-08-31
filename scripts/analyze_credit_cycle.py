@@ -1,0 +1,182 @@
+#!/usr/bin/env python3
+"""Deep-dive #1 driver — the L10 credit-cycle state variable.
+
+Modes:
+  --demo   Run the EXACT production module (quant/ladder/credit_cycle.py) end-to-end on the
+           synthetic boom-bust economy with known phase boundaries and write the phase-table
+           report to research/cycles/01-credit-cycle-DEMO.md, marked SYNTHETIC. Zero market
+           data touched; this certifies the machinery, never an India result.
+
+The real-data mode (India fixtures per docs/cycles/01-credit-cycle.md §5 designs R1-R7) is
+intentionally ABSENT until the Phase-0 pulls exist on the principal's machine — the designs are
+frozen in the monograph first, per the pre-registration rule (CONTRACT §8).
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+from pathlib import Path
+
+import numpy as np
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from quant.ladder import credit_gap, credit_state_composite, expanding_percentile  # noqa: E402
+from quant.validation.synthetic import boom_bust_economy  # noqa: E402
+
+OUT = ROOT / "research" / "cycles" / "01-credit-cycle-DEMO.md"
+
+# Demo-only knobs. h=24 months is a DEMO horizon scaled to the 480-month fixture; the production
+# h comes from the registry grid (16-24 QUARTERS, design R4) — nothing here feeds the live state.
+H_DEMO, P_DEMO = 24, 4
+N_SEEDS = 10
+
+
+def phase_windows(e: dict) -> list[tuple[str, int, int]]:
+    boom_lo, boom_hi = e["boom"]
+    bust_lo, bust_hi = e["bust"]
+    return [
+        ("pre-boom", boom_lo - 40, boom_lo),
+        ("boom build-out", boom_lo + 12, boom_hi - 24),
+        ("late boom", boom_hi - 24, boom_hi),
+        ("bust onset (turn)", boom_hi, boom_hi + 24),
+        ("late bust", bust_hi - 24, bust_hi),
+        ("aftermath", 420, 480),
+    ]
+
+
+def run_one(seed: int) -> dict:
+    e = boom_bust_economy(seed=seed)
+    gap = credit_gap(e["credit"], e["income"], h=H_DEMO, p=P_DEMO)
+    gap_pct = expanding_percentile(gap)
+    cd_pct = expanding_percentile(e["credit"] / e["deposits"])
+    state = credit_state_composite(gap_pct, cd_pct)
+    rows = {}
+    for name, a, b in phase_windows(e):
+        rows[name] = dict(gap=np.nanmean(gap[a:b]), gap_pct=np.nanmean(gap_pct[a:b]),
+                          cd_pct=np.nanmean(cd_pct[a:b]), state=np.nanmean(state[a:b]))
+    # the three headline properties, per seed
+    checks = dict(
+        gap_fires_in_buildout=rows["boom build-out"]["gap"] > rows["pre-boom"]["gap"],
+        gap_collapses_at_turn=(rows["bust onset (turn)"]["gap"] < rows["late boom"]["gap"]
+                               and rows["bust onset (turn)"]["gap"] < -0.05),
+        cd_saturates_late_boom=rows["late boom"]["cd_pct"] > 0.85,
+        state_discriminates=(rows["boom build-out"]["state"] > rows["bust onset (turn)"]["state"] + 0.3
+                             and rows["boom build-out"]["state"] > rows["aftermath"]["state"] + 0.3),
+    )
+    return dict(rows=rows, checks=checks, e=e)
+
+
+def clamp_demo(seed: int = 7) -> dict:
+    """Tier-C clamp arithmetic on the default-seed economy (mirrors the C2 audit finding)."""
+    e = boom_bust_economy(seed=seed)
+    gap_pct = expanding_percentile(credit_gap(e["credit"], e["income"], h=H_DEMO, p=P_DEMO))
+    cd_pct = expanding_percentile(e["credit"] / e["deposits"])
+    base = credit_state_composite(gap_pct, cd_pct)
+    hot = credit_state_composite(gap_pct, cd_pct,
+                                 composition_pct=np.ones(len(base)), w_composition=0.3)
+    benign = credit_state_composite(gap_pct, cd_pct,
+                                    composition_pct=np.zeros(len(base)), w_composition=0.3)
+    m = ~np.isnan(base)
+    return dict(
+        hot_never_below_renorm_base=bool(np.all(hot[m] >= base[m] / 1.3 - 1e-9)),
+        benign_adds_exactly_zero=bool(np.allclose(benign[m], base[m] / 1.3, atol=1e-9)),
+        max_hot_minus_base=float(np.max(hot[m] - base[m] / 1.3)),
+        min_hot_minus_base=float(np.min(hot[m] - base[m] / 1.3)),
+    )
+
+
+def write_report(per_seed: list[dict], clamp: dict) -> None:
+    default = per_seed[7]["rows"]  # seed index == seed value here (seeds 0..9)
+    agg = {k: sum(r["checks"][k] for r in per_seed) for k in per_seed[0]["checks"]}
+    n = len(per_seed)
+
+    lines = [
+        "# L10 credit-cycle module — synthetic end-to-end demonstration",
+        "",
+        "**SYNTHETIC — no market data.** Every number below comes from a seeded generator with",
+        "*known* boom/bust boundaries (`quant/validation/synthetic.py::boom_bust_economy`:",
+        "boom months 200-320, bust 320-400 of 480). This report certifies that the production",
+        "module (`quant/ladder/credit_cycle.py`) recovers *engineered* phases in real time with",
+        "no look-ahead. It says NOTHING about India; those numbers await the Phase-0 fixtures",
+        "(designs frozen in `docs/cycles/01-credit-cycle.md` §5).",
+        "",
+        f"Generated by `scripts/analyze_credit_cycle.py --demo` · h={H_DEMO}m/p={P_DEMO}"
+        " (demo-scaled; production h is a registry grid in QUARTERS, design R4)"
+        f" · {n} seeds · 2026-08-31",
+        "",
+        "## Phase table (default seed 7)",
+        "",
+        "| Phase (known ground truth) | Hamilton gap (expanding) | gap pctile | CD pctile | composite state |",
+        "|---|---|---|---|---|",
+    ]
+    for name, *_ in phase_windows(per_seed[7]["e"]):
+        r = default[name]
+        lines.append(f"| {name} | {r['gap']:+.4f} | {r['gap_pct']:.2f} | {r['cd_pct']:.2f} "
+                     f"| {r['state']:+.3f} |")
+    lines += [
+        "",
+        "## Properties, checked across all seeds (frozen as tests only after passing all seeds)",
+        "",
+        "| Property | Seeds passing |",
+        "|---|---|",
+        f"| Gap fires positive in the boom build-out (vs pre-boom) | {agg['gap_fires_in_buildout']}/{n} |",
+        f"| Gap collapses (< −0.05, cycle-largest magnitude) at the bust ONSET | {agg['gap_collapses_at_turn']}/{n} |",
+        f"| CD percentile saturates >0.85 late in the boom | {agg['cd_saturates_late_boom']}/{n} |",
+        f"| Composite ≥0.3 higher in boom than at turn AND in aftermath | {agg['state_discriminates']}/{n} |",
+        "",
+        "## What the run taught us (the falsification, recorded)",
+        "",
+        "The test file originally asserted the gap \"rises through the boom\" — the shape of a",
+        "full-sample/BIS-style LEVEL gap. The run falsified it: the EXPANDING-mode Hamilton gap is",
+        "an **acceleration-surprise detector** — it fires during the build-out, decays late in the",
+        "boom as the expanding regression absorbs the new growth rate, and posts its largest",
+        "reading of the whole cycle (negative) at the turn. The CD-ratio percentile carries the",
+        "boom-maturity LEVEL. Impulse + level are complements by construction; design R5 is",
+        "reframed accordingly. Full entry: `research/register/verification-log.md` (2026-08-31).",
+        "",
+        "## Tier-C clamp (consistency-audit C2, enforced in code)",
+        "",
+        f"- Hot composition (pinned at 100th pctile) never pushes the state below the renormalized"
+        f" base: **{clamp['hot_never_below_renorm_base']}** (min uplift"
+        f" {clamp['min_hot_minus_base']:+.4f}, max {clamp['max_hot_minus_base']:+.4f} — always ≥0).",
+        f"- Benign composition (0th pctile) contributes exactly zero beyond renormalization:"
+        f" **{clamp['benign_adds_exactly_zero']}**.",
+        "",
+        "A Tier-C input can argue for LESS risk, never for more — the rule is now arithmetic,",
+        "not policy prose.",
+        "",
+        "## Honest limitations shown by the same run",
+        "",
+        "- **Early-sample percentiles are noisy**: expanding ranks over short reference windows",
+        "  make the pre-boom state unreliable (boom-vs-pre-boom margin held only 8/10 seeds with a",
+        "  0.05 margin) — so no test asserts it, and the live state carries a warm-up mask.",
+        "- **The composite peaks in the build-out, not at the peak** (impulse decays before the",
+        "  turn while the level saturates) — acceptable for a REGIME input consumed as leverage /",
+        "  hedge permission, and exactly why L10 is never a timing trade (monograph §1.4).",
+    ]
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text("\n".join(lines) + "\n")
+    print(f"wrote {OUT.relative_to(ROOT)}")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--demo", action="store_true", help="run the synthetic end-to-end demo")
+    args = ap.parse_args()
+    if not args.demo:
+        ap.error("only --demo is implemented; real-data mode awaits Phase-0 fixtures "
+                 "(docs/cycles/01-credit-cycle.md §5)")
+    per_seed = [run_one(seed) for seed in range(N_SEEDS)]
+    for seed, r in enumerate(per_seed):
+        bad = [k for k, v in r["checks"].items() if not v]
+        if bad:
+            print(f"seed {seed}: FAILED {bad}", file=sys.stderr)
+            return 1
+    write_report(per_seed, clamp_demo())
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

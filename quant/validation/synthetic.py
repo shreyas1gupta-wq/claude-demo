@@ -50,3 +50,22 @@ def trend_plus_cycle(T: int, cycle_rho: float = 0.9, trend: float = 0.01,
     cyc = ar1_series(cycle_rho, T, sigma_cycle, seed=seed + 1)
     tr = np.cumsum(trend + rng.normal(0, 0.2, T))
     return tr + cyc, cyc
+
+
+def boom_bust_economy(T: int = 480, seed: int = 7) -> dict:
+    """Monthly synthetic economy with a KNOWN credit boom and bust (the L10 fixture).
+
+    Income grows steadily; credit grows WITH income except a boom (months 200-320: credit
+    outgrows income by 60bps/mo) then a bust (320-400: credit growth 70bps/mo below income).
+    Deposits track income, so the credit-deposit ratio rises through the boom and unwinds
+    after it. Ground truth: boom=(200, 320), bust=(320, 400), returned alongside the series."""
+    rng = np.random.default_rng(seed)
+    g_income = 0.005 + 0.002 * rng.standard_normal(T)
+    income = 100 * np.cumprod(1 + g_income)
+    g_credit = g_income.copy()
+    g_credit[200:320] += 0.006            # boom: credit outgrows income
+    g_credit[320:400] -= 0.007            # bust: credit contracts vs income
+    credit = 80 * np.cumprod(1 + g_credit + 0.001 * rng.standard_normal(T))
+    deposits = 110 * np.cumprod(1 + g_income + 0.0005 * rng.standard_normal(T))
+    return dict(income=income, credit=credit, deposits=deposits,
+                boom=(200, 320), bust=(320, 400))

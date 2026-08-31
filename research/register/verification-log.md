@@ -449,3 +449,29 @@ business-standard/upstox 4-June-2024 coverage.
 blocked for every academic/press domain attempted). Where a figure required this audit to trust a
 search engine's own synthesis of a source it could not independently open, that is stated explicitly
 above rather than presented as a direct primary-source confirmation.*
+
+---
+
+## 2026-08-31 — Deep-dive #1 (credit cycle): pre-written test assertion falsified by the synthetic run
+
+**What happened:** `tests/test_credit_cycle.py` was written asserting the expanding-mode Hamilton
+credit gap "rises through the boom and falls through the bust" — the shape of a full-sample/BIS-style
+LEVEL gap. The synthetic boom-bust run falsified it: across seeds 0–9 (10/10), the expanding gap
+fires positive during the boom's **build-out**, decays toward ~0 late in the boom as the expanding
+regression absorbs the new growth rate into its coefficients, and posts its largest-magnitude reading
+of the whole cycle (strongly negative) at the bust **onset** — forecasts made at the peak extrapolate
+the boom against contracting actuals.
+
+**Verdict:** the estimator is right and the assertion was wrong. Expanding-mode Hamilton is an
+**acceleration-surprise / turn detector**; the CD-ratio expanding percentile carries the boom-maturity
+LEVEL (saturates >0.85 late-boom, 10/10 seeds). The two L10 inputs are impulse + level complements by
+construction, which reframes pre-registered design R5 from "are they redundant?" to "does the impulse
+add turn-timing on top of the level?".
+
+**Actions:** tests rewritten to the measured shape (each assertion checked 10/10 across seeds before
+freezing); monograph §4 input-1 note + §7 amended, with the falsification recorded there rather than
+silently retro-fitted; no assertion vs the PRE-boom window (early-sample expanding percentiles are
+noisy short-window ranks — documented as a limitation instead of hidden behind a tuned margin).
+**Process note:** second instance of "conclusion written before the test ran" (after MC3). Rule
+restated: demo/test claims about estimator behavior get written AFTER the run, or explicitly marked
+as predictions.
