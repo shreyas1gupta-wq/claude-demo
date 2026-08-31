@@ -10,6 +10,12 @@ regime_buckets:                 # rule-based state machine; NEVER a fitted Marko
   # the 35% absolute ceiling at leverage 0.70 / hedge 0.75. This is exactly the class of defect the
   # CI registry exists to catch (CONTRACT §10). At [0.60, 1.00]: 1.3*0.6*(1-1.0*0.45)=0.43 effBeta
   # -> 0.43*0.38 + 0.15 gap = 0.31 <= 0.35.
+regime_buckets_provenance:
+  source: "leverage ranges from CONTRACT prior #4 (state-contingent averages 1.10-1.15x/1.05x) + Grossman-Zhou cushion logic (D04); hedge ranges from the frozen 7-point grid crossed with 4 buckets (D04 §4); R4 bounds tightened by the validator's worst-case ceiling check (see inline comment)"
+  tier: B
+  confidence: medium
+  decay: "re-derive against the rebuilt episode table (data phase)"
+  changes_if: "hedge-grid x regime joint sweep (trial-ledger #1); measured hedge effectiveness"
 bucket_boundaries: "quantile/sign rules on regime score R's own history - no fixed numeric thresholds"
 sweep_note: "hedge grid x 4 buckets (<=28 cells) swept JOINTLY; full grid enters the deflated-Sharpe trial ledger"
 
@@ -18,6 +24,8 @@ effective_beta_identity:
   hedge_effectiveness_slow_bear: {value: [0.60, 0.75], tier: C, source: "illustrative basis+gap discount (D04 §4)", confidence: low, decay: n/a, changes_if: "historical basis + gap distribution measurement"}
   hedge_effectiveness_fast_crash: {value: [0.45, 0.60], tier: C, source: "same", confidence: low, decay: n/a, changes_if: "same"}
   gap_floor: {value: [0.10, 0.15], tier: C, source: "restated UP from prior-pass 8-12% under rare-options design (DESIGN §2.5)", confidence: low, decay: n/a, changes_if: "gap-distribution measurement; larger option budget buys it back down"}
+  worst_case_fall_while_in_R4: {value: 0.38, tier: B, source: "COVID Feb-Mar 2020 close-to-close Nifty fall (-38.4%, 69 sessions) - the deepest fast fall on record; used by validator.py's ceiling check (moved out of hardcoded Python per red-team finding)", confidence: medium, decay: n/a, changes_if: "a deeper realized fast fall, or a slow 2008-style path modeled separately via bucket-path simulation"}
+  sensitivity_note: "R4 ceiling check breaks if true fast-crash hedge effectiveness < ~0.33 (vs the 0.45 unmeasured Tier-C floor assumed) - plausible when tail names are limit-locked; MEASURE before treating the check as settled (red-team finding)"
 
 leverage_function:              # Decision Q3: margin funding on cash names
   form: "clip( L_base(book) * f(GZ_surplus) * g(bucket) * h(funding_hurdle), 1.0, 1.5 )"
@@ -26,7 +34,7 @@ leverage_function:              # Decision Q3: margin funding on cash names
   funding_hurdle: "leverage > 1.0 only if E[r_proxy] - funding_rate > buffer; buffer swept"
   rule_no_debt_while_levered: true      # never borrow at 7-12% while holding debt sleeve above policy floor
   rule_margin_call_prebuffer: true      # cut at cushion above broker maintenance level; forced selling never sets the pace
-  futures_overlay_alternative: "recorded as cost-superior (~3x cheaper statutory); revisit if realized funding > MIBOR + 200bps"
+  futures_overlay_alternative: "recorded as cost-superior (~4x cheaper statutory: 5.7bps vs 22.3bps RT - corrected by consistency audit); revisit if realized funding > MIBOR + 200bps, OR if T+0 settlement expansion materially changes cash-delivery financing mechanics (red-team trigger)"
 
 hedge_stack_priority:           # Decision Q4: de-gross first, options rare and rule-triggered
   1: "trim cash equity (liquid names first; tail names may be band-locked)"

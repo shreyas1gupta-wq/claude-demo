@@ -6,12 +6,13 @@ momentum:
   rejected_standalone: ["3-1 momentum"]
   haircut: {value: [0.25, 0.35], tier: B, source: "Jacobs-Mueller (non-US decay small) vs Sharma et al India risk-absorption; anchor AJV 21.9%/yr (D01)", confidence: medium, decay: "to 0.58 if post-2015 PIT subsample weak", changes_if: "PIT estimate"}
   crash_guard: "inverse trailing vol of momentum spread (Barroso-Santa-Clara) + bear-state quantile cut (Daniel-Moskowitz)"
+  crowding_monitor: "smart-beta/momentum AUM growth-rate trigger, mirror of low_vol's - the mid-2025 quant unwind named momentum as a participant (D02 §3; red-team finding); haircut escalates toward 58% on a second crowding-unwind episode"
   liquidity_rules: ["exclude circuit>=20% of recent days", "exclude ASM/GSM stage>=2", "no entries into live reconstitution pops (fade 10-60d India)", "tail (illiquid tercile) reverses - momentum forbidden there (Chui et al 2023)"]
   book_roles: {aggressive: "primary fast sleeve, liquid ranks, <=200%/yr own turnover", moderate: "rank tiebreaker inside factor book, <=1/5 of turnover budget", conservative: "input to slow composite only"}
 
 factor_book:                    # moderate book engine (Decision Q6)
   value:   {weight_range: [0.20, 0.35], haircut: [0.30, 0.40], price_only_share_min: 0.50, components: ["dividend yield", "net share issuance (Pontiff-Woodgate)", "sales/price", "B/P + E/P lag-buffered >=4-6m"], tier: B, source: "D02; restatement bias 150-450bps (prior #7)", confidence: medium, decay: "see haircut", changes_if: "value-spread conditioner fails OOS"}
-  quality: {weight_range: [0.20, 0.35], haircut: [0.25, 0.35], components: ["profitability", "earnings stability", "leverage", "promoter-pledge intensity (India)", "RPT flags (India)"], floor_binds_late_cycle: true, tier: B, source: "QMJ (A global); pledge-cascade case count ~10-15 India episodes (D02/D12)", confidence: medium, decay: "valuation kill-switch: cut to floor when own rel-valuation top-decile", changes_if: "India crisis-ballast episode study"}
+  quality: {weight_range: [0.20, 0.35], haircut: [0.25, 0.35], components: ["profitability", "earnings stability", "leverage", "promoter-pledge intensity (India)", "RPT flags (India)"], india_junk_terms_weight_discount: 0.50, floor_binds_late_cycle: true, tier: B, source: "QMJ (A global); pledge-cascade case count ~10-15 India episodes (D02/D12); India-specific junk terms weighted at 50% pending the episode study - a case count is not a measured effect size (red-team finding)", confidence: medium, decay: "valuation kill-switch: cut to floor when own rel-valuation top-decile", changes_if: "India crisis-ballast + pledge-invocation event studies"}
   low_vol: {weight_range: [0.15, 0.25], haircut: [0.30, 0.40], construct: "pure realized-vol rank (price-only), NOT alpha-blended index construct", tier: B, source: "global A; India academic evidence split (D02)", confidence: low_medium, decay: "AUM-growth-rate crowding trigger", changes_if: "resolved India study"}
   size_quality_controlled: {weight_range: [0.00, 0.15], satellite_only: true, tier: C, source: "raw India SMB ~0 (AJV); junk-controlled version untested in India (D02)", confidence: low, decay: "treated as unproven", changes_if: "pre-registered India test - highest-value single test in program"}
   conditioners: ["value weight up when value-spread 10y percentile top tercile", "quality cut to floor when quality rel-valuation top decile", "tilt to momentum when value spread bottom tercile"]
@@ -28,13 +29,19 @@ special_situations:             # Decision Q10: aggressive only, Tier-B rules fr
     index_inclusion_exclusion: {tier: B, decay: "RISING haircut - re-estimated annually as passive AUM compounds; India ~ US-1990s today", rule: "announcement-to-effective window, flow-sized"}
     demergers_spinoffs: {tier: C_provisional_B, rule: "hold parent+spinco 3-12m through forced index selling", pending: "India event registry (20-40 candidates 2000-25)"}
     buyback_openoffer_delisting_arb: {tier: B, rule: "deal-by-deal vs proration/approval risk; capacity-capped by regulation"}
-    lockin_expiry_windows: {tier: C, reduce_only: true, rule: "no adds +-5-10 days around disclosed 30/90-day anchor unlocks and promoter lock-in ends"}
+    lockin_expiry_windows: {tier: C, reduce_only: true, rule: "no adds +-5-10 days around disclosed 30/90-day anchor unlocks and promoter lock-in ends", evidence_note: "SEBI ~Aug-2026 study (242 mainboard IPOs 2022-25): anchor exit is GRADUAL (~3.2% at 30d, ~17.3% by 90d) - expected India effect much weaker than Field-Hanka US analogue; rule retained only as cheap conservative default (citation-audit critical finding)"}
     bulk_block_pit_following: {tier: C_provisional_B, rule: "ranks 500-750 only; sign/quantile form; pre-registered"}
     ipo_allotment: {excluded: true, reason: "allotment is a lottery, not scalable entry; post-listing drift folds into quality newly-listed flag"}
 
 gold:                           # DESIGN §6.5; ETF core + futures tactical (frozen instruments)
   floors: {conservative: [0.08, 0.12], moderate: [0.04, 0.07], aggressive: [0.02, 0.04]}
   ceilings_total: {conservative: [0.20, 0.24], moderate: [0.20, 0.25], aggressive: [0.15, 0.18]}
+  floors_ceilings_provenance:
+    source: "floors: safe-haven mechanism (Baur-Lucey/Baur-McDermott via >=10 cross-country analogues, D06) + Tier-C long-wave attribution (D07); ceilings: no non-sponsor study supports >~25% (WGC excluded as conflicted, D06 §4); per-book scaling reflects each book's alternative hedges"
+    tier: C
+    confidence: low_medium
+    decay: "floor shrinks only if >=10 independent stress episodes show gold-equity correlation reliably positive"
+    changes_if: "non-industry-funded India-covariance optimization study; cheaper tail-hedge instrument dominating gold"
   score_inputs:
     real_rate: {weight: [0.15, 0.20], note: "half-weighted post-2022 breakdown", tier: B, source: "Erb-Harvey mechanism; post-2022 decoupling (D06)", confidence: low_medium, decay: "re-weight if link re-establishes over fresh >=4y window", changes_if: ">=4 quarters net CB selling without real-rate fall"}
     cb_buying_regime: {weight: [0.20, 0.25], tier: C, source: "WGC quarterly series, exogenous conditioning variable, zero assumed persistence (D06)", confidence: low_medium, decay: n/a, changes_if: ">=4 quarters net selling"}
@@ -57,7 +64,7 @@ stage2:                         # Decisions Q7 + Q9; DESIGN §8
     rung2: "n>=50, BSS>0 two windows, IR+DD both pass: <=50% / <=2.5pp per instance, <=5pp aggregate; one risk-adding hedge step within band"
     demotion: "automatic, immediate, one rung, on any window with BSS<0 or paired IR/DD below baseline"
   channels: ["structured checklist scorer (hard caps)", "adversarial red team (proposer != red-teamer)", "tactical thesis/buy-call generator with human veto"]
-  llm_rules: ["ensemble >=2 independent calls before an AI thesis logs", "model-version change resets track record to n=0", "LLM historical backtests inadmissible at any tier (Glasserman-Lin contamination argument)", "human execution gate at every rung, never relaxes"]
+  llm_rules: ["ensemble >=2 independent calls before an AI thesis logs", "model-version change resets track record to n=0 AND forces immediate step-down to the rung below (probationary hold) until re-earned - authority never survives the weights that earned it (red-team finding)", "LLM historical backtests inadmissible at any tier (Glasserman-Lin arXiv 2309.17322; their anonymization partially mitigates - rule kept as conservative choice)", "human execution gate at every rung, never relaxes"]
   kill_switch_flags_per_window: {value: 3, tier: C, source: "governance circuit-breaker, mirrors registry fail-to-load principle (D10)", confidence: medium, decay: n/a, changes_if: "realized flag frequency"}
 
 stage3:                         # DESIGN §7

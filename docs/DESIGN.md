@@ -41,7 +41,7 @@ Three products, not one product dialled down. Each book's edge is structurally d
 | Return engine | Momentum sleeves + tail/special-sits satellite + factor core | **Factor book (value/quality/low-vol)** | Factor book, capacity-constrained projection |
 | Name count (floor→ceiling, dispersion-conditioned §7.2) | 15–20 → 50–65 | 30–50 → 65–100 | 50–80 → 150–250 |
 | Design-point turnover | 250–350% | 100–160% | 40–75% |
-| Honest net CAGR (derivation §1.1) | ~18–26% | ~14–19% | ~13–16% |
+| Honest net CAGR (derivation §1.1) | ~15.5–26.5% | ~13.5–20.5% | ~12–16% |
 | Max DD target (ceiling 30–35% frozen) | 25–30% | 20–25% | 18–22% |
 
 The moderate book is the design anchor (Decision Q6): its factor engine has the longest signal
@@ -60,9 +60,9 @@ Built additively from sourced parts, each after its decay haircut (§10) and cos
 | Momentum sleeves (post 25–35% haircut, post cost) | +3 to +6pp | +0.5 to +1.5pp (modifier only) | ~0 | [I] AJV WML 21.9%/yr raw → §10 |
 | Factor book (value/quality/low-vol, post 25–40% haircuts) | +1 to +2pp | +2.5 to +5pp | +1 to +2.5pp | [X][I] D02 |
 | Special situations satellite (capacity-capped) | +0.5 to +1.5pp | 0 | 0 | [I] D12, Tier-B events |
-| Leverage (avg ~1.10–1.15x agg / 1.05x mod) net of funding | +0.2 to +1pp | +0 to +0.5pp | 0 | [T] §5.4 — thin under margin funding at 9–12%; wider if funding ≈ MIBOR |
+| Leverage (avg ~1.10–1.15x agg / 1.05x mod) net of funding | +0 to +1pp (0 when the funding hurdle clips it) | +0 to +0.5pp | 0 | [T] §5.4 — thin under margin funding at 9–12%; wider if funding ≈ MIBOR |
 | Risk-system drag (whipsaw + option budget + cash drag) | −1 to −2pp | −0.5 to −1.5pp | −0.5 to −1pp | [X] D04 (vol targeting/trend whipsaw); [A] India whipsaw count |
-| **Net CAGR band** | **≈18–26%** | **≈14–19%** | **≈13–16%** | |
+| **Net CAGR band (component sums: floor = every row at its pessimistic end simultaneously, ceiling = every row optimistic — both extremes are themselves unlikely co-realizations; central expectation ≈ mid-band)** | **≈15.5–26.5%** | **≈13.5–20.5%** | **≈12–16%** | red-team audit: an earlier draft's floors exceeded the row sums; corrected to the literal min-sum |
 
 The prior pass's 22–28% (aggressive) sits in the upper half of this band and **requires** (i) the
 tail/microcap sleeve surviving cost validation, (ii) a favorable credit/valuation regime, and
@@ -82,10 +82,13 @@ A 5.5% entry at ₹25,000cr (conservative top) = ₹1,375cr/position.
 - **SAST Reg. 29 disclosure at 5% of shares outstanding** → target market cap must exceed
   ≈₹27,500cr → roughly the top 120–150 names only [I][V].
 - **Liquidity**: rank-300 ADV ≈ ₹20–40cr/day [A: provisional ADV table, D05 §4b]; at 10%/day
-  participation a full build takes ≈**32 weeks**; at rank 100–150, 2–5 weeks.
+  participation a full ₹1,375cr build takes ≈**340–690 trading days (1.5–3 years)** — effectively
+  never; even at rank 100–150 (ADV ₹80–150cr) it takes ≈**18–34 weeks**. *(Corrected by the
+  consistency audit: an earlier draft understated both by conflating a days figure with weeks.)*
 - Same logic: moderate book full-size to ~rank 100–150; aggressive full-size to ~rank 300; the
   rank 500–750 tail (ADV ₹1–4cr) admits only ~1–2% tickets even at ₹100–250cr (5% entry at ₹250cr
-  = ₹12.5cr ≈ 3–4 full days of ADV in a median microcap).
+  = ₹12.5cr ≈ 3–4 full days of total ADV at the upper end of the tail's liquidity range, ~5+ days
+  at its median).
 **Resolution adopted**: each book carries TWO universes — a *full-conviction* universe (ADV- and
 SAST-bounded, narrow) and a *long-hold small-ticket* universe (the full stated rank range at
 reduced size and low turnover). The conservative book's effective entry weight below rank ~100
@@ -116,8 +119,10 @@ now persistence-based (Decision Q5, §5.6), which tolerates transient beta overs
 sustained one.
 
 ### 2.4 Leverage economics under Decision Q3 are thin and must clear a stated hurdle
-Statutory cost alone: cash delivery ≈22–32bps round trip vs index futures ≈10–18bps — futures are
-~3× cheaper [I][V: D05 §4a, FY2026-27 rates verified]. Margin funding costs 9–12%/yr retail; a
+Statutory cost alone: cash delivery ≈22.3bps round trip vs index futures ≈**5.7bps** (all-in with
+brokerage ≈24–32 vs ≈8–16bps) — futures are ~**4×** cheaper [I][V: D05 §4a rates verified; the
+statutory futures figure corrected from 7.7 to 5.7bps by the consistency audit, which reproduced
+the component sum]. Margin funding costs 9–12%/yr retail; a
 prop desk may fund near MIBOR (~6.5–7.5%). At funding f, the marginal 10–15% exposure earns
 (E[r_equity] − f): at f=11% and E[r]=13%, +0.2–0.3pp/yr to the book — barely positive; at f=7%,
 +0.6–1.0pp. **Design consequences (adopted):** `funding_rate` is a first-class config parameter;
@@ -211,7 +216,9 @@ passed the clock test, 3 calendar-anchored. Our re-derivation of plausible passe
 window (annual, n≫30 on timing), general-election window (n=8–9), fiscal-year-end (annual,
 hypothesis), monsoon season (annual, weak sector effect), derivative-expiry calendar (mechanical).
 All five are **timing/vol-scheduling objects only** — direction is never predictable from the
-calendar (2004/2009/2024 election days moved ∓10–17% on surprise, not schedule; D08 [I][V]).
+calendar: election-day moves are surprise-driven, not schedule-driven — 2004 close ≈ −15.5%
+(intraday −17%), 2009 ≈ +10.7% to the first upper-circuit halt, but 2024 only ≈ −5.9% close
+(intraday −7.4%), roughly half the older band [I, magnitudes verified by the citation audit].
 The RBI monetary cycle (n≈4–5) is a marginal quasi-cycle. This mapping is provisional until the
 data-phase clock test re-runs on real series with pre-registered period definitions.
 
@@ -233,7 +240,7 @@ the cited literature, not fitted numbers.
 | L7 | Issuance/sentiment cycle: IPO share, first-day pops, SME froth; equity share in new issues | 12–24m | Issuers time rich valuations (Baker-Wurgler); SEBI's own 2024 SME actions confirm the mechanism institutionally | NSE/BSE listings, SEBI bulletins, bhavcopy | B (methodology) / C (India coeff.) | ≤10% of budget; also sizes the special-sits sleeve | D08/D12 |
 | L8 | Value spread (factor's own valuation) | 24–36m | Cheapness of cheap-vs-expensive predicts value's forward return (Cohen-Polk-Vuolteenaho); Arnott: factor re-rating mean-reverts | bhavcopy + filings (lagged) | B | Conditions factor weights (§6.2), not book beta | D02 |
 | L9 | Global financial cycle: dollar/VIX/US-rate state → EM flows | 3–9m (episode); irregular recurrence | Compensated common global factor (Rey; Miranda-Agrippino-Rey); India cannot hedge it away — dilemma-not-trilemma | FRED VIX + dollar index, NSDL FPI, INR | **A (pooled mech.) / B (India transfer)** | ≤20% of budget | D08 |
-| L10 | Credit cycle block: Hamilton-filtered credit/GDP gap (own construction, never BIS's HP version), credit-deposit ratio, bank+NBFC aggregate, issuance quality, GNPA (lagging confirm) | 36–72m | Neglected crash risk in credit booms (Baron-Xiong; Schularick-Taylor +2.8pp crisis prob./1σ; Greenwood et al. R-zone ~40% vs 7%); shorting a boom is career-impossible → persists | RBI DBIE, BIS (check only), RBI FSR, CCIL | **B (India) / A (pooled methodology)** | ≤20–25% of budget (shared with L11–L12) | D03 |
+| L10 | Credit cycle block: Hamilton-filtered credit/GDP gap (own construction, never BIS's HP version), credit-deposit ratio, bank+NBFC aggregate, issuance quality, GNPA (lagging confirm) | 36–72m | Neglected crash risk in credit booms (Baron-Xiong; Schularick-Taylor +2.8pp crisis prob./1σ; Greenwood et al. R-zone ~40% vs 7%); shorting a boom is career-impossible → persists | RBI DBIE, BIS (check only), RBI FSR, CCIL | **B (India) / A (pooled methodology)** | ≤20% of budget (shared with L6/L11/L12) | D03 |
 | L11 | Capex/investment cycle | 36–60m | Balance-sheet repair takes years regardless of information (capacity limit) | RBI OBICUS, IIP capital goods, MOSPI GFCF | C→B (via analogues) | Inside macro block, shared cap; correlated with L10 — never double-counted | D08 |
 | L12 | Real-estate / medium financial cycle (8–20y; India n≈1: ~2003→2013–20→2021+) | 60–96m | Supply lag under credit amplification (Glaeser-Gyourko); crises cluster at financial-cycle peaks (Borio; Drehmann et al. ~16y avg) | RBI HPI, housing credit, RBI FSR | B (cross-country) / C (India length) | Phase-uncertainty prior only; inside macro block | D07/D08 |
 | L13 | Household-debt change (3y Δ debt/GDP: 26%→42% 2015–24) | 36–60m | Debt booms + biased forecasts (Mian-Sufi-Verner); zero completed India down-legs | RBI FSR, BIS | **C** | Reduce-only overlay | D03 |
@@ -249,10 +256,13 @@ numerology; the 10–20y *range* survives via mechanism), the 90% debt/GDP thres
 absorbing it), Elliott/Gann/fixed calendar cycles (Contract §8).
 
 ### 4.2 De-duplication rule
-L6 + L10 + L11 + L12 share one **macro-credit block budget** (≤25% of regime score): they are
-views of the same corporate-leverage phenomenon from the policy, credit, investment and property
-sides (D03 §7, D08 §2 both flag the overlap). The registry enforces the shared cap; the composite
-uses the first principal component or a simple average — never four full weights.
+L6 + L10 + L11 + L12 share one **macro-credit block budget** (≤20% of regime score — the number
+the registry actually enforces): they are views of the same corporate-leverage phenomenon from the
+policy, credit, investment and property sides (D03 §7, D08 §2 both flag the overlap). The registry
+enforces the shared cap; the composite uses the first principal component or a simple average —
+with **L11 (Tier C) clamped to min(0, reading) before aggregation**, so a hot capex reading can
+never add regime-score budget through the shared block (Tier-C reduce-only, enforced in the
+validator via `contribution_clamp`), only confirm a deterioration.
 
 ### 4.3 What the long waves buy (and only this)
 Consequence of the tier system (Contract prior #2): a 200-year debt arc moves the book ~1.5pp.
@@ -281,7 +291,7 @@ down, by at most 0.10. R maps to four regime buckets — the sweep dimension the
 | R4 Crisis/fast | fast triggers fired (L2) regardless of R | 0.4–0.6x | 100–150% | **on (rare buying, budgeted)** |
 
 *(R4 was tightened from 0.4–0.7x / 75–150% by the registry validator's worst-case check: at
-leverage 0.7 and hedge 0.75, effBeta×38%-fall + 15% gap floor = 37.8% > the 35% absolute ceiling.
+leverage 0.7 and hedge 0.75, effBeta×38%-fall + 15% gap floor = 37.9% > the 35% absolute ceiling.
 The CI registry caught this; reading the table had not — the METHOD's point exactly.)*
 
 Bucket boundaries are quantile/sign rules on R's own history — no fixed numeric thresholds.
@@ -295,9 +305,11 @@ EffectiveBeta(bucket) = DownsideBetaTilt × Leverage(bucket) × [1 − HedgeRati
 PortfolioDD(episode) ≈ EffectiveBeta(path) × NiftyDD(episode) + GapFloor
 ```
 DownsideBetaTilt ≈ 1.1–1.3 [I]; HedgeEffectiveness ≈ 0.6–0.75 slow bear / 0.45–0.6 fast crash
-[A — basis+gap discount, D04]; GapFloor ≈ 10–15% under rare-options design (§2.5). Worked check:
-R3 at 0.75x, hedge 75%, eff. 0.65 → EffBeta ≈ 0.45–0.5 — comfortably below the index in a slow
-bear. R1 at 1.15x unhedged → EffBeta ≈ 1.3–1.5: **the system must not still be in R1 midway
+[A — basis+gap discount, D04; **unmeasured Tier-C input: the R4 worst-case check breaks if true
+fast-crash effectiveness falls below ≈0.33**, plausible when tail names are limit-locked — measure
+before treating the check as settled]; GapFloor ≈ 10–15% under rare-options design (§2.5). Worked
+check: R3 at 0.75x, hedge 75%, eff. 0.65 → EffBeta ≈ 0.42–0.50 — comfortably below the index in a
+slow bear. R1 at 1.15x unhedged → EffBeta ≈ 1.3–1.5: **the system must not still be in R1 midway
 through a qualifying episode** — that is the whole job of L2's fast layer plus the slow blocks.
 
 ### 5.3 Fast layer (the only defense against fast crashes)
@@ -337,15 +349,20 @@ validation; the full grid enters the deflated-Sharpe trial count (§11.6).
 VIOLATION ⇔ PortfolioMDD > 20%
            ∧ [PortDD(t) − NiftyDD(t)] > ε   for more than K consecutive trading days
 ABSOLUTE  : PortfolioMDD must never exceed 30–35% (hard ceiling)
-ε = z × TE_daily × √K   (z ≈ 1; TE = realized tracking vol of the book vs Nifty 50)
+ε = z × TE_daily × √K   (z ≈ 1; TE = realized tracking vol of the book vs Nifty 50, measured over
+a trailing window W — W is itself a swept [A] parameter, {30, 60, 90} sessions, because tracking
+vol is regime-dependent and ε is not well-defined until W is fixed; consistency-audit finding)
 K ∈ [10, 20] trading days (center 15); sensitivity swept over z ∈ {0.5, 1, 1.5}, K ∈ {10, 15, 20}
 ```
 For an aggressive book at TE ≈ 8–12%/yr, ε ≈ 2–3% over 15 days — transient beta overshoot in a
 volatile fall does not violate; a sustained one does. Flash crashes need no special exclusion:
 they produce only transient excursions, handled automatically. Episode set to validate against
-(rebuilt from primary bhavcopy in the data phase, incl. the unexamined 2026 stress episode [V]):
-2000-01, 2004, 2006, 2008 (−60%), 2010-11 (−28%), 2013, 2015-16 (−25%), 2018 SMID, 2020 (−38%,
-69 sessions), 2022 (−18%, non-qualifying), 2024-25 (−17%, non-qualifying).
+(rebuilt from primary bhavcopy in the data phase): 2000-01, 2004, 2006, 2008 (−60%), 2010-11
+(−28%), 2013, 2015-16 (−25%), 2018 SMID, 2020 (−38%, 69 sessions), 2022 (−18%, non-qualifying),
+2024-25 (−17%, non-qualifying), **May-2026 (non-qualifying for equity DD: an INR/FII-outflow
+crisis — rupee to a record ~₹96.6–96.8/$, Nifty only ≈−4% acute / −1.9% for the month, India VIX
+~18.6; verified by the citation audit). The 2026 episode is instead the near-real-time test case
+for the L9 global-cycle/FII trigger and the gold-INR mechanics of §6.5.**
 
 ### 5.7 Cash-calls and re-entry (Decision Q8: per-sleeve families)
 Exit rules are owned by the regime matrix (bucket transitions). Re-entry, specified with equal
@@ -392,7 +409,7 @@ Core sleeves with risk-budget weight ranges (conditioning below; §10 haircuts a
 | Value | 20–35% | Composite of dividend yield, net-share-issuance (Pontiff-Woodgate — price/shares only, restatement-proof), sales/price; B/P and E/P as lag-buffered minority (≥4–6 month reporting lag per AJV convention) — **>50% of the composite must be price-adjacent** given the 150–450bps restatement bias (prior #7) | A global / B India |
 | Quality | 20–35% (floor binds in late-cycle states — crisis ballast) | Standard profitability/stability components **plus India-specific junk terms: promoter-pledge intensity and RPT-disclosure flags** (free, point-in-time SAST/LODR filings; pledge-invocation cascades are mechanical crash risk — Zee, CCD, Cox & Kings, Vakrangee… ≈10–15 episodes 2015–23 [I][V]) | A global / B India |
 | Low-vol | 15–25% | **Pure realized-vol rank** (price-only), explicitly NOT the alpha-blended Nifty Alpha-Low-Vol-30 construct; India academic evidence is genuinely split — live-index Tier-B is an upper bound; AUM-growth-rate crowding trigger attached | A global / B India (contested) |
-| Size (quality-controlled) | 0–15% satellite | Raw India SMB ≈ 0 over 20y (AJV) — inadmissible; the Asness-et-al junk-controlled version is untested in India → satellite only until the pre-registered India test runs | A global / **C India** |
+| Size (quality-controlled) | 0–15% satellite | Raw India SMB ≈ 0 over 20y (AJV) — inadmissible; the Asness-et-al junk-controlled version is **very likely estimated on MSCI-World developed markets only (India excluded)** → a pure cross-country extrapolation, satellite only until the pre-registered India test runs | A global / **C India** |
 - **Conditioners**: value weight rises toward its top when the value spread's own 10y percentile
   is in its top tercile (Cohen-Polk-Vuolteenaho [X]); quality weight cut toward floor when the
   quality basket's relative valuation is in its top decile (the 2024–25 quality re-rating/unwind
@@ -416,7 +433,7 @@ edge; it shrinks as %NAV as the book grows through ₹100→250cr — stated, no
 | Index inclusion/exclusion (Nifty/MSCI/FTSE) | trade announcement→effective window, flow-sized | B, **rising decay** | India today ≈ US 1990s on passive share; re-estimate the effect every cycle — never freeze a decade number [I][X] |
 | Demergers/spin-offs | hold parent+spinco 3–12m through forced index selling | C→B pending India event study (20–40 candidate events 2000–25) | Cusatis-Miles-Woolridge mechanism [X]; India registry is a data-phase build |
 | Buyback tender / open offer / delisting arb | deal-by-deal, spread vs proration/approval risk | B | capacity-capped by regulation (tender sizes, 90% delisting bar — real binary risk) [I] |
-| Anchor/promoter lock-in expiries | **risk-reduction only**: no adds ±5–10 days around disclosed 30/90-day unlocks | C | Field-Hanka mechanism [X]; thin SLB preserves the drift in India but Q2 forecloses the short [I] |
+| Anchor/promoter lock-in expiries | **risk-reduction only**: no adds ±5–10 days around disclosed 30/90-day unlocks | C | Field-Hanka mechanism [X] — but a ~Aug-2026 SEBI study (242 mainboard IPOs, 2022–25) finds anchor exits are **gradual, not cliff-like** (≈3.2% sold at 30d, ≈17.3% by 90d), so the expected India effect is much weaker than the US analogue; the no-adds rule stands only as a cheap conservative default [I, verified] |
 | Bulk/block/PIT-disclosure following | ranks 500–750 only; sign/quantile form | C→B pending test | attention+capacity argument only survives in the tail [I] |
 | IPO participation (allotment) | **not a sleeve** — allotment is a lottery, not a scalable entry | — | SEBI flipping study [V]; post-listing drift folds into quality flag ("newly-listed" penalty) |
 Sleeve cap: ≤10% of aggressive NAV [A — the least-defended number in D12; must be re-derived from
@@ -574,15 +591,22 @@ override, never re-cut. All Stage-2 sweeps enter the program's cumulative trial 
 Ledger fields (all channels, human or AI): thesis, direction, magnitude, explicit horizon,
 mechanism tag (one of the four survival categories or "genuinely novel information"), numeric
 probability, falsifier, red-team entry, mechanical hard-cap checklist, outcome + Brier at
-resolution, and for AI theses: model ID/version, prompt hash, verbatim log. **Model-version change
-resets that component's track record to n=0** (documented LLM behaviour drift [X]).
+resolution, and for AI theses: model ID/version, prompt hash, verbatim log. **A model-version
+change resets that component's track record to n=0 AND forces an immediate step-down to the rung
+below (probationary hold with the lower rung's caps) until the new version re-earns its unlock**
+— otherwise a channel could swap models before a bad window resolves and keep authority earned by
+weights that no longer exist (documented LLM behaviour drift [X]; red-team finding).
 
 ### 8.5 Why Stage-2 LLM output can never be backtested (hard rule)
-Lopez-Lira & Tang's headline LLM backtest is Exhibit A of the failure mode; Glasserman-Lin show
-the mechanism: training corpora postdate the "predicted" events, so the model may be recalling
-outcomes, and this contamination lives in weights the researcher cannot audit or fix [X][V].
-**Any historical backtest of an LLM-generated forward view is inadmissible evidence at any tier,
-regardless of significance.** Evaluation is prospective-only — which is exactly what the
+Lopez-Lira & Tang's headline LLM backtest is Exhibit A of the failure mode; Glasserman-Lin
+(arXiv 2309.17322, verified) show the mechanism: training corpora postdate the "predicted"
+events, so the model may be recalling outcomes. Nuance recorded honestly: their own anonymization
+procedure *partially* mitigates the bias (and they find a "distraction effect" that can dominate
+the look-ahead component) — so contamination is partially correctable, not categorically
+unfixable. This design still adopts the stricter rule as a conservative choice, because the
+residual contamination cannot be independently audited from outside the weights: **any historical
+backtest of an LLM-generated forward view is inadmissible evidence at any tier, regardless of
+significance.** Evaluation is prospective-only — which is exactly what the
 advisory-first ladder provides. Human execution gate at every rung (never relaxes): required by
 the broken-leg doctrine and prudent under SEBI's algo-trading/AI-reporting perimeter [I][V —
 compliance counsel item].
@@ -594,7 +618,7 @@ compliance counsel item].
 ### 9.1 Statutory stack (verified FY2026-27 [I]; re-verify every Budget)
 Cash delivery ≈ 22.3bps round trip statutory (STT 0.1% both legs dominates) + brokerage [A:
 1–5bps/side placeholder] + spread/impact ⇒ **24–32bps floor**, liquid names. Index futures ≈
-7.7bps statutory ⇒ 10–18bps all-in. Options: STT 0.15% of premium (sell side) but **0.15% of
+5.7bps statutory ⇒ 8–16bps all-in (≈4× cheaper than cash; corrected by the consistency audit). Options: STT 0.15% of premium (sell side) but **0.15% of
 intrinsic on exercise** — hedge payoffs modeled with pre-expiry close-out, exercise-STT costed on
 the forced-exercise path. STT has been hiked twice in ~18 months — the rate table is a live
 registry entry with an expiry date, and a further hike is a named risk to every cost assumption.
@@ -627,13 +651,13 @@ crowding evidence exists or the signal is fast/liquid enough for arbitrage capit
 
 | Edge | Survival argument (category) | Haircut | Falsifier / revisit trigger |
 |---|---|---|---|
-| Momentum 12-1/6-1 (India) | behavioural diffusion + thin coverage (i) | **−25–35%** off AJV 21.9% | post-2015 PIT sub-sample weak → raise toward −58% |
+| Momentum 12-1/6-1 (India) | behavioural diffusion + thin coverage (i) | **−25–35%** off AJV 21.9% | post-2015 PIT sub-sample weak → raise toward −58%; ALSO: a smart-beta AUM/crowding monitor (mirror of low-vol's) — the mid-2025 "quant unwind" named momentum as a participant, disconfirming complacency about the low haircut (red-team finding) |
 | 52-week-high | anchoring (i); no long-run reversal in source evidence | −20–30% [A] | India test (none exists) |
 | TSMOM index | institutional constraint (iv) | −10–20% | India cost-inclusive estimate |
 | Gold momentum | (iv) + CTA capacity | −35–45% | measured India half-life |
 | 1-month reversal | liquidity provision (iii) but cost-dominated | **zero return budget** (Tier C) | India PIT cost-inclusive estimate could earn a small budget |
 | Value (India composite) | risk premium + extrapolation bias (iii)+(i) | −30–40% | value-spread conditioner fails Stambaugh-corrected OOS test |
-| Quality + pledge/RPT junk terms | (i) + India institutional (iv); pledge cascades are mechanical | −25–35% on imported QMJ; India terms unhaircut until tested | India episode study contradicts crisis-ballast role |
+| Quality + pledge/RPT junk terms | (i) + India institutional (iv); pledge cascades are mechanical | −25–35% on imported QMJ; **India junk terms weighted at 50% pending the episode study** — "survives crowding" is not "has no estimation uncertainty": the pledge evidence is a case count, not a measured effect size (red-team finding) | India episode study contradicts crisis-ballast role |
 | Low-vol | leverage constraints (iv) — but India evidence split | −30–40% | resolved India study; min-vol AUM growth trigger |
 | Size (quality-controlled) | (ii)+(iii) — untested in India | sized as satellite 0–15%, treat as unproven | pre-registered India test (highest-value single test in the program) |
 | Credit/crisis block | neglected crash risk (i) + limits to arbitrage (ii) | AUROC prior cut 0.83–0.85 → **0.65–0.75** [A] | first purged India-conditioned AUROC |

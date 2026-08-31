@@ -18,8 +18,8 @@ conventions:
   drawdown_measurement: daily_close_nav
   caps_denominator: total_book_nav
   small_ticket_cohort_cap:
-    value: 0.10
-    source: "DESIGN §2.7 / D11 §4d refinement — separate budget so tail small-tickets don't starve"
+    value: 0.20
+    source: "D11 §4d proposes the small-ticket cohort at 'nominally 20%', tracked independently of the full-size cohort's frozen 20% (an earlier draft halved this to 0.10 with no recorded rationale — consistency audit restored the cited source's number; principal may tighten)"
     tier: C
     confidence: low
     decay: n/a
@@ -43,3 +43,11 @@ drawdown_violation_test:            # Decision Q5 (persistence-and-materiality f
     confidence: medium
     decay: n/a
     changes_if: "principal override or sweep result"
+  TE_window_sessions:
+    value: 60
+    sweep: [30, 60, 90]
+    source: "tracking vol is regime-dependent; epsilon is undefined until the TE estimation window is fixed (consistency-audit finding); 60d default, swept"
+    tier: C
+    confidence: low
+    decay: n/a
+    changes_if: "sweep result (trial-ledger entry #14)"

@@ -13,6 +13,12 @@ budgets:
     global_cycle: 0.20
     valuation_sentiment: 0.10
     calendar: 0.05
+  regime_score_blocks_provenance:
+    source: "design allocation reflecting evidence weight per dossier block (fast layer + trend carry the DD constraint per D04; global cycle pooled Tier A per D08; calendar timing-only per D08); the SPLIT ITSELF is a design choice, not literature-derived"
+    tier: C
+    confidence: low
+    decay: n/a
+    changes_if: "block-weight sweep in the data phase (trial-ledger entry #13); purged-CV evidence that a different split dominates"
   tierC_overlay_cap: 0.10     # negative-only shift of regime score R
   long_wave_expression:       # L15/L16 have NO regime-score seat
     gold_floor_attribution: [0.40, 0.50]
@@ -104,6 +110,9 @@ entries:
     tau_half_months: {value: [36, 60], tier: C, source: "n~2-3 (2003-08, 2011-20, 2021+); no quantified India predictive study (D08)", confidence: low, decay: "MP band placeholder", changes_if: "purged India backtest; cross-country capex pooling"}
     tier: C
     reduce_only: true
+    contribution_clamp: non_positive   # clamped to min(0, reading) BEFORE block aggregation -
+                                       # a hot capex print can never ADD regime score through the
+                                       # shared macro block (consistency-audit critical finding)
     block: macro_credit_block
     role: "OBICUS/IIP-capgoods/GFCF percentile ranks; sector-level tilt confirmation only"
     indicator: "RBI OBICUS, MOSPI IIP + GFCF"

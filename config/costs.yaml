@@ -9,7 +9,7 @@ statutory_fy2026_27:
   exercise_trap_rule: "hedge payoff paths model pre-expiry close-out; exercise-STT costed on forced-exercise path only"
 round_trip_all_in_bps:
   cash_delivery: {value: [24, 32], tier: B, source: "statutory 22.3bps + brokerage placeholder (D05 §4a)", confidence: medium, decay: "statutory can be legislated UP (two hikes in 18 months)", changes_if: "broker terms; Budget"}
-  index_futures: {value: [10, 18], tier: B, source: "statutory 7.7bps + brokerage", confidence: medium, decay: "same", changes_if: "same"}
+  index_futures: {value: [8, 16], tier: B, source: "statutory 5.66bps (component sum re-verified by consistency audit; D05's 7.7bps figure was wrong) + brokerage", confidence: medium, decay: "same", changes_if: "same; also T+0 settlement expansion (re-derive cash-vs-futures comparison)"}
 brokerage_per_side_bps: {value: [1, 5], tier: C, source: "PLACEHOLDER - negotiated commercial rate, must be confirmed with desk", confidence: low, decay: n/a, changes_if: "actual broker/DMA terms"}
 impact_model:
   form: "I = Y * sigma_daily * sqrt(Q/ADV)  (square-root law)"
@@ -28,5 +28,5 @@ turnover_cost_curve:
   at_500pct_throttled: {value: [0.035, 0.065], tier: C, source: "D05 §4h - brackets prior-pass 3.9%; requires tail-size throttling", confidence: low, decay: n/a, changes_if: "live ADV + Y calibration"}
   incremental_hurdle_500_vs_100: {value: [0.030, 0.060], tier: C, source: "D05 §4h", confidence: low, decay: n/a, changes_if: "same"}
 capacity_bounds:
-  sast_disclosure_mcap_floor_cr: {value: [19000, 31000], tier: B, source: "SAST Reg.29 5% x conservative position sizes (D05 §4g); recompute vs live mcap each rebalance", confidence: medium, decay: "rises with market growth", changes_if: "live mcap data"}
+  sast_disclosure_mcap_floor_cr: {value: [11000, 30000], tier: B, source: "SAST Reg.29: 5.5% entry at the Rs10,000cr book floor => Rs550cr/0.05 = Rs11,000cr; 6% entry at Rs25,000cr => Rs1,500cr/0.05 = Rs30,000cr (D05 §4g arithmetic corrected by consistency audit); recompute vs live mcap each rebalance", confidence: medium, decay: "rises with market growth", changes_if: "live mcap data"}
   recalibration_trigger: "re-run all capacity arithmetic when book AUM moves +-50%"

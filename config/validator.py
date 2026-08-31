@@ -100,6 +100,10 @@ def main() -> int:
             err(f"{eid}: only Tier-C entries may draw from the tierC_overlay budget")
         if e["tier"] == "C" and e["block"] in budgets and not e.get("reduce_only", False):
             err(f"{eid}: Tier-C entry inside additive budget without reduce_only")
+        if e["tier"] == "C" and e["block"] in budgets and e.get("contribution_clamp") != "non_positive":
+            err(f"{eid}: Tier-C entry inside an ADDITIVE block must carry contribution_clamp: "
+                "non_positive (else a positive reading adds regime score through the shared "
+                "block average - Contract §4 violation the reduce_only flag alone cannot catch)")
     # DAG acyclicity
     graph = {e["id"]: e.get("inputs", []) for e in ladder["entries"]}
     for eid, deps in graph.items():
@@ -153,16 +157,17 @@ def main() -> int:
             err(f"{name}: hedge range outside frozen grid")
     gf = risk["effective_beta_identity"]["gap_floor"]["value"]
     ceiling = frozen["drawdown_absolute_ceiling"]
-    # worst-case check: R4 effective beta * a 2008-size fall + gap floor must sit under ceiling top
+    # worst-case check: R4 effective beta * the provenanced worst fast fall + gap floor <= ceiling
     beta = hi(risk["effective_beta_identity"]["downside_beta_tilt"]["value"])
     lev = hi(rb["R4_crisis"]["leverage_range"])
     hedge = lo(rb["R4_crisis"]["hedge_ratio_range"])
     he = lo(risk["effective_beta_identity"]["hedge_effectiveness_fast_crash"]["value"])
+    fall = risk["effective_beta_identity"]["worst_case_fall_while_in_R4"]["value"]
     eff_beta_r4 = beta * lev * (1 - hedge * he)
-    worst = eff_beta_r4 * 0.38 + hi(gf)  # COVID-size fall reached while in R4
+    worst = eff_beta_r4 * fall + hi(gf)
     if worst > hi(ceiling):
         err(f"worst-case R4 arithmetic {worst:.2f} breaches absolute ceiling {hi(ceiling)} "
-            f"(effBeta={eff_beta_r4:.2f} x 38% + gap {hi(gf)})")
+            f"(effBeta={eff_beta_r4:.2f} x {fall:.0%} fall + gap {hi(gf)})")
     if risk["leverage_function"]["funding_rate"]["value"] is None:
         warn("funding_rate unset - PRINCIPAL INPUT REQUIRED before leverage feature is enabled")
     if not risk["leverage_function"]["rule_no_debt_while_levered"]:
@@ -206,6 +211,20 @@ def main() -> int:
     for fname, doc in [("mandate", mandate), ("books", books), ("ladder", ladder),
                        ("risk", risk), ("sleeves", sleeves), ("costs", costs)]:
         check_provenance(doc, fname)
+    # bare-numeric sections (lists/scalars without a 'value' wrapper) must carry a section-level
+    # provenance stanza - red-team finding: the walker alone missed ~38 load-bearing numbers
+    required_section_provenance = [
+        (ladder, "budgets", "regime_score_blocks_provenance", "ladder.budgets"),
+        (risk, None, "regime_buckets_provenance", "risk"),
+        (sleeves["gold"], None, "floors_ceilings_provenance", "sleeves.gold"),
+        (books, None, "numeric_fields_provenance", "books"),
+    ]
+    for doc, sub, key, label in required_section_provenance:
+        container = doc[sub] if sub else doc
+        stanza = container.get(key)
+        if not isinstance(stanza, dict) or PROVENANCE_KEYS - stanza.keys():
+            err(f"{label}: missing or incomplete section-level provenance stanza '{key}' "
+                f"(must carry {sorted(PROVENANCE_KEYS)})")
 
     # ---- report ----------------------------------------------------------------------
     for w in WARNINGS:

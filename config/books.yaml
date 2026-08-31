@@ -19,7 +19,7 @@ books:
     name_count_ceiling: [50, 65]
     avg_min_weight: [0.015, 0.020]
     dd_target: [0.25, 0.30]
-    net_cagr_band: [0.18, 0.26]
+    net_cagr_band: [0.155, 0.265]   # literal component sums (red-team correction); floor assumes funding hurdle clips leverage to zero
   moderate:
     capital_cr: [1000, 2500]
     turnover_cap_oneway: 2.00
@@ -38,7 +38,7 @@ books:
     name_count_ceiling: [65, 100]
     avg_min_weight: [0.010, 0.015]
     dd_target: [0.20, 0.25]
-    net_cagr_band: [0.14, 0.19]
+    net_cagr_band: [0.135, 0.205]   # literal component sums (red-team correction)
   conservative:
     capital_cr: [10000, 25000]
     turnover_cap_oneway: 1.00
@@ -64,7 +64,13 @@ books:
     name_count_ceiling: [150, 250]
     avg_min_weight: [0.005, 0.010]
     dd_target: [0.18, 0.22]
-    net_cagr_band: [0.13, 0.16]
+    net_cagr_band: [0.12, 0.16]    # literal component sums (red-team correction)
+numeric_fields_provenance:
+  source: "leverage_avg_target: CONTRACT prior #4; name_count floors/ceilings + avg_min_weight: Evans-Archer/Statman/CLMX floors + capacity ceilings w_eq/avg_min_weight (D11 §4b) with India promoter-correlation caveat; dd_target: frozen ceiling minus engineering margin per book beta; net_cagr_band: literal component sums of DESIGN §1.1 rows (post-haircut, post-cost)"
+  tier: B
+  confidence: medium
+  decay: "haircuts per DESIGN §10; re-derive on data-phase estimates"
+  changes_if: "India diversification-curve estimation; live ADV; realized funding rate"
 benchmarks:
   alpha_and_signals: "Nifty 500 TRI"        # Decision Q1
   drawdown_constraint: "Nifty 50"           # frozen
