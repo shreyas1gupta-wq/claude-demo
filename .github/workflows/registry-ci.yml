@@ -1,9 +1,9 @@
 name: registry-ci
 on:
   push:
-    paths: ["config/**", ".github/workflows/registry-ci.yml"]
+    paths: ["config/**", "quant/**", "tests/**", "scripts/**", ".github/workflows/registry-ci.yml"]
   pull_request:
-    paths: ["config/**"]
+    paths: ["config/**", "quant/**", "tests/**", "scripts/**"]
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - run: pip install pyyaml
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
       - name: Registry must load clean (a registry violating its own budget fails to load)
         run: python config/validator.py
+      - name: Estimation library tests (zero network, fixtures/synthetic only)
+        run: python -m pytest

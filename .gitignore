@@ -9,3 +9,9 @@ template/*.pdf
 template/__pycache__/
 template/assets/overview.png
 template/assets/new*.png
+
+# data phase (raw pulls live on the principal's machine; the manifest is committed, files are not)
+data/raw/
+__pycache__/
+*.pyc
+.pytest_cache/

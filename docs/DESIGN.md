@@ -704,7 +704,12 @@ bands are computed from haircut values; nothing in the plan requires an undecaye
    every grid; MinTRL computed before any capital scale-up.
 7. **Drawdown statistics**: stationary block bootstrap (Politis-Romano), mean block length
    ≈2–4×τ½ (Politis-White plug-in when sample permits); the 30–35% ceiling checked against the
-   bootstrap's 95th/99th percentile, not the point-estimate historical max.
+   bootstrap's 95th/99th percentile, not the point-estimate historical max. *Wording revised by
+   the R6 Monte Carlo (research/montecarlo/RESULTS.md): the earlier blanket claim "iid
+   resampling systematically understates DD tails" is false for pure vol clustering (direction
+   is seed-dependent, 4/8). The correct rationale: block resampling preserves the data's own
+   dependence structure, and on genuinely return-autocorrelated paths — the stress episodes the
+   ceiling is actually checked against — iid is systematically optimistic (block deeper 7–8/8).*
 8. **CV mechanics**: purged K-fold with embargo ≥1×τ½ (2× for Tier B/C); **4–6 folds** for
    India-only monthly series (~380 obs), not a textbook 10 — reported as the lower-power test it is.
 9. **Regime models**: none fitted below 10 observed transitions — quantile/sign state machines
