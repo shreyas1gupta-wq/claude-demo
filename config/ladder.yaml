@@ -1,0 +1,162 @@
+# THE CYCLE LADDER — state variables ordered by tau_half (months). DESIGN §4.
+# tier: A/B/C per CONTRACT §4. Tier C => reduce_only: true and budget drawn from tierC_overlay.
+# influence_cap: share of the regime-score budget (block-level caps enforced; see budgets).
+# tau_half values are PRIORS [A] — data phase replaces them with bias-corrected AR(1) estimates.
+# inputs: dependency edges for DAG-acyclicity check.
+version: 0.9
+
+budgets:
+  regime_score_blocks:        # Tier A/B additive budget; must sum <= 1.0
+    fast_stress: 0.25
+    trend_tsmom: 0.20
+    macro_credit_block: 0.20  # shared by L6+L10+L11+L12 (de-duplication rule §4.2)
+    global_cycle: 0.20
+    valuation_sentiment: 0.10
+    calendar: 0.05
+  tierC_overlay_cap: 0.10     # negative-only shift of regime score R
+  long_wave_expression:       # L15/L16 have NO regime-score seat
+    gold_floor_attribution: [0.40, 0.50]
+    slow_debasement_tail_budget_nav_yr: [0.003, 0.006]
+    conditional_gold_floor_lift_pp: [1, 2]
+
+entries:
+  - id: L1_reversal_1m
+    tau_half_months: {value: [0.5, 1], tier: C, source: "Jegadeesh 1990/Lehmann 1990; no India magnitude study (D01)", confidence: low, decay: "zero return budget", changes_if: "India PIT cost-inclusive estimate"}
+    tier: C
+    reduce_only: true
+    block: tierC_overlay
+    role: "contrarian sanity flag only; return budget = 0"
+    indicator: "NSE bhavcopy"
+    inputs: []
+  - id: L2_fast_stress
+    tau_half_months: {value: [1, 3], tier: B, source: "Mar-2020 India VIX lead-lag n=1 documented; vol clustering Tier A global (D04)", confidence: medium, decay: n/a, changes_if: "multi-episode lead-lag table (top data-phase task)"}
+    tier: B
+    reduce_only: false
+    block: fast_stress
+    role: "reactive risk-off switch: realized-vol top-decile rank, India-VIX backwardation, CCIL/NSDL funding-flow stress rank; any one arms R4 cuts, two confirm"
+    indicator: "bhavcopy vol, NSE India-VIX archive, CCIL, NSDL FPI"
+    inputs: []
+  - id: L3_momentum_composite
+    tau_half_months: {value: [6, 12], tier: B, source: "JT 1993/2001; Novy-Marx 2012; AJV India WML 21.9%/yr; Chui et al 2023 liquidity split (D01)", confidence: medium_high, decay: "haircut 25-35%; to 58% if post-2015 PIT subsample weak", changes_if: "data-phase PIT estimate"}
+    tier: B
+    reduce_only: false
+    block: trend_tsmom
+    role: "return sleeve input + regime confirmation; rank blend 12-1 + 6-1 + 52wk-high"
+    indicator: "bhavcopy"
+    inputs: []
+  - id: L4_tsmom_index_gold
+    tau_half_months: {value: [6, 12], tier: B, source: "Moskowitz-Ooi-Pedersen 2012 (A global); 2 India studies (D01)", confidence: medium_high, decay: "10-20% equity / 35-45% gold", changes_if: "India cost-inclusive estimate"}
+    tier: B
+    reduce_only: false
+    block: trend_tsmom
+    role: "regime matrix input (slow-bear detection) + gold tilt"
+    indicator: "bhavcopy futures, WGC/LBMA"
+    inputs: []
+  - id: L5_calendar_windows
+    tau_half_months: {value: [1, 2], tier: B, source: "election n=8-9, budget n>>30 timing only; direction is surprise (2004/2009/2024) (D08)", confidence: medium, decay: n/a, changes_if: "pre-registered event studies"}
+    tier: B
+    reduce_only: true          # scheduling only: never a directional bet
+    block: calendar
+    role: "leverage/vol scheduling into election/budget windows; mandate-clarity re-lever rule to be pre-registered"
+    indicator: "ECI calendar, indiabudget.gov.in, India VIX"
+    inputs: []
+  - id: L6_monetary_stance
+    tau_half_months: {value: [12, 24], tier: B, source: "RBI cycles n~4-5 marginal; transmission 2-6 quarters [VERIFY primary WP] (D08)", confidence: medium, decay: n/a, changes_if: "6th completed round trip; primary RBI DEPR citation"}
+    tier: B
+    reduce_only: false
+    block: macro_credit_block
+    role: "lagged (~1y) loose/tight regime input; never same-day event trade"
+    indicator: "RBI DBIE repo path"
+    inputs: []
+  - id: L7_issuance_sentiment
+    tau_half_months: {value: [12, 24], tier: B, source: "Baker-Wurgler 2000/2006 (A global); SEBI 2024 SME actions as institutional confirmation; India coeff Tier C (D08/D12)", confidence: medium, decay: "MP 26-58% band placeholder", changes_if: "India pre-registered test vs 2018/2023-24 episodes"}
+    tier: B
+    reduce_only: false
+    block: valuation_sentiment
+    role: "sentiment state; also sizes special-sits sleeve (froth => shrink)"
+    indicator: "NSE/BSE listings, SEBI bulletins, bhavcopy first-day pops"
+    inputs: []
+  - id: L8_value_spread
+    tau_half_months: {value: [24, 36], tier: B, source: "Cohen-Polk-Vuolteenaho 2003; Arnott et al factor-valuation (D02)", confidence: medium, decay: "conditioning rule, not premium", changes_if: "Stambaugh-corrected India OOS test fails"}
+    tier: B
+    reduce_only: false
+    block: valuation_sentiment
+    role: "conditions factor weights (value up when spread top-tercile)"
+    indicator: "bhavcopy + lagged filings"
+    inputs: []
+  - id: L9_global_financial_cycle
+    tau_half_months: {value: [3, 9], tier: B, source: "Rey 2013; Miranda-Agrippino-Rey; Forbes-Warnock; Cerutti et al (pooled Tier A methodology) (D08)", confidence: medium_high, decay: "compensated risk factor - none", changes_if: "India factor-loading estimate"}
+    tier: B
+    reduce_only: false
+    block: global_cycle
+    role: "dollar/VIX/US-rate global risk state; includes Kilian-decomposed oil (never raw price level)"
+    indicator: "FRED VIX+dollar+DFII10, NSDL FPI, INR, Kilian index"
+    inputs: []
+  - id: L10_credit_block
+    tau_half_months: {value: [36, 72], tier: B, source: "Schularick-Taylor 2012; Baron-Xiong 2017; Drehmann-Juselius AUROC 0.83-0.85 -> India prior 0.65-0.75 [A]; India chronology n=1-2 downlegs (D03)", confidence: medium, decay: "AUROC haircut stated; JST partial pooling mandatory", changes_if: "first purged India-conditioned AUROC"}
+    tier: B
+    reduce_only: false
+    block: macro_credit_block
+    role: "Hamilton-filtered credit/GDP gap (own construction, never BIS HP series), CD-ratio percentile, bank+NBFC aggregate, issuance quality; GNPA as lagging confirm only"
+    indicator: "RBI DBIE, RBI FSR, BIS (cross-check only), CCIL"
+    inputs: [L6_monetary_stance]
+  - id: L11_capex_cycle
+    tau_half_months: {value: [36, 60], tier: C, source: "n~2-3 (2003-08, 2011-20, 2021+); no quantified India predictive study (D08)", confidence: low, decay: "MP band placeholder", changes_if: "purged India backtest; cross-country capex pooling"}
+    tier: C
+    reduce_only: true
+    block: macro_credit_block
+    role: "OBICUS/IIP-capgoods/GFCF percentile ranks; sector-level tilt confirmation only"
+    indicator: "RBI OBICUS, MOSPI IIP + GFCF"
+    inputs: [L10_credit_block]
+  - id: L12_realestate_medium_cycle
+    tau_half_months: {value: [60, 96], tier: B, source: "Borio 2014 ~16y; Claessens-Kose-Terrones panel (>=10 analogues clause); India n=1 (D07/D08)", confidence: low_medium, decay: "length is a 10-20y RANGE, never 18y point", changes_if: "2nd domestic completed leg (2030s+)"}
+    tier: B
+    reduce_only: false
+    block: macro_credit_block
+    role: "phase-uncertainty prior on the medium financial cycle; house-price/housing-credit inputs"
+    indicator: "RBI HPI, housing credit, RBI FSR"
+    inputs: [L10_credit_block]
+  - id: L13_household_debt
+    tau_half_months: {value: [36, 60], tier: C, source: "Mian-Sufi-Verner 2017 (30 countries); India 26%->42% 2015-24, zero completed downlegs (D03)", confidence: low, decay: n/a, changes_if: "first India downleg"}
+    tier: C
+    reduce_only: true
+    block: tierC_overlay
+    role: "3y household-debt/GDP change rank; risk-off only"
+    indicator: "RBI FSR, BIS"
+    inputs: []
+  - id: L14_fii_positioning
+    tau_half_months: {value: [12, 36], tier: C, source: "capacity argument; flow-MOMENTUM variant excluded outright (returns lead flows: Griffin-Nardari-Stulz; Chakrabarti) (D08)", confidence: low, decay: n/a, changes_if: "purged India test of float-scaled ownership percentile"}
+    tier: C
+    reduce_only: true
+    block: tierC_overlay
+    role: "float-scaled FII ownership percentile extremes; risk-off only"
+    indicator: "NSDL, quarterly shareholding patterns"
+    inputs: []
+  - id: L15_long_wave_fiscal
+    tau_half_months: {value: [120, 999], tier: C, source: "Reinhart-Rogoff chronology (A) but n<2 modern fiscal-dominance episodes; Schmelzing trend Tier C by structural-break argument (D07)", confidence: low, decay: "no crowding decay; influence capped structurally", changes_if: ">=4 quarters regime reversal on any leg"}
+    tier: C
+    reduce_only: true
+    block: long_wave                # expression only via gold floor + tail budget (no R seat)
+    role: "debt/GDP level+5y slope, negative-real-rate persistence, reserve diversification (RBI gold, COFER)"
+    indicator: "IMF WEO/FM, FRED DFII10, RBI WSS, IMF COFER, WGC"
+    inputs: []
+  - id: L16_demographics
+    tau_half_months: {value: [240, 999], tier: C, source: "UN WPP data Tier A; translation to returns Tier C conditional (Bloom-Canning-Sevilla) (D07)", confidence: low, decay: n/a, changes_if: "PLFS labor-absorption trend"}
+    tier: C
+    reduce_only: true
+    block: context_only             # zero allocation authority
+    role: "context; no allocation authority"
+    indicator: "UN WPP, SRS, MOSPI PLFS"
+    inputs: []
+
+excluded:
+  - {id: kondratiev_perez, reason: "different mechanism per wave; analogy not recurrence (D07)"}
+  - {id: elliott_gann_calendar, reason: "CONTRACT §8"}
+  - {id: eighteen_year_re_clock, reason: "folk numerology; mechanism survives as 10-20y range"}
+  - {id: debt_gdp_90_threshold, reason: "Herndon-Ash-Pollin correction; trend slope only"}
+  - {id: fii_flow_momentum, reason: "published, decaying, DII absorption (D08)"}
+  - {id: reversal_1m_return_sleeve, reason: "most cost-constrained anomaly + 20bp STT (D01/D05)"}
+  - {id: momentum_3_1_standalone, reason: "no independent survival argument (Novy-Marx)"}
+  - {id: options_premium_harvesting, reason: "no survival argument vs professional vol desks (D12)"}
+  - {id: sme_ipos, reason: "outside NIFTY-750 universe; liquidity + manipulation record (D12)"}
+  - {id: monsoon_index_signal, reason: "unquantified; sector-level reduce-only at most (D08)"}

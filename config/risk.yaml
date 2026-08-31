@@ -1,0 +1,50 @@
+# RISK SYSTEM — regime buckets, leverage function, hedge stack, DD machinery. DESIGN §5.
+version: 0.9
+
+regime_buckets:                 # rule-based state machine; NEVER a fitted Markov switch (<10 transitions)
+  R1_benign:    {leverage_range: [1.00, 1.50], hedge_ratio_range: [0.00, 0.25], options: off}
+  R2_watch:     {leverage_range: [1.00, 1.15], hedge_ratio_range: [0.25, 0.50], options: off}
+  R3_slow_bear: {leverage_range: [0.60, 0.90], hedge_ratio_range: [0.50, 1.00], options: rule_armed}
+  R4_crisis:    {leverage_range: [0.40, 0.60], hedge_ratio_range: [1.00, 1.50], options: on_budgeted}
+  # R4 tightened 2026-08-31: validator's worst-case check (effBeta x 38% fall + gap floor) breached
+  # the 35% absolute ceiling at leverage 0.70 / hedge 0.75. This is exactly the class of defect the
+  # CI registry exists to catch (CONTRACT §10). At [0.60, 1.00]: 1.3*0.6*(1-1.0*0.45)=0.43 effBeta
+  # -> 0.43*0.38 + 0.15 gap = 0.31 <= 0.35.
+bucket_boundaries: "quantile/sign rules on regime score R's own history - no fixed numeric thresholds"
+sweep_note: "hedge grid x 4 buckets (<=28 cells) swept JOINTLY; full grid enters the deflated-Sharpe trial ledger"
+
+effective_beta_identity:
+  downside_beta_tilt: {value: [1.10, 1.30], tier: B, source: "CONTRACT prior #4 + 2008/2018/2020 SMID-vs-Nifty gaps (D04)", confidence: high, decay: n/a, changes_if: "re-estimate on actual ranks 500-750 universe"}
+  hedge_effectiveness_slow_bear: {value: [0.60, 0.75], tier: C, source: "illustrative basis+gap discount (D04 §4)", confidence: low, decay: n/a, changes_if: "historical basis + gap distribution measurement"}
+  hedge_effectiveness_fast_crash: {value: [0.45, 0.60], tier: C, source: "same", confidence: low, decay: n/a, changes_if: "same"}
+  gap_floor: {value: [0.10, 0.15], tier: C, source: "restated UP from prior-pass 8-12% under rare-options design (DESIGN §2.5)", confidence: low, decay: n/a, changes_if: "gap-distribution measurement; larger option budget buys it back down"}
+
+leverage_function:              # Decision Q3: margin funding on cash names
+  form: "clip( L_base(book) * f(GZ_surplus) * g(bucket) * h(funding_hurdle), 1.0, 1.5 )"
+  gz_alpha: {value: null, sweep: "broad pre-registered grid", tier: C, source: "Grossman-Zhou 1993 surplus form (theory Tier A); alpha never point-fitted", confidence: low, decay: n/a, changes_if: "data-phase sweep"}
+  funding_rate: {value: null, tier: A_input, source: "PRINCIPAL TO CONFIRM - retail MTF 9-12% vs prop/MIBOR ~6.5-7.5%; moves leverage from marginal to material (DESIGN §2.4)", confidence: pending, decay: "re-verify quarterly", changes_if: "broker terms"}
+  funding_hurdle: "leverage > 1.0 only if E[r_proxy] - funding_rate > buffer; buffer swept"
+  rule_no_debt_while_levered: true      # never borrow at 7-12% while holding debt sleeve above policy floor
+  rule_margin_call_prebuffer: true      # cut at cushion above broker maintenance level; forced selling never sets the pace
+  futures_overlay_alternative: "recorded as cost-superior (~3x cheaper statutory); revisit if realized funding > MIBOR + 200bps"
+
+hedge_stack_priority:           # Decision Q4: de-gross first, options rare and rule-triggered
+  1: "trim cash equity (liquid names first; tail names may be band-locked)"
+  2: "cut margin leverage to 1.0x"
+  3: "index futures short (Nifty; Bank Nifty only for measured beta) when speed > basis cost"
+  4: "RARE option buying: index puts/put-spreads, only on L2 trigger or R4 entry; close before expiry (exercise-STT trap)"
+option_premium_budget_nav_yr: {value: [0.005, 0.015], tier: C, source: "VRP is a permanent cost (Israelov/Israelov-Nielsen) => state-gated buying only; budget is an assumption [A] (DESIGN §2.5)", confidence: low, decay: n/a, changes_if: "measured India VRP from India-VIX archive; unacceptable gap floor"}
+
+tactical_short_sleeve:          # Decision Q2 extension
+  universe: "Nifty 100 constituents only"
+  instruments: ["single-stock futures", "put spreads", "defined-risk multi-leg combos"]
+  cap_share_of_short_side: {value: 0.25, tier: B, source: "principal decision Q2 ('~25% of sleeve max')", confidence: high, decay: n/a, changes_if: "principal"}
+  status: "Tier C - starts at ZERO size; usable to reduce net exposure in R3/R4; standalone alpha only after §11 gates"
+  named_trigger_candidates: ["pledge-invocation cascade in progress", "index-deletion flow window", "L7 froth flag on single name"]
+
+cash_call_reentry:              # Decision Q8: per-sleeve families (DESIGN §5.7)
+  factor_book: hysteresis_band
+  momentum_fast: vol_target_implied
+  leverage: grossman_zhou_surplus
+  post_R4_book: calendar_tranches_with_state_gate
+  tranches: {value: [2, 3], tier: B, source: "single-print re-entry into renewed leg is the failure mode; Zakamulin no-trade-zone logic (D04)", confidence: medium, decay: n/a, changes_if: "whipsaw frequency counting"}

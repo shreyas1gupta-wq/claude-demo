@@ -1,0 +1,17 @@
+name: registry-ci
+on:
+  push:
+    paths: ["config/**", ".github/workflows/registry-ci.yml"]
+  pull_request:
+    paths: ["config/**"]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Registry must load clean (a registry violating its own budget fails to load)
+        run: python config/validator.py

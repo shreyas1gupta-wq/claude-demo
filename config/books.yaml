@@ -1,0 +1,70 @@
+# THE THREE BOOKS — different products, not one dialled down. DESIGN §1, §2.1, §9.3.
+version: 0.9
+books:
+  aggressive:
+    capital_cr: [100, 250]
+    turnover_cap_oneway: 6.00        # ceiling to be EARNED (trap list); not a plan
+    turnover_design_point:
+      value: [2.50, 3.50]
+      source: "D05 §4h cost re-derivation; hurdle 3.0-6.0pp/yr at the 500-600% ceiling"
+      tier: B
+      confidence: medium
+      decay: "re-run when AUM moves +-50%"
+      changes_if: "fast sleeves clear post-cost gates on point-in-time data"
+    universe_stated: "NIFTY 750 (Nifty 500 + Microcap 250)"
+    universe_full_conviction: "ranks 1-300 (ADV-bounded)"
+    universe_small_ticket: "ranks 300-750 at 1-2% tickets, long-hold"
+    leverage_avg_target: [1.10, 1.15]
+    name_count_floor: [15, 20]
+    name_count_ceiling: [50, 65]
+    avg_min_weight: [0.015, 0.020]
+    dd_target: [0.25, 0.30]
+    net_cagr_band: [0.18, 0.26]
+  moderate:
+    capital_cr: [1000, 2500]
+    turnover_cap_oneway: 2.00
+    turnover_design_point:
+      value: [1.00, 1.60]
+      source: "factor core 60-100% + momentum modifier <=40% (D01/D02; Israel-Moskowitz 5x ratio)"
+      tier: B
+      confidence: medium
+      decay: "as above"
+      changes_if: "measured India factor half-lives revise the 5x ratio"
+    universe_stated: "ranks 1-500"
+    universe_full_conviction: "ranks 1-150 (ADV-bounded)"
+    universe_small_ticket: "ranks 150-500 at <=2% tickets, long-hold"
+    leverage_avg_target: [1.00, 1.05]
+    name_count_floor: [30, 50]
+    name_count_ceiling: [65, 100]
+    avg_min_weight: [0.010, 0.015]
+    dd_target: [0.20, 0.25]
+    net_cagr_band: [0.14, 0.19]
+  conservative:
+    capital_cr: [10000, 25000]
+    turnover_cap_oneway: 1.00
+    turnover_design_point:
+      value: [0.40, 0.75]
+      source: "pipeline throughput 15-20 full-size builds/yr (D05 §4e); SAST/ADV bounds"
+      tier: B
+      confidence: medium
+      decay: "as above"
+      changes_if: "live ADV table"
+    universe_stated: "ranks 1-500"
+    universe_full_conviction: "ranks 1-80 (SAST 5% + ADV bounded; mcap floor ~Rs19-31k cr)"
+    universe_small_ticket: "ranks 80-500 at 2.5-4% entries"
+    entry_weight_small_ticket:
+      value: [0.025, 0.040]
+      source: "DESIGN §2.1 resolution of the stated-universe/entry-weight contradiction"
+      tier: B
+      confidence: medium
+      decay: n/a
+      changes_if: "principal overrides; SAST floor recomputed each rebalance vs live mcap"
+    leverage_avg_target: [1.00, 1.00]
+    name_count_floor: [50, 80]
+    name_count_ceiling: [150, 250]
+    avg_min_weight: [0.005, 0.010]
+    dd_target: [0.18, 0.22]
+    net_cagr_band: [0.13, 0.16]
+benchmarks:
+  alpha_and_signals: "Nifty 500 TRI"        # Decision Q1
+  drawdown_constraint: "Nifty 50"           # frozen

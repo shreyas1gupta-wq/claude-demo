@@ -1,0 +1,32 @@
+# COST STACK & CAPACITY — DESIGN §9, D05. Statutory rates VERIFIED FY2026-27 (re-verify every Budget).
+version: 0.9
+statutory_fy2026_27:
+  verify_status: verified_2026_08   # D05 F1-F4, >=3 independent sources each
+  expiry: "re-check 2027-04-01 and after any Union Budget"
+  cash_delivery: {stt_buy: 0.0010, stt_sell: 0.0010, stamp_buy: 0.00015, exch_per_side: 0.0000317, sebi_per_side: 0.000001, gst_on_fees: 0.18}
+  index_futures: {stt_sell: 0.0005, stamp_buy: 0.00002, exch_per_side: 0.0000183, sebi_per_side: 0.000001, gst_on_fees: 0.18}
+  index_options: {stt_premium_sell: 0.0015, stt_exercise_intrinsic: 0.0015, stamp_premium_buy: 0.00003, exch_premium_per_side: 0.00038, gst_on_fees: 0.18}
+  exercise_trap_rule: "hedge payoff paths model pre-expiry close-out; exercise-STT costed on forced-exercise path only"
+round_trip_all_in_bps:
+  cash_delivery: {value: [24, 32], tier: B, source: "statutory 22.3bps + brokerage placeholder (D05 §4a)", confidence: medium, decay: "statutory can be legislated UP (two hikes in 18 months)", changes_if: "broker terms; Budget"}
+  index_futures: {value: [10, 18], tier: B, source: "statutory 7.7bps + brokerage", confidence: medium, decay: "same", changes_if: "same"}
+brokerage_per_side_bps: {value: [1, 5], tier: C, source: "PLACEHOLDER - negotiated commercial rate, must be confirmed with desk", confidence: low, decay: n/a, changes_if: "actual broker/DMA terms"}
+impact_model:
+  form: "I = Y * sigma_daily * sqrt(Q/ADV)  (square-root law)"
+  Y: {value: [0.5, 1.0], tier: B, source: "Bouchaud/Gatheral order-unity universality; FIM says realized costs sit low in range for patient execution [VERIFY coefficients]", confidence: medium, decay: n/a, changes_if: "India calibration from bhavcopy flow proxies, then live executions"}
+  participation_cap_per_day: {value: [0.05, 0.10], tier: B, source: "Korajczyk-Sadka / practitioner convention; sweep in data phase", confidence: medium, decay: n/a, changes_if: "sweep (enters trial ledger)"}
+adv_by_rank_bucket_cr:
+  verify_status: PROVISIONAL       # order-of-magnitude construct - REPLACE with live bhavcopy medians (Phase 0)
+  r1_50: [500, 800]
+  r51_150: [80, 150]
+  r151_300: [20, 40]
+  r301_500: [5, 12]
+  r501_750: [1, 4]
+turnover_cost_curve:
+  form: "cost(mix) = sum_bucket[ turnover_share * (statutory + spread_impact(Y, sigma, size/ADV)) ] - cost depends on WHERE turnover is spent, never a single scalar"
+  at_100pct_liquid: {value: [0.0035, 0.0070], tier: B, source: "re-derivation D05 §4h - prior-pass 0.6% survives", confidence: medium, decay: n/a, changes_if: "live ADV"}
+  at_500pct_throttled: {value: [0.035, 0.065], tier: C, source: "D05 §4h - brackets prior-pass 3.9%; requires tail-size throttling", confidence: low, decay: n/a, changes_if: "live ADV + Y calibration"}
+  incremental_hurdle_500_vs_100: {value: [0.030, 0.060], tier: C, source: "D05 §4h", confidence: low, decay: n/a, changes_if: "same"}
+capacity_bounds:
+  sast_disclosure_mcap_floor_cr: {value: [19000, 31000], tier: B, source: "SAST Reg.29 5% x conservative position sizes (D05 §4g); recompute vs live mcap each rebalance", confidence: medium, decay: "rises with market growth", changes_if: "live mcap data"}
+  recalibration_trigger: "re-run all capacity arithmetic when book AUM moves +-50%"

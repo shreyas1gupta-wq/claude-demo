@@ -1,0 +1,45 @@
+# FROZEN MANDATE CAPS — mirror of research/CONTRACT.md §3. The validator refuses any
+# registry whose derived exposures can breach these. Do not edit without principal sign-off.
+version: 0.9
+frozen:
+  gross_leverage_cap: 1.50          # options count delta-adjusted (CONTRACT §10)
+  debt_weight_cap: 0.70
+  gold_weight_cap: 0.50
+  name_entry_cap: 0.06              # full-conviction cohort only (DESIGN §2.1)
+  name_drift_cap: 0.10
+  in_progress_aggregate_cap: 0.20   # full-size-build cohort (small-ticket cohort separate, below)
+  options_notional_cap_directional: 0.50
+  options_notional_cap_tail: 0.75
+  hedge_ratio_grid: [0.0, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50]   # swept jointly with regime only
+  drawdown_absolute_ceiling: [0.30, 0.35]
+conventions:
+  turnover_definition: one_way_min_buys_sells_over_avg_nav
+  overlay_turnover_in_equity_cap: false   # tracked & costed separately (DESIGN §2.7) [A]
+  drawdown_measurement: daily_close_nav
+  caps_denominator: total_book_nav
+  small_ticket_cohort_cap:
+    value: 0.10
+    source: "DESIGN §2.7 / D11 §4d refinement — separate budget so tail small-tickets don't starve"
+    tier: C
+    confidence: low
+    decay: n/a
+    changes_if: "principal ruling; or data-phase pipeline-throughput study"
+drawdown_violation_test:            # Decision Q5 (persistence-and-materiality form)
+  applies_only_when_portfolio_mdd_exceeds: 0.20
+  epsilon_rule: "z * TE_daily * sqrt(K)"
+  z:
+    value: 1.0
+    sweep: [0.5, 1.0, 1.5]
+    source: "1-sigma tracking deviation; DESIGN §5.6"
+    tier: B
+    confidence: medium
+    decay: n/a
+    changes_if: "sensitivity sweep in data phase"
+  K_days:
+    value: 15
+    sweep: [10, 15, 20]
+    source: "principal decision Q5 (10-20 days); center chosen"
+    tier: B
+    confidence: medium
+    decay: n/a
+    changes_if: "principal override or sweep result"
