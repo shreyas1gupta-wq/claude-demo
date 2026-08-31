@@ -206,3 +206,155 @@ None touches the ladder or the registry until then.
 4. D01/D02 (the return engines the cycles buy permission for).
 5. D06+D07 together (gold: what long waves are actually allowed to do).
 6. D09 (how every number above gets estimated without fooling ourselves).
+
+---
+---
+
+# PART II — Signal-space and sector cycles (v1.1 addendum)
+
+Part I organized cycles by TIME. Part II sweeps the remaining families by TYPE — technical,
+fundamental, momentum/mean-reversion, volatility, inflation/growth, liquidity, currency, debt
+growth, sector — with the filter the principal set: *whichever can help, that only*. The
+organizing discovery of this sweep: **most "new" cycle families are projections of states Part I
+already holds, onto a different surface.** The de-duplication principle (one mechanism, one
+budget seat) does most of the work; genuinely new harvestable material is small and listed as
+H60–H64.
+
+## 11. Technical / price-structure cycles — what survives of technical analysis
+
+The honest audit of TA, item by item. What survives does so by being *re-expressible as a
+mechanism-backed rank/sign rule*; what dies dies of unfalsifiability or costs.
+
+| Construct | What it claims | Verdict | Why / where it lives |
+|---|---|---|---|
+| Trend / moving-average regimes | price persists | **KEEP (already held)** | = time-series momentum, institutional-constraint mechanism → L4; lookback as sign/rank, never one magic MA |
+| Cross-sectional momentum | winners keep winning 6–12m | **KEEP (already held)** | L3 — the model's main EDGE; diffusion mechanism |
+| Oscillators (RSI, stochastics) | short-term overbought/oversold | **FOLD** | they are re-parameterized 1-month reversal → L1's zero-budget verdict applies; no separate content |
+| 52-week-high proximity | anchoring to salient reference price | **KEEP (already held)** | inside L3; the *one* TA construct with a clean behavioral mechanism and no long-run reversal |
+| **Breadth / participation** (advance-decline, % of names above long MA, new highs–new lows) | narrowing leadership precedes tops; broad thrusts confirm bottoms | **NEW CANDIDATE → H60** | mechanism: late-cycle institutional distribution concentrates gains in fewer names; fully free from bhavcopy; enters as a CONFIRM input to trend/fast layers (regime, never alpha) |
+| Volume–price interaction | high-volume moves carry information | **FOLD as feature** | Lee-Swaminathan/Maheshwari-Dhankar (D01 [I]): volume conditions momentum persistence — a momentum-composite *feature test*, not a cycle |
+| **Elliott waves** | markets move in a 5-up/3-down fractal wave hierarchy | **REJECT — examined as asked** | Three independent kills: (1) *unfalsifiable*: wave-degree relabeling lets any path be "counted" correctly after the fact — practitioners disagree on the live count, which is the tell; (2) no stable period or amplitude → fails the clock test by construction; (3) zero peer-reviewed out-of-sample support in 80 years. The salvageable kernel — impulse/correction alternation — is already measurably held by trend states (L4) + vol clustering (L2) + drawdown states. Contract §8 bans it; the ban is earned, not dogma |
+| Fibonacci retracements / Gann | prices respect ratio levels | **REJECT** | no mechanism for the *specific ratios*; the real phenomenon underneath (anchoring to salient levels) is already harvested via 52-wk-high; round-number effects are microstructure noise at our cadence |
+| Chart patterns (head-and-shoulders etc.) | shapes predict | **REJECT** | pattern definitions are post-hoc flexible (same disease as Elliott); the tradable content (trend, reversal, vol) is already held in rank form |
+| Support/resistance levels | supply shelves at prior prices | **FOLD (micro)** | real at execution timescales (limit-order clustering); our participation-capped execution inherits it; no signal seat |
+
+### 11.1 The mean-reversion horizon sandwich (the unifying picture)
+Momentum and mean reversion are the *same phenomenon read at different horizons* — continuation
+lives in the middle, reversal at both ends:
+
+| Horizon | Behavior | Mechanism | Our seat |
+|---|---|---|---|
+| minutes–days | reversal | liquidity provision / bid-ask bounce | out of scope (execution inherits) |
+| ~1 week | reversal | inventory risk of market makers | REJECT (cost-dominated) |
+| ~1 month | reversal | liquidity-provision premium (Cheng et al.) | L1 — Tier C, zero budget |
+| 3–12 months | **continuation** | under-reaction / slow diffusion | L3 momentum — the EDGE |
+| 2–5 years | reversal | over-extrapolation unwinds (De Bondt-Thaler); India: appears faster, ~1y post-formation (Sehgal-Balakrishnan, D01 [I]) | **→ H64**: test whether long-horizon reversal is distinct from the value composite in India — expected verdict: fold into value, never double-count |
+| 5 years+ | reversal = value | valuation mean reversion | L8 / factor book |
+
+**Learning note:** this table is why the momentum composite skips the most recent month
+(reversal contamination) and why "3-1 momentum" was rejected — it straddles the sandwich's edge.
+
+## 12. Volatility cycles — the risk system's own weather
+
+| Construct | Content | Verdict / home |
+|---|---|---|
+| Vol clustering / regimes | vol begets vol | held — L2 (Tier A) |
+| "Stability breeds instability" (Minsky-vol) | long calm precedes spikes — calm-duration itself as a risk state | FOLD into L2's percentile framing: a *low*-vol percentile with long duration is information too; noted for the R2.2 lead-lag study, no new seat |
+| VRP cycle (implied − realized) | insurance premium cycles rich/cheap | held — prices the option budget (R2.7 measurement); retail-F&O compression watch = H57 |
+| Correlation / dispersion cycle | risk-on/off compresses cross-sectional dispersion | **already load-bearing**: dispersion percentile D sets name count N* (DESIGN §7.2); correlation spikes = concentrate less. No new seat, but worth learning: this is where a "volatility cycle" actually changes the portfolio |
+| Skew cycle (put skew steep/flat) | crash-insurance pricing cycles | CONTEXT for tail-budget timing; folded into the R2.7 VRP study [A] |
+| Vol-of-vol | uncertainty about uncertainty | REJECT as a seat — an option-desk object; our cadence can't monetize it |
+
+## 13. Fundamental / corporate cycles
+
+| Cycle | Mechanism | Verdict / home |
+|---|---|---|
+| Aggregate earnings cycle | EPS growth cycles with GDP + margins | held via H56 (profit share) + nominal-GDP context |
+| **Margin cycle (input-vs-output squeeze)** | WPI (input prices) vs CPI (output prices) wedge leads corporate margins by quarters — cost squeezes compress cyclicals' margins first | **NEW CANDIDATE → H61**: WPI–CPI wedge percentile as a margin-cycle state conditioning cyclical-vs-defensive sector tilt. Free (OEA-DPIIT WPI + MOSPI CPI; both 2026-rebased — splice discipline applies) |
+| **Capital cycle (sector asset-growth)** | sectors that just built the most capacity earn the worst forward returns — competition arrives after capex (Marathon's capital cycle; the CMA/asset-growth factor academically) | **NEW CANDIDATE → H62**: sector-level asset-growth/capex percentile → tilt AWAY from capex-boom sectors. Tier B import (strong global literature), India test on lagged filings |
+| ROE cycle | profitability mean-reverts | inside quality (D02) + H56; no seat |
+| Accruals / working-capital cycle | earnings quality cycles | held as quality component (fundamentals phase, price-only twin mandatory) |
+| Payout cycle (dividends/buybacks vs capex phase) | corporate lifecycle | CONTEXT; buyback deal flow already in special sits |
+| Corporate leverage cycle | D/E builds then repairs | inside L10 (the twin-balance-sheet lesson IS this cycle) |
+
+## 14. Sector cycles — the projection principle
+
+**The finding:** almost every named "sector cycle" is a projection of Part-I states onto one
+sector. The design therefore does sector rotation *through its states*, not through a canned
+early/late-cycle playbook (whose academic support is weak and US-shaped). One genuinely
+sector-native cycle earns a candidate seat (banking provisioning, H63); one cross-sector factor
+does (capital cycle, H62).
+
+| Sector | Its "cycle" decomposes into | New content? |
+|---|---|---|
+| Banking / financials | credit cycle (L10) + **provisioning/credit-cost cycle**: recognition → provisioning peak → write-backs; bank EPS troughs at peak provisioning (India n≈2–3: 2001-04, 2015-19) | **→ H63**: provisioning-cycle percentile (RBI FSR credit-cost series) as a financials tilt conditioner — the sector is cheapest at maximum recognized pain |
+| IT services | global cycle (L9) + USD/INR + tech-spend cycle (H59 semis adjacent) | no new seat; INR sensitivity noted in §15 |
+| Autos | rural income (H55 ENSO) + financing (L10) + a ~7–8y replacement rhythm [A, folk-ish] | folded — replacement rhythm too weak to seat |
+| Cement / infra / cap-goods | capex cycle (L11) + real estate (L12) directly | pure projection |
+| Metals / mining | commodity supercycle (H53) + China (H54) | pure projection |
+| Energy / OMCs | oil (L9-Kilian) + administered-pricing policy regime [context] | projection + policy context |
+| Pharma | US generic-pricing cycles + USFDA cycles — thin free data, weak effect | CONTEXT only |
+| FMCG / staples | defensive leg of regime states + rural (H55) | projection (the R3/R4 rotation destination) |
+| Telecom | idiosyncratic competitive/capex episodes (n≈2: 2003-08, Jio) | CONTEXT; episodes, not a cycle |
+| Real-estate developers | L12 directly | projection |
+| Chemicals | capex cycle + China+1 structural narrative | CONTEXT |
+| Canned sector-rotation clocks ("early cycle buy X") | US-derived playbooks, weak out-of-sample support | **REJECT** as a clock; our states produce the tilts with mechanisms attached |
+
+## 15. Inflation, growth, liquidity, currency, debt growth — mapping table (mostly already held)
+
+| Family | Sub-cycles checked | Where each lives |
+|---|---|---|
+| **Inflation** | CPI cycle (~2–4y swings), food-CPI spikes (ENSO-driven), inflation-regime arcs, WPI input cycle | real-rate input (repo−CPI) in L6/L15 · H55 (food) · Band-0 arcs (context) · **H61 (WPI–CPI wedge — the new piece)** |
+| **Growth** | business cycle, capex cycle, nowcast pulse (GST collections, e-way bills, IIP momentum — all free), nominal-GDP anchor | macro block (L6/L10/L11) · nowcast series = *measurement enrichment* of the block, not a new seat · §1.1 base-rate context |
+| **Liquidity** | funding liquidity (repo/CP spreads) · **RBI system-liquidity cycle (LAF net surplus/deficit)** · market liquidity (aggregate Amihud, spreads) · global dollar liquidity (Fed B/S, RRP) · primary-market absorption | L2 triggers · LAF net position added to **L6's indicator list** (quantity side of policy — measurement enrichment) · market-Amihud = ops monitor + capacity re-derivation input · inside L9 (dollar factor proxies it) · L7 issuance |
+| **Currency** | INR structural depreciation (CAD + inflation differential) · REER over/under-valuation cycle (Rogoff τ½ 3–5y) · correction episodes (2013/2018/May-2026) · carry/forward-premia regime · CNY deval risk | gold sleeve's INR/REER input · REER stretch percentile as an **L9 measurement enrichment** (EM-stress conditioner) · episode set (L9's live test cases) · context · China event risk inside H54 |
+| **Debt growth** | private credit (bank+NBFC), household leg, corporate deleveraging leg, government borrowing calendar / G-sec supply | **L10 is this family's seat** (the anchor) · L13 (reduce-only) · inside L10 · supply calendar = rates context only (no equity seat) |
+| Sector-INR sensitivity | weak INR → IT/pharma exporters gain, importers/OMCs lose | a *projection rule* on existing currency states; wire as sector-exposure report, not a signal |
+
+## 16. Part-II candidates registered (H60–H64) and master-map deltas
+
+| H | Candidate | Mechanism | First test | Possible home |
+|---|---|---|---|---|
+| H60 | Breadth/participation regime state (A-D line percentile, % above long MA, NH-NL — pure bhavcopy) | late-cycle distribution narrows leadership (institutional) | Does breadth confirm/lead L4 trend flips and R3 entries on the episode set? Frequency-counted | CONFIRM input to trend/fast layers (regime only) |
+| H61 | WPI–CPI wedge (margin-cycle state) | input-cost squeeze leads margins by quarters | Does the wedge percentile condition cyclical-vs-defensive relative returns OOS? (2026 rebase splices!) | sector tilt conditioner (valuation/macro block) |
+| H62 | Sector capital-cycle factor (asset-growth/capex percentile by sector) | capacity arrives after the boom → forward-return drag (CMA/asset-growth lit, Tier B global) | India sector-level test on lagged filings, price-only twin where possible | cross-sector tilt factor (factor book adjunct) |
+| H63 | Banking provisioning/credit-cost cycle percentile | bank EPS troughs at peak recognized pain; n≈2–3 India | Financials tilt conditional on provisioning-cycle position — event/frequency framing | financials sector conditioner |
+| H64 | Long-horizon (2–5y) reversal vs value redundancy | over-extrapolation unwind ≈ value in drag | Is India long-horizon reversal distinct from the value composite? (Expected: NO → document and fold) | redundancy test — protects against double-counting |
+
+**Master-map deltas from Part II:** REGIME gains the H60 breadth confirm (candidate); EDGE gains
+H62 capital-cycle (candidate) and the H64 redundancy guard; CONTEXT gains pharma/telecom/chem
+sector notes, skew, payout cycles; EXECUTION unchanged; REJECTED gains Elliott (examined,
+three-way kill), Fibonacci/Gann, chart patterns, oscillators-as-alpha, canned sector-rotation
+clocks, vol-of-vol. Measurement enrichments (no new seats, no new budget): LAF net liquidity →
+L6; REER stretch percentile → L9; GST/e-way nowcasts → macro block; aggregate-Amihud → ops.
+Register count: **64 hypotheses** (H01–H64).
+
+## 17. Cycle-length drift — the world speeds up, but not uniformly (principal's directive, v1.1)
+
+**The claim to test, stated honestly.** "Cycles are shortening in a faster world" is half-true,
+and the half matters:
+- **Informational cycles compress.** Whatever runs on information diffusion — momentum
+  half-lives, post-announcement drift, reaction lags — plausibly shortens as coverage, algos and
+  retail speed rise. US momentum literature hints at compression; India post-2015 is our own
+  testable case (→ H65).
+- **Balance-sheet cycles LENGTHENED.** Drehmann-Borio-Tsatsaronis measured the financial cycle
+  at ~11y pre-1998 and ~20y after — liberalization and deeper credit markets let leverage build
+  *longer* before breaking (D03 [X]). Faster information does not shorten the time it takes to
+  repair a balance sheet or build a factory.
+- **Physically forced cycles don't care** (ENSO), and **calendar anchors are fixed by law**.
+
+**Design response (adaptive-τ½ policy, now in the registry):**
+1. Every ladder τ½ is a **living estimate**: re-estimated on rolling windows at each annual
+   re-estimation (decade loop), with a pre-registered drift test (rolling-window trend on τ½,
+   CI-aware) — never a frozen constant.
+2. Everything KEYED to τ½ moves mechanically when the estimate moves: no-trade band widths
+   h(τ½), CV embargo widths, bootstrap block lengths, re-entry tranche spacing, momentum-vs-
+   factor turnover splits. One estimate updates → the whole chain re-derives through config.
+3. **Hysteresis against chasing noise**: a τ½ update only lands in config when the new estimate
+   sits outside the old estimate's CI (else the old value stands) — flexibility without
+   re-fitting to every wiggle.
+4. Direction priors carried per band: fast/informational entries (L1–L4) carry a "compression
+   watch"; balance-sheet entries (L10–L12) carry a "lengthening watch"; L5/ENSO carry none.
+→ **H65** (register): India momentum/reversal half-lives post-2015 vs pre-2015 (compression
+test); credit/financial-cycle τ½ trend on the pooled panel (lengthening test). Registry hook:
+`ladder.yaml tau_half_drift_policy`.

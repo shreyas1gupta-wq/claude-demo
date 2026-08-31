@@ -20,6 +20,21 @@ budgets:
     decay: n/a
     changes_if: "block-weight sweep in the data phase (trial-ledger entry #13); purged-CV evidence that a different split dominates"
   tierC_overlay_cap: 0.10     # negative-only shift of regime score R
+
+tau_half_drift_policy:        # principal directive 2026-08-31: cycles drift; be flexible (ATLAS §17)
+  living_estimates: true      # every tau_half re-estimated on rolling windows at the annual loop
+  update_rule: "a new tau_half lands in config ONLY if outside the standing estimate's CI (hysteresis against noise-chasing); everything keyed to tau_half (bands h(tau), embargoes, block lengths, tranche spacing) re-derives mechanically on update"
+  direction_watch:
+    informational_band_L1_L4: compression   # faster diffusion/algos -> shorter half-lives (H65a)
+    balance_sheet_band_L10_L12: lengthening # Drehmann-Borio: ~11y pre-1998 -> ~20y after (H65b)
+    physical_and_calendar_L5_ENSO: none
+  cadence: "annual; tightens to semi-annual for any band where H65 confirms drift"
+  provenance:
+    source: "Drehmann-Borio-Tsatsaronis (financial cycle lengthened post-1998, D03); informational-compression prior [A] pending H65a; principal directive on flexibility"
+    tier: B
+    confidence: medium
+    decay: n/a
+    changes_if: "H65 results; any tau_half update landing outside CI"
   long_wave_expression:       # L15/L16 have NO regime-score seat
     gold_floor_attribution: [0.40, 0.50]
     slow_debasement_tail_budget_nav_yr: [0.003, 0.006]
