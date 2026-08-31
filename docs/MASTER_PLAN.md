@@ -116,7 +116,9 @@ pre-registered before it runs. This distinction keeps the trial ledger honest.
 ### R0 — Data foundation (weeks 1–3) — gate G-R0
 | # | Step | Method / notes | Consumers | Owner | Effort |
 |---|---|---|---|---|---|
-| R0.1 | Execute Appendix-A P0 pull runsheet on the principal's machine (bhavcopy cash+F&O full history, index constituents & TRI, India VIX, NSDL FPI, RBI DBIE core set, CCIL, AMFI, FRED set) | bulk downloads + documented scrapes; every file checksummed, vintage-tagged, committed as fixture | everything | P (pulls) + C (scripts) | 4–6 d |
+| R0.1 | Execute Appendix-A P0 pull runsheet on the principal's machine (bhavcopy cash+F&O full history, index constituents & TRI, India VIX, NSDL FPI, RBI DBIE core set, CCIL, AMFI, FRED set). **Day-1 item #1: confirm CCIL registration is actually free** (sign-in gated; FBIL's free 7-day-lagged G-sec curve is the fallback). Bhavcopy ingestion must handle the **2024-07-08 UDiFF format boundary** (NSE Circular 62424) — two parser versions | bulk downloads + documented scrapes; every file checksummed, vintage-tagged, committed as fixture | everything | P (pulls) + C (scripts) | 4–6 d |
+| R0.1b | **2026 base-year splice plan** — Appendix A's biggest live finding, flagged nowhere in the dossiers: India rebased nearly every macro series concurrently in 2026 (GDP/GFCF 2011-12→2022-23, Feb-2026; CPI 2012→2024/COICOP, Feb-2026; IIP →2022-23, May-2026; WPI →2022-23, Jun-2026). Every L6/L10–L12 input crossing these dates needs an explicit splice with the break dates as level discontinuities — never fit through (same discipline as the gold-duty breaks) | documented splice per series, in the fixture metadata | ladder, macro states | C | 1–2 d |
+| R0.2b | **Universe PIT integrity**: Nifty Total Market and Microcap 250 indices launched only in 2023 — their pre-launch "history" is back-computed, not point-in-time-published. Pre-2023 rank-500–750 membership must be reconstructed from mcap ranks on the PIT panel and labeled as reconstruction (the aggressive book's own analogue of the restated-fundamentals problem, prior #7) | reconstruction + labeling | aggressive universe, tail sleeve | C | 1–2 d |
 | R0.2 | PIT price store: corporate-action-adjusted daily panel, NIFTY-750 membership history (survivorship-free universe from constituent-change records) | Appendix B `pit/` modules; golden-file tests | everything | C | 4–5 d |
 | R0.3 | Data-quality monitors: gap/stale detection, cross-source reconciliation (NSE vs BSE closes; TRI vs price+dividend recomputation) | automated checks in CI | ops | C | 1–2 d |
 | R0.4 | Fixture governance live: manifest, refresh cadences per series (A §fixtures) | | ops | J | 1 d |
@@ -349,14 +351,21 @@ Decisions log: `research/OPEN_QUESTIONS.md` (Batch 1 answered; Batch 2 in §14).
 git; there is no out-of-band state.
 
 ## 12. Effort & feasibility (2 people, 3–6 months)
-Track R ≈ 55–70 Claude-days of build/analysis + 8–12 principal-days (pulls, broker diligence,
-reviews, decisions) → fits 13 weeks with parallelism (agents/sessions run concurrently; the
-critical path is data access, not analysis). Track M ≈ 20–26 d; Track A ≈ 16 d; Track C ≈ 5 d;
-Stage-2 shadow ≈ 5 d; ops setup ≈ 5 d. Total ≈ 105–130 working days across ~26 weeks with two
-workstreams in flight — **feasible at 6 months with margin; tight at 4**. Cut list if behind
-(in order): M7 fundamentals → Track C paper slips to month 7 → tactical-short research → election
-classifier → R5.6 bulk/block test. **Never cut:** anything in R0–R2 (foundations), the
-validation gates, the trial ledger, or the price-only-first rule.
+Two independent estimates, reconciled honestly:
+- **Top-down (this plan's phase view):** Track R ≈ 55–70 working days of build/analysis +
+  8–12 principal-days; Track M ≈ 20–26 d; Track A ≈ 16 d; Track C ≈ 5 d; Stage-2 shadow ≈ 5 d;
+  ops setup ≈ 5 d → ≈105–130 days.
+- **Bottom-up (Appendix B's module roll-up):** 45 modules = 5 S + 24 M + 16 L ≈ **170 person-days**,
+  with Phase-1-equivalent work alone ≈69 person-days — the strictest checkpoint by design.
+The gap is real and resolves three ways: (i) the cut list below removes ~25–35 bottom-up days
+(fundamentals M7, report polish, stretch modules); (ii) code-heavy S/M modules compress under
+Claude-driven generation (the L modules — factor book, ladder estimation, walk-forward harness —
+are the true bottleneck and do not compress much); (iii) two workstreams stay in flight
+throughout. **Conclusion: 6 months is feasible with the cut list armed and no scope additions;
+4 months is not realistic on the bottom-up numbers — plan to the 6-month calendar in §15.**
+Cut list if behind (in order): M7 fundamentals → Track C paper slips to month 7 →
+tactical-short research → election classifier → R5.6 bulk/block test. **Never cut:** anything in
+R0–R2 (foundations), the validation gates, the trial ledger, or the price-only-first rule.
 
 ## 13. Risk overview
 Top five (full register: **Appendix D**): (1) funding rate comes in retail-priced → leverage
