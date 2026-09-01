@@ -25,8 +25,8 @@ ceiling.
 | 0.5 | Inflation-regime arcs | **DONE** — docs/cycles/09-inflation-regimes.md (CONTEXT, ~7.3k words) + Lesson 9 |
 | 0.6 | Hegemonic-conflict cycles | **DONE** — docs/cycles/10-war-cycles.md (rejection, ~7.2k words) + Lesson 10 |
 | 0.7 | Demographic arcs | **DONE** — docs/cycles/11-demographics.md (~7.6k words) + Lesson 11. **BAND 0 COMPLETE** |
-| 1.1 | Medium-term financial cycle (Borio) | **NEXT** (seated entry: full treatment incl. module + tests) |
-| 1.2 | Real-estate cycle | queued |
+| 1.1 | Medium-term financial cycle (Borio) | **DONE** — docs/cycles/12-financial-cycle.md (~23.3k words) + quant/ladder/financial_cycle.py + tests + Lesson 12 |
+| 1.2 | Real-estate cycle | **IN PROGRESS** — folds into L12 (18-year folk cycle + Kuznets swings; merge monograph, no new seat) |
 | 1.3 | Commodity supercycle | queued |
 | 1.4/1.5 | Kondratieff / Perez surges | queued (rejection monographs — the case against, in full) |
 | 1.6 | India infra/capex supercycle | queued |

@@ -1,0 +1,271 @@
+<title>Credit and Concrete</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 12 · atlas 1.1 · Band 1 opens</p>
+  <h1>Credit and Concrete</h1>
+  <p class="stand">The financial cycle: credit and property prices inflating each other's
+  collateral for a decade at a time, then unwinding together. The strongest pooled regularity we
+  have measured — 17 countries out of 17 — a working module with India's data reality built into
+  its API, and the honest weakness that keeps it a state, never a date.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/12-financial-cycle.md</span>
+    <span><b>Seat</b> L12, inside the shared macro-credit budget (0.20)</span>
+    <span><b>Code</b> quant/ladder/financial_cycle.py · suite at 60 tests</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The strongest regularity we've measured</h2></div>
+  <p>Borio's claim is mechanical: banks lend against property whose value their own lending
+  inflates — collateral channel up, funding channel back — until debt service outruns income.
+  If that's real, five-year changes in credit/GDP and in real house prices should move together
+  <em>everywhere</em>. We measured it:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — corr(5y Δcredit/GDP, 5y Δreal house prices), every country</span>
+      <span class="figbadge">REAL DATA · JST R6 · 17/17 positive, median +0.40</span></div>
+    <div class="chart" id="figCo"></div>
+    <figcaption>Every single country positive. Put this beside Lesson 11's demographics chart
+    (4 of 16 positive) and you have the project's cleanest illustration of what a real pooled
+    mechanism looks like versus a narrative one. This is the sign-consistency bar doing its
+    job in both directions.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Amplification (FC1)</div><div class="v">17/17</div>
+      <div class="d">countries positive, median +0.40</div></div>
+    <div class="stat"><div class="k">Lengthening (FC2)</div><div class="v">11y → 13y</div>
+      <div class="d">peak spacing pre/post-1985 — feeds the drift watch</div></div>
+    <div class="stat"><div class="k">Peak-dating (FC3)</div><div class="v">1.2–1.3×</div>
+      <div class="d">honestly weak — dating stays banned; states, never dates</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The combined state, live on four countries</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — Our two-leg financial-cycle state, 150 years</span>
+      <span class="figbadge">REAL DATA · credit gap + real house-price gap percentiles</span></div>
+    <div class="legend" id="fcBtns" style="gap:8px"></div>
+    <div class="chart" id="figState"></div>
+    <figcaption>Pick a country. Watch Japan's state ride high through the late-1980s twin boom
+    and collapse into the lost decades; Spain's cresting into 2007; the US double-peak. The same
+    code now waits for India — where the house-price series is young, so the module runs
+    credit-leg-only with a flag until the property leg's ranks mature in the late 2020s: the
+    degradation is designed, tested, and visible, never silent.</figcaption>
+  </figure>
+  <div class="warnbox"><b>The case record's live lesson (Part B):</b> Australia and Canada spent
+  a decade as the famous "un-burst" controls — proof that a HIGH state carries no date. As of
+  mid-2026, Canada is ~20% off its 2022 peak while Australia still climbs at 8× income: identical
+  entry states, different exits, on no schedule anyone called. The seat conditions permissions —
+  leverage, hedge floors, sector tilts through the projection principle — and refuses, with its
+  own FC3 evidence now, to call tops.</div>
+  <p style="margin-top:24px"><b>Next in the series:</b> 1.2 folds the "18-year real-estate
+  cycle" folklore into this seat (same mechanism, no fixed period), then 1.3 — commodity
+  supercycles, where capacity takes a decade to build and a decade to regret.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 12 — companion to Atlas 1.1, opening Band 1. Sources:
+  <span class="mono">docs/cycles/12-financial-cycle.md</span> ·
+  <span class="mono">research/cycles/fincycle-deep/jst-fincycle-RESULTS.md</span> (FC1–FC3) ·
+  <span class="mono">quant/ladder/financial_cycle.py</span> + tests.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"paths":{"Japan":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,null],[1881,null],[1882,null],[1883,null],[1884,null],[1885,null],[1886,null],[1887,null],[1888,null],[1889,null],[1890,null],[1891,null],[1892,null],[1893,null],[1894,null],[1895,null],[1896,null],[1897,null],[1898,null],[1899,null],[1900,null],[1901,null],[1902,null],[1903,null],[1904,null],[1905,null],[1906,null],[1907,null],[1908,null],[1909,null],[1910,null],[1911,null],[1912,null],[1913,null],[1914,null],[1915,null],[1916,null],[1917,null],[1918,null],[1919,null],[1920,null],[1921,null],[1922,null],[1923,null],[1924,null],[1925,null],[1926,null],[1927,null],[1928,null],[1929,null],[1930,null],[1931,null],[1932,null],[1933,null],[1934,null],[1935,null],[1936,null],[1937,null],[1938,null],[1939,null],[1940,null],[1941,null],[1942,null],[1943,null],[1944,null],[1945,null],[1946,null],[1947,null],[1948,null],[1949,null],[1950,null],[1951,null],[1952,null],[1953,null],[1954,null],[1955,null],[1956,0.907],[1957,0.887],[1958,0.926],[1959,0.949],[1960,0.958],[1961,0.895],[1962,0.96],[1963,0.912],[1964,0.834],[1965,0.801],[1966,0.5],[1967,0.383],[1968,0.296],[1969,0.39],[1970,0.45],[1971,0.787],[1972,0.877],[1973,0.877],[1974,0.514],[1975,0.376],[1976,0.227],[1977,0.092],[1978,0.119],[1979,0.215],[1980,0.179],[1981,0.426],[1982,0.652],[1983,0.759],[1984,0.758],[1985,0.836],[1986,0.725],[1987,0.662],[1988,0.802],[1989,0.829],[1990,0.924],[1991,0.77],[1992,0.571],[1993,0.509],[1994,0.404],[1995,0.367],[1996,0.337],[1997,0.34],[1998,0.125],[1999,0.172],[2000,0.143],[2001,0.137],[2002,0.136],[2003,0.098],[2004,0.082],[2005,0.094],[2006,0.122],[2007,0.183],[2008,0.341],[2009,0.515],[2010,0.461],[2011,0.528],[2012,0.565],[2013,0.521],[2014,0.509],[2015,0.542],[2016,0.589],[2017,0.638],[2018,null],[2019,null],[2020,null]],"Spain":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,null],[1881,null],[1882,null],[1883,null],[1884,null],[1885,null],[1886,null],[1887,null],[1888,null],[1889,null],[1890,null],[1891,null],[1892,null],[1893,null],[1894,null],[1895,null],[1896,null],[1897,null],[1898,null],[1899,null],[1900,null],[1901,null],[1902,null],[1903,null],[1904,null],[1905,null],[1906,null],[1907,null],[1908,null],[1909,null],[1910,null],[1911,null],[1912,null],[1913,null],[1914,null],[1915,null],[1916,null],[1917,null],[1918,null],[1919,null],[1920,null],[1921,null],[1922,null],[1923,null],[1924,null],[1925,null],[1926,null],[1927,null],[1928,null],[1929,null],[1930,null],[1931,null],[1932,null],[1933,null],[1934,null],[1935,null],[1936,null],[1937,null],[1938,null],[1939,null],[1940,null],[1941,null],[1942,null],[1943,null],[1944,null],[1945,null],[1946,null],[1947,null],[1948,null],[1949,null],[1950,null],[1951,null],[1952,null],[1953,null],[1954,null],[1955,null],[1956,null],[1957,null],[1958,null],[1959,null],[1960,null],[1961,null],[1962,null],[1963,null],[1964,null],[1965,null],[1966,null],[1967,null],[1968,null],[1969,null],[1970,null],[1971,null],[1972,null],[1973,null],[1974,null],[1975,null],[1976,null],[1977,null],[1978,null],[1979,null],[1980,null],[1981,null],[1982,null],[1983,null],[1984,null],[1985,null],[1986,null],[1987,null],[1988,null],[1989,null],[1990,null],[1991,null],[1992,null],[1993,null],[1994,null],[1995,null],[1996,null],[1997,null],[1998,null],[1999,null],[2000,null],[2001,null],[2002,null],[2003,null],[2004,0.968],[2005,0.97],[2006,0.971],[2007,0.907],[2008,0.648],[2009,0.475],[2010,0.427],[2011,0.0],[2012,0.0],[2013,0.017],[2014,0.05],[2015,0.081],[2016,0.115],[2017,0.25],[2018,0.366],[2019,0.396],[2020,0.418]],"UK":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,null],[1881,null],[1882,null],[1883,null],[1884,null],[1885,null],[1886,null],[1887,null],[1888,null],[1889,null],[1890,null],[1891,null],[1892,null],[1893,null],[1894,null],[1895,null],[1896,null],[1897,null],[1898,null],[1899,null],[1900,null],[1901,null],[1902,null],[1903,null],[1904,null],[1905,null],[1906,null],[1907,null],[1908,null],[1909,null],[1910,null],[1911,null],[1912,null],[1913,null],[1914,null],[1915,null],[1916,null],[1917,null],[1918,null],[1919,null],[1920,null],[1921,null],[1922,null],[1923,null],[1924,null],[1925,null],[1926,null],[1927,null],[1928,null],[1929,null],[1930,null],[1931,null],[1932,0.635],[1933,0.601],[1934,0.581],[1935,0.652],[1936,0.65],[1937,0.669],[1938,0.631],[1939,null],[1940,null],[1941,null],[1942,null],[1943,null],[1944,null],[1945,null],[1946,null],[1947,null],[1948,null],[1949,null],[1950,null],[1951,0.671],[1952,0.495],[1953,0.479],[1954,0.44],[1955,0.427],[1956,0.439],[1957,0.518],[1958,0.58],[1959,0.701],[1960,0.803],[1961,0.805],[1962,0.83],[1963,0.81],[1964,0.841],[1965,0.844],[1966,0.829],[1967,0.852],[1968,0.858],[1969,0.832],[1970,0.785],[1971,0.812],[1972,0.977],[1973,0.984],[1974,0.974],[1975,0.903],[1976,0.762],[1977,0.429],[1978,0.371],[1979,0.567],[1980,0.841],[1981,0.843],[1982,0.865],[1983,0.842],[1984,0.703],[1985,0.683],[1986,0.946],[1987,0.968],[1988,0.976],[1989,0.971],[1990,0.931],[1991,0.694],[1992,0.129],[1993,0.025],[1994,0.0],[1995,0.019],[1996,0.045],[1997,0.103],[1998,0.301],[1999,0.488],[2000,0.744],[2001,0.879],[2002,0.948],[2003,0.948],[2004,0.949],[2005,0.923],[2006,0.914],[2007,0.867],[2008,0.419],[2009,0.341],[2010,0.023],[2011,0.0],[2012,0.0],[2013,0.022],[2014,0.083],[2015,0.209],[2016,0.458],[2017,0.495],[2018,0.515],[2019,0.523],[2020,0.616]],"USA":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,null],[1881,null],[1882,null],[1883,null],[1884,null],[1885,null],[1886,null],[1887,null],[1888,null],[1889,null],[1890,null],[1891,null],[1892,null],[1893,null],[1894,null],[1895,null],[1896,null],[1897,null],[1898,null],[1899,null],[1900,null],[1901,null],[1902,null],[1903,null],[1904,null],[1905,null],[1906,null],[1907,null],[1908,null],[1909,null],[1910,null],[1911,null],[1912,null],[1913,null],[1914,null],[1915,null],[1916,null],[1917,null],[1918,null],[1919,null],[1920,null],[1921,null],[1922,null],[1923,0.758],[1924,0.825],[1925,0.847],[1926,0.54],[1927,0.679],[1928,0.806],[1929,0.722],[1930,0.709],[1931,0.808],[1932,0.849],[1933,0.558],[1934,0.186],[1935,0.422],[1936,0.424],[1937,0.394],[1938,0.39],[1939,0.46],[1940,0.432],[1941,0.131],[1942,0.095],[1943,0.087],[1944,0.31],[1945,0.512],[1946,0.611],[1947,0.655],[1948,0.723],[1949,0.769],[1950,0.824],[1951,0.597],[1952,0.416],[1953,0.665],[1954,0.725],[1955,0.768],[1956,0.806],[1957,0.715],[1958,0.545],[1959,0.534],[1960,0.517],[1961,0.549],[1962,0.582],[1963,0.605],[1964,0.618],[1965,0.631],[1966,0.587],[1967,0.57],[1968,0.542],[1969,0.503],[1970,0.496],[1971,0.569],[1972,0.662],[1973,0.647],[1974,0.588],[1975,0.532],[1976,0.515],[1977,0.571],[1978,0.781],[1979,0.757],[1980,0.734],[1981,0.556],[1982,0.327],[1983,0.215],[1984,0.294],[1985,0.431],[1986,0.733],[1987,0.878],[1988,0.893],[1989,0.795],[1990,0.585],[1991,0.285],[1992,0.233],[1993,0.197],[1994,0.205],[1995,0.287],[1996,0.362],[1997,0.495],[1998,0.684],[1999,0.727],[2000,0.785],[2001,0.844],[2002,0.902],[2003,0.916],[2004,0.959],[2005,0.973],[2006,0.959],[2007,0.936],[2008,0.663],[2009,0.332],[2010,0.239],[2011,0.174],[2012,0.131],[2013,0.126],[2014,0.24],[2015,0.636],[2016,0.855],[2017,0.89],[2018,0.874],[2019,0.863],[2020,0.979]]},"co_moves":[["Norway",0.06],["Ireland",0.19],["Australia",0.21],["Italy",0.24],["USA",0.32],["Denmark",0.33],["France",0.33],["Belgium",0.4],["Germany",0.4],["Finland",0.43],["Canada",0.48],["Sweden",0.48],["Netherlands",0.5],["Spain",0.5],["Switzerland",0.56],["UK",0.63],["Japan",0.69]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figCo');
+  const rows=DATA.co_moves, N=rows.length;
+  const W=820,H=Math.max(260,N*20+60),m={t:16,r:60,b:30,l:120},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let lo=Math.min(0,...rows.map(r=>r[1])),hi=Math.max(...rows.map(r=>r[1]));
+  const pad=(hi-lo)*0.1; lo-=pad; hi+=pad;
+  const X=v=>m.l+iw*(v-lo)/(hi-lo);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'co-movement by country'});
+  [0,0.25,0.5].forEach(v=>{ if(v<lo||v>hi) return;
+    svg.appendChild(el('line',{x1:X(v),x2:X(v),y1:m.t,y2:m.t+ih,stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.4:1}));
+    const t=el('text',{x:X(v),y:H-8,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(2); svg.appendChild(t);});
+  const bh=Math.min(13, ih/N*0.6);
+  rows.forEach(([c,v],i)=>{
+    const y=m.t+ih*(i+0.5)/N;
+    svg.appendChild(el('rect',{x:X(0),y:y-bh/2,width:Math.max(X(v)-X(0),1),height:bh,rx:3,fill:'var(--s1)'}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11.5',fill:'var(--ink-2)'});
+    t.textContent=c; svg.appendChild(t);
+    const vt=el('text',{x:X(v)+6,y:y+4,'font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    vt.textContent=v.toFixed(2); svg.appendChild(vt);
+  });
+  mount.appendChild(svg);
+})();
+(function(){
+  const mount=document.getElementById('figState'), btnrow=document.getElementById('fcBtns');
+  const W=820,H=300,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let cur=Object.keys(DATA.paths)[0];
+  function draw(){
+    mount.innerHTML='';
+    const rows=DATA.paths[cur].filter(r=>r[1]!=null), N=rows.length;
+    const yr0=rows[0][0], yr1=rows[N-1][0];
+    const X=y=>m.l+iw*(y-yr0)/(yr1-yr0), Y=v=>m.t+ih*(1-v);
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cur+' financial cycle state'});
+    for(let i=0;i<=4;i++){const v=i/4,y=Y(v);
+      svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+      const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=v.toFixed(2); svg.appendChild(t);}
+    let d='',pen=false;
+    rows.forEach(([y,v])=>{d+=(pen?'L':'M')+X(y).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+    svg.appendChild(el('path',{d,fill:'none',stroke:'var(--s1)','stroke-width':2,'stroke-linejoin':'round'}));
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+    [0,Math.floor(N/3),Math.floor(2*N/3),N-1].forEach(i=>{
+      const t=el('text',{x:X(rows[i][0]),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=rows[i][0]; svg.appendChild(t);});
+    const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+    svg.appendChild(cross); mount.appendChild(svg);
+    const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+    svg.addEventListener('pointermove',ev=>{
+      const r=svg.getBoundingClientRect(),sx=W/r.width;
+      const yr=Math.round(yr0+(((ev.clientX-r.left)*sx)-m.l)/iw*(yr1-yr0));
+      const hit=rows.find(x=>x[0]===yr); if(!hit){tip.style.display='none';return;}
+      cross.setAttribute('x1',X(yr));cross.setAttribute('x2',X(yr));cross.setAttribute('opacity',1);
+      tip.innerHTML=`<div class="tt">${cur} ${yr}</div>
+        <div class="row"><span class="nm">state pctile</span><span class="vl">${hit[1].toFixed(2)}</span></div>`;
+      tip.style.display='block';
+      const mr=mount.getBoundingClientRect();
+      let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-150)tx-=170;
+      tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+    });
+    svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+  }
+  Object.keys(DATA.paths).forEach(c=>{
+    const b=document.createElement('button'); b.className='reroll'; b.textContent=c;
+    b.addEventListener('click',()=>{cur=c;draw();
+      btnrow.querySelectorAll('button').forEach(x=>x.style.borderColor='var(--rule)');
+      b.style.borderColor='var(--accent)';});
+    btnrow.appendChild(b); if(c===cur) b.style.borderColor='var(--accent)';
+  });
+  draw();
+})();
+</script>
