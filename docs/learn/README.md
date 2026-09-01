@@ -22,6 +22,7 @@ private artifacts; this index is the registry.
 | 13 | The Clock That Wasn't | docs/cycles/13-real-estate.md (Atlas 1.2, merged into L12) | https://claude.ai/code/artifact/1ac1dedf-b78f-4758-b147-6de1f118272b | docs/learn/artifacts/lesson-13-real-estate.html |
 | 14 | Eight Arcs, Not Four | docs/cycles/14-commodity-supercycle.md (Atlas 1.3, candidate H53) | https://claude.ai/code/artifact/52f37648-7295-415a-a6b1-32888a7a84ab | docs/learn/artifacts/lesson-14-commodity-supercycle.html |
 | 15 | The Fifty-Year Prophecy | docs/cycles/15-long-waves.md (Atlas 1.4 REJECT + 1.5 CONTEXT) | https://claude.ai/code/artifact/b0ceab88-d443-4654-9820-ad41e724814c | docs/learn/artifacts/lesson-15-long-waves.html |
+| 16 | The Seat That Argues Against Itself | docs/cycles/16-capex-cycle.md (Atlas 1.6, seat L11 — Band 1 finale) | https://claude.ai/code/artifact/42813366-48e0-4271-8464-dbbc80b19534 | docs/learn/artifacts/lesson-16-capex-cycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
