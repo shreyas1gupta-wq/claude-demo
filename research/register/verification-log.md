@@ -475,3 +475,17 @@ noisy short-window ranks — documented as a limitation instead of hidden behind
 **Process note:** second instance of "conclusion written before the test ran" (after MC3). Rule
 restated: demo/test claims about estimator behavior get written AFTER the run, or explicitly marked
 as predictions.
+
+---
+
+## 2026-09-01 — Deep-dive #2 (fast stress): 100%-detection assumption falsified by the fixture
+
+The draft test asserted every planted stress episode >=15 days crosses a 0.5 composite threshold.
+Measured across seeds 0-9: 73/98 at 0.5; 92/98 at 0.3 (median lag 1 day). Some planted episodes
+are genuinely mild — random drift can produce a 16-day "stress" run with no vol signature — and a
+real-world stress switch shares this property. The dev check had silently conditioned on detection
+(counted only detected episodes), which the stricter test assert exposed. Fix: assertion replaced
+with the measured bound (>=85% detection at 0.3, median lag <=5d, pooled over 3 seeds); the miss
+rate is documented as a property of the object, not a bug. Consequence for design F2/F6: the
+de-risk rule's value must be measured NET of both missed episodes and false fires — detection-rate
+tables at the full threshold grid are part of the pre-registered output, never a single cell.

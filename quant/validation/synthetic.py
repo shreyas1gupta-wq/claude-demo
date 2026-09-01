@@ -25,21 +25,23 @@ def ar1_series(rho: float, T: int, sigma: float = 1.0, seed: int = 0,
 def regime_vol_returns(T: int, seed: int = 0, p_calm_to_stress: float = 0.02,
                        p_stress_to_calm: float = 0.10, mu: float = 0.0004,
                        sigma_calm: float = 0.008, sigma_stress: float = 0.028,
-                       stress_drift: float = -0.002) -> np.ndarray:
+                       stress_drift: float = -0.002, return_states: bool = False):
     """Two-state volatility-clustered daily returns (calm/stress persistence) — used to
     demonstrate that iid bootstrap understates drawdown tails vs the block bootstrap.
     Ground truth: stress episodes have mean length 1/p_stress_to_calm days."""
     rng = np.random.default_rng(seed)
     r = np.empty(T)
+    states = np.zeros(T, dtype=bool)
     stress = False
     for t in range(T):
+        states[t] = stress
         if stress:
             r[t] = rng.normal(stress_drift, sigma_stress)
             stress = rng.random() > p_stress_to_calm
         else:
             r[t] = rng.normal(mu, sigma_calm)
             stress = rng.random() < p_calm_to_stress
-    return r
+    return (r, states) if return_states else r
 
 
 def trend_plus_cycle(T: int, cycle_rho: float = 0.9, trend: float = 0.01,

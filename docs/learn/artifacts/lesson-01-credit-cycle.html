@@ -1,0 +1,1064 @@
+<title>The Credit Cycle, From Zero</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-boom:rgba(42,120,214,0.07); --band-bust:rgba(235,104,52,0.09);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-boom:rgba(57,135,229,0.12); --band-bust:rgba(217,89,38,0.13);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-boom:rgba(57,135,229,0.12); --band-bust:rgba(217,89,38,0.13);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+.prose{max-width:700px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500; letter-spacing:-0.01em}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3);
+  padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle;
+  margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5; box-shadow:0 2px 10px rgba(0,0,0,0.12);
+  display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.loop{display:grid; grid-template-columns:1fr auto 1fr; gap:10px 6px; align-items:center;
+  margin:24px 0; max-width:700px}
+.loop .node{background:var(--card); border:1px solid var(--rule); border-radius:8px; padding:10px 14px;
+  font-size:14px; text-align:center; box-shadow:var(--shadow)}
+.loop .arr{color:var(--accent); font-size:18px; text-align:center; font-weight:600}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:96px 1fr; gap:16px; padding:12px 0;
+  border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600;
+  padding-top:2px; white-space:nowrap}
+.trow .tt{font-weight:600; font-size:15px}
+.trow p{font-size:14px; color:var(--ink-2); margin:3px 0 0}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px;
+  box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.threecol{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin:22px 0}
+button.reroll{font:600 13px "IBM Plex Sans",sans-serif; color:var(--accent-ink); background:var(--panel);
+  border:1px solid var(--rule); border-radius:999px; padding:5px 14px; cursor:pointer}
+button.reroll:hover{border-color:var(--accent)}
+button.reroll:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3);
+  line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} .trow .yr{padding:0} }
+@media (prefers-reduced-motion: reduce){ *{scroll-behavior:auto!important; transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 1 · learn-while-we-build</p>
+  <h1>The Credit Cycle, From Zero</h1>
+  <p class="stand">How lending booms are built, why they end badly, why everyone knows this and it
+  still works — and how we turned a century of evidence into the L10 state variable now sitting in
+  our repo, without ever peeking at the future.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/01-credit-cycle.md</span>
+    <span><b>Code</b> quant/ladder/credit_cycle.py</span>
+    <span><b>Every chart</b> computed from our actual runs (synthetic economy, seed 7)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Parts">
+  <a href="#p0">0 · How to think</a>
+  <a href="#p1">1 · What credit is</a>
+  <a href="#p2">2 · Reading the evidence</a>
+  <a href="#p3">3 · India 1992–2026</a>
+  <a href="#p4">4 · Building the state</a>
+  <a href="#p5">5 · From state to book</a>
+</nav>
+
+<!-- ============================ PART 0 ============================ -->
+<section id="p0">
+  <div class="partkicker"><span class="partnum">PART 0</span><h2>How to think before you compute</h2></div>
+  <p class="lede prose">Five ideas, learnable in five minutes, that decide whether everything after
+  them is science or self-deception. Every one of them is wired into the repo as a rule the code
+  enforces, not a good intention.</p>
+
+  <h3>0.1 — Cycles are states, not clocks</h3>
+  <p>The word "cycle" smuggles in a promise: that the thing repeats <em>on schedule</em>. Almost
+  nothing in markets does. What repeats is the <em>sequence</em> — leverage builds, fragility
+  accumulates, something breaks, balance sheets repair — while the <em>duration</em> of each act
+  varies wildly. So we never ask "what month of the cycle is it?" We ask "<em>where</em> in the
+  sequence are we?" — and we answer with a measured number.</p>
+  <div class="def"><div class="t">Definition · state variable</div>
+    <p>A quantity, computed only from data available today, whose <em>level</em> tells you where you
+    are in a process — like a fuel gauge, not a calendar. Our credit state will be a number in
+    [−1,&nbsp;+1]: −1 ≈ post-bust repair, +1 ≈ boom fully mature.</p></div>
+  <div class="def"><div class="t">Rule · the clock test</div>
+    <p>Before treating any cycle as periodic, count the <b>completed</b> periods you can actually
+    observe in your market. Fewer than four? Then the "period" is a story, not a parameter — use the
+    state, never the schedule. (India's credit record post-1991 contains one, maybe two completed
+    down-legs. One or two. The verdict writes itself.)</p></div>
+
+  <h3>0.2 — The Slutzky–Yule trap: smoothing invents waves</h3>
+  <p>In 1927 Eugen Slutzky showed something disturbing: take <em>pure random noise</em> — coin
+  flips, no cycle in it whatsoever — and run a moving average through it, and the result looks
+  compellingly wavy. Your eye will find peaks, troughs, even a "period." Every smoothed chart you
+  will ever see, including ours, carries this hazard. Try it yourself:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 0.1 — Noise, smoothed, impersonates a cycle</span>
+      <button class="reroll" id="reroll">New noise ↻</button></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>24-month moving average</span>
+      <span><span class="sw" style="background:var(--grid)"></span>the raw coin-flip noise underneath</span></div>
+    <div class="chart" id="figSlutzky"></div>
+    <figcaption>Each press generates fresh random noise with <b>no cyclical structure at all</b>,
+    then smooths it. The smooth line "cycles" anyway — that is the artefact. Moral: a wavy chart is
+    not evidence of a cycle; only out-of-sample predictive power is. This is why our contract bans
+    fitting periodicities and why every filter we use is judged on forecasts, not on how wavy its
+    output looks.</figcaption>
+  </figure>
+
+  <h3>0.3 — Whatever works, decays</h3>
+  <p>McLean &amp; Pontiff (2016) re-tested 97 published return predictors: performance fell
+  <b>~26%</b> after the original sample ended and <b>~58%</b> after publication. Markets learn.
+  So every edge in our model must carry a <em>written survival argument</em> — a reason it persists
+  even though it is public — or take an explicit numeric haircut. The credit cycle has one of the
+  strongest survival arguments in finance; that argument is Part 1's punchline.</p>
+
+  <h3>0.4 — Look-ahead: the cardinal sin</h3>
+  <p>A backtest commits look-ahead when any number computed "as of March" secretly used April's
+  data. It is the most common way quantitative research lies to its author, and it is often
+  invisible — buried inside a filter, a percentile, a revised data series. Our defense is
+  structural: every transform in the repo is <b>expanding-window</b> — at each date it may use
+  history up to that date and nothing else — and a test literally truncates the future and checks
+  the past doesn't change. In Part 4 you will <em>see</em> look-ahead on a chart: the same filter
+  run honestly and dishonestly, and how different the honest one looks.</p>
+
+  <h3>0.5 — No magic numbers, and evidence has tiers</h3>
+  <p>Any specific constant ("buy when the gap &gt; 9%") is a claim that needs its own evidence —
+  and is usually just noise that flattered one historical sample. We use <em>ranks</em> ("where is
+  today versus all of history so far?") instead of thresholds, pre-register parameter <em>grids</em>
+  instead of picking single values, and write down every hypothesis before testing it — because
+  re-testing rejected ideas until one "works" manufactures false discoveries. Finally, not all
+  evidence deserves equal weight:</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Tier A</div><p>≥30 observed episodes; enough to fit and
+      cross-validate on our own market's data. Full rights: may size positions.</p></div>
+    <div class="tier"><div class="tl">Tier B</div><p>4–30 episodes, or fewer with ≥10 cross-country
+      analogues. Parameters frozen at inception, borrowed from the global panel. The credit cycle
+      lives here.</p></div>
+    <div class="tier"><div class="tl">Tier C</div><p>Narrative, thin, or unverifiable. May only
+      <b>reduce</b> risk, never add it — a rule you'll see enforced in code in Part 4.</p></div>
+  </div>
+</section>
+
+<!-- ============================ PART 1 ============================ -->
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>What credit is, and why it cycles</h2></div>
+  <p class="lede prose">No prior finance knowledge assumed. Three balance-sheet facts, one
+  psychological fact, and the boom–bust machine assembles itself.</p>
+
+  <h3>1.1 — Credit, from zero</h3>
+  <p><b>Credit</b> is borrowed purchasing power: a loan, a bond, a mortgage. Two facts most people
+  never internalize. First, <em>every</em> loan is simultaneously someone's asset (the lender's)
+  and someone's liability (the borrower's) — so "total credit" measures how interconnected and
+  obligated an economy has become. Second, when a bank lends, it doesn't hand over someone else's
+  savings; it <em>creates a deposit</em> — new money — with a keystroke. Bank lending expands the
+  money supply on the way up and contracts it on the way down. That is why credit is the economy's
+  accelerator pedal, in both directions.</p>
+  <div class="def"><div class="t">The two ratios we will actually use</div>
+    <p><b>Credit / GDP</b> — total bank+NBFC lending divided by national income: "how indebted is
+    the economy relative to its ability to pay?"</p>
+    <p><b>Credit / Deposits (CD ratio)</b> — lending divided by the deposit base funding it: "how
+    stretched is the banking system's own balance sheet?" India's monthly series runs from 1969;
+    its long-run range is roughly 52% to 80%.</p></div>
+
+  <h3>1.2 — Minsky's ladder: stability breeds fragility</h3>
+  <p>Hyman Minsky's insight, ignored for decades and canonized after 2008: <em>calm itself is
+  destabilizing</em>. After years without defaults, lenders and borrowers both extrapolate. Minsky
+  described the drift as three rungs of borrower:</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Hedge finance</div><p>Income covers interest <em>and</em>
+      principal. Sober. Dominant early in an expansion.</p></div>
+    <div class="tier"><div class="tl">Speculative finance</div><p>Income covers interest only;
+      principal must be rolled over. Depends on markets staying open.</p></div>
+    <div class="tier"><div class="tl">Ponzi finance</div><p>Income covers neither; the plan is to
+      sell the asset at a higher price. Depends on the boom itself continuing.</p></div>
+  </div>
+  <p>The longer the calm, the larger the share of speculative and Ponzi borrowers — invisibly,
+  because rising collateral prices make everyone look creditworthy. Fragility is <b>built in the
+  boom and only revealed in the bust</b>.</p>
+
+  <h3>1.3 — The feedback loop, both directions</h3>
+  <div class="loop" role="img" aria-label="Boom loop: credit expands, asset prices rise, collateral looks safer, lending standards ease, more credit. Bust loop runs in reverse with forced selling.">
+    <div class="node">More credit is extended</div><div class="arr">→</div>
+    <div class="node">Asset &amp; collateral prices rise</div>
+    <div class="arr" style="grid-column:3">↓</div><div></div><div></div>
+    <div class="node">Standards ease; loan-to-value looks safe</div><div class="arr">←</div>
+    <div class="node">Lenders look smart; risk models say "calm"</div>
+  </div>
+  <p>Run it forward: self-reinforcing boom. Now reverse one arrow — income disappoints, or rates
+  rise — and the <em>marginal</em> (Ponzi) borrower fails first, their collateral is sold, prices
+  fall, which impairs the <em>next</em> borrower's collateral, which forces more selling. The reverse
+  loop has an amplifier the forward loop lacks: <b>forced selling</b>. This asymmetry is why busts
+  are faster than booms, and why Jordà, Schularick &amp; Taylor titled their famous paper
+  "credit bites back": recessions that follow credit booms are systematically deeper and slower to
+  heal, whether or not a banking crisis erupts.</p>
+
+  <h3>1.4 — Why this survives being known</h3>
+  <p>Here is the question Part 0 demands we answer: this mechanism was described by Minsky in the
+  1970s and by Kindleberger in 1978. Every central banker has read them. Why hasn't the signal been
+  arbitraged to dust?</p>
+  <div class="keyresult"><div class="t">Survival argument · the strongest in our whole model</div>
+    <div class="big">The bias sits inside the credit <em>suppliers</em>, and the trade against them
+    is one almost no institution can hold.</div>
+    <p><b>Behavioral leg:</b> Baron &amp; Xiong (QJE 2017) showed that after large credit
+    expansions, bank <em>shareholders</em> go on to earn deeply negative returns — and don't demand
+    compensation in advance. The people extending the credit neglect the crash risk they are
+    creating. Knowing about Minsky doesn't immunize you against being paid quarterly to ignore him.</p>
+    <p><b>Limits-to-arbitrage leg:</b> the trade that would correct it — shorting the
+    banking system for years, paying carry the whole way, wrong until you're suddenly right — is
+    career-ending at almost any fund. Knowledge does not create capacity.</p>
+    <p><b>Consequence for us:</b> the credit state is <em>publishable without dying</em>. The
+    McLean–Pontiff decay that kills stock-picking signals doesn't mechanically apply. This is why
+    L10 anchors the slow end of our ladder.</p></div>
+
+  <h3>1.5 — What the signal is, and is not</h3>
+  <p>One honest limitation, stated now so nothing later oversells it: credit conditions forecast the
+  <b>distribution</b> of what comes next — crash probability, drawdown depth, forward risk premia —
+  not the <b>date</b>. On a cycle whose down-legs arrive years apart, timing error is measured in
+  years. That is why, in our architecture, the credit state adjusts <em>permissions</em> (how much
+  leverage we may run, how much hedge we must carry) and never places a directional bet. We do not
+  short booms. We carry less sail into mature ones.</p>
+</section>
+
+<!-- ============================ PART 2 ============================ -->
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Reading the evidence like a quant</h2></div>
+  <p class="lede prose">The credit-cycle literature rests on two workhorse tools: regression and
+  AUROC. Learn them once, from zero, on toy data you can hover — then the real results table stops
+  being a wall of numbers.</p>
+
+  <h3>2.1 — Regression, from zero</h3>
+  <p>A regression is a machine for answering: <em>on average, when X is higher by one unit, how much
+  higher is Y?</em> Below are 40 synthetic points generated from a rule we chose ourselves —
+  Y&nbsp;=&nbsp;2&nbsp;+&nbsp;0.8·X&nbsp;+&nbsp;noise — so we know the truth the machine is trying
+  to recover. "Ordinary least squares" (OLS) picks the one line minimizing the summed squared
+  vertical misses. Hover any point to see its <b>residual</b>: the part of Y the line cannot
+  explain.</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2.1 — OLS finds the rule we hid in the noise</span>
+      <span class="figbadge">TOY DATA · known truth</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>data points</span>
+      <span><span class="sw" style="background:var(--s2)"></span>fitted line: ŷ = 1.75 + 0.82·x</span>
+      <span><span class="sw" style="background:var(--grid)"></span>residual stems</span></div>
+    <div class="chart" id="figOLS"></div>
+    <figcaption>True rule: y = 2 + 0.8x. The fit recovered the slope almost exactly (0.82 vs 0.8)
+    and the intercept less well (1.75 vs 2) — a general truth: slopes are usually better identified
+    than levels. In the papers below, "a 1σ rise in credit growth raises crisis probability by
+    2.8pp" is exactly this kind of slope — except Y is a yes/no event, so they use a cousin of OLS
+    called a <b>logit</b>, which forces predictions to stay between 0% and 100% probability. The
+    logic is identical.</figcaption>
+  </figure>
+
+  <p>Three habits when reading any regression claim: (1) <b>slope + uncertainty</b> — a slope
+  without a confidence interval is a rumor; (2) <b>in-sample vs out-of-sample</b> — fitting the past
+  is easy, predicting the future is the test; (3) <b>persistent regressors bias slopes</b> — when X
+  barely moves month to month (like a credit ratio), standard formulas overstate significance, which
+  is why our pre-registered designs specify the Stambaugh correction and Newey–West errors. You
+  don't need the formulas yet; you need to know the traps have names and our designs name them.</p>
+
+  <h3>2.2 — AUROC, from zero</h3>
+  <p>Crisis prediction isn't "predict Y" but "rank the dangerous years above the safe ones." The
+  standard score is AUROC. Take every historical year, labeled crisis-within-3-years or not, and
+  look at the indicator's value in each group. <b>AUROC answers: if I draw one crisis year and one
+  safe year at random, what's the probability the indicator was higher in the crisis year?</b>
+  0.5 = coin flip, useless. 1.0 = perfect separation. Hover the left panel to sweep an alert
+  threshold and watch it trace the curve on the right:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2.2 — What an AUROC of ~0.87 actually looks like</span>
+      <span class="figbadge">TOY DATA · hover to sweep threshold</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>safe years (indicator distribution)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>crisis-within-3y years</span></div>
+    <div class="chart" id="figROC"></div>
+    <figcaption>Left: the two groups <em>overlap</em> — no threshold separates them cleanly; every
+    alert level trades missed crises against false alarms. Right: the ROC curve plots that trade-off
+    (hit rate vs false-alarm rate at every threshold); the area under it here is 0.867. Note how
+    good this looks <em>and</em> how many false alarms remain — that duality is the whole game.
+    Drehmann &amp; Juselius (2014) measured the credit-to-GDP gap at <b>AUROC 0.83–0.85</b> at 3–5
+    year horizons across 26 economies — the best single early-warning indicator known. This toy
+    panel is what such a number looks like from the inside.</figcaption>
+  </figure>
+
+  <h3>2.3 — The load-bearing results</h3>
+  <p>Six findings carry the seat. Each was verified against sources during our literature sweep
+  (dossier D03); together they say: credit booms raise crash probability, deepen recessions, are
+  neglected by the very people funding them, and are measurable in advance.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Finding</th><th>Sample</th><th>Effect</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>Credit growth → crisis probability</td><td class="num">14 economies, 1870–2008</td>
+        <td>+1σ real credit growth ⇒ <b>+~2.8pp</b> crisis probability over 5y; credit beats money
+        and current-account measures</td><td>Schularick–Taylor, AER 2012</td></tr>
+      <tr><td>"Credit bites back"</td><td class="num">&gt;200 recessions, 14 countries</td>
+        <td>Credit-intense expansions ⇒ deeper recessions, slower recoveries — crisis or no
+        crisis</td><td>Jordà–Schularick–Taylor, JMCB 2013</td></tr>
+      <tr><td>Leveraged bubbles</td><td class="num">17 countries, 1870→</td>
+        <td>Credit-financed housing bubbles are the dangerous kind; unlevered equity bubbles far
+        less so</td><td>JST, JME 2015</td></tr>
+      <tr><td>Neglected crash risk</td><td class="num">20 countries, 1920–2012</td>
+        <td>Bank-credit expansion &gt;95th pctile ⇒ <b>−37.3%</b> predicted 3y bank-equity excess
+        return</td><td>Baron–Xiong, QJE 2017</td></tr>
+      <tr><td>Early-warning power</td><td class="num">26 economies, quarterly</td>
+        <td>Credit-to-GDP gap <b>AUROC 0.83–0.85</b> at 3–5y horizons — best single
+        indicator</td><td>Drehmann–Juselius, IJF 2014</td></tr>
+      <tr><td>The "R-zone"</td><td class="num">42 countries, 1950–2016</td>
+        <td>Credit growth top-quintile <em>and</em> equity returns top-tercile ⇒ <b>~40%</b> crisis
+        probability vs <b>~7%</b> base — the combination does the work</td>
+        <td>Greenwood–Hanson–Shleifer–Sørensen, JF 2022</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>2.4 — The India haircut</h3>
+  <p>Every number above is a <em>pooled</em> estimate across many countries and a century. India
+  contributes little of that sample, has different institutions (state-owned banks, financial
+  deepening from a low base), and offers us one-to-two observed down-legs. So the contract requires
+  the haircut be stated, not hidden:</p>
+  <div class="keyresult"><div class="t">Our working prior — assumption, marked [A]</div>
+    <div class="big">Pooled AUROC 0.83–0.85 is treated as an upper bound; the working India prior is
+    0.65–0.75.</div>
+    <p>Still comfortably better than a coin flip; honest about pooling dilution and thin domestic
+    data. It stands until the first purged, India-conditioned estimate (design R1, Part 5) replaces
+    it — and if that estimate's lower confidence bound falls below 0.55, the seat's weight gets cut.
+    The prior is falsifiable and scheduled for its own execution. That is what makes it science.</p></div>
+</section>
+
+<!-- ============================ PART 3 ============================ -->
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>India's credit history, 1992 → 2026</h2></div>
+  <p class="lede prose">The domestic record is short but instructive — and it teaches two
+  data-handling lessons no textbook covers.</p>
+
+  <div class="timeline">
+    <div class="trow"><span class="yr">1992–2002</span><div><span class="tt">Post-liberalization NPA cleanup</span>
+      <p>New recognition norms bite; public-sector-bank gross NPAs grind from ~19% to ~12%. The
+      system starts the era already deleveraging.</p></div></div>
+    <div class="trow"><span class="yr">2003–2008</span><div><span class="tt">The great credit boom</span>
+      <p>Credit growth peaks at 25–30%/yr — infrastructure and real estate surge. Reported NPAs fall
+      to ~2%, which the boom itself makes look sustainable. Minsky's calm, textbook edition.</p></div></div>
+    <div class="trow"><span class="yr">2008–2011</span><div><span class="tt">GFC pass-through, then re-acceleration</span>
+      <p>Stimulus re-inflates lending before the prior boom's quality is known. The next bust is
+      seeded here.</p></div></div>
+    <div class="trow"><span class="yr">2011–2015</span><div><span class="tt">Twin Balance Sheet problem</span>
+      <p>Over-leveraged corporates and stressed banks, both hiding it: true stressed loans ≈12%
+      while reported numbers stay serene.</p></div></div>
+    <div class="trow"><span class="yr">2015–2018</span><div><span class="tt">AQR recognition shock</span>
+      <p>The RBI's Asset Quality Review forces honesty: GNPA leaps 5.1% → 11.2%. <b>Data lesson #1:</b>
+      this is a <em>measurement break</em>, not a credit event — the loans were already bad. A naive
+      model reads 2015 as a sudden crisis; a careful one splices the series.</p></div></div>
+    <div class="trow"><span class="yr">2018</span><div><span class="tt">IL&amp;FS / NBFC crisis</span>
+      <p>A shadow-lending funding freeze — <b>invisible in bank-only credit data</b>. Data lesson #2:
+      our credit aggregate must be bank + NBFC, or the fastest-growing fragility never shows up.</p></div></div>
+    <div class="trow"><span class="yr">2020</span><div><span class="tt">COVID</span>
+      <p>Credit collapse, then forbearance masks true quality for years. Policy-shaped throughout —
+      resists clean classification as a market-driven down-leg.</p></div></div>
+    <div class="trow"><span class="yr">2021–2024</span><div><span class="tt">Unsecured-retail boom</span>
+      <p>Credit accelerates 16 → 20%/yr, tilted to unsecured personal loans; the CD ratio reaches
+      ~80% — highest since 2005; household debt climbs 26% → 42% of GDP.</p></div></div>
+    <div class="trow"><span class="yr">Nov 2023</span><div><span class="tt">The regulator blinks first</span>
+      <p>RBI raises risk weights on unsecured retail and NBFC lending by 25pp — the composition
+      signal confirmed by the institution with the best data.</p></div></div>
+    <div class="trow"><span class="yr">2024–2026</span><div><span class="tt">Today</span>
+      <p>GNPA at a decadal best (2.15%) — remember 2003–08: reported loan quality is a <em>lagging</em>
+      comfort. The CD ratio remains elevated. We are not forecasting; we are locating.</p></div></div>
+  </div>
+
+  <div class="keyresult"><div class="t">Clock-test verdict</div>
+    <div class="big">One, at most two, completed down-legs. The credit cycle enters our model as a
+    Tier-B state variable with parameters pooled from the global panel — never as a domestic clock,
+    never with a fitted regime-switching model.</div>
+    <p>(TBS → AQR → IL&amp;FS reads best as one prolonged episode; COVID is policy-shaped. Two,
+    charitably. The clock test needs four.)</p></div>
+</section>
+
+<!-- ============================ PART 4 ============================ -->
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Building the state variable — with our actual runs</h2></div>
+  <p class="lede prose">Everything below ran in our repository. The economy is synthetic — we
+  engineered a boom (months 200–320) and a bust (320–400) so the truth is known — because an
+  estimator that can't recover a truth we planted has no business touching real rupees.</p>
+
+  <h3>4.1 — The laboratory economy</h3>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.1 — The synthetic economy: three level series</span>
+      <span class="figbadge">SYNTHETIC · seed 7 · boom &amp; bust shaded</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>credit</span>
+      <span><span class="sw" style="background:var(--s2)"></span>income (GDP)</span>
+      <span><span class="sw" style="background:var(--s3)"></span>deposits</span></div>
+    <div class="chart" id="figEcon"></div>
+    <figcaption>Income grows ~0.5%/month throughout. Credit tracks it — except in the shaded boom,
+    where we made it grow 0.6pp/month faster, then a bust where it lags by 0.7pp/month. Deposits
+    track income, so bank funding does not keep up with the boom. This is the truth the machinery
+    must recover, using only past data at every step.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.2 — The two ratios the state is built from</span>
+      <span class="figbadge">SYNTHETIC · seed 7</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>credit / income</span>
+      <span><span class="sw" style="background:var(--s2)"></span>credit / deposits (CD ratio)</span></div>
+    <div class="chart" id="figRatios"></div>
+    <figcaption>Both ratios rise through the boom and unwind after it. But a <em>level</em> is not a
+    <em>signal</em>: "credit/income = 1.2" means nothing without knowing what's normal — and what's
+    normal drifts as economies deepen financially. Everything that follows is about turning these
+    levels into honest, self-referencing signals.</figcaption>
+  </figure>
+
+  <h3>4.2 — Detrending: why the standard tool is banned here</h3>
+  <p>To say "credit is above trend," you must estimate the trend. The textbook tool — used by the
+  BIS for its official credit-gap — is the Hodrick–Prescott (HP) filter, which fits a smooth curve
+  through the whole series. James Hamilton's 2018 paper, bluntly titled <em>"Why You Should Never
+  Use the Hodrick-Prescott Filter,"</em> documented two disqualifying sins. First, it manufactures
+  <b>spurious cycles</b> — Slutzky's trap (Part 0.2) industrialized: HP output looks cyclical even
+  when fed noise. Second, the <b>end-point problem</b>: the trend estimate is least reliable at the
+  <em>end</em> of the sample — which is precisely where you trade — and it silently revises its own
+  past as new data arrives, so the history you backtest on is a history that never existed in real
+  time.</p>
+  <p>Hamilton's replacement is almost embarrassingly simple — a regression (Part 2.1!):</p>
+  <div class="eq">ratio<sub>t</sub> = α + β₁·ratio<sub>t−h</sub> + β₂·ratio<sub>t−h−1</sub> + β₃·ratio<sub>t−h−2</sub> + β₄·ratio<sub>t−h−3</sub> + <b>gap<sub>t</sub></b>
+    <div class="lbl">Forecast today's ratio from what it was h months ago (and 3 adjacent lags). The
+    part the forecast misses — the residual — <b>is</b> the gap. h sets the horizon: our demo uses
+    h=24 months; production pre-registers a grid of 16–24 quarters (design R4).</div></div>
+  <p>Read it plainly: <em>"knowing where the ratio stood two years ago, where would we expect it
+  today — and how far above that expectation are we?"</em> A boom is, operationally, credit being
+  persistently above where its own history said it should be.</p>
+
+  <h3>4.3 — The look-ahead lesson, made visible</h3>
+  <p>That regression can be fit two ways, and the difference is the deepest lesson in this entire
+  lesson. <b>Full-sample mode</b> fits the coefficients once, on all 480 months — so the "gap" at
+  month 250 was computed with knowledge of month 480. <b>Expanding mode</b> refits at every date
+  using only data up to that date — what you could actually have known. Same equation. Watch what
+  changes:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.3 — The same filter, honest vs omniscient</span>
+      <span class="figbadge">SYNTHETIC · seed 7 · h=24, p=4</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>expanding (honest, real-time)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>full-sample (sees the future — reference only)</span></div>
+    <div class="chart" id="figGap"></div>
+    <figcaption>The omniscient orange line does what intuition expects: high through the whole boom,
+    negative through the bust — because it learned "normal" from data including the future. The
+    honest blue line tells a subtler story, and it's the one we can actually trade on: it
+    <b>fires during the boom's build-out</b> (the surprise phase), <b>decays toward zero late in the
+    boom</b> — the expanding regression gradually absorbs the boom into its own definition of
+    normal, exactly like human "new-normal" psychology — and then produces <b>the largest reading of
+    the entire cycle at the bust's onset</b>, when forecasts extrapolating the boom collide with
+    contracting reality.</figcaption>
+  </figure>
+
+  <div class="warnbox"><b>A confession, on the record.</b> We wrote the test for this module
+  asserting the gap would "rise through the boom and fall through the bust" — the omniscient shape.
+  The run falsified us: that's the orange line's shape, and only hindsight produces it. Under the
+  contract's rules, the falsification is logged in the verification register, the test was rewritten
+  to the measured shape only after it held on 10 of 10 random seeds, and the monograph records the
+  original wrong claim. This is Part 0 operating on its own authors — which is the point of Part 0.</div>
+
+  <p>The redesign that falls out: the expanding gap is our <b>impulse</b> input (it detects
+  acceleration and, most violently, the turn), and boom <em>maturity</em> must come from somewhere
+  else — the CD ratio, next.</p>
+
+  <h3>4.4 — Percentiles instead of thresholds</h3>
+  <p>How high is "high"? Any fixed number is a magic number (Part 0.5). Our answer: at each date,
+  rank today's value against <em>all history up to that date</em>. "The CD ratio is at its 97th
+  percentile since 1969" needs no tuning, adapts as history accumulates, and cannot peek forward —
+  the rank at month 250 uses months 1–250, full stop. (Our no-look-ahead test literally deletes the
+  future and checks the past ranks don't move.)</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.4 — Expanding percentiles: impulse and level</span>
+      <span class="figbadge">SYNTHETIC · seed 7 · rank ∈ [0,1]</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>gap percentile (impulse)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>CD-ratio percentile (level / maturity)</span></div>
+    <div class="chart" id="figPct"></div>
+    <figcaption>The CD percentile saturates near 1.0 through the entire late boom — the maturity
+    gauge (it held &gt;0.85 on 10/10 seeds). The gap percentile spikes in the build-out and crashes
+    to ~0 at the turn — the impulse gauge. Note the early sample: ranks over short histories are
+    noisy, which is why the live state carries a warm-up mask and why we refused to write a test
+    asserting anything about the earliest months.</figcaption>
+  </figure>
+
+  <h3>4.5 — The composite, and a rule enforced in arithmetic</h3>
+  <p>The state combines the two percentiles (rescaled to [−1,+1]) with pre-registered weights. A
+  third input — <em>composition</em>, the share of new credit flowing to the riskiest categories,
+  like 2021–24's unsecured retail — is Tier C: real enough to respect, too thin to trust. Part 0's
+  rule said Tier C may only reduce risk. In code, that is one line: the composition term passes
+  through <code>max(contribution, 0)</code> — since higher state = less risk permission, a hot
+  reading can push the state up (toward caution) but can <em>never</em> pull it down (toward
+  risk-taking).</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.5 — The credit state, and the Tier-C clamp at work</span>
+      <span class="figbadge">SYNTHETIC · seed 7 · state ∈ [−1,+1]</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>base state (gap + CD)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>+ composition pinned hottest</span>
+      <span><span class="sw" style="background:var(--s3)"></span>+ composition pinned most benign</span></div>
+    <div class="chart" id="figState"></div>
+    <figcaption>Orange (hot composition) sits above blue everywhere it differs — always toward
+    caution. Aqua (benign composition) contributes exactly zero beyond reweighting: a comforting
+    Tier-C story is not allowed to add risk appetite. The tests assert both properties to
+    ±10⁻⁹.</figcaption>
+  </figure>
+
+  <h3>4.6 — What the test suite certifies</h3>
+  <p>Five properties, each frozen only after holding across ten random economies: the gap fires in
+  the build-out; the gap collapses below −0.05 at the turn; percentiles are range-bound and provably
+  unchanged when the future is deleted; the CD percentile saturates &gt;0.85 late-boom; the state
+  sits ≥0.3 higher in the boom than at the turn and in the aftermath; and the clamp's two
+  guarantees. Run them yourself: <code>python3 -m pytest tests/test_credit_cycle.py</code>. The
+  full phase table lives in <code>research/cycles/01-credit-cycle-DEMO.md</code>.</p>
+</section>
+
+
+  <h3>4.7 — The trail: a number becomes a phase <span style="font-size:13px;color:var(--accent);font-family:'IBM Plex Mono',monospace">(added 2026-09-01, principal's directive)</span></h3>
+  <p>A scalar state hides something your eye catches instantly on a sine wave: <em>where the value
+  came from</em>. A credit state of 0.6 reached from 0 → 0.2 → 0.4 is a boom still building; the
+  same 0.6 reached from 1 → 0.9 → 0.8 → 0.7 is a boom unwinding — and the unwind is the dangerous
+  part (busts are faster than booms; that asymmetry is Part 1.3's forced-selling amplifier). This
+  path-dependence has a name — <b>hysteresis</b> — and a standard operational form: the
+  <b>business-cycle clock</b> used by Eurostat and the OECD for their leading indicators. Plot the
+  state's <em>level</em> against its <em>velocity</em> (how fast it's changing), and every cycle
+  becomes a loop through four quadrants:</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">recovery</div><p>level low, rising — repair is ending; the
+      notation is 0.30<b>U</b></p></div>
+    <div class="tier"><div class="tl">boom</div><p>level high, rising — 0.60<b>U</b>: fragility
+      building, not yet revealed</p></div>
+    <div class="tier"><div class="tl">slowdown</div><p>level high, falling — 0.60<b>D</b>: same
+      level, opposite meaning; the turn</p></div>
+    <div class="tier"><div class="tl">downturn</div><p>level low, falling — deleveraging running
+      its course</p></div>
+  </div>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 4.6 — The credit state as a loop, not a line</span>
+      <span class="figbadge">SYNTHETIC · seed 7 · CD-ratio percentile</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>recovery (low, rising)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>boom (high, rising)</span>
+      <span><span class="sw" style="background:var(--s3)"></span>slowdown (high, falling)</span>
+      <span><span class="sw" style="background:var(--s4)"></span>downturn (low, falling)</span></div>
+    <div class="chart" id="figPhase"></div>
+    <figcaption>Left: the CD-ratio percentile through time, its quadrant painted underneath — U
+    through 100% of the engineered boom, D through 100% of the turn window, on every seed we tested
+    (0–7). Right: the same series in phase space (level across, velocity up): the boom-bust episode
+    traces a clockwise loop. Two months at the same LEVEL sit on opposite sides of the loop — which
+    is exactly the 0.6U-vs-0.6D distinction, now computed, tested for no-look-ahead, and carried on
+    every ladder state as (level, velocity, quadrant, age). The direction label uses a
+    <b>hysteresis dead-band</b> (a rank-based threshold on the slope, never a magic number): on a
+    noisy wave with 8 true turns, naive sign-flipping produces ~300 direction changes; the
+    dead-band keeps it near the true 8.</figcaption>
+  </figure>
+
+  <div class="warnbox"><b>The epistemics tax, paid in advance.</b> Extra dimensions are extra ways
+  to fool ourselves: four quadrants slice our already-thin history into thinner cells. So the rules,
+  registered before any data: quadrant boundaries are deterministic (slope sign × level midpoint),
+  never fitted; the smoothing/dead-band choices live on pre-registered grids; and <b>no traded rule
+  may branch on quadrant or age</b> until three pre-registered hypotheses pass — H66 (at matched
+  levels, is falling-from-high really worse? tested on the pooled century panel), H67 (are the
+  labels stable out-of-sample, or a knife-edge?), H68 (does time-in-quadrant carry information —
+  duration dependence?). Until then the phase is computed, logged, and displayed — like here — but
+  the book ignores it.</div>
+
+<!-- ============================ PART 5 ============================ -->
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>From state to book — and the honest frontier</h2></div>
+
+  <h3>5.1 — What the state actually moves</h3>
+  <p>L10 feeds the macro-credit block, capped at 20% of the overall regime score. Through that
+  channel, a maturing boom (state rising toward +1) does four quiet things: leverage permission
+  decays toward 1.0×; the hedge floor rises one bucket earlier than it otherwise would; tail-sleeve
+  entries slow; and the quality-sleeve floor binds. A post-bust state does the reverse. Nothing here
+  shorts a boom or calls a top — Part 1.5's limitation, respected in the plumbing.</p>
+
+  <h3>5.2 — Seven experiments, pre-registered before any data</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>#</th><th>Question, in plain words</th><th>Already decided in advance</th></tr></thead>
+    <tbody>
+      <tr><td class="num">R1</td><td>What is the state's real early-warning power <em>in India</em>?</td>
+        <td>Purged cross-validation; result replaces the 0.65–0.75 prior; lower CI &lt; 0.55 ⇒ the
+        seat's weight is cut</td></tr>
+      <tr><td class="num">R2</td><td>Do worse drawdowns follow higher states?</td>
+        <td>Stambaugh-corrected slope with block-bootstrap CIs; feeds bucket boundaries as
+        quantiles, never a point threshold</td></tr>
+      <tr><td class="num">R3</td><td>Did India's "R-zone" dates precede its bad episodes?</td>
+        <td>Frequency table only — sample too small for anything grander, and we say so</td></tr>
+      <tr><td class="num">R4</td><td>Which forecast horizon h?</td><td>Grid {16, 20, 24} quarters,
+        judged out-of-sample, full grid reported, trial logged in the ledger</td></tr>
+      <tr><td class="num">R5</td><td>Does the impulse (gap) add turn-timing beyond the level (CD)?</td>
+        <td>Reframed by Fig 4.3's finding — from "are they redundant?" to "what does each
+        contribute?"</td></tr>
+      <tr><td class="num">R6</td><td>How persistent is the state, and is the cycle lengthening?</td>
+        <td>Bias-corrected AR(1) with rolling windows across the 1991/2003/2008/2016/2020 breaks</td></tr>
+      <tr><td class="num">R7</td><td>Would the composition signal have flagged 2018 and 2023?</td>
+        <td>Both events named as validation targets <em>now</em>, before construction — no hindsight
+        engineering, and the answer gets documented either way</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>5.3 — The three boxes</h3>
+  <div class="threecol">
+    <div class="tier"><div class="tl">Known today</div><p>The mechanism, the pooled effect sizes,
+      the survival argument, the construction — and a module proven to recover engineered booms and
+      busts in real time, with its one wrong assumption caught and logged.</p></div>
+    <div class="tier"><div class="tl">Awaits data</div><p>Every India-specific coefficient: AUROC,
+      drawdown slopes, the horizon h, the weights, τ½. All have pre-registered experiments waiting
+      for the Phase-0 pulls.</p></div>
+    <div class="tier"><div class="tl">Never knowable</div><p>The date of the next turn. The seat is
+      built so that not knowing it is survivable — that is the entire design.</p></div>
+  </div>
+
+  <p style="margin-top:28px"><b>Next lesson:</b> the opposite end of the ladder — L2 fast stress,
+  where the half-life is days instead of years, the sample is Tier A-rich, and the questions invert:
+  not "where are we in a decade-long process?" but "how violently is the market repricing risk this
+  week, and what does that permit?"</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 1 — companion to deep-dive #1 of the multi-horizon cycle-stack model.
+  Sources of record in the repo: <span class="mono">docs/cycles/01-credit-cycle.md</span> (monograph
+  &amp; pre-registered designs) · <span class="mono">quant/ladder/credit_cycle.py</span> (module) ·
+  <span class="mono">tests/test_credit_cycle.py</span> · <span class="mono">research/cycles/01-credit-cycle-DEMO.md</span>
+  (demo report) · <span class="mono">research/register/verification-log.md</span> (the falsification
+  entry). Figures 4.1–4.5 are computed from the seeded synthetic economy (seed 7) — <b>no market
+  data appears anywhere on this page</b>, and no figure implies an India result. Literature effect
+  sizes are as verified in dossier D03; the India AUROC prior 0.65–0.75 is an assumption marked [A]
+  pending design R1.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"credit":[80.42,80.87,81.24,81.51,81.99,82.16,82.45,83.0,83.22,83.6,84.17,84.57,84.89,85.12,85.66,85.97,86.21,86.47,86.67,86.78,86.87,87.14,87.26,87.87,88.41,88.78,88.7,88.88,89.28,89.75,89.91,90.27,90.44,90.74,91.38,91.81,92.44,93.05,93.33,93.77,94.21,94.62,94.86,95.25,96.04,96.21,96.88,97.37,97.66,98.45,99.07,99.27,99.81,100.42,100.75,101.39,101.75,102.33,103.11,103.27,103.84,104.28,104.81,105.04,105.41,105.79,106.48,107.2,107.46,107.7,108.4,108.52,108.95,109.43,110.31,110.83,111.36,111.86,112.4,113.35,113.74,114.21,114.94,115.53,116.09,116.23,116.88,117.49,118.47,119.25,119.65,120.52,121.03,121.58,122.23,122.8,122.94,123.56,123.92,123.99,124.57,125.18,126.05,127.23,127.63,127.95,128.55,129.37,130.03,130.64,131.6,132.3,132.68,133.42,134.17,134.7,135.5,135.9,136.9,137.5,137.98,138.59,139.24,139.42,139.57,140.32,140.34,141.16,141.05,141.92,142.52,143.51,144.18,144.45,145.64,146.39,147.09,147.82,148.61,149.32,150.56,151.2,151.99,152.62,153.11,153.48,154.77,155.8,156.86,157.64,158.24,159.14,159.75,160.79,161.32,162.0,162.33,163.01,164.53,164.88,165.21,166.2,167.39,167.49,168.43,169.14,169.47,170.49,171.51,172.35,173.14,174.01,174.54,175.4,175.76,176.33,177.73,178.28,179.29,180.11,181.01,181.62,182.68,183.7,184.98,186.28,187.66,188.9,190.27,190.99,191.23,192.57,193.99,194.75,195.61,196.61,198.05,199.26,200.05,201.69,203.54,206.06,208.63,211.1,214.14,216.91,219.05,220.71,223.34,225.26,227.69,230.73,232.14,233.48,236.08,239.29,242.04,244.69,247.13,249.61,252.22,254.41,256.68,259.89,262.89,265.86,268.77,271.84,274.44,277.16,279.75,282.57,285.82,289.29,293.84,296.15,299.43,302.78,305.88,308.26,311.18,314.96,317.64,321.58,325.01,329.69,333.96,336.17,338.8,340.89,342.01,345.24,349.98,353.17,356.34,359.05,363.92,368.0,371.97,375.99,379.95,384.51,388.52,392.95,397.18,402.74,407.15,412.81,416.02,421.08,425.68,429.21,435.28,441.38,445.64,451.19,456.01,458.47,464.79,469.81,474.94,479.4,484.75,489.37,495.82,502.06,507.71,514.91,520.8,525.77,529.69,536.9,544.64,550.57,556.99,562.95,569.76,576.08,582.99,588.55,597.24,604.3,610.48,616.81,622.25,629.79,637.13,643.27,649.48,655.43,662.75,672.25,678.98,685.1,691.82,698.94,703.56,711.27,717.42,725.16,723.1,722.41,723.42,721.6,719.74,718.61,718.05,715.5,715.01,716.75,713.9,712.07,708.97,708.15,704.01,702.19,702.66,699.13,698.05,698.58,697.49,696.36,697.75,695.64,693.8,690.03,688.69,690.02,691.74,688.35,685.48,682.84,682.41,679.98,678.59,677.61,675.19,673.14,671.75,668.88,667.25,668.14,667.69,666.31,661.54,660.43,657.06,654.26,654.02,653.06,651.97,648.05,645.52,642.83,643.3,645.06,644.8,642.19,640.01,638.27,636.67,635.51,634.88,631.83,631.91,632.2,633.07,630.9,629.18,627.58,625.85,624.24,622.19,619.35,619.6,617.44,617.01,618.3,615.4,613.36,616.74,621.41,623.47,627.8,631.49,633.59,635.3,639.69,643.31,644.16,649.03,652.31,657.31,660.67,662.94,664.61,671.74,674.15,679.78,681.58,685.98,688.71,693.02,697.69,699.95,705.04,709.11,712.27,714.18,717.85,721.33,725.18,727.74,730.45,732.8,735.12,738.75,744.11,745.16,747.3,750.74,753.55,758.72,761.78,768.66,770.95,774.86,778.23,781.88,785.62,790.24,794.64,797.66,800.93,804.69,807.75,813.05,816.4,821.39,822.31,827.83,830.77,831.39,835.74,841.74,842.93,844.9,847.92,850.27,854.69,857.22,861.22,866.72,870.51,876.66,879.86,884.12,884.57,893.0,896.61],"income":[100.5,101.06,101.51,101.84,102.26,102.56,103.09,103.88,104.3,104.69,105.32,105.92,106.47,106.8,107.33,108.02,108.27,108.71,108.84,109.1,109.25,109.74,110.01,110.62,111.21,111.72,111.72,112.16,112.71,113.3,113.52,113.98,114.32,114.71,115.53,115.92,116.49,117.28,117.73,118.29,118.91,119.52,119.82,120.44,121.37,121.6,122.42,123.06,123.52,124.63,125.44,125.77,126.42,127.19,127.78,128.6,129.22,130.04,131.06,131.54,132.25,132.79,133.49,133.84,134.35,134.97,135.89,136.88,137.2,137.67,138.54,138.68,139.24,139.91,140.96,141.86,142.48,143.09,143.73,144.89,145.49,146.13,146.96,147.66,148.34,148.75,149.49,150.11,151.21,152.16,152.91,153.88,154.55,155.65,156.42,157.39,157.77,158.67,158.92,159.07,159.77,160.28,161.14,162.66,163.21,163.82,164.71,165.69,166.46,167.23,168.3,169.31,169.81,170.63,171.5,171.99,172.94,173.51,174.71,175.66,176.57,177.24,178.08,178.26,178.75,179.77,179.91,181.11,181.38,182.57,183.17,184.37,185.34,185.7,187.09,188.57,189.48,190.33,191.22,191.8,193.18,193.94,194.89,195.55,196.29,196.77,198.24,199.17,200.56,201.56,202.29,203.17,203.96,204.98,205.85,206.76,207.22,207.92,209.65,210.42,211.03,212.22,213.88,214.33,215.31,216.12,216.44,217.84,218.92,220.04,220.81,222.12,222.99,224.04,224.66,225.24,226.97,227.87,229.14,230.27,231.22,232.14,233.6,234.62,235.72,236.91,238.66,240.17,241.56,242.49,243.04,244.71,246.41,247.57,249.08,250.71,252.38,254.11,255.15,257.2,257.84,259.58,261.13,262.89,265.2,267.31,268.03,268.47,270.25,271.05,272.4,274.22,274.69,274.9,276.42,277.83,279.08,280.5,281.42,281.97,283.29,284.15,284.64,286.35,287.75,289.42,290.29,291.36,292.24,293.18,294.76,295.77,297.46,299.15,301.86,302.53,304.58,306.05,307.57,308.22,309.47,311.48,312.99,314.6,315.99,318.3,319.88,320.07,321.23,321.57,321.09,322.35,324.82,326.48,327.34,328.37,330.75,332.51,334.2,335.84,337.54,339.77,341.85,343.7,344.71,346.78,348.04,350.54,351.4,353.07,354.83,355.66,358.66,361.5,362.98,365.35,367.45,367.37,369.39,371.19,373.11,374.17,375.84,377.59,380.37,382.53,384.44,387.54,389.04,390.68,391.22,394.4,397.14,399.85,402.38,404.48,406.68,408.51,410.39,412.48,415.79,418.33,420.38,421.99,423.56,427.04,429.61,431.81,433.67,434.88,437.0,439.94,441.8,443.81,445.83,448.16,448.97,451.0,452.49,455.55,457.13,459.94,463.64,465.67,467.44,469.95,472.3,473.72,476.53,480.83,482.99,485.21,486.62,489.36,490.59,491.96,495.68,497.26,500.82,504.85,507.64,510.74,515.28,517.66,519.63,520.82,523.47,527.64,531.29,532.94,534.7,536.83,539.83,542.31,545.25,548.3,550.71,553.42,556.42,559.11,562.47,567.38,570.89,573.81,574.74,578.06,578.7,579.97,583.86,587.6,590.36,591.29,593.81,595.98,599.71,605.42,608.71,610.81,612.43,615.42,618.28,619.95,623.19,624.88,629.39,633.87,638.42,641.01,644.87,647.92,650.66,653.47,655.04,656.42,660.75,663.8,667.41,672.08,673.11,675.42,679.04,682.96,685.86,690.7,694.45,696.23,698.42,703.04,707.2,708.05,713.5,717.92,723.44,726.5,729.71,731.71,739.08,742.52,748.59,751.36,755.37,756.62,759.82,765.12,767.03,772.51,776.89,779.15,782.27,785.46,789.31,792.41,795.06,798.55,800.9,802.84,806.78,812.24,813.81,817.89,820.92,823.42,828.94,832.22,838.88,841.77,846.62,850.47,853.44,858.71,862.74,868.09,872.35,874.82,879.02,883.5,889.61,892.45,896.84,898.24,903.9,906.46,907.72,912.15,918.73,920.52,923.12,926.36,928.9,934.25,937.42,940.75,946.55,949.85,955.43,958.35,960.82,962.09,970.48,974.71],"deposits":[110.65,111.37,111.75,112.06,112.55,112.94,113.56,114.43,114.91,115.38,116.07,116.79,117.27,117.67,118.19,119.0,119.27,119.7,119.87,120.1,120.2,120.65,120.95,121.65,122.36,122.92,122.98,123.46,124.06,124.74,125.05,125.54,125.9,126.32,127.22,127.6,128.29,129.13,129.66,130.23,130.93,131.63,131.93,132.75,133.8,134.17,135.14,135.8,136.28,137.53,138.44,138.8,139.49,140.23,140.86,141.6,142.31,143.16,144.24,144.75,145.55,146.04,146.68,146.99,147.4,148.01,149.13,150.14,150.55,150.96,151.93,152.06,152.67,153.45,154.74,155.74,156.43,157.02,157.77,159.02,159.75,160.44,161.5,162.11,162.83,163.35,164.14,164.75,165.93,166.86,167.7,168.97,169.79,170.91,171.69,172.71,173.21,174.13,174.35,174.59,175.43,175.96,176.8,178.34,178.87,179.35,180.38,181.41,182.29,183.3,184.58,185.59,186.21,187.22,188.1,188.56,189.59,190.06,191.52,192.32,193.21,193.92,194.82,195.03,195.59,196.69,196.95,198.06,198.36,199.58,200.25,201.59,202.56,202.88,204.48,206.13,207.06,208.2,209.41,209.9,211.44,212.53,213.66,214.41,215.19,215.66,217.26,218.22,219.81,220.87,221.62,222.45,223.31,224.33,225.26,226.37,226.92,227.74,229.68,230.52,231.18,232.45,234.36,234.72,235.95,236.84,237.1,238.58,239.68,240.93,241.68,243.25,244.11,244.98,245.58,245.96,247.84,248.96,250.43,251.5,252.44,253.67,255.3,256.42,257.76,259.38,261.45,263.13,264.7,265.8,266.32,268.01,269.88,271.02,272.66,274.47,276.62,278.39,279.51,281.73,282.5,284.55,286.18,288.0,290.28,292.46,293.33,293.82,295.62,296.44,297.92,299.98,300.41,300.6,301.99,303.35,304.97,306.18,307.13,307.77,309.15,309.97,310.49,312.36,313.87,315.4,316.33,317.36,318.22,319.29,321.11,322.36,324.12,326.11,329.25,330.17,332.63,334.21,335.85,336.69,337.83,340.06,341.61,343.31,344.53,346.9,348.61,348.98,350.41,350.77,350.21,351.44,354.21,355.97,357.02,358.45,361.05,362.69,364.39,365.9,367.54,370.21,372.51,374.25,375.47,377.97,379.27,381.87,382.74,384.61,386.65,387.78,391.29,394.62,396.5,399.23,401.22,401.1,403.37,405.26,407.54,408.63,410.26,412.46,415.64,418.04,420.32,423.93,425.65,426.93,427.37,430.75,433.52,436.52,439.55,441.74,443.89,446.33,448.28,450.3,453.96,456.83,458.9,460.85,462.45,466.04,468.88,471.47,473.35,474.74,477.03,480.92,482.78,485.31,487.51,490.02,491.09,493.53,495.47,498.9,500.48,503.43,507.61,509.97,512.27,515.13,517.98,519.93,523.05,527.39,529.44,531.49,533.46,536.24,537.92,539.57,544.12,546.12,550.01,554.38,557.46,560.92,565.76,568.36,570.98,571.81,574.79,579.1,583.16,585.23,587.13,589.7,592.53,595.58,598.63,602.16,604.87,607.06,610.12,613.14,617.3,622.78,626.71,629.47,630.95,635.16,635.87,637.19,640.95,645.34,649.25,650.51,653.69,656.25,660.04,666.76,669.97,672.21,674.09,677.68,680.97,682.94,686.25,687.66,692.65,697.34,701.88,704.28,708.36,711.06,713.58,716.08,717.86,719.53,724.99,727.79,731.5,736.96,738.01,740.42,745.02,749.2,751.95,756.76,760.99,763.06,764.93,769.61,774.38,775.54,781.25,786.34,792.61,795.26,798.64,801.0,808.84,811.73,818.25,821.59,826.62,827.08,831.67,836.99,839.48,846.0,851.21,853.76,856.67,860.44,864.35,866.65,870.78,874.91,878.28,880.01,884.97,891.66,894.08,898.55,901.34,904.0,909.07,911.9,919.23,921.94,927.19,931.35,935.5,941.89,946.28,952.73,957.03,959.57,964.61,968.94,975.5,977.97,982.84,985.17,991.01,993.93,994.87,999.15,1005.74,1008.43,1012.47,1016.27,1018.7,1024.92,1028.22,1032.29,1038.81,1042.57,1049.01,1051.91,1054.41,1054.9,1063.87,1067.75],"ratio_ci":[0.8002,0.8002,0.8003,0.8003,0.8019,0.801,0.7998,0.799,0.7979,0.7985,0.7992,0.7984,0.7973,0.797,0.7981,0.7959,0.7963,0.7954,0.7963,0.7954,0.7952,0.794,0.7932,0.7943,0.795,0.7946,0.794,0.7925,0.7921,0.7921,0.7921,0.792,0.7911,0.791,0.791,0.792,0.7935,0.7934,0.7928,0.7927,0.7923,0.7917,0.7916,0.7908,0.7913,0.7912,0.7914,0.7913,0.7907,0.7899,0.7898,0.7893,0.7895,0.7895,0.7884,0.7885,0.7874,0.7869,0.7867,0.7851,0.7852,0.7853,0.7852,0.7848,0.7845,0.7838,0.7836,0.7831,0.7832,0.7823,0.7824,0.7826,0.7824,0.7821,0.7825,0.7812,0.7816,0.7818,0.782,0.7823,0.7818,0.7816,0.7821,0.7824,0.7826,0.7814,0.7818,0.7827,0.7835,0.7837,0.7825,0.7832,0.7831,0.7811,0.7814,0.7803,0.7793,0.7788,0.7798,0.7795,0.7797,0.781,0.7823,0.7822,0.782,0.781,0.7805,0.7808,0.7811,0.7812,0.782,0.7814,0.7813,0.7819,0.7824,0.7832,0.7835,0.7833,0.7835,0.7828,0.7815,0.7819,0.7819,0.7821,0.7808,0.7805,0.7801,0.7794,0.7776,0.7774,0.7781,0.7784,0.7779,0.7779,0.7785,0.7763,0.7762,0.7767,0.7772,0.7785,0.7794,0.7796,0.7799,0.7805,0.7801,0.78,0.7807,0.7822,0.7821,0.7821,0.7822,0.7833,0.7833,0.7844,0.7836,0.7835,0.7833,0.784,0.7848,0.7836,0.7829,0.7831,0.7826,0.7814,0.7823,0.7826,0.783,0.7827,0.7835,0.7833,0.7841,0.7834,0.7827,0.7829,0.7824,0.7829,0.7831,0.7824,0.7824,0.7821,0.7829,0.7824,0.782,0.783,0.7847,0.7863,0.7863,0.7865,0.7877,0.7876,0.7868,0.7869,0.7873,0.7866,0.7853,0.7842,0.7847,0.7841,0.784,0.7842,0.7894,0.7938,0.7989,0.803,0.8075,0.8115,0.8172,0.8221,0.8264,0.8311,0.8358,0.8414,0.8451,0.8493,0.8541,0.8613,0.8673,0.8723,0.8782,0.8852,0.8903,0.8953,0.9018,0.9076,0.9136,0.9186,0.9259,0.933,0.9391,0.9453,0.9491,0.9554,0.9609,0.967,0.9734,0.9789,0.9831,0.9893,0.9945,1.0001,1.0055,1.0112,1.0149,1.0222,1.0285,1.0358,1.044,1.0503,1.0547,1.0601,1.0652,1.071,1.0775,1.0817,1.0886,1.0935,1.1003,1.1067,1.113,1.1196,1.1257,1.1317,1.1365,1.1433,1.1522,1.1614,1.1698,1.1776,1.1839,1.1926,1.1997,1.2068,1.2136,1.221,1.2277,1.235,1.241,1.248,1.2582,1.2657,1.2729,1.2812,1.2898,1.296,1.3035,1.3125,1.3207,1.3287,1.3387,1.3458,1.3539,1.3613,1.3714,1.3769,1.3842,1.3918,1.401,1.4102,1.4206,1.4268,1.4364,1.4445,1.4522,1.4617,1.4691,1.4748,1.483,1.4897,1.4976,1.5071,1.5166,1.528,1.5369,1.5437,1.5518,1.5596,1.567,1.5771,1.5855,1.5918,1.5818,1.5707,1.5603,1.5496,1.5398,1.5291,1.5203,1.5104,1.5004,1.4906,1.4781,1.4676,1.4569,1.4471,1.435,1.4273,1.4176,1.406,1.3938,1.3837,1.374,1.3635,1.3541,1.3438,1.3352,1.3249,1.3156,1.3078,1.302,1.2916,1.282,1.272,1.2641,1.2539,1.2445,1.2358,1.226,1.2163,1.2073,1.1963,1.1863,1.1776,1.1696,1.1612,1.151,1.1425,1.1354,1.1281,1.1202,1.1114,1.1043,1.096,1.0871,1.0786,1.0727,1.0655,1.0593,1.0514,1.045,1.0371,1.0297,1.0251,1.0187,1.0111,1.004,0.9974,0.9916,0.9842,0.9757,0.9686,0.9619,0.9553,0.9499,0.9435,0.9377,0.9302,0.9245,0.92,0.9143,0.9081,0.9083,0.9099,0.909,0.9089,0.9093,0.91,0.9096,0.9099,0.9097,0.9098,0.9096,0.9086,0.9086,0.9094,0.9085,0.9083,0.9089,0.9079,0.9081,0.9071,0.9081,0.9102,0.9121,0.9119,0.9126,0.9127,0.9128,0.9142,0.913,0.9139,0.9139,0.9152,0.9153,0.9147,0.915,0.9156,0.9157,0.9161,0.9156,0.9137,0.9145,0.9152,0.9153,0.9154,0.9163,0.9159,0.9152,0.9151,0.9161,0.9149,0.916,0.9154,0.9144,0.9155,0.9154,0.9143,0.9139,0.9148,0.9159,0.9155,0.9158,0.9165,0.9159,0.9162,0.9162,0.9157,0.9153,0.9153,0.9154,0.9148,0.9144,0.9155,0.9157,0.9165,0.9176,0.9181,0.9202,0.9194,0.9202,0.9199],"ratio_cd":[0.7268,0.7261,0.727,0.7274,0.7285,0.7275,0.7261,0.7254,0.7242,0.7245,0.7251,0.7241,0.7239,0.7234,0.7248,0.7224,0.7229,0.7224,0.723,0.7226,0.7227,0.7222,0.7215,0.7223,0.7225,0.7223,0.7213,0.7199,0.7197,0.7194,0.719,0.7191,0.7183,0.7184,0.7183,0.7195,0.7205,0.7206,0.7198,0.7201,0.7195,0.7189,0.719,0.7175,0.7178,0.7171,0.7169,0.717,0.7166,0.7158,0.7156,0.7152,0.7155,0.7161,0.7152,0.7161,0.715,0.7148,0.7148,0.7134,0.7134,0.714,0.7145,0.7146,0.7151,0.7147,0.714,0.714,0.7138,0.7134,0.7135,0.7137,0.7136,0.7131,0.7129,0.7116,0.7119,0.7124,0.7124,0.7128,0.712,0.7119,0.7117,0.7127,0.7129,0.7116,0.7121,0.7132,0.714,0.7146,0.7135,0.7133,0.7128,0.7114,0.712,0.711,0.7098,0.7096,0.7108,0.7102,0.7101,0.7114,0.713,0.7134,0.7135,0.7134,0.7126,0.7132,0.7133,0.7127,0.713,0.7128,0.7125,0.7126,0.7133,0.7144,0.7147,0.7151,0.7148,0.7149,0.7142,0.7147,0.7147,0.7149,0.7136,0.7134,0.7126,0.7127,0.7111,0.7111,0.7117,0.7119,0.7118,0.712,0.7123,0.7102,0.7103,0.71,0.7097,0.7114,0.7121,0.7114,0.7114,0.7118,0.7115,0.7117,0.7124,0.714,0.7136,0.7137,0.714,0.7154,0.7154,0.7168,0.7161,0.7156,0.7154,0.7157,0.7164,0.7153,0.7146,0.715,0.7143,0.7136,0.7138,0.7142,0.7148,0.7146,0.7156,0.7154,0.7164,0.7153,0.715,0.716,0.7157,0.7169,0.7171,0.7161,0.7159,0.7161,0.7171,0.716,0.7156,0.7164,0.7176,0.7182,0.7178,0.7179,0.7188,0.7185,0.718,0.7185,0.7188,0.7186,0.7174,0.7163,0.716,0.7158,0.7157,0.7159,0.7205,0.7242,0.729,0.733,0.7377,0.7417,0.7468,0.7512,0.7555,0.7599,0.7643,0.7692,0.7728,0.7767,0.7817,0.7888,0.7937,0.7992,0.8047,0.811,0.8158,0.8208,0.8267,0.832,0.8376,0.8429,0.8497,0.8566,0.8624,0.868,0.8712,0.8766,0.8819,0.8871,0.8924,0.897,0.9002,0.906,0.9108,0.9156,0.9211,0.9262,0.9298,0.9367,0.9433,0.9504,0.958,0.9633,0.9669,0.9718,0.9766,0.9823,0.9881,0.9921,0.9981,1.0017,1.008,1.0146,1.0208,1.0276,1.0338,1.0386,1.043,1.05,1.0578,1.0655,1.0735,1.081,1.0869,1.0948,1.101,1.1068,1.1124,1.1185,1.1239,1.1302,1.1366,1.143,1.1523,1.1593,1.1654,1.1732,1.1816,1.1865,1.1929,1.201,1.2079,1.2146,1.2235,1.2315,1.2394,1.2464,1.2563,1.2613,1.2672,1.2744,1.2836,1.2907,1.3005,1.307,1.3156,1.3228,1.3303,1.3384,1.3455,1.3514,1.3588,1.3644,1.3721,1.3806,1.3893,1.3978,1.4064,1.4117,1.4191,1.4264,1.4326,1.4412,1.448,1.4535,1.4448,1.435,1.4252,1.415,1.405,1.395,1.3863,1.3761,1.367,1.3591,1.3484,1.3398,1.329,1.3206,1.3088,1.3014,1.2914,1.2802,1.2692,1.2601,1.2512,1.2415,1.2333,1.2239,1.2151,1.2068,1.1982,1.1915,1.1862,1.1762,1.1675,1.1579,1.1517,1.1417,1.1336,1.1253,1.1163,1.1088,1.101,1.0909,1.0809,1.0728,1.0654,1.0585,1.0485,1.0398,1.0333,1.0268,1.0204,1.0119,1.0042,0.9962,0.9875,0.9796,0.9746,0.9674,0.9624,0.9553,0.9494,0.9418,0.9349,0.9306,0.9251,0.9188,0.9123,0.9066,0.902,0.8958,0.8882,0.8826,0.8771,0.8717,0.8667,0.8608,0.8546,0.8484,0.8435,0.839,0.8339,0.8284,0.8278,0.8294,0.8291,0.8296,0.8298,0.8303,0.8305,0.8312,0.8307,0.8306,0.8308,0.8296,0.8293,0.8308,0.8301,0.8297,0.8305,0.8305,0.8308,0.8296,0.8299,0.8327,0.8333,0.8336,0.8338,0.8334,0.8331,0.8343,0.8337,0.8343,0.8345,0.8368,0.8357,0.8349,0.8344,0.8354,0.8348,0.8345,0.8334,0.8317,0.8329,0.8336,0.8346,0.8354,0.8362,0.8362,0.8357,0.8356,0.8358,0.8341,0.8351,0.8341,0.8335,0.8347,0.8342,0.8336,0.8335,0.8348,0.8357,0.8347,0.8353,0.8358,0.8357,0.8365,0.8369,0.8359,0.8345,0.8343,0.8347,0.8339,0.8337,0.8343,0.8343,0.835,0.8357,0.8364,0.8385,0.8385,0.8394,0.8397],"gap_exp":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.0015,-0.001,-0.0006,-0.0013,-0.001,-0.0017,-0.0019,-0.0017,-0.0027,-0.002,-0.0018,-0.0026,-0.0037,-0.0037,-0.0039,-0.0038,-0.0035,-0.003,-0.0035,-0.0028,-0.0028,-0.0027,-0.0029,-0.0021,-0.0026,-0.0017,-0.0012,-0.0005,-0.0003,-0.0003,0.0002,0.0008,0.002,0.0022,0.0014,0.0027,0.0032,0.0037,0.0038,0.0026,0.0035,0.0035,0.0017,0.002,0.0009,0.0004,-0.0002,0.0006,0.0006,0.0007,0.002,0.0035,0.003,0.0027,0.0015,0.0008,0.0012,0.0014,0.0014,0.0019,0.0013,0.0012,0.0014,0.0017,0.002,0.0026,0.0027,0.0027,0.0025,0.0017,0.0022,0.0026,0.0032,0.0018,0.001,0.0004,-0.0004,-0.0027,-0.0032,-0.0023,-0.0019,-0.002,-0.0018,-0.0014,-0.0034,-0.0036,-0.0035,-0.0027,-0.0014,-0.0008,-0.0008,-0.0011,-0.0005,-0.0006,-0.0009,0.0003,0.0024,0.0021,0.002,0.0022,0.0038,0.0038,0.0049,0.0046,0.0056,0.0055,0.0054,0.006,0.0047,0.0038,0.0038,0.0047,0.0035,0.0039,0.0039,0.0035,0.0026,0.0033,0.0029,0.0034,0.0026,0.002,0.0018,0.0007,0.0011,0.0013,0.0003,0.0002,-0.0001,0.0002,-0.0001,-0.0005,0.0007,0.0022,0.0034,0.004,0.0044,0.0053,0.0054,0.0051,0.0049,0.0049,0.0042,0.0028,0.0016,0.0022,0.0012,0.0015,0.0017,0.0068,0.0115,0.0162,0.0201,0.0245,0.0284,0.0339,0.038,0.0402,0.0417,0.0457,0.0516,0.0543,0.0585,0.0643,0.0742,0.0789,0.0833,0.0905,0.0988,0.1018,0.1055,0.1112,0.1168,0.0939,0.0727,0.0478,0.0455,0.0369,0.039,0.0164,0.0151,0.0146,0.017,0.0146,0.002,0.0124,0.013,0.0116,-0.0196,-0.0237,-0.0193,-0.015,-0.0236,-0.0131,-0.0049,-0.0051,-0.0063,-0.0134,-0.0002,-0.0176,-0.0222,-0.0224,-0.016,0.016,0.0039,0.0107,-0.0055,-0.0067,-0.0018,0.0155,0.0081,0.0116,0.0022,0.0105,0.009,0.0288,0.005,0.0017,-0.0194,-0.0282,-0.0193,0.007,0.0212,0.0279,0.0162,0.0059,0.0188,0.007,0.022,0.0017,0.0048,-0.0003,-0.0006,0.0035,0.0072,0.022,0.0122,-0.0116,-0.038,-0.0451,-0.0353,-0.0093,-0.0216,-0.0121,-0.0159,-0.0017,-0.0034,0.0031,-0.0018,0.0118,0.008,-0.0222,-0.02,-0.0202,-0.0139,-0.0214,-0.0081,-0.0059,-0.0123,-0.0201,-0.0193,-0.0314,-0.0161,-0.0196,-0.0006,-0.0288,0.0036,0.0017,0.0143,-0.0313,-0.0617,-0.1001,-0.0824,-0.1056,-0.1033,-0.122,-0.1383,-0.1382,-0.1241,-0.1355,-0.1349,-0.1647,-0.1877,-0.2241,-0.2657,-0.2642,-0.2406,-0.2184,-0.2137,-0.2229,-0.2544,-0.2609,-0.2472,0.0216,0.1358,0.262,0.2043,0.1521,0.1338,0.0903,0.0891,0.0765,0.0711,0.0985,0.0762,0.0733,0.0509,0.0737,0.0169,0.0306,0.0482,0.0681,0.0469,0.0333,0.0353,0.022,0.0326,0.0105,0.0276,0.0169,-0.0022,-0.0401,0.0076,0.0114,0.0277,0.0003,0.0239,0.0171,0.0115,0.0215,0.026,0.0213,0.0434,0.0386,0.024,0.0089,0.0069,0.0291,0.0165,-0.0038,-0.0109,-0.0045,0.0104,-0.0061,0.0057,0.015,0.0175,-0.0143,-0.0091,-0.0182,0.0111,0.0003,0.0249,0.027,-0.0003,0.014,0.0355,0.0444,0.0459,0.0359,0.0567,0.0813,0.0785,0.0765,0.0745,0.0634,0.074,0.0727,0.0994,0.087,0.0755,0.0879,0.0994,0.0271,-0.013,-0.0029,-0.0055,-0.0099,-0.0163,-0.005,-0.0091,-0.0019,-0.0069,-0.0037,0.009,0.0004,-0.011,0.0042,-0.0017,-0.0095,0.0066,-0.0037,0.0107,-0.0121,-0.0315,-0.0393,-0.0164,-0.0186,-0.011,-0.01,-0.0262,0.0008,-0.0188,-0.008,-0.0281,-0.0174,-0.0058,-0.0097,-0.0169,-0.0125,-0.0159,-0.0049,0.0171,-0.0091,-0.0143,-0.0153,-0.0121,-0.0218,-0.0086,-0.003,-0.0032,-0.0201,0.0041,-0.0183,-0.0002,0.008,-0.0135,-0.0049,0.008],"gap_full":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.0322,-0.0516,-0.0282,-0.0173,-0.0143,-0.0117,-0.0322,-0.039,-0.025,-0.0133,-0.018,-0.0383,-0.004,-0.0274,-0.0135,-0.0363,-0.0194,-0.0242,-0.0098,-0.0119,-0.0343,-0.0382,-0.0304,-0.0207,-0.0063,-0.016,-0.0218,-0.0264,-0.0268,-0.0173,-0.0246,-0.0261,-0.0433,-0.0539,-0.0393,-0.0282,-0.0292,-0.0247,-0.0236,-0.0286,-0.0209,-0.0351,-0.0322,-0.0368,-0.0321,-0.0261,-0.0212,-0.0255,-0.0252,-0.0328,-0.0321,-0.0191,-0.0277,-0.0156,-0.0209,-0.0225,-0.0066,-0.0221,-0.0267,-0.0279,-0.0234,-0.0214,-0.0146,-0.0205,-0.0177,-0.0244,-0.0148,-0.0256,-0.0276,-0.0285,-0.0249,-0.032,-0.013,-0.0283,-0.0268,-0.0298,-0.0307,-0.0212,-0.0228,-0.0312,-0.0327,-0.0316,-0.0134,-0.0266,-0.0364,-0.0416,-0.0348,-0.0141,-0.0303,-0.0235,-0.0018,-0.0195,-0.0057,-0.0083,-0.0104,-0.0312,-0.0224,-0.0289,-0.0426,-0.0483,-0.0358,-0.0308,-0.0169,-0.0178,-0.0277,-0.0326,-0.0322,-0.0396,-0.0269,-0.0302,-0.0361,-0.0383,-0.0434,-0.0377,-0.0297,-0.0325,-0.0191,-0.0099,-0.0263,-0.0248,-0.0295,-0.0096,-0.0167,-0.0138,-0.0117,0.0039,-0.0079,-0.0235,-0.0265,-0.0182,-0.0191,-0.0256,0.004,-0.0122,-0.0191,-0.0285,-0.042,-0.04,-0.0326,-0.0288,-0.0326,-0.0205,-0.0224,-0.0297,-0.0452,-0.0312,-0.028,-0.027,-0.0389,-0.0298,-0.0438,-0.022,-0.0253,-0.0217,-0.0335,-0.0398,-0.0168,-0.013,-0.0199,-0.015,-0.0054,-0.0241,-0.0253,-0.03,-0.0195,-0.0309,-0.0221,-0.0358,-0.0191,-0.0153,-0.022,-0.0164,-0.029,-0.0223,-0.0078,-0.0077,0.0,-0.0086,0.0073,0.0135,0.0048,-0.0072,-0.008,0.0133,0.0235,0.0173,0.0329,0.0485,0.0513,0.0523,0.0667,0.0843,0.0954,0.0815,0.0937,0.0944,0.0979,0.0374,0.0278,0.0122,0.0278,0.0271,0.037,0.0152,0.0225,0.0299,0.0322,0.0331,0.023,0.0429,0.0446,0.0419,0.0081,0.0127,0.0228,0.0191,0.005,0.024,0.0321,0.0229,0.0263,0.0216,0.0359,0.011,0.0065,0.0142,0.0154,0.051,0.0292,0.0373,0.0271,0.0244,0.0343,0.055,0.0386,0.0472,0.0423,0.0506,0.0513,0.0792,0.0446,0.0479,0.0339,0.0213,0.0401,0.0704,0.0734,0.0803,0.0721,0.063,0.0879,0.0683,0.0909,0.0696,0.0746,0.0763,0.0749,0.0821,0.0875,0.1069,0.091,0.063,0.0466,0.0489,0.0596,0.0868,0.0622,0.0783,0.079,0.0898,0.0874,0.0975,0.0929,0.111,0.105,0.064,0.0861,0.0914,0.0855,0.0797,0.1044,0.0996,0.0848,0.0876,0.0931,0.0722,0.1004,0.0943,0.1089,0.0748,0.1266,0.1177,0.1198,0.0761,0.05,0.0124,0.0409,-0.0041,-0.0068,-0.0198,-0.0539,-0.0513,-0.0429,-0.0813,-0.0836,-0.1171,-0.1547,-0.1838,-0.2287,-0.2224,-0.2116,-0.2312,-0.245,-0.2588,-0.307,-0.3131,-0.3047,-0.0982,-0.0179,0.0186,0.0243,0.0159,0.0224,-0.0013,0.0067,0.0066,0.0064,0.0402,0.0268,0.0268,0.0115,0.0368,-0.0134,-0.0007,0.0191,0.0406,0.0229,0.0112,0.0146,0.0035,0.0142,-0.0056,0.0106,0.0016,-0.0163,-0.0533,-0.0089,-0.0038,0.0115,-0.0139,0.0086,0.0029,-0.0022,0.0075,0.0126,0.0087,0.0304,0.0268,0.0136,-0.0007,-0.0028,0.0186,0.0072,-0.0122,-0.0195,-0.0134,0.001,-0.0145,-0.0034,0.0058,0.0086,-0.022,-0.0175,-0.0258,0.0025,-0.0073,0.0165,0.0191,-0.0069,0.0071,0.0284,0.0375,0.0394,0.0303,0.0509,0.0759,0.0739,0.0724,0.0712,0.0611,0.0718,0.071,0.098,0.0867,0.0763,0.0884,0.1002,0.0306,-0.0107,-0.0025,-0.0044,-0.0085,-0.0151,-0.0043,-0.008,-0.001,-0.0058,-0.0027,0.0097,0.0017,-0.0097,0.0048,-0.0006,-0.0082,0.0072,-0.0026,0.0115,-0.0108,-0.0303,-0.0386,-0.0162,-0.0177,-0.0104,-0.0093,-0.0253,0.0009,-0.0181,-0.0076,-0.0275,-0.0171,-0.0056,-0.0093,-0.0165,-0.0123,-0.0156,-0.0047,0.0171,-0.0086,-0.0141,-0.0151,-0.0119,-0.0216,-0.0087,-0.003,-0.0031,-0.02,0.004,-0.0183,-0.0001,0.008,-0.0135,-0.0049,0.008],"gap_pct":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.542,0.52,0.769,0.852,0.964,0.966,0.933,0.968,0.969,0.97,0.971,0.914,0.972,0.973,0.974,0.974,0.875,0.927,0.929,0.767,0.773,0.711,0.674,0.638,0.688,0.673,0.7,0.824,0.942,0.868,0.833,0.709,0.643,0.684,0.707,0.712,0.75,0.656,0.629,0.667,0.75,0.815,0.833,0.881,0.853,0.797,0.686,0.789,0.806,0.904,0.676,0.52,0.434,0.364,0.154,0.076,0.2,0.247,0.232,0.277,0.333,0.071,0.047,0.069,0.182,0.36,0.422,0.429,0.391,0.462,0.436,0.411,0.531,0.825,0.796,0.788,0.8,0.99,0.971,0.99,0.981,0.99,0.981,0.972,0.991,0.945,0.909,0.91,0.938,0.85,0.921,0.913,0.828,0.726,0.814,0.782,0.817,0.736,0.648,0.593,0.452,0.496,0.524,0.402,0.398,0.388,0.4,0.389,0.333,0.481,0.687,0.83,0.934,0.934,0.964,0.964,0.95,0.936,0.93,0.895,0.743,0.545,0.651,0.476,0.541,0.57,0.993,0.993,0.993,0.993,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.994,0.966,0.937,0.909,0.898,0.876,0.883,0.844,0.834,0.83,0.847,0.826,0.497,0.817,0.818,0.809,0.0,0.0,0.01,0.016,0.005,0.026,0.031,0.031,0.03,0.025,0.307,0.02,0.01,0.01,0.034,0.848,0.722,0.811,0.058,0.053,0.206,0.848,0.806,0.821,0.559,0.804,0.8,0.884,0.751,0.477,0.023,0.0,0.036,0.793,0.874,0.879,0.849,0.77,0.863,0.781,0.873,0.461,0.714,0.302,0.27,0.637,0.783,0.877,0.81,0.059,0.0,0.0,0.008,0.074,0.033,0.074,0.061,0.228,0.142,0.613,0.225,0.816,0.785,0.032,0.04,0.039,0.078,0.039,0.105,0.116,0.093,0.046,0.069,0.011,0.08,0.061,0.336,0.015,0.674,0.493,0.84,0.015,0.0,0.0,0.004,0.0,0.004,0.0,0.0,0.004,0.007,0.007,0.011,0.0,0.0,0.0,0.0,0.003,0.007,0.014,0.017,0.014,0.007,0.007,0.014,0.895,0.997,0.997,0.993,0.99,0.983,0.957,0.953,0.944,0.934,0.964,0.938,0.931,0.909,0.932,0.838,0.874,0.904,0.92,0.895,0.866,0.87,0.839,0.861,0.761,0.846,0.816,0.271,0.075,0.743,0.762,0.849,0.402,0.841,0.817,0.76,0.827,0.846,0.822,0.892,0.88,0.836,0.726,0.706,0.858,0.791,0.197,0.17,0.196,0.729,0.183,0.693,0.775,0.807,0.149,0.175,0.134,0.738,0.398,0.844,0.847,0.361,0.761,0.88,0.899,0.905,0.875,0.922,0.953,0.948,0.942,0.937,0.915,0.932,0.924,0.973,0.954,0.933,0.954,0.973,0.81,0.152,0.229,0.186,0.164,0.129,0.195,0.171,0.277,0.178,0.219,0.691,0.399,0.16,0.621,0.308,0.167,0.67,0.214,0.71,0.152,0.068,0.063,0.128,0.123,0.17,0.175,0.082,0.433,0.124,0.196,0.081,0.135,0.214,0.186,0.137,0.166,0.148,0.235,0.787,0.198,0.157,0.151,0.18,0.096,0.212,0.283,0.28,0.104,0.641,0.13,0.412,0.709,0.166,0.248,0.706],"cd_pct":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.083,0.2,0.077,0.0,0.0,0.0,0.0,0.0,0.031,0.0,0.029,0.0,0.167,0.243,0.263,0.205,0.25,0.146,0.071,0.093,0.0,0.022,0.0,0.0,0.021,0.0,0.0,0.0,0.0,0.019,0.074,0.018,0.089,0.0,0.0,0.017,0.0,0.0,0.032,0.048,0.062,0.123,0.076,0.03,0.029,0.029,0.014,0.042,0.056,0.055,0.0,0.0,0.0,0.013,0.026,0.025,0.05,0.025,0.012,0.012,0.083,0.118,0.0,0.069,0.159,0.27,0.311,0.209,0.163,0.118,0.0,0.063,0.0,0.0,0.0,0.02,0.02,0.02,0.069,0.223,0.279,0.314,0.255,0.168,0.25,0.257,0.182,0.234,0.205,0.159,0.167,0.296,0.44,0.47,0.508,0.479,0.5,0.421,0.459,0.472,0.508,0.352,0.286,0.15,0.18,0.047,0.054,0.099,0.114,0.105,0.142,0.163,0.029,0.036,0.014,0.007,0.093,0.191,0.099,0.084,0.153,0.117,0.144,0.231,0.493,0.45,0.467,0.503,0.638,0.634,0.682,0.671,0.647,0.618,0.652,0.679,0.606,0.516,0.58,0.485,0.402,0.442,0.482,0.551,0.506,0.651,0.629,0.702,0.616,0.584,0.678,0.663,0.727,0.74,0.68,0.665,0.694,0.735,0.665,0.617,0.707,0.757,0.763,0.754,0.761,0.783,0.779,0.754,0.776,0.782,0.778,0.713,0.653,0.624,0.601,0.588,0.61,0.851,0.936,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.991,0.984,0.975,0.969,0.96,0.954,0.948,0.942,0.936,0.93,0.921,0.916,0.907,0.901,0.896,0.89,0.884,0.876,0.87,0.862,0.856,0.851,0.845,0.84,0.835,0.827,0.821,0.816,0.811,0.806,0.801,0.793,0.788,0.782,0.777,0.772,0.765,0.76,0.755,0.747,0.74,0.735,0.73,0.728,0.721,0.716,0.708,0.704,0.699,0.695,0.69,0.683,0.676,0.671,0.667,0.662,0.655,0.651,0.646,0.642,0.638,0.636,0.629,0.625,0.621,0.617,0.612,0.606,0.602,0.597,0.593,0.589,0.583,0.579,0.575,0.571,0.569,0.565,0.561,0.557,0.556,0.56,0.558,0.562,0.563,0.564,0.565,0.566,0.565,0.563,0.567,0.551,0.547,0.57,0.557,0.553,0.561,0.56,0.575,0.545,0.553,0.583,0.584,0.585,0.586,0.582,0.578,0.591,0.585,0.593,0.594,0.595,0.594,0.592,0.589,0.594,0.59,0.587,0.569,0.557,0.562,0.575,0.594,0.601,0.604,0.605,0.6,0.598,0.604,0.573,0.592,0.571,0.558,0.588,0.574,0.561,0.554,0.594,0.608,0.589,0.599,0.615,0.605,0.621,0.624,0.614,0.572,0.568,0.582,0.555,0.55,0.568,0.569,0.595,0.608,0.626,0.635,0.636,0.639,0.64],"state":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.458,-0.48,-0.218,-0.123,-0.01,0.016,-0.042,-0.02,-0.019,0.053,0.088,-0.086,0.041,0.132,0.243,0.285,0.084,0.09,0.047,-0.233,-0.164,-0.289,-0.326,-0.362,-0.292,-0.307,-0.28,-0.108,0.166,0.147,0.148,-0.036,-0.189,-0.066,-0.036,-0.106,-0.016,-0.139,-0.212,-0.167,0.046,0.255,0.303,0.389,0.332,0.297,0.107,0.248,0.277,0.412,0.028,-0.194,-0.416,-0.457,-0.8,-0.87,-0.701,-0.639,-0.663,-0.581,-0.504,-0.9,-0.917,-0.917,-0.811,-0.548,-0.386,-0.473,-0.525,-0.385,-0.447,-0.446,-0.237,0.318,0.246,0.255,0.303,0.628,0.605,0.672,0.652,0.638,0.599,0.624,0.67,0.551,0.425,0.49,0.422,0.252,0.363,0.395,0.378,0.232,0.464,0.411,0.518,0.352,0.231,0.272,0.114,0.223,0.264,0.081,0.063,0.082,0.135,0.054,-0.049,0.188,0.443,0.593,0.688,0.695,0.747,0.743,0.704,0.712,0.712,0.673,0.456,0.198,0.275,0.077,0.128,0.18,0.844,0.929,0.988,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.989,0.99,0.99,0.99,0.99,0.99,0.961,0.933,0.905,0.894,0.872,0.878,0.84,0.83,0.825,0.843,0.822,0.493,0.813,0.814,0.804,-0.004,-0.004,0.006,0.012,0.001,0.022,0.027,0.027,0.026,0.021,0.303,0.016,0.006,0.006,0.031,0.844,0.718,0.807,0.054,0.049,0.202,0.844,0.802,0.817,0.555,0.8,0.796,0.881,0.747,0.473,0.019,-0.004,0.033,0.789,0.871,0.876,0.845,0.766,0.86,0.777,0.87,0.457,0.711,0.298,0.267,0.633,0.779,0.874,0.807,0.055,-0.003,-0.003,0.005,0.071,0.03,0.07,0.058,0.224,0.138,0.61,0.222,0.813,0.782,0.028,0.036,0.036,0.075,0.036,0.102,0.113,0.089,0.043,0.066,0.008,0.077,0.057,0.333,0.012,0.671,0.489,0.837,0.005,-0.016,-0.025,-0.027,-0.04,-0.042,-0.052,-0.058,-0.06,-0.063,-0.071,-0.074,-0.093,-0.099,-0.104,-0.11,-0.112,-0.117,-0.116,-0.121,-0.13,-0.142,-0.148,-0.146,0.729,0.823,0.818,0.809,0.801,0.789,0.757,0.746,0.731,0.716,0.741,0.71,0.696,0.669,0.687,0.585,0.614,0.638,0.65,0.623,0.587,0.586,0.547,0.565,0.46,0.541,0.506,-0.046,-0.25,0.414,0.429,0.511,0.057,0.492,0.464,0.402,0.465,0.482,0.452,0.517,0.501,0.452,0.339,0.312,0.46,0.388,-0.21,-0.241,-0.221,0.308,-0.242,0.263,0.344,0.372,-0.289,-0.268,-0.31,0.298,-0.044,0.406,0.41,-0.075,0.326,0.446,0.464,0.469,0.442,0.473,0.5,0.518,0.499,0.49,0.476,0.492,0.499,0.518,0.507,0.516,0.538,0.558,0.396,-0.266,-0.193,-0.223,-0.251,-0.278,-0.211,-0.234,-0.129,-0.23,-0.193,0.285,-0.011,-0.253,0.191,-0.135,-0.271,0.245,-0.192,0.311,-0.243,-0.326,-0.337,-0.273,-0.273,-0.256,-0.233,-0.347,-0.009,-0.288,-0.231,-0.357,-0.311,-0.192,-0.206,-0.274,-0.235,-0.237,-0.16,0.408,-0.178,-0.23,-0.277,-0.252,-0.322,-0.232,-0.167,-0.152,-0.327,0.236,-0.262,0.038,0.344,-0.198,-0.114,0.346],"hot":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.122,-0.138,0.063,0.137,0.223,0.243,0.198,0.215,0.216,0.272,0.299,0.165,0.262,0.332,0.418,0.45,0.295,0.3,0.267,0.052,0.105,0.009,-0.02,-0.047,0.006,-0.005,0.015,0.148,0.358,0.344,0.344,0.203,0.085,0.18,0.203,0.149,0.219,0.124,0.068,0.103,0.266,0.427,0.464,0.53,0.486,0.459,0.313,0.421,0.444,0.548,0.252,0.081,-0.089,-0.121,-0.384,-0.439,-0.308,-0.261,-0.279,-0.216,-0.157,-0.462,-0.475,-0.474,-0.393,-0.19,-0.066,-0.133,-0.173,-0.065,-0.113,-0.112,0.048,0.475,0.42,0.427,0.464,0.714,0.696,0.748,0.732,0.721,0.692,0.711,0.746,0.655,0.557,0.608,0.556,0.425,0.51,0.535,0.522,0.41,0.588,0.547,0.63,0.501,0.409,0.44,0.319,0.403,0.434,0.293,0.279,0.294,0.334,0.272,0.193,0.375,0.572,0.687,0.76,0.765,0.805,0.802,0.772,0.779,0.778,0.749,0.581,0.383,0.442,0.29,0.33,0.37,0.88,0.945,0.991,0.991,0.991,0.991,0.991,0.991,0.991,0.991,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.992,0.97,0.948,0.927,0.918,0.902,0.906,0.877,0.869,0.866,0.879,0.863,0.61,0.856,0.857,0.849,0.228,0.228,0.236,0.24,0.232,0.247,0.251,0.251,0.251,0.247,0.463,0.243,0.235,0.235,0.254,0.88,0.783,0.851,0.272,0.268,0.386,0.88,0.848,0.859,0.658,0.846,0.843,0.908,0.806,0.595,0.245,0.228,0.256,0.838,0.901,0.904,0.881,0.82,0.892,0.829,0.9,0.583,0.777,0.46,0.436,0.718,0.83,0.903,0.851,0.273,0.228,0.228,0.235,0.285,0.253,0.285,0.275,0.403,0.337,0.7,0.401,0.856,0.832,0.253,0.259,0.259,0.289,0.258,0.309,0.318,0.3,0.264,0.281,0.237,0.29,0.275,0.487,0.24,0.747,0.607,0.875,0.235,0.219,0.212,0.21,0.2,0.198,0.191,0.186,0.184,0.183,0.176,0.174,0.159,0.155,0.15,0.146,0.144,0.141,0.142,0.138,0.131,0.121,0.117,0.118,0.792,0.864,0.86,0.853,0.847,0.838,0.813,0.805,0.793,0.782,0.801,0.777,0.766,0.745,0.759,0.681,0.703,0.722,0.731,0.71,0.682,0.681,0.652,0.665,0.585,0.647,0.62,0.195,0.039,0.549,0.561,0.624,0.275,0.609,0.587,0.54,0.589,0.602,0.578,0.628,0.616,0.579,0.491,0.471,0.584,0.529,0.07,0.046,0.06,0.467,0.044,0.433,0.495,0.517,0.008,0.025,-0.007,0.46,0.197,0.543,0.546,0.173,0.482,0.574,0.588,0.591,0.571,0.595,0.616,0.629,0.615,0.608,0.597,0.609,0.615,0.629,0.621,0.627,0.645,0.66,0.535,0.026,0.082,0.059,0.038,0.017,0.068,0.05,0.132,0.054,0.083,0.45,0.223,0.036,0.377,0.127,0.022,0.419,0.083,0.47,0.044,-0.02,-0.029,0.021,0.021,0.034,0.052,-0.036,0.224,0.009,0.053,-0.044,-0.008,0.083,0.072,0.02,0.05,0.049,0.108,0.544,0.094,0.054,0.018,0.037,-0.017,0.052,0.102,0.114,-0.021,0.412,0.029,0.26,0.495,0.079,0.143,0.497],"benign":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.353,-0.369,-0.168,-0.094,-0.008,0.012,-0.032,-0.015,-0.015,0.041,0.068,-0.066,0.032,0.102,0.187,0.22,0.064,0.069,0.036,-0.179,-0.126,-0.222,-0.251,-0.278,-0.225,-0.236,-0.216,-0.083,0.127,0.113,0.114,-0.028,-0.145,-0.051,-0.028,-0.082,-0.012,-0.107,-0.163,-0.128,0.035,0.196,0.233,0.299,0.255,0.229,0.082,0.191,0.213,0.317,0.021,-0.149,-0.32,-0.351,-0.615,-0.669,-0.539,-0.492,-0.51,-0.447,-0.387,-0.692,-0.705,-0.705,-0.624,-0.421,-0.297,-0.364,-0.404,-0.296,-0.344,-0.343,-0.183,0.245,0.189,0.196,0.233,0.483,0.465,0.517,0.501,0.491,0.461,0.48,0.515,0.424,0.327,0.377,0.325,0.194,0.28,0.304,0.291,0.179,0.357,0.316,0.399,0.271,0.178,0.209,0.088,0.172,0.203,0.063,0.049,0.063,0.104,0.042,-0.038,0.144,0.341,0.456,0.529,0.535,0.574,0.572,0.541,0.548,0.548,0.518,0.351,0.152,0.212,0.059,0.099,0.139,0.649,0.715,0.76,0.76,0.76,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.761,0.739,0.717,0.696,0.688,0.671,0.676,0.646,0.638,0.635,0.648,0.632,0.379,0.625,0.626,0.619,-0.003,-0.003,0.005,0.009,0.001,0.017,0.021,0.02,0.02,0.016,0.233,0.012,0.005,0.005,0.023,0.649,0.552,0.621,0.042,0.038,0.155,0.649,0.617,0.628,0.427,0.615,0.612,0.677,0.575,0.364,0.015,-0.003,0.025,0.607,0.67,0.674,0.65,0.589,0.661,0.598,0.669,0.352,0.547,0.229,0.205,0.487,0.6,0.672,0.621,0.043,-0.003,-0.003,0.004,0.055,0.023,0.054,0.044,0.173,0.106,0.469,0.17,0.625,0.601,0.022,0.028,0.028,0.058,0.028,0.078,0.087,0.069,0.033,0.051,0.006,0.059,0.044,0.256,0.009,0.516,0.376,0.644,0.004,-0.012,-0.019,-0.021,-0.031,-0.033,-0.04,-0.045,-0.046,-0.048,-0.055,-0.057,-0.072,-0.076,-0.08,-0.085,-0.086,-0.09,-0.089,-0.093,-0.1,-0.109,-0.114,-0.112,0.561,0.633,0.629,0.623,0.616,0.607,0.582,0.574,0.562,0.551,0.57,0.546,0.535,0.514,0.528,0.45,0.472,0.491,0.5,0.479,0.451,0.451,0.421,0.435,0.354,0.416,0.389,-0.036,-0.192,0.319,0.33,0.393,0.044,0.378,0.357,0.309,0.358,0.371,0.347,0.398,0.385,0.348,0.26,0.24,0.353,0.298,-0.161,-0.185,-0.17,0.237,-0.186,0.203,0.264,0.286,-0.222,-0.206,-0.238,0.229,-0.034,0.312,0.316,-0.058,0.251,0.343,0.357,0.361,0.34,0.364,0.385,0.398,0.384,0.377,0.367,0.378,0.384,0.399,0.39,0.397,0.414,0.429,0.305,-0.204,-0.148,-0.172,-0.193,-0.214,-0.163,-0.18,-0.099,-0.177,-0.148,0.219,-0.008,-0.195,0.147,-0.104,-0.208,0.188,-0.148,0.239,-0.187,-0.251,-0.259,-0.21,-0.21,-0.197,-0.179,-0.267,-0.007,-0.221,-0.178,-0.275,-0.239,-0.148,-0.158,-0.211,-0.181,-0.182,-0.123,0.314,-0.137,-0.177,-0.213,-0.194,-0.248,-0.179,-0.128,-0.117,-0.252,0.181,-0.201,0.029,0.265,-0.152,-0.087,0.266],"boom":[200,320],"bust":[320,400],"ols":{"x":[0.86,2.37,8.01,5.82,0.94,4.33,4.79,1.6,7.35,1.14,3.91,5.17,4.31,5.87,7.38,9.56,2.84,6.49,6.96,2.93,0.01,9.73,2.98,3.14,8.92,5.85,4.71,7.73,0.3,7.07,3.74,0.91,6.61,9.31,2.07,6.3,2.98,7.42,7.22,2.19],"y":[0.68,4.23,9.25,6.12,1.46,5.5,5.77,4.96,8.77,3.14,6.46,5.89,4.33,7.4,8.6,9.39,3.33,7.46,4.58,5.17,2.6,7.82,4.46,3.35,10.04,4.24,4.67,9.04,3.63,5.07,4.4,3.12,6.55,11.36,2.23,7.47,3.13,9.62,7.75,3.3],"b0":1.747,"b1":0.816,"resid":[-1.76,0.55,0.97,-0.37,-1.05,0.22,0.11,1.91,1.03,0.47,1.53,-0.08,-0.93,0.86,0.84,-0.16,-0.73,0.43,-2.85,1.03,0.84,-1.87,0.28,-0.95,1.02,-2.28,-0.92,0.98,1.64,-2.45,-0.4,0.63,-0.58,2.02,-1.21,0.58,-1.05,1.82,0.11,-0.23]},"roc":{"fpr":[0.992,0.99,0.989,0.988,0.988,0.986,0.985,0.984,0.982,0.98,0.978,0.976,0.973,0.97,0.965,0.961,0.957,0.954,0.948,0.943,0.937,0.928,0.92,0.913,0.906,0.897,0.889,0.879,0.868,0.86,0.849,0.837,0.825,0.814,0.804,0.789,0.778,0.763,0.75,0.736,0.72,0.705,0.685,0.667,0.649,0.629,0.611,0.592,0.572,0.549,0.53,0.511,0.495,0.474,0.456,0.432,0.408,0.391,0.366,0.345,0.329,0.309,0.295,0.278,0.259,0.245,0.23,0.215,0.201,0.19,0.177,0.165,0.153,0.142,0.132,0.121,0.112,0.102,0.093,0.085,0.075,0.067,0.062,0.057,0.051,0.046,0.04,0.036,0.032,0.029,0.027,0.024,0.022,0.019,0.018,0.016,0.015,0.014,0.012,0.011,0.01,0.008,0.006,0.006,0.005,0.004,0.004,0.004,0.004,0.003,0.002,0.002,0.001,0.001,0.001,0.001,0.001,0.001,0.001,0.001],"tpr":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.999,0.999,0.996,0.995,0.995,0.995,0.994,0.994,0.994,0.994,0.994,0.993,0.988,0.986,0.98,0.976,0.974,0.973,0.971,0.97,0.964,0.961,0.953,0.945,0.941,0.925,0.912,0.909,0.896,0.886,0.876,0.866,0.846,0.83,0.812,0.799,0.79,0.776,0.762,0.736,0.713,0.694,0.666,0.646,0.63,0.615,0.586,0.564,0.53,0.509,0.481,0.456,0.438,0.416,0.4,0.378,0.35,0.333,0.307,0.294,0.28,0.26,0.241,0.219,0.196,0.172,0.156,0.149,0.128,0.117,0.104,0.094,0.083,0.072,0.066,0.06,0.055,0.051,0.045,0.037,0.03,0.028,0.025,0.021,0.019,0.015,0.015,0.014],"auroc":0.867,"bins":[0.017,0.05,0.083,0.117,0.15,0.183,0.217,0.25,0.283,0.317,0.35,0.383,0.417,0.45,0.483,0.517,0.55,0.583,0.617,0.65,0.683,0.717,0.75,0.783,0.817,0.85,0.883,0.917,0.95,0.983,1.017,1.05,1.083],"h_no":[0.114,0.144,0.227,0.462,0.499,0.832,0.931,1.196,1.256,1.551,1.763,2.263,2.263,2.066,2.445,2.316,1.93,1.673,1.4,1.165,1.044,0.787,0.59,0.341,0.227,0.166,0.166,0.068,0.053,0.045,0.008,0.008,0.0],"h_yes":[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.113,0.038,0.038,0.302,0.339,0.302,0.905,1.319,1.47,1.508,2.186,2.374,2.638,2.902,2.299,2.337,2.073,2.337,1.545,1.131,0.49,0.678,0.377,0.188,0.113]},"cd_level":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.083,0.2,0.077,0.0,0.0,0.0,0.0,0.0,0.031,0.0,0.029,0.0,0.167,0.243,0.263,0.205,0.25,0.146,0.071,0.093,0.0,0.022,0.0,0.0,0.021,0.0,0.0,0.0,0.0,0.019,0.074,0.018,0.089,0.0,0.0,0.017,0.0,0.0,0.032,0.048,0.062,0.123,0.076,0.03,0.029,0.029,0.014,0.042,0.056,0.055,0.0,0.0,0.0,0.013,0.026,0.025,0.05,0.025,0.012,0.012,0.083,0.118,0.0,0.069,0.159,0.27,0.311,0.209,0.163,0.118,0.0,0.063,0.0,0.0,0.0,0.02,0.02,0.02,0.069,0.223,0.279,0.314,0.255,0.168,0.25,0.257,0.182,0.234,0.205,0.159,0.167,0.296,0.44,0.47,0.508,0.479,0.5,0.421,0.459,0.472,0.508,0.352,0.286,0.15,0.18,0.047,0.054,0.099,0.114,0.105,0.142,0.163,0.029,0.036,0.014,0.007,0.093,0.191,0.099,0.084,0.153,0.117,0.144,0.231,0.493,0.45,0.467,0.503,0.638,0.634,0.682,0.671,0.647,0.618,0.652,0.679,0.606,0.516,0.58,0.485,0.402,0.442,0.482,0.551,0.506,0.651,0.629,0.702,0.616,0.584,0.678,0.663,0.727,0.74,0.68,0.665,0.694,0.735,0.665,0.617,0.707,0.757,0.763,0.754,0.761,0.783,0.779,0.754,0.776,0.782,0.778,0.713,0.653,0.624,0.601,0.588,0.61,0.851,0.936,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.995,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.996,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.997,0.991,0.984,0.975,0.969,0.96,0.954,0.948,0.942,0.936,0.93,0.921,0.916,0.907,0.901,0.896,0.89,0.884,0.876,0.87,0.862,0.856,0.851,0.845,0.84,0.835,0.827,0.821,0.816,0.811,0.806,0.801,0.793,0.788,0.782,0.777,0.772,0.765,0.76,0.755,0.747,0.74,0.735,0.73,0.728,0.721,0.716,0.708,0.704,0.699,0.695,0.69,0.683,0.676,0.671,0.667,0.662,0.655,0.651,0.646,0.642,0.638,0.636,0.629,0.625,0.621,0.617,0.612,0.606,0.602,0.597,0.593,0.589,0.583,0.579,0.575,0.571,0.569,0.565,0.561,0.557,0.556,0.56,0.558,0.562,0.563,0.564,0.565,0.566,0.565,0.563,0.567,0.551,0.547,0.57,0.557,0.553,0.561,0.56,0.575,0.545,0.553,0.583,0.584,0.585,0.586,0.582,0.578,0.591,0.585,0.593,0.594,0.595,0.594,0.592,0.589,0.594,0.59,0.587,0.569,0.557,0.562,0.575,0.594,0.601,0.604,0.605,0.6,0.598,0.604,0.573,0.592,0.571,0.558,0.588,0.574,0.561,0.554,0.594,0.608,0.589,0.599,0.615,0.605,0.621,0.624,0.614,0.572,0.568,0.582,0.555,0.55,0.568,0.569,0.595,0.608,0.626,0.635,0.636,0.639,0.64],"cd_vel":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,-0.01828,-0.01365,-0.0009,0.00163,0.01089,0.02277,0.03566,0.03779,0.03653,0.03178,0.01509,-0.00551,-0.02826,-0.03313,-0.03867,-0.03218,-0.02483,-0.01611,-0.00798,-0.0064,-0.00123,-0.00019,0.00401,0.00502,0.00893,0.00597,0.00496,-0.00011,-0.00422,-0.00523,-0.00829,-0.00153,0.00295,0.01201,0.01358,0.01176,0.00571,0.00047,-0.00387,-0.0082,-0.00829,-0.00423,-0.00137,-0.00186,-0.00404,-0.00403,-0.00408,-0.00493,-0.00052,0.00251,0.00483,0.002,0.00383,0.00828,0.00556,0.00481,0.00784,0.02493,0.03513,0.03203,0.02678,0.01686,0.00296,-0.01757,-0.03759,-0.04036,-0.03794,-0.02611,-0.0134,-0.00675,0.00252,0.01381,0.03171,0.04424,0.04487,0.03762,0.03136,0.02019,0.00655,-0.00797,-0.01258,-0.00769,-0.00787,-0.00297,0.01185,0.02958,0.04427,0.0477,0.05312,0.04327,0.02658,0.00815,0.00113,-0.007,-0.01898,-0.03406,-0.04253,-0.05424,-0.06437,-0.06289,-0.04884,-0.02607,-0.01413,0.0019,0.00301,0.00163,-0.01035,-0.01444,-0.01367,-0.00658,0.00271,0.00806,0.01416,0.01643,0.01663,0.01116,0.02697,0.04446,0.05968,0.05921,0.06635,0.07128,0.06031,0.04514,0.03281,0.0287,0.01717,0.00964,-0.00092,-0.01032,-0.01657,-0.01977,-0.02499,-0.03441,-0.03392,-0.0181,-0.00907,0.00707,0.01772,0.03625,0.03448,0.0237,0.01886,0.01206,0.01567,0.00823,0.0111,0.01016,0.00893,0.0094,0.00143,-0.00628,-0.0088,-0.00022,0.01043,0.01001,0.01022,0.01559,0.01855,0.01307,0.00457,0.00212,0.00326,-0.00134,-0.00991,-0.01809,-0.02392,-0.02772,-0.02988,-0.01249,0.01401,0.04396,0.05819,0.06511,0.06591,0.05204,0.03273,0.01134,0.00332,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,2e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,1e-05,-0.00034,-0.00103,-0.00223,-0.00343,-0.00479,-0.00597,-0.0068,-0.00711,-0.00689,-0.00668,-0.00647,-0.00643,-0.00655,-0.00668,-0.00681,-0.00677,-0.00657,-0.00653,-0.00632,-0.00645,-0.00641,-0.00654,-0.0065,-0.0063,-0.0061,-0.0059,-0.00587,-0.00583,-0.0058,-0.00577,-0.00573,-0.0057,-0.00567,-0.00563,-0.0056,-0.00557,-0.0057,-0.00566,-0.00563,-0.0056,-0.00588,-0.00615,-0.00612,-0.00578,-0.0056,-0.00541,-0.00538,-0.0052,-0.00517,-0.00529,-0.00527,-0.00539,-0.00536,-0.00548,-0.00545,-0.00542,-0.00554,-0.00551,-0.00533,-0.00501,-0.00484,-0.00467,-0.00449,-0.00432,-0.0043,-0.00428,-0.00425,-0.00452,-0.00464,-0.00476,-0.00459,-0.00457,-0.00469,-0.00467,-0.00464,-0.00448,-0.00431,-0.00415,-0.00385,-0.00369,-0.00339,-0.00282,-0.00225,-0.00141,-0.00071,0.00026,0.00095,0.00122,0.00122,0.0008,0.00066,-0.00042,-0.0015,-0.00151,-0.00123,-0.00082,-0.00136,-0.00041,0.00172,0.00067,-0.0,0.00011,0.00276,0.00433,0.00325,0.00404,0.00404,0.0039,0.00191,0.00097,0.00096,0.00161,0.002,0.0016,0.00109,0.0003,5e-05,-0.0006,-0.00199,-0.00375,-0.00475,-0.00449,-0.00235,-8e-05,0.00294,0.00545,0.00671,0.00607,0.00392,0.0003,-0.0017,-0.00417,-0.0049,-0.00476,-0.00451,-0.00289,-0.00446,-0.00151,0.00189,0.00408,0.00419,0.00441,0.0072,0.00729,0.00521,0.00373,0.00075,-0.00271,-0.00533,-0.00747,-0.00899,-0.01028,-0.00682,-0.00124,0.00277,0.00687,0.01013,0.01246,0.01242,0.01016],"cd_quad":[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,0,0,0,0,0,3,3,3,3,0,0,0,0,0,0,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,3,3,3,3,3,0,0,1,0,1,0,0,0,1,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,2,2,3,3,3,3,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,1,1,1,1,1,1],"sine":[0.0,0.052,0.105,0.156,0.208,0.259,0.309,0.358,0.407,0.454,0.5,0.545,0.588,0.629,0.669,0.707,0.743,0.777,0.809,0.839,0.866,0.891,0.914,0.934,0.951,0.966,0.978,0.988,0.995,0.999,1.0,0.999,0.995,0.988,0.978,0.966,0.951,0.934,0.914,0.891,0.866,0.839,0.809,0.777,0.743,0.707,0.669,0.629,0.588,0.545,0.5,0.454,0.407,0.358,0.309,0.259,0.208,0.156,0.105,0.052,0.0,-0.052,-0.105,-0.156,-0.208,-0.259,-0.309,-0.358,-0.407,-0.454,-0.5,-0.545,-0.588,-0.629,-0.669,-0.707,-0.743,-0.777,-0.809,-0.839,-0.866,-0.891,-0.914,-0.934,-0.951,-0.966,-0.978,-0.988,-0.995,-0.999,-1.0,-0.999,-0.995,-0.988,-0.978,-0.966,-0.951,-0.934,-0.914,-0.891,-0.866,-0.839,-0.809,-0.777,-0.743,-0.707,-0.669,-0.629,-0.588,-0.545,-0.5,-0.454,-0.407,-0.358,-0.309,-0.259,-0.208,-0.156,-0.105,-0.052,-0.0,0.052,0.105,0.156,0.208,0.259,0.309,0.358,0.407,0.454,0.5,0.545,0.588,0.629,0.669,0.707,0.743,0.777,0.809,0.839,0.866,0.891,0.914,0.934,0.951,0.966,0.978,0.988,0.995,0.999,1.0,0.999,0.995,0.988,0.978,0.966,0.951,0.934,0.914,0.891,0.866,0.839,0.809,0.777,0.743,0.707,0.669,0.629,0.588,0.545,0.5,0.454,0.407,0.358,0.309,0.259,0.208,0.156,0.105,0.052,0.0,-0.052,-0.105,-0.156,-0.208,-0.259,-0.309,-0.358,-0.407,-0.454,-0.5,-0.545,-0.588,-0.629,-0.669,-0.707,-0.743,-0.777,-0.809,-0.839,-0.866,-0.891,-0.914,-0.934,-0.951,-0.966,-0.978,-0.988,-0.995,-0.999,-1.0,-0.999,-0.995,-0.988,-0.978,-0.966,-0.951,-0.934,-0.914,-0.891,-0.866,-0.839,-0.809,-0.777,-0.743,-0.707,-0.669,-0.629,-0.588,-0.545,-0.5,-0.454,-0.407,-0.358,-0.309,-0.259,-0.208,-0.156,-0.105,-0.052,-0.0,0.052,0.105,0.156,0.208,0.259,0.309,0.358,0.407,0.454,0.5,0.545,0.588,0.629,0.669,0.707,0.743,0.777,0.809,0.839,0.866,0.891,0.914,0.934,0.951,0.966,0.978,0.988,0.995,0.999,1.0,0.999,0.995,0.988,0.978,0.966,0.951,0.934,0.914,0.891,0.866,0.839,0.809,0.777,0.743,0.707,0.669,0.629,0.588,0.545,0.5,0.454,0.407,0.358,0.309,0.259,0.208,0.156,0.105,0.052,0.0,-0.052,-0.105,-0.156,-0.208,-0.259,-0.309,-0.358,-0.407,-0.454,-0.5,-0.545,-0.588,-0.629,-0.669,-0.707,-0.743,-0.777,-0.809,-0.839,-0.866,-0.891,-0.914,-0.934,-0.951,-0.966,-0.978,-0.988,-0.995,-0.999,-1.0,-0.999,-0.995,-0.988,-0.978,-0.966,-0.951,-0.934,-0.914,-0.891,-0.866,-0.839,-0.809,-0.777,-0.743,-0.707,-0.669,-0.629,-0.588,-0.545,-0.5,-0.454,-0.407,-0.358,-0.309,-0.259,-0.208,-0.156,-0.105,-0.052,-0.0,0.052,0.105,0.156,0.208,0.259,0.309,0.358,0.407,0.454,0.5,0.545,0.588,0.629,0.669,0.707,0.743,0.777,0.809,0.839,0.866,0.891,0.914,0.934,0.951,0.966,0.978,0.988,0.995,0.999,1.0,0.999,0.995,0.988,0.978,0.966,0.951,0.934,0.914,0.891,0.866,0.839,0.809,0.777,0.743,0.707,0.669,0.629,0.588,0.545,0.5,0.454,0.407,0.358,0.309,0.259,0.208,0.156,0.105,0.052,0.0,-0.052,-0.105,-0.156,-0.208,-0.259,-0.309,-0.358,-0.407,-0.454,-0.5,-0.545,-0.588,-0.629,-0.669,-0.707,-0.743,-0.777,-0.809,-0.839,-0.866,-0.891,-0.914,-0.934,-0.951,-0.966,-0.978,-0.988,-0.995,-0.999,-1.0,-0.999,-0.995,-0.988,-0.978,-0.966,-0.951,-0.934,-0.914,-0.891,-0.866,-0.839,-0.809,-0.777,-0.743,-0.707,-0.669,-0.629,-0.588,-0.545,-0.5,-0.454,-0.407,-0.358,-0.309,-0.259,-0.208,-0.156,-0.105,-0.052],"sine_quad":[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]};
+
+/* ---------- shared helpers ---------- */
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(tag, attrs){ const n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]); return n; }
+function fmtN(v, d=2){ return v==null ? '—' : (+v).toFixed(d); }
+
+/* Generic line chart with bands, crosshair + tooltip. x = month index. */
+function lineChart(mountId, cfg){
+  const mount = document.getElementById(mountId);
+  const W = 820, H = cfg.height || 300, m = {t:14, r:16, b:34, l:52};
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const N = cfg.series[0].vals.length;
+  let lo = Infinity, hi = -Infinity;
+  cfg.series.forEach(s => s.vals.forEach(v => { if (v!=null){ if(v<lo)lo=v; if(v>hi)hi=v; }}));
+  if (cfg.y0 !== undefined){ lo = Math.min(lo, cfg.y0); hi = Math.max(hi, cfg.y0); }
+  const pad = (hi-lo)*0.06 || 1; lo -= pad; hi += pad;
+  const X = i => m.l + iw * i/(N-1), Y = v => m.t + ih * (1-(v-lo)/(hi-lo));
+  const svg = el('svg', {viewBox:`0 0 ${W} ${H}`, role:'img',
+    'aria-label': cfg.aria || 'line chart'});
+  /* bands */
+  (cfg.bands||[]).forEach(b => {
+    svg.appendChild(el('rect', {x:X(b.a), y:m.t, width:X(b.b)-X(b.a), height:ih,
+      fill:`var(${b.fill})`}));
+    const t = el('text', {x:(X(b.a)+X(b.b))/2, y:m.t+14, 'text-anchor':'middle',
+      'font-size':'11', fill:'var(--muted)', 'font-family':'IBM Plex Mono,monospace'});
+    t.textContent = b.label; svg.appendChild(t);
+  });
+  /* y grid + ticks */
+  const ticks = 4;
+  for (let i=0;i<=ticks;i++){
+    const v = lo + (hi-lo)*i/ticks, y = Y(v);
+    svg.appendChild(el('line', {x1:m.l, x2:W-m.r, y1:y, y2:y, stroke:'var(--grid)','stroke-width':1}));
+    const t = el('text', {x:m.l-8, y:y+4, 'text-anchor':'end', 'font-size':'11',
+      fill:'var(--muted)', 'font-family':'IBM Plex Mono,monospace'});
+    t.textContent = (cfg.yFmt||fmtN)(v); svg.appendChild(t);
+  }
+  /* zero line if in range */
+  if (cfg.zero && lo < 0 && hi > 0)
+    svg.appendChild(el('line', {x1:m.l, x2:W-m.r, y1:Y(0), y2:Y(0), stroke:'var(--axis)',
+      'stroke-width':1, 'stroke-dasharray':'3 3'}));
+  /* x axis */
+  svg.appendChild(el('line', {x1:m.l, x2:W-m.r, y1:m.t+ih, y2:m.t+ih, stroke:'var(--axis)','stroke-width':1}));
+  [0,120,240,360,479].forEach(i => {
+    const t = el('text', {x:X(i), y:H-12, 'text-anchor':'middle', 'font-size':'11',
+      fill:'var(--muted)', 'font-family':'IBM Plex Mono,monospace'});
+    t.textContent = i; svg.appendChild(t);
+  });
+  const xl = el('text', {x:W-m.r, y:H-1, 'text-anchor':'end', 'font-size':'11', fill:'var(--muted)'});
+  xl.textContent = 'month'; svg.appendChild(xl);
+  /* series */
+  cfg.series.forEach(s => {
+    let d = '', pen = false;
+    s.vals.forEach((v,i) => { if (v==null){ pen=false; return; }
+      d += (pen?'L':'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1); pen = true; });
+    svg.appendChild(el('path', {d, fill:'none', stroke:`var(${s.color})`, 'stroke-width':2,
+      'stroke-linejoin':'round', ...(s.dash?{'stroke-dasharray':s.dash}:{})}));
+  });
+  /* crosshair + tooltip */
+  const cross = el('line', {y1:m.t, y2:m.t+ih, stroke:'var(--axis)', 'stroke-width':1, opacity:0});
+  svg.appendChild(cross);
+  const dots = cfg.series.map(s => { const c = el('circle', {r:3.5, fill:`var(${s.color})`,
+    stroke:'var(--chart-surface)','stroke-width':2, opacity:0}); svg.appendChild(c); return c; });
+  mount.appendChild(svg);
+  const tip = document.createElement('div'); tip.className = 'tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove', ev => {
+    const r = svg.getBoundingClientRect(), sx = W/r.width;
+    const px = (ev.clientX - r.left)*sx;
+    const i = Math.max(0, Math.min(N-1, Math.round((px-m.l)/iw*(N-1))));
+    cross.setAttribute('x1', X(i)); cross.setAttribute('x2', X(i)); cross.setAttribute('opacity', 1);
+    let rows = `<div class="tt">month ${i}</div>`;
+    cfg.series.forEach((s,k) => { const v = s.vals[i];
+      if (v==null){ dots[k].setAttribute('opacity',0); }
+      else { dots[k].setAttribute('cx',X(i)); dots[k].setAttribute('cy',Y(v)); dots[k].setAttribute('opacity',1); }
+      rows += `<div class="row"><span class="nm">${s.name}</span><span class="vl">${(cfg.yFmt||fmtN)(v)}</span></div>`;
+    });
+    tip.innerHTML = rows; tip.style.display = 'block';
+    const mr = mount.getBoundingClientRect();
+    let tx = (ev.clientX - mr.left) + 14; if (tx > mr.width - 170) tx -= 190;
+    tip.style.left = tx + 'px'; tip.style.top = Math.max(0,(ev.clientY - mr.top) - 40) + 'px';
+  });
+  svg.addEventListener('pointerleave', () => { cross.setAttribute('opacity',0);
+    dots.forEach(d => d.setAttribute('opacity',0)); tip.style.display = 'none'; });
+}
+
+const BANDS = [{a:DATA.boom[0], b:DATA.boom[1], label:'boom', fill:'--band-boom'},
+               {a:DATA.bust[0], b:DATA.bust[1], label:'bust', fill:'--band-bust'}];
+
+/* ---------- Fig 0.1 Slutzky ---------- */
+(function(){
+  const mount = document.getElementById('figSlutzky');
+  function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0;
+    let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t;
+    return ((t^t>>>14)>>>0)/4294967296; }; }
+  let seed = 42;
+  function draw(){
+    mount.innerHTML = '';
+    const rnd = mulberry32(seed), N = 480;
+    const noise = Array.from({length:N}, () => rnd()<0.5?-1:1);
+    const ma = noise.map((_,i) => { if (i<23) return null;
+      let s=0; for(let k=i-23;k<=i;k++) s+=noise[k]; return s/24; });
+    lineChart('figSlutzky', {height:240, zero:true, aria:'random noise and its moving average',
+      yFmt: v=>fmtN(v,2),
+      series:[{name:'raw noise ±1', vals:noise.map(v=>v*0.28), color:'--grid'},
+              {name:'24m moving average', vals:ma, color:'--s1'}]});
+  }
+  draw();
+  document.getElementById('reroll').addEventListener('click', () => { seed = (seed*1103515245+12345)>>>0; draw(); });
+})();
+
+/* ---------- Fig 2.1 OLS ---------- */
+(function(){
+  const mount = document.getElementById('figOLS');
+  const W=820, H=320, m={t:16,r:16,b:36,l:46}, iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const o = DATA.ols;
+  const xlo=0, xhi=10.5;
+  let ylo=Infinity, yhi=-Infinity; o.y.forEach(v=>{ if(v<ylo)ylo=v; if(v>yhi)yhi=v; });
+  ylo-=0.8; yhi+=0.8;
+  const X=x=>m.l+iw*(x-xlo)/(xhi-xlo), Y=y=>m.t+ih*(1-(y-ylo)/(yhi-ylo));
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`, role:'img','aria-label':'OLS scatter with fitted line and residuals'});
+  for(let i=0;i<=4;i++){ const v=ylo+(yhi-ylo)*i/4, y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(1); svg.appendChild(t); }
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,2,4,6,8,10].forEach(v=>{ const t=el('text',{x:X(v),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v; svg.appendChild(t); });
+  const xl=el('text',{x:W-m.r,y:H-1,'text-anchor':'end','font-size':'11',fill:'var(--muted)'}); xl.textContent='x'; svg.appendChild(xl);
+  /* residual stems */
+  o.x.forEach((x,i)=>{ const yhat=o.b0+o.b1*x;
+    svg.appendChild(el('line',{x1:X(x),x2:X(x),y1:Y(o.y[i]),y2:Y(yhat),stroke:'var(--grid)','stroke-width':1.5})); });
+  /* fitted line */
+  svg.appendChild(el('line',{x1:X(xlo),y1:Y(o.b0+o.b1*xlo),x2:X(xhi),y2:Y(o.b0+o.b1*xhi),
+    stroke:'var(--s2)','stroke-width':2}));
+  /* points */
+  const pts = o.x.map((x,i)=>{ const c=el('circle',{cx:X(x),cy:Y(o.y[i]),r:4.5,fill:'var(--s1)',
+    stroke:'var(--chart-surface)','stroke-width':1.5}); svg.appendChild(c); return c; });
+  const mountEl = mount; mountEl.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mountEl.appendChild(tip);
+  svg.addEventListener('pointermove', ev=>{
+    const r=svg.getBoundingClientRect(), sx=W/r.width, sy=H/r.height;
+    const px=(ev.clientX-r.left)*sx, py=(ev.clientY-r.top)*sy;
+    let best=-1, bd=1e9;
+    o.x.forEach((x,i)=>{ const d=(X(x)-px)**2+(Y(o.y[i])-py)**2; if(d<bd){bd=d;best=i;} });
+    if (bd > 30**2){ tip.style.display='none'; pts.forEach(p=>p.setAttribute('r',4.5)); return; }
+    pts.forEach((p,i)=>p.setAttribute('r', i===best?6:4.5));
+    const x=o.x[best], y=o.y[best], yh=o.b0+o.b1*x;
+    tip.innerHTML=`<div class="tt">point ${best+1}</div>
+      <div class="row"><span class="nm">x</span><span class="vl">${fmtN(x)}</span></div>
+      <div class="row"><span class="nm">y</span><span class="vl">${fmtN(y)}</span></div>
+      <div class="row"><span class="nm">line ŷ</span><span class="vl">${fmtN(yh)}</span></div>
+      <div class="row"><span class="nm">residual</span><span class="vl">${fmtN(y-yh)}</span></div>`;
+    tip.style.display='block';
+    const mr=mountEl.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-170) tx-=190;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-50)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{ tip.style.display='none'; pts.forEach(p=>p.setAttribute('r',4.5)); });
+})();
+
+/* ---------- Fig 2.2 AUROC: histograms + ROC, linked ---------- */
+(function(){
+  const mount = document.getElementById('figROC');
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start';
+  mount.appendChild(wrapper);
+  const r = DATA.roc;
+  /* left: histograms */
+  const W=400,H=280,m={t:16,r:10,b:34,l:12},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const hmax=Math.max(...r.h_no,...r.h_yes)*1.08;
+  const bx=v=>m.l+iw*(v-0)/1.1, by=v=>m.t+ih*(1-v/hmax);
+  const svgH=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'indicator distributions for safe and crisis years'});
+  function area(h,color,op){ let d=`M ${bx(r.bins[0])} ${by(0)}`;
+    r.bins.forEach((b,i)=>{ d+=` L ${bx(b)} ${by(h[i])}`; });
+    d+=` L ${bx(r.bins[r.bins.length-1])} ${by(0)} Z`;
+    svgH.appendChild(el('path',{d,fill:`var(${color})`,opacity:op,stroke:`var(${color})`,'stroke-width':1.5}));}
+  area(r.h_no,'--s1',0.25); area(r.h_yes,'--s2',0.25);
+  svgH.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,0.25,0.5,0.75,1].forEach(v=>{ const t=el('text',{x:bx(v),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v; svgH.appendChild(t); });
+  const xlh=el('text',{x:W-m.r,y:H-1,'text-anchor':'end','font-size':'11',fill:'var(--muted)'});
+  xlh.textContent='indicator value'; svgH.appendChild(xlh);
+  const thr=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--ink-2)','stroke-width':1.5,'stroke-dasharray':'4 3',opacity:0});
+  svgH.appendChild(thr);
+  const thrTxt=el('text',{y:m.t+12,'font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace',opacity:0});
+  svgH.appendChild(thrTxt);
+  /* right: ROC */
+  const svgR=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'ROC curve'});
+  const rx=v=>m.l+30+ (iw-30)*v, ry=v=>m.t+ih*(1-v);
+  for(let i=0;i<=4;i++){ const y=ry(i/4);
+    svgR.appendChild(el('line',{x1:m.l+30,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l+24,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(i/4).toFixed(2); svgR.appendChild(t); }
+  svgR.appendChild(el('line',{x1:rx(0),y1:ry(0),x2:rx(1),y2:ry(1),stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'3 3'}));
+  const dl=el('text',{x:rx(0.55),y:ry(0.48),'font-size':'11',fill:'var(--muted)'}); dl.textContent='coin flip (AUROC 0.5)'; svgR.appendChild(dl);
+  let dR=''; r.fpr.forEach((f,i)=>{ dR+=(i?'L':'M')+rx(f).toFixed(1)+' '+ry(r.tpr[i]).toFixed(1); });
+  svgR.appendChild(el('path',{d:dR,fill:'none',stroke:'var(--s2)','stroke-width':2}));
+  svgR.appendChild(el('line',{x1:m.l+30,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,0.5,1].forEach(v=>{ const t=el('text',{x:rx(v),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v; svgR.appendChild(t); });
+  const xlr=el('text',{x:W-m.r,y:H-1,'text-anchor':'end','font-size':'11',fill:'var(--muted)'});
+  xlr.textContent='false-alarm rate'; svgR.appendChild(xlr);
+  const ylr=el('text',{x:m.l+34,y:m.t+10,'font-size':'11',fill:'var(--muted)'});
+  ylr.textContent='hit rate'; svgR.appendChild(ylr);
+  const auc=el('text',{x:rx(0.62),y:ry(0.12),'font-size':'13','font-weight':'600',fill:'var(--ink)'});
+  auc.textContent=`area = ${r.auroc}`; svgR.appendChild(auc);
+  const dot=el('circle',{r:5,fill:'var(--s2)',stroke:'var(--chart-surface)','stroke-width':2,opacity:0});
+  svgR.appendChild(dot);
+  const dotTxt=el('text',{'font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace',opacity:0});
+  svgR.appendChild(dotTxt);
+  wrapper.appendChild(svgH); wrapper.appendChild(svgR);
+  if (matchMedia('(max-width:560px)').matches) wrapper.style.gridTemplateColumns='1fr';
+  svgH.addEventListener('pointermove', ev=>{
+    const rc=svgH.getBoundingClientRect(), sx=W/rc.width;
+    const px=(ev.clientX-rc.left)*sx;
+    const t=Math.max(0,Math.min(1.05,(px-m.l)/iw*1.1));
+    thr.setAttribute('x1',bx(t)); thr.setAttribute('x2',bx(t)); thr.setAttribute('opacity',1);
+    thrTxt.setAttribute('x',bx(t)+5); thrTxt.setAttribute('opacity',1);
+    thrTxt.textContent='alert ≥ '+t.toFixed(2);
+    let bi=0,bd=1e9; r.fpr.forEach((f,i)=>{ const th=i/(r.fpr.length-1)*1.05;
+      const d=Math.abs(th-t); if(d<bd){bd=d;bi=i;} });
+    dot.setAttribute('cx',rx(r.fpr[bi])); dot.setAttribute('cy',ry(r.tpr[bi])); dot.setAttribute('opacity',1);
+    dotTxt.setAttribute('x',rx(r.fpr[bi])+9); dotTxt.setAttribute('y',ry(r.tpr[bi])-8); dotTxt.setAttribute('opacity',1);
+    dotTxt.textContent=`hit ${(r.tpr[bi]*100).toFixed(0)}% / false ${(r.fpr[bi]*100).toFixed(0)}%`;
+  });
+  svgH.addEventListener('pointerleave',()=>{ thr.setAttribute('opacity',0); thrTxt.setAttribute('opacity',0);
+    dot.setAttribute('opacity',0); dotTxt.setAttribute('opacity',0); });
+})();
+
+/* ---------- Part 4 figures ---------- */
+lineChart('figEcon', {height:300, bands:BANDS, aria:'synthetic credit, income, deposits levels',
+  yFmt:v=>fmtN(v,0),
+  series:[{name:'credit', vals:DATA.credit, color:'--s1'},
+          {name:'income', vals:DATA.income, color:'--s2'},
+          {name:'deposits', vals:DATA.deposits, color:'--s3'}]});
+
+lineChart('figRatios', {height:280, bands:BANDS, aria:'credit to income and credit to deposit ratios',
+  series:[{name:'credit / income', vals:DATA.ratio_ci, color:'--s1'},
+          {name:'credit / deposits', vals:DATA.ratio_cd, color:'--s2'}]});
+
+lineChart('figGap', {height:300, bands:BANDS, zero:true, aria:'Hamilton gap in expanding versus full-sample mode',
+  series:[{name:'expanding (honest)', vals:DATA.gap_exp, color:'--s1'},
+          {name:'full-sample (omniscient)', vals:DATA.gap_full, color:'--s2', dash:'5 4'}]});
+
+lineChart('figPct', {height:280, bands:BANDS, aria:'expanding percentiles of the gap and CD ratio',
+  yFmt:v=>fmtN(v,2),
+  series:[{name:'gap percentile', vals:DATA.gap_pct, color:'--s1'},
+          {name:'CD percentile', vals:DATA.cd_pct, color:'--s2'}]});
+
+lineChart('figState', {height:300, bands:BANDS, zero:true, aria:'composite credit state with clamp variants',
+  yFmt:v=>fmtN(v,2),
+  series:[{name:'base state', vals:DATA.state, color:'--s1'},
+          {name:'+ hot composition', vals:DATA.hot, color:'--s2'},
+          {name:'+ benign composition', vals:DATA.benign, color:'--s3'}]});
+
+/* ---------- Fig 4.6 phase clock: timeline ribbon + phase plane ---------- */
+(function(){
+  const mount = document.getElementById('figPhase');
+  const wrapper = document.createElement('div');
+  wrapper.style.cssText='display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:start';
+  mount.appendChild(wrapper);
+  const QC = ['--s1','--s2','--s3','--s4'];           // recovery, boom, slowdown, downturn
+  const QN = ['recovery','boom','slowdown','downturn'];
+  const L = DATA.cd_level, V = DATA.cd_vel, Q = DATA.cd_quad, N = L.length;
+  /* left: level timeline with quadrant ribbon */
+  const W=460,H=300,m={t:14,r:12,b:46,l:40},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-v);
+  const svgL = el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'CD percentile with quadrant ribbon'});
+  for(let i=0;i<=4;i++){const v=i/4,y=Y(v);
+    svgL.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-6,y:y+4,'text-anchor':'end','font-size':'10',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(2); svgL.appendChild(t);}
+  let d='',pen=false;
+  L.forEach((v,i)=>{ if(v==null){pen=false;return;} d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1); pen=true; });
+  svgL.appendChild(el('path',{d,fill:'none',stroke:'var(--ink-2)','stroke-width':1.8}));
+  /* ribbon */
+  const ry0=m.t+ih+10;
+  for(let i=0;i<N;i++){ if(Q[i]>=0)
+    svgL.appendChild(el('rect',{x:X(i)-iw/(N-1)/2,y:ry0,width:iw/(N-1)+0.6,height:12,fill:`var(${QC[Q[i]]})`}));}
+  const rt=el('text',{x:m.l,y:ry0+26,'font-size':'10',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+  rt.textContent='quadrant ribbon - month 0..479'; svgL.appendChild(rt);
+  /* right: phase plane */
+  const W2=380,H2=300,m2={t:14,r:12,b:34,l:46},iw2=W2-m2.l-m2.r,ih2=H2-m2.t-m2.b;
+  let vlo=0,vhi=0; V.forEach(v=>{if(v!=null){vlo=Math.min(vlo,v);vhi=Math.max(vhi,v);}});
+  const pad=(vhi-vlo)*0.12; vlo-=pad; vhi+=pad;
+  const PX=v=>m2.l+iw2*v, PY=v=>m2.t+ih2*(1-(v-vlo)/(vhi-vlo));
+  const svgR = el('svg',{viewBox:`0 0 ${W2} ${H2}`,role:'img','aria-label':'phase plane: level vs velocity'});
+  /* quadrant tints */
+  const y0=PY(0), x5=PX(0.5);
+  [[m2.l,m2.t,x5-m2.l,y0-m2.t,0],[x5,m2.t,W2-m2.r-x5,y0-m2.t,1],
+   [x5,y0,W2-m2.r-x5,m2.t+ih2-y0,2],[m2.l,y0,x5-m2.l,m2.t+ih2-y0,3]].forEach(([x,y,w,hh,q])=>{
+    svgR.appendChild(el('rect',{x,y,width:Math.max(w,0),height:Math.max(hh,0),fill:`var(${QC[q]})`,opacity:0.10}));});
+  svgR.appendChild(el('line',{x1:m2.l,x2:W2-m2.r,y1:y0,y2:y0,stroke:'var(--axis)','stroke-width':1}));
+  svgR.appendChild(el('line',{x1:x5,x2:x5,y1:m2.t,y2:m2.t+ih2,stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'3 3'}));
+  [['recovery',0.25,vhi*0.8],['boom',0.75,vhi*0.8],['slowdown',0.75,vlo*0.8],['downturn',0.25,vlo*0.8]].forEach(([n,lx,ly])=>{
+    const t=el('text',{x:PX(lx),y:PY(ly),'text-anchor':'middle','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=n; svgR.appendChild(t);});
+  let d2='',pen2=false;
+  for(let i=0;i<N;i++){ const lv=L[i],vv=V[i];
+    if(lv==null||vv==null){pen2=false;continue;}
+    d2+=(pen2?'L':'M')+PX(lv).toFixed(1)+' '+PY(vv).toFixed(1); pen2=true; }
+  svgR.appendChild(el('path',{d:d2,fill:'none',stroke:'var(--ink-2)','stroke-width':1.4,opacity:0.85}));
+  /* milestones */
+  [[200,'boom starts'],[320,'peak/turn'],[400,'bust ends']].forEach(([i,lab])=>{
+    if(L[i]==null||V[i]==null) return;
+    svgR.appendChild(el('circle',{cx:PX(L[i]),cy:PY(V[i]),r:4.5,fill:`var(${QC[Math.max(Q[i],0)]})`,stroke:'var(--chart-surface)','stroke-width':1.5}));
+    const t=el('text',{x:PX(L[i])+7,y:PY(V[i])-6,'font-size':'10',fill:'var(--ink-2)'});
+    t.textContent=lab+' (m'+i+')'; svgR.appendChild(t);});
+  const xl=el('text',{x:W2-m2.r,y:H2-4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)'});
+  xl.textContent='level ->'; svgR.appendChild(xl);
+  const yl=el('text',{x:m2.l+4,y:m2.t+10,'font-size':'10.5',fill:'var(--muted)'});
+  yl.textContent='velocity ^'; svgR.appendChild(yl);
+  wrapper.appendChild(svgL); wrapper.appendChild(svgR);
+  if (matchMedia('(max-width:560px)').matches) wrapper.style.gridTemplateColumns='1fr';
+  /* hover on phase plane: nearest month */
+  const dot=el('circle',{r:5,fill:'var(--ink)',stroke:'var(--chart-surface)','stroke-width':2,opacity:0});
+  svgR.appendChild(dot);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svgR.addEventListener('pointermove', ev=>{
+    const rc=svgR.getBoundingClientRect(), sx=W2/rc.width, sy=H2/rc.height;
+    const px=(ev.clientX-rc.left)*sx, py=(ev.clientY-rc.top)*sy;
+    let bi=-1,bd=1e9;
+    for(let i=0;i<N;i++){ if(L[i]==null||V[i]==null) continue;
+      const dd=(PX(L[i])-px)**2+(PY(V[i])-py)**2; if(dd<bd){bd=dd;bi=i;} }
+    if(bi<0||bd>28**2){tip.style.display='none';dot.setAttribute('opacity',0);return;}
+    dot.setAttribute('cx',PX(L[bi])); dot.setAttribute('cy',PY(V[bi])); dot.setAttribute('opacity',1);
+    const lab=L[bi].toFixed(2)+(Q[bi]===0||Q[bi]===1?'U':'D');
+    tip.innerHTML=`<div class="tt">month ${bi}</div>
+      <div class="row"><span class="nm">state</span><span class="vl">${lab}</span></div>
+      <div class="row"><span class="nm">quadrant</span><span class="vl">${QN[Math.max(Q[bi],0)]}</span></div>
+      <div class="row"><span class="nm">velocity</span><span class="vl">${V[bi].toFixed(4)}</span></div>`;
+    tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-170) tx-=190;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-50)+'px';
+  });
+  svgR.addEventListener('pointerleave',()=>{tip.style.display='none';dot.setAttribute('opacity',0);});
+})();
+
+</script>

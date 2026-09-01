@@ -1,0 +1,690 @@
+<title>Cycle Stack Pipeline v2</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+  --flow1:#e8eef7; --flow2:#eef1ea; --flow3:#f6ede4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --code-bg:#1c2320; --shadow:none;
+    --flow1:#1a2027; --flow2:#1c2320; --flow3:#241d18;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --code-bg:#1c2320; --shadow:none;
+  --flow1:#1a2027; --flow2:#1c2320; --flow3:#241d18;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0; font-size:15.5px; line-height:1.62;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; -webkit-font-smoothing:antialiased}
+.wrap{max-width:880px; margin:0 auto; padding:0 20px 90px}
+h1,h2,h3,h4{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.18}
+h1{font-size:clamp(32px,5.5vw,46px); font-weight:500; margin:0}
+h2{font-size:27px; font-weight:500; margin:56px 0 14px; padding-top:22px; border-top:3px solid var(--accent)}
+h3{font-size:20px; font-weight:600; margin:34px 0 10px}
+p{max-width:74ch}
+a{color:var(--accent-ink)}
+code{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.87em;
+  background:var(--code-bg); padding:1px 5px; border-radius:4px}
+pre{background:var(--code-bg); border:1px solid var(--rule); border-radius:10px; padding:16px;
+  overflow-x:auto; font-size:12px; line-height:1.45}
+pre code{background:none; padding:0}
+table{border-collapse:collapse; width:100%; font-size:13.5px; margin:18px 0; display:block; overflow-x:auto; max-width:100%}
+th{font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+.tablewrap{overflow-x:auto}
+blockquote{border-left:3px solid var(--accent); margin:18px 0; padding:4px 18px; color:var(--ink-2)}
+ol,ul{padding-left:24px} li{margin:5px 0; max-width:72ch}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:56px 0 12px}
+.stand{font-size:18px; color:var(--ink-2); max-width:64ch; margin:16px 0 20px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3);
+  padding-bottom:24px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.meta b{color:var(--ink-2); font-weight:600}
+.status{display:inline-block; font:600 12px "IBM Plex Mono",monospace; letter-spacing:0.08em;
+  color:var(--accent-ink); border:1.5px solid var(--accent); border-radius:999px; padding:3px 12px;
+  margin-bottom:16px}
+.flow{display:flex; flex-direction:column; gap:8px; margin:26px 0}
+.flayer{border:1px solid var(--rule); border-radius:12px; padding:12px 16px; box-shadow:var(--shadow)}
+.flayer .fl-t{font-weight:600; font-size:14px; margin-bottom:6px}
+.flayer .fl-t .mono{color:var(--accent-ink)}
+.fl-cards{display:flex; flex-wrap:wrap; gap:8px}
+.fl-c{background:var(--card); border:1px solid var(--rule); border-radius:8px; padding:6px 11px;
+  font-size:12.5px; color:var(--ink-2)}
+.fl-c b{color:var(--ink); font-weight:600}
+.farrow{text-align:center; color:var(--accent); font-weight:600; font-size:15px; line-height:1; margin:-2px 0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.note{background:var(--panel); border-radius:8px; padding:12px 16px; font-size:13.5px;
+  color:var(--ink-2); max-width:74ch}
+footer{border-top:1px solid var(--rule); margin-top:60px; padding-top:20px; font-size:13px;
+  color:var(--ink-3); line-height:1.7}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<div class="wrap">
+<header>
+  <p class="eyebrow">Cycle Stack · workflow architecture · v2</p>
+  <h1>Cycle Stack Pipeline v2</h1>
+  <p class="stand">The end-to-end workflow redesigned against the best public knowledge — top
+  open-source frameworks, the major systematic firms' process models, the canonical books, and what
+  2026–2040 actually changes — then adversarially judged and synthesized. Frozen constraints
+  untouched.</p>
+  <div class="status">PROPOSED — awaits principal sign-off on §6</div>
+  <div class="meta">
+    <span><b>Method</b> 12-agent workflow: 5 research sweeps → 3 lens architects → 3 adversarial judges → synthesis</span>
+    <span><b>Verdict</b> operations-first design won unanimously (88/89/89)</span>
+    <span><b>Repo</b> docs/PIPELINE.md · research/pipeline-v2/</span>
+    <span><b>2026-09-01</b></span>
+  </div>
+</header>
+
+<p class="eyebrow" style="margin-top:36px">The shape at a glance</p>
+<div class="flow" role="img" aria-label="Pipeline v2 layer diagram: governance wraps data, evidence and research, Stage 1, overlay, execution and monitoring">
+  <div class="flayer" style="background:var(--flow2)">
+    <div class="fl-t"><span class="mono">govern/</span> — the slow layer: rules about changing rules</div>
+    <div class="fl-cards"><span class="fl-c"><b>Challenger registry</b> — every adaptive rule is shadow / challenger / online; frozen v1 = permanent null</span><span class="fl-c"><b>Anti-capitulation lock</b> — no rule changes mid-drawdown</span><span class="fl-c"><b>Charters + annual report</b></span></div>
+  </div>
+  <div class="flayer" style="background:var(--flow1)">
+    <div class="fl-t"><span class="mono">data/</span> — lookahead structurally impossible</div>
+    <div class="fl-cards"><span class="fl-c"><b>WORM capture</b> → adapters → <b>bitemporal store</b> (event-time, knowledge-time)</span><span class="fl-c"><b>One as-of API</b> — the only read path</span><span class="fl-c"><b>Entity master</b> (PIT NIFTY-750)</span><span class="fl-c"><b>Breaks registry</b> (SEBI/structural)</span></div>
+  </div>
+  <div class="farrow">↓ as-of API only ↓</div>
+  <div class="flayer" style="background:var(--flow1)">
+    <div class="fl-t"><span class="mono">harness/</span> + <span class="mono">research/</span> — the one evidence machine and the metered funnel</div>
+    <div class="fl-cards"><span class="fl-c"><b>Recorder = trial ledger</b> — counts before results; deflated Sharpe by query</span><span class="fl-c"><b>Gates</b>: bias-CI · CPCV/PBO · capacity · cost-in-SR · death cert · LLM-provenance</span><span class="fl-c"><b>Funnel T0→T3</b>: tearsheet → sweep → replay → paper probation</span><span class="fl-c"><b>≤3 survivors/week</b> to the principal</span></div>
+  </div>
+  <div class="farrow">↓ promotes only via Challenger states ↓</div>
+  <div class="flayer" style="background:var(--flow2)">
+    <div class="fl-t">STAGE 1 — autonomous, emits the complete portfolio</div>
+    <div class="fl-cards"><span class="fl-c"><b>ladder/</b> 16 vars, fixed budgets → R (ensemble median) + crowding (reduce-only)</span><span class="fl-c"><b>policy/</b> trigger/action file → asset mix, vol targets, hedge grid <span class="mono">[PolicyTarget]</span></span><span class="fl-c"><b>sleeves/</b> 5 factors → forecast currency → Grinold alpha → decay haircut → cost-netted <span class="mono">[Signal]</span></span><span class="fl-c"><b>construct/</b> netting → xrisk caps + ex-ante TE → sizing <span class="mono">[PortfolioTarget]</span></span></div>
+  </div>
+  <div class="farrow">↓</div>
+  <div class="flayer" style="background:var(--flow3)">
+    <div class="fl-t"><span class="mono">overlay/</span> Stage 2 (advisory · reduce-only · switchable) &nbsp;·&nbsp; <span class="mono">exec/</span> &nbsp;·&nbsp; <span class="mono">sentinel/</span></div>
+    <div class="fl-cards"><span class="fl-c"><b>TOPS paper trades</b>, both humans+Claude believability-scored; multiplier ∈ [0,1]; off = 1; veto survives</span><span class="fl-c"><b>Scheduler + fills ledger</b> → quarterly shrunk impact refit (tighten fast, loosen on schedule)</span><span class="fl-c"><b>One daily page</b>, RAG header, dead-man de-risk; death certs; kill tiers; binding DD governor</span></div>
+  </div>
+</div>
+<p class="note">Three typed objects flow between layers — <b>Signal</b> (with half-life, decay
+class, capacity), <b>Target</b> (PolicyTarget only from policy/, PortfolioTarget only from
+construct/), <b>Order</b> — and eight kill-switches guard the seams. The full document follows,
+verbatim from the synthesis, including the judges' conflict resolutions, the 36-row changelog with
+sources, the 17-item rejected list, and the open questions.</p>
+
+<h2>0. Verdict and explicit conflict resolutions</h2>
+<p><strong>Base = the operations proposal</strong> (unanimous winner, 88/89/89): the only design that prices the desk's true binding resources — principal attention and the drawdown governor's operational reality — and the only one with a declared cut list and a graceful-degradation core. <strong>Grafted onto it, per the judges' must-keeps:</strong> the <strong>Challenger Protocol</strong> (anti-overfit) as the single uniform adaptivity-admission law; the <strong>LLM hypothesis provenance flag</strong> (ai-adaptive); the <strong>fast/slow split</strong> (ai-adaptive) as the standing design principle — fast layers (capture, monitoring, hypothesis generation, execution, decay measurement) adapt daily-to-monthly by rule; slow layers (block budgets, kill rules, governance, capital preservation) change only on scheduled dates, from strength, on grids.</p>
+<p>Conflicts resolved, with sides taken:</p>
+<ol>
+<li><strong>Adaptivity admission — scattered per-loop guardrails vs one protocol.</strong> Sided with anti-overfit (all three judges): every adaptive mechanism in v2 (rotation, CUSUM throttles, crowding multipliers, meta-label sizing, influence grids, cap reviews) routes state changes through the Challenger Protocol. Heterogeneous bespoke promotion rules are the 14-year drift surface.</li>
+<li><strong>Impact-refit cadence — monthly (anti-overfit, ai-adaptive) vs quarterly (operations).</strong> Sided with operations and judge 2: own-fill samples are too small for monthly fits. Judge 3's microstructure-break concern is answered with an asymmetric event path: the execution kill-switch may <strong>tighten</strong> participation caps immediately; <strong>loosening happens only at the scheduled quarterly refit</strong>.</li>
+<li><strong>skfolio rails and stacking inside <code>construct/</code> (ai-adaptive).</strong> Rejected, siding with judge 1 (stacking is signal combination, i.e. return-engine estimation — a Stage-3 scope violation) and judges 2–3 (14-year dependency risk). Patterns, not dependencies. Signal combination lives in <code>sleeves/</code> behind the funnel, with handcrafted rule-based weights as the permanent null.</li>
+<li><strong>PolicyTargets drawn as an output of construct (ai-adaptive diagram).</strong> Rejected as drawn (judge 1): PolicyTargets originate <strong>only</strong> in <code>policy/</code>; <code>construct/</code> emits PortfolioTargets only. The contract enforcer reads the diagram, so the diagram is now correct.</li>
+<li><strong>The Ilmanen-to-Kelly channel (flagged by all three judges as a judgment leak into Stage-1 sizing).</strong> Specified by rule: the quarterly Ilmanen dashboard maps to <strong>Kelly-numerator caps via a pre-registered, reduce-only grid function, applied only on the quarterly review date</strong>. Anything discretionary flows solely into the humans' asset-mix policy review memo — policy is already the humans' layer, and it is never optimized. Stage 1 stays rules+data only.</li>
+<li><strong>VineCopula synthetic stress paths as the governor's test suite (operations).</strong> Kept only as an engineering test that can <strong>fail</strong> code (verify the governor fires, find bugs), self-built via block bootstrap and historical replay; <strong>synthetic paths are inadmissible as evidence</strong> for calibration, promotion, or safety claims (judge 1's fence).</li>
+<li><strong>Ranges vs grids.</strong> "6–12 month" probations, the ±20 forecast cap, and the archive cap are restated as pre-registered grids (judge 1): probation length per decay class from a grid in trading days {126, 189, 252}; forecast cap chosen once from {15, 20, 25} via CPCV then frozen as the null; archive capacity as a count K on an annual-review grid with rank-based eviction (lowest pre-registered resurrection-priority score evicted first, logged).</li>
+<li><strong>Scope-cap ossification (judge 3 on operations).</strong> Caps stay, but the caps themselves are annually Challenger-reviewable — amendable only at the annual review, as pre-registered changes, never mid-year and never mid-drawdown.</li>
+<li><strong>"Green = skip" trained inattention (judge 3).</strong> Three countermeasures: the weekly 2-hour block includes reading the week's pages regardless of color; a quarterly alert-path drill injects a synthetic amber to test push delivery and the response menu (logged, no meeting); a dead-man switch — a RED page unacknowledged for T hours (T from a pre-registered grid) auto-de-risks one bucket rung.</li>
+<li><strong>The tight 18:30→20:30 daily window (judge 2).</strong> Degraded mode is wired into the schedule: if EOD capture or adapter validation misses the cutoff, the data kill-switch fires automatically — Stage 1 runs on the last-good snapshot AND de-risks one rung; the run is flagged on the daily page. Never trade unverified data.</li>
+<li><strong>The principal's TOPS score "has no consequence" (judge 2).</strong> Consequence defined: the influence grid applies symmetrically per contributor category — a falling believability score (Claude's or the principal's) steps that contributor's overlay influence back down the published grid toward zero. The principal's <strong>veto survives any score</strong> — veto is risk-reduction governance, not alpha.</li>
+<li><strong>Rhetorical overreach (judges on anti-overfit and ai-adaptive).</strong> Untestable claims ("2022 proves the frozen parts right", "every credible firm converged") are struck from normative content. The 2022 stock-bond break is <em>consistent with</em> fixed policy scaffolding; nothing in this document treats a single episode as proof.</li>
+<li><strong>Governance scope numbers (judge 1 on operations' raw numbers).</strong> The module ceiling, survivor cap, DSL type caps, and time budgets are declared <strong>scope caps, not fitted parameters</strong> — they bound what gets built, never what gets estimated; each sits on an annual-review grid and is Challenger-amendable.</li>
+</ol>
+<hr />
+<h2>1. Final architecture diagram</h2>
+<pre><code>                 +---------------------------------------------------------+
+                 | govern/  charters | CHALLENGER REGISTRY: every adaptive |
+                 |  rule in exactly one of {shadow|challenger|online};     |
+                 |  frozen v1 params = permanent null; promotion/demotion  |
+                 |  by pre-registered criteria, scheduled dates only |     |
+                 |  anti-capitulation lock | annual report + AGS review |  |
+                 |  scope caps (annually Challenger-reviewable)            |
+                 +----------------------------^----------------------------+
+                                              | states, sign-offs
+ +---------------------------------- data/ --------------------------------+
+ | capture/ WORM daemon -&gt; adapters/ (TET, vintage-stamped in transform)   |
+ |  -&gt; store/ bitemporal parquet (event_time, knowledge_time)              |
+ | entity/ ISIN master + PIT NIFTY-750 | breaks/ regulatory-break registry |
+ |  (&quot;insufficient post-break data&quot; is a valid answer)                     |
+ +--------------------+---------------------------------+------------------+
+              as-of API ONLY                     as-of API ONLY
+ +--------------------v---------------+  +--------------v------------------+
+ | harness/ THE ONE EVIDENCE MACHINE  |&lt;-| research/ funnel:               |
+ |  runner: YAML = experiment; same   |  |  T0 tearsheet -&gt; T1 sweep -&gt;    |
+ |  code path = backtest AND live     |  |  T2 bias-CI+CPCV/PBO replay -&gt;  |
+ |  recorder = TRIAL LEDGER (counts   |  |  T3 paper probation (grid by    |
+ |   BEFORE results; DSR by query)    |  |  decay class) -&gt; live, reduced  |
+ |  gates: bias-CI | CPCV/PBO/BCa |   |  | agentloop: Claude proposes,     |
+ |   capacity | cost-in-SR | death    |  |  trial-budget metered; &lt;=3      |
+ |   cert | LLM-provenance flag       |  |  survivors/wk to principal      |
+ |  rotation ledger (who-online-when) |  | archive/ capped, resurrection   |
+ +--------------------+---------------+  +---------------------------------+
+   promotes ONLY via Challenger states        ^ disagreements, ideas
+ +--------------------v---- STAGE 1 (autonomous, complete portfolio) ------+
+ | ladder/ 16 vars, FIXED budgets -&gt; R = median of pre-reg grid ensemble   |
+ |   + crowding/ (daily, reduce-only, outside budgets)                     |
+ |   + shadow GMM (log-only, non-trading)             | R bucket           |
+ | policy/ trigger/action file (&lt;=5 trigger/&lt;=6 action types): asset mix   |
+ |   within caps, per-book vol targets -&gt; leverage (&lt;=1.5x), hedge grid    |
+ |   0-150% (post-STT costs + SEBI FutEq hard ceiling; crisis-insurance    |
+ |   scored), tail throttle                            [PolicyTarget]      |
+ | sleeves/ 5 factors -&gt; sector-z -&gt; forecast currency (E|f|=10, grid cap) |
+ |   -&gt; Grinold alpha (grid IC, uniqueness-wtd) -&gt; class-conditional decay |
+ |   haircut -&gt; cost-netted alpha                      [Signal]            |
+ | construct/ ONE optimizer per book: net sleeves (paper books kept) -&gt;    |
+ |   xrisk factor caps + ex-ante TE vs Nifty 50 -&gt; sizing = min(frozen     |
+ |   cap, haircut-Kelly, buildable) x DD cushion       [PortfolioTarget]   |
+ +--------------------+-----------------------------------------------------+
+ +--------------------v----------+   +-------------------------------------+
+ | overlay/ Stage 2 (advisory,   |   | sentinel/ (subscriber, never inline)|
+ |  reduce-only, switchable)     |   |  dailypage: ONE page, RAG header;   |
+ |  tops/ scored paper trades    |   |   RED unack'd T hrs -&gt; auto de-risk |
+ |  (Claude AND principal, both  |   |  cusum/ + certs/ kill tiers by rule |
+ |  believability-scored)        |   |  attribution/ TC-by-constraint, IC, |
+ |  metalabel mult in [0,1];     |   |   netting bps, walk-forward tracks  |
+ |  off = pinned to 1; veto      |   |  governor/ BINDING drawdown (frozen)|
+ +--------------------+----------+   +----^--------------^-----------------+
+ +--------------------v----------+        | fills          | states, PnL
+ | exec/ scheduler (ADV caps,    |--------+                |
+ |  futures-first, ban/rebal     |-------------------------+
+ |  aware) -&gt; MARKET; fills/     |
+ |  ledger -&gt; quarterly impact   |
+ |  refit shrunk to sqrt prior   |
+ |  (tighten fast; loosen only   |
+ |  on schedule)                 |
+ +-------------------------------+
+ KILL-SWITCHES: governor | data-kill (last-good + de-risk one rung) | cert
+ tiers | overlay pin=1 | execution halt | anti-capitulation lock | harness
+ integrity (any read outside as-of API = inadmissible)
+ CADENCE: daily auto + 1 page | weekly 2h | monthly half-day | quarterly 2d
+ | annual 3d | event-driven by rule
+</code></pre>
+<p><strong>Typed objects (exactly three):</strong> <code>Signal</code> (direction, magnitude, confidence, half-life/expiry, decay class, capacity per book), <code>Target</code> (two scopes: PolicyTarget emitted only by <code>policy/</code>; PortfolioTarget emitted only by <code>construct/</code>), <code>Order</code>.</p>
+<p><strong>Daily production order:</strong> capture → store append → ladder (ensemble R, crowding, shadow log) → policy grammar emits PolicyTargets → sleeves emit Signals → construct (net, constrain, size) emits the complete Stage-1 portfolio → overlay multiplier if on (∈[0,1], veto) → exec scheduler → fills ledger → sentinel. The same code path pointed at historical as-of dates IS the backtest.</p>
+<hr />
+<h2>2. Module-by-module spec</h2>
+<p>Eleven top-level modules — the ceiling, not the floor (annually reviewable). Owner legend: <strong>auto</strong> = runs unattended; <strong>Claude</strong> = agent operates/maintains/drafts; <strong>principal</strong> = human decision or signature.</p>
+<h3>2.1 <code>data/</code> — capture, adapters, store, entity, breaks</h3>
+<p><strong>Job:</strong> make lookahead structurally impossible and compound the desk's only appreciating asset (the PIT archive). <strong>Inputs:</strong> every free source (v1 set + AMC portfolios, participant OI, MWPL/ban, bulk/block deals, insider/SAST/pledge with dissemination timestamps, rating press releases, DPI exhaust: GST, e-way, UPI, Grid-India power, PPAC fuel, VAHAN, DCA food, F&amp;O bhavcopy option chains). <strong>Outputs:</strong> the single <code>as_of(date)</code> API every other module reads through. <strong>Cadence:</strong> daily capture; weekly capture-health line; event-driven break entries. <strong>Owner:</strong> auto; Claude repairs fetchers same-day and drafts break entries; principal signs new-source scorecards and break entries.
+- WORM daemon → one TET adapter per source, vintage-stamped inside the final transform so nothing lands unstamped; a format break is a one-file fix.
+- Bitemporal parquet: every row carries (event_time, knowledge_time, source_version); corrections append, never overwrite. Backtests, live Stage 1, bias CI, and the recorder all read the same API.
+- Entity master: ISIN-keyed; survivorship-free NIFTY-750 membership reconstructed once from dated NSE Indices press releases.
+- <code>breaks/</code>: dated SEBI/structural registry (STT Oct-2024, expiry moves 2025, FutEq limits Oct-2025, Algo-ID Apr-2026, GDP base-year revision ~2026). Auto-segments affected backtests; may answer "insufficient post-break data".
+- New sources: Denev–Amen due-diligence scorecard + live-capture probation on a pre-registered grid (by class, trading days {126, 189, 252}) before their history is admissible. Kaggle/HF exploration-only.</p>
+<h3>2.2 <code>harness/</code> — the one evidence machine</h3>
+<p><strong>Job:</strong> be the only path by which anything becomes evidence. <strong>Inputs:</strong> YAML experiment configs; as-of data. <strong>Outputs:</strong> recorded runs (params, vintage hash, code hash, grid size, metrics + BCa CIs); Challenger state reads; the trial ledger. <strong>Cadence:</strong> continuous. <strong>Owner:</strong> auto; Claude authors configs; principal approves pre-registrations at the weekly gate.
+- Recorder = trial ledger: every run — including abandoned agent attempts and every sweep cell — auto-registers BEFORE results are viewed; DSR trial counts derived by query, never self-reported. Pre-registered trial budget per quarterly research cycle; when spent, the funnel halts until the next cycle (no borrowing).
+- Mandatory gates: adversarial bias CI (chained truncated-backtest diffing + warm-up sufficiency — catches code-level lookahead vintage manifests cannot see; a net, not a proof); CPCV + PBO (grid {0.1, 0.25, 0.5}) with uniqueness weights wherever labels overlap; no naked Sharpe anywhere; capacity line and cost-in-SR speed limit per book; death certificate completeness; <strong>LLM-provenance flag</strong> — LLM-sourced hypotheses are marked at registration and require post-training-cutoff / out-of-corpus validation windows, because pretraining contamination makes the agent's priors themselves lookahead.
+- Harness-integrity kill-switch: any run reading outside the as-of API fails CI and is inadmissible by construction. Discipline in CI, not in virtue.
+- Rotation ledger: which fitted parameter set/sleeve version is online at every date; the rotation policy itself is replayable and backtestable; rolling refits cross-window-ensembled (soft hysteresis), validated against — never inside — the fixed-budget regime score; every rolling window counts as a trial.
+- Research/production parity: the same runner emits backtests and the live Stage-1 run.</p>
+<h3>2.3 <code>ladder/</code> — risk engine (Stage 1 top-down; v1 core kept)</h3>
+<p><strong>Job:</strong> the 16-variable cycle ladder → regime score R → bucket. <strong>Inputs:</strong> as-of ladder inputs. <strong>Outputs:</strong> R, bucket, crowding states, shadow logs. <strong>Cadence:</strong> daily. <strong>Owner:</strong> auto; any rule change is principal-signed via Challenger.
+- Kept frozen: 16 variables, fixed block budgets (0.25/0.20/0.20/0.20/0.10/0.05), Tier-C reduce-only clamp, 4 buckets, Hamilton-never-HP, &lt;10-transitions rule.
+- <strong>R = median of an ensemble of pre-registered grid variants</strong> of the same ladder; within-block weights drift only inside pre-registered bounds, shrunk to the frozen prior, with hysteresis. First response to detected drift is uncertainty-widening/de-risking via the existing buckets — never refitting.
+- <strong><code>crowding/</code></strong> (new, daily, reduce-only, outside the frozen budgets like Tier-C): per-sleeve valuation spreads, futures OI, AMFI factor-fund flows/AUM, MF-portfolio concentration, correlation spikes, stress-test days-to-liquidate. Throttle only; doubles as the resurrection gate. India momentum is its first customer.
+- New inputs within existing budgets, Tier-C reduce-only until self-validated through the funnel: DPI nowcast factor (RBI WPS 03/2020 replication) → macro-credit; rating-action diffusion + CCIL corporate spreads → credit-cycle state; participant OI z-scores, MWPL ban breadth, self-computed IV surface → fast-stress/sentiment; SIP stoppage, demat additions, IPO pipeline → valuation/sentiment.
+- Cross-country sign-consistency gate for any new cycle rule (India has ~3 credit cycles; borrow US/EM via FRED/BIS — sign consistency on a grid, never effect-size equality).
+- Shadow GMM: non-trading daily posterior log beside R; disagreements feed the research queue; promotion path, if ever, only after years of live log and 10+ observed transitions, reduce-only, via Challenger.</p>
+<h3>2.4 <code>policy/</code> — regime → book policy as executable data</h3>
+<p><strong>Job:</strong> turn R buckets into book policy mechanically. <strong>Inputs:</strong> R/bucket, breaks registry, cost curves. <strong>Outputs:</strong> PolicyTargets (asset mix within debt≤70%/gold≤50%, per-book vol targets with leverage derived within the frozen ≤1.5x, hedge grid 0–150%, tail throttle). <strong>Cadence:</strong> daily evaluation; amendments only on scheduled reviews. <strong>Owner:</strong> auto execution; the policy file's content is principal-owned (signed amendments with diff + historical replay + ledger entry).
+- Tiny trigger/action grammar (≤5 trigger types, ≤6 action types) — versioned, diffable, replayable.
+- <code>hedgegrid/</code> as a cost-and-capacity-constrained object: post-STT per-instrument cost curves; SEBI delta-based FutEq position limits (net ₹5,000cr / gross ₹10,000cr) as a hard ceiling from <code>breaks/</code> — the Conservative book discovers in design, not in a crisis, when 150% futures hedging is regulatorily infeasible, and substitutes option spreads or gross reduction.
+- Trend/TSMOM block and hedge grid scored in <strong>crisis-insurance currency</strong>: payoff in worst-decile NIFTY months net of bleed, with India-specific bleed (STT, roll costs) validated first — the metric the binding drawdown constraint actually grades.</p>
+<h3>2.5 <code>sleeves/</code> — return engine</h3>
+<p><strong>Job:</strong> the five factor sleeves → commensurable, self-shrinking, cost-netted alphas. <strong>Inputs:</strong> as-of universe per book, prices/fundamentals/flows. <strong>Outputs:</strong> Signal objects. <strong>Cadence:</strong> daily scoring; quarterly half-life refits within grids. <strong>Owner:</strong> auto; Claude maintains; changes via Challenger.
+- Flow order: sector-relative z option per sleeve (pre-registered choice) → forecast currency (vol-standardized, estimated scalar so E|f|=10; cap from grid {15, 20, 25} confirmed once via CPCV then frozen as null; handcrafted rule-based combination weights) → Grinold alpha = residual vol × grid-IC ({0.02, 0.05, 0.10}) × score, uniqueness-weighted realized IC with hysteresis → class-conditional decay haircut (mechanical sleeves — momentum, reversal, low-vol — steeper haircuts and shorter review clocks than judgment sleeves; half-life re-estimation shrinks toward the class prior) → cost-netted alpha (expected round-trip cost subtracted before ranking).
+- New conditioning variables (published effects, haircut, own death certificates): pledge-change exclusion/negative, insider-net-buy positive, MF-crowding penalty on momentum sizing. Flow-signal block (index-rebalance mechanics, SIP persistence, FPI rotation) is the pre-registered next research cycle, not a day-1 build.
+- Two-tier admission: rationale-backed vs statistics-only; statistics-only sleeves confined to the Aggressive book's short-horizon sleeves with lower weight caps and hair-trigger certs.
+- Admission matrix per book: a sleeve trades in a book only if its capacity line clears zero net of impact at that AUM and its cost-in-SR speed limit is met — mechanically excludes ST reversal from Conservative by rule.</p>
+<h3>2.6 <code>construct/</code> — Stage 3 (equity cross-section only, frozen)</h3>
+<p><strong>Job:</strong> one integrated optimizer per book. <strong>Inputs:</strong> Signals, PolicyTargets, Ledoit-Wolf covariance, cost model. <strong>Outputs:</strong> PortfolioTargets — the complete Stage-1 portfolio. <strong>Cadence:</strong> daily target recompute vs drift bands; weekly rebalance heartbeat. <strong>Owner:</strong> auto.
+- Kept: dispersion-set name count, 5–6% entries, ~10% drift bands (buffered around the optimal position), sizing = min(frozen cap, haircut-Kelly, buildable-within-half-life) × drawdown cushion, characteristic portfolios + Ledoit-Wolf for risk budgeting.
+- <code>netting/</code>: all sleeves net into ONE optimizer per book before any order exists; internal crossings never hit the market (free alpha at 22.3bps round trip); sleeve-level paper books retained so the decay ledger keeps its evidence base.
+- <code>xrisk/</code> (the missing box in v1): thin cross-sectional risk model — grid-defined sector/size/beta bands and central factor caps (market beta, size, five sleeves, rates/INR sensitivity) as hard pre-trade constraints, so stock selection cannot smuggle macro bets that belong to the policy layer; <strong>ex-ante tracking error vs Nifty 50</strong> from the existing Ledoit-Wolf stack, reported beside the governor. Bands set wide from historical sleeve-exposure grids; binding frequency reviewed annually; never tightened ad hoc.
+- Buildable cap parameterized by MF small/midcap stress-test days-to-liquidate for ranks 250–750 (state input only; history too short to fit).</p>
+<h3>2.7 <code>overlay/</code> — Stage 2 as internal TOPS + meta-labeling (frozen posture)</h3>
+<p><strong>Job:</strong> make judgment falsifiable and structurally reduce-only. <strong>Inputs:</strong> the complete Stage-1 portfolio; suggestions from Claude and the principal. <strong>Outputs:</strong> size multiplier ∈[0,1]; off = pinned to 1; human veto retained. <strong>Cadence:</strong> nightly scoring; influence step reviews semi-annual at most. <strong>Owner:</strong> Claude and principal as symmetrically scored contributors; auto scoring; principal signs influence steps.
+- Every suggestion is a standardized timestamped paper trade (direction, size, horizon, rationale tag) scored against the Stage-1-only counterfactual — the Stage1-vs-Stage1+2 experiment runs continuously by construction.
+- Influence is a published grid function of rolling scored hit-rate by category, starting at zero; N=2 means long windows and deflated significance before any step-up. <strong>Both believability scores can fall, with the same consequence: influence steps back toward zero.</strong> Veto survives any score.
+- Meta-labeling is the eventual systematic form: multiplier in [0,1] on Stage-1 sizes, mathematically incapable of adding exposure; trains only once years of non-overlapping Stage-1 outcomes exist; until then it paper-trades in <code>tops/</code>.
+- Text features only via chrono-consistent LLM checkpoints (vintage-stamped like data, entity-anonymized), deferred to year 2 behind an Indian-entity coverage/leakage audit. Frontier-model backtests stay inadmissible.</p>
+<h3>2.8 <code>exec/</code> — execution and the desk's only proprietary dataset</h3>
+<p><strong>Job:</strong> implement targets cheaply; learn from own fills. <strong>Inputs:</strong> PortfolioTargets (post-overlay), ADV/ban/rebalance calendars. <strong>Outputs:</strong> Orders, fills ledger, impact coefficients. <strong>Cadence:</strong> daily scheduling; quarterly impact refit; event-driven kill. <strong>Owner:</strong> auto within pre-set parameters; Claude monitors; principal reviews quarterly.
+- Deterministic scheduler: entries spread over N days at ≤X% ADV (grids), futures-first for hedge changes, never initiate into MWPL-ban names, avoid supplying liquidity into index-reconstitution days (Conservative).
+- Fills ledger from day one: arrival price, participation, spread, realized impact vs the sqrt prior.
+- Quarterly impact refit <strong>shrunk toward the sqrt prior</strong>; benign months may never loosen participation caps; the execution kill may tighten immediately, loosening only on schedule. Statutory cost tables versioned via <code>breaks/</code> (the 5.7bps futures figure is already stale post-STT).</p>
+<h3>2.9 <code>sentinel/</code> — monitoring as a subscriber, surfaced as one page</h3>
+<p><strong>Job:</strong> monitoring somebody actually reads; kills that fire by rule. <strong>Inputs:</strong> all pipeline outputs (subscriber, never inline). <strong>Outputs:</strong> the daily page; alarms; cert executions; monthly attribution pack. <strong>Cadence:</strong> daily page; monthly pack; event-driven certs. <strong>Owner:</strong> auto; Claude authors the page; principal reads (≤10 min, often 0).
+- <code>dailypage/</code>: ONE fixed-format page, RAG header. Green = principal may skip; push only on amber/red with a pre-registered response menu. Contents: capture health; R + bucket + policy stance + triggers fired; crowding; CUSUM alarms; governor headroom + ex-ante TE vs Nifty 50; slippage vs model; overlay paper P&L; open exceptions. Dead-man switch: RED unacknowledged for T hours (grid) → auto de-risk one rung. Quarterly alert-path drill (synthetic amber) tests the push channel.
+- <code>cusum/</code>: per-sleeve sequential monitors on live alpha, thresholds calibrated on own block-bootstrapped history; reduce-only sizing overlay decoupled from entries.
+- <code>certs/</code>: death certificates at birth for every deployed signal (drawdown budget by rationale tier, live-vs-backtest Sharpe floor, hit-rate floor, crowding ceiling, resurrection criteria); kill tiers fire by rule: down-weight → quarantine → retire → archive. Horizon-matched: hard mechanical stops for fast/statistics-only sleeves; evidence-based structural review (decay indicators, crowding, cost creep — never raw PnL) for slow factor sleeves. Certs retro-registered for already-live v1 sleeves during migration.
+- <code>attribution/</code> (monthly, auto): uniqueness-weighted realized IC per sleeve; <strong>Transfer Coefficient per book decomposed by which constraint destroyed the signal</strong> ("IC decayed: retire" vs "TC collapsed: fix plumbing"; Conservative's structurally low TC is a design fact); QEPM factor attribution feeding the decay ledger from the desk's own books; netting savings in bps; crisis-insurance metric; <strong>walk-forward concatenation from each signal's registration date as its only standing evidence — never re-run backtests</strong>.
+- <code>governor/</code>: the frozen binding drawdown governor, unchanged; its test suite is historical replay + own block bootstrap, fenced as test-only (can fail code, never validate safety).</p>
+<h3>2.10 <code>research/</code> — the funnel and the bounded agent loop</h3>
+<p><strong>Job:</strong> turn AI throughput into a bounded, metered discovery process. <strong>Inputs:</strong> hypotheses (provenance-tagged), archive, shadow disagreements, breadth budget. <strong>Outputs:</strong> pre-registered survivors; graduated signals; archive updates. <strong>Cadence:</strong> continuous T0–T2; weekly triage; quarterly budget reset. <strong>Owner:</strong> Claude runs T0–T2 autonomously; principal is the weekly gate.
+- Tiers, each auto-taxing the trial ledger: T0 tear sheet (IC decay, quantile spreads, turnover — kills most ideas in minutes) → T1 vectorized sweep (grid size auto-logged) → T2 harness replay with statutory costs + bias CI + CPCV/PBO → T3 paper probation against live capture (length from the decay-class grid) → live at reduced weight per pre-registered schedule.
+- Registration fields per candidate: rationale tier, decay class, capacity lines per book, cost-in-SR estimate, death certificate, <strong>hypothesis provenance</strong> (LLM-sourced → post-cutoff validation windows).
+- The principal sees ≤3 pre-registered survivors per week with full gate reports; approves, vetoes, or returns.
+- <code>archive/</code>: retired signals paper-trade with pre-registered resurrection criteria (fresh OOS evidence + cleared crowding); capacity K on an annual-review grid with rank-based eviction; resurrection tests count as trials.</p>
+<h3>2.11 <code>govern/</code> — charters, locks, reports, Challenger registry</h3>
+<p><strong>Job:</strong> the slow layer — rules about changing rules. <strong>Inputs:</strong> ledgers. <strong>Outputs:</strong> signed charters, Challenger state transitions, annual report. <strong>Cadence:</strong> quarterly/annual/event. <strong>Owner:</strong> principal owns; Claude drafts everything from ledger data.
+- <strong>Challenger registry (the single adaptivity-admission law):</strong> every adaptive rule exists in exactly one of {shadow: logged, zero influence | challenger: paper-traded against the frozen incumbent with pre-registered win criteria — DSR of the difference, PBO, bootstrap CI excluding zero | online: reduce-only first, full grid weight only after a second review}. Demotion symmetric and rule-driven. Promotions only on scheduled review dates (calendar fixed a year ahead). <strong>Frozen v1 parameters are the null hypothesis forever.</strong> Enforced by harness: a rule not marked online cannot influence production (CI check).
+- <strong>Anti-capitulation lock (mechanical):</strong> no parameter/budget/structure change may be <em>initiated</em> while the affected sleeve is beyond a grid-defined drawdown depth; executing pre-registered rules (governor, certs) is always allowed; changing rules mid-pain never is.
+- ML/AI charter: ML admissible where data is abundant and feedback fast (execution, covariance/cost estimation, monitoring anomaly detection, research tooling, feature combination within admitted sleeves); disallowed for low-sample macro/regime prediction except non-trading shadows; chrono-checkpoints the only text path. Amended annually, pre-registered.
+- Quarterly: Ilmanen three-lens expected-returns dashboard → Kelly-numerator caps via the pre-registered reduce-only mapping; carry-like vs crisis-convex tag per sleeve and net bad-times beta beside the governor; memo to the humans' asset-mix policy review (informs, never optimizes, never times); trial-budget close-out; Challenger review date.
+- Annual: Report on the Management of the Books (auto-drafted; each book decomposed into policy mix vs Stage-3 tilts vs Stage-2 overlay vs execution, each layer against its pre-registered null; tilts must be self-funding vs policy); breadth budget (the ladder is ~one bet per cadence; the 750-name cross-section holds nearly all breadth; allocate research hours by marginal breadth × attainable IC); scope-cap and charter review; dataset scorecard review; archive purge. Principal signs exceptions in writing.
+- Event: after any &gt;20% NIFTY drawdown episode ends, the Ang–Goetzmann–Schaefer decomposition on own active returns runs from the stored template (was "alpha" hidden beta?) — post-episode, never mid-episode.</p>
+<h3>The runbook (principal attention budget: ~30 min/day → 0 most days, 2h/week, half-day/month, 2 days/quarter, 3 days/year)</h3>
+<ul>
+<li><strong>Daily (auto):</strong> 18:30 IST capture → validation → store; 19:30 ladder/policy/sleeves/construct/overlay-scoring/CUSUM; 20:30 dailypage publishes. Validation miss at cutoff = data kill-switch fires automatically (last-good + de-risk one rung, flagged). Claude repairs fetchers, reruns jobs, files exceptions.</li>
+<li><strong>Weekly (2h):</strong> rebalance heartbeat; research triage of ≤3 survivors; overlay scorecard paragraph; the week's daily pages read regardless of color.</li>
+<li><strong>Monthly (half-day):</strong> attribution pack; decay-ledger review (fired certs confirmed executed, not debated); rotation entries.</li>
+<li><strong>Quarterly (2 days):</strong> impact refit; capacity re-audit; half-life re-estimation; Ilmanen dashboard; trial-budget reset; Challenger review; alert drill.</li>
+<li><strong>Annual (3 days):</strong> report, breadth budget, charters, scope caps, archive purge.</li>
+<li><strong>Event:</strong> SEBI circular → break entry (Claude drafts, principal signs); kill tiers fire without meetings; post-drawdown AGS review.</li>
+</ul>
+<h3>Kill-switch battery</h3>
+<ol>
+<li>Drawdown governor (frozen, binding). 2. Data kill: capture/vintage failure → last-good snapshot AND de-risk one rung; never trade unverified data. 3. Signal kill tiers per certs. 4. Overlay kill: hit-rate floor breach or evidence contamination → multiplier pinned to 1. 5. Execution kill: slippage &gt; grid-multiple for N days → halt non-essential trades (policy hedging continues); may tighten caps immediately. 6. Anti-capitulation lock. 7. Harness integrity: reads outside the as-of API are inadmissible by construction. 8. Dead-man: unacknowledged RED page for T hours → auto de-risk one rung.</li>
+</ol>
+<h3>Migration order (each step ships value alone)</h3>
+<p>Q1: capture + adapters + as-of store for revision-prone series; harness runner/recorder (with LLM-provenance field from day one); dailypage; <strong>Challenger registry stood up with frozen v1 parameters enrolled as permanent nulls</strong>. Q2: harness gates (bias CI, CPCV/PBO); netting + xrisk + TE; exec scheduler + fills; <strong>death certs retro-registered for live v1 sleeves</strong>. Q3: forecast currency + Grinold + class priors; policy grammar + hedge-grid rebuild; crowding; admission matrix. Q4: TOPS overlay scoring; funnel + agentloop at full meter; first annual report; entity master completion. Year 2+: metalabel training accrual; chrono-LLM audit; flow-signal research cycle; DPI nowcast validation.</p>
+<h3>Minimum module set (if the build stalls)</h3>
+<p><code>data/capture+store</code>, <code>harness/</code>, the unchanged v1 Stage 1 (ladder→policy→sleeves→construct), <code>exec/scheduler+fills</code>, <code>sentinel/dailypage+certs+governor</code>. The Challenger registry's degenerate state — nothing adapts, frozen nulls run — is the safe default. Everything else is a compounding upgrade; the desk does not survive silent data rot, uncounted trials, or monitoring nobody reads.</p>
+<hr />
+<h2>3. Feedback-loop table</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Loop</th>
+<th>Trigger</th>
+<th>Cadence</th>
+<th>May change</th>
+<th>May NEVER change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FL1</td>
+<td>Fills → impact model → sizing/capacity</td>
+<td>Scheduled refit; execution kill (tighten path)</td>
+<td>Quarterly; event tighten-only</td>
+<td>Impact coefficient (shrunk to sqrt prior); participation caps DOWN</td>
+<td>Loosening caps off-schedule; statutory cost tables (breaks/ only); frozen turnover caps</td>
+</tr>
+<tr>
+<td>FL2</td>
+<td>Attribution/IC/TC → decay ledger → haircuts</td>
+<td>Monthly pack; quarterly refit date</td>
+<td>Monthly diagnose, quarterly act</td>
+<td>Per-sleeve haircut/half-life within class-prior shrinkage + hysteresis</td>
+<td>Block budgets; sleeve roster (one-in-one-out via funnel only); estimation standards</td>
+</tr>
+<tr>
+<td>FL3</td>
+<td>CUSUM alarms → sizing</td>
+<td>Self-calibrated thresholds</td>
+<td>Daily</td>
+<td>Position sizes down (decoupled from entries)</td>
+<td>Adding exposure; entry logic; the CUSUM rule itself (Challenger only)</td>
+</tr>
+<tr>
+<td>FL4</td>
+<td>Crowding → sleeve throttle + resurrection gate</td>
+<td>Grid thresholds</td>
+<td>Daily</td>
+<td>Sleeve size down; block a resurrection</td>
+<td>Adding exposure; entering the frozen block budgets</td>
+</tr>
+<tr>
+<td>FL5</td>
+<td>TOPS hit-rates → overlay influence grid</td>
+<td>Scheduled review only</td>
+<td>Semi-annual step-ups</td>
+<td>Influence step per published grid, up or down to zero, per contributor</td>
+<td>Hard cap; reduce-only structure; veto; off=1; Stage-1 contents</td>
+</tr>
+<tr>
+<td>FL6</td>
+<td>Recorder → DSR trial counts</td>
+<td>Every run</td>
+<td>Continuous</td>
+<td>Nothing (measurement only)</td>
+<td>Counts edited or self-reported; runs outside the harness</td>
+</tr>
+<tr>
+<td>FL7</td>
+<td>Rotation ledger → online parameter set</td>
+<td>Scheduled rotation dates via Challenger</td>
+<td>Quarterly</td>
+<td>Which pre-registered variant is online (cross-window ensembled)</td>
+<td>Fixed budgets; anything outside the pre-registered grid; off-schedule swaps</td>
+</tr>
+<tr>
+<td>FL8</td>
+<td>Ilmanen dashboard → Kelly-numerator caps</td>
+<td>Quarterly review date</td>
+<td>Quarterly</td>
+<td>Numerator caps DOWN via pre-registered mapping; memo to policy review</td>
+<td>Raising numerators intra-quarter; acting as a timing signal; mechanical asset-mix changes</td>
+</tr>
+<tr>
+<td>FL9</td>
+<td>TC-by-constraint → plumbing fixes</td>
+<td>Monthly pack</td>
+<td>Monthly diagnose; fixes via pre-registration</td>
+<td>Execution/constraint plumbing through Challenger</td>
+<td>Loosening frozen caps or the governor to raise TC</td>
+</tr>
+<tr>
+<td>FL10</td>
+<td>Death certs → kill tiers</td>
+<td>Cert conditions met</td>
+<td>Event (checked daily)</td>
+<td>Down-weight → quarantine → retire → archive</td>
+<td>Debating a fired cert; raw-PnL kills for slow sleeves; resurrection outside pre-registered criteria</td>
+</tr>
+<tr>
+<td>FL11</td>
+<td>Capture health → data kill</td>
+<td>Validation failure at cutoff</td>
+<td>Event</td>
+<td>Run on last-good AND de-risk one rung</td>
+<td>Trading unverified data; skipping the de-risk</td>
+</tr>
+<tr>
+<td>FL12</td>
+<td>Breaks registry → segmentation + ceilings</td>
+<td>Dated SEBI/structural event</td>
+<td>Event</td>
+<td>Backtest segmentation; hedge-grid ceilings; cost tables</td>
+<td>Forcing fits on short post-break samples</td>
+</tr>
+<tr>
+<td>FL13</td>
+<td>Shadow GMM disagreements → research queue</td>
+<td>Logged divergence episodes</td>
+<td>Semi-annual review</td>
+<td>Research queue entries</td>
+<td>Any trading influence; touching R; promotion before 10+ observed transitions</td>
+</tr>
+<tr>
+<td>FL14</td>
+<td>Challenger reviews → adaptive-rule states</td>
+<td>Scheduled review dates only</td>
+<td>Quarterly/annual per rule class</td>
+<td>State transitions per pre-registered win/demote criteria</td>
+<td>Deleting the frozen null; off-schedule promotion; initiation mid-drawdown</td>
+</tr>
+<tr>
+<td>FL15</td>
+<td>Breadth budget → research agenda</td>
+<td>Annual review</td>
+<td>Annual</td>
+<td>Research-hour allocation</td>
+<td>Gate standards; raising trial budgets mid-year</td>
+</tr>
+<tr>
+<td>FL16</td>
+<td>Scope-cap review → module/sleeve/object ceilings</td>
+<td>Annual review via Challenger</td>
+<td>Annual</td>
+<td>The caps (with retirement offsets)</td>
+<td>Mid-year additions; removing the minimum module set</td>
+</tr>
+<tr>
+<td>FL17</td>
+<td>Governor → exposure</td>
+<td>Drawdown thresholds</td>
+<td>Daily, binding</td>
+<td>Exposure down per policy</td>
+<td>Its thresholds/ceiling — relaxation never</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. Changelog vs pipeline v1</h2>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>Borrowed from</th>
+<th>Survival / anti-overfit note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitemporal PIT store + single as-of API over WORM capture + TET adapters</td>
+<td>operations (pattern in all three)</td>
+<td>Lookahead structurally impossible; the PIT archive compounds while signals decay</td>
+</tr>
+<tr>
+<td>Regulatory-break registry</td>
+<td>all three</td>
+<td>May answer "insufficient post-break data" — never forces a fit</td>
+</tr>
+<tr>
+<td>Harness: recorder IS the trial ledger; auto-count before results viewed; DSR by query</td>
+<td>all three (anti-overfit wording)</td>
+<td>Registration as a side effect of execution is the only 14-year-durable pre-registration</td>
+</tr>
+<tr>
+<td>Research/production parity (one runner for backtest and live)</td>
+<td>operations</td>
+<td>One code path to audit; kills live-vs-backtest mismatch</td>
+</tr>
+<tr>
+<td>Adversarial bias CI stage-gate</td>
+<td>all three</td>
+<td>Catches code-level lookahead at AI-codegen scale; a net, not a proof</td>
+</tr>
+<tr>
+<td>CPCV+PBO+BCa gates; no naked Sharpe; uniqueness weights</td>
+<td>all three</td>
+<td>The overfit gate that scales with agentic throughput</td>
+</tr>
+<tr>
+<td>Harness-integrity kill-switch</td>
+<td>operations</td>
+<td>Discipline in CI, not in virtue</td>
+</tr>
+<tr>
+<td>Challenger Protocol as single adaptivity law</td>
+<td>anti-overfit (grafted per all judges)</td>
+<td>Frozen v1 = permanent null; adaptivity enters only as a falsifiable challenger on scheduled dates</td>
+</tr>
+<tr>
+<td>LLM hypothesis provenance flag + post-cutoff validation</td>
+<td>ai-adaptive</td>
+<td>The agent's priors are lookahead; contamination fenced at registration</td>
+</tr>
+<tr>
+<td>Pre-registered trial budget per cycle; funnel halts when spent</td>
+<td>ai-adaptive/all</td>
+<td>Stops DSR becoming a rejection machine that tempts standard-lowering</td>
+</tr>
+<tr>
+<td>Funnel T0–T3 + metered agent loop; ≤3 survivors/week to principal</td>
+<td>operations</td>
+<td>Kill-fast tiers tax the ledger; the human gate stays bounded</td>
+</tr>
+<tr>
+<td>Death certs at birth; horizon-matched retirement; capped archive w/ rank eviction; retro-registered for live sleeves</td>
+<td>all three (retro: operations)</td>
+<td>No fresh debate in pain; no puking value at the bottom; resurrections are trials</td>
+</tr>
+<tr>
+<td>Two-tier admission + class-conditional decay priors</td>
+<td>all three</td>
+<td>Mechanical recipes crowd and die first; priors match the failure mode</td>
+</tr>
+<tr>
+<td>R = ensemble median of pre-registered grid variants; drift → de-risk, never refit</td>
+<td>all three</td>
+<td>Diversity insurance without fitted regime models</td>
+</tr>
+<tr>
+<td>Daily reduce-only crowding monitor, outside budgets, resurrection gate</td>
+<td>all three</td>
+<td>Throttle-only; unwinds are the likeliest governor violators</td>
+</tr>
+<tr>
+<td>Shadow GMM non-trading logger</td>
+<td>all three</td>
+<td>Hedges ladder staleness without violating the &lt;10-transitions rule</td>
+</tr>
+<tr>
+<td>New ladder inputs (DPI nowcast, credit diffusion, OI/IV, SIP/demat) Tier-C reduce-only</td>
+<td>all three</td>
+<td>Budgets fixed; each input is its own registered trial</td>
+</tr>
+<tr>
+<td>Policy as versioned trigger/action data (≤5/≤6 types); per-book vol targets, leverage derived</td>
+<td>all three</td>
+<td>Amendments get diffs and replays instead of silent prose drift; frozen 1.5x intact</td>
+</tr>
+<tr>
+<td>Hedge grid cost- and FutEq-constrained; crisis-insurance scoring net of India-validated bleed</td>
+<td>all three</td>
+<td>Infeasibility discovered in design, not in the crisis the binding constraint grades</td>
+</tr>
+<tr>
+<td>Forecast currency (estimated scalar; cap on grid) → Grinold alpha (grid IC, uniqueness-weighted) → cost-netted alpha</td>
+<td>all three (grid discipline per judge flags)</td>
+<td>Alphas self-shrink as IC decays; conventions confirmed once on grids then frozen as nulls</td>
+</tr>
+<tr>
+<td>Sector-z option + pledge/insider/MF-crowding conditioners</td>
+<td>all three</td>
+<td>Published effects, haircut, own death certificates</td>
+</tr>
+<tr>
+<td>Netting into one optimizer per book; sleeve paper books retained</td>
+<td>all three</td>
+<td>Free alpha at 22.3bps; decay ledger keeps its evidence base</td>
+</tr>
+<tr>
+<td>Thin xrisk model: factor caps + ex-ante TE vs Nifty 50 beside governor</td>
+<td>all three</td>
+<td>Engine sees the benchmark-relative constraint; no smuggled macro bets; caps never tightened ad hoc</td>
+</tr>
+<tr>
+<td>Buildable cap from MF stress-test days-to-liquidate</td>
+<td>all three</td>
+<td>State input only — history too short to fit</td>
+</tr>
+<tr>
+<td>Stage 2 = TOPS + meta-label [0,1]; both parties scored, falling score pins influence to zero</td>
+<td>all three (symmetry: operations; consequence: synthesis)</td>
+<td>Judgment becomes falsifiable and reduce-only by construction; veto survives</td>
+</tr>
+<tr>
+<td>Chrono-consistent checkpoints as only text path, year 2, audit-gated</td>
+<td>all three</td>
+<td>Text models vintage-stamped like data; frontier backtests stay banned</td>
+</tr>
+<tr>
+<td>Exec module: scheduler + fills ledger + quarterly shrunk impact refit, tighten-fast/loosen-on-schedule</td>
+<td>operations (cadence per judge 2)</td>
+<td>Own fills are the only proprietary data; benign months can never loosen caps</td>
+</tr>
+<tr>
+<td>Sentinel: one-page RAG + dead-man de-risk + self-calibrated CUSUM + TC-by-constraint + walk-forward-only evidence</td>
+<td>operations + anti-overfit WF rule</td>
+<td>Monitoring someone reads; "retire" vs "fix plumbing" separated; never re-run backtests</td>
+</tr>
+<tr>
+<td>Kill-switch battery incl. data kill wired into the daily schedule</td>
+<td>operations + judge-2 fix</td>
+<td>Every failure mode has a pre-registered reflex; never trade unverified data</td>
+</tr>
+<tr>
+<td>Anti-capitulation lock; ML charter; annual Report w/ per-layer nulls; AGS template; breadth budget</td>
+<td>all three</td>
+<td>Changes only from strength on scheduled dates; layers graded against their own nulls</td>
+</tr>
+<tr>
+<td>Ilmanen → Kelly channel specified as rule-based reduce-only grid mapping</td>
+<td>synthesis (resolving all three judges)</td>
+<td>Closes the judgment leak into Stage-1 sizing</td>
+</tr>
+<tr>
+<td>Rotation ledger, backtestable rotation policy, cross-window ensembling</td>
+<td>all three</td>
+<td>The when-to-swap meta-decision is auditable and its trials counted</td>
+</tr>
+<tr>
+<td>Cross-country sign-consistency gate + source scorecard + probation on grids</td>
+<td>all three (grids per judge 1)</td>
+<td>Raises effective sample honestly; sign consistency, not effect-size equality</td>
+</tr>
+<tr>
+<td>Scope caps as standing policy, annually Challenger-reviewable</td>
+<td>operations + judge-3 amendment</td>
+<td>Ops overload kills 2-person desks; and the caps cannot ossify either</td>
+</tr>
+<tr>
+<td>Principal attention budget + runbook + degraded mode + quarterly alert drill</td>
+<td>operations + judge-3 fix</td>
+<td>Attention is the binding resource; the alarm path is tested, not trusted</td>
+</tr>
+<tr>
+<td>Minimum module set fallback</td>
+<td>operations</td>
+<td>Pre-declared answer to a stalled build or disappointing AI tooling</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. Deliberately REJECTED, and why</h2>
+<ol>
+<li><strong>skfolio (or any external engine) as a runtime dependency</strong> (ai-adaptive) — 14-year maintenance risk for marginal benefit; patterns only, thin self-built implementations (sided with operations, judges 2–3).</li>
+<li><strong>Stacking / ML signal combination inside <code>construct/</code></strong> (ai-adaptive) — signal combination is return-engine estimation; placing it in Stage 3 blurs the frozen equity-cross-section-only boundary (judge 1). If ever built, it enters <code>sleeves/</code> through the funnel with handcrafted weights as the permanent null.</li>
+<li><strong>PolicyTargets emitted from construct</strong> (ai-adaptive diagram) — as drawn it violates asset-mix-is-policy; policy targets originate only in <code>policy/</code>.</li>
+<li><strong>Monthly impact refits</strong> (anti-overfit, ai-adaptive) — own-fill samples too small; quarterly with a tighten-only event path (judge 2's sample-size argument).</li>
+<li><strong>Adaptivity-first framing: ten parallel loops each with bespoke promotion rules</strong> (ai-adaptive) — over-adaptation is the historically dominant killer and heterogeneous promotion rules are where drift gets in over 14 years; one Challenger law instead (all judges).</li>
+<li><strong>Weekly research cycle with an unbounded funnel and quarterly whole-set rotations as default temperament</strong> (ai-adaptive) — more model churn than one principal can audit; rotation exists but only via Challenger on scheduled dates.</li>
+<li><strong>VineCopula synthetic stress paths as governor evidence</strong> (operations) — synthetic data flirting with evidence for the binding constraint; replaced by own block-bootstrap + historical replay, fenced test-only: may fail code, never validate safety or calibrate thresholds (judge 1).</li>
+<li><strong>Untestable rhetoric as design justification</strong> ("2022 proves the frozen parts right", "every credible firm converged", "90% of the benefit") — struck; single episodes are consistency evidence, not proof (all judges).</li>
+<li><strong>Range-stated parameters</strong> ("6–12 months", "size capped" with no mechanism, E|f|/cap as imported constants) — restated as pre-registered grids with defined selection and eviction rules (judge 1).</li>
+<li><strong>MLflow server, MongoDB, ArcticDB, LEAN/Nautilus/Qlib as engines, vectorbt-PRO</strong> (all proposals' source material) — SQLite + parquet + own thin code; every borrowed idea admitted only in its minimal form.</li>
+<li><strong>A rich policy DSL</strong> — ≤5 trigger and ≤6 action types; a rich in-house language is unmaintainable at N=2.</li>
+<li><strong>Model zoo growth; per-sleeve independently trading sub-portfolios</strong> — a new sleeve requires retiring one; netting into one optimizer per book is mandatory.</li>
+<li><strong>Chrono-LLM text signals in year 1</strong> (ai-adaptive implied earlier adoption) — deferred to year 2 behind an Indian-entity coverage/leakage audit; Indian coverage in open chrono-checkpoints is unproven.</li>
+<li><strong>Frontier-LLM backtests, unflagged LLM hypotheses, Kaggle/HF as evidence</strong> — frozen ban, extended by the provenance flag; exploration only.</li>
+<li><strong>Promotion of the GMM (or any fitted regime-switcher) into trading</strong> — stays a non-trading shadow until 10+ observed transitions AND a Challenger win; in practice likely never inside this horizon.</li>
+<li><strong>Second dashboards, extra monitoring surfaces, standing meetings</strong> — the failure mode is surface area nobody reads; one page, drills, and rules instead.</li>
+<li><strong>Intraday expansion</strong> — out of scope for the desk's breadth budget and attention budget; not revisited before an annual review.</li>
+</ol>
+<hr />
+<h2>6. Open questions for the principal</h2>
+<ol>
+<li><strong>Grid sign-offs before Q1 build:</strong> per-book vol-target grid and bucket→rung map; probation-length grid assignments by decay class; quarterly trial budget; archive capacity K and the resurrection-priority rank rule; dead-man T hours; the overlay influence grid and its hard cap; PBO threshold choice from {0.1, 0.25, 0.5} per tier.</li>
+<li><strong>Legal/compliance posture:</strong> NSE/BSE/AMFI terms for automated capture and internal WORM archiving; the exact reading of SEBI's delta-based FutEq limits at the Conservative top end; which option-spread structures the mandate permits as hedge substitutes.</li>
+<li><strong>Conservative book TC:</strong> accept structurally low transfer coefficient as a design fact, or shrink that book's active risk further and lean more on policy? (Affects the admission matrix.)</li>
+<li><strong>Degraded-mode tolerance:</strong> after how many consecutive last-good-snapshot days does the desk step down a second rung or go to policy-only? (Grid to pre-register.)</li>
+<li><strong>Availability protocol:</strong> if a RED page fires while you are unreachable beyond T hours, the dead-man de-risks one rung — is one rung enough, and should repeated unacknowledged REDs escalate to the worst bucket automatically?</li>
+<li><strong>GDP base-year revision (~2026):</strong> pre-agree treatment as a registry break with a dual-vintage parallel run of the macro block, or wait for MOSPI's mapping tables?</li>
+<li><strong>Parallel run:</strong> how long do v1 and v2 Stage 1 run side by side (paper) before capital migrates, and which book migrates first? (Suggest Aggressive first — smallest, fastest feedback; confirm.)</li>
+<li><strong>Year-2 priority order:</strong> chrono-LLM coverage audit vs the flow-signal research cycle vs meta-label training — pick the single first claim on the year-2 breadth budget.</li>
+<li><strong>Challenger calendar:</strong> fix the four quarterly review dates and the annual date now, a year ahead, so no review date can be chosen (or avoided) in reaction to performance.</li>
+<li><strong>Cut order beyond the minimum set:</strong> if Q1–Q2 telemetry shows the attention budget is violated, confirm the pre-declared order in which non-minimum modules get frozen (suggest: overlay scoring first, then funnel throughput halved, then crowding to log-only).</li>
+</ol>
+<footer>
+<p>Produced 2026-09-01 by a 12-agent research workflow (5 sweeps: GitHub OSS frameworks · firm
+process models · canonical books · AI-age 2026-2040 · India free data; 3 lens architects:
+anti-overfit / ai-adaptive / operations; 3 adversarial judges: contract enforcer / practitioner /
+2035 retrospective; 1 synthesis). Status PROPOSED — pipeline v1 remains authoritative until the §6
+sign-offs. Sources of record: <span class="mono">docs/PIPELINE.md</span> ·
+<span class="mono">research/pipeline-v2/sweep-digest.md</span> (raw research, [VERIFY] tags
+preserved) · <span class="mono">research/pipeline-v2/judge-verdicts.json</span>. No trials
+registered; no return claims made.</p>
+</footer>
+</div>
