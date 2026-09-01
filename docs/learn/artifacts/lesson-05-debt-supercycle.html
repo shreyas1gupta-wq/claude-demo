@@ -1,0 +1,344 @@
+<title>The Debt Mountain</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 5 · atlas 0.1 · learn-while-we-build</p>
+  <h1>The Debt Mountain</h1>
+  <p class="stand">The slowest cycle in the atlas: how governments climb debt mountains in crises
+  and descend them over generations — by growth, by surplus, by default, or by quietly taxing
+  savers through negative real rates. Why 11 of 18 rich countries are still climbing, what that
+  did to investors the last time, and what our book buys as insurance.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/05-debt-supercycle.md</span>
+    <span><b>Seat</b> L15 — gold floor + debasement tail budget (Tier C, reduce-only)</span>
+    <span><b>Real data</b> 18 countries, 1870–2020 (JST R6, vault-checksummed)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Parts">
+  <a href="#p1">1 · The arithmetic</a>
+  <a href="#p2">2 · The mountains</a>
+  <a href="#p3">3 · Repression</a>
+  <a href="#p4">4 · What it did to investors</a>
+  <a href="#p5">5 · India's apparatus</a>
+  <a href="#p6">6 · Into the book</a>
+</nav>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>One equation runs everything</h2></div>
+  <p>Public debt obeys an accounting identity — not a theory, an identity:</p>
+  <div class="eq">Δ(debt/GDP) = (r − g) × debt/GDP − primary&nbsp;balance + skeletons
+    <div class="lbl">r = real interest rate on the debt · g = real growth · primary balance =
+    budget surplus before interest · skeletons = bailouts and off-budget surprises.</div></div>
+  <p>Everything in this lesson is about who controls each term and what they do when the mountain
+  gets tall. If <b>r &lt; g</b>, debt melts on its own — the "painless" arc. If <b>r &gt; g</b>,
+  only surpluses or defaults work. And when debt is so large that raising rates to fight inflation
+  would blow up the budget itself, the central bank quietly stops being independent — <b>fiscal
+  dominance</b> (Sargent &amp; Wallace's "unpleasant arithmetic"). The state variable we build is
+  simply: <em>which of these arithmetic regimes are we in?</em> Never: <em>when does it end?</em></p>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The mountains — and how rarely they're descended</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Government debt/GDP, 150 years: US, UK, Japan</span>
+      <span class="figbadge">REAL DATA · JST R6</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>USA</span>
+      <span><span class="sw" style="background:var(--s2)"></span>UK</span>
+      <span><span class="sw" style="background:var(--s3)"></span>Japan</span></div>
+    <div class="chart" id="figDebt"></div>
+    <figcaption>Wars and crises build the peaks; generations descend them. The UK's post-Napoleonic
+    and post-WWII descents each took decades. Japan's modern climb has no historical precedent and
+    no descent yet. Hover for values.</figcaption>
+  </figure>
+  <div class="keyresult"><div class="t">DS1 — our census of completed descents</div>
+    <div class="big">In the fiat era (post-1971), only 4 of 18 advanced economies have ever
+    completed a lasting ≥30-point descent. Eleven of 18 hit their all-time peak in 2020 — the
+    current arc is unresolved almost everywhere.</div>
+    <p>This is why the atlas calls the entry a state, never a clock, and Tier C: a process
+    completed four times under two different monetary orders supports classification of
+    <em>where we are</em>, and nothing more. Every stronger claim you will ever hear about "the
+    fourth turning of the debt cycle" is narrative wearing a number.</p></div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Repression — the quiet tax that paid for the last descent</h2></div>
+  <p>After WWII, debt didn't fall because of austerity heroics. It fell because governments held
+  interest rates <em>below inflation</em> for decades while requiring their own banks, insurers,
+  and pension funds to hold the bonds anyway (Reinhart &amp; Sbrancia called it the "liquidation"
+  of government debt). A negative real rate on government debt is a tax on savers that no
+  parliament ever votes on. We measured its footprint:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — Share of country-years with NEGATIVE real short rates</span>
+      <span class="figbadge">REAL DATA · 18 countries · hyperinflation years excluded</span></div>
+    <div class="chart" id="figRep"></div>
+    <figcaption>The classic repression era (1945–80) ran negative-real-rate years 44% of the time
+    while r&lt;g held in 83% of years — the machine that melted the war debts. The liberalization
+    era shut it down (10%). And the post-GFC era reads <b>76%</b> — on this one measure, the modern
+    echo exceeds the original. That number, more than any forecast, is why the L15 seat
+    exists.</figcaption>
+  </figure>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>What it did to investors — the number that disciplines us</h2></div>
+  <div class="stats">
+    <div class="stat"><div class="k">Fiscal-dominance state</div><div class="v">+4.5%</div>
+      <div class="d">mean REAL equity return/yr (high debt + negative real rates, n=196)</div></div>
+    <div class="stat"><div class="k">Normal state</div><div class="v">+9.5%</div>
+      <div class="d">low/mid debt, positive real rates (n=1,115)</div></div>
+    <div class="stat"><div class="k">The design answer</div><div class="v">floor, not flight</div>
+      <div class="d">gold floor + tail budget; never an equity exit</div></div>
+  </div>
+  <p>Read that carefully, because it cuts <em>both</em> ways. Repression halves real equity
+  returns — the seat is not paranoia. But it leaves them <b>positive</b> — so the perma-bear
+  response (sell equities, go full gold-and-bunkers) has historically been the more expensive
+  mistake. This is the rare lesson whose psychology section warns about <em>two opposite</em>
+  operator failures: the frog-boil (normalizing endless negative real rates, holding ever more
+  duration) and the doom cult (the debt chart becomes a religion). The seat's reduce-only clamp is
+  the structural answer to both: it can add insurance, it can never sell the future.</p>
+</section>
+
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>India — where the apparatus is standing infrastructure</h2></div>
+  <p>India is unusual: financial repression here isn't a historical episode, it's plumbing. The
+  <b>SLR</b> — the law requiring banks to hold government bonds — peaked at 38.5% in 1990-91 (with
+  CRR near 15%: over half of every deposit pre-committed to the state) and stands near 18% today:
+  dormant, not dismantled. The 1991 crisis — gold flown to London as collateral — is the founding
+  memory. Post-2003, India ran the <em>growth</em> descent (debt/GDP fell for 15 years without
+  repression), then COVID rebuilt the peak. The L15 inputs for India are therefore concrete:
+  general-government debt level and slope, the repo-minus-CPI persistence gauge, and the captivity
+  composition (who is being made to hold the bonds) — every one measurable from RBI's own free
+  publications, every one specified in the monograph's data chapter.</p>
+</section>
+
+<section id="p6">
+  <div class="partkicker"><span class="partnum">PART 6</span><h2>Into the book — insurance, sized to be carried forever</h2></div>
+  <p>The harvest is deliberately humble: the state conditions the <b>gold floor</b> (40–50% of the
+  gold sleeve's rationale), a <b>slow-debasement tail budget</b> (0.3–0.6% of NAV per year), and a
+  conditional lift when the fiscal-dominance state is ON — all reduce-only against frozen caps,
+  never a timing trade, never an equity exit. The insurance is sized so it can be carried for a
+  decade without fatigue, because DS1's deepest lesson is that these arcs outlast careers. Three
+  designs pre-registered: India's own repression-gauge history, gold's conditional performance in
+  the state (the direct test of the floor's premise), and the annual <b>censoring tracker</b> —
+  the day any major economy completes its descent is the day this seat gets its first fiat-era
+  out-of-sample test.</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Known today</div><p>The identity and its regimes; repression's
+      history and its post-GFC echo (76%); the investor translation (+4.5% vs +9.5%), in our own
+      numbers.</p></div>
+    <div class="tier"><div class="tl">Awaits data</div><p>India's repression-gauge history; gold's
+      conditional edge (DB2); captivity composition series.</p></div>
+    <div class="tier"><div class="tl">Never knowable</div><p>How this arc resolves, or when.
+      Eleven of eighteen mountains are still being climbed.</p></div>
+  </div>
+  <p style="margin-top:28px"><b>Next in the series (atlas order):</b> 0.2 — reserve-currency
+  transitions: the slowest regime of all, and what central banks' gold buying since 2022 does and
+  does not signal.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 5 — companion to Atlas 0.1. Sources of record:
+  <span class="mono">docs/cycles/05-debt-supercycle.md</span> ·
+  <span class="mono">research/cycles/debt-deep/jst-debt-RESULTS.md</span> (trials DS1–DS4) ·
+  <span class="mono">ingest/vault/jst/manifest.json</span>. All figures computed by us from the
+  JST R6 panel (advanced economies — priors for the seat, never India estimates); hyperinflation
+  country-years excluded from era means per the Weimar rule.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"paths":{"USA":[[1870,31.2],[1871,30.3],[1872,26.6],[1873,24.3],[1874,25.2],[1875,26.2],[1876,25.4],[1877,24.5],[1878,25.5],[1879,24.3],[1880,20.0],[1881,17.2],[1882,15.1],[1883,13.8],[1884,13.7],[1885,13.5],[1886,12.7],[1887,11.0],[1888,9.9],[1889,8.9],[1890,7.4],[1891,6.5],[1892,5.9],[1893,6.2],[1894,7.1],[1895,7.0],[1896,7.8],[1897,7.5],[1898,6.7],[1899,7.3],[1900,6.1],[1901,5.4],[1902,4.8],[1903,4.4],[1904,4.4],[1905,3.9],[1906,3.6],[1907,3.4],[1908,3.9],[1909,3.5],[1910,3.4],[1911,3.3],[1912,3.2],[1913,3.0],[1914,3.2],[1915,3.1],[1916,2.4],[1917,4.9],[1918,16.0],[1919,32.2],[1920,27.2],[1921,32.3],[1922,31.0],[1923,25.9],[1924,24.2],[1925,22.4],[1926,20.1],[1927,19.2],[1928,17.9],[1929,16.2],[1930,17.6],[1931,21.7],[1932,32.8],[1933,39.4],[1934,40.5],[1935,38.6],[1936,39.8],[1937,39.2],[1938,42.5],[1939,43.3],[1940,41.8],[1941,37.8],[1942,43.6],[1943,67.3],[1944,89.5],[1945,113.4],[1946,118.9],[1947,107.6],[1948,96.0],[1949,91.3],[1950,92.1],[1951,78.0],[1952,72.5],[1953,69.5],[1954,69.9],[1955,67.4],[1956,62.1],[1957,58.6],[1958,59.0],[1959,56.9],[1960,54.3],[1961,53.4],[1962,51.6],[1963,50.1],[1964,47.7],[1965,45.4],[1966,42.0],[1967,40.6],[1968,41.0],[1969,37.2],[1970,36.3],[1971,36.5],[1972,35.7],[1973,34.4],[1974,32.6],[1975,33.6],[1976,35.1],[1977,34.8],[1978,34.1],[1979,32.3],[1980,32.5],[1981,31.7],[1982,34.3],[1983,38.7],[1984,39.6],[1985,42.6],[1986,46.8],[1987,49.2],[1988,50.6],[1989,51.6],[1990,54.4],[1991,59.1],[1992,62.4],[1993,64.2],[1994,64.7],[1995,65.1],[1996,65.2],[1997,63.5],[1998,61.3],[1999,59.1],[2000,55.6],[2001,54.8],[2002,57.2],[2003,59.9],[2004,61.2],[2005,61.6],[2006,62.0],[2007,62.6],[2008,67.7],[2009,82.3],[2010,91.2],[2011,95.8],[2012,100.0],[2013,100.7],[2014,102.6],[2015,100.1],[2016,105.2],[2017,104.6],[2018,105.4],[2019,106.8],[2020,128.1]],"UK":[[1870,77.4],[1871,71.7],[1872,67.4],[1873,61.8],[1874,63.1],[1875,63.7],[1876,65.4],[1877,65.8],[1878,67.5],[1879,70.3],[1880,65.4],[1881,64.4],[1882,61.5],[1883,61.5],[1884,56.1],[1885,57.8],[1886,57.5],[1887,55.4],[1888,51.3],[1889,47.1],[1890,45.9],[1891,46.4],[1892,47.5],[1893,47.4],[1894,44.1],[1895,43.1],[1896,41.1],[1897,40.4],[1898,37.8],[1899,35.1],[1900,32.4],[1901,35.8],[1902,39.0],[1903,41.2],[1904,40.7],[1905,39.0],[1906,37.4],[1907,35.3],[1908,35.7],[1909,34.9],[1910,34.5],[1911,31.6],[1912,29.8],[1913,27.9],[1914,27.3],[1915,39.3],[1916,65.6],[1917,97.8],[1918,119.1],[1919,142.8],[1920,137.8],[1921,158.4],[1922,183.5],[1923,195.5],[1924,188.8],[1925,177.0],[1926,187.1],[1927,177.5],[1928,175.8],[1929,170.5],[1930,171.0],[1931,184.8],[1932,190.1],[1933,194.0],[1934,186.6],[1935,178.1],[1936,170.2],[1937,158.7],[1938,155.1],[1939,149.7],[1940,121.1],[1941,133.7],[1942,153.2],[1943,174.0],[1944,200.6],[1945,234.7],[1946,269.8],[1947,264.1],[1948,239.6],[1949,220.3],[1950,216.9],[1951,196.8],[1952,180.9],[1953,169.8],[1954,163.2],[1955,154.2],[1956,143.8],[1957,135.7],[1958,131.1],[1959,124.9],[1960,117.9],[1961,113.8],[1962,110.5],[1963,108.6],[1964,101.1],[1965,94.6],[1966,91.9],[1967,89.1],[1968,88.5],[1969,82.8],[1970,73.2],[1971,65.6],[1972,62.0],[1973,54.6],[1974,51.6],[1975,46.7],[1976,48.9],[1977,50.5],[1978,51.6],[1979,48.7],[1980,42.6],[1981,44.8],[1982,43.0],[1983,41.9],[1984,42.2],[1985,41.3],[1986,41.3],[1987,39.3],[1988,37.1],[1989,32.5],[1990,28.6],[1991,28.5],[1992,33.2],[1993,38.0],[1994,40.8],[1995,43.7],[1996,43.8],[1997,43.3],[1998,40.9],[1999,39.4],[2000,36.7],[2001,34.0],[2002,34.2],[2003,35.4],[2004,38.4],[2005,39.6],[2006,40.5],[2007,41.5],[2008,49.3],[2009,63.2],[2010,74.3],[2011,80.0],[2012,83.2],[2013,84.2],[2014,86.1],[2015,86.7],[2016,86.8],[2017,86.3],[2018,85.8],[2019,85.2],[2020,104.5]],"Japan":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,10.3],[1876,10.2],[1877,46.8],[1878,42.6],[1879,32.9],[1880,34.0],[1881,31.0],[1882,32.2],[1883,32.1],[1884,32.6],[1885,30.6],[1886,31.2],[1887,31.3],[1888,29.7],[1889,27.2],[1890,26.1],[1891,24.1],[1892,24.7],[1893,22.4],[1894,24.4],[1895,26.4],[1896,24.6],[1897,21.5],[1898,18.8],[1899,21.9],[1900,21.5],[1901,22.9],[1902,23.0],[1903,22.9],[1904,35.6],[1905,68.5],[1906,70.5],[1907,61.6],[1908,60.9],[1909,70.1],[1910,70.8],[1911,61.4],[1912,57.6],[1913,53.6],[1914,55.9],[1915,53.2],[1916,43.3],[1917,33.4],[1918,27.5],[1919,22.6],[1920,25.6],[1921,29.1],[1922,29.6],[1923,33.8],[1924,33.1],[1925,33.4],[1926,35.2],[1927,36.7],[1928,39.1],[1929,40.4],[1930,49.4],[1931,56.3],[1932,60.7],[1933,62.2],[1934,62.4],[1935,62.9],[1936,63.5],[1937,57.0],[1938,66.9],[1939,71.2],[1940,78.7],[1941,93.1],[1942,105.1],[1943,133.4],[1944,204.0],[1945,null],[1946,56.0],[1947,27.5],[1948,19.7],[1949,18.9],[1950,14.0],[1951,11.9],[1952,13.2],[1953,12.1],[1954,11.9],[1955,12.3],[1956,10.4],[1957,8.8],[1958,9.1],[1959,9.0],[1960,8.0],[1961,6.1],[1962,5.7],[1963,4.5],[1964,4.4],[1965,5.2],[1966,6.7],[1967,8.2],[1968,8.7],[1969,12.0],[1970,10.6],[1971,11.8],[1972,15.6],[1973,15.3],[1974,16.1],[1975,20.3],[1976,25.9],[1977,30.9],[1978,39.1],[1979,43.7],[1980,48.7],[1981,53.1],[1982,58.1],[1983,64.3],[1984,66.2],[1985,68.3],[1986,74.3],[1987,76.4],[1988,72.4],[1989,65.7],[1990,63.0],[1991,62.4],[1992,66.9],[1993,72.6],[1994,83.4],[1995,94.2],[1996,99.2],[1997,104.8],[1998,116.0],[1999,129.0],[2000,135.6],[2001,144.4],[2002,154.3],[2003,160.1],[2004,168.9],[2005,174.3],[2006,174.0],[2007,172.8],[2008,180.7],[2009,198.7],[2010,205.7],[2011,219.1],[2012,226.1],[2013,229.6],[2014,233.5],[2015,228.4],[2016,232.5],[2017,231.4],[2018,232.5],[2019,234.9],[2020,253.9]]},"repression":{"gold/interwar 1870-1944":0.248,"repression era 1945-1980":0.439,"liberalization 1981-2007":0.099,"post-GFC 2008-2020":0.756},"ds4":{"high debt AND negative real rates":[4.5,196],"high debt, positive real rates":[10.0,326],"low/mid debt, negative real rates":[1.5,449],"low/mid debt, positive real rates":[9.5,1115]}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+function fmtN(v,d=1){return v==null?'—':(+v).toFixed(d);}
+
+(function(){
+  const mount=document.getElementById('figDebt');
+  const series=[["USA","--s1"],["UK","--s2"],["Japan","--s3"]].map(([c,col])=>({name:c,color:col,rows:DATA.paths[c]}));
+  const W=820,H=320,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let lo=0,hi=-Infinity;
+  series.forEach(s=>s.rows.forEach(([_,v])=>{if(v!=null)hi=Math.max(hi,v);}));
+  hi*=1.06;
+  const Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const yr0=Math.min(...series.map(s=>s.rows[0][0])), yr1=Math.max(...series.map(s=>s.rows[s.rows.length-1][0]));
+  const X=y=>m.l+iw*(y-yr0)/(yr1-yr0);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'debt to GDP paths'});
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(0)+'%'; svg.appendChild(t);}
+  series.forEach(s=>{
+    let d='',pen=false;
+    s.rows.forEach(([y,v])=>{if(v==null){pen=false;return;}
+      d+=(pen?'L':'M')+X(y).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+    svg.appendChild(el('path',{d,fill:'none',stroke:`var(${s.color})`,'stroke-width':2,'stroke-linejoin':'round'}));
+  });
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [1870,1914,1945,1971,2008,2020].forEach(y=>{
+    const t=el('text',{x:X(y),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const yr=Math.round(yr0+(((ev.clientX-r.left)*sx)-m.l)/iw*(yr1-yr0));
+    cross.setAttribute('x1',X(yr));cross.setAttribute('x2',X(yr));cross.setAttribute('opacity',1);
+    let rows=`<div class="tt">${yr}</div>`;
+    series.forEach(s=>{const hit=s.rows.find(([y])=>y===yr);
+      rows+=`<div class="row"><span class="nm">${s.name}</span><span class="vl">${hit&&hit[1]!=null?hit[1].toFixed(0)+'%':'—'}</span></div>`;});
+    tip.innerHTML=rows; tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-160)tx-=180;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+})();
+
+(function(){
+  const mount=document.getElementById('figRep');
+  const eras=Object.entries(DATA.repression);   // name -> share
+  const W=820,H=260,m={t:16,r:16,b:64,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const hi=Math.max(...eras.map(([_,v])=>v))*1.18;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'negative real rate shares by era'});
+  for(let i=0;i<=3;i++){const v=hi*i/3,y=m.t+ih*(1-v/hi);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(v*100).toFixed(0)+'%'; svg.appendChild(t);}
+  eras.forEach(([name,v],i)=>{
+    const bw=iw/eras.length*0.5, x=m.l+iw*(i+0.5)/eras.length-bw/2, y=m.t+ih*(1-v/hi);
+    svg.appendChild(el('rect',{x,y,width:bw,height:m.t+ih-y,rx:4,fill:'var(--s1)'}));
+    const t=el('text',{x:x+bw/2,y:y-6,'text-anchor':'middle','font-size':'12','font-weight':'600',fill:'var(--ink)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(v*100).toFixed(0)+'%'; svg.appendChild(t);
+    name.split(' ').reduce((acc,w)=>{const last=acc[acc.length-1];
+      if(last && (last+' '+w).length<=14){acc[acc.length-1]=last+' '+w;}else acc.push(w); return acc;},[])
+      .forEach((ln,li)=>{const l=el('text',{x:x+bw/2,y:H-40+li*13,'text-anchor':'middle','font-size':'11',fill:'var(--muted)'});
+        l.textContent=ln; svg.appendChild(l);});
+  });
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  mount.appendChild(svg);
+})();
+</script>

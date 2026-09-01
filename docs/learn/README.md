@@ -11,6 +11,7 @@ private artifacts; this index is the registry.
 | 2 | Fast Stress, From Zero | docs/cycles/02-fast-stress.md (L2) | https://claude.ai/code/artifact/c0a03c8b-311e-4ac9-bf2f-988c1e32ea08 | docs/learn/artifacts/lesson-02-fast-stress.html |
 | 3 | Momentum, From Zero | docs/cycles/03-momentum-trend.md (L3/L4) | https://claude.ai/code/artifact/4088dc52-ecc8-4d78-8edc-98ca1c3efa87 | docs/learn/artifacts/lesson-03-momentum.html |
 | 4 | Value and Quality, From Zero | docs/cycles/04-value-quality.md | https://claude.ai/code/artifact/fb951fc3-74d6-4257-af9a-a0203e57908e | docs/learn/artifacts/lesson-04-value-quality.html |
+| 5 | The Debt Mountain | docs/cycles/05-debt-supercycle.md (Atlas 0.1, L15) | https://claude.ai/code/artifact/5526aa4b-7612-4b35-8b89-dd5122670179 | docs/learn/artifacts/lesson-05-debt-supercycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to

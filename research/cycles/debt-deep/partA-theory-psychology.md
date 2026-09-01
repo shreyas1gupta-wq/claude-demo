@@ -520,25 +520,23 @@ looking only]**.
 
 | Mechanism | Observable (free India/global series) | L15 input consumed | What nothing free captures |
 |---|---|---|---|
-| Ricardian (non-)neutrality (Hume/Smith/Ricardo/Barro) | N/A — theoretical null hypothesis, not an indicator | Sets the burden of proof every later input must clear | Whether India's own households are liquidity-constrained enough for the standard critique to bind — no India-specific test located |
-| Domar r−g arithmetic | IMF WEO/FM debt/GDP; RBI/CCIL rates; MOSPI growth | Debt-trajectory percentile + real-rate gauge (Steps 1–2) | Already the D1 identity — no gap; this is the skeleton, not a proxy |
-| Sargent-Wallace fiscal dominance (r>g-conditional) | Repo−CPI persistence; US 10y TIPS (`DFII10`) jointly with debt percentile | Fiscal-dominance dummy (Step 4: debt pctile high AND repression gauge ON) | Whether India's own fiscal authority is genuinely "active" (Stackelberg leader) vs. passive — no India-specific regime test exists |
-| FTPL valuation equation (Leeper/Sims/Cochrane) | Same joint reading; no separate proxy exists | Confirms Step 4's *interpretation*, adds no new series | Regime identification (active vs. passive fiscal) itself — an unresolved empirical debate globally, let alone for India |
-| Repression liquidation tax (McKinnon-Shaw; Reinhart-Sbrancia) | Repo−CPI negative-share (36m rolling); SLR trajectory | Repression gauge (Step 2) + captivity/composition (Step 3) | A direct India liquidation-flow estimate (−r_real·B/Y) has not been computed domestically this pass — flagged for DB1 |
-| RR chronology / HAP correction | IMF WEO debt/GDP level+slope | Debt-trajectory percentile, non-threshold by design (Step 1) | N/A — HAP is the reason for the design choice itself, not a data gap |
-| r<g norm / Blanchard / Mauro-Zhou | Repo−CPI, TIPS 10y, marginal vs. average borrowing-cost spread | Real-rate persistence gauge (Step 2) | India's own marginal-vs-average G-Sec borrowing-cost spread around stress episodes — not constructed this pass |
-| Dalio's four-lever taxonomy | Qualitative — read off which of the above gauges is moving | Policy-review memo only (Part F); zero allocation authority | No cross-country lever-attribution dataset exists; inherently narrative |
-| Cagan hyperinflation boundary | India CPI, INR depreciation (context only — no active monitoring built) | Sets the *ceiling* on what the tail budget is *not* pricing | The seat carries no forward EM-hyperinflation probability at all — stated, not measured |
-| QE/YCC/CBDC delivery mechanisms | RBI OMO/SDF operations (qualitative); no YCC or CBDC-captivity series exists for India | Policy-review memo only; no numeric input | India has never run YCC; CBDC captivity is pure forward narrative — no observable exists to build one |
+| Ricardian (non-)neutrality (Hume/Smith/Ricardo/Barro) | N/A — theoretical null, not an indicator | Sets the burden of proof every later input must clear | India-specific liquidity-constraint test — none located |
+| Domar r−g arithmetic | IMF WEO/FM debt/GDP; RBI/CCIL rates; MOSPI growth | Debt-trajectory percentile + real-rate gauge (Steps 1–2) | None — this is the D1 skeleton itself, not a proxy |
+| Sargent-Wallace fiscal dominance (r>g-conditional) | Repo−CPI persistence; US 10y TIPS (`DFII10`), joint with debt percentile | Fiscal-dominance dummy (Step 4) | Whether India's fiscal authority is genuinely "active" — no India regime test exists |
+| FTPL valuation equation (Leeper/Sims/Cochrane) | Same joint reading; no separate proxy | Confirms Step 4's interpretation, adds no series | Active-vs-passive regime identification — unresolved globally |
+| Repression liquidation tax (McKinnon-Shaw; Reinhart-Sbrancia) | Repo−CPI negative-share (36m rolling); SLR trajectory | Repression gauge (Step 2) + captivity input (Step 3) | India liquidation-flow (`−r_real·B/Y`) not yet computed domestically — flagged DB1 |
+| RR chronology / HAP correction | IMF WEO debt/GDP level+slope | Percentile, non-threshold debt input (Step 1) | None — HAP is the reason for the design choice, not a gap |
+| r<g norm / Blanchard / Mauro-Zhou | Repo−CPI, TIPS 10y, marginal-vs-average spread | Real-rate persistence gauge (Step 2) | India marginal-vs-average G-Sec spread around stress — not built |
+| Dalio's four-lever taxonomy | Qualitative — which gauge above is moving | Policy-review memo only; zero allocation authority | No cross-country lever-attribution dataset; inherently narrative |
+| Cagan hyperinflation boundary | India CPI, INR depreciation (context only) | Ceiling on what the tail budget is *not* pricing | No forward EM-hyperinflation probability priced — stated, not measured |
+| QE/YCC/CBDC delivery mechanisms | RBI OMO/SDF (qualitative); no India YCC/CBDC series | Policy-review memo only; no numeric input | India has never run YCC; CBDC captivity is pure forward narrative |
 
-**What no free observable captures — stated honestly.** The sharpest data gap is a genuine
-**India-specific liquidation-flow estimate** (A.4's `−r_real·B/Y` arithmetic, computed
-domestically rather than imported from the pooled JST panel) — DB1 (partDEFH Part F) is
-queued precisely to close this. The second gap is **regime identification** itself: whether
-India's fiscal authority behaves as Leeper's "active" or "passive" type is an open empirical
-question nobody — not this monograph, not the global FTPL literature — can currently answer
-with confidence, which is exactly why L15 classifies an observable *state* and never claims to
-identify the underlying policy *regime*.
+**What no free observable captures.** The sharpest gap is a genuine **India-specific
+liquidation-flow estimate** (A.4's `−r_real·B/Y`, computed domestically rather than imported
+from the pooled JST panel) — DB1 is queued to close this. The second is **regime
+identification**: whether India's fiscal authority is Leeper's "active" or "passive" type is
+open globally, which is exactly why L15 classifies an observable *state* and never claims to
+identify the underlying *regime*.
 
 ---
 
@@ -586,97 +584,83 @@ through introspection.
 **Mechanism.** The mirror-image failure is, for a Tier-C, narrative-adjacent seat like this
 one, arguably the more dangerous of the two — precisely *because* the underlying story (debt
 supercycle, fiscal dominance, currency debasement) is a genuinely compelling narrative with
-real mechanism behind it (A.1–A.8 are not fabricated; they are the honest theoretical case),
-it is exactly the kind of thesis that seduces an operator into treating the *seat's existence*
-as license for a portfolio-level conviction call: rotate hard into gold and hard assets, treat
-equities as a currency-denominated "melting ice cube," and size the "insurance" so large it
-becomes the dominant bet rather than a floor. **The seat must never become a gold-bug thesis**
-— and the evidence against doing so sits inside this monograph's own already-established data.
-**DS4** (`jst-debt-RESULTS.md`) shows real equity returns in the fiscal-dominance state (high
-debt AND negative real rates) average **+4.5%/yr** (median +3.4%, n=196 country-years) —
-**halved** relative to the "normal" high-debt/positive-real-rate state (+10.0%), but firmly
-**positive**, not negative and nowhere near zero. A perma-bear who exits equities entirely into
-gold on the *strength* of the debt-supercycle narrative is trading away a well-evidenced
-positive expected real return for an asset whose own very-long-run real return is close to
-flat: **Erb & Harvey (2013)**, "The Golden Dilemma," find gold's long-run real return is
-approximately zero absent horizons measured in centuries, and that gold's real price itself
-mean-reverts — richly priced gold has historically predicted *below-average* subsequent real
-gold returns. DS4's table is arguably the single most load-bearing number in this entire seat,
-precisely because it is the number that stops the mechanism from becoming a mandate: repression
-halves equity returns; it does not reverse their sign.
+real mechanism behind it (A.1–A.8 are not fabricated), it seduces an operator into treating
+the *seat's existence* as license for a portfolio-level conviction call: rotate hard into gold
+and hard assets, treat equities as a currency-denominated "melting ice cube," and size the
+"insurance" so large it becomes the dominant bet rather than a floor. **The seat must never
+become a gold-bug thesis** — and the evidence against it sits inside this monograph's own
+already-established data. **DS4** (`jst-debt-RESULTS.md`) shows real equity returns in the
+fiscal-dominance state (high debt AND negative real rates) average **+4.5%/yr** (median
++3.4%, n=196) — **halved** relative to the "normal" high-debt/positive-real-rate state
+(+10.0%), but firmly **positive**. A perma-bear exiting equities entirely into gold on the
+*strength* of this narrative trades away a well-evidenced positive expected real return for an
+asset whose own very-long-run real return is close to flat: **Erb & Harvey (2013)**, "The
+Golden Dilemma," find gold's long-run real return approximately zero absent century-scale
+horizons, with its real price itself mean-reverting — richly priced gold has historically
+predicted *below-average* subsequent real returns. DS4's table is arguably the single most
+load-bearing number in this seat: repression halves equity returns; it does not reverse their
+sign.
 
 **Countermeasure.** The reduce-only clamp (CONTRACT §4's Tier-C rule; partDEFH Step 5: "ALL
 reduce-only vs the frozen gold cap (≤50%), never a timing trade, never an equity exit") is the
-**structural** answer — L15 is mechanically incapable of exceeding its pre-registered
-floor-plus-tail-budget band (gold-floor attribution 0.40–0.50 of the existing floor, tail
-budget 0.3–0.6%/yr NAV, conditional lift capped at +1–2pp, per `docs/DESIGN.md` §4.3) no
-matter how compelling the operator finds the narrative in the moment. There is no path by
-which conviction in the debt-supercycle thesis can push the gold sleeve toward its 50% mandate
-ceiling or trigger an equity exit, because the registry's own validator (CONTRACT §10: "Tier-C
-signals may only REDUCE risk... a registry violating its own budget must fail to load")
-enforces the cap in code, not in discretion. This is the structural mirror of the value-deep
-monograph's anti-capitulation lock (its own G.2): that lock stops a value sleeve from being
-*abandoned* at its cheapest; this one stops a gold/debasement seat from being *expanded*
-beyond its floor at its most narratively compelling moment. Same mechanism — a hard-coded
-ceiling replacing a live judgment call — running in the opposite direction.
+**structural** answer — L15 cannot exceed its pre-registered floor-plus-tail-budget band
+(gold-floor attribution 0.40–0.50 of the existing floor, tail budget 0.3–0.6%/yr NAV,
+conditional lift capped at +1–2pp, per `docs/DESIGN.md` §4.3) no matter how compelling the
+narrative feels. No path exists by which conviction in the debt-supercycle thesis can push
+gold toward its 50% mandate ceiling or trigger an equity exit, because the registry's own
+validator (CONTRACT §10: "Tier-C signals may only REDUCE risk... a registry violating its own
+budget must fail to load") enforces the cap in code, not discretion — the structural mirror of
+value-deep's own anti-capitulation lock, running in the opposite direction: that lock stops a
+sleeve from being *abandoned* at its cheapest; this stops one from being *expanded* at its most
+compelling.
 
 ### G.3 Narrative capture by fiscal doom media cycles
 
 **Mechanism.** Fiscal-doom narratives — "the debt crisis is imminent," "the rupee/dollar is
 about to collapse," "hyperinflation is coming" — recur in financial media on a cadence that
-has essentially nothing to do with the actual state of the r−g arithmetic or the repression
-gauge; they correlate with salience (a weak bond auction, a rating-agency headline, a viral
-thread) far more than with the underlying computed state. Structurally, this is a
-**perpetual** narrative: because the debt supercycle genuinely has not resolved in the fiat era
-for 14 of 18 JST countries (DS1: only 4 of 18 completed a lasting ≥30pp deleveraging), a "the
-crisis is imminent" story can be told, plausibly, in nearly every year of the sample without
-ever being falsified inside an operator's own career — a stopped clock right only once or
-twice a lifetime, while media incentives reward *telling* the story on a far higher-frequency
-cadence than its own resolution frequency. The failure mode: an operator whose attention to
-the fiscal-dominance state is driven by media salience rather than the computed phase object
-ends up reacting to noise at news-cycle frequency rather than the multi-quarter cadence this
-seat is actually built to run at.
+has essentially nothing to do with the r−g arithmetic or the repression gauge; they correlate
+with salience (a weak bond auction, a rating-agency headline, a viral thread) far more than
+with the computed state. Structurally this is a **perpetual** narrative: since the debt
+supercycle genuinely has not resolved for 14 of 18 JST countries (DS1: only 4 of 18 completed
+a lasting ≥30pp deleveraging), "the crisis is imminent" can be told, plausibly, in nearly every
+year of the sample without ever being falsified inside an operator's career — a stopped clock
+right once or twice a lifetime, while media incentives reward *telling* the story far more
+often than it resolves. The failure mode: attention to the fiscal-dominance state driven by
+media salience rather than the computed phase object reacts to noise at news-cycle frequency,
+not the multi-quarter cadence this seat runs at.
 
 **Countermeasure.** The quarterly refresh cadence (partDEFH Step 5/MONITOR) is itself the
 disciplining device — L15 is deliberately **not** a fast-layer input (contrast L2's vol/
-funding triggers, which genuinely do react at news-cycle frequency because their own mechanism
-is that fast); its τ½ (120m+, `docs/DESIGN.md`'s L15 row) means a properly calibrated operator
-should expect the *state* to move meaningfully only a few times per decade, and any narrative
-urgency arriving faster than that cadence is, by construction, arriving from the media cycle,
-not from the mechanism this monograph documents. The Stage-2 red-team channel (CONTRACT §10:
-"tactical thesis/buy-call generator... all human-vetoed, logged, Brier-scored") is the
-explicit quarantine for exactly this: partDEFH Part F already assigns "Perez/fiscal narratives
-quarantined here — Stage-1 sees only the observables." This dossier documents *why* that
-quarantine line exists: the fiscal-doom narrative is real and evidence-adjacent, and it is
-also almost perfectly uncorrelated in timing with the quarterly-or-slower state this seat
+funding triggers, which genuinely do react that fast); its τ½ (120m+, `docs/DESIGN.md`'s L15
+row) means the *state* should move meaningfully only a few times per decade, so any narrative
+urgency arriving faster is, by construction, arriving from the media cycle, not the mechanism
+this monograph documents. The Stage-2 red-team channel (CONTRACT §10: "tactical thesis/buy-call
+generator... human-vetoed, logged, Brier-scored") is the explicit quarantine for this: partDEFH
+Part F already assigns "Perez/fiscal narratives quarantined here — Stage-1 sees only the
+observables." This dossier documents *why* that line exists: the fiscal-doom narrative is real
+and evidence-adjacent, and almost perfectly uncorrelated in timing with the state this seat
 tracks.
 
 ### G.4 Institutional captivity acceptance — the Indian SLR framing
 
 **Mechanism.** The reverse of G.2/G.3 in a different sense — not a trading bias but an
-**institutional** one, and the risk most specific to operating this seat in India. Because
-SLR-driven captive G-Sec demand is a decades-old, entirely normal, legally mandated feature of
-every Indian bank's balance sheet — not a crisis-era emergency measure the way US QE/YCC were
-publicly framed — there is a real risk that the desk comes to treat India's own repression
-apparatus as simply "how the bond market works here": background institutional furniture, not
-a live, currently operating wealth transfer with a computable magnitude (this monograph's own
-A.4/DS2 numbers). The failure mode is **acceptance-as-normal**: because the apparatus is old,
-legal, and universal — every bank holds SLR-mandated G-Secs; no institution treats this as
-remarkable — the operator can lose the ability to see it *as* repression at all, precisely the
-"well-intentioned but counterproductive" framing McKinnon-Shaw themselves chose, coined
-specifically because such policies do not present themselves to participants as repression;
-they present as prudential regulation.
+**institutional** one, specific to operating this seat in India. Because SLR-driven captive
+G-Sec demand is a decades-old, legally mandated feature of every Indian bank's balance sheet —
+not a crisis-era emergency measure the way US QE/YCC were publicly framed — the desk risks
+treating India's own repression apparatus as simply "how the bond market works here":
+background furniture, not a live wealth transfer with a computable magnitude (A.4/DS2). The
+failure mode is **acceptance-as-normal**: because the apparatus is old, legal, and universal —
+every bank holds SLR-mandated G-Secs, none treats it as remarkable — the operator can lose the
+ability to see it *as* repression at all, precisely McKinnon-Shaw's own naming problem: such
+policies present as prudential regulation, never as repression.
 
-**Countermeasure.** L15's captivity/composition input (partDEFH Step 3: SLR trajectory
-tracked as a first-class, time-varying series, not a fixed institutional constant) is the
-structural answer — the SLR is modeled across its full 38.5%-peak-to-18%-today history
-precisely so that a *change* in captivity (a reversal toward higher SLR, or further
-liberalization) registers as a movement in the seat's own state, never as an invisible
-constant assumed away. This mirrors dossier 07's own treatment of the analogous WGC/COFER
-inputs ("treat both as exogenous conditioning state variables... identical discipline"):
-India's SLR trajectory is logged and monitored on exactly the same footing as the more visible
-real-rate and debt-trajectory gauges, specifically so that institutional familiarity cannot
-make one input quietly stop being watched.
+**Countermeasure.** L15's captivity/composition input (partDEFH Step 3: SLR trajectory as a
+first-class, time-varying series, not a fixed constant) is the structural answer — SLR is
+modeled across its full 38.5%-peak-to-18%-today history so that a *change* in captivity
+registers as a movement in the seat's state, never an invisible constant assumed away. This
+mirrors dossier 07's treatment of the analogous WGC/COFER inputs: India's SLR trajectory is
+logged on the same footing as the more visible real-rate and debt-trajectory gauges,
+specifically so institutional familiarity cannot let one input quietly go unwatched.
 
 ### G.5 Countermeasures mapped
 
@@ -714,33 +698,3 @@ one that matters, decide whether SLR is still worth watching after three decades
 mandate, decide whether a comfortable r<g reading means leverage is safe to add, or decide
 whether a round debt/GDP number is finally the one worth hard-coding — into a structural
 non-decision, made once, in the registry, before the moment that would have made it hardest.
-
----
-
-## [VERIFY] list
-
-1. Domar (1944), "The Burden of the Debt and the National Income," *AER* 34(4) — exact page
-   range not re-confirmed this session (venue, volume, issue, year, and substance all
-   verified).
-2. Mauro & Zhou (2021), "r−g<0: Can We Sleep More Soundly?," *IMF Economic Review* — exact
-   page range not re-confirmed this session (authors, venue, year, method, and the "not
-   really" finding all verified).
-3. RBI SLR history: precise peak year/figure (commonly cited as 38.5% in the early 1990s) and
-   the exact effective date/figure of the current 18% rate (cited as an April-2020 cut from
-   19%) — sourced from secondary aggregators (Cleartax, GKToday, Testbook) this session, not
-   from a primary RBI Handbook of Statistics or Master Circular release; needs a primary-source
-   confirmation before being treated as calibrated rather than directional.
-4. Reinhart-Sbrancia sample composition: search results this session gave inconsistent country
-   counts for the advanced-economy group ("10 countries" in one source, "12-country sample" in
-   another) alongside a separately-named 13-country emerging-market group (incl. India) — the
-   headline magnitudes (US/UK 3–4%/yr, Australia/Italy ~5%/yr, India's 53% negative-real-rate
-   share 1949–1980) are corroborated across multiple independent search results and treated as
-   reliable; the exact advanced-economy country count is not.
-5. CBDC captivity discussion (A.9.iii) — no single canonical academic citation pinned; treated
-   throughout as forward-looking, evidence-thin, Tier C narrative, consistent with how this
-   subsection is used in the design (no numeric L15 input).
-
-## Word count
-
-Approximately 7,150 words (Part A + Part G body text, excluding this front-matter block and
-the [VERIFY] list).

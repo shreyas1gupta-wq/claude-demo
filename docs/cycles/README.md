@@ -18,8 +18,8 @@ ceiling.
 ## Queue (atlas order) and status
 | Atlas # | Entry | Status |
 |---|---|---|
-| 0.1 | Debt supercycle / fiscal-dominance arc | **IN PROGRESS** (real-data leg started; agents next) |
-| 0.2 | Reserve-currency / monetary-order transition | queued |
+| 0.1 | Debt supercycle / fiscal-dominance arc | **DONE** — docs/cycles/05-debt-supercycle.md (~24k words) + Lesson 5 |
+| 0.2 | Reserve-currency / monetary-order transition | **IN PROGRESS** |
 | 0.3 | Suprasecular real-rate decline | queued (short-form candidate: CONTEXT-only entry) |
 | 0.4 | Golden constant (real gold) | queued |
 | 0.5 | Inflation-regime arcs | queued |
