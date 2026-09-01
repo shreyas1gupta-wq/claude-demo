@@ -228,3 +228,23 @@ Pre-declared constructions and bars:
 | IN1 | Capex state → forward 5y real equity | 9/15 countries negative (60% vs 70% bar) — **FAIL**; between DG1 (4/16) and FC1 (17/17) on the project's scale; C→B NOT triggered, L11 stays Tier C | fail, calibrating |
 | IN2 | Post-peak repair length | 195 spells, median 4y (bar ≥4y) — **PASS at the bar**; IQR 1-12y; censoring counted against the claim as pre-stated | pass, marginal |
 | IN3 | Top-vs-bottom quintile asymmetry | top +0.242 < bottom +0.287 (mild overbuild penalty ~0.9%/yr) but middle +0.202 lowest — NON-monotone; the non_positive clamp's design now has analogue numbers behind it | measured, prior set |
+
+## Entries SC1–SC2 (2026-09-01) — Atlas 2.2 NBFC/shadow-credit sub-cycle
+Script: scripts/analyze_shadow_credit.py (SC1); SC2 is a DESIGN (runsheet-gated). PRE-REGISTERED
+before running (two-pass rule). Data: vaulted iima_monthly_factors.csv (1993-10..2025-12).
+
+Pre-declared construction and bars:
+- SC1 (the funding-run factor signature): the mechanism says an NBFC funding freeze is a
+  CREDIT-SUPPLY event concentrated in small/funding-dependent firms, not a broad macro crash.
+  Windows (fixed): IL&FS crunch 2018-09..2019-08. Comparators (context prints, no bars):
+  GFC 2008-09..2009-08, taper 2013-05..2014-04, COVID 2020-02..2021-01.
+  Claim PASSES only if BOTH: (a) SMB 12m cumulative return in the crunch window is in the
+  BOTTOM DECILE of all rolling 12m SMB windows (1994+); (b) MF (market) in the same window is
+  NOT in its own bottom decile. Both bars fixed before looking.
+- SC2 (design, not run): CP-spread freeze signature vs L2 stress dates — needs CCIL/RBI WSS
+  pulls (runsheet); acceptance to be registered when the data lands.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| SC1 | IL&FS window: SMB bottom-decile AND market not | SMB −24.8% (18th pct), market −20.2% (16th) — **FAIL**: the freeze propagated to a broad macro event within 12m; that is the CASE for routing the signature to L2 (faster variables), not for equity-factor detection | fail, informative |
+| SC2 | CP-freeze signature vs L2 | (design only) | runsheet-gated |
