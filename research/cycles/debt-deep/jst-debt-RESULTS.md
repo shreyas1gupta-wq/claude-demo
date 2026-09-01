@@ -72,3 +72,21 @@ Read for design: equities still earn positive real returns on average in
 repression states — the seat justifies a GOLD FLOOR and a debasement tail budget,
 never an equity exit. Reduce-only, exactly as the atlas says.
 
+
+## DS5 — The 90% 'cliff', re-run on the Herndon-Ash-Pollin panel
+
+Panel: 20 advanced economies, 1946-2009, 1175 country-years (RR-processed.csv, vault-manifested).
+Method: pooled country-year means/medians (the HAP-correct weighting).
+
+| Debt/GDP bucket | mean real growth | median | n country-years |
+|---|---|---|---|
+| 0-30% | +4.17% | +4.15% | 426 |
+| 30-60% | +3.09% | +3.10% | 439 |
+| 60-90% | +3.19% | +2.90% | 200 |
+| 90-120% | +2.41% | +2.37% | 79 |
+| >120% | +1.56% | +2.04% | 31 |
+
+- Pooled mean growth above 90% debt: **+2.17%** (RR 2010 claimed −0.1% via the spreadsheet exclusion + country equal-weighting HAP exposed).
+- The 60-90 vs >90 growth gap: +1.02pp, bootstrap 95% CI [+0.26, +1.77] — a modest GRADIENT (high debt associates with somewhat slower growth, causality unresolved), not a cliff, and no bucket goes negative.
+- Design consequence, already embedded: our states are PERCENTILES and grids — never threshold cliffs — and DS5 is the canonical reason why. Ledgered as trial DS5.
+

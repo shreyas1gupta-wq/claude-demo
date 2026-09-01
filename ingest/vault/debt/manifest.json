@@ -1,0 +1,22 @@
+{
+ "RR-processed.csv": {
+  "bytes": 173143,
+  "sha256": "600f15c73d382e0ca13f85a844bcf1b6574e8f59fba651f3dd960ea425dc9994",
+  "vintage": "2026-09-01"
+ },
+ "cofer_1995_2023q1.csv": {
+  "bytes": 134791,
+  "sha256": "d36a0d2c5561138c582517f0e780c8cee6d601a71a552fcf52661feadf8afc5d",
+  "vintage": "2026-09-01"
+ },
+ "gold_silver_1915.csv": {
+  "bytes": 7328,
+  "sha256": "d4c54b51fe22d01f914d461c8c37870a1cb6e6b46bc1fd62cf51b59706205672",
+  "vintage": "2026-09-01"
+ },
+ "jst_real_returns.csv": {
+  "bytes": 83254,
+  "sha256": "c73d1b51f9793bd014981947d7e0843777e5b952e311ae531e4e9d6a65b6277c",
+  "vintage": "2026-09-01"
+ }
+}

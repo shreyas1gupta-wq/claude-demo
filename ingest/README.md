@@ -63,3 +63,13 @@ No fundamentals puller exists in ingest/ at all. Required new scripts (principal
   deferral for banks still in force [VERIFY 2026 status]).
 Reminder from Part C: balance sheet + cash flow are HALF-YEARLY/ANNUAL only in India — mixed-
 frequency ("staircase") signal handling is pre-registered, not improvised.
+
+## Addendum 3 (2026-09-01) — debt/fiscal pullers (from debt Part C)
+
+New fixture family (nothing in ingest/ covers it): pull_status_paper_debt.py,
+pull_receipt_budget_debt.py, pull_state_finances_rbi.py, pull_pdmc_quarterly.py (ownership/
+captivity table), pull_weo_every_vintage.py (April+October, NEVER latest-only), pull_bis_credit_gov.py,
+pull_chinn_ito.py, plus a one-time hand-built SLR/CRR/policy-rate change-date master table.
+WARNING from Part C: the IMF "Historical Public Debt Database" (Abbas et al., starts 1880/1920)
+and "Public Finances in Modern History" (starts 1800) are DIFFERENT products — scripts must name
+which; grabbing HPDD under an "1800" assumption silently pulls the wrong one.
