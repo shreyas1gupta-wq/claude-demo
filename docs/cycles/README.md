@@ -23,8 +23,8 @@ ceiling.
 | 0.3 | Suprasecular real-rate decline | **DONE** — docs/cycles/07-suprasecular-rates.md (CONTEXT entry, ~6.4k words) + Lesson 7 |
 | 0.4 | Golden constant (real gold) | **DONE** — docs/cycles/08-golden-constant.md (CONTEXT, ~6.5k words) + Lesson 8 |
 | 0.5 | Inflation-regime arcs | **DONE** — docs/cycles/09-inflation-regimes.md (CONTEXT, ~7.3k words) + Lesson 9 |
-| 0.6 | Hegemonic-conflict cycles | **IN PROGRESS** (rejection monograph) |
-| 0.7 | Demographic arcs | queued |
+| 0.6 | Hegemonic-conflict cycles | **DONE** — docs/cycles/10-war-cycles.md (rejection, ~7.2k words) + Lesson 10 |
+| 0.7 | Demographic arcs | **IN PROGRESS** (DG legs done; chapter drafting) |
 | 1.1 | Medium-term financial cycle (Borio) | queued (extends the credit monograph) |
 | 1.2 | Real-estate cycle | queued |
 | 1.3 | Commodity supercycle | queued |

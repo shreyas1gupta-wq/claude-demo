@@ -16,6 +16,7 @@ private artifacts; this index is the registry.
 | 7 | The Trend You Must Not Trade | docs/cycles/07-suprasecular-rates.md (Atlas 0.3) | https://claude.ai/code/artifact/4f4a9002-d208-4cbc-927e-d7d3894e54fe | docs/learn/artifacts/lesson-07-suprasecular-rates.html |
 | 8 | The Golden Constant | docs/cycles/08-golden-constant.md (Atlas 0.4) | https://claude.ai/code/artifact/37aa562c-a26f-43e2-b44e-843a0c1cf8a7 | docs/learn/artifacts/lesson-08-golden-constant.html |
 | 9 | Inflation Runs in Generations | docs/cycles/09-inflation-regimes.md (Atlas 0.5) | https://claude.ai/code/artifact/1adf5986-d2d2-4588-8730-963b0f88b9c0 | docs/learn/artifacts/lesson-09-inflation-regimes.html |
+| 10 | The Cycles We Refuse | docs/cycles/10-war-cycles.md (Atlas 0.6, rejection) | https://claude.ai/code/artifact/63ae2d48-ec0f-4da0-bede-19b4f1d03dda | docs/learn/artifacts/lesson-10-war-cycles.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
