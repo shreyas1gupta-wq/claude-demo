@@ -1,0 +1,276 @@
+<title>The Fifty-Year Prophecy</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 15 · atlas 1.4 + 1.5 · a rejection and a lens</p>
+  <h1>The Fifty-Year Prophecy</h1>
+  <p class="stand">Kondratieff waves, tested on Kondratieff's own object with the desk's own
+  machinery: the generational price waves he saw are <em>real</em> — synchronized across his
+  three countries — but they run 25-41 years with a different mechanism each era, and the
+  claimed 45-60-year band is empty at every resolution we pre-registered. The wave is
+  rejected with numbers; Perez's surge framework survives as an unbudgeted red-team lens on
+  the AI decade.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/15-long-waves.md</span>
+    <span><b>Seat</b> none — 1.4 REJECT (D07) · 1.5 CONTEXT, unbudgeted</span>
+    <span><b>Trials</b> KW1–KW2, pre-registered, bars unmoved</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The claim, and why it never dies</h2></div>
+  <p>In 1925 Nikolai Kondratieff published evidence of 50-odd-year waves in English, French
+  and American price levels, interest rates and trade. He hedged carefully; the label did not.
+  Schumpeter built a cathedral on it, Forrester rebuilt it in systems dynamics, and every
+  crisis since 1929 has been "the K-wave winter" to someone. Kondratieff himself was shot in
+  1938 — Soviet orthodoxy required capitalism's crises to be terminal, and his said they were
+  cyclical. The idea's durability has a simpler mechanism than its content: a 50-year prophecy
+  is irrefutable inside a career. Nobody trades a full wave; everybody can narrate one.</p>
+  <p>A desk doesn't argue with folklore — it pre-registers the folklore's own numbers. Two
+  trials, bars written before anything ran: KW1 hunts a 45-60y wave in 165 years of real
+  commodity prices (the machinery from Lessons 13-14, minimum gap forced to 25 years so long
+  waves get every chance); KW2 tests price waves — Kondratieff's actual object — on his own
+  three countries' full price histories.</p>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>What the data said</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — UK inflation, 10-year mean, with every long-wave turn marked</span>
+      <span class="figbadge">REAL DATA · JST · troughs ▼ peaks ▲</span></div>
+    <div class="chart" id="figInfl"></div>
+    <figcaption>The waves are THERE — that is the honest part. Generational inflation arcs
+    peak near 1920, 1948, 1981 and 2013, and the same chronology appears in the US and France
+    within a few years. Kondratieff was looking at something real. Now measure the gaps.</figcaption>
+  </figure>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — every measured spacing vs the claimed band</span>
+      <span class="figbadge">KW1 commodity troughs · KW2 inflation troughs · band = [45, 60]y</span></div>
+    <div class="chart" id="figSpace"></div>
+    <figcaption>Eleven measured trough-to-trough spacings from the two trials — 26 to 41
+    years, with a single 55 — against the band the theory requires. The band is empty on
+    commodities (0 of 5) and nearly so on prices (1 of 10, median 36y). And this is with the
+    test biased LONG: our minimum-gap floor of 25 years already deletes every shorter arc.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">KW1 in [45,60]y</div><div class="v">0/5</div><div class="d">commodity spacings 26-31y — FAIL</div></div>
+    <div class="stat"><div class="k">KW2 median spacing</div><div class="v">36y</div><div class="d">1/10 in-band — FAIL</div></div>
+    <div class="stat"><div class="k">Completed 50y waves in ALL of history</div><div class="v">≈3</div><div class="d">unfalsifiable at any n; datings disagree by 10-20y</div></div>
+    <div class="stat"><div class="k">Verdict</div><div class="v">D07</div><div class="d">REJECT, now with the desk's own numbers</div></div>
+  </div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Where the true fragments already live</h2></div>
+  <p>The rejection is not a claim that nothing long exists — the atlas already TRADES long
+  objects. It is a claim that the K-wave is six seated states wearing one mystical label:</p>
+  <div class="timeline">
+    <div class="trow"><span class="yr">price waves</span><p>The KW2 chronology IS the inflation-regime arcs (Lesson 9) — seated, with era-specific mechanisms named instead of averaged away.</p></div>
+    <div class="trow"><span class="yr">debt build</span><p>Multi-decade leverage arcs → the debt supercycle seat (Lesson 5).</p></div>
+    <div class="trow"><span class="yr">mid cycle</span><p>Credit-property amplification → L12 (Lesson 12).</p></div>
+    <div class="trow"><span class="yr">commodities</span><p>Real price arcs, measured at 15-21y → H53's state (Lesson 14).</p></div>
+    <div class="trow"><span class="yr">"winter"</span><p>Crisis clustering → fast stress + hedge scheduling, dated by states, never prophecy.</p></div>
+    <div class="trow"><span class="yr">tech manias</span><p>Innovation-cluster capex → atlas 1.5, below — kept as a LENS, refused as a clock.</p></div>
+  </div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Perez: the one long-wave idea worth keeping, unbudgeted</h2></div>
+  <p>Carlota Perez claims a recurring SEQUENCE, not a period: financial capital funds an
+  installation frenzy (canal mania, railway mania, dotcom), a turning point crashes it, and
+  production capital deploys the technology into a golden age. Five observations, flexible
+  dating — so it earns no state and no budget. But as a set of questions about the AI-capex
+  decade it is the sharpest lens the desk has, and the monograph fixes three of them as
+  standing quarterly red-team questions: who is the railway and who is the over-paying
+  shipper in AI capex; what would a FUNDING-channel turning point look like and which existing
+  states would pull permissions first; and is India positioned as 1860s Bombay — the funding
+  periphery of someone else's mania — or as a deployment beneficiary. Stage-2 questions,
+  never Stage-1 inputs. The prophecy stays rejected; the interrogation stays scheduled.</p>
+</section>
+
+<footer>
+  <p>Lesson 15 of the learn-while-we-build series · Ionic quant desk · Atlas 1.4 REJECT (D07)
+  + 1.5 CONTEXT · monograph: docs/cycles/15-long-waves.md · trials KW1-KW2 in
+  research/register/trial-ledger.md (pre-registered, bars unmoved) · Figures computed by us
+  from the JST R6 and Jacks panels (authenticated, manifested).</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"kw1_troughs":[1855,1886,1913,1939,1970,2001],"kw1_peaks":[1854,1882,1910,1936,1964,1996],"kw1_spacings":[31,27,26,31,31],"kw2":{"UK":{"peaks":[1890,1920,1948,1981,2013],"troughs":[1886,1911,1951,2006]},"USA":{"peaks":[1888,1920,1950,1982,2008],"troughs":[1891,1923,1962,2003]},"France":{"peaks":[1884,1921,1949,1983,2009],"troughs":[1882,1909,1936,1962,2002]}},"kw2_spacings":[25,26,27,27,32,39,40,40,41,55],"infl_uk":[[1870,null],[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,-0.1],[1881,-0.35],[1882,-0.71],[1883,-1.07],[1884,-1.0],[1885,-1.12],[1886,-1.25],[1887,-1.23],[1888,-0.94],[1889,-0.35],[1890,-0.62],[1891,-0.44],[1892,-0.5],[1893,-0.52],[1894,-0.45],[1895,-0.25],[1896,-0.11],[1897,0.08],[1898,0.04],[1899,-0.02],[1900,0.45],[1901,0.43],[1902,0.39],[1903,0.5],[1904,0.69],[1905,0.83],[1906,0.86],[1907,0.83],[1908,0.85],[1909,0.83],[1910,0.42],[1911,0.38],[1912,0.67],[1913,0.59],[1914,0.58],[1915,1.72],[1916,3.39],[1917,5.51],[1918,7.45],[1919,8.36],[1920,9.71],[1921,8.8],[1922,6.99],[1923,6.42],[1924,6.38],[1925,5.23],[1926,3.48],[1927,0.99],[1928,-1.03],[1929,-2.08],[1930,-3.79],[1931,-3.33],[1932,-2.09],[1933,-1.68],[1934,-1.61],[1935,-1.57],[1936,-1.42],[1937,-0.85],[1938,-0.66],[1939,-0.29],[1940,1.55],[1941,3.01],[1942,3.96],[1943,4.51],[1944,4.77],[1945,4.98],[1946,5.22],[1947,5.56],[1948,6.14],[1949,6.14],[1950,4.97],[1951,4.81],[1952,5.14],[1953,5.16],[1954,5.12],[1955,5.34],[1956,5.54],[1957,5.24],[1958,4.78],[1959,4.56],[1960,4.26],[1961,3.71],[1962,3.11],[1963,2.96],[1964,3.06],[1965,2.98],[1966,2.87],[1967,2.71],[1968,2.82],[1969,3.27],[1970,3.82],[1971,4.4],[1972,4.68],[1973,5.37],[1974,6.51],[1975,8.14],[1976,9.2],[1977,10.37],[1978,10.7],[1979,11.27],[1980,12.05],[1981,12.27],[1982,12.35],[1983,11.94],[1984,10.9],[1985,9.33],[1986,8.2],[1987,7.13],[1988,6.78],[1989,6.21],[1990,5.47],[1991,5.08],[1992,4.72],[1993,4.48],[1994,4.26],[1995,4.05],[1996,3.96],[1997,3.82],[1998,3.61],[1999,3.23],[2000,2.63],[2001,2.03],[2002,1.74],[2003,1.62],[2004,1.56],[2005,1.5],[2006,1.5],[2007,1.55],[2008,1.75],[2009,1.83],[2010,2.07],[2011,2.39],[2012,2.54],[2013,2.66],[2014,2.67],[2015,2.47],[2016,2.31],[2017,2.34],[2018,2.24],[2019,2.2],[2020,1.96]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figInfl');
+  const rows=DATA.infl_uk.filter(r=>r[1]!=null);
+  const yr0=rows[0][0], yr1=rows[rows.length-1][0];
+  const ys=rows.map(r=>r[1]); let lo=Math.min(...ys), hi=Math.max(...ys);
+  const pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+  const W=820,H=300,m={t:14,r:16,b:34,l:50},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const X=y=>m.l+iw*(y-yr0)/(yr1-yr0), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'UK 10y mean inflation'});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1.2}));
+  for(let y=1880;y<=2020;y+=20){
+    svg.appendChild(el('line',{x1:X(y),x2:X(y),y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:X(y),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);}
+  [-2,0,2,4,6,8,10].forEach(v=>{ if(v<lo||v>hi) return;
+    const t=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v+'%'; svg.appendChild(t);});
+  const path=rows.map((r,i)=>(i?'L':'M')+X(r[0]).toFixed(1)+' '+Y(r[1]).toFixed(1)).join('');
+  svg.appendChild(el('path',{d:path,fill:'none',stroke:'var(--s1)','stroke-width':2}));
+  const lut=Object.fromEntries(rows.map(r=>[r[0],r[1]]));
+  (DATA.kw2.UK.troughs||[]).forEach(y=>{ if(lut[y]==null) return;
+    svg.appendChild(el('path',{d:`M${X(y)} ${Y(lut[y])+12} l-6 10 h12 z`,fill:'var(--s2)'}));});
+  (DATA.kw2.UK.peaks||[]).forEach(y=>{ if(lut[y]==null) return;
+    svg.appendChild(el('path',{d:`M${X(y)} ${Y(lut[y])-12} l-6 -10 h12 z`,fill:'var(--s3)'}));
+    const t=el('text',{x:X(y),y:Y(lut[y])-26,'text-anchor':'middle','font-size':'10',fill:'var(--s3)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  mount.appendChild(svg);
+})();
+(function(){
+  const mount=document.getElementById('figSpace');
+  const rows=[{lab:'KW1 commodities',vals:DATA.kw1_spacings,color:'var(--s1)'},
+              {lab:'KW2 prices',vals:DATA.kw2_spacings,color:'var(--s2)'}];
+  const lo=20, hi=65, W=820, rowH=64, m={t:12,r:16,b:34,l:130}, H=m.t+rows.length*rowH+m.b;
+  const X=v=>m.l+(W-m.l-m.r)*(v-lo)/(hi-lo);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'spacings vs claimed band'});
+  svg.appendChild(el('rect',{x:X(45),y:m.t,width:X(60)-X(45),height:H-m.t-m.b,fill:'var(--panel)'}));
+  const cap=el('text',{x:(X(45)+X(60))/2,y:m.t+14,'text-anchor':'middle','font-size':'11',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+  cap.textContent='claimed band'; svg.appendChild(cap);
+  for(let v=25;v<=60;v+=5){
+    const t=el('text',{x:X(v),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v+'y'; svg.appendChild(t);}
+  rows.forEach((r,i)=>{
+    const y=m.t+i*rowH+rowH/2+6;
+    svg.appendChild(el('line',{x1:X(lo),x2:X(hi),y1:y,y2:y,stroke:'var(--rule)','stroke-width':1}));
+    const lbl=el('text',{x:m.l-10,y:y+4,'text-anchor':'end','font-size':'12.5',fill:'var(--ink-2)','font-weight':'600'});
+    lbl.textContent=r.lab; svg.appendChild(lbl);
+    r.vals.forEach(v=>svg.appendChild(el('circle',{cx:X(v),cy:y,r:7,fill:r.color,'fill-opacity':0.75,stroke:'var(--card)','stroke-width':1.5})));
+  });
+  mount.appendChild(svg);
+})();
+</script>

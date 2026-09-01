@@ -28,8 +28,8 @@ ceiling.
 | 1.1 | Medium-term financial cycle (Borio) | **DONE** — docs/cycles/12-financial-cycle.md (~23.3k words) + quant/ladder/financial_cycle.py + tests + Lesson 12 |
 | 1.2 | Real-estate cycle | **DONE** — docs/cycles/13-real-estate.md (~11k words, MERGED into L12; RE1/RE2 pre-registered fails; HL-6 first lane rejection) + Lesson 13 |
 | 1.3 | Commodity supercycle | **DONE** — docs/cycles/14-commodity-supercycle.md (~28.2k words; CS1 clock FAIL / CS2 breadth PASS / CS3-CS4 mechanism FAIL; H53 = state-only Tier-C) + Lesson 14 |
-| 1.4/1.5 | Kondratieff / Perez surges | **IN PROGRESS** — paired monograph (K-wave rejection with its own KW trials on the new 165y vault; Perez as unbudgeted CONTEXT) |
-| 1.6 | India infra/capex supercycle | queued |
+| 1.4/1.5 | Kondratieff / Perez surges | **DONE** — docs/cycles/15-long-waves.md (~9.5k words; KW1/KW2 both FAIL, K-band empty at every resolution; Perez = red-team lens) + Lesson 15 |
+| 1.6 | India infra/capex supercycle | **IN PROGRESS** — seated entry (L11): full treatment incl. module + tests |
 | 2.x | Business-credit band (incl. credit cycle) | credit DONE at standard (docs/cycles/01, 58pp); rest queued |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 
