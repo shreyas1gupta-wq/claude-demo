@@ -32,7 +32,9 @@ def main(root: str) -> None:
     today = date.today().isoformat()
     n_new = 0
     for p in sorted(rootp.rglob("*")):
-        if p.is_dir() or p.name == "manifest.json":
+        # .md files are protocol/documentation (e.g. two-pass authentication notes), not data
+        # fixtures — the WORM contract covers raw files only
+        if p.is_dir() or p.name == "manifest.json" or p.suffix == ".md":
             continue
         rel = str(p.relative_to(rootp))
         digest = sha256(p)

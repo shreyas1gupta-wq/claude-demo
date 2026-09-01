@@ -27,3 +27,13 @@ per source docs — [VERIFY deflator detail against the Cliometrica paper when r
 IMF mirror ends 2017-06 (a refresh needs a newer mirror vintage, landed as a NEW file per WORM
 rule); EIA monthlies are nominal USD spot averages; metal production file HAS World rows
 (the draft claim that it lacked them was wrong — checked, corrected); World rows used directly.
+
+## A6 (added 2026-09-01, later the same day) — gold_monthly_1833_2026.csv (datahub mirror)
+
+Pulled to close the gap partC C.2 surfaced (no modern monthly gold leg). Bars written BEFORE
+the check ran (two-pass rule):
+
+| # | Check | Bar | Result |
+|---|---|---|---|
+| A6a | vs vaulted annual gold_silver_1915.csv: corr of Δlog annual means, 1915-2015 | ≥ 0.95 | corr = 0.963 (n=100) — **PASS** |
+| A6b | anchors: Jan-1980 monthly in [600,700] USD/oz; 2011 peak month in [1700,1900]; 1935-1967 fixed era ≈ 35 ±1 | all three | Jan-1980 = 675 PASS; 2011 peak = 1,772 PASS; fixed era **MISS as stated** — 72/396 months print 33.85 (1940-44) and 31.69 (1949), wartime/post-war market quotes my anchor failed to anticipate. The bar is NOT moved (M0 precedent): the miss is recorded, the file is accepted on A6a + the two passing anchors, and the 1940s window is flagged as a quote-basis change in any analysis touching it |

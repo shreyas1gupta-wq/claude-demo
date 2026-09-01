@@ -1,12 +1,12 @@
 {
- "AUTHENTICATION.md": {
-  "bytes": 2702,
-  "sha256": "a63ced94517ba7115c65851a29caf4ea1dfd27902362ea07ac85f2820ed4840f",
-  "vintage": "2026-09-01"
- },
  "brent_monthly_eia.csv": {
   "bytes": 8497,
   "sha256": "f54b0314afcb816c125ab666abab9f7189130cda8849c16549c604595df51c7c",
+  "vintage": "2026-09-01"
+ },
+ "gold_monthly_1833_2026.csv": {
+  "bytes": 35696,
+  "sha256": "fe8104dc6d085d594b68ad2524e1982b04f014a5e447484d24e8012c1e781c6a",
   "vintage": "2026-09-01"
  },
  "imf_pcps_monthly_1980_2017.csv": {
