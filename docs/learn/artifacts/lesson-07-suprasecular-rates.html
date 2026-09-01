@@ -1,0 +1,216 @@
+<title>The Trend You Must Not Trade</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 7 · atlas 0.3 · learn-while-we-build</p>
+  <h1>The Trend You Must Not Trade</h1>
+  <p class="stand">Real interest rates have drifted down for 700 years — about one basis point a
+  year. It's one of the most famous facts in modern macro, it's probably true, and our book does
+  exactly nothing with it. This short lesson is about why "true" and "tradable" are different
+  properties, measured.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/07-suprasecular-rates.md</span>
+    <span><b>Seat</b> NONE — context only, by design</span>
+    <span><b>Real data</b> 18 countries, 1870–2020 (JST R6)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The fact, reproduced by us</h2></div>
+  <p>A <b>real interest rate</b> is the rate you see minus inflation — what a lender actually earns
+  in purchasing power. Schmelzing's celebrated study traced it back to 1311 and found a glacial
+  decline of roughly 1–2bp per year across seven centuries. We ran the 150 years we can measure
+  cleanly: <b>−1.27bp/yr</b> — independently inside his band. The fact is real.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Median real long rate by decade, 18 countries</span>
+      <span class="figbadge">REAL DATA · JST R6 · hyperinflations excluded</span></div>
+    <div class="chart" id="figDecades"></div>
+    <figcaption>Now look at the chart the way a trader must: the "trend" is invisible next to the
+    swings — the 1910s and 1940s troughs (war and repression), the 1980s–90s plateau near +5%, the
+    2010s slide. Every investable story in this picture is a multi-decade SWING, not the
+    seven-century slope.</figcaption>
+  </figure>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The number that ends the argument</h2></div>
+  <div class="stats">
+    <div class="stat"><div class="k">Swing range (rolling 30y means)</div><div class="v">5.4pp</div>
+      <div class="d">median country, 1870–2020</div></div>
+    <div class="stat"><div class="k">The trend's 30y contribution</div><div class="v">0.38pp</div>
+      <div class="d">−1.27bp/yr × 30 years</div></div>
+    <div class="stat"><div class="k">Ratio</div><div class="v">14×</div>
+      <div class="d">swings dwarf trend at any horizon we could trade</div></div>
+  </div>
+  <p>At any horizon your capital will ever live through, the cyclical weather is fourteen times
+  larger than the secular climate. And here is the satisfying part: after we measured this,
+  the literature caught up with itself — Rogoff, Rossi and Schmelzing's own re-examination reports
+  that the trend is <em>not reliably detectable in 150-year sub-samples</em>. Our SR2 finding,
+  corroborated from inside the original author's team.</p>
+  <div class="warnbox"><b>The rejected uses, named in the monograph:</b> terminal-multiple
+  assumptions anchored to "the trend"; duration bets on reversion to it; anything keyed to r-star
+  estimates (whose confidence intervals are wider than the object they estimate); "lower forever"
+  leverage. Each is a real fund's real epitaph. What survives: the real-rate ERA classification —
+  which already lives in the debt monograph's repression gauge — and a written humility clause in
+  any valuation model that embeds a terminal rate.</div>
+  <p style="margin-top:24px"><b>Next in the series:</b> 0.4 — the golden constant: gold's
+  century-scale purchasing-power anchor, and the decades it spends ignoring it.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 7 — companion to Atlas 0.3 (a CONTEXT entry: the monograph documents
+  why nothing trades on this). Sources: <span class="mono">docs/cycles/07-suprasecular-rates.md</span> ·
+  <span class="mono">research/cycles/realrates-deep/jst-realrates-RESULTS.md</span> (SR1–SR3).</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"decades":[[1870,5.12],[1880,4.53],[1890,3.53],[1900,2.46],[1910,-0.89],[1920,5.03],[1930,3.86],[1940,-2.07],[1950,2.09],[1960,2.49],[1970,-0.03],[1980,4.81],[1990,4.77],[2000,2.24],[2010,0.68],[2020,-0.26]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figDecades');
+  const rows=DATA.decades;
+  const W=820,H=300,m={t:16,r:16,b:44,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let lo=Math.min(0,...rows.map(r=>r[1])),hi=Math.max(...rows.map(r=>r[1]));
+  const pad=(hi-lo)*0.12; lo-=pad; hi+=pad;
+  const Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'median real rate by decade'});
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(1)+'%'; svg.appendChild(t);}
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1.2}));
+  const bw=iw/rows.length*0.55;
+  rows.forEach(([dec,v],i)=>{
+    const x=m.l+iw*(i+0.5)/rows.length-bw/2;
+    svg.appendChild(el('rect',{x,y:Math.min(Y(v),Y(0)),width:bw,height:Math.max(Math.abs(Y(v)-Y(0)),1),rx:3,
+      fill: v<0 ? 'var(--s2)' : 'var(--s1)'}));
+    if(i%2===0){const t=el('text',{x:x+bw/2,y:H-14,'text-anchor':'middle','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=String(dec).slice(2)+'s'; svg.appendChild(t);}
+  });
+  mount.appendChild(svg);
+})();
+</script>
