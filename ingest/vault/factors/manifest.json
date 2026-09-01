@@ -1,0 +1,17 @@
+{
+ "ff_momentum_monthly.csv": {
+  "bytes": 21512,
+  "sha256": "4a96af77b606da2c82e3285e1bb5b716a26d5612fb69f1d36a919a0426bf53d7",
+  "vintage": "2026-09-01"
+ },
+ "iima_monthly_factors.csv": {
+  "bytes": 37496,
+  "sha256": "c07a12d1c04630c18a7f87a96c91db6a7c4ebfc1e37f888e41fe8469fe234c44",
+  "vintage": "2026-09-01"
+ },
+ "momentum_crashes_replication.xlsx": {
+  "bytes": 5502757,
+  "sha256": "d3f708b09e8ccb11ec7e84407d08f7775cf8fff80ba0fc85ddbb5820f7d6252c",
+  "vintage": "2026-09-01"
+ }
+}
