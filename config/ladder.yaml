@@ -40,6 +40,21 @@ tau_half_drift_policy:        # principal directive 2026-08-31: cycles drift; be
     slow_debasement_tail_budget_nav_yr: [0.003, 0.006]
     conditional_gold_floor_lift_pp: [1, 2]
 
+state_phase_convention:         # principal directive 2026-09-01: states are trajectories, not numbers
+  representation: "every ladder state is a phase object (level, velocity, quadrant, age) — the business-cycle-clock form; scalar level retained as one component. Notation: 0.60U / 0.60D"
+  quadrants: [recovery, boom, slowdown, downturn]   # deterministic: (slope sign x level vs midpoint); NEVER a fitted regime model
+  slope_horizon_grid_periods: [3, 6, 12]            # k_slope; pre-registered, chosen per band by tau_half, then frozen
+  smoothing_grid_periods: [1, 3, 6]                 # SMA window on the level before differencing
+  deadband_percentile_grid: [0.15, 0.25, 0.35]      # hysteresis: direction flips only above this expanding pctile of |slope|
+  consumption_rule: "quadrant/age may CONDITION policy mappings only after H66-H68 pass their pre-registered tests; until then phase is computed, logged, and displayed (lessons/monitoring) but no traded rule branches on it. Direction-conditioned rules are reduce-only on first admission."
+  provenance:
+    source: "principal directive (path-dependence: same level, different meaning by trail); Eurostat/OECD business-cycle-clock practice for CLI phases [X]; own Fig-4.3 finding that expanding-gap impulse and CD-level are complements; hysteresis per Drehmann-Juselius robustness discussions [A]"
+    tier: B
+    confidence: medium
+    decay: n/a
+    changes_if: "H66 (quadrant asymmetry) / H67 (dead-band grid) / H68 (age effect) results; any band where velocity estimation proves too noisy at its data frequency"
+
+
 entries:
   - id: L1_reversal_1m
     tau_half_months: {value: [0.5, 1], tier: C, source: "Jegadeesh 1990/Lehmann 1990; no India magnitude study (D01)", confidence: low, decay: "zero return budget", changes_if: "India PIT cost-inclusive estimate"}

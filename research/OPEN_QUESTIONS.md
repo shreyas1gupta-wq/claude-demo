@@ -46,3 +46,23 @@ option-spread hedges; (3) Conservative-book TC stance; (4) degraded-mode toleran
 length and first migrating book (suggest Aggressive); (8) year-2 priority (chrono-LLM audit vs
 flow-signal cycle vs meta-label accrual); (9) fix the Challenger review calendar a year ahead;
 (10) pre-declared cut order if the attention budget is violated.
+
+---
+
+## Decision (principal, 2026-09-01): states are phase objects, not scalars
+
+Directive: a scalar state discards the trail — 0.6 rising (0→0.2→0.4→0.6) and 0.6 falling
+(1→0.9→0.8→0.7→0.6) are different regimes; notation 0.6U / 0.6D; richer-than-1D scoring wanted.
+
+Implementation: business-cycle-clock representation (Eurostat/OECD CLI practice) — every ladder
+state becomes (level, velocity, quadrant ∈ {recovery, boom, slowdown, downturn}, age-in-quadrant).
+Quadrant boundaries deterministic (slope sign × level vs midpoint), NEVER fitted (no conflict with
+the <10-transitions rule); direction has rank-based hysteresis (dead-band = expanding percentile of
+|slope|, grid {0.15, 0.25, 0.35}); slope horizon and smoothing from grids per band. Module
+`quant/ladder/phase.py`; convention `ladder.yaml state_phase_convention`; tests
+`tests/test_phase.py` (7, incl. the 0.6U-vs-0.6D scenario and no-look-ahead truncation).
+
+Consumption gate: phase is computed/logged/displayed everywhere, but NO traded rule branches on
+quadrant or age until H66–H68 pass their pre-registered tests; first admissions reduce-only via
+the (proposed) Challenger path. Opens H66 (quadrant asymmetry at matched levels), H67 (grid
+stability: responsiveness-vs-flip-rate frontier), H68 (duration dependence of quadrant exit).

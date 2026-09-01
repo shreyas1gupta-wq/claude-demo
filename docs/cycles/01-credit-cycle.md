@@ -100,6 +100,13 @@ percentile-ranked credit state ∈ [−1, +1] feeding the macro-credit block (�
 1.0x, hedge floor rises one bucket earlier, tail-sleeve entries slow, quality-sleeve floor binds.
 It never shorts the boom and never times the top.
 
+**Phase enrichment (2026-09-01 directive):** the composite is additionally carried as a phase
+object — (level, velocity, quadrant, age) per `quant/ladder/phase.py` and
+`ladder.yaml state_phase_convention` — because the same level means different things by trail
+(0.6U ≠ 0.6D; hysteresis). On the synthetic economy the CD-percentile leg reads U through 100% of
+the boom and D through 100% of the turn window (seeds 0–7). Quadrant/age may not condition any
+traded rule until H66–H68 pass; see the decision record in research/OPEN_QUESTIONS.md.
+
 ## 5. Pre-registered regression designs (frozen here; run on fixtures)
 
 | # | Design | Specification (fixed before data) | Decision rule |
