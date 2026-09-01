@@ -489,3 +489,16 @@ with the measured bound (>=85% detection at 0.3, median lag <=5d, pooled over 3 
 rate is documented as a property of the object, not a bug. Consequence for design F2/F6: the
 de-risk rule's value must be measured NET of both missed episodes and false fires — detection-rate
 tables at the full threshold grid are part of the pre-registered output, never a single cell.
+
+---
+
+## 2026-09-01 — Atlas 0.4 (golden constant): pre-written reversion claim falsified (instance #3)
+
+The GC2 draft text asserted "departures halve in about a decade" BEFORE the estimator ran. The
+run said: bias-corrected rho = 1.000 on 105 annual obs — real gold is statistically
+indistinguishable from a random walk; NO reversion half-life is measurable from this sample
+(near-unit-root flag fired as designed). Text replaced with the honest read; the falsification
+STRENGTHENS the atlas verdict (the anchor is unusable for timing at any statistically defensible
+horizon). Pattern note: three instances now (MC3, fast-stress detection, GC2) — all three were
+interpretive text written before the number existed. Standing rule reaffirmed and extended:
+result-interpretation sentences are written AFTER the print lands, or carried as [PREDICTION].
