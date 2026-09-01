@@ -149,3 +149,23 @@ def test_mintrl_sobering_at_realistic_sharpe():
     t = min_track_record_length(sr_hat=0.29, sr_benchmark=0.0, skew=0.0, kurt=3.0)
     assert 20 < t < 60   # months: ~2-5 years
     assert min_track_record_length(0.29, 0.29, 0.0, 3.0) == float("inf")
+
+
+def test_hamilton_filter_is_nan_robust():
+    """Real series carry leading gaps and interior holes (JST war years). The filter must skip
+    unusable rows, emit NaN there, and leave clean-region estimates identical to the no-NaN run
+    up to the information set (regression discovered on the JST panel, 2026-09-01)."""
+    import numpy as np
+    from quant.stats.hamilton import hamilton_filter
+    rng = np.random.default_rng(0)
+    y = np.cumsum(rng.normal(0, 1, 300)) + 50
+    holed = y.copy()
+    holed[:15] = np.nan          # leading gap (series starts late)
+    holed[120:126] = np.nan      # interior hole (war years)
+    out = hamilton_filter(holed, h=5, p=2, mode="expanding")
+    assert np.isfinite(out).sum() > 150, "must still produce estimates"
+    assert np.isnan(out[:20]).all(), "no estimates before the series exists"
+    full_mode = hamilton_filter(holed, h=5, p=2, mode="full")
+    assert np.isfinite(full_mode).sum() > 150
+    # rows whose own regressors/target touch the hole are NaN
+    assert np.isnan(out[120:126]).all()

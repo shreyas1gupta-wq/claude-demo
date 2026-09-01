@@ -42,21 +42,27 @@ def hamilton_filter(y, h: int, p: int, mode: str = "expanding",
         min_obs = 5 * (p + 1)
     t_idx, X, target = _design(y, h, p)
     cycle = np.full(n, np.nan)
+    # NaN robustness (real series have leading gaps and war holes): a regression row is usable
+    # only when its target and all its regressors are finite; unusable rows are excluded from
+    # every fit and get NaN cycle values. Discovered the hard way on the JST panel (2026-09-01).
+    row_ok = np.isfinite(target) & np.all(np.isfinite(X), axis=1)
 
     if mode == "full":
-        beta, *_ = np.linalg.lstsq(X, target, rcond=None)
-        cycle[t_idx + h] = target - X @ beta
+        if row_ok.sum() >= min_obs:
+            beta, *_ = np.linalg.lstsq(X[row_ok], target[row_ok], rcond=None)
+            cycle[t_idx[row_ok] + h] = target[row_ok] - X[row_ok] @ beta
         return cycle
 
     if mode != "expanding":
         raise ValueError(f"unknown mode {mode!r}")
 
+    n_ok = np.cumsum(row_ok)
     for i in range(len(t_idx)):
         # fit on regressions whose TARGET date is <= current target date (info through s = t+h)
-        if i + 1 < min_obs:
+        if not row_ok[i] or n_ok[i] < min_obs:
             continue
-        Xi, yi = X[: i + 1], target[: i + 1]
-        beta, *_ = np.linalg.lstsq(Xi, yi, rcond=None)
+        sel = row_ok[: i + 1]
+        beta, *_ = np.linalg.lstsq(X[: i + 1][sel], target[: i + 1][sel], rcond=None)
         s = t_idx[i] + h
         cycle[s] = target[i] - X[i] @ beta
     return cycle
