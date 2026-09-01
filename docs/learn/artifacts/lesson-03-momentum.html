@@ -1,0 +1,394 @@
+<title>Momentum, From Zero</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 3 · learn-while-we-build</p>
+  <h1>Momentum, From Zero</h1>
+  <p class="stand">The return engine's first sleeve: why winners keep winning, on 32 years of real
+  Indian data and 97 years of American data — and why this strategy's disasters arrive precisely
+  when the market starts feeling better, a trap we can now see coming in state, if never in date.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/03-momentum-trend.md</span>
+    <span><b>Code</b> quant/ladder/momentum.py</span>
+    <span><b>Real data</b> India factor mirror 1993–2025 · US crash replication 1927–2025 (both authenticated + checksummed)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Parts">
+  <a href="#p1">1 · The fact</a>
+  <a href="#p2">2 · Why it exists</a>
+  <a href="#p3">3 · The crash</a>
+  <a href="#p4">4 · India & decay</a>
+  <a href="#p5">5 · Taming it</a>
+  <a href="#p6">6 · Into the book</a>
+</nav>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The fact that broke efficient markets</h2></div>
+  <p>Rank every stock by its return over the past year (skipping the most recent month — that bit
+  reverses). Buy the top tenth, short the bottom tenth, hold a month, repeat. That mechanical
+  recipe — no accounting, no forecasts, nothing but past prices — is <b>WML</b> (winners minus
+  losers), and Jegadeesh &amp; Titman's 1993 demonstration that it earned large, persistent profits
+  in a century of US data is still the single most embarrassing fact for the idea that prices
+  instantly reflect everything. Here it is on <em>India's</em> own record:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — ₹1 in Indian paper momentum, 1993 → 2025</span>
+      <span class="figbadge">REAL DATA · India factor mirror · before costs</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>cumulative WML (log scale)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>▼ the six worst months</span></div>
+    <div class="chart" id="figCum"></div>
+    <figcaption>₹1 grows to ~₹28 over 32 years — a +13.4%/yr paper spread — <b>before costs</b>, on
+    a long-short construction our long-only books can only partially harvest, and with the level
+    itself carrying an open reconciliation flag against the academic literature (Part 4). But look
+    at the shape as much as the slope: the climb is punctuated by sudden cliffs — Nov 2001
+    (−27.6%), May 2009 (−25.0%), the 2000 unwind. Momentum's return is real, and so is its
+    signature failure mode. Hover any point.</figcaption>
+  </figure>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Why it exists — four engines, one survival argument</h2></div>
+  <p>No single story explains momentum; four reinforcing ones do, and they disagree usefully about
+  what would kill it:</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Slow news diffusion</div><p>Information spreads gradually
+      (Hong-Stein): the first move is incomplete, so it continues. Predicts momentum is strongest
+      where attention is thinnest — small, under-covered names. Dies if information gets fast.</p></div>
+    <div class="tier"><div class="tl">The disposition anchor</div><p>Holders sell winners too early
+      and cling to losers (Shefrin-Statman; Grinblatt-Han): unrealized-gain overhang makes prices
+      under-travel, then drift. Dies only if human loss-aversion dies.</p></div>
+    <div class="tier"><div class="tl">Overconfidence</div><p>Investors over-trust their private
+      views and double down on confirmation (Daniel-Hirshleifer-Subrahmanyam): trends overshoot
+      before they reverse. Predicts momentum coexists with long-run reversal — which it does.</p></div>
+    <div class="tier"><div class="tl">Frog in the pan</div><p>A stream of small news gets less
+      attention than one big jump (Da-Gurun-Warachka): gradual movers drift more than jumpers.
+      Directly measurable — and a natural fit for our information-discreteness screens.</p></div>
+  </div>
+  <div class="keyresult"><div class="t">Survival argument — weaker than credit's, and priced as such</div>
+    <div class="big">Momentum survives because exploiting it fully requires surviving its crashes —
+    but it decays more than any slow macro state, and we haircut it accordingly.</div>
+    <p>The trade against momentum's mispricing is career-risky (tracking error, 2009-style
+    disasters), which protects the premium. But this is a crowded, published, fast cross-sectional
+    anomaly: McLean-Pontiff decay applies with full force, factor funds now hold measurable AUM in
+    it (our crowding monitor's input), and our standing forward haircut is 25–35% off literature
+    effect sizes — escalating by rule, never by mood.</p></div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The crash — an option you didn't know you sold</h2></div>
+  <p>Momentum's worst months are not when markets fall. They are when markets <em>rebound after
+  having fallen</em>. The mechanism: after a bear market, the loser decile is full of smashed,
+  leveraged, near-distress names. Those stocks now behave like <b>call options on the market's
+  recovery</b> — nearly worthless if things stay bad, explosive if things turn. A momentum book is
+  SHORT those names, so it is short those calls. When the rally comes, the "losers" can double
+  while the winners plod — and WML implodes. Daniel &amp; Moskowitz formalized it; here it is on
+  both our panels, computed by us:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — Mean WML by market state (known at month start)</span>
+      <span class="figbadge">REAL DATA · US 1927–2025 · India 1993–2025</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>United States</span>
+      <span><span class="sw" style="background:var(--s2)"></span>India</span></div>
+    <div class="chart" id="figCond"></div>
+    <figcaption>"Bear" = the market's trailing 2-year return is negative — knowable in advance.
+    The exposed cell is <b>bear-and-market-up</b>: US −4.59%/month, India −2.24%/month. And notice
+    the cruel twin: bear-and-market-down months are momentum's <em>best</em> (US +6.85, India
+    +3.93). The crash zone can't be dodged by exiting bears entirely without giving those up —
+    which is exactly the cost-benefit our pre-registered guard designs must price, not wish
+    away.</figcaption>
+  </figure>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Guard ON (real US months)</div><div class="v" id="stG1"></div>
+      <div class="d">mean WML/month, n=95</div></div>
+    <div class="stat"><div class="k">Guard OFF</div><div class="v" id="stG2"></div>
+      <div class="d">mean WML/month, n=1069</div></div>
+    <div class="stat"><div class="k">Same guard, synthetic truth</div><div class="v">−1.6% / +3.3%</div>
+      <div class="d">planted-crash fixture, 10 seeds</div></div>
+  </div>
+  <p>That's our <code>crash_guard</code> — bear market plus top-quartile expanding volatility,
+  reduce-only by contract — separating 97 years of real months the same way it separated the
+  synthetic ones. The worst US months on record (Aug 1932 −76.9%, Sep 1939 −53.6%, Apr 2009
+  −44.9%) all sit inside the guard's state. What the guard can never do is name the month — only
+  the weather.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>India specifics — and an honest open item</h2></div>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">1994–2014</div><p>+13.1%/yr at 28.4% vol — Sharpe 0.21. The
+      wild-era premium: big, but violent.</p></div>
+    <div class="tier"><div class="tl">post-2015</div><p>+13.2%/yr at 14.5% vol — Sharpe <b>0.51</b>.
+      Mean undecayed, volatility HALVED: risk-adjusted momentum in India got better, not worse.</p></div>
+    <div class="tier"><div class="tl">post-2020</div><p>+9.3%/yr, Sharpe 0.27 — softer, watched by
+      the decay ledger, not yet a verdict.</p></div>
+    <div class="tier"><div class="tl">The haircut stays</div><p>Forward haircut 25–35% unchanged:
+      it prices FUTURE crowding (factor-fund AUM is climbing), not realized history.</p></div>
+  </div>
+  <div class="warnbox"><b>Open reconciliation, on the record.</b> This mirror's 1994–2014 average
+  computes to ~13.1%/yr; the academic literature repeatedly cites ~21.9%/yr for Indian WML. Same
+  country, same era — likely different construction (decile vs 2×3 sorts, weighting, universe).
+  Until we pull the primary factor library on your machine (<code>pip install indiafactorlibrary</code>
+  — already on the runsheet) and reconcile, the LEVEL wears a [VERIFY] tag and nothing downstream
+  leans on it. The crash months, conditional pattern, and vol structure — the shape — authenticated
+  cleanly and are what this lesson builds on.</div>
+  <p><b>Simplicity-lane tie-in:</b> your 52-week-high instinct from the heuristics lane is a
+  third of our L3 blend already — "price near its yearly high" is momentum in trader's units
+  (George-Hwang), and India-specific evidence for it exists (the Raju SSRN series, now cited in
+  the monograph). RSI, meanwhile, carries a redundancy guard: it's likely our short-horizon
+  reversal seat wearing older clothes, and it must prove otherwise before getting its own chair.</p>
+</section>
+
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>Taming it — constant risk instead of constant rupees</h2></div>
+  <p>Lesson 2's vol-targeting idea applies with special force here, because momentum's own
+  volatility is even more forecastable than the market's, and its high-vol states are precisely its
+  crash states. Scale WML by target-vol over its own trailing vol (Barroso–Santa-Clara), and on the
+  97-year US panel:</p>
+  <div class="stats">
+    <div class="stat"><div class="k">Raw WML</div><div class="v">0.77 · −83%</div><div class="d">Sharpe · max drawdown</div></div>
+    <div class="stat"><div class="k">Vol-managed</div><div class="v">1.29 · −29%</div><div class="d">12% target, 2× cap</div></div>
+    <div class="stat"><div class="k">Published (BSC 2015)</div><div class="v">0.53→0.97</div><div class="d">direction matched, levels differ — stated</div></div>
+  </div>
+  <p>An 83% drawdown becomes 29% — not by predicting anything, only by refusing to hold constant
+  rupees through a variance regime. This is the same physics as Lesson 2, pointed at a sleeve
+  instead of a book, and it is why the momentum sleeve reports to the fast-stress machinery rather
+  than living in isolation.</p>
+</section>
+
+<section id="p6">
+  <div class="partkicker"><span class="partnum">PART 6</span><h2>Into the book — and the frontier</h2></div>
+  <p>What this cycle feeds: the L3 composite (12-1 + 6-1 + 52wk-high ranks, cost-netted before
+  anything trades) is the return engine's first sleeve; L4's trend state confirms regime and
+  schedules hedges inside its frozen 0.20 budget; the crash guard throttles the sleeve, reduce-only,
+  in panic states; the crowding monitor watches factor-fund AUM; and the phase machinery's
+  D-quadrant re-entry idea awaits its H66/F7 verdict before any traded rule uses it.</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Known today</div><p>The premium (a century, everywhere,
+      including India's own 32 years); the crash mechanism, confirmed on both panels by us; the
+      guard's separation on real data; vol management's tail compression.</p></div>
+    <div class="tier"><div class="tl">Awaits data</div><p>The primary India factor pull (level
+      reconciliation), our own bhavcopy WML vs the library (the acceptance test), India DM betas,
+      the guard's India-tuned grid — designs N1–N5, all pre-registered.</p></div>
+    <div class="tier"><div class="tl">Never knowable</div><p>The next crash's month. Only its
+      weather — and we now measure the weather.</p></div>
+  </div>
+  <p style="margin-top:28px"><b>Next lesson:</b> value and quality — the sleeves that are supposed
+  to zig when momentum zags, and whether India's data agrees.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 3 — companion to deep-dive #3. Sources of record:
+  <span class="mono">docs/cycles/03-momentum-trend.md</span> · <span class="mono">quant/ladder/momentum.py</span> ·
+  <span class="mono">tests/test_momentum.py</span> · <span class="mono">research/cycles/momentum-deep/momentum-panel-RESULTS.md</span>
+  (trials M0–M5, incl. the authentication near-miss recorded, not waved through) ·
+  <span class="mono">ingest/vault/factors/manifest.json</span>. Real-data figures use a GitHub
+  mirror of an IIM-A-style India factor library (shape authenticated; level [VERIFY]) and the
+  official momentum-crashes replication panel. WML here is a paper long-short spread before costs —
+  an object of study, not our product's return.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"india_wml":[["1993-10",3.01],["1993-11",12.62],["1993-12",-3.3],["1994-01",-5.1],["1994-02",5.06],["1994-03",-1.0],["1994-04",-1.89],["1994-05",-9.8],["1994-06",-0.9],["1994-07",-10.18],["1994-08",-2.09],["1994-09",-4.21],["1994-10",0.49],["1994-12",-5.34],["1995-01",-2.22],["1995-02",4.9],["1995-03",-1.89],["1995-04",0.69],["1995-05",-2.4],["1995-06",1.67],["1995-07",-1.04],["1995-08",6.16],["1995-09",0.74],["1995-10",0.81],["1995-11",-2.88],["1995-12",0.36],["1996-01",5.75],["1996-02",0.09],["1996-03",7.08],["1996-04",6.89],["1996-05",10.88],["1996-06",6.13],["1996-07",8.6],["1996-08",-4.36],["1996-09",2.86],["1996-10",-1.88],["1996-11",3.31],["1996-12",-12.06],["1997-01",-13.87],["1997-02",10.11],["1997-03",7.78],["1997-04",7.62],["1997-05",11.71],["1997-06",3.12],["1997-07",-10.53],["1997-08",-0.86],["1997-09",14.81],["1997-10",4.05],["1997-11",8.2],["1997-12",-5.47],["1998-01",-11.89],["1998-02",6.39],["1998-03",-18.76],["1998-04",-9.93],["1998-05",3.68],["1998-06",1.67],["1998-07",11.98],["1998-08",-4.13],["1998-09",-8.96],["1998-10",0.75],["1998-11",-3.75],["1998-12",-0.65],["1999-01",15.19],["1999-02",11.45],["1999-03",10.39],["1999-04",-3.16],["1999-05",-10.76],["1999-06",-12.5],["1999-07",-0.32],["1999-08",-9.54],["1999-09",8.93],["1999-10",-1.67],["1999-11",16.11],["1999-12",30.47],["2000-01",7.71],["2000-02",26.67],["2000-03",-10.88],["2000-04",-21.12],["2000-05",-19.78],["2000-06",8.6],["2000-07",-10.67],["2000-08",2.58],["2000-09",-2.73],["2000-10",-6.1],["2000-11",-9.21],["2000-12",0.73],["2001-01",6.63],["2001-02",16.37],["2001-03",35.82],["2001-04",-3.26],["2001-05",-7.92],["2001-06",4.83],["2001-07",16.72],["2001-08",-5.53],["2001-09",21.19],["2001-10",-13.33],["2001-11",-27.61],["2001-12",-3.71],["2002-01",5.67],["2002-02",9.43],["2002-03",7.86],["2002-04",4.33],["2002-05",-4.27],["2002-06",-3.67],["2002-07",1.07],["2002-08",-2.31],["2002-09",-3.56],["2002-10",8.57],["2002-11",-9.06],["2002-12",3.6],["2003-01",8.72],["2003-02",3.58],["2003-03",5.32],["2003-04",-2.62],["2003-05",7.22],["2003-06",-6.49],["2003-07",1.24],["2003-08",7.08],["2003-09",0.96],["2003-10",4.83],["2003-11",-5.76],["2003-12",-2.98],["2004-01",3.5],["2004-02",4.5],["2004-03",8.0],["2004-04",3.57],["2004-05",-11.9],["2004-06",2.66],["2004-07",5.28],["2004-08",0.51],["2004-09",-2.23],["2004-10",6.22],["2004-11",-0.76],["2004-12",3.17],["2005-01",3.42],["2005-02",5.94],["2005-03",4.57],["2005-04",-6.87],["2005-05",-3.66],["2005-06",1.28],["2005-07",6.7],["2005-08",1.68],["2005-09",0.02],["2005-10",-6.06],["2005-11",2.56],["2005-12",4.01],["2006-01",7.35],["2006-02",-0.95],["2006-03",9.0],["2006-04",-1.14],["2006-05",-1.07],["2006-06",5.32],["2006-07",5.87],["2006-08",-0.42],["2006-09",3.87],["2006-10",4.84],["2006-11",6.0],["2006-12",3.09],["2007-01",0.03],["2007-02",2.36],["2007-03",1.96],["2007-04",-0.66],["2007-05",2.24],["2007-06",2.13],["2007-07",2.92],["2007-08",2.45],["2007-09",-0.15],["2007-10",20.8],["2007-11",1.44],["2007-12",-3.04],["2008-01",-4.36],["2008-02",-2.21],["2008-03",-5.82],["2008-04",-3.88],["2008-05",-1.51],["2008-06",-1.66],["2008-07",2.04],["2008-08",-2.29],["2008-09",5.13],["2008-10",17.67],["2008-11",12.17],["2008-12",-20.31],["2009-01",11.56],["2009-02",6.46],["2009-03",-6.42],["2009-04",-18.33],["2009-05",-25.0],["2009-06",-4.3],["2009-07",0.31],["2009-08",-8.53],["2009-09",0.51],["2009-10",8.72],["2009-11",7.17],["2009-12",-0.68],["2010-01",-0.21],["2010-02",1.11],["2010-03",2.71],["2010-04",1.53],["2010-05",-0.03],["2010-06",-0.09],["2010-07",4.47],["2010-08",4.99],["2010-09",-1.22],["2010-10",3.0],["2010-11",7.02],["2010-12",-4.97],["2011-01",5.02],["2011-02",3.03],["2011-03",-0.06],["2011-04",-2.19],["2011-05",5.34],["2011-06",5.04],["2011-07",3.8],["2011-08",11.56],["2011-09",-1.61],["2011-10",-0.57],["2011-11",8.0],["2011-12",6.25],["2012-01",-17.95],["2012-02",-1.91],["2012-03",9.32],["2012-04",2.03],["2012-05",7.09],["2012-06",-6.01],["2012-07",4.92],["2012-08",11.42],["2012-09",-7.74],["2012-10",2.84],["2012-11",-3.15],["2012-12",0.08],["2013-01",2.51],["2013-02",7.86],["2013-03",4.17],["2013-04",-3.62],["2013-05",7.88],["2013-06",11.53],["2013-07",11.59],["2013-08",-7.86],["2013-09",-7.7],["2013-10",-5.68],["2013-11",-3.82],["2013-12",-0.46],["2014-01",3.92],["2014-02",4.71],["2014-03",-9.64],["2014-04",-3.33],["2014-05",-8.67],["2014-06",2.69],["2014-07",-1.38],["2014-08",5.42],["2014-09",6.18],["2014-10",2.15],["2014-11",5.61],["2014-12",4.8],["2015-01",3.42],["2015-02",1.01],["2015-03",8.62],["2015-04",-5.53],["2015-05",3.48],["2015-06",3.69],["2015-07",9.0],["2015-08",5.43],["2015-09",2.15],["2015-10",-6.56],["2015-11",1.21],["2015-12",-0.34],["2016-01",1.1],["2016-02",-3.69],["2016-03",-2.72],["2016-04",-1.77],["2016-05",-0.22],["2016-06",-2.72],["2016-07",1.43],["2016-08",2.46],["2016-09",1.64],["2016-10",3.14],["2016-11",0.74],["2016-12",-0.84],["2017-01",4.31],["2017-02",-2.01],["2017-03",1.99],["2017-04",3.6],["2017-05",2.24],["2017-06",-1.01],["2017-07",0.25],["2017-08",7.36],["2017-09",-2.75],["2017-10",3.97],["2017-11",-0.05],["2017-12",-1.87],["2018-01",0.45],["2018-02",1.73],["2018-03",4.64],["2018-04",3.82],["2018-05",2.42],["2018-06",0.69],["2018-07",2.69],["2018-08",4.72],["2018-09",5.19],["2018-10",-0.79],["2018-11",-1.1],["2018-12",-3.34],["2019-01",5.67],["2019-02",-2.35],["2019-03",-2.64],["2019-04",2.7],["2019-05",2.89],["2019-06",7.24],["2019-07",11.49],["2019-08",6.97],["2019-09",-2.55],["2019-10",5.47],["2019-11",-8.89],["2019-12",1.95],["2020-01",0.79],["2020-02",10.86],["2020-03",13.77],["2020-04",-13.48],["2020-05",0.96],["2020-06",-5.83],["2020-07",4.34],["2020-08",-8.38],["2020-09",9.1],["2020-10",-0.16],["2020-11",-8.2],["2020-12",-3.75],["2021-01",-1.78],["2021-02",2.77],["2021-03",3.49],["2021-04",5.8],["2021-05",0.21],["2021-06",-1.67],["2021-07",3.91],["2021-08",2.88],["2021-09",-2.48],["2021-10",6.75],["2021-11",4.69],["2021-12",3.49],["2022-01",-0.48],["2022-02",-1.63],["2022-03",7.22],["2022-04",-2.9],["2022-05",-6.05],["2022-06",1.64],["2022-07",-2.96],["2022-08",6.18],["2022-09",1.7],["2022-10",-0.36],["2022-11",-1.67],["2022-12",-0.03],["2023-01",-3.19],["2023-02",-1.88],["2023-03",1.92],["2023-04",-3.89],["2023-05",2.22],["2023-06",2.27],["2023-07",6.3],["2023-08",0.75],["2023-09",1.07],["2023-10",3.62],["2023-11",4.98],["2023-12",-1.51],["2024-01",5.82],["2024-02",3.38],["2024-03",2.49],["2024-04",1.15],["2024-05",2.91],["2024-06",0.54],["2024-07",-2.18],["2024-08",-0.63],["2024-09",-1.68],["2024-10",2.3],["2024-11",2.27],["2024-12",2.74],["2025-01",-6.34],["2025-02",1.03],["2025-03",0.13],["2025-04",-2.93],["2025-05",-6.1],["2025-06",1.38],["2025-07",1.93],["2025-08",0.54],["2025-09",-2.75],["2025-10",1.85],["2025-11",4.94],["2025-12",1.3]],"india_decay":{"full 1993-2025":13.41,"1994-2014 (AJV-comparable)":13.11,"2009-2014":10.54,"post-2015":13.16,"post-2020":9.25},"us_cond":{"bull":[1.82,889],"bear":[0.4,275],"bear_mkt_up":[-4.59,155],"bear_mkt_dn":[6.85,120]},"ind_cond":{"bull":[1.39,243],"bear":[0.65,143],"bear_mkt_up":[-2.24,76],"bear_mkt_dn":[3.93,67]},"guard_us":{"on":[-2.19,95],"off":[1.81,1069]},"india_cum":[1.0301,1.1601,1.1218,1.0646,1.1185,1.1073,1.0864,0.9799,0.9711,0.8722,0.854,0.818,0.822,0.7781,0.7609,0.7982,0.7831,0.7885,0.7696,0.7824,0.7743,0.822,0.828,0.8348,0.8107,0.8136,0.8604,0.8612,0.9222,0.9857,1.0929,1.1599,1.2597,1.2048,1.2392,1.2159,1.2562,1.1047,0.9515,1.0477,1.1292,1.2152,1.3575,1.3999,1.2525,1.2417,1.4256,1.4833,1.6049,1.5172,1.3368,1.4222,1.1554,1.0407,1.0789,1.097,1.2284,1.1776,1.0721,1.0802,1.0397,1.0329,1.1898,1.326,1.4638,1.4176,1.265,1.1069,1.1034,0.9981,1.0872,1.0691,1.2413,1.6195,1.7444,2.2096,1.9692,1.5533,1.2461,1.3532,1.2088,1.24,1.2062,1.1326,1.0283,1.0358,1.1045,1.2853,1.7457,1.6887,1.555,1.6301,1.9027,1.7974,2.1783,1.8879,1.3667,1.316,1.3906,1.5217,1.6413,1.7124,1.6393,1.5791,1.596,1.5592,1.5036,1.6325,1.4846,1.538,1.6722,1.732,1.8242,1.7764,1.9046,1.781,1.8031,1.9308,1.9493,2.0435,1.9258,1.8684,1.9338,2.0208,2.1824,2.2604,1.9914,2.0443,2.1523,2.1633,2.115,2.2466,2.2295,2.3002,2.3788,2.5201,2.6353,2.4543,2.3644,2.3947,2.5552,2.5981,2.5986,2.4411,2.5036,2.604,2.7954,2.7689,3.018,2.9836,2.9517,3.1087,3.2912,3.2774,3.4042,3.569,3.7832,3.9,3.9012,3.9933,4.0716,4.0447,4.1353,4.2234,4.3467,4.4532,4.4465,5.3714,5.4487,5.2831,5.0527,4.9411,4.6535,4.4729,4.4054,4.3323,4.4207,4.3194,4.541,5.3434,5.9937,4.7764,5.3285,5.6727,5.3086,4.3355,3.2516,3.1118,3.1215,2.8552,2.8698,3.12,3.3437,3.321,3.314,3.3508,3.4416,3.4942,3.4932,3.49,3.646,3.828,3.7813,3.8947,4.1681,3.961,4.1598,4.2859,4.2833,4.1895,4.4132,4.6356,4.8118,5.368,5.2816,5.2515,5.6716,6.0261,4.9444,4.85,5.302,5.4096,5.7932,5.445,5.7129,6.3653,5.8726,6.0394,5.8492,5.8538,6.0008,6.4724,6.7423,6.4983,7.0103,7.8186,8.7248,8.039,7.42,6.9986,6.7312,6.7003,6.9629,7.2909,6.588,6.3686,5.8165,5.9729,5.8905,6.2098,6.5935,6.7353,7.1132,7.4546,7.7095,7.7874,8.4587,7.9909,8.269,8.5741,9.3458,9.8533,10.0651,9.4048,9.5186,9.4863,9.5906,9.2367,8.9855,8.8264,8.807,8.5675,8.69,8.9038,9.0498,9.3339,9.403,9.324,9.7259,9.5304,9.7201,10.07,10.2956,10.1916,10.217,10.969,10.6674,11.0909,11.0853,10.878,10.927,11.116,11.6318,12.0761,12.3684,12.4537,12.7887,13.3924,14.0874,13.9761,13.8224,13.3607,14.1183,13.7865,13.4225,13.7849,14.1833,15.2102,16.9578,18.1398,17.6772,18.6442,16.9867,17.318,17.4548,19.3504,22.0149,19.0473,19.2302,18.109,18.895,17.3116,18.8869,18.8567,17.3105,16.6613,16.3647,16.818,17.405,18.4145,18.4532,18.145,18.8545,19.3975,18.9164,20.1933,21.1403,21.8781,21.7731,21.4182,22.9646,22.2986,20.9496,21.2931,20.6629,21.9398,22.3128,22.2325,21.8612,21.8546,21.1575,20.7597,21.1583,20.3352,20.7867,21.2585,22.5978,22.7673,23.0109,23.8439,25.0313,24.6534,26.0882,26.97,27.6415,27.9594,28.773,28.9284,28.2978,28.1195,27.6471,28.283,28.925,29.7175,27.8334,28.1201,28.1567,27.3317,25.6645,26.0186,26.5208,26.664,25.9307,26.4105,27.7151,28.0754],"india_dates":["1993-10","1993-11","1993-12","1994-01","1994-02","1994-03","1994-04","1994-05","1994-06","1994-07","1994-08","1994-09","1994-10","1994-12","1995-01","1995-02","1995-03","1995-04","1995-05","1995-06","1995-07","1995-08","1995-09","1995-10","1995-11","1995-12","1996-01","1996-02","1996-03","1996-04","1996-05","1996-06","1996-07","1996-08","1996-09","1996-10","1996-11","1996-12","1997-01","1997-02","1997-03","1997-04","1997-05","1997-06","1997-07","1997-08","1997-09","1997-10","1997-11","1997-12","1998-01","1998-02","1998-03","1998-04","1998-05","1998-06","1998-07","1998-08","1998-09","1998-10","1998-11","1998-12","1999-01","1999-02","1999-03","1999-04","1999-05","1999-06","1999-07","1999-08","1999-09","1999-10","1999-11","1999-12","2000-01","2000-02","2000-03","2000-04","2000-05","2000-06","2000-07","2000-08","2000-09","2000-10","2000-11","2000-12","2001-01","2001-02","2001-03","2001-04","2001-05","2001-06","2001-07","2001-08","2001-09","2001-10","2001-11","2001-12","2002-01","2002-02","2002-03","2002-04","2002-05","2002-06","2002-07","2002-08","2002-09","2002-10","2002-11","2002-12","2003-01","2003-02","2003-03","2003-04","2003-05","2003-06","2003-07","2003-08","2003-09","2003-10","2003-11","2003-12","2004-01","2004-02","2004-03","2004-04","2004-05","2004-06","2004-07","2004-08","2004-09","2004-10","2004-11","2004-12","2005-01","2005-02","2005-03","2005-04","2005-05","2005-06","2005-07","2005-08","2005-09","2005-10","2005-11","2005-12","2006-01","2006-02","2006-03","2006-04","2006-05","2006-06","2006-07","2006-08","2006-09","2006-10","2006-11","2006-12","2007-01","2007-02","2007-03","2007-04","2007-05","2007-06","2007-07","2007-08","2007-09","2007-10","2007-11","2007-12","2008-01","2008-02","2008-03","2008-04","2008-05","2008-06","2008-07","2008-08","2008-09","2008-10","2008-11","2008-12","2009-01","2009-02","2009-03","2009-04","2009-05","2009-06","2009-07","2009-08","2009-09","2009-10","2009-11","2009-12","2010-01","2010-02","2010-03","2010-04","2010-05","2010-06","2010-07","2010-08","2010-09","2010-10","2010-11","2010-12","2011-01","2011-02","2011-03","2011-04","2011-05","2011-06","2011-07","2011-08","2011-09","2011-10","2011-11","2011-12","2012-01","2012-02","2012-03","2012-04","2012-05","2012-06","2012-07","2012-08","2012-09","2012-10","2012-11","2012-12","2013-01","2013-02","2013-03","2013-04","2013-05","2013-06","2013-07","2013-08","2013-09","2013-10","2013-11","2013-12","2014-01","2014-02","2014-03","2014-04","2014-05","2014-06","2014-07","2014-08","2014-09","2014-10","2014-11","2014-12","2015-01","2015-02","2015-03","2015-04","2015-05","2015-06","2015-07","2015-08","2015-09","2015-10","2015-11","2015-12","2016-01","2016-02","2016-03","2016-04","2016-05","2016-06","2016-07","2016-08","2016-09","2016-10","2016-11","2016-12","2017-01","2017-02","2017-03","2017-04","2017-05","2017-06","2017-07","2017-08","2017-09","2017-10","2017-11","2017-12","2018-01","2018-02","2018-03","2018-04","2018-05","2018-06","2018-07","2018-08","2018-09","2018-10","2018-11","2018-12","2019-01","2019-02","2019-03","2019-04","2019-05","2019-06","2019-07","2019-08","2019-09","2019-10","2019-11","2019-12","2020-01","2020-02","2020-03","2020-04","2020-05","2020-06","2020-07","2020-08","2020-09","2020-10","2020-11","2020-12","2021-01","2021-02","2021-03","2021-04","2021-05","2021-06","2021-07","2021-08","2021-09","2021-10","2021-11","2021-12","2022-01","2022-02","2022-03","2022-04","2022-05","2022-06","2022-07","2022-08","2022-09","2022-10","2022-11","2022-12","2023-01","2023-02","2023-03","2023-04","2023-05","2023-06","2023-07","2023-08","2023-09","2023-10","2023-11","2023-12","2024-01","2024-02","2024-03","2024-04","2024-05","2024-06","2024-07","2024-08","2024-09","2024-10","2024-11","2024-12","2025-01","2025-02","2025-03","2025-04","2025-05","2025-06","2025-07","2025-08","2025-09","2025-10","2025-11","2025-12"],"india_worst_idx":[52,77,78,96,181,186]};
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+function fmtN(v,d=2){return v==null?'—':(+v).toFixed(d);}
+
+/* Fig 1: cumulative India WML, log scale, worst-month markers */
+(function(){
+  const mount=document.getElementById('figCum');
+  const idx=DATA.india_cum, dates=DATA.india_dates, rets=DATA.india_wml.map(r=>r[1]), N=idx.length;
+  const W=820,H=320,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const ly=idx.map(v=>Math.log10(v));
+  let lo=Math.min(...ly),hi=Math.max(...ly); const pad=(hi-lo)*0.06; lo-=pad; hi+=pad;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-(Math.log10(v)-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'cumulative India WML'});
+  [0.5,1,2,5,10,20].forEach(g=>{ if(Math.log10(g)<lo||Math.log10(g)>hi) return;
+    const y=Y(g);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent='₹'+g; svg.appendChild(t);});
+  let d='',pen=false;
+  idx.forEach((v,i)=>{d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+  svg.appendChild(el('path',{d,fill:'none',stroke:'var(--s1)','stroke-width':2,'stroke-linejoin':'round'}));
+  DATA.india_worst_idx.forEach(i=>{
+    svg.appendChild(el('path',{d:`M ${X(i)} ${Y(idx[i])-14} l 5 -8 l -10 0 Z`,fill:'var(--s2)'}));});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,Math.floor(N/3),Math.floor(2*N/3),N-1].forEach(i=>{
+    const t=el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=dates[i]; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const i=Math.max(0,Math.min(N-1,Math.round(((ev.clientX-r.left)*sx-m.l)/iw*(N-1))));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',1);
+    tip.innerHTML=`<div class="tt">${dates[i]}</div>
+      <div class="row"><span class="nm">index</span><span class="vl">₹${idx[i].toFixed(2)}</span></div>
+      <div class="row"><span class="nm">month WML</span><span class="vl">${rets[i]>=0?'+':''}${rets[i].toFixed(1)}%</span></div>`;
+    tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-160)tx-=180;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+})();
+
+/* Fig 2: grouped conditional bars US vs India */
+(function(){
+  const mount=document.getElementById('figCond');
+  const states=[['bull','bull'],['bear','bear'],['bear_mkt_up','bear & mkt UP\n(crash zone)'],['bear_mkt_dn','bear & mkt DOWN']];
+  const us=DATA.us_cond, ind=DATA.ind_cond;
+  const W=820,H=300,m={t:16,r:16,b:52,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const vals=states.flatMap(([k])=>[us[k][0],ind[k][0]]);
+  let lo=Math.min(0,...vals),hi=Math.max(0,...vals); const pad=(hi-lo)*0.12; lo-=pad;hi+=pad;
+  const Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'conditional WML means US and India'});
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(1)+'%'; svg.appendChild(t);}
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1.2}));
+  const groupW=iw/4, bw=groupW*0.28;
+  states.forEach(([k,lab],gi)=>{
+    const cx=m.l+groupW*(gi+0.5);
+    [[us[k],'--s1',-bw-2],[ind[k],'--s2',2]].forEach(([cell,color,off])=>{
+      const [v,n]=cell, y=Y(Math.max(v,0)), h=Math.abs(Y(v)-Y(0));
+      svg.appendChild(el('rect',{x:cx+off,y:Math.min(Y(v),Y(0)),width:bw,height:Math.max(h,1),rx:3,fill:`var(${color})`}));
+      const t=el('text',{x:cx+off+bw/2,y:(v>=0?Y(v)-5:Y(v)+13),'text-anchor':'middle','font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=(v>=0?'+':'')+v.toFixed(1); svg.appendChild(t);});
+    lab.split('\n').forEach((ln,li)=>{
+      const t=el('text',{x:cx,y:H-26+li*13,'text-anchor':'middle','font-size':'11',fill:'var(--muted)'});
+      t.textContent=ln; svg.appendChild(t);});
+  });
+  mount.appendChild(svg);
+})();
+document.getElementById('stG1').textContent=(DATA.guard_us.on[0]>=0?'+':'')+DATA.guard_us.on[0].toFixed(2)+'%';
+document.getElementById('stG2').textContent='+'+DATA.guard_us.off[0].toFixed(2)+'%';
+</script>
