@@ -1,0 +1,298 @@
+<title>The Slowest Regime</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 6 · atlas 0.2 · learn-while-we-build</p>
+  <h1>The Slowest Regime</h1>
+  <p class="stand">Reserve currencies change maybe twice a century — and everyone writes about it
+  weekly. What the dollar's drift actually measures, where the lost share really went, why the
+  2022 story lives in gold rather than currencies, and how a desk stays sane between the doom
+  cycle and complacency.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/06-reserve-currency.md</span>
+    <span><b>Seat</b> enrichment of L15's composition input (Tier C, reduce-only)</span>
+    <span><b>Real data</b> IMF COFER 1999–2023 (vault-checksummed, authenticated)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Parts">
+  <a href="#p1">1 · What reserve status is</a>
+  <a href="#p2">2 · The drift, measured</a>
+  <a href="#p3">3 · The gold channel</a>
+  <a href="#p4">4 · How orders turn</a>
+  <a href="#p5">5 · Into the book</a>
+</nav>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>What "reserve currency" actually means</h2></div>
+  <p>Four different jobs travel under one name: the currency trade is <b>invoiced</b> in, the
+  currency banks <b>fund</b> in, the currency smaller countries <b>anchor</b> to, and the currency
+  central banks <b>hold reserves</b> in. The dollar dominates all four today, but each at a
+  different percentage and with different stickiness. Why does status persist? <b>Network
+  effects</b>: liquidity begets liquidity — you invoice in dollars because everyone else does,
+  which deepens dollar markets, which makes the next contract dollar-denominated too. Economically
+  this is a coordination game with multiple equilibria: the incumbent persists long after its
+  fundamentals peak, and when transitions come they can be nonlinear. That one sentence contains
+  both this lesson's discipline (drift is the base case) and its humility (thresholds can't be
+  timed).</p>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The drift, measured by us</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Shares of world FX reserves, 1999–2023</span>
+      <span class="figbadge">REAL DATA · IMF COFER · allocated reserves</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>USD</span>
+      <span><span class="sw" style="background:var(--s2)"></span>EUR</span>
+      <span><span class="sw" style="background:var(--s3)"></span>JPY</span>
+      <span><span class="sw" style="background:var(--s4)"></span>GBP</span>
+      <span><span class="sw" style="background:var(--ink-3)"></span>RMB</span></div>
+    <div class="chart" id="figShares"></div>
+    <figcaption>The dollar: 71.2% → 59.0% over 24 years. The euro: essentially flat. The renminbi:
+    from 1.1% to 2.6% — after a decade of "the RMB century" coverage. Hover for values.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Measured drift</div><div class="v">−0.51pp/yr</div>
+      <div class="d">USD share, 1999–2023 average</div></div>
+    <div class="stat"><div class="k">At this pace</div><div class="v">~57 years</div>
+      <div class="d">to sterling's 30% endgame level</div></div>
+    <div class="stat"><div class="k">Post-2015 drift</div><div class="v">−0.23pp/yr</div>
+      <div class="d">slower than pre-2015 (−0.69) — no acceleration in FX shares</div></div>
+  </div>
+  <p>And the share the dollar lost went to <em>no single challenger</em> — a basket of euro
+  (+1.6pp), sterling (+2.1), renminbi (+1.5), and small "nontraditional" currencies (+3.5): the
+  published "stealth erosion" finding, reproduced from our own vault copy. Every "dollar collapse
+  imminent" headline you will read this decade is arguing with that −0.51pp/yr.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The 2022 story is in gold — and COFER can't see it</h2></div>
+  <p>When Russian FX reserves were frozen in 2022, the measurable response was not a currency
+  switch — it was central banks buying <b>gold</b>, the one reserve asset that is nobody's
+  liability and nobody's jurisdiction. COFER measures FX only, so the decade's most important
+  reserve shift is invisible in Fig 1 — a textbook lesson in knowing what your data <em>cannot</em>
+  say. The monograph's data chapter found the honest measurement problems too: the World Gold
+  Council's purchase estimates can exceed IMF-reported figures by an order of magnitude in a given
+  quarter (estimated unreported buying — the China question), and India's own signal is the
+  cleanest free proxy we found: <b>the RBI moved its gold home — the domestically-held share of
+  its gold jumped from ~38% to ~77% between 2023 and 2026.</b> Our seat therefore pairs two legs
+  that must fire together: COFER drift AND gold accumulation — so no single narrative can trade
+  alone.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>How orders actually turn — the sterling lesson</h2></div>
+  <p>The only complete modern transition took roughly <b>four decades and two world wars</b>. The
+  revisionist history matters: the dollar first overtook sterling in reserves in the
+  <em>mid-1920s</em> — multipolarity was normal for decades, sterling partially recovered in the
+  1930s, and the pound's final wind-down (the sterling area, capital controls, the 1949 and 1967
+  devaluations) ran into the 1960s. Two lessons cut opposite ways: transitions are glacial
+  (against the doom cycle) — and once war finance and capital controls crack the incumbent's
+  credibility, shares can move faster than consensus expects (against complacency). The monograph
+  scores today's preconditions honestly: the incumbent runs the fiscal arc of Lesson 5, but no
+  challenger yet offers deep, open, rule-of-law markets at scale — and the 1971–1980 case shows an
+  incumbent can survive its own crisis of confidence when it restores real rates (Volcker), which
+  is precisely the r-vs-g hinge the debt monograph watches.</p>
+</section>
+
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>Into the book — and the frontier</h2></div>
+  <p>The harvest is deliberately the smallest in the atlas so far: this entry adds <b>inputs, not
+  budget</b> — the two-leg composition series enriches L15's fiscal-dominance state (reduce-only
+  clamp, same arithmetic as the credit composite), and an annual hand-scored precondition
+  scorecard goes to you as a memo. Nothing here times anything. The psychology chapter treats this
+  entry's REAL risk as internal: dedollarization is the most seductive narrative in macro, every
+  gold rally recruits it post-hoc, and the countermeasure is the number itself — −0.51pp/yr,
+  re-measured every year, pinned beside every memo.</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Known today</div><p>The four-role anatomy; the measured
+      drift and its non-acceleration; the diversification-not-succession pattern; the 2022+ gold
+      wave as a real reserve-asset shift.</p></div>
+    <div class="tier"><div class="tl">Awaits data</div><p>COFER extension across the 2025 break
+      (full-history re-pull rule); the EM gold-share series; invoicing-share vintages.</p></div>
+    <div class="tier"><div class="tl">Never knowable</div><p>Whether and when a threshold cracks.
+      n≈2–3 transitions ever. A checklist, never a clock.</p></div>
+  </div>
+  <p style="margin-top:28px"><b>Next in the series:</b> 0.3 — the 700-year real-rate "trend,"
+  where our own measurement (−1.27bp/yr, swings 14× larger) settles why some famous facts should
+  inform your humility and never your positions.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 6 — companion to Atlas 0.2. Sources of record:
+  <span class="mono">docs/cycles/06-reserve-currency.md</span> ·
+  <span class="mono">research/cycles/reserve-deep/cofer-RESULTS.md</span> (trials RC0–RC3) ·
+  <span class="mono">ingest/vault/debt/manifest.json</span>. COFER figures computed by us from the
+  vault mirror (1999Q1–2023Q1; later readings in the monograph are flagged external); WGC/RBI gold
+  figures carry their [VERIFY] tags in the monograph pending primary pulls.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"shares":{"USD":[["1999Q1",71.19],["1999Q2",72.13],["1999Q3",70.68],["1999Q4",71.01],["2000Q1",71.46],["2000Q2",72.02],["2000Q3",72.3],["2000Q4",71.14],["2001Q1",72.31],["2001Q2",72.7],["2001Q3",71.4],["2001Q4",71.52],["2002Q1",71.62],["2002Q2",68.49],["2002Q3",67.49],["2002Q4",66.5],["2003Q1",66.39],["2003Q2",66.23],["2003Q3",66.66],["2003Q4",65.45],["2004Q1",67.09],["2004Q2",67.39],["2004Q3",66.89],["2004Q4",65.51],["2005Q1",65.14],["2005Q2",65.81],["2005Q3",66.08],["2005Q4",66.52],["2006Q1",66.16],["2006Q2",65.71],["2006Q3",66.11],["2006Q4",65.04],["2007Q1",65.05],["2007Q2",64.88],["2007Q3",63.9],["2007Q4",63.87],["2008Q1",62.94],["2008Q2",62.59],["2008Q3",64.17],["2008Q4",63.77],["2009Q1",65.18],["2009Q2",62.81],["2009Q3",61.57],["2009Q4",62.15],["2010Q1",62.18],["2010Q2",62.93],["2010Q3",61.96],["2010Q4",62.25],["2011Q1",61.43],["2011Q2",60.89],["2011Q3",62.03],["2011Q4",62.7],["2012Q1",61.86],["2012Q2",61.77],["2012Q3",61.41],["2012Q4",61.5],["2013Q1",62.03],["2013Q2",62.08],["2013Q3",61.65],["2013Q4",61.28],["2014Q1",63.04],["2014Q2",63.08],["2014Q3",64.62],["2014Q4",65.17],["2015Q1",66.0],["2015Q2",65.3],["2015Q3",65.55],["2015Q4",65.75],["2016Q1",65.46],["2016Q2",65.23],["2016Q3",64.7],["2016Q4",65.36],["2017Q1",64.69],["2017Q2",63.84],["2017Q3",63.53],["2017Q4",62.73],["2018Q1",62.79],["2018Q2",62.41],["2018Q3",61.95],["2018Q4",61.76],["2019Q1",61.79],["2019Q2",61.31],["2019Q3",61.61],["2019Q4",60.75],["2020Q1",61.85],["2020Q2",61.31],["2020Q3",60.45],["2020Q4",58.92],["2021Q1",59.43],["2021Q2",59.18],["2021Q3",59.25],["2021Q4",58.8],["2022Q1",58.97],["2022Q2",59.74],["2022Q3",60.1],["2022Q4",58.58],["2023Q1",59.02]],"EUR":[["1999Q1",18.12],["1999Q2",17.57],["1999Q3",18.33],["1999Q4",17.9],["2000Q1",17.5],["2000Q2",17.51],["2000Q3",16.97],["2000Q4",18.29],["2001Q1",17.71],["2001Q2",17.63],["2001Q3",18.9],["2001Q4",19.18],["2002Q1",19.67],["2002Q2",21.39],["2002Q3",22.43],["2002Q4",23.65],["2003Q1",24.52],["2003Q2",24.97],["2003Q3",24.45],["2003Q4",25.03],["2004Q1",23.44],["2004Q2",23.31],["2004Q3",23.77],["2004Q4",24.68],["2005Q1",24.9],["2005Q2",24.55],["2005Q3",24.13],["2005Q4",23.89],["2006Q1",24.37],["2006Q2",24.63],["2006Q3",24.31],["2006Q4",24.99],["2007Q1",25.07],["2007Q2",25.17],["2007Q3",26.01],["2007Q4",26.13],["2008Q1",26.55],["2008Q2",26.62],["2008Q3",25.32],["2008Q4",26.21],["2009Q1",25.82],["2009Q2",27.57],["2009Q3",28.03],["2009Q4",27.7],["2010Q1",27.06],["2010Q2",26.02],["2010Q3",26.39],["2010Q4",25.76],["2011Q1",26.2],["2011Q2",26.49],["2011Q3",25.35],["2011Q4",24.45],["2012Q1",24.61],["2012Q2",24.8],["2012Q3",24.04],["2012Q4",24.07],["2013Q1",23.4],["2013Q2",23.68],["2013Q3",23.95],["2013Q4",24.21],["2014Q1",23.27],["2014Q2",22.97],["2014Q3",21.58],["2014Q4",21.21],["2015Q1",20.02],["2015Q2",19.9],["2015Q3",19.79],["2015Q4",19.15],["2016Q1",19.55],["2016Q2",19.41],["2016Q3",19.68],["2016Q4",19.14],["2017Q1",19.29],["2017Q2",19.96],["2017Q3",20.07],["2017Q4",20.17],["2018Q1",20.36],["2018Q2",20.26],["2018Q3",20.48],["2018Q4",20.67],["2019Q1",20.28],["2019Q2",20.56],["2019Q3",20.26],["2019Q4",20.59],["2020Q1",20.08],["2020Q2",20.19],["2020Q3",20.59],["2020Q4",21.29],["2021Q1",20.5],["2021Q2",20.58],["2021Q3",20.52],["2021Q4",20.59],["2022Q1",19.99],["2022Q2",19.67],["2022Q3",19.51],["2022Q4",20.37],["2023Q1",19.77]],"JPY":[["1999Q1",6.03],["1999Q2",5.63],["1999Q3",6.25],["1999Q4",6.37],["2000Q1",6.34],["2000Q2",6.0],["2000Q3",6.43],["2000Q4",6.07],["2001Q1",5.51],["2001Q2",5.36],["2001Q3",5.4],["2001Q4",5.04],["2002Q1",4.38],["2002Q2",5.34],["2002Q3",5.13],["2002Q4",4.94],["2003Q1",4.51],["2003Q2",4.13],["2003Q3",4.34],["2003Q4",4.42],["2004Q1",4.46],["2004Q2",4.33],["2004Q3",4.06],["2004Q4",4.28],["2005Q1",4.25],["2005Q2",4.13],["2005Q3",4.12],["2005Q4",3.96],["2006Q1",3.64],["2006Q2",3.47],["2006Q3",3.34],["2006Q4",3.46],["2007Q1",3.14],["2007Q2",3.06],["2007Q3",2.95],["2007Q4",3.18],["2008Q1",3.37],["2008Q2",3.56],["2008Q3",3.53],["2008Q4",3.47],["2009Q1",2.79],["2009Q2",3.02],["2009Q3",3.16],["2009Q4",2.9],["2010Q1",2.99],["2010Q2",3.19],["2010Q3",3.5],["2010Q4",3.66],["2011Q1",3.63],["2011Q2",3.73],["2011Q3",3.7],["2011Q4",3.61],["2012Q1",3.86],["2012Q2",3.95],["2012Q3",4.27],["2012Q4",4.09],["2013Q1",3.88],["2013Q2",3.84],["2013Q3",3.8],["2013Q4",3.82],["2014Q1",3.58],["2014Q2",3.66],["2014Q3",3.57],["2014Q4",3.55],["2015Q1",3.83],["2015Q2",3.57],["2015Q3",3.49],["2015Q4",3.75],["2016Q1",3.66],["2016Q2",4.08],["2016Q3",4.19],["2016Q4",3.95],["2017Q1",4.53],["2017Q2",4.62],["2017Q3",4.52],["2017Q4",4.9],["2018Q1",4.64],["2018Q2",4.86],["2018Q3",4.97],["2018Q4",5.19],["2019Q1",5.31],["2019Q2",5.51],["2019Q3",5.57],["2019Q4",5.87],["2020Q1",5.89],["2020Q2",5.72],["2020Q3",5.83],["2020Q4",6.03],["2021Q1",5.85],["2021Q2",5.63],["2021Q3",5.68],["2021Q4",5.52],["2022Q1",5.38],["2022Q2",5.15],["2022Q3",5.24],["2022Q4",5.5],["2023Q1",5.47]],"GBP":[["1999Q1",2.74],["1999Q2",2.79],["1999Q3",2.8],["1999Q4",2.89],["2000Q1",2.92],["2000Q2",2.76],["2000Q3",2.73],["2000Q4",2.75],["2001Q1",2.78],["2001Q2",2.65],["2001Q3",2.63],["2001Q4",2.7],["2002Q1",2.67],["2002Q2",2.84],["2002Q3",2.9],["2002Q4",2.92],["2003Q1",2.64],["2003Q2",2.63],["2003Q3",2.51],["2003Q4",2.86],["2004Q1",2.83],["2004Q2",2.84],["2004Q3",3.2],["2004Q4",3.49],["2005Q1",3.74],["2005Q2",3.67],["2005Q3",3.76],["2005Q4",3.75],["2006Q1",4.09],["2006Q2",4.32],["2006Q3",4.36],["2006Q4",4.52],["2007Q1",4.59],["2007Q2",4.74],["2007Q3",4.84],["2007Q4",4.82],["2008Q1",4.81],["2008Q2",4.87],["2008Q3",4.73],["2008Q4",4.22],["2009Q1",3.96],["2009Q2",4.28],["2009Q3",4.31],["2009Q4",4.25],["2010Q1",4.3],["2010Q2",4.17],["2010Q3",4.06],["2010Q4",3.94],["2011Q1",4.08],["2011Q2",4.06],["2011Q3",3.91],["2011Q4",3.84],["2012Q1",4.02],["2012Q2",3.84],["2012Q3",4.12],["2012Q4",4.04],["2013Q1",3.87],["2013Q2",3.82],["2013Q3",3.92],["2013Q4",3.99],["2014Q1",3.78],["2014Q2",3.78],["2014Q3",3.75],["2014Q4",3.7],["2015Q1",3.83],["2015Q2",4.58],["2015Q3",4.61],["2015Q4",4.72],["2016Q1",4.65],["2016Q2",4.56],["2016Q3",4.41],["2016Q4",4.35],["2017Q1",4.28],["2017Q2",4.42],["2017Q3",4.5],["2017Q4",4.54],["2018Q1",4.62],["2018Q2",4.48],["2018Q3",4.5],["2018Q4",4.43],["2019Q1",4.55],["2019Q2",4.52],["2019Q3",4.51],["2019Q4",4.64],["2020Q1",4.44],["2020Q2",4.48],["2020Q3",4.57],["2020Q4",4.73],["2021Q1",4.73],["2021Q2",4.7],["2021Q3",4.67],["2021Q4",4.81],["2022Q1",4.89],["2022Q2",4.84],["2022Q3",4.58],["2022Q4",4.9],["2023Q1",4.85]],"RMB":[["1999Q1",null],["1999Q2",null],["1999Q3",null],["1999Q4",null],["2000Q1",null],["2000Q2",null],["2000Q3",null],["2000Q4",null],["2001Q1",null],["2001Q2",null],["2001Q3",null],["2001Q4",null],["2002Q1",null],["2002Q2",null],["2002Q3",null],["2002Q4",null],["2003Q1",null],["2003Q2",null],["2003Q3",null],["2003Q4",null],["2004Q1",null],["2004Q2",null],["2004Q3",null],["2004Q4",null],["2005Q1",null],["2005Q2",null],["2005Q3",null],["2005Q4",null],["2006Q1",null],["2006Q2",null],["2006Q3",null],["2006Q4",null],["2007Q1",null],["2007Q2",null],["2007Q3",null],["2007Q4",null],["2008Q1",null],["2008Q2",null],["2008Q3",null],["2008Q4",null],["2009Q1",null],["2009Q2",null],["2009Q3",null],["2009Q4",null],["2010Q1",null],["2010Q2",null],["2010Q3",null],["2010Q4",null],["2011Q1",null],["2011Q2",null],["2011Q3",null],["2011Q4",null],["2012Q1",null],["2012Q2",null],["2012Q3",null],["2012Q4",null],["2013Q1",null],["2013Q2",null],["2013Q3",null],["2013Q4",null],["2014Q1",null],["2014Q2",null],["2014Q3",null],["2014Q4",null],["2015Q1",null],["2015Q2",null],["2015Q3",null],["2015Q4",null],["2016Q1",null],["2016Q2",null],["2016Q3",null],["2016Q4",1.08],["2017Q1",1.08],["2017Q2",1.08],["2017Q3",1.12],["2017Q4",1.23],["2018Q1",1.4],["2018Q2",1.83],["2018Q3",1.8],["2018Q4",1.89],["2019Q1",1.95],["2019Q2",1.93],["2019Q3",1.96],["2019Q4",1.94],["2020Q1",2.01],["2020Q2",2.08],["2020Q3",2.16],["2020Q4",2.29],["2021Q1",2.5],["2021Q2",2.64],["2021Q3",2.68],["2021Q4",2.8],["2022Q1",2.83],["2022Q2",2.77],["2022Q3",2.63],["2022Q4",2.61],["2023Q1",2.58]]}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+function fmtN(v,d=1){return v==null?'—':(+v).toFixed(d);}
+(function(){
+  const mount=document.getElementById('figShares');
+  const order=[["USD","--s1"],["EUR","--s2"],["JPY","--s3"],["GBP","--s4"],["RMB","--ink-3"]];
+  const series=order.map(([c,col])=>({name:c,color:col,rows:DATA.shares[c]}));
+  const W=820,H=330,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const N=series[0].rows.length;
+  const hi=75;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-v/hi);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'reserve currency shares'});
+  for(let i=0;i<=5;i++){const v=hi*i/5,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(0)+'%'; svg.appendChild(t);}
+  series.forEach(s=>{
+    let d='',pen=false;
+    s.rows.forEach(([_,v],i)=>{if(v==null){pen=false;return;}
+      d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+    svg.appendChild(el('path',{d,fill:'none',stroke:`var(${s.color})`,'stroke-width':2,'stroke-linejoin':'round'}));
+  });
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,Math.floor(N/3),Math.floor(2*N/3),N-1].forEach(i=>{
+    const t=el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=series[0].rows[i][0]; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const i=Math.max(0,Math.min(N-1,Math.round(((ev.clientX-r.left)*sx-m.l)/iw*(N-1))));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',1);
+    let rows=`<div class="tt">${series[0].rows[i][0]}</div>`;
+    series.forEach(s=>{const v=s.rows[i]?s.rows[i][1]:null;
+      rows+=`<div class="row"><span class="nm">${s.name}</span><span class="vl">${v==null?'—':v.toFixed(1)+'%'}</span></div>`;});
+    tip.innerHTML=rows; tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-160)tx-=180;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+})();
+</script>
