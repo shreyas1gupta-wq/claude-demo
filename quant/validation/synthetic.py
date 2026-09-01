@@ -142,3 +142,34 @@ def value_universe(N: int = 150, T: int = 240, seed: int = 21,
     profit_obs = q[:, None] + rng.normal(0, 0.002, (N, T))
     return dict(prices=prices, book=book, profit_obs=profit_obs,
                 mispricing=m, quality=q, spread_episode=spread_episode)
+
+
+def financial_cycle_economy(T: int = 480, seed: int = 31,
+                            boom: tuple = (180, 330), bust: tuple = (330, 420)):
+    """Monthly economy with a PLANTED credit-property financial cycle (the L12 fixture).
+
+    Mutual amplification per Borio/Kiyotaki-Moore: credit growth responds to lagged property
+    appreciation (collateral channel) and property appreciation responds to lagged credit growth
+    (funding channel), around a slow exogenous forcing that turns positive in the boom window
+    and negative in the bust. Income grows steadily; CPI drifts. Returns dict of levels + truth."""
+    rng = np.random.default_rng(seed)
+    g_inc = 0.004 + 0.002 * rng.standard_normal(T)
+    income = 100 * np.cumprod(1 + g_inc)
+    force = np.zeros(T)
+    force[boom[0]:boom[1]] = +0.0025
+    force[bust[0]:bust[1]] = -0.0035
+    g_cr = np.zeros(T)
+    g_hp = np.zeros(T)
+    credit = np.empty(T)
+    hp = np.empty(T)
+    credit[0], hp[0] = 80.0, 100.0
+    for t in range(1, T):
+        g_cr[t] = (0.004 + force[t] + 0.35 * g_hp[t - 1]
+                   + 0.0015 * rng.standard_normal())
+        g_hp[t] = (0.002 + force[t] + 0.35 * g_cr[t - 1]
+                   + 0.004 * rng.standard_normal())
+        credit[t] = credit[t - 1] * (1 + g_cr[t])
+        hp[t] = hp[t - 1] * (1 + g_hp[t])
+    cpi = np.cumprod(1 + 0.003 + 0.001 * rng.standard_normal(T))
+    return dict(credit=credit, income=income, hp=hp, cpi=cpi,
+                boom=boom, bust=bust)
