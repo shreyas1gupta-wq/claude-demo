@@ -7,3 +7,5 @@ from .fast_stress import (drawdown_depth, fast_stress_composite,  # noqa: F401
 from .momentum import (crash_guard, cross_rank, momentum_composite,  # noqa: F401
                        pct_52wk_high, tsmom_state, trailing_return,
                        wml_monthly_returns)
+from .value_quality import (lagged, quality_score, value_score,  # noqa: F401
+                            value_spread, vq_composite)

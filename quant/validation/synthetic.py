@@ -115,3 +115,30 @@ def momentum_universe(N: int = 200, T: int = 1260, seed: int = 11,
     prices = np.cumprod(1.0 + r, axis=1)
     market = np.cumprod(1.0 + m)
     return prices, market, dict(bear=(b0, b1), rebound=(b1, b2))
+
+
+def value_universe(N: int = 150, T: int = 240, seed: int = 21,
+                   spread_episode: tuple = (140, 180)):
+    """Monthly panel with PLANTED value and quality effects (the value/quality fixture).
+
+    Fair value F grows at a common drift plus a persistent per-stock quality drift q_i
+    (observable with noise -> quality effect). Price = F * exp(m), mispricing m is slow AR(1)
+    (rho=0.97 monthly, tau_half ~ 23m) -> low P/B names are genuinely underpriced and converge
+    (value effect). Book value proxies F with reporting noise and is REPORTED with a lag the
+    consumer must respect. During spread_episode the mispricing volatility doubles (a planted
+    dispersion regime for the value-spread state). Returns dict of panels + truth."""
+    rng = np.random.default_rng(seed)
+    q = rng.normal(0.000, 0.0025, N)                    # monthly quality drift differences
+    rho_m, sig_m = 0.97, 0.02
+    m = np.zeros((N, T))
+    m[:, 0] = rng.normal(0, sig_m / np.sqrt(1 - rho_m**2), N)
+    F = np.ones((N, T))
+    for t in range(1, T):
+        s = sig_m * (2.0 if spread_episode[0] <= t < spread_episode[1] else 1.0)
+        m[:, t] = rho_m * m[:, t - 1] + rng.normal(0, s, N)
+        F[:, t] = F[:, t - 1] * np.exp(0.005 + q + rng.normal(0, 0.01, N))
+    prices = F * np.exp(m)
+    book = F * np.exp(rng.normal(0, 0.05, (N, T)))      # noisy fair-value proxy
+    profit_obs = q[:, None] + rng.normal(0, 0.002, (N, T))
+    return dict(prices=prices, book=book, profit_obs=profit_obs,
+                mispricing=m, quality=q, spread_episode=spread_episode)
