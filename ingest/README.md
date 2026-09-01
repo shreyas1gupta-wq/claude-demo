@@ -90,3 +90,17 @@ snapshot, not a queryable series), pull_cips_stats.py (participant counts, perio
 only). WARNING from Part C: WGC's own "central bank net purchases" figure is an ESTIMATE (Metals
 Focus methodology), not the IMF-reported number — Q1 2026 IMF-reported was 16t vs WGC-estimated
 244t for the same quarter; scripts must pull and label both, never merge them into one series.
+
+## Addendum 5 (2026-09-01) — Atlas 1.3 commodity-supercycle data probes (pre-work)
+
+Probed while closing Atlas 1.2; recorded so the 1.3 data step starts from facts, not re-probes.
+
+| Source | Status | Note |
+|---|---|---|
+| thedocs.worldbank.org (Pink Sheet / CMO xlsx) | **BLOCKED** (egress connect_rejected) | same class as FRED/BIS/IMF-direct |
+| api.worldbank.org | **BLOCKED** | — |
+| raw.githubusercontent.com/datasets/commodity-prices (datahub mirror) | **OPEN, verified** | IMF monthly commodity price panel, 1980-02..2017-06, 63 series, 450 rows (~399 KB). Modern-window + cross-check use only — too short alone for supercycle dating |
+| Long-run candidates for the 1.3 hunt | pending | Grilli-Yang (1900-), Jacks long-run real commodity prices (1850-2015), datahub oil-prices (EIA Brent/WTI); hunt GitHub mirrors at the 1.3 data step; authentication + manifest discipline as always |
+
+Vaulting deferred to the 1.3 entry itself (authentication vs a second mirror + published anchors
+before any use; probe copy sits in session scratchpad only).
