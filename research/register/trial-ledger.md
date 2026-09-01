@@ -183,3 +183,22 @@ Pre-declared constructions and bars:
 | CS2 | Breadth (common factor direction) | across-group median corr(10yΔ) +0.30, 89% of 451 pairs positive (within-group +0.42) — **PASS**; the ToT-state design measures a real broad factor | pass |
 | CS3 | Price → next-decade capacity | 6/11 metals positive (55% vs 70% bar) — **FAIL**; production trend-dominated at decade windows; detrended event design registered for later, NOT re-run now | fail, bar unmoved |
 | CS4 | Capacity → next-decade price | 7/11 negative (64% vs 70% bar) — **FAIL** (near miss recorded as a miss); same trend caveat | fail, bar unmoved |
+
+## Entries KW1–KW2 (2026-09-01) — Atlas 1.4 Kondratieff rejection, Jacks 1850-2015 + JST R6
+Script: scripts/analyze_longwaves.py. PRE-REGISTERED before running (two-pass rule).
+
+Pre-declared constructions and bars:
+- KW1 (K-wave on real commodity prices): chained Jacks index (CS1b construction, unchanged),
+  extrema machinery as RE1/CS1 (3y centered smooth, local extrema), min_gap 25y (half the
+  claimed 50y midpoint). The claim PASSES only if trough count since 1850 is in [2,4] AND
+  ≥50% of trough spacings fall in [45,60]y. Grid: min_gap {25} only.
+- KW2 (Kondratieff's actual object, price waves): JST cpi → rolling 10y mean inflation for
+  the three countries Kondratieff himself used (UK, USA, France), full available spans;
+  same extrema machinery, min_gap 25y. Claim PASSES only if pooled median trough spacing in
+  [45,60]y AND ≥50% of spacings in-window. Fiat-era caveat stated in advance: proponents
+  claim the wave CONTINUED post-1971, so the full span is the honest test of their claim.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| KW1 | 45-60y wave in real commodity prices | 6 troughs spaced 26-31y, 0/5 in [45,60] — **FAIL**; no min_gap lands on the K-band (paired with CS1's 15-21y) | fail, decisive |
+| KW2 | 45-60y price/inflation waves (UK/US/FR) | synchronized generational inflation peaks REAL (~1920/1949/1982/2010) but spacings 25-41y (median 36y, 1/10 in-window) — **FAIL**; decomposes into the already-seated inflation-regime arcs (IR1) | fail, informative |
