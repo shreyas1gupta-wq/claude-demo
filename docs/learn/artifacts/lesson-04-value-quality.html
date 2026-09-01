@@ -1,0 +1,359 @@
+<title>Value and Quality, From Zero</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 4 · learn-while-we-build</p>
+  <h1>Value and Quality, From Zero</h1>
+  <p class="stand">Cheapness works, goodness works — and both can stop working for half a decade
+  at a time. Why the pair earns its seats anyway: it zigs when momentum zags, on 98 years of
+  American data and 32 of India's, in numbers we computed ourselves.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/04-value-quality.md</span>
+    <span><b>Code</b> quant/ladder/value_quality.py</span>
+    <span><b>Real data</b> India factor mirror + US Fama-French (both in the vault, checksummed)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Parts">
+  <a href="#p1">1 · Cheapness</a>
+  <a href="#p2">2 · The winters</a>
+  <a href="#p3">3 · The pairing</a>
+  <a href="#p4">4 · Quality</a>
+  <a href="#p5">5 · India's data problem</a>
+  <a href="#p6">6 · Into the book</a>
+</nav>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Cheapness, from zero</h2></div>
+  <p><b>Value investing</b> is one sentence: pay less than a business is worth. The quant version
+  replaces "worth" with an accounting anchor — book value, earnings, cash flow — and asks: do
+  stocks that are cheap <em>relative to their anchor</em> beat expensive ones? Across nearly a
+  century (Basu 1977, Fama-French 1992), the answer has been yes. Two schools explain it, and the
+  fight matters: the <b>risk school</b> says cheap stocks are cheap because they're genuinely
+  scarier (so the premium is payment for pain); the <b>error school</b> (Lakonishok-Shleifer-Vishny)
+  says investors extrapolate glamour growth too far and flee boring franchises — and the premium
+  is their mistake, harvested. Our design refuses to pick a winner: it's built to survive under
+  either. What both schools agree on: the return comes from <b>convergence</b> — the price
+  migrating back toward the anchor (Fama-French's own decomposition) — which takes <em>years</em>,
+  and that single word is this lesson's villain and hero.</p>
+  <div class="def"><div class="t">The one mechanical trap, demonstrated in our tests</div>
+    <p>Fundamentals arrive LATE. A March book value isn't public until May-June. Compute B/P with
+    data the market hadn't seen and your backtest cheats — our test suite proves it: the "no-lag"
+    version beats the honest version on every random seed we planted. In India the lag structure
+    is harsher still: balance sheets are half-yearly at best (Part 5).</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The winters — value's defining property</h2></div>
+  <p>Value's problem isn't the average; it's the <em>path</em>. The strategy hibernates — for
+  years — and every hibernation produces the same two funerals: capital that quits at the bottom,
+  and researchers who redefine the factor to fit the recent past. Here are the winters, measured
+  by us as drawdowns of the long-short value spread:</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Value's drawdowns: US 1926–2024 and India 1993–2025</span>
+      <span class="figbadge">REAL DATA · HML drawdown from peak</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>United States</span>
+      <span><span class="sw" style="background:var(--s2)"></span>India (mirror)</span></div>
+    <div class="chart" id="figDD"></div>
+    <figcaption>Eight US winters deeper than 20%, including a 42% hole in the dot-com mania — and
+    the post-2009 drawdown reached 58% and was <b>still open</b> at the 2024 data end: fifteen
+    years underwater by this construction. India's version: the 2018–2022 growth mania cost value
+    50%. This chart is why the anti-capitulation lock exists, and why the value seat is designed
+    around patience RULES rather than patience virtue. Hover for dates and depths.</figcaption>
+  </figure>
+
+  <div class="keyresult"><div class="t">India's own value winter — confirmed in our numbers</div>
+    <div class="big">2015–2019: Indian value earned +0.8%/yr (Sharpe −0.39 vs the risk-free rate).
+    Post-2020: +18.8%/yr, Sharpe 0.82.</div>
+    <p>The mania and the thaw, both in the data we hold. A desk that had abandoned value in 2019 —
+    as many did — sold the insurance the day before the payout. A desk that had doubled down in
+    2016 bled for four years first. The design's answer is neither: fixed sleeve weights inside
+    frozen caps, with the value-SPREAD state (how stretched cheap-vs-expensive pricing is)
+    conditioning patience — a state we compute, in Part 6's designs, never a timing trade.</p></div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The pairing — why value sits next to momentum</h2></div>
+  <p>Here is the arithmetic that makes two flawed strategies into one good book. If two return
+  streams have Sharpe ratios S₁ and S₂ and correlation ρ, an equal split earns
+  <span class="mono">(S₁+S₂)/√(2(1+ρ))</span> — and when ρ is <em>negative</em>, the denominator
+  shrinks: the combination beats both parts. Value and momentum are natural opposites (value buys
+  what has fallen toward its anchor; momentum buys what has recently risen), so ρ should be
+  negative. Is it?</p>
+
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — The value-momentum correlation, rolling 5 years</span>
+      <span class="figbadge">REAL DATA · full-period: US −0.41 · India −0.37</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>US corr(HML, Mom)</span>
+      <span><span class="sw" style="background:var(--s2)"></span>India corr(HML, WML)</span></div>
+    <div class="chart" id="figCorr"></div>
+    <figcaption>Negative nearly everywhere, on both panels, for decades — including through every
+    crisis. This is the single sturdiest cross-sleeve fact we have measured, and our synthetic
+    fixture reproduces it from physics alone (mean-reverting mispricing makes recent winners
+    expensive), at −0.26 to −0.29 on every seed.</figcaption>
+  </figure>
+
+  <div class="stats">
+    <div class="stat"><div class="k">US Sharpe: value · momentum</div><div class="v">0.33 · 0.45</div><div class="d">each alone, 1927–2024</div></div>
+    <div class="stat"><div class="k">US 50/50</div><div class="v">0.72</div><div class="d">beats both — the free lunch</div></div>
+    <div class="stat"><div class="k">India 50/50</div><div class="v">0.86</div><div class="d">vs 0.42 / 0.55 alone</div></div>
+  </div>
+  <p>In a long-only book the pairing is implemented in the <em>score blend and the netting layer</em>,
+  not by running two opposing long-short books: a name exiting momentum's disfavor often enters
+  value's favor, and the internal crossing saves the full 22.3bps round trip each time.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Quality — the other half of the pair</h2></div>
+  <p><b>Quality</b> asks a different question: not "is it cheap?" but "is it good?" — profitable
+  (Novy-Marx: gross profits over assets, the cleanest measure), honestly profitable (Sloan: cash
+  earnings persist, accrual-stuffed earnings reverse), conservatively financed, and governed for
+  shareholders. Good firms outperform more than their riskiness justifies, plausibly because big
+  investors who cannot use leverage reach for exciting lottery stocks instead and leave boring
+  excellence underpriced. Quality's practical role in our book is double: a return sleeve, and a
+  <b>floor</b> that binds in late-boom regimes (junk rallies at the top — the credit lesson's
+  composition input, wearing equity clothes). In India, quality has teeth the textbooks don't
+  mention: <b>promoter pledge percentages, auditor resignations, and rating actions</b> are free,
+  dated, and brutal — they enter as reduce-only demotions to a name's quality rank, the same
+  Tier-C clamp arithmetic you saw in the credit composite.</p>
+</section>
+
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>India's data problem — the honest constraint</h2></div>
+  <p>Everything above needs fundamentals, and Indian fundamentals have a shape most quant
+  literature ignores: <b>quarterly filings carry the P&amp;L only; balance sheets and cash-flow
+  statements arrive half-yearly or annually.</b> So B/P steps like a staircase, accruals are an
+  annual signal riding in a quarterly book, and only 2 of Piotroski's 9 quality checks are
+  genuinely quarterly-computable here. The monograph's Part C builds the full machine anyway —
+  announcement-dated XBRL filings (mandatory since 2017) as the point-in-time store, banks parsed
+  separately under their own statute, aggregator websites ruled exploration-only — and it sets the
+  two validation gates our constructed ratios must pass before anything trades: tracking the
+  academic factor library within tolerance, and matching NSE's own daily-published index P/E and
+  P/B. Two new pullers went straight onto your machine's runsheet.</p>
+</section>
+
+<section id="p6">
+  <div class="partkicker"><span class="partnum">PART 6</span><h2>Into the book — and the frontier</h2></div>
+  <p>What this deep-dive feeds: the value sleeve (multi-ratio rank, PIT lag in the API), the
+  quality sleeve with its reduce-only governance demotions, the <b>value-spread state</b> into the
+  valuation-sentiment block (wide spread = the market paying up for glamour = historically value's
+  best forward years — a patience conditioner, never a timing trade), and the momentum pairing via
+  netting. Five designs pre-registered (W1–W5), including the acceptance test our own constructed
+  HML must pass against the academic library before we trust it, and the stock-level autopsy of
+  India's 2015–2019 mania.</p>
+  <div class="tiergrid">
+    <div class="tier"><div class="tl">Known today</div><p>The premium and its winters, on both
+      panels, in our own numbers; the negative pairing with momentum (−0.37/−0.41) and the
+      combination arithmetic it unlocks; the PIT trap, demonstrated mechanically.</p></div>
+    <div class="tier"><div class="tl">Awaits data</div><p>Our own bhavcopy+XBRL factor construction
+      and its acceptance tests; the India value-spread history; quality-composite magnitudes
+      (designs W1–W5).</p></div>
+    <div class="tier"><div class="tl">Never knowable</div><p>When a winter ends. The spread says
+      how cold it is — never the date of the thaw. Patience here is a rule with a lock, not a
+      mood.</p></div>
+  </div>
+  <p style="margin-top:28px"><b>Next in the series (atlas order):</b> the debt supercycle — the
+  100-year fiscal arc, financial repression, and why 11 of 18 rich countries are still on the
+  rising side of a mountain only four have ever descended.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 4 — companion to deep-dive #4. Sources of record:
+  <span class="mono">docs/cycles/04-value-quality.md</span> · <span class="mono">quant/ladder/value_quality.py</span> ·
+  <span class="mono">tests/test_value_quality.py</span> · <span class="mono">research/cycles/value-deep/value-panel-RESULTS.md</span>
+  (trials V0–V4) · <span class="mono">ingest/vault/factors/manifest.json</span>. India series is a
+  GitHub mirror of an IIM-A-style factor library (chronology authenticated; levels [VERIFY] pending
+  the primary pull); US series are Ken French factors, 202411 CRSP vintage. All long-short spreads
+  are paper objects of study, before costs — not our product's returns.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"us_hml_dd":[["1926-07",0.0],["1926-09",0.0],["1926-11",0.005],["1927-01",0.0],["1927-03",0.026],["1927-05",0.0],["1927-07",0.029],["1927-09",0.071],["1927-11",0.113],["1928-01",0.13],["1928-03",0.146],["1928-05",0.146],["1928-07",0.15],["1928-09",0.161],["1928-11",0.157],["1929-01",0.173],["1929-03",0.146],["1929-05",0.153],["1929-07",0.155],["1929-09",0.159],["1929-11",0.048],["1930-01",0.062],["1930-03",0.057],["1930-05",0.067],["1930-07",0.062],["1930-09",0.114],["1930-11",0.158],["1931-01",0.146],["1931-03",0.159],["1931-05",0.245],["1931-07",0.177],["1931-09",0.244],["1931-11",0.27],["1932-01",0.274],["1932-03",0.302],["1932-05",0.313],["1932-07",0.019],["1932-09",0.074],["1932-11",0.278],["1933-01",0.292],["1933-03",0.261],["1933-05",0.0],["1933-07",0.0],["1933-09",0.117],["1933-11",0.174],["1934-01",0.06],["1934-03",0.068],["1934-05",0.155],["1934-07",0.268],["1934-09",0.276],["1934-11",0.328],["1935-01",0.361],["1935-03",0.439],["1935-05",0.398],["1935-07",0.367],["1935-09",0.356],["1935-11",0.296],["1936-01",0.216],["1936-03",0.192],["1936-05",0.189],["1936-07",0.179],["1936-09",0.14],["1936-11",0.13],["1937-01",0.069],["1937-03",0.0],["1937-05",0.07],["1937-07",0.094],["1937-09",0.155],["1937-11",0.167],["1938-01",0.183],["1938-03",0.228],["1938-05",0.228],["1938-07",0.209],["1938-09",0.258],["1938-11",0.231],["1939-01",0.257],["1939-03",0.299],["1939-05",0.297],["1939-07",0.336],["1939-09",0.208],["1939-11",0.295],["1940-01",0.329],["1940-03",0.34],["1940-05",0.365],["1940-07",0.341],["1940-09",0.344],["1940-11",0.313],["1941-01",0.293],["1941-03",0.265],["1941-05",0.236],["1941-07",0.175],["1941-09",0.187],["1941-11",0.179],["1942-01",0.15],["1942-03",0.164],["1942-05",0.17],["1942-07",0.145],["1942-09",0.113],["1942-11",0.096],["1943-01",0.017],["1943-03",0.0],["1943-05",0.0],["1943-07",0.03],["1943-09",0.02],["1943-11",0.044],["1944-01",0.0],["1944-03",0.0],["1944-05",0.001],["1944-07",0.004],["1944-09",0.03],["1944-11",0.011],["1945-01",0.0],["1945-03",0.017],["1945-05",0.0],["1945-07",0.026],["1945-09",0.064],["1945-11",0.006],["1946-01",0.005],["1946-03",0.024],["1946-05",0.009],["1946-07",0.012],["1946-09",0.026],["1946-11",0.0],["1947-01",0.021],["1947-03",0.013],["1947-05",0.002],["1947-07",0.0],["1947-09",0.0],["1947-11",0.0],["1948-01",0.0],["1948-03",0.0],["1948-05",0.013],["1948-07",0.0],["1948-09",0.017],["1948-11",0.052],["1949-01",0.059],["1949-03",0.055],["1949-05",0.088],["1949-07",0.1],["1949-09",0.103],["1949-11",0.116],["1950-01",0.099],["1950-03",0.131],["1950-05",0.116],["1950-07",0.003],["1950-09",0.029],["1950-11",0.0],["1951-01",0.0],["1951-03",0.068],["1951-05",0.051],["1951-07",0.068],["1951-09",0.063],["1951-11",0.062],["1952-01",0.062],["1952-03",0.048],["1952-05",0.048],["1952-07",0.04],["1952-09",0.054],["1952-11",0.05],["1953-01",0.035],["1953-03",0.044],["1953-05",0.027],["1953-07",0.034],["1953-09",0.091],["1953-11",0.094],["1954-01",0.09],["1954-03",0.106],["1954-05",0.087],["1954-07",0.049],["1954-09",0.056],["1954-11",0.008],["1955-01",0.0],["1955-03",0.0],["1955-05",0.01],["1955-07",0.0],["1955-09",0.01],["1955-11",0.008],["1956-01",0.022],["1956-03",0.03],["1956-05",0.045],["1956-07",0.057],["1956-09",0.047],["1956-11",0.031],["1957-01",0.025],["1957-03",0.037],["1957-05",0.07],["1957-07",0.066],["1957-09",0.062],["1957-11",0.105],["1958-01",0.083],["1958-03",0.088],["1958-05",0.076],["1958-07",0.044],["1958-09",0.013],["1958-11",0.037],["1959-01",0.008],["1959-03",0.003],["1959-05",0.0],["1959-07",0.0],["1959-09",0.0],["1959-11",0.052],["1960-01",0.027],["1960-03",0.074],["1960-05",0.128],["1960-07",0.114],["1960-09",0.101],["1960-11",0.098],["1961-01",0.072],["1961-03",0.085],["1961-05",0.062],["1961-07",0.064],["1961-09",0.073],["1961-11",0.083],["1962-01",0.018],["1962-03",0.024],["1962-05",0.0],["1962-07",0.034],["1962-09",0.033],["1962-11",0.012],["1963-01",0.0],["1963-03",0.0],["1963-05",0.0],["1963-07",0.01],["1963-09",0.0],["1963-11",0.0],["1964-01",0.0],["1964-03",0.0],["1964-05",0.0],["1964-07",0.0],["1964-09",0.0],["1964-11",0.02],["1965-01",0.043],["1965-03",0.032],["1965-05",0.041],["1965-07",0.014],["1965-09",0.025],["1965-11",0.009],["1966-01",0.0],["1966-03",0.02],["1966-05",0.04],["1966-07",0.026],["1966-09",0.017],["1966-11",0.047],["1967-01",0.037],["1967-03",0.055],["1967-05",0.068],["1967-07",0.035],["1967-09",0.045],["1967-11",0.092],["1968-01",0.054],["1968-03",0.047],["1968-05",0.05],["1968-07",0.0],["1968-09",0.0],["1968-11",0.009],["1969-01",0.0],["1969-03",0.005],["1969-05",0.0],["1969-07",0.0],["1969-09",0.069],["1969-11",0.109],["1970-01",0.108],["1970-03",0.036],["1970-05",0.0],["1970-07",0.0],["1970-09",0.055],["1970-11",0.037],["1971-01",0.014],["1971-03",0.065],["1971-05",0.072],["1971-07",0.089],["1971-09",0.092],["1971-11",0.112],["1972-01",0.095],["1972-03",0.135],["1972-05",0.157],["1972-07",0.173],["1972-09",0.131],["1972-11",0.077],["1973-01",0.073],["1973-03",0.033],["1973-05",0.0],["1973-07",0.053],["1973-09",0.022],["1973-11",0.0],["1974-01",0.0],["1974-03",0.003],["1974-05",0.02],["1974-07",0.0],["1974-09",0.0],["1974-11",0.101],["1975-01",0.025],["1975-03",0.046],["1975-05",0.096],["1975-07",0.068],["1975-09",0.073],["1975-11",0.052],["1976-01",0.0],["1976-03",0.001],["1976-05",0.016],["1976-07",0.0],["1976-09",0.003],["1976-11",0.0],["1977-01",0.0],["1977-03",0.0],["1977-05",0.0],["1977-07",0.013],["1977-09",0.045],["1977-11",0.025],["1978-01",0.0],["1978-03",0.0],["1978-05",0.04],["1978-07",0.046],["1978-09",0.033],["1978-11",0.041],["1979-01",0.041],["1979-03",0.036],["1979-05",0.013],["1979-07",0.0],["1979-09",0.025],["1979-11",0.074],["1980-01",0.078],["1980-03",0.081],["1980-05",0.068],["1980-07",0.135],["1980-09",0.196],["1980-11",0.283],["1981-01",0.214],["1981-03",0.2],["1981-05",0.186],["1981-07",0.148],["1981-09",0.061],["1981-11",0.085],["1982-01",0.048],["1982-03",0.0],["1982-05",0.01],["1982-07",0.0],["1982-09",0.0],["1982-11",0.055],["1983-01",0.062],["1983-03",0.036],["1983-05",0.045],["1983-07",0.031],["1983-09",0.0],["1983-11",0.007],["1984-01",0.0],["1984-03",0.0],["1984-05",0.0],["1984-07",0.023],["1984-09",0.0],["1984-11",0.0],["1985-01",0.056],["1985-03",0.019],["1985-05",0.01],["1985-07",0.022],["1985-09",0.0],["1985-11",0.028],["1986-01",0.039],["1986-03",0.05],["1986-05",0.079],["1986-07",0.023],["1986-09",0.0],["1986-11",0.015],["1987-01",0.043],["1987-03",0.085],["1987-05",0.086],["1987-07",0.07],["1987-09",0.077],["1987-11",0.009],["1988-01",0.005],["1988-03",0.015],["1988-05",0.0],["1988-07",0.0],["1988-09",0.007],["1988-11",0.0],["1989-01",0.011],["1989-03",0.0],["1989-05",0.023],["1989-07",0.029],["1989-09",0.035],["1989-11",0.056],["1990-01",0.047],["1990-03",0.069],["1990-05",0.128],["1990-07",0.145],["1990-09",0.125],["1990-11",0.151],["1991-01",0.179],["1991-03",0.195],["1991-05",0.188],["1991-07",0.189],["1991-09",0.204],["1991-11",0.223],["1992-01",0.22],["1992-03",0.14],["1992-05",0.092],["1992-07",0.068],["1992-09",0.081],["1992-11",0.111],["1993-01",0.033],["1993-03",0.0],["1993-05",0.034],["1993-07",0.0],["1993-09",0.003],["1993-11",0.038],["1994-01",0.024],["1994-03",0.023],["1994-05",0.0],["1994-07",0.0],["1994-09",0.044],["1994-11",0.066],["1995-01",0.043],["1995-03",0.053],["1995-05",0.015],["1995-07",0.056],["1995-09",0.03],["1995-11",0.03],["1996-01",0.024],["1996-03",0.031],["1996-05",0.078],["1996-07",0.007],["1996-09",0.042],["1996-11",0.0],["1997-01",0.014],["1997-03",0.0],["1997-05",0.041],["1997-07",0.024],["1997-09",0.008],["1997-11",0.0],["1998-01",0.016],["1998-03",0.011],["1998-05",0.0],["1998-07",0.037],["1998-09",0.037],["1998-11",0.089],["1999-01",0.168],["1999-03",0.175],["1999-05",0.135],["1999-07",0.166],["1999-09",0.21],["1999-11",0.283],["2000-01",0.355],["2000-03",0.37],["2000-05",0.292],["2000-07",0.298],["2000-09",0.258],["2000-11",0.119],["2001-01",0.1],["2001-03",0.0],["2001-05",0.015],["2001-07",0.0],["2001-09",0.0],["2001-11",0.056],["2002-01",0.015],["2002-03",0.0],["2002-05",0.0],["2002-07",0.039],["2002-09",0.0],["2002-11",0.052],["2003-01",0.039],["2003-03",0.071],["2003-05",0.056],["2003-07",0.067],["2003-09",0.051],["2003-11",0.015],["2004-01",0.0],["2004-03",0.0],["2004-05",0.033],["2004-07",0.0],["2004-09",0.0],["2004-11",0.0],["2005-01",0.0],["2005-03",0.0],["2005-05",0.006],["2005-07",0.008],["2005-09",0.0],["2005-11",0.012],["2006-01",0.0],["2006-03",0.0],["2006-05",0.0],["2006-07",0.0],["2006-09",0.02],["2006-11",0.021],["2007-01",0.007],["2007-03",0.018],["2007-05",0.038],["2007-07",0.084],["2007-09",0.121],["2007-11",0.155],["2008-01",0.126],["2008-03",0.131],["2008-05",0.151],["2008-07",0.13],["2008-09",0.064],["2008-11",0.143],["2009-01",0.239],["2009-03",0.267],["2009-05",0.225],["2009-07",0.21],["2009-09",0.141],["2009-11",0.18],["2010-01",0.178],["2010-03",0.133],["2010-05",0.129],["2010-07",0.173],["2010-09",0.214],["2010-11",0.241],["2011-01",0.206],["2011-03",0.211],["2011-05",0.246],["2011-07",0.256],["2011-09",0.286],["2011-11",0.289],["2012-01",0.284],["2012-03",0.273],["2012-05",0.286],["2012-07",0.282],["2012-09",0.261],["2012-11",0.241],["2013-01",0.207],["2013-03",0.207],["2013-05",0.183],["2013-07",0.178],["2013-09",0.21],["2013-11",0.197],["2014-01",0.214],["2014-03",0.178],["2014-05",0.169],["2014-07",0.175],["2014-09",0.19],["2014-11",0.229],["2015-01",0.24],["2015-03",0.257],["2015-05",0.252],["2015-07",0.288],["2015-09",0.265],["2015-11",0.271],["2016-01",0.275],["2016-03",0.271],["2016-05",0.259],["2016-07",0.28],["2016-09",0.266],["2016-11",0.173],["2017-01",0.168],["2017-03",0.209],["2017-05",0.255],["2017-07",0.247],["2017-09",0.239],["2017-11",0.238],["2018-01",0.247],["2018-03",0.257],["2018-05",0.277],["2018-07",0.291],["2018-09",0.331],["2018-11",0.306],["2019-01",0.322],["2019-03",0.368],["2019-05",0.369],["2019-07",0.371],["2019-09",0.36],["2019-11",0.385],["2020-01",0.413],["2020-03",0.514],["2020-05",0.544],["2020-07",0.56],["2020-09",0.584],["2020-11",0.557],["2021-01",0.55],["2021-03",0.483],["2021-05",0.452],["2021-07",0.503],["2021-09",0.479],["2021-11",0.483],["2022-01",0.398],["2022-03",0.39],["2022-05",0.297],["2022-07",0.367],["2022-09",0.365],["2022-11",0.304],["2023-01",0.323],["2023-03",0.388],["2023-05",0.436],["2023-07",0.414],["2023-09",0.412],["2023-11",0.401],["2024-01",0.387],["2024-03",0.383],["2024-05",0.397],["2024-07",0.383],["2024-09",0.406],["2024-11",0.401]],"in_hml_dd":[["1993-10",0.0],["1993-11",0.006],["1993-12",0.0],["1994-01",0.042],["1994-02",0.067],["1994-03",0.084],["1994-04",0.127],["1994-05",0.075],["1994-06",0.0],["1994-07",0.013],["1994-08",0.036],["1994-09",0.02],["1994-10",0.0],["1994-12",0.06],["1995-01",0.097],["1995-02",0.061],["1995-03",0.047],["1995-04",0.068],["1995-05",0.113],["1995-06",0.11],["1995-07",0.099],["1995-08",0.121],["1995-09",0.102],["1995-10",0.1],["1995-11",0.126],["1995-12",0.137],["1996-01",0.184],["1996-02",0.232],["1996-03",0.292],["1996-04",0.296],["1996-05",0.321],["1996-06",0.336],["1996-07",0.37],["1996-08",0.375],["1996-09",0.388],["1996-10",0.375],["1996-11",0.358],["1996-12",0.286],["1997-01",0.264],["1997-02",0.248],["1997-03",0.257],["1997-04",0.3],["1997-05",0.362],["1997-06",0.398],["1997-07",0.299],["1997-08",0.305],["1997-09",0.321],["1997-10",0.353],["1997-11",0.414],["1997-12",0.41],["1998-01",0.38],["1998-02",0.416],["1998-03",0.4],["1998-04",0.34],["1998-05",0.275],["1998-06",0.38],["1998-07",0.449],["1998-08",0.413],["1998-09",0.42],["1998-10",0.413],["1998-11",0.4],["1998-12",0.456],["1999-01",0.444],["1999-02",0.494],["1999-03",0.521],["1999-04",0.515],["1999-05",0.519],["1999-06",0.464],["1999-07",0.448],["1999-08",0.4],["1999-09",0.436],["1999-10",0.309],["1999-11",0.421],["1999-12",0.457],["2000-01",0.56],["2000-02",0.588],["2000-03",0.57],["2000-04",0.577],["2000-05",0.508],["2000-06",0.542],["2000-07",0.525],["2000-08",0.525],["2000-09",0.498],["2000-10",0.456],["2000-11",0.379],["2000-12",0.347],["2001-01",0.312],["2001-02",0.227],["2001-03",0.255],["2001-04",0.229],["2001-05",0.224],["2001-06",0.286],["2001-07",0.291],["2001-08",0.309],["2001-09",0.311],["2001-10",0.31],["2001-11",0.312],["2001-12",0.348],["2002-01",0.386],["2002-02",0.354],["2002-03",0.392],["2002-04",0.378],["2002-05",0.224],["2002-06",0.034],["2002-07",0.111],["2002-08",0.154],["2002-09",0.163],["2002-10",0.154],["2002-11",0.119],["2002-12",0.133],["2003-01",0.118],["2003-02",0.13],["2003-03",0.175],["2003-04",0.154],["2003-05",0.074],["2003-06",0.019],["2003-07",0.0],["2003-08",0.0],["2003-09",0.165],["2003-10",0.192],["2003-11",0.08],["2003-12",0.0],["2004-01",0.05],["2004-02",0.12],["2004-03",0.12],["2004-04",0.071],["2004-05",0.105],["2004-06",0.106],["2004-07",0.054],["2004-08",0.027],["2004-09",0.0],["2004-10",0.0],["2004-11",0.0],["2004-12",0.0],["2005-01",0.042],["2005-02",0.013],["2005-03",0.024],["2005-04",0.0],["2005-05",0.0],["2005-06",0.0],["2005-07",0.0],["2005-08",0.0],["2005-09",0.061],["2005-10",0.106],["2005-11",0.126],["2005-12",0.176],["2006-01",0.171],["2006-02",0.181],["2006-03",0.222],["2006-04",0.175],["2006-05",0.142],["2006-06",0.174],["2006-07",0.176],["2006-08",0.148],["2006-09",0.146],["2006-10",0.16],["2006-11",0.168],["2006-12",0.111],["2007-01",0.05],["2007-02",0.083],["2007-03",0.078],["2007-04",0.085],["2007-05",0.111],["2007-06",0.095],["2007-07",0.077],["2007-08",0.0],["2007-09",0.0],["2007-10",0.063],["2007-11",0.0],["2007-12",0.0],["2008-01",0.107],["2008-02",0.043],["2008-03",0.055],["2008-04",0.027],["2008-05",0.0],["2008-06",0.0],["2008-07",0.027],["2008-08",0.037],["2008-09",0.034],["2008-10",0.029],["2008-11",0.017],["2008-12",0.033],["2009-01",0.007],["2009-02",0.012],["2009-03",0.053],["2009-04",0.01],["2009-05",0.0],["2009-06",0.051],["2009-07",0.065],["2009-08",0.0],["2009-09",0.0],["2009-10",0.032],["2009-11",0.009],["2009-12",0.0],["2010-01",0.023],["2010-02",0.023],["2010-03",0.014],["2010-04",0.0],["2010-05",0.052],["2010-06",0.082],["2010-07",0.071],["2010-08",0.059],["2010-09",0.031],["2010-10",0.0],["2010-11",0.043],["2010-12",0.031],["2011-01",0.061],["2011-02",0.078],["2011-03",0.096],["2011-04",0.06],["2011-05",0.064],["2011-06",0.105],["2011-07",0.121],["2011-08",0.136],["2011-09",0.141],["2011-10",0.135],["2011-11",0.162],["2011-12",0.166],["2012-01",0.049],["2012-02",0.085],["2012-03",0.126],["2012-04",0.15],["2012-05",0.182],["2012-06",0.192],["2012-07",0.225],["2012-08",0.266],["2012-09",0.208],["2012-10",0.232],["2012-11",0.161],["2012-12",0.155],["2013-01",0.184],["2013-02",0.271],["2013-03",0.312],["2013-04",0.183],["2013-05",0.188],["2013-06",0.188],["2013-07",0.181],["2013-08",0.215],["2013-09",0.184],["2013-10",0.18],["2013-11",0.164],["2013-12",0.131],["2014-01",0.196],["2014-02",0.214],["2014-03",0.17],["2014-04",0.105],["2014-05",0.014],["2014-06",0.0],["2014-07",0.094],["2014-08",0.142],["2014-09",0.154],["2014-10",0.142],["2014-11",0.153],["2014-12",0.197],["2015-01",0.19],["2015-02",0.189],["2015-03",0.237],["2015-04",0.214],["2015-05",0.248],["2015-06",0.255],["2015-07",0.213],["2015-08",0.239],["2015-09",0.224],["2015-10",0.164],["2015-11",0.161],["2015-12",0.108],["2016-01",0.158],["2016-02",0.196],["2016-03",0.149],["2016-04",0.102],["2016-05",0.137],["2016-06",0.124],["2016-07",0.095],["2016-08",0.11],["2016-09",0.109],["2016-10",0.037],["2016-11",0.002],["2016-12",0.02],["2017-01",0.0],["2017-02",0.0],["2017-03",0.0],["2017-04",0.0],["2017-05",0.051],["2017-06",0.036],["2017-07",0.0],["2017-08",0.0],["2017-09",0.0],["2017-10",0.0],["2017-11",0.036],["2017-12",0.0],["2018-01",0.009],["2018-02",0.035],["2018-03",0.101],["2018-04",0.106],["2018-05",0.124],["2018-06",0.168],["2018-07",0.185],["2018-08",0.186],["2018-09",0.209],["2018-10",0.193],["2018-11",0.222],["2018-12",0.21],["2019-01",0.249],["2019-02",0.252],["2019-03",0.245],["2019-04",0.258],["2019-05",0.265],["2019-06",0.291],["2019-07",0.338],["2019-08",0.402],["2019-09",0.391],["2019-10",0.405],["2019-11",0.375],["2019-12",0.376],["2020-01",0.395],["2020-02",0.451],["2020-03",0.497],["2020-04",0.461],["2020-05",0.455],["2020-06",0.381],["2020-07",0.408],["2020-08",0.378],["2020-09",0.431],["2020-10",0.439],["2020-11",0.382],["2020-12",0.319],["2021-01",0.336],["2021-02",0.261],["2021-03",0.275],["2021-04",0.199],["2021-05",0.18],["2021-06",0.144],["2021-07",0.083],["2021-08",0.149],["2021-09",0.06],["2021-10",0.054],["2021-11",0.067],["2021-12",0.057],["2022-01",0.0],["2022-02",0.023],["2022-03",0.016],["2022-04",0.0],["2022-05",0.023],["2022-06",0.052],["2022-07",0.083],["2022-08",0.061],["2022-09",0.083],["2022-10",0.054],["2022-11",0.001],["2022-12",0.0],["2023-01",0.0],["2023-02",0.0],["2023-03",0.0],["2023-04",0.0],["2023-05",0.017],["2023-06",0.004],["2023-07",0.0],["2023-08",0.0],["2023-09",0.0],["2023-10",0.001],["2023-11",0.0],["2023-12",0.0],["2024-01",0.0],["2024-02",0.0],["2024-03",0.0],["2024-04",0.0],["2024-05",0.028],["2024-06",0.042],["2024-07",0.002],["2024-08",0.011],["2024-09",0.019],["2024-10",0.063],["2024-11",0.072],["2024-12",0.081],["2025-01",0.068],["2025-02",0.068],["2025-03",0.049],["2025-04",0.036],["2025-05",0.041],["2025-06",0.022],["2025-07",0.003],["2025-08",0.027],["2025-09",0.0],["2025-10",0.0],["2025-11",0.018],["2025-12",0.0]],"roll_us":[["1927-01",null],["1927-03",null],["1927-05",null],["1927-07",null],["1927-09",null],["1927-11",null],["1928-01",null],["1928-03",null],["1928-05",null],["1928-07",null],["1928-09",null],["1928-11",null],["1929-01",null],["1929-03",null],["1929-05",null],["1929-07",null],["1929-09",null],["1929-11",null],["1930-01",null],["1930-03",null],["1930-05",null],["1930-07",null],["1930-09",null],["1930-11",null],["1931-01",null],["1931-03",null],["1931-05",null],["1931-07",null],["1931-09",null],["1931-11",null],["1932-01",-0.69],["1932-03",-0.69],["1932-05",-0.69],["1932-07",-0.86],["1932-09",-0.91],["1932-11",-0.87],["1933-01",-0.87],["1933-03",-0.86],["1933-05",-0.85],["1933-07",-0.85],["1933-09",-0.83],["1933-11",-0.81],["1934-01",-0.8],["1934-03",-0.8],["1934-05",-0.79],["1934-07",-0.79],["1934-09",-0.79],["1934-11",-0.8],["1935-01",-0.8],["1935-03",-0.81],["1935-05",-0.81],["1935-07",-0.81],["1935-09",-0.82],["1935-11",-0.82],["1936-01",-0.81],["1936-03",-0.82],["1936-05",-0.81],["1936-07",-0.8],["1936-09",-0.8],["1936-11",-0.8],["1937-01",-0.79],["1937-03",-0.78],["1937-05",-0.78],["1937-07",-0.7],["1937-09",-0.49],["1937-11",-0.51],["1938-01",-0.49],["1938-03",-0.49],["1938-05",-0.32],["1938-07",-0.27],["1938-09",-0.3],["1938-11",-0.36],["1939-01",-0.35],["1939-03",-0.32],["1939-05",-0.35],["1939-07",-0.31],["1939-09",-0.55],["1939-11",-0.54],["1940-01",-0.54],["1940-03",-0.51],["1940-05",-0.51],["1940-07",-0.5],["1940-09",-0.48],["1940-11",-0.48],["1941-01",-0.49],["1941-03",-0.5],["1941-05",-0.51],["1941-07",-0.5],["1941-09",-0.51],["1941-11",-0.5],["1942-01",-0.51],["1942-03",-0.55],["1942-05",-0.55],["1942-07",-0.54],["1942-09",-0.57],["1942-11",-0.57],["1943-01",-0.56],["1943-03",-0.53],["1943-05",-0.5],["1943-07",-0.58],["1943-09",-0.58],["1943-11",-0.54],["1944-01",-0.54],["1944-03",-0.58],["1944-05",-0.57],["1944-07",-0.57],["1944-09",-0.12],["1944-11",-0.07],["1945-01",0.01],["1945-03",0.04],["1945-05",0.09],["1945-07",0.15],["1945-09",0.16],["1945-11",0.22],["1946-01",0.26],["1946-03",0.26],["1946-05",0.25],["1946-07",0.28],["1946-09",0.28],["1946-11",0.3],["1947-01",0.44],["1947-03",0.43],["1947-05",0.38],["1947-07",0.37],["1947-09",0.37],["1947-11",0.44],["1948-01",0.49],["1948-03",0.51],["1948-05",0.46],["1948-07",0.44],["1948-09",0.45],["1948-11",0.4],["1949-01",0.32],["1949-03",0.31],["1949-05",0.27],["1949-07",0.32],["1949-09",0.34],["1949-11",0.33],["1950-01",0.3],["1950-03",0.24],["1950-05",0.21],["1950-07",0.06],["1950-09",0.03],["1950-11",0.02],["1951-01",0.1],["1951-03",0.15],["1951-05",0.19],["1951-07",0.23],["1951-09",0.23],["1951-11",0.23],["1952-01",0.22],["1952-03",0.22],["1952-05",0.23],["1952-07",0.26],["1952-09",0.27],["1952-11",0.26],["1953-01",0.26],["1953-03",0.28],["1953-05",0.27],["1953-07",0.25],["1953-09",0.2],["1953-11",0.2],["1954-01",0.12],["1954-03",0.11],["1954-05",0.11],["1954-07",0.09],["1954-09",0.1],["1954-11",0.11],["1955-01",0.08],["1955-03",0.09],["1955-05",0.09],["1955-07",0.19],["1955-09",0.2],["1955-11",0.18],["1956-01",0.08],["1956-03",-0.04],["1956-05",-0.11],["1956-07",-0.28],["1956-09",-0.28],["1956-11",-0.26],["1957-01",-0.32],["1957-03",-0.33],["1957-05",-0.32],["1957-07",-0.33],["1957-09",-0.33],["1957-11",-0.33],["1958-01",-0.43],["1958-03",-0.41],["1958-05",-0.4],["1958-07",-0.43],["1958-09",-0.43],["1958-11",-0.44],["1959-01",-0.37],["1959-03",-0.34],["1959-05",-0.33],["1959-07",-0.32],["1959-09",-0.34],["1959-11",-0.4],["1960-01",-0.43],["1960-03",-0.45],["1960-05",-0.49],["1960-07",-0.54],["1960-09",-0.54],["1960-11",-0.54],["1961-01",-0.6],["1961-03",-0.6],["1961-05",-0.59],["1961-07",-0.59],["1961-09",-0.59],["1961-11",-0.61],["1962-01",-0.6],["1962-03",-0.61],["1962-05",-0.62],["1962-07",-0.52],["1962-09",-0.49],["1962-11",-0.48],["1963-01",-0.4],["1963-03",-0.4],["1963-05",-0.42],["1963-07",-0.39],["1963-09",-0.38],["1963-11",-0.37],["1964-01",-0.37],["1964-03",-0.38],["1964-05",-0.36],["1964-07",-0.37],["1964-09",-0.37],["1964-11",-0.35],["1965-01",-0.29],["1965-03",-0.26],["1965-05",-0.18],["1965-07",-0.13],["1965-09",-0.15],["1965-11",-0.11],["1966-01",0.02],["1966-03",0.03],["1966-05",0.04],["1966-07",0.03],["1966-09",0.03],["1966-11",-0.1],["1967-01",-0.09],["1967-03",-0.11],["1967-05",-0.1],["1967-07",-0.16],["1967-09",-0.2],["1967-11",-0.23],["1968-01",-0.29],["1968-03",-0.32],["1968-05",-0.32],["1968-07",-0.33],["1968-09",-0.33],["1968-11",-0.34],["1969-01",-0.34],["1969-03",-0.35],["1969-05",-0.37],["1969-07",-0.35],["1969-09",-0.35],["1969-11",-0.29],["1970-01",-0.33],["1970-03",-0.33],["1970-05",-0.36],["1970-07",-0.37],["1970-09",-0.21],["1970-11",-0.21],["1971-01",-0.25],["1971-03",-0.23],["1971-05",-0.25],["1971-07",-0.26],["1971-09",-0.25],["1971-11",-0.19],["1972-01",-0.16],["1972-03",-0.17],["1972-05",-0.18],["1972-07",-0.19],["1972-09",-0.22],["1972-11",-0.24],["1973-01",-0.2],["1973-03",-0.17],["1973-05",-0.09],["1973-07",0.06],["1973-09",0.04],["1973-11",0.11],["1974-01",0.07],["1974-03",0.07],["1974-05",0.08],["1974-07",0.08],["1974-09",0.12],["1974-11",0.11],["1975-01",-0.0],["1975-03",0.0],["1975-05",0.03],["1975-07",0.03],["1975-09",-0.03],["1975-11",-0.03],["1976-01",0.01],["1976-03",-0.01],["1976-05",-0.0],["1976-07",0.0],["1976-09",0.0],["1976-11",0.01],["1977-01",0.02],["1977-03",0.04],["1977-05",0.06],["1977-07",0.07],["1977-09",0.11],["1977-11",0.14],["1978-01",0.15],["1978-03",0.14],["1978-05",0.11],["1978-07",-0.02],["1978-09",-0.02],["1978-11",-0.1],["1979-01",-0.1],["1979-03",-0.11],["1979-05",-0.12],["1979-07",-0.15],["1979-09",-0.21],["1979-11",-0.32],["1980-01",-0.08],["1980-03",-0.03],["1980-05",-0.05],["1980-07",-0.03],["1980-09",-0.1],["1980-11",-0.31],["1981-01",-0.48],["1981-03",-0.49],["1981-05",-0.51],["1981-07",-0.53],["1981-09",-0.5],["1981-11",-0.52],["1982-01",-0.54],["1982-03",-0.47],["1982-05",-0.47],["1982-07",-0.46],["1982-09",-0.48],["1982-11",-0.47],["1983-01",-0.46],["1983-03",-0.45],["1983-05",-0.46],["1983-07",-0.46],["1983-09",-0.48],["1983-11",-0.5],["1984-01",-0.5],["1984-03",-0.5],["1984-05",-0.5],["1984-07",-0.48],["1984-09",-0.43],["1984-11",-0.4],["1985-01",-0.33],["1985-03",-0.38],["1985-05",-0.37],["1985-07",-0.37],["1985-09",-0.34],["1985-11",-0.13],["1986-01",-0.02],["1986-03",-0.03],["1986-05",-0.01],["1986-07",0.05],["1986-09",-0.01],["1986-11",0.01],["1987-01",-0.01],["1987-03",-0.02],["1987-05",-0.04],["1987-07",-0.04],["1987-09",-0.03],["1987-11",-0.08],["1988-01",-0.19],["1988-03",-0.19],["1988-05",-0.19],["1988-07",-0.14],["1988-09",-0.09],["1988-11",-0.04],["1989-01",0.0],["1989-03",0.01],["1989-05",-0.0],["1989-07",-0.05],["1989-09",-0.13],["1989-11",-0.16],["1990-01",-0.29],["1990-03",-0.32],["1990-05",-0.37],["1990-07",-0.4],["1990-09",-0.39],["1990-11",-0.33],["1991-01",-0.29],["1991-03",-0.28],["1991-05",-0.3],["1991-07",-0.35],["1991-09",-0.28],["1991-11",-0.27],["1992-01",-0.35],["1992-03",-0.41],["1992-05",-0.43],["1992-07",-0.44],["1992-09",-0.44],["1992-11",-0.38],["1993-01",-0.16],["1993-03",-0.12],["1993-05",-0.11],["1993-07",-0.09],["1993-09",-0.09],["1993-11",-0.04],["1994-01",-0.05],["1994-03",-0.05],["1994-05",-0.06],["1994-07",-0.03],["1994-09",-0.03],["1994-11",-0.02],["1995-01",-0.03],["1995-03",-0.02],["1995-05",0.0],["1995-07",-0.0],["1995-09",-0.02],["1995-11",-0.08],["1996-01",-0.14],["1996-03",-0.16],["1996-05",-0.12],["1996-07",-0.12],["1996-09",-0.12],["1996-11",-0.08],["1997-01",0.07],["1997-03",0.06],["1997-05",0.18],["1997-07",0.2],["1997-09",0.18],["1997-11",0.18],["1998-01",0.13],["1998-03",0.1],["1998-05",0.11],["1998-07",-0.03],["1998-09",0.01],["1998-11",0.0],["1999-01",-0.12],["1999-03",-0.11],["1999-05",-0.17],["1999-07",-0.19],["1999-09",-0.23],["1999-11",-0.3],["2000-01",-0.41],["2000-03",-0.57],["2000-05",-0.62],["2000-07",-0.65],["2000-09",-0.62],["2000-11",-0.62],["2001-01",-0.38],["2001-03",-0.24],["2001-05",-0.21],["2001-07",-0.19],["2001-09",-0.18],["2001-11",-0.14],["2002-01",-0.14],["2002-03",-0.13],["2002-05",-0.13],["2002-07",-0.14],["2002-09",-0.13],["2002-11",-0.09],["2003-01",-0.09],["2003-03",-0.09],["2003-05",-0.09],["2003-07",-0.08],["2003-09",-0.08],["2003-11",-0.09],["2004-01",-0.07],["2004-03",-0.08],["2004-05",-0.05],["2004-07",-0.05],["2004-09",-0.04],["2004-11",-0.01],["2005-01",0.06],["2005-03",0.22],["2005-05",0.3],["2005-07",0.46],["2005-09",0.48],["2005-11",0.59],["2006-01",0.55],["2006-03",0.45],["2006-05",0.39],["2006-07",0.36],["2006-09",0.36],["2006-11",0.33],["2007-01",0.31],["2007-03",0.29],["2007-05",0.23],["2007-07",0.25],["2007-09",0.19],["2007-11",0.01],["2008-01",-0.15],["2008-03",-0.16],["2008-05",-0.17],["2008-07",-0.33],["2008-09",-0.31],["2008-11",-0.42],["2009-01",-0.27],["2009-03",-0.33],["2009-05",-0.41],["2009-07",-0.43],["2009-09",-0.47],["2009-11",-0.48],["2010-01",-0.49],["2010-03",-0.47],["2010-05",-0.45],["2010-07",-0.44],["2010-09",-0.45],["2010-11",-0.45],["2011-01",-0.46],["2011-03",-0.46],["2011-05",-0.46],["2011-07",-0.46],["2011-09",-0.46],["2011-11",-0.46],["2012-01",-0.45],["2012-03",-0.45],["2012-05",-0.45],["2012-07",-0.44],["2012-09",-0.44],["2012-11",-0.43],["2013-01",-0.42],["2013-03",-0.42],["2013-05",-0.42],["2013-07",-0.39],["2013-09",-0.41],["2013-11",-0.38],["2014-01",-0.46],["2014-03",-0.43],["2014-05",-0.4],["2014-07",-0.33],["2014-09",-0.15],["2014-11",-0.12],["2015-01",-0.15],["2015-03",-0.21],["2015-05",-0.3],["2015-07",-0.44],["2015-09",-0.44],["2015-11",-0.42],["2016-01",-0.4],["2016-03",-0.39],["2016-05",-0.45],["2016-07",-0.44],["2016-09",-0.48],["2016-11",-0.49],["2017-01",-0.53],["2017-03",-0.5],["2017-05",-0.5],["2017-07",-0.5],["2017-09",-0.51],["2017-11",-0.51],["2018-01",-0.49],["2018-03",-0.5],["2018-05",-0.5],["2018-07",-0.49],["2018-09",-0.51],["2018-11",-0.52],["2019-01",-0.48],["2019-03",-0.47],["2019-05",-0.49],["2019-07",-0.47],["2019-09",-0.55],["2019-11",-0.54],["2020-01",-0.56],["2020-03",-0.6],["2020-05",-0.58],["2020-07",-0.56],["2020-09",-0.58],["2020-11",-0.58],["2021-01",-0.56],["2021-03",-0.61],["2021-05",-0.57],["2021-07",-0.57],["2021-09",-0.54],["2021-11",-0.53],["2022-01",-0.52],["2022-03",-0.53],["2022-05",-0.44],["2022-07",-0.41],["2022-09",-0.4],["2022-11",-0.37],["2023-01",-0.26],["2023-03",-0.23],["2023-05",-0.22],["2023-07",-0.23],["2023-09",-0.22],["2023-11",-0.21],["2024-01",-0.24],["2024-03",-0.25],["2024-05",-0.23],["2024-07",-0.25],["2024-09",-0.19],["2024-11",-0.2]],"roll_in":[["1993-10",null],["1993-11",null],["1993-12",null],["1994-01",null],["1994-02",null],["1994-03",null],["1994-04",null],["1994-05",null],["1994-06",null],["1994-07",null],["1994-08",null],["1994-09",null],["1994-10",null],["1994-12",null],["1995-01",null],["1995-02",null],["1995-03",null],["1995-04",null],["1995-05",null],["1995-06",null],["1995-07",null],["1995-08",null],["1995-09",null],["1995-10",null],["1995-11",null],["1995-12",null],["1996-01",null],["1996-02",null],["1996-03",null],["1996-04",null],["1996-05",null],["1996-06",null],["1996-07",null],["1996-08",null],["1996-09",null],["1996-10",null],["1996-11",null],["1996-12",null],["1997-01",null],["1997-02",null],["1997-03",null],["1997-04",null],["1997-05",null],["1997-06",null],["1997-07",null],["1997-08",null],["1997-09",null],["1997-10",null],["1997-11",null],["1997-12",null],["1998-01",null],["1998-02",null],["1998-03",null],["1998-04",null],["1998-05",null],["1998-06",null],["1998-07",null],["1998-08",null],["1998-09",null],["1998-10",-0.49],["1998-11",-0.5],["1998-12",-0.5],["1999-01",-0.46],["1999-02",-0.49],["1999-03",-0.49],["1999-04",-0.5],["1999-05",-0.49],["1999-06",-0.51],["1999-07",-0.52],["1999-08",-0.55],["1999-09",-0.56],["1999-10",-0.52],["1999-11",-0.56],["1999-12",-0.56],["2000-01",-0.56],["2000-02",-0.57],["2000-03",-0.57],["2000-04",-0.54],["2000-05",-0.58],["2000-06",-0.59],["2000-07",-0.59],["2000-08",-0.59],["2000-09",-0.59],["2000-10",-0.59],["2000-11",-0.61],["2000-12",-0.6],["2001-01",-0.59],["2001-02",-0.54],["2001-03",-0.52],["2001-04",-0.52],["2001-05",-0.51],["2001-06",-0.51],["2001-07",-0.51],["2001-08",-0.5],["2001-09",-0.49],["2001-10",-0.49],["2001-11",-0.46],["2001-12",-0.44],["2002-01",-0.44],["2002-02",-0.44],["2002-03",-0.44],["2002-04",-0.44],["2002-05",-0.42],["2002-06",-0.41],["2002-07",-0.39],["2002-08",-0.39],["2002-09",-0.39],["2002-10",-0.38],["2002-11",-0.38],["2002-12",-0.38],["2003-01",-0.37],["2003-02",-0.37],["2003-03",-0.38],["2003-04",-0.37],["2003-05",-0.36],["2003-06",-0.38],["2003-07",-0.36],["2003-08",-0.36],["2003-09",-0.35],["2003-10",-0.35],["2003-11",-0.36],["2003-12",-0.37],["2004-01",-0.38],["2004-02",-0.37],["2004-03",-0.36],["2004-04",-0.36],["2004-05",-0.35],["2004-06",-0.34],["2004-07",-0.33],["2004-08",-0.32],["2004-09",-0.32],["2004-10",-0.32],["2004-11",-0.29],["2004-12",-0.26],["2005-01",-0.25],["2005-02",-0.22],["2005-03",-0.22],["2005-04",-0.25],["2005-05",-0.2],["2005-06",-0.19],["2005-07",-0.18],["2005-08",-0.18],["2005-09",-0.17],["2005-10",-0.15],["2005-11",-0.12],["2005-12",-0.12],["2006-01",-0.13],["2006-02",-0.17],["2006-03",-0.16],["2006-04",-0.16],["2006-05",-0.17],["2006-06",-0.17],["2006-07",-0.16],["2006-08",-0.18],["2006-09",-0.18],["2006-10",-0.2],["2006-11",-0.28],["2006-12",-0.3],["2007-01",-0.29],["2007-02",-0.31],["2007-03",-0.29],["2007-04",-0.29],["2007-05",-0.25],["2007-06",-0.2],["2007-07",-0.21],["2007-08",-0.21],["2007-09",-0.23],["2007-10",-0.28],["2007-11",-0.28],["2007-12",-0.3],["2008-01",-0.24],["2008-02",-0.25],["2008-03",-0.22],["2008-04",-0.22],["2008-05",-0.26],["2008-06",-0.25],["2008-07",-0.25],["2008-08",-0.25],["2008-09",-0.28],["2008-10",-0.26],["2008-11",-0.22],["2008-12",-0.14],["2009-01",-0.13],["2009-02",-0.13],["2009-03",-0.09],["2009-04",-0.12],["2009-05",-0.18],["2009-06",-0.16],["2009-07",-0.17],["2009-08",-0.19],["2009-09",-0.18],["2009-10",-0.19],["2009-11",-0.19],["2009-12",-0.19],["2010-01",-0.19],["2010-02",-0.19],["2010-03",-0.19],["2010-04",-0.19],["2010-05",-0.17],["2010-06",-0.16],["2010-07",-0.17],["2010-08",-0.17],["2010-09",-0.18],["2010-10",-0.19],["2010-11",-0.2],["2010-12",-0.2],["2011-01",-0.2],["2011-02",-0.21],["2011-03",-0.19],["2011-04",-0.19],["2011-05",-0.19],["2011-06",-0.19],["2011-07",-0.19],["2011-08",-0.2],["2011-09",-0.2],["2011-10",-0.19],["2011-11",-0.2],["2011-12",-0.21],["2012-01",-0.3],["2012-02",-0.29],["2012-03",-0.3],["2012-04",-0.3],["2012-05",-0.31],["2012-06",-0.3],["2012-07",-0.31],["2012-08",-0.37],["2012-09",-0.39],["2012-10",-0.36],["2012-11",-0.38],["2012-12",-0.38],["2013-01",-0.43],["2013-02",-0.44],["2013-03",-0.45],["2013-04",-0.43],["2013-05",-0.43],["2013-06",-0.42],["2013-07",-0.41],["2013-08",-0.39],["2013-09",-0.4],["2013-10",-0.42],["2013-11",-0.44],["2013-12",-0.48],["2014-01",-0.51],["2014-02",-0.51],["2014-03",-0.54],["2014-04",-0.54],["2014-05",-0.58],["2014-06",-0.6],["2014-07",-0.57],["2014-08",-0.55],["2014-09",-0.55],["2014-10",-0.55],["2014-11",-0.56],["2014-12",-0.56],["2015-01",-0.56],["2015-02",-0.56],["2015-03",-0.58],["2015-04",-0.58],["2015-05",-0.59],["2015-06",-0.6],["2015-07",-0.56],["2015-08",-0.57],["2015-09",-0.57],["2015-10",-0.59],["2015-11",-0.59],["2015-12",-0.59],["2016-01",-0.58],["2016-02",-0.56],["2016-03",-0.57],["2016-04",-0.57],["2016-05",-0.56],["2016-06",-0.56],["2016-07",-0.56],["2016-08",-0.56],["2016-09",-0.56],["2016-10",-0.54],["2016-11",-0.54],["2016-12",-0.54],["2017-01",-0.44],["2017-02",-0.45],["2017-03",-0.44],["2017-04",-0.44],["2017-05",-0.43],["2017-06",-0.45],["2017-07",-0.44],["2017-08",-0.4],["2017-09",-0.38],["2017-10",-0.36],["2017-11",-0.34],["2017-12",-0.34],["2018-01",-0.34],["2018-02",-0.31],["2018-03",-0.31],["2018-04",-0.28],["2018-05",-0.28],["2018-06",-0.29],["2018-07",-0.31],["2018-08",-0.36],["2018-09",-0.36],["2018-10",-0.37],["2018-11",-0.36],["2018-12",-0.35],["2019-01",-0.36],["2019-02",-0.35],["2019-03",-0.32],["2019-04",-0.29],["2019-05",-0.21],["2019-06",-0.23],["2019-07",-0.33],["2019-08",-0.36],["2019-09",-0.36],["2019-10",-0.36],["2019-11",-0.39],["2019-12",-0.38],["2020-01",-0.38],["2020-02",-0.43],["2020-03",-0.46],["2020-04",-0.49],["2020-05",-0.49],["2020-06",-0.52],["2020-07",-0.57],["2020-08",-0.58],["2020-09",-0.6],["2020-10",-0.58],["2020-11",-0.61],["2020-12",-0.62],["2021-01",-0.62],["2021-02",-0.6],["2021-03",-0.6],["2021-04",-0.54],["2021-05",-0.55],["2021-06",-0.55],["2021-07",-0.54],["2021-08",-0.53],["2021-09",-0.54],["2021-10",-0.55],["2021-11",-0.55],["2021-12",-0.56],["2022-01",-0.58],["2022-02",-0.57],["2022-03",-0.56],["2022-04",-0.57],["2022-05",-0.55],["2022-06",-0.55],["2022-07",-0.53],["2022-08",-0.54],["2022-09",-0.54],["2022-10",-0.56],["2022-11",-0.57],["2022-12",-0.57],["2023-01",-0.57],["2023-02",-0.57],["2023-03",-0.57],["2023-04",-0.57],["2023-05",-0.57],["2023-06",-0.57],["2023-07",-0.54],["2023-08",-0.54],["2023-09",-0.54],["2023-10",-0.54],["2023-11",-0.53],["2023-12",-0.54],["2024-01",-0.49],["2024-02",-0.5],["2024-03",-0.5],["2024-04",-0.5],["2024-05",-0.5],["2024-06",-0.49],["2024-07",-0.46],["2024-08",-0.44],["2024-09",-0.43],["2024-10",-0.43],["2024-11",-0.42],["2024-12",-0.42],["2025-01",-0.42],["2025-02",-0.37],["2025-03",-0.29],["2025-04",-0.26],["2025-05",-0.24],["2025-06",-0.18],["2025-07",-0.16],["2025-08",-0.14],["2025-09",-0.05],["2025-10",-0.06],["2025-11",0.01],["2025-12",0.06]],"combos":{"US HML":0.33,"US Mom":0.45,"US 50/50":0.72,"India HML":0.42,"India WML":0.55,"India 50/50":0.86}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+function fmtN(v,d=2){return v==null?'—':(+v).toFixed(d);}
+
+function seriesChart(mountId, series, opts){
+  const mount=document.getElementById(mountId);
+  const W=820,H=opts.height||300,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  // series: [{name, rows:[[label,val],...], color}]; x = index within each series' own rows
+  const maxN=Math.max(...series.map(s=>s.rows.length));
+  let lo=Infinity,hi=-Infinity;
+  series.forEach(s=>s.rows.forEach(([_,v])=>{if(v!=null){lo=Math.min(lo,v);hi=Math.max(hi,v);}}));
+  if(opts.y0!==undefined){lo=Math.min(lo,opts.y0);hi=Math.max(hi,opts.y0);}
+  const pad=(hi-lo)*0.06||0.05; lo-=pad; hi+=pad;
+  const Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opts.aria||'chart'});
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(opts.yFmt||fmtN)(v); svg.appendChild(t);}
+  if(opts.zero&&lo<0&&hi>0)
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'3 3'}));
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  series.forEach(s=>{
+    const N=s.rows.length, X=i=>m.l+iw*i/(N-1);
+    let d='',pen=false;
+    s.rows.forEach(([_,v],i)=>{if(v==null){pen=false;return;}
+      d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+    svg.appendChild(el('path',{d,fill:'none',stroke:`var(${s.color})`,'stroke-width':1.8,'stroke-linejoin':'round'}));
+  });
+  const ref=series[0];
+  [0,Math.floor(ref.rows.length/3),Math.floor(2*ref.rows.length/3),ref.rows.length-1].forEach(i=>{
+    const t=el('text',{x:m.l+iw*i/(ref.rows.length-1),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=ref.rows[i][0]; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const px=(ev.clientX-r.left)*sx;
+    const frac=Math.max(0,Math.min(1,(px-m.l)/iw));
+    cross.setAttribute('x1',m.l+iw*frac);cross.setAttribute('x2',m.l+iw*frac);cross.setAttribute('opacity',1);
+    let rows='';
+    series.forEach(s=>{
+      const i=Math.round(frac*(s.rows.length-1));
+      const [lab,v]=s.rows[i];
+      rows+=`<div class="row"><span class="nm">${s.name} ${lab}</span><span class="vl">${(opts.yFmt||fmtN)(v)}</span></div>`;});
+    tip.innerHTML=rows; tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-200)tx-=220;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+}
+
+seriesChart('figDD',
+  [{name:'US dd', rows:DATA.us_hml_dd, color:'--s1'},
+   {name:'India dd', rows:DATA.in_hml_dd, color:'--s2'}],
+  {aria:'value drawdowns US and India', yFmt:v=>v==null?'—':(v*100).toFixed(0)+'%', y0:0});
+
+seriesChart('figCorr',
+  [{name:'US', rows:DATA.roll_us, color:'--s1'},
+   {name:'India', rows:DATA.roll_in, color:'--s2'}],
+  {aria:'rolling value-momentum correlation', zero:true, yFmt:v=>fmtN(v,2)});
+</script>
