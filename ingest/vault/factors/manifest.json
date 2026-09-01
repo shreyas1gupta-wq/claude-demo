@@ -4,6 +4,11 @@
   "sha256": "4a96af77b606da2c82e3285e1bb5b716a26d5612fb69f1d36a919a0426bf53d7",
   "vintage": "2026-09-01"
  },
+ "fff_monthly_us.csv": {
+  "bytes": 56609,
+  "sha256": "5b0d82a6a6345fd713f8d5d4e0266a7fadd3ab75e22eb7fedfeccf74c31910b7",
+  "vintage": "2026-09-01"
+ },
  "iima_monthly_factors.csv": {
   "bytes": 37496,
   "sha256": "c07a12d1c04630c18a7f87a96c91db6a7c4ebfc1e37f888e41fe8469fe234c44",
