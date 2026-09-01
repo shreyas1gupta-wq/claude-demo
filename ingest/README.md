@@ -34,3 +34,19 @@ network). Expect first-contact fixes; that is normal and anticipated.
   use the archives/mirrors listed in A-catalog §risks rather than hammering.
 - The 2026 base-year revision wave (GDP/CPI/IIP/WPI — A-catalog finding) means macro exports
   must record WHICH base the portal served; put it in the filename per A-catalog conventions.
+
+## Addendum (2026-09-01) — India factor library via PyPI (principal's machine)
+
+`pip install indiafactorlibrary` then:
+```python
+from indiafactorlibrary import IndiaFactorLibrary
+lib = IndiaFactorLibrary()
+print(lib.get_available_datasets())   # then lib.read("<dataset>") per docs
+```
+Package verified working here (v0.0.12) but its data host (invespar.com) is blocked at this
+container's proxy — run on the principal's machine, save raw responses into ingest/vault/ifl/,
+manifest them (sha256), and they become the external validation benchmark for our own bhavcopy
+WML construction (momentum Part C §6: tracking-error acceptance test before our construction is
+trusted). Also on this runsheet: BSE bhavcopy puller + corporate-actions puller (gaps identified
+in momentum Part C — ingest/pull_nse_bhavcopy.py does not yet normalize the two eras' schemas,
+and BSE had its own UDiFF-style rename).
