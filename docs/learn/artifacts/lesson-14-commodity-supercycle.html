@@ -1,0 +1,291 @@
+<title>Eight Arcs, Not Four</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 14 · atlas 1.3 · candidate H53</p>
+  <h1>Eight Arcs, Not Four</h1>
+  <p class="stand">The commodity supercycle on 165 years of authenticated data: the famous
+  "3-4 supercycles since 1870" turn out to be alternate arcs of a finer 15-21-year sequence our
+  real-time machinery actually finds; the breadth claim passes beautifully; the capacity
+  mechanism fails its bars at decade windows — and the desk catches itself inventing numbers,
+  once, before they could reach a record.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/14-commodity-supercycle.md</span>
+    <span><b>Seat</b> candidate H53 — context + sector conditioner + L9 enrichment, Tier C</span>
+    <span><b>Trials</b> A1–A5 authentication, CS1–CS4 (pre-registered)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>A filter that finds what it was built to find</h2></div>
+  <p>The supercycle literature (Erten-Ocampo, Cuddington-Jerrett) dates 3-4 great commodity
+  waves since 1870 using band-pass filters that keep only oscillations between roughly 20 and
+  70 years. Run that filter on <em>anything</em> long enough — a random walk included — and
+  smooth multi-decade waves come out, because that is what the filter passes. It is also
+  two-sided: it needs future data to date the past, so its chronology was never computable in
+  real time. This is the same objection our Contract codifies against the HP filter, now
+  pointed at commodity historiography. Respect the papers as history; refuse the tool for
+  trading.</p>
+  <p>So we ran our own machinery — expanding, one-sided, the same peak logic as Lesson 13,
+  minimum gap 15 years, bars pre-registered before the run — on the Jacks 1850–2015 real price
+  panel (40 commodities, vaulted and authenticated against IMF and EIA lineages at
+  correlations 0.987–0.996):</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — the 165-year real commodity index, with every arc marked</span>
+      <span class="figbadge">REAL DATA · Jacks panel · chained equal-weight index</span></div>
+    <div class="chart" id="figIndex"></div>
+    <figcaption>Troughs (▼) 1879, 1897, 1913, 1931, 1949, 1970, 1986, 2001; peaks (▲) ending
+    1979, 1996, 2011. Spacings run 15–21 years, median 18. The literature's canonical
+    supercycles — the 1910s, the postwar boom, the 1970s, the 2000s — are every <em>other</em>
+    arc of this sequence. Their count is a resolution choice made by their filter; this is
+    what a desk computing on the day it trades can actually see.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Troughs since 1870</div><div class="v">8</div><div class="d">claim said 3-4 — CS1 FAIL</div></div>
+    <div class="stat"><div class="k">Median arc spacing</div><div class="v">18y</div><div class="d">range 15-21y; the atlas's own prior (15-20y) wins</div></div>
+    <div class="stat"><div class="k">Breadth (across groups)</div><div class="v">+0.30</div><div class="d">89% of 451 pairs positive — CS2 PASS</div></div>
+    <div class="stat"><div class="k">Mechanism legs</div><div class="v">55/64%</div><div class="d">vs 70% bars — CS3/CS4 FAIL</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>What passed matters most for India</h2></div>
+  <p>CS2 asked whether commodity swings are BROAD — whether energy, metals and agriculture
+  move on a common factor rather than on private stories. Across 451 cross-group pairs of
+  10-year changes, the median correlation is +0.30 and 89% are positive. That pass is the
+  license H53 actually needs: an import-basket terms-of-trade state for India (crude, gold,
+  coal, edible oils, fertilizer) measures one real macro object, not oil counted five times.</p>
+  <p>And for a net importer, that one state feeds two OPPOSITE-signed harvests at once: a high
+  world-commodity state is a macro headwind (current account, rupee, WPI) and a metals/energy
+  <em>sector</em> tailwind simultaneously. That is why the seat exposes the state and never a
+  direction — each consumer applies its own sign. No date interface exists anywhere: after
+  CS1, period language is banned from the seat outright.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — the mechanism test, metal by metal</span>
+      <span class="figbadge">CS3: price → next decade's capacity · CS4: capacity → next decade's price</span></div>
+    <div class="btnrow" id="csBtns"></div>
+    <div class="chart" id="figMech"></div>
+    <figcaption>The capex-lag story ("high prices build mines, mines built together glut
+    together") is mechanically plausible and narratively true in famous episodes — miners'
+    capex really did peak right after the 2011 price top. But at pre-registered decade windows
+    the signs are right in only 6 and 7 of 11 metals, under the 70% bars. Production is
+    trend-dominated; our windows didn't detrend; the bars stay where they were set. The honest
+    retry (event-windowed, detrended) is REGISTERED for later — running it now, after seeing
+    these prints, would be iterating until pass.</figcaption>
+  </figure>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The confession, and why it's in the lesson</h2></div>
+  <div class="warnbox"><b>Near-miss #4, logged the day it happened.</b> Drafting the vault's
+  authentication protocol, the desk wrote plausible-looking "results" into the table BEFORE
+  the checks ran — invented correlations, an invented pass narration. Caught minutes later,
+  blanked, and then the checks were run for real: the invented numbers were WRONG (0.986
+  invented vs 0.993 measured; 3.28× invented vs 2.45× measured), even though all five bars
+  did genuinely pass. That is exactly why the rule exists: text that looks like output must
+  only ever be written from output. The standing rule is now two passes for every protocol
+  file — bars first, results only after the print. A desk that trains people on this material
+  should train them on the failure, not just the machinery.</div>
+  <p>Where atlas 1.3 lands: <b>state yes, clock no, capacity-timing no.</b> H53 stays exactly
+  what the atlas designed it to be — context plus a reduce-only sector-tilt conditioner plus
+  an enrichment input to the India macro-transfer seat, Tier C until the graduation test (its
+  design is registered) can run on real Indian sector histories. The supercycle survives as a
+  regime object with its own measured chronology, and nothing in the seat can ever claim to
+  know what year the next one turns.</p>
+</section>
+
+<footer>
+  <p>Lesson 14 of the learn-while-we-build series · Ionic quant desk · Atlas 1.3, candidate
+  H53 · monograph: docs/cycles/14-commodity-supercycle.md · vault:
+  ingest/vault/commodities (three-lineage authentication A1-A5) · trials CS1-CS4 +
+  near-miss #4 in research/register/ · All figures computed by us from the Jacks (2019
+  Cliometrica) panel and Clio-Infra/USGS production data.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"index_plain":[[1850,4.7476],[1851,4.7636],[1852,4.7717],[1853,4.9095],[1854,4.8803],[1855,4.8547],[1856,4.8955],[1857,4.9215],[1858,4.8753],[1859,4.884],[1860,4.9487],[1861,4.8483],[1862,4.798],[1863,4.7275],[1864,4.6073],[1865,4.5075],[1866,4.4904],[1867,4.5067],[1868,4.5084],[1869,4.5467],[1870,4.5947],[1871,4.6336],[1872,4.6751],[1873,4.7132],[1874,4.7486],[1875,4.7356],[1876,4.7057],[1877,4.6727],[1878,4.6019],[1879,4.5784],[1880,4.6277],[1881,4.6562],[1882,4.6474],[1883,4.6286],[1884,4.5507],[1885,4.513],[1886,4.4857],[1887,4.5036],[1888,4.5688],[1889,4.5559],[1890,4.6029],[1891,4.5763],[1892,4.507],[1893,4.4713],[1894,4.4459],[1895,4.4605],[1896,4.4452],[1897,4.4284],[1898,4.4548],[1899,4.5599],[1900,4.6052],[1901,4.5454],[1902,4.5208],[1903,4.541],[1904,4.564],[1905,4.6138],[1906,4.6389],[1907,4.6541],[1908,4.5645],[1909,4.6192],[1910,4.5976],[1911,4.5953],[1912,4.5957],[1913,4.5671],[1914,4.5102],[1915,4.6398],[1916,4.7883],[1917,4.8018],[1918,4.6953],[1919,4.5947],[1920,4.3613],[1921,4.0638],[1922,4.1443],[1923,4.2266],[1924,4.2361],[1925,4.2534],[1926,4.1984],[1927,4.1989],[1928,4.1961],[1929,4.1528],[1930,4.0051],[1931,3.8632],[1932,3.8078],[1933,4.0586],[1934,4.1945],[1935,4.1924],[1936,4.2715],[1937,4.2863],[1938,4.1464],[1939,4.1456],[1940,4.1501],[1941,4.2486],[1942,4.243],[1943,4.2329],[1944,4.2426],[1945,4.2556],[1946,4.2792],[1947,4.3455],[1948,4.3015],[1949,4.2358],[1950,4.307],[1951,4.3377],[1952,4.266],[1953,4.2499],[1954,4.2549],[1955,4.2491],[1956,4.2933],[1957,4.2604],[1958,4.1973],[1959,4.2275],[1960,4.2132],[1961,4.19],[1962,4.1835],[1963,4.1999],[1964,4.2171],[1965,4.188],[1966,4.1898],[1967,4.1614],[1968,4.1083],[1969,4.0963],[1970,4.0807],[1971,4.0322],[1972,4.1126],[1973,4.3602],[1974,4.5739],[1975,4.4632],[1976,4.4635],[1977,4.4541],[1978,4.4624],[1979,4.55],[1980,4.5317],[1981,4.3871],[1982,4.239],[1983,4.2303],[1984,4.1787],[1985,4.0327],[1986,3.9741],[1987,3.9739],[1988,4.0722],[1989,4.0489],[1990,3.966],[1991,3.8498],[1992,3.7739],[1993,3.7046],[1994,3.7511],[1995,3.8191],[1996,3.8036],[1997,3.7684],[1998,3.6236],[1999,3.511],[2000,3.5294],[2001,3.435],[2002,3.4603],[2003,3.5638],[2004,3.706],[2005,3.7329],[2006,3.8547],[2007,4.0019],[2008,4.16],[2009,3.9527],[2010,4.1551],[2011,4.3447],[2012,4.2233],[2013,4.1334],[2014,4.0877],[2015,3.9056]],"index_chained":[[1850,0.0],[1851,0.016],[1852,0.0241],[1853,0.1618],[1854,0.1327],[1855,0.1071],[1856,0.1479],[1857,0.1739],[1858,0.1277],[1859,0.1364],[1860,0.1524],[1861,0.052],[1862,0.0017],[1863,-0.0688],[1864,-0.189],[1865,-0.2888],[1866,-0.3059],[1867,-0.2896],[1868,-0.2879],[1869,-0.2496],[1870,-0.2453],[1871,-0.2063],[1872,-0.1649],[1873,-0.1268],[1874,-0.0904],[1875,-0.1035],[1876,-0.1334],[1877,-0.1663],[1878,-0.2371],[1879,-0.2606],[1880,-0.2172],[1881,-0.1887],[1882,-0.1975],[1883,-0.2163],[1884,-0.2942],[1885,-0.3319],[1886,-0.3592],[1887,-0.3413],[1888,-0.2761],[1889,-0.289],[1890,-0.2525],[1891,-0.2791],[1892,-0.3484],[1893,-0.3841],[1894,-0.4095],[1895,-0.3949],[1896,-0.4102],[1897,-0.427],[1898,-0.4007],[1899,-0.2956],[1900,-0.2502],[1901,-0.31],[1902,-0.3346],[1903,-0.3144],[1904,-0.2915],[1905,-0.2416],[1906,-0.2165],[1907,-0.2013],[1908,-0.2909],[1909,-0.2362],[1910,-0.2578],[1911,-0.2601],[1912,-0.2597],[1913,-0.2883],[1914,-0.3452],[1915,-0.2156],[1916,-0.0671],[1917,-0.0536],[1918,-0.1601],[1919,-0.2607],[1920,-0.4941],[1921,-0.7916],[1922,-0.7111],[1923,-0.6288],[1924,-0.6193],[1925,-0.602],[1926,-0.6571],[1927,-0.6566],[1928,-0.6593],[1929,-0.7026],[1930,-0.8503],[1931,-0.9922],[1932,-1.0476],[1933,-0.7968],[1934,-0.6609],[1935,-0.663],[1936,-0.5839],[1937,-0.5691],[1938,-0.709],[1939,-0.7098],[1940,-0.7053],[1941,-0.6068],[1942,-0.6124],[1943,-0.6226],[1944,-0.6128],[1945,-0.5998],[1946,-0.5762],[1947,-0.51],[1948,-0.5539],[1949,-0.6196],[1950,-0.5484],[1951,-0.5177],[1952,-0.5894],[1953,-0.6055],[1954,-0.6005],[1955,-0.6064],[1956,-0.5621],[1957,-0.595],[1958,-0.6581],[1959,-0.6279],[1960,-0.6423],[1961,-0.6654],[1962,-0.6719],[1963,-0.6555],[1964,-0.6383],[1965,-0.6674],[1966,-0.6656],[1967,-0.694],[1968,-0.7471],[1969,-0.7591],[1970,-0.7747],[1971,-0.8232],[1972,-0.7428],[1973,-0.4952],[1974,-0.2815],[1975,-0.3922],[1976,-0.3919],[1977,-0.4013],[1978,-0.393],[1979,-0.3054],[1980,-0.3237],[1981,-0.4683],[1982,-0.6164],[1983,-0.6251],[1984,-0.6767],[1985,-0.8227],[1986,-0.8813],[1987,-0.8815],[1988,-0.7833],[1989,-0.8065],[1990,-0.8894],[1991,-1.0056],[1992,-1.0815],[1993,-1.1508],[1994,-1.1043],[1995,-1.0363],[1996,-1.0518],[1997,-1.087],[1998,-1.2318],[1999,-1.3444],[2000,-1.3261],[2001,-1.4204],[2002,-1.3951],[2003,-1.2916],[2004,-1.1494],[2005,-1.1226],[2006,-1.0007],[2007,-0.8535],[2008,-0.6954],[2009,-0.9027],[2010,-0.7003],[2011,-0.5107],[2012,-0.6321],[2013,-0.722],[2014,-0.7677],[2015,-0.9498]],"troughs":[1879,1897,1913,1931,1949,1970,1986,2001],"peaks":[1874,1889,1906,1924,1942,1964,1979,1996,2011],"cs3":{"Nickel":-0.08,"Zinc":-0.02,"Silver":0.06,"Bauxite":0.23,"Iron ore":-0.09,"Gold":-0.03,"Tin":-0.27,"Lead":0.18,"Copper":0.11,"Aluminum":0.13,"Manganese":0.11},"cs4":{"Nickel":-0.42,"Zinc":-0.03,"Silver":0.08,"Bauxite":0.06,"Iron ore":0.18,"Gold":-0.08,"Tin":0.24,"Lead":-0.19,"Copper":-0.1,"Aluminum":-0.17,"Manganese":-0.1},"petroleum":[[1860,500.0],[1861,468.63],[1862,306.51],[1863,354.51],[1864,412.83],[1865,424.07],[1866,331.16],[1867,261.73],[1868,217.63],[1869,221.72],[1870,186.15],[1871,174.48],[1872,166.36],[1873,130.56],[1874,96.72],[1875,100.68],[1876,154.13],[1877,132.11],[1878,93.14],[1879,70.64],[1880,77.61],[1881,72.49],[1882,65.33],[1883,66.22],[1884,70.75],[1885,69.66],[1886,63.68],[1887,59.94],[1888,67.48],[1889,66.71],[1890,59.17],[1891,45.71],[1892,37.97],[1893,44.18],[1894,60.55],[1895,100.44],[1896,87.18],[1897,58.93],[1898,68.27],[1899,96.85],[1900,100.0],[1901,88.37],[1902,89.28],[1903,112.12],[1904,113.5],[1905,97.69],[1906,110.29],[1907,114.6],[1908,120.13],[1909,113.53],[1910,87.86],[1911,84.97],[1912,101.53],[1913,145.43],[1914,114.66],[1915,94.22],[1916,174.22],[1917,209.02],[1918,215.3],[1919,196.27],[1920,253.39],[1921,129.88],[1922,146.29],[1923,133.33],[1924,139.17],[1925,158.37],[1926,177.66],[1927,115.31],[1928,113.14],[1929,117.14],[1930,104.63],[1931,60.42],[1932,92.8],[1933,74.11],[1934,109.66],[1935,106.94],[1936,116.53],[1937,124.74],[1938,121.92],[1939,107.82],[1940,106.75],[1941,112.47],[1942,105.39],[1943,99.3],[1944,97.61],[1945,95.44],[1946,104.82],[1947,126.19],[1948,156.71],[1949,158.22],[1950,156.71],[1951,145.25],[1952,142.13],[1953,149.07],[1954,154.04],[1955,154.62],[1956,152.34],[1957,159.83],[1958,155.27],[1959,149.67],[1960,147.23],[1961,145.75],[1962,144.11],[1963,142.42],[1964,139.35],[1965,135.85],[1966,133.03],[1967,133.42],[1968,129.53],[1969,127.43],[1970,121.98],[1971,123.6],[1972,121.1],[1973,148.98],[1974,365.39],[1975,345.62],[1976,343.44],[1977,347.86],[1978,322.8],[1979,433.67],[1980,602.33],[1981,587.85],[1982,505.21],[1983,446.28],[1984,413.76],[1985,379.91],[1986,193.75],[1987,246.15],[1988,199.03],[1989,231.93],[1990,278.83],[1991,227.77],[1992,215.3],[1993,188.16],[1994,172.79],[1995,177.53],[1996,202.94],[1997,186.5],[1998,131.52],[1999,173.61],[2000,256.03],[2001,212.43],[2002,211.12],[2003,245.77],[2004,319.08],[2005,420.32],[2006,476.49],[2007,507.02],[2008,672.7],[2009,418.18],[2010,529.55],[2011,614.51],[2012,596.34],[2013,611.15],[2014,576.83],[2015,299.76]],"copper":[[1850,115.81],[1851,118.31],[1852,133.55],[1853,159.06],[1854,158.79],[1855,154.24],[1856,147.67],[1857,150.12],[1858,138.03],[1859,136.66],[1860,132.47],[1861,117.13],[1862,100.29],[1863,79.42],[1864,65.68],[1865,59.08],[1866,59.15],[1867,55.65],[1868,57.09],[1869,58.71],[1870,57.75],[1871,65.5],[1872,88.28],[1873,81.39],[1874,80.43],[1875,86.62],[1876,82.21],[1877,75.3],[1878,72.06],[1879,67.41],[1880,71.45],[1881,70.32],[1882,74.85],[1883,72.92],[1884,63.82],[1885,51.86],[1886,49.3],[1887,53.64],[1888,98.74],[1889,64.26],[1890,68.81],[1891,64.99],[1892,57.34],[1893,54.78],[1894,53.91],[1895,59.37],[1896,64.9],[1897,68.5],[1898,72.69],[1899,103.45],[1900,100.0],[1901,98.3],[1902,66.49],[1903,78.04],[1904,74.69],[1905,91.89],[1906,111.16],[1907,110.38],[1908,74.46],[1909,73.99],[1910,69.55],[1911,67.58],[1912,87.4],[1913,79.97],[1914,70.56],[1915,89.2],[1916,128.53],[1917,106.59],[1918,82.23],[1919,54.32],[1920,43.8],[1921,35.11],[1922,40.11],[1923,42.47],[1924,38.28],[1925,40.27],[1926,39.2],[1927,37.4],[1928,42.33],[1929,53.15],[1930,39.08],[1931,26.8],[1932,20.46],[1933,27.23],[1934,31.65],[1935,31.68],[1936,34.35],[1937,46.11],[1938,35.68],[1939,39.67],[1940,40.49],[1941,40.28],[1942,36.33],[1943,34.23],[1944,33.65],[1945,32.9],[1946,35.56],[1947,47.17],[1948,46.02],[1949,40.48],[1950,44.35],[1951,46.83],[1952,45.83],[1953,54.13],[1954,55.53],[1955,70.38],[1956,77.36],[1957,52.83],[1958,44.78],[1959,53.76],[1960,54.4],[1961,50.28],[1962,50.84],[1963,50.24],[1964,51.78],[1965,55.79],[1966,56.02],[1967,57.55],[1968,60.46],[1969,65.17],[1970,74.69],[1971,63.83],[1972,60.81],[1973,66.59],[1974,78.12],[1975,59.34],[1976,60.77],[1977,54.59],[1978,50.5],[1979,63.92],[1980,62.48],[1981,46.31],[1982,37.97],[1983,39.29],[1984,32.31],[1985,30.64],[1986,29.63],[1987,37.02],[1988,51.88],[1989,54.19],[1990,48.04],[1991,40.51],[1992,38.36],[1993,31.23],[1994,36.73],[1995,45.44],[1996,34.5],[1997,33.46],[1998,23.94],[1999,22.27],[2000,24.84],[2001,21.02],[2002,20.45],[2003,22.81],[2004,35.79],[2005,44.44],[2006,78.66],[2007,80.99],[2008,76.21],[2009,56.62],[2010,81.51],[2011,92.23],[2012,81.65],[2013,74.44],[2014,68.35],[2015,54.62]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figIndex');
+  const rows=DATA.index_chained, N=rows.length;
+  const ys=rows.map(r=>r[1]), yr0=rows[0][0], yr1=rows[N-1][0];
+  let lo=Math.min(...ys), hi=Math.max(...ys); const pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+  const W=820,H=320,m={t:14,r:16,b:34,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const X=y=>m.l+iw*(y-yr0)/(yr1-yr0), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'real commodity index 1850-2015'});
+  for(let y=1860;y<=2010;y+=30){
+    svg.appendChild(el('line',{x1:X(y),x2:X(y),y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:X(y),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);}
+  const path=rows.map((r,i)=>(i?'L':'M')+X(r[0]).toFixed(1)+' '+Y(r[1]).toFixed(1)).join('');
+  svg.appendChild(el('path',{d:path,fill:'none',stroke:'var(--s1)','stroke-width':2}));
+  const lut=Object.fromEntries(rows.map(r=>[r[0],r[1]]));
+  DATA.troughs.forEach(y=>{ if(lut[y]==null) return;
+    svg.appendChild(el('path',{d:`M${X(y)} ${Y(lut[y])+14} l-6 10 h12 z`,fill:'var(--s2)'}));
+    const t=el('text',{x:X(y),y:Y(lut[y])+36,'text-anchor':'middle','font-size':'10',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  DATA.peaks.forEach(y=>{ if(lut[y]==null) return;
+    svg.appendChild(el('path',{d:`M${X(y)} ${Y(lut[y])-14} l-6 -10 h12 z`,fill:'var(--s3)'}));});
+  mount.appendChild(svg);
+})();
+(function(){
+  const mount=document.getElementById('figMech'), btnrow=document.getElementById('csBtns');
+  const cfg={CS3:{d:DATA.cs3,good:v=>v>0,label:'corr(10y Δprice, next-10y Δproduction) — mechanism wants POSITIVE'},
+             CS4:{d:DATA.cs4,good:v=>v<0,label:'corr(10y Δproduction, next-10y Δprice) — mechanism wants NEGATIVE'}};
+  let cur='CS3';
+  function draw(){
+    mount.innerHTML='';
+    const d=cfg[cur].d, rows=Object.entries(d).sort((a,b)=>a[1]-b[1]), N=rows.length;
+    const W=820,H=N*26+56,m={t:12,r:50,b:30,l:96},iw=W-m.l-m.r,ih=H-m.t-m.b;
+    const lo=-0.5, hi=0.5;
+    const X=v=>m.l+iw*(v-lo)/(hi-lo);
+    const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':cur+' per metal'});
+    [-0.4,-0.2,0,0.2,0.4].forEach(v=>{
+      svg.appendChild(el('line',{x1:X(v),x2:X(v),y1:m.t,y2:m.t+ih,stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.4:1}));
+      const t=el('text',{x:X(v),y:H-10,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=v.toFixed(1); svg.appendChild(t);});
+    rows.forEach(([c,v],i)=>{
+      const y=m.t+ih*(i+0.5)/N;
+      svg.appendChild(el('rect',{x:Math.min(X(0),X(v)),y:y-7,width:Math.max(Math.abs(X(v)-X(0)),1),height:14,rx:3,
+        fill:cfg[cur].good(v)?'var(--s3)':'var(--s2)'}));
+      const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11.5',fill:'var(--ink-2)'});
+      t.textContent=c; svg.appendChild(t);
+      const vt=el('text',{x:v>=0?X(v)+6:X(v)-6,y:y+4,'text-anchor':v>=0?'start':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      vt.textContent=(v>0?'+':'')+v.toFixed(2); vt.setAttribute('font-family','IBM Plex Mono,monospace'); svg.appendChild(vt);});
+    const xl=el('text',{x:m.l+iw/2,y:H-0.5,'text-anchor':'middle','font-size':'0'});
+    svg.appendChild(xl);
+    mount.appendChild(svg);
+    const cap=document.createElement('p'); cap.style.cssText='font-size:12.5px;color:var(--ink-3);margin:6px 0 0';
+    cap.textContent=cfg[cur].label; mount.appendChild(cap);
+    btnrow.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.textContent===cur));
+  }
+  ['CS3','CS4'].forEach(k=>{const b=document.createElement('button');b.textContent=k;
+    b.onclick=()=>{cur=k;draw();};btnrow.appendChild(b);});
+  draw();
+})();
+</script>

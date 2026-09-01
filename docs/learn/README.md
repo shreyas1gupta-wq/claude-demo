@@ -20,6 +20,7 @@ private artifacts; this index is the registry.
 | 11 | Destiny Isn't a Trade | docs/cycles/11-demographics.md (Atlas 0.7, Band 0 finale) | https://claude.ai/code/artifact/96172315-0117-41e3-a9e6-ea673477ea6a | docs/learn/artifacts/lesson-11-demographics.html |
 | 12 | Credit and Concrete | docs/cycles/12-financial-cycle.md (Atlas 1.1, seat L12) | https://claude.ai/code/artifact/8f7604fc-5522-4534-bf49-cf43c6f8f7dc | docs/learn/artifacts/lesson-12-financial-cycle.html |
 | 13 | The Clock That Wasn't | docs/cycles/13-real-estate.md (Atlas 1.2, merged into L12) | https://claude.ai/code/artifact/1ac1dedf-b78f-4758-b147-6de1f118272b | docs/learn/artifacts/lesson-13-real-estate.html |
+| 14 | Eight Arcs, Not Four | docs/cycles/14-commodity-supercycle.md (Atlas 1.3, candidate H53) | https://claude.ai/code/artifact/52f37648-7295-415a-a6b1-32888a7a84ab | docs/learn/artifacts/lesson-14-commodity-supercycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
