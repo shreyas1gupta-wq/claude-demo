@@ -81,3 +81,13 @@ Script: scripts/analyze_rr_cliff.py. Result: pooled mean growth at debt>90% = **
 published 2.2%; RR 2010 claimed −0.1%); 60-90 vs >90 gap +1.02pp, bootstrap CI [+0.26, +1.77] —
 a modest gradient, NO cliff, no negative bucket. Canonical justification for the no-threshold-
 cliffs design rule. Status: replicated (near-exact).
+
+## Entries RC0–RC3 (2026-09-01) — Atlas 0.2 reserve currency, IMF COFER mirror
+Script: scripts/analyze_reserve_currency.py. Data: cofer_1995_2023q1.csv (vault).
+
+| # | What | Result (headline) | Status |
+|---|---|---|---|
+| RC0 | Authentication | 1999Q1 USD 71.2%, 2021Q4 58.8% — match the published AESB anchors exactly | accepted |
+| RC1 | The drift, measured | −0.51pp/yr average 1999-2023; ~57 more years to sterling's 30% endgame at this pace — the century-scale claim in one number | prior set |
+| RC2 | Where it went | Not to one challenger: EUR +1.6pp, GBP +2.1, RMB +1.5, AUD/CAD/Other +3.5 — diversification at the margin (AESB reproduced); gold outside COFER entirely | replicated |
+| RC3 | Accelerating? | No, in FX shares: post-2015 −0.23pp/yr vs pre-2015 −0.69; the 2022 sanctions response lives in CB GOLD (WGC leg, runsheet) | prior set |
