@@ -1,0 +1,236 @@
+<title>Inflation Runs in Generations</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 9 · atlas 0.5 · learn-while-we-build</p>
+  <h1>Inflation Runs in Generations</h1>
+  <p class="stand">Inflation isn't a number that wanders — it's a doctrine that holds until the
+  generation that learned its lesson retires. Two completed arcs in 150 years, dated from the
+  data; the 81% stickiness that shapes how our book reads prices; and India's own 2016 regime
+  change.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/09-inflation-regimes.md</span>
+    <span><b>Seat</b> NONE new — flows through L15's persistence gauge and L6</span>
+    <span><b>Real data</b> 18 countries, 1871–2020 (JST R6)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The arcs, dated by machine</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Pooled median inflation, rolling 10-year mean</span>
+      <span class="figbadge">REAL DATA · JST R6 · hyperinflations excluded</span></div>
+    <div class="chart" id="figArcs"></div>
+    <figcaption>One rise, one fall: from the Depression's deflation (−2.1%) up 52 years to the
+    1982 peak (+10.4%), then down 38 years to 2020 (+1.2%). Two completed arcs — which is why
+    every "where are we in the inflation cycle" model is fitting a curve through two points, and
+    why our design refuses to. Hover for values; markers show the mechanically-dated turning
+    points.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Era stickiness</div><div class="v">81%</div>
+      <div class="d">P(same high/low state next year) — eras persist, prints don't</div></div>
+    <div class="stat"><div class="k">Completed arcs</div><div class="v">2</div>
+      <div class="d">the clock test needs 4; verdict: regime, not cycle</div></div>
+    <div class="stat"><div class="k">India's regime change</div><div class="v">2016</div>
+      <div class="d">flexible inflation targeting; band kept through 2031</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>What a desk does with a two-point cycle</h2></div>
+  <p>A regime is doctrine plus memory: Volcker's disinflation worked as a <em>fiscal-monetary
+  regime change</em> (Sargent's famous reading), and it held for four decades partly because the
+  people who lived through 1979 ran central banks until they didn't. The 2021–23 episode was the
+  regime's first live test in a generation — the "transitory" call failed, the fastest hiking
+  cycle in 40 years followed, and expectations broadly held: the monograph scores both columns
+  without pretending a verdict. India's version: chronic high single digits for three decades,
+  the 2013–16 glide path, then the 2016 MPC framework — <em>our</em> regime change, two breaches
+  since, band retained through 2031.</p>
+  <div class="warnbox"><b>Rejected uses, named:</b> timing the arc's turn (two data points);
+  "new 1970s" portfolio overhauls; trading inflation prints (81% stickiness means the print is
+  mostly noise around the era). What survives: persistence gauges inside L15, the faster monetary
+  reads in L6, and one registered escalation watch — a persistent breach of India's band while
+  the fiscal-dominance state is ON. That pairing, and only that pairing, escalates anything.</div>
+  <p style="margin-top:24px"><b>Next in the series:</b> 0.6 — the war-cycle grand narratives:
+  why the atlas's most famous storytelling framework gets a rejection argued in full, which is
+  its own kind of respect.</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 9 — companion to Atlas 0.5. Sources:
+  <span class="mono">docs/cycles/09-inflation-regimes.md</span> ·
+  <span class="mono">research/cycles/inflation-deep/jst-inflation-RESULTS.md</span> (IR1–IR3).</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"pooled":[[1871,null],[1872,null],[1873,null],[1874,null],[1875,null],[1876,null],[1877,null],[1878,null],[1879,null],[1880,0.56],[1881,0.32],[1882,-0.12],[1883,-0.82],[1884,-1.13],[1885,-1.21],[1886,-1.47],[1887,-1.49],[1888,-1.16],[1889,-0.65],[1890,-0.73],[1891,-0.67],[1892,-0.78],[1893,-0.71],[1894,-0.62],[1895,-0.51],[1896,-0.25],[1897,-0.1],[1898,0.17],[1899,0.01],[1900,0.04],[1901,-0.02],[1902,0.15],[1903,0.53],[1904,0.77],[1905,1.01],[1906,1.2],[1907,1.33],[1908,1.16],[1909,0.99],[1910,0.9],[1911,1.16],[1912,1.39],[1913,1.29],[1914,1.35],[1915,2.74],[1916,4.23],[1917,5.8],[1918,7.99],[1919,9.1],[1920,10.49],[1921,9.16],[1922,8.11],[1923,8.05],[1924,8.17],[1925,6.89],[1926,4.96],[1927,2.99],[1928,0.71],[1929,-0.3],[1930,-2.14],[1931,-1.71],[1932,-1.22],[1933,-1.47],[1934,-1.6],[1935,-1.64],[1936,-1.19],[1937,-0.53],[1938,-0.37],[1939,-0.15],[1940,1.73],[1941,3.7],[1942,4.69],[1943,5.46],[1944,5.66],[1945,5.77],[1946,5.89],[1947,6.01],[1948,6.48],[1949,6.53],[1950,5.19],[1951,4.89],[1952,4.41],[1953,3.98],[1954,3.8],[1955,3.75],[1956,3.78],[1957,3.45],[1958,3.06],[1959,2.89],[1960,2.81],[1961,1.99],[1962,2.16],[1963,2.37],[1964,2.65],[1965,2.9],[1966,2.94],[1967,2.98],[1968,3.09],[1969,3.31],[1970,3.69],[1971,4.08],[1972,4.28],[1973,4.82],[1974,5.91],[1975,6.66],[1976,7.22],[1977,7.9],[1978,8.31],[1979,8.89],[1980,9.51],[1981,10.09],[1982,10.44],[1983,10.4],[1984,9.6],[1985,8.94],[1986,8.34],[1987,7.68],[1988,7.29],[1989,6.84],[1990,6.19],[1991,5.36],[1992,4.63],[1993,4.08],[1994,3.65],[1995,3.36],[1996,3.22],[1997,3.01],[1998,2.76],[1999,2.44],[2000,2.23],[2001,2.11],[2002,2.07],[2003,2.03],[2004,2.01],[2005,1.98],[2006,1.99],[2007,2.03],[2008,2.25],[2009,2.11],[2010,2.01],[2011,2.04],[2012,2.04],[2013,1.95],[2014,1.82],[2015,1.64],[2016,1.47],[2017,1.42],[2018,1.24],[2019,1.34],[2020,1.22]],"markers":{"start":1930,"peak":1982,"trough":2020}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figArcs');
+  const rows=DATA.pooled.filter(r=>r[1]!=null), mk=DATA.markers, N=rows.length;
+  const W=820,H=300,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  let lo=Math.min(...rows.map(r=>r[1])),hi=Math.max(...rows.map(r=>r[1]));
+  const pad=(hi-lo)*0.1; lo-=pad; hi+=pad;
+  const yr0=rows[0][0], yr1=rows[N-1][0];
+  const X=y=>m.l+iw*(y-yr0)/(yr1-yr0), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'pooled inflation rolling ten year mean'});
+  for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4,y=Y(v);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(0)+'%'; svg.appendChild(t);}
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1,'stroke-dasharray':'3 3'}));
+  let d='',pen=false;
+  rows.forEach(([y,v])=>{d+=(pen?'L':'M')+X(y).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+  svg.appendChild(el('path',{d,fill:'none',stroke:'var(--s1)','stroke-width':2,'stroke-linejoin':'round'}));
+  [["start",mk.start,'--s3'],["peak",mk.peak,'--s2'],["trough",mk.trough,'--s3']].forEach(([lab,y,col])=>{
+    const hit=rows.find(r=>r[0]===y); if(!hit) return;
+    svg.appendChild(el('circle',{cx:X(y),cy:Y(hit[1]),r:5,fill:`var(${col})`,stroke:'var(--chart-surface)','stroke-width':2}));
+    const t=el('text',{x:X(y),y:Y(hit[1])-10,'text-anchor':'middle','font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [1880,1920,1960,2000].forEach(y=>{
+    const t=el('text',{x:X(y),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const yr=Math.round(yr0+(((ev.clientX-r.left)*sx)-m.l)/iw*(yr1-yr0));
+    const hit=rows.find(x=>x[0]===yr); if(!hit){tip.style.display='none';return;}
+    cross.setAttribute('x1',X(yr));cross.setAttribute('x2',X(yr));cross.setAttribute('opacity',1);
+    tip.innerHTML=`<div class="tt">${yr}</div>
+      <div class="row"><span class="nm">rolling 10y</span><span class="vl">${hit[1].toFixed(1)}%</span></div>`;
+    tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-140)tx-=160;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+})();
+</script>
