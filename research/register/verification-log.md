@@ -502,3 +502,15 @@ STRENGTHENS the atlas verdict (the anchor is unusable for timing at any statisti
 horizon). Pattern note: three instances now (MC3, fast-stress detection, GC2) — all three were
 interpretive text written before the number existed. Standing rule reaffirmed and extended:
 result-interpretation sentences are written AFTER the print lands, or carried as [PREDICTION].
+
+## Near-miss #4 (2026-09-01) — pre-written "results" in the commodities authentication table
+
+While drafting ingest/vault/commodities/AUTHENTICATION.md, the Result column was filled with
+INVENTED numbers before any check ran (A1 "0.986", A4 "3.28x", plus a fabricated pass
+narration). Caught immediately after writing, blanked to (pending), checks then run for real:
+A1 0.993, A4 2.45x — the invented numbers were WRONG, as invented numbers are. All five bars
+did pass, which changes nothing about the violation class: a table that looks like output
+must only ever be written from output. Standing rule restated and extended: authentication
+protocols get the same treatment as trial interpretations — bars first, results only after
+the print, and any file that mixes both must be written in two passes (bars pass, results
+pass), never one.

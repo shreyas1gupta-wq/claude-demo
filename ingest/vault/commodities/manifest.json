@@ -1,0 +1,42 @@
+{
+ "AUTHENTICATION.md": {
+  "bytes": 2702,
+  "sha256": "a63ced94517ba7115c65851a29caf4ea1dfd27902362ea07ac85f2820ed4840f",
+  "vintage": "2026-09-01"
+ },
+ "brent_monthly_eia.csv": {
+  "bytes": 8497,
+  "sha256": "f54b0314afcb816c125ab666abab9f7189130cda8849c16549c604595df51c7c",
+  "vintage": "2026-09-01"
+ },
+ "imf_pcps_monthly_1980_2017.csv": {
+  "bytes": 398750,
+  "sha256": "d0a12e0e2048255dd98c332dbe790d6bd0c5e2462428cc2ba121b1a86d64c85b",
+  "vintage": "2026-09-01"
+ },
+ "jacks_real_commodity_prices_1850_2015.csv": {
+  "bytes": 74419,
+  "sha256": "9967c038915cf60c3b13b6d1ae039c2c9e346cfb56076f5be3422cb343c6d7fc",
+  "vintage": "2026-09-01"
+ },
+ "jacks_real_commodity_prices_1850_2015.provenance.json": {
+  "bytes": 7420,
+  "sha256": "5f625b602f90ad24916b22ea679b192d465c8606249e6c67673177de8fc015ca",
+  "vintage": "2026-09-01"
+ },
+ "metal_production_clio_usgs.csv": {
+  "bytes": 1332214,
+  "sha256": "801b92f02182f9af6e8ea9a0cdd06f84e0f00bad5bea6da4fa7c5a4d88e7d5dc",
+  "vintage": "2026-09-01"
+ },
+ "metal_production_clio_usgs.provenance.json": {
+  "bytes": 5736,
+  "sha256": "59324e1f057746e39582ca2708b0bb057a4ed051cae51c40db3a677fd985fe5b",
+  "vintage": "2026-09-01"
+ },
+ "wti_monthly_eia.csv": {
+  "bytes": 8751,
+  "sha256": "9942e3e45f0f4d4622da8aafd9046c4889fa1e6a291417bc72884aad9fac3b21",
+  "vintage": "2026-09-01"
+ }
+}

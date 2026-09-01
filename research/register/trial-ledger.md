@@ -154,3 +154,32 @@ Pre-declared constructions and pass bars:
 |---|---|---|---|
 | RE1 | 18-year folk cycle spacing test | median 14y (in [14,22]) but share in-window 45% < 50% — **FAIL**, informatively: length real (IQR 10-17y), FIXED period dies; per-country medians 10-20y; min_gap bias favored the claim | fail, bar unmoved |
 | RE2 | Kuznets swing spacing test | median 11y, share 25% — **FAIL** clean; pre/post-1950 12y→11y (no 'passing' direction on this tool; tool-limits noted) | fail, bar unmoved |
+
+## Entries CS1–CS4 (2026-09-01) — Atlas 1.3 commodity supercycle, Jacks 1850-2015 + Clio/USGS
+Script: scripts/analyze_commodity_supercycle.py. PRE-REGISTERED before running (two-pass rule
+per verification-log near-miss #4: this block first, results filled only after the print).
+
+Pre-declared constructions and bars:
+- Index: equal-weight mean of log real prices (Jacks, 1900=100), per year over available
+  series; also group indices {energy, metals, agriculture} by the file's natural grouping.
+  Peaks/troughs machinery identical to RE1 (3y centered smooth, local extrema) with min_gap
+  15y (half the low end of the claimed 30-40y trough-to-trough period).
+- CS1 (existence/shape): the Erten-Ocampo-style claim "3-4 supercycles 1870-2015, trough-to-
+  trough 30-40y". Bar: count of broad-index troughs in [3,5] AND median trough-to-trough
+  spacing in [25,45]y. Grid: min_gap {15} only.
+- CS2 (breadth/common factor): supercycles are claimed BROAD. Measure median pairwise corr of
+  10y Δlog real prices within groups vs across groups. Bar: pooled across-group median > 0
+  and at least half the across-group pairs positive. (Direction/consistency, not size.)
+- CS3 (mechanism, price→capacity): corr of 10y Δlog real price with the NEXT decade's Δlog
+  world production, per metal (matched Jacks price × Clio/USGS World production). Bar:
+  sign-consistency ≥ 70% of matched metals positive.
+- CS4 (mechanism, capacity→glut): corr of 10y Δlog production with the NEXT decade's Δlog
+  real price, per metal. Bar: sign-consistency ≥ 70% negative.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CS1 | Supercycle existence/shape | 8 troughs 1870-2015, spacings 15-21y, median 18y — **FAIL** the 3-5/30-40y literature claim; measured spacing lands on the ATLAS prior (15-20y); canonical supercycles = alternate arcs of the finer sequence | fail, informative |
+| CS1b | Same, chained-Δlog index (composition-robust variant; declared before running — the plain mean-of-available-logs can jump when series enter; SAME bar) | identical trough chronology to CS1 — **FAIL** the same way; composition artifact ruled out | fail, robust |
+| CS2 | Breadth (common factor direction) | across-group median corr(10yΔ) +0.30, 89% of 451 pairs positive (within-group +0.42) — **PASS**; the ToT-state design measures a real broad factor | pass |
+| CS3 | Price → next-decade capacity | 6/11 metals positive (55% vs 70% bar) — **FAIL**; production trend-dominated at decade windows; detrended event design registered for later, NOT re-run now | fail, bar unmoved |
+| CS4 | Capacity → next-decade price | 7/11 negative (64% vs 70% bar) — **FAIL** (near miss recorded as a miss); same trend caveat | fail, bar unmoved |
