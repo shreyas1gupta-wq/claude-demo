@@ -26,8 +26,8 @@ ceiling.
 | 0.6 | Hegemonic-conflict cycles | **DONE** — docs/cycles/10-war-cycles.md (rejection, ~7.2k words) + Lesson 10 |
 | 0.7 | Demographic arcs | **DONE** — docs/cycles/11-demographics.md (~7.6k words) + Lesson 11. **BAND 0 COMPLETE** |
 | 1.1 | Medium-term financial cycle (Borio) | **DONE** — docs/cycles/12-financial-cycle.md (~23.3k words) + quant/ladder/financial_cycle.py + tests + Lesson 12 |
-| 1.2 | Real-estate cycle | **IN PROGRESS** — folds into L12 (18-year folk cycle + Kuznets swings; merge monograph, no new seat) |
-| 1.3 | Commodity supercycle | queued |
+| 1.2 | Real-estate cycle | **DONE** — docs/cycles/13-real-estate.md (~11k words, MERGED into L12; RE1/RE2 pre-registered fails; HL-6 first lane rejection) + Lesson 13 |
+| 1.3 | Commodity supercycle | **IN PROGRESS** — data probes done (ingest addendum 5: World Bank blocked, IMF-mirror open) |
 | 1.4/1.5 | Kondratieff / Perez surges | queued (rejection monographs — the case against, in full) |
 | 1.6 | India infra/capex supercycle | queued |
 | 2.x | Business-credit band (incl. credit cycle) | credit DONE at standard (docs/cycles/01, 58pp); rest queued |
