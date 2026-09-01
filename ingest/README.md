@@ -50,3 +50,16 @@ WML construction (momentum Part C §6: tracking-error acceptance test before our
 trusted). Also on this runsheet: BSE bhavcopy puller + corporate-actions puller (gaps identified
 in momentum Part C — ingest/pull_nse_bhavcopy.py does not yet normalize the two eras' schemas,
 and BSE had its own UDiFF-style rename).
+
+## Addendum 2 (2026-09-01) — fundamentals pullers (day-1 gap, from value Part C §C.8)
+
+No fundamentals puller exists in ingest/ at all. Required new scripts (principal machine):
+- pull_nse_financial_results.py — quarterly Reg. 33 results (XBRL era: voluntary Jun-2015,
+  mandatory 2017-04-01, Integrated Filing 2025-04-01); store announcement timestamps as
+  knowledge_time; versioned schema parser per XBRL era.
+- pull_nse_governance_events.py — shareholding patterns (Reg. 31, incl. pledge), board/auditor
+  events (Reg. 30), RPT disclosures (Reg. 23) combined.
+- Banks/financials: Form A/B statements parsed separately (different taxonomy; RBI Ind-AS
+  deferral for banks still in force [VERIFY 2026 status]).
+Reminder from Part C: balance sheet + cash flow are HALF-YEARLY/ANNUAL only in India — mixed-
+frequency ("staircase") signal handling is pre-registered, not improvised.
