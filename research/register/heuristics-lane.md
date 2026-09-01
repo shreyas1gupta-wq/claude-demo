@@ -41,6 +41,7 @@ bans unexamined claims, not simple ones.
 | HL-3 Volume multiples | volume >= {2,3,5} x its trailing median | participation confirms or exposes a move (ties to H60 breadth family) | confirm input candidate for L2/L4 | open -> H70 |
 | HL-4 RSI band | RSI(14) outside {20/80, 30/70} | bounded momentum oscillator ~ short-horizon reversal in trader's units (overlaps L1 seat) | teach + redundancy check vs L1 reversal before any seat | open (redundancy guard) |
 | HL-5 Econ cycles w/o clocks | any economics-backed cycle with no fixed period | this IS the ladder's state-variable philosophy (Lesson 1 Part 0.1) | route to the cycle-atlas intake as new-state candidates | standing route |
+| HL-6 18-year property clock | "real-estate peaks every ~18y" (Hoyt/Harrison/Foldvary lineage) | land-supply inelasticity + construction lags + credit collateral feedback — the MECHANISM is real and already seated (L12) | none as a clock | **reject-with-reason** (2026-09-01): mechanism ACCEPTED but already seated in L12 (no double-count); the FIXED PERIOD fails both lane tests — no mechanism produces a constant period (rate/credit/planning regimes shift it), and evidence fails the pre-registered bar (RE1: 45% of spacings in [14,22]y, range 8-45y; ledger). First lane rejection — the lane demonstrably filters, not rubber-stamps |
 
 ## Hypothesis rows
 

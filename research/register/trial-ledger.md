@@ -135,3 +135,22 @@ Script: scripts/analyze_financial_cycle.py. Grid cells ledgered: FC3 peak thresh
 | FC1 | Credit-property co-movement | corr(5y Δcredit/GDP, 5y Δlog real HP): median +0.40, **17/17 countries positive** — the cleanest sign-consistency pass in the project (contrast demographics' 4/16) | replicated (strong) |
 | FC2 | Length pre/post-1985 | Peak spacing 11y → 13y — Drehmann-Borio's lengthening DIRECTION on our cruder tool; feeds H65b lengthening watch | direction confirmed |
 | FC3 | Crises at peaks | Loose peaks 22% vs 18% base (1.2x); major peaks 23% (1.3x) — WEAK with our real-time construction; interpretation written after the print. Peak-DATING stays out of bounds; the seat's evidence rests on FC1 + the credit AUROC work | honest weak |
+
+## Entries RE1–RE2 (2026-09-01) — Atlas 1.2 real-estate cycle (merge entry), JST R6
+Script: scripts/analyze_realestate.py. PRE-REGISTERED before running (this block written first;
+results column filled after the print, per the standing rule).
+
+Pre-declared constructions and pass bars:
+- RE1 (folk 18-year claim): peaks of REAL house prices (hpnom/cpi, 3y centered smooth, local max,
+  min_gap 8y — half the claimed period). The fixed-period claim PASSES only if (a) pooled median
+  peak-to-peak spacing lies in [14, 22]y AND (b) ≥50% of all spacings fall in [14, 22]y. Grid: the
+  min_gap cell {8} only (declared; no other cells will be tried).
+- RE2 (Kuznets 15–25y swing): same construction on investment/GDP (iy). Claim PASSES only if
+  (a) pooled median spacing in [15, 25]y AND (b) ≥50% of spacings in [15, 25]y. Also report
+  pre-1950 vs post-1950 split (Abramovitz's "passing" claim predicts the swing weakens post-war;
+  direction only, no bar).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| RE1 | 18-year folk cycle spacing test | median 14y (in [14,22]) but share in-window 45% < 50% — **FAIL**, informatively: length real (IQR 10-17y), FIXED period dies; per-country medians 10-20y; min_gap bias favored the claim | fail, bar unmoved |
+| RE2 | Kuznets swing spacing test | median 11y, share 25% — **FAIL** clean; pre/post-1950 12y→11y (no 'passing' direction on this tool; tool-limits noted) | fail, bar unmoved |
