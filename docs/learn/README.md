@@ -14,6 +14,7 @@ private artifacts; this index is the registry.
 | 5 | The Debt Mountain | docs/cycles/05-debt-supercycle.md (Atlas 0.1, L15) | https://claude.ai/code/artifact/5526aa4b-7612-4b35-8b89-dd5122670179 | docs/learn/artifacts/lesson-05-debt-supercycle.html |
 | 6 | The Slowest Regime | docs/cycles/06-reserve-currency.md (Atlas 0.2) | https://claude.ai/code/artifact/8c9f1c65-3b00-4944-b5be-adbcc2474930 | docs/learn/artifacts/lesson-06-reserve-currency.html |
 | 7 | The Trend You Must Not Trade | docs/cycles/07-suprasecular-rates.md (Atlas 0.3) | https://claude.ai/code/artifact/4f4a9002-d208-4cbc-927e-d7d3894e54fe | docs/learn/artifacts/lesson-07-suprasecular-rates.html |
+| 8 | The Golden Constant | docs/cycles/08-golden-constant.md (Atlas 0.4) | https://claude.ai/code/artifact/37aa562c-a26f-43e2-b44e-843a0c1cf8a7 | docs/learn/artifacts/lesson-08-golden-constant.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to

@@ -1,0 +1,234 @@
+<title>The Golden Constant</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 8 · atlas 0.4 · learn-while-we-build</p>
+  <h1>The Golden Constant</h1>
+  <p class="stand">Gold holds its purchasing power over centuries — and spends most of any
+  investor's lifetime far from that anchor. A century of real gold prices, one honest statistical
+  null, and the arithmetic behind our book's gold ceiling and floor.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/08-golden-constant.md</span>
+    <span><b>Seat</b> NONE new — sizes the gold ceiling (~20–25%) and frames the L15 floor</span>
+    <span><b>Real data</b> gold 1915–2020 (vault) ÷ US CPI (JST)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>A century of real gold</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Real gold price, 1915–2020 (1915 = 100, log scale)</span>
+      <span class="figbadge">REAL DATA · anchors authenticated ($20.67 / $35 / 1980)</span></div>
+    <div class="legend"><span><span class="sw" style="background:var(--s1)"></span>real gold index</span>
+      <span><span class="sw" style="background:var(--grid);height:2px"></span>the century anchor (geometric mean)</span></div>
+    <div class="chart" id="figGold"></div>
+    <figcaption>The whole story in one line: fixed at $20.67, revalued to $35 (1934), eroded by
+    postwar inflation to −57% below anchor (1970), freed in 1971 and spiked ~5× through 1980,
+    then a twenty-year bear to 2000, then the 2000s bull to +267% above anchor (2012). Over the
+    full century: <b>+1.31% per year real</b> — the "constant." Hover any year.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Years >±50% off anchor</div><div class="v">58%</div>
+      <div class="d">most of an investing lifetime</div></div>
+    <div class="stat"><div class="k">Longest stretch away</div><div class="v">22 years</div>
+      <div class="d">wrong-looking for a generation</div></div>
+    <div class="stat"><div class="k">Reversion speed</div><div class="v">unmeasurable</div>
+      <div class="d">ρ = 1.000 on 105 obs — the honest null</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The null that teaches more than a number would</h2></div>
+  <p>We ran our bias-corrected persistence machinery on the log real gold price expecting to
+  measure how fast departures close. The estimator answered: <b>ρ = 1.000 — on a century of annual
+  data, real gold is statistically indistinguishable from a random walk.</b> (Our third logged
+  falsification of a pre-written sentence; the register keeps them all.) Three independent
+  approaches — Jastram's centuries, Erb-Harvey's regressions, our AR(1) — agree on the
+  <em>direction</em> of reversion and none can pin its <em>speed</em>. So the anchor is real and
+  utterly unusable for timing: exactly why gold in our book is sized as insurance you can carry
+  for twenty-two wrong-looking years, never as a bet on the anchor pulling prices home.</p>
+  <div class="warnbox"><b>The rejected uses, named:</b> timing entries off "gold is cheap/dear vs
+  the constant"; trading inflation prints (gold's short-horizon inflation beta is unreliable at
+  every horizon tested); doom-allocation past the ceiling. What survives: the ~20–25% ceiling
+  (far under the frozen 50% cap), the L15 insurance floor from Lessons 5–6, and India's specific
+  legs — the INR depreciation wedge, the duty-regime breaks, and the 1962–1990 Gold Control Act
+  as the domestic reminder that confiscation tails are also part of gold's history, on both
+  sides.</div>
+  <p style="margin-top:24px"><b>Next in the series:</b> 0.5 — inflation-regime arcs: the 30–40
+  year waves in inflation itself, and what n≈2 observed arcs permit a desk to do (spoiler: it
+  already lives inside L15's inputs).</p>
+</section>
+
+<footer>
+  <p>Cycle School · Lesson 8 — companion to Atlas 0.4. Sources:
+  <span class="mono">docs/cycles/08-golden-constant.md</span> ·
+  <span class="mono">research/cycles/gold-deep/golden-constant-RESULTS.md</span> (GC1–GC3) ·
+  <span class="mono">research/register/verification-log.md</span> (falsification #3).</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"real_gold":[[1915,100.0],[1916,93.7],[1917,80.6],[1918,68.9],[1919,60.7],[1920,54.1],[1921,60.6],[1922,65.1],[1923,63.7],[1924,63.8],[1925,62.2],[1926,61.4],[1927,62.6],[1928,63.8],[1929,63.6],[1930,65.0],[1931,78.0],[1932,79.6],[1933,106.8],[1934,137.0],[1935,134.0],[1936,132.1],[1937,127.5],[1938,130.2],[1939,130.9],[1940,127.6],[1941,121.6],[1942,109.6],[1943,103.3],[1944,101.5],[1945,102.0],[1946,94.2],[1947,82.3],[1948,76.5],[1949,70.4],[1950,76.4],[1951,70.8],[1952,68.6],[1953,68.7],[1954,69.1],[1955,69.2],[1956,68.2],[1957,65.4],[1958,64.2],[1959,63.6],[1960,62.7],[1961,62.0],[1962,61.3],[1963,60.6],[1964,59.8],[1965,58.8],[1966,57.1],[1967,55.6],[1968,60.7],[1969,58.5],[1970,48.7],[1971,53.2],[1972,74.3],[1973,118.2],[1974,172.3],[1975,156.6],[1976,114.2],[1977,129.1],[1978,158.5],[1979,236.1],[1980,402.0],[1981,271.7],[1982,214.4],[1983,229.3],[1984,188.0],[1985,162.8],[1986,183.6],[1987,217.5],[1988,201.1],[1989,169.5],[1990,163.1],[1991,147.1],[1992,137.3],[1993,142.0],[1994,147.0],[1995,143.2],[1996,140.4],[1997,117.2],[1998,103.3],[1999,96.5],[2000,92.0],[2001,87.6],[2002,99.6],[2003,114.4],[2004,124.2],[2005,131.6],[2006,173.6],[2007,194.5],[2008,234.0],[2009,262.1],[2010,323.0],[2011,398.9],[2012,418.5],[2013,343.6],[2014,303.3],[2015,277.6],[2016,297.4],[2017,295.6],[2018,287.7],[2019,313.8],[2020,393.6]],"anchor":114.0};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figGold');
+  const rows=DATA.real_gold, anchor=DATA.anchor, N=rows.length;
+  const W=820,H=320,m={t:14,r:16,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const ly=rows.map(r=>Math.log10(r[1]));
+  let lo=Math.min(...ly),hi=Math.max(...ly); const pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-(Math.log10(v)-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'real gold price 1915 to 2020'});
+  [50,100,200,400].forEach(g=>{ if(Math.log10(g)<lo||Math.log10(g)>hi) return;
+    const y=Y(g);
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=g; svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(anchor),y2:Y(anchor),stroke:'var(--axis)','stroke-width':1.5,'stroke-dasharray':'5 4'}));
+  let d='',pen=false;
+  rows.forEach(([_,v],i)=>{d+=(pen?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1);pen=true;});
+  svg.appendChild(el('path',{d,fill:'none',stroke:'var(--s1)','stroke-width':2,'stroke-linejoin':'round'}));
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1}));
+  [0,Math.floor(N/3),Math.floor(2*N/3),N-1].forEach(i=>{
+    const t=el('text',{x:X(i),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=rows[i][0]; svg.appendChild(t);});
+  const cross=el('line',{y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1,opacity:0});
+  svg.appendChild(cross); mount.appendChild(svg);
+  const tip=document.createElement('div'); tip.className='tip'; mount.appendChild(tip);
+  svg.addEventListener('pointermove',ev=>{
+    const r=svg.getBoundingClientRect(),sx=W/r.width;
+    const i=Math.max(0,Math.min(N-1,Math.round(((ev.clientX-r.left)*sx-m.l)/iw*(N-1))));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',1);
+    tip.innerHTML=`<div class="tt">${rows[i][0]}</div>
+      <div class="row"><span class="nm">real index</span><span class="vl">${rows[i][1].toFixed(0)}</span></div>
+      <div class="row"><span class="nm">vs anchor</span><span class="vl">${((rows[i][1]/anchor-1)*100).toFixed(0)}%</span></div>`;
+    tip.style.display='block';
+    const mr=mount.getBoundingClientRect();
+    let tx=(ev.clientX-mr.left)+14; if(tx>mr.width-150)tx-=170;
+    tip.style.left=tx+'px'; tip.style.top=Math.max(0,(ev.clientY-mr.top)-40)+'px';
+  });
+  svg.addEventListener('pointerleave',()=>{cross.setAttribute('opacity',0);tip.style.display='none';});
+})();
+</script>
