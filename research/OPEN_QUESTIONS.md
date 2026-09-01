@@ -32,3 +32,17 @@ Status: RESOLVED. This file is now the decision record. Research agents must hon
    evidence; sensitivity sweep.
 5. **Per-sleeve re-entry families** (Q8): map each sleeve to calendar / hysteresis / vol-target
    re-entry with evidence.
+
+---
+
+## Batch 3 — Pipeline v2 sign-offs (2026-09-01, from docs/PIPELINE.md §6)
+
+Ten questions opened by the pipeline-v2 synthesis; none block the current deep-dive track, all
+block the Q1 migration build. See docs/PIPELINE.md §6 for full wording: (1) grid sign-offs
+(vol-target grid, probation-length grid, trial budget, archive K, dead-man T, overlay influence
+grid, PBO threshold); (2) legal/compliance posture on automated capture + FutEq limits + permitted
+option-spread hedges; (3) Conservative-book TC stance; (4) degraded-mode tolerance grid;
+(5) availability/dead-man escalation; (6) GDP base-year revision treatment; (7) v1/v2 parallel-run
+length and first migrating book (suggest Aggressive); (8) year-2 priority (chrono-LLM audit vs
+flow-signal cycle vs meta-label accrual); (9) fix the Challenger review calendar a year ahead;
+(10) pre-declared cut order if the attention budget is violated.

@@ -1,0 +1,242 @@
+[
+ {
+  "lens": "anti-overfit",
+  "key_changes": [
+   {
+    "change": "Bitemporal point-in-time store (event_time + knowledge_time, as-of read API) beneath everything, over a WORM capture-on-publication archiver with provider adapters per free source",
+    "rationale": "Makes lookahead structurally impossible rather than procedurally avoided; Indian sources (MOSPI, VAHAN, EPFO, GST) silently restate history, and the PIT archive is the desk's only appreciating data asset",
+    "borrowed_from": "ArcticDB bitemporal contract; OpenBB provider/TET pattern; Khraisha, Financial Data Engineering; Kleppmann"
+   },
+   {
+    "change": "Config-as-experiment harness with automatic recorder and trial meter: every run (including every abandoned Claude attempt and every sweep cell) auto-registers before results are viewed; DSR trial counts derived by querying the recorder",
+    "rationale": "Manual pre-registration will drift over 14 years and agentic throughput turns multiple testing from chronic to acute; registration must be a side effect of execution",
+    "borrowed_from": "Microsoft Qlib (qrun + Recorder/MLflow); RD-Agent(Q) 'agent proposes, harness disposes'; Harvey-Liu"
+   },
+   {
+    "change": "Adversarial bias CI on every candidate: chained truncated-backtest diffing to provoke code-level lookahead, plus warm-up sufficiency checks, run as a mandatory stage-gate",
+    "rationale": "Vintage manifests prevent lookahead in data; nothing in v1 detects lookahead introduced in feature code \u2014 the silent killer AI-generated code will produce at scale",
+    "borrowed_from": "freqtrade lookahead-analysis and recursive-analysis"
+   },
+   {
+    "change": "Cost-ordered research funnel (tearsheet -> vectorized sweep -> CPCV/PBO/DSR/BCa gate -> 6-12 month paper probation -> live at reduced weight), each tier taxing the trial ledger; walk-forward concatenation from registration date as each signal's only standing evidence",
+    "rationale": "A 2-person desk with AI generates hundreds of hypotheses; without cheap kill-fast tiers plus per-tier trial taxation, validation becomes the bottleneck and the ledger becomes fiction",
+    "borrowed_from": "alphalens/vectorbt/freqtrade dry-run tiering; L\u00f3pez de Prado CPCV+PBO; PyBroker BCa intervals; FinRL PBO admission gate; Chan walk-forward"
+   },
+   {
+    "change": "Death certificate at birth: every signal pre-registers retirement criteria, horizon-matched (hard mechanical stops for fast/statistics-only sleeves; evidence-based structural review for slow factor sleeves), executed by CUSUM monitors calibrated on own bootstrapped history, with a paper-traded retirement archive and resurrection rules",
+    "rationale": "Removes fresh-debate-at-moment-of-pain; prevents both riding a dead fast signal and puking value at the bottom \u2014 the two symmetric killers",
+    "borrowed_from": "Millennium risk contract (via Paleologo); AQR evidence-based retirement; WorldQuant lifecycle; backward-CUSUM literature; Robeco quant-winter post-mortem"
+   },
+   {
+    "change": "Two-tier signal admission (rationale-backed vs statistics-only) with class-conditional decay priors: mechanical sleeves haircut harder and reviewed faster than judgment sleeves; per-signal capacity lines and cost-in-SR speed limits gate which book each sleeve may trade in",
+    "rationale": "Resolves story-vs-statistics operationally; decay is accelerating and heterogeneous by signal class; the 100x AUM span across books makes capacity the binding design constraint",
+    "borrowed_from": "D.E. Shaw (Mallaby) vs AQR; arXiv 'Not All Factors Crowd Equally'; Renaissance capacity discipline (Zuckerman); Carver speed limit; Chan"
+   },
+   {
+    "change": "Common forecast currency + Grinold alpha conversion in the return engine: vol-standardized sleeve forecasts (E|f|=10, cap \u00b120, handcrafted weights), then alpha = residual vol \u00d7 grid-IC \u00d7 score with uniqueness-weighted IC estimation",
+    "rationale": "Makes five sleeves commensurable, gives the decay haircut a principled self-shrinking functional form, and replaces rank-only scoring that treats weak signal years like strong ones",
+    "borrowed_from": "Carver, Systematic Trading; Grinold (1994); Grinold & Kahn; L\u00f3pez de Prado uniqueness weights"
+   },
+   {
+    "change": "Thin cross-sectional risk model inside Stage 3: sector-relative z-scores, grid-defined sector/size/beta bands, central-risk factor caps, and ex-ante tracking error vs Nifty 50 reported beside the governor; plus portfolio-level trade netting across all sleeves before any order, with sleeve paper books retained for attribution",
+    "rationale": "The binding constraint is benchmark-relative but no v1 module sees the benchmark; ranked factor books degenerate into sector/macro bets that belong to the policy layer; netting is free alpha at 22.3bps round-trip costs",
+    "borrowed_from": "Narang (alpha/risk separation); Chincarini & Kim QEPM; Paleologo central risk; AQR Craftsmanship Alpha; Ang-Goetzmann-Schaefer"
+   },
+   {
+    "change": "Regime score R rebuilt as the median of an ensemble of pre-registered grid variants with bounded shrunk within-block adaptation; drift response is uncertainty-widening/de-risking, never refitting; plus a daily reduce-only crowding monitor and a non-trading shadow GMM whose disagreements feed the research queue",
+    "rationale": "Ensembles beat single models in regime-shifting low-SNR settings; crowding unwinds now complete in days and India momentum is the first crowded factor; the shadow hedges ladder staleness without violating the no-fitted-regime rule",
+    "borrowed_from": "Ensemble/shrinkage forecasting literature; MSCI factor crowding model; Two Sigma GMM regime paper; Resonanz unwind manual"
+   },
+   {
+    "change": "Regime->policy map encoded as a versioned Trigger/Action data file executed by a tiny engine, with the hedge grid rebuilt as a cost-and-capacity-constrained object (post-STT cost curves, SEBI FutEq position limits as a hard ceiling) and per-book vol targets with leverage as the derived quantity",
+    "rationale": "Policy will be amended dozens of times by 2040 \u2014 as data it gets diffs, replays and ledger entries; at Rs 25,000cr a large futures hedge hits entity FutEq limits, which must be discovered in design, not in a crisis",
+    "borrowed_from": "gs-quant Trigger/Action DSL; SEBI Oct-2024/Sep-2025 circulars; Carver vol targeting; Man AHL crisis-insurance scoring"
+   },
+   {
+    "change": "Execution promoted to a first-class module: deterministic scheduler (ADV caps, futures-first, reconstitution- and ban-list-aware) plus a fills ledger from day one feeding monthly impact-coefficient re-fits shrunk toward the sqrt prior",
+    "rationale": "Own fills are the only proprietary data a free-data desk will ever own, and execution/cost skill is the edge least arbitraged by AI-driven copying",
+    "borrowed_from": "Narang execution module; Man AHL ML-in-execution-first; Renaissance slippage edge (Zuckerman); Frazzini-Israel-Moskowitz"
+   },
+   {
+    "change": "Stage 2 recast as internal TOPS + meta-labeling: every overlay suggestion is a scored paper trade against the Stage-1 counterfactual; influence is a published grid function of hit-rate starting at zero; the eventual systematic form is a [0,1] size multiplier that cannot add exposure; text features only via chrono-consistent LLM checkpoints",
+    "rationale": "Converts advisory judgment into a falsifiable, continuously measured component that earns reduce-only influence as AI improves through 2040, without ever contaminating Stage 1",
+    "borrowed_from": "Marshall Wace TOPS; L\u00f3pez de Prado meta-labeling; ChronoBERT/ChronoGPT (He-Lv-Manela-Wu); Glasserman-Lin"
+   },
+   {
+    "change": "Rotation ledger: a formal online/offline object recording which fitted parameter set is live at each date, with the rotation schedule itself replayable/backtestable and rolling re-fits generated as task lists with cross-window ensembling",
+    "rationale": "In fast-decaying markets the meta-decision 'when do we swap the model' drives more P&L than the models; v1 has no auditable object for it",
+    "borrowed_from": "Qlib OnlineManager/routine() + RollingGen/RollingEnsemble; FreqAI cadence-as-config"
+   },
+   {
+    "change": "Monitoring pack extended with monthly Transfer Coefficient per book (decomposed by constraint), uniqueness-weighted realized IC per sleeve, and automated factor attribution feeding the decay ledger; annual breadth budget allocates research hours by marginal breadth \u00d7 attainable IC",
+    "rationale": "Distinguishes 'IC decayed: retire the signal' from 'TC collapsed: fix the plumbing', and stops the desk over-investing in the seductive low-breadth macro ladder when the cross-section holds nearly all breadth",
+    "borrowed_from": "Clarke-de Silva-Thorley fundamental law; Grinold & Kahn; QEPM attribution"
+   },
+   {
+    "change": "Governance layer: mechanical anti-capitulation gate (no rule changes initiated mid-drawdown; executing pre-registered rules always allowed), versioned ML/AI charter, quarterly Ilmanen ex-ante dashboard, annual auto-drafted Report on the Management of the Books with layer attribution and self-funding tests, post->20%-drawdown AGS review, cross-country sign-consistency gate for all cycle rules, and the Challenger Protocol as the sole path for any adaptivity",
+    "rationale": "Over-adaptation is the historically dominant killer of systematic funds and refitting becomes frictionless in the AI age; a 2-person desk has no risk committee, so the rituals must be pre-formatted, ledger-driven and mechanical",
+    "borrowed_from": "First Sentier/Robeco quant-winter evidence; Renaissance no-intervention record; GIC/NBIM governance; Ang-Goetzmann-Schaefer; Israel-Kelly-Moskowitz ML charter; Bridgewater timeless-and-universal test"
+   }
+  ]
+ },
+ {
+  "lens": "ai-adaptive",
+  "key_changes": [
+   {
+    "change": "Config-as-experiment harness with automatic recorder: every run (signal test, refit, backtest, rotation sim) is one YAML executed by one command; trial counts for deflated Sharpe are derived by querying the run store, never self-reported",
+    "rationale": "Manual pre-registration will drift or be forgotten over 14 years and thousands of AI-generated trials; registration as a side effect of execution is the only durable enforcement for 2 people",
+    "borrowed_from": "Microsoft Qlib (qrun + Recorder/MLflowExpManager)"
+   },
+   {
+    "change": "Metered agentic research factory: Claude proposes hypotheses and code, but every evaluation runs only through the fixed harness on as-of data, with cost-ordered tiers (tearsheet -> sweep -> bias-CI -> CPCV/PBO) and a pre-registered trial budget per cycle",
+    "rationale": "Converts the 2-person constraint into the AlphaGPT pattern (AI generates, human gates) while neutralizing the multiple-testing explosion agentic throughput otherwise causes",
+    "borrowed_from": "RD-Agent(Q), Man Group AlphaGPT, alphalens/vectorbt tiering, Harvey-Liu"
+   },
+   {
+    "change": "Adversarial bias CI on every candidate: chained truncated backtests diffed against the full run to provoke code-level lookahead, plus warm-up sufficiency checks, wired into the harness as a mandatory stage-gate",
+    "rationale": "Vintage manifests catch lookahead in data; nothing in v1 catches lookahead in code \u2014 the silent killer AI-generated feature code will produce at scale",
+    "borrowed_from": "freqtrade lookahead-analysis / recursive-analysis"
+   },
+   {
+    "change": "CPCV + PBO admission station with no-naked-Sharpe rule: every ledger row carries point estimate + BCa bootstrap interval + DSR + PBO against pre-registered grid thresholds; overlapping-label estimations uniqueness-weighted",
+    "rationale": "Backtest overfitting is the number-one failure mode of a desk that assumes decay and generates candidates cheaply; PBO is the gate that scales with AI throughput",
+    "borrowed_from": "Lopez de Prado AFML (CPCV/PBO, uniqueness weights), PyBroker, FinRL contest gate"
+   },
+   {
+    "change": "Signal lifecycle registry: two-tier admission (rationale-backed vs statistics-only with different decay priors), death certificate at birth, horizon-matched retirement (hard stops for fast sleeves, evidence-based review for slow factors), archive with pre-registered resurrection criteria",
+    "rationale": "Removes fresh-debate-at-moment-of-pain; prevents both riding a dead fast signal and puking value at the bottom; factors resurrect so retirement must be reversible by rule",
+    "borrowed_from": "D.E. Shaw/AQR admission synthesis, Millennium stops via Paleologo, WorldQuant recycling, quant-winter evidence"
+   },
+   {
+    "change": "Rotation ledger: an OnlineManager-style object records which fitted parameter set is online at every date, rolling refits generated as task lists with cross-window ensembling instead of hard switches, and the rotation policy itself is backtestable",
+    "rationale": "In fast-decaying markets the meta-decision 'when do we swap the model' drives more P&L than the models; v1 has no formal, testable object for it",
+    "borrowed_from": "Qlib Online Serving (OnlineManager/routine) + Task Management (RollingGen/RollingEnsemble)"
+   },
+   {
+    "change": "Regime score R becomes the median of an ensemble of pre-registered grid variants of the ladder; within-block weights drift only within pre-registered bounds shrunk to the frozen prior; first response to detected drift is de-risking, never refitting",
+    "rationale": "Ensembles beat single models in regime-shifting low-SNR settings via diversity; adds adaptivity without violating the Hamilton-filter and <10-transitions rules; block budgets stay fixed",
+    "borrowed_from": "CFA ensemble-learning / shrinkage-combination literature, TVP-VAR lineage"
+   },
+   {
+    "change": "Daily market-derived crowding state variable per sleeve (valuation spreads, futures OI, AMFI factor-fund flows, MF-portfolio concentration, correlation spikes) acting as a reduce-only throttle and a resurrection gate",
+    "rationale": "Crowding cycles now complete in days; India momentum is the first factor genuinely crowded via index funds; market-derived proxies lead ownership data by weeks",
+    "borrowed_from": "MSCI integrated factor crowding model, Resonanz unwind manual, 'Not All Factors Crowd Equally' (2025)"
+   },
+   {
+    "change": "Class-conditional decay priors replace the uniform published-alpha haircut: mechanical sleeves (momentum, reversal, low-vol) get steeper haircuts and shorter reviews than judgment sleeves (value, quality), with quarterly half-life re-estimation shrunk toward class priors",
+    "rationale": "Post-2015 decay acceleration is heterogeneous \u2014 unambiguous recipes crowd and die first under AI homogenization; uniform haircuts mis-size both classes",
+    "borrowed_from": "arXiv 2512.11913 'Not All Factors Crowd Equally', McLean-Pontiff, Falck et al."
+   },
+   {
+    "change": "Bitemporal WORM data architecture: capture-on-publication archiver with OpenBB-style provider adapters, (event_time, knowledge_time) as-of reads shared by research and production, entity master, and a regulatory-break registry that segments backtests on dated SEBI events",
+    "rationale": "Free Indian sources restate silently and endpoints break constantly; in India edges die by dated regulation as much as by crowding; the PIT archive is the desk's only appreciating asset",
+    "borrowed_from": "OpenBB TET adapters, ArcticDB bitemporal contract, Khraisha/Kleppmann, SEBI 2024-26 circular sequence"
+   },
+   {
+    "change": "Return engine plumbing: sector-relative z-scores -> Carver forecast currency (E|f|=10, cap 20, handcrafted weights) -> Grinold alpha conversion (residual vol x grid-IC x score) -> cost-netted alpha, emitted as typed Signal objects carrying half-life and confidence",
+    "rationale": "Makes sleeves commensurable, alphas self-shrinking as IC decays, decay a native field on every signal, and cheap-to-trade alpha outrank expensive alpha \u2014 all no-magic-numbers compliant",
+    "borrowed_from": "Carver Systematic Trading, Grinold & Kahn, Narang, LEAN Insight contract"
+   },
+   {
+    "change": "Stage 3 hardening: portfolio-level netting across sleeves before orders (sleeve paper books retained), thin cross-sectional risk model with grid-defined sector/size/beta and central factor caps, ex-ante tracking error vs Nifty 50, per-signal capacity lines and SR-unit cost speed limits gating sleeve x book admission",
+    "rationale": "Netting is free alpha at 22.3bps costs; factor caps mechanically enforce the frozen policy-vs-optimizer split against silent drift; the binding constraint is benchmark-relative so the engine must see the benchmark; capacity, not alpha, binds the Conservative book",
+    "borrowed_from": "AQR Craftsmanship, Paleologo central risk, QEPM, Renaissance/Chan capacity, Carver speed limit"
+   },
+   {
+    "change": "Stage 2 recast as internal TOPS + meta-labeling: every overlay suggestion logged as a scored paper trade against the Stage-1 counterfactual; influence is a published grid function of rolling hit-rate, structurally a [0,1] size multiplier (reduce-only by construction, off = pinned to 1, veto retained)",
+    "rationale": "Converts the advisory overlay from unfalsifiable judgment into a measurable, pre-registerable component that runs the Stage1-vs-Stage1+2 experiment continuously and lets improving AI earn bounded influence over 15 years",
+    "borrowed_from": "Marshall Wace TOPS, Lopez de Prado meta-labeling (AFML ch.3)"
+   },
+   {
+    "change": "Execution promoted to a research program with its own module: deterministic scheduler (participation caps, futures-first, reconstitution/ban-list awareness), fills ledger from day one, monthly impact re-fit shrunk toward the sqrt prior; hedge grid rebuilt as a cost- and FutEq-limit-constrained object scored in crisis-insurance currency",
+    "rationale": "Cost skill is the edge least arbitraged by AI copying and the fills dataset is the only proprietary data a free-data desk will ever own; at Rs 25,000cr the SEBI FutEq ceiling binds and must be known in design, not discovered in a crisis",
+    "borrowed_from": "Man AHL (ML-in-execution-first, crisis alpha), Renaissance slippage edge, Narang execution box, SEBI Sep-2025 limits"
+   },
+   {
+    "change": "Governance layer: mechanical anti-capitulation gate (no rule changes initiated mid-drawdown; executing pre-registered rules always allowed), written ML/AI charter, annual breadth budget, annual layer-attribution 'Report on the Books', and post->20%-drawdown Ang-Goetzmann-Schaefer review \u2014 all Claude-drafted from ledgers, principal-signed",
+    "rationale": "Over-adaptation is the historically dominant killer of systematic funds and AI makes refitting frictionless; ritualized pre-formatted self-review is the cheapest substitute for a risk committee a 2-person desk will ever have",
+    "borrowed_from": "First Sentier/Robeco quant-winter post-mortems, GIC/Norges attribution rituals, AQR-Man ML division of labor, Grinold breadth budgeting"
+   }
+  ]
+ },
+ {
+  "lens": "operations",
+  "key_changes": [
+   {
+    "change": "Single evidence harness: one YAML-config runner with an auto-recorder; the trial ledger becomes the run store itself, and deflated-Sharpe trial counts are derived by query, never self-reported. The same runner emits both backtests and the live Stage-1 portfolio.",
+    "rationale": "Manual pre-registration will drift over 14 years and thousands of (many AI-generated) trials; making registration a side effect of execution is the only durable enforcement for 2 people, and research/production parity kills the classic live-vs-backtest mismatch.",
+    "borrowed_from": "Microsoft Qlib (qrun + Recorder), NautilusTrader parity principle, freqtrade cadence-as-config"
+   },
+   {
+    "change": "WORM capture daemon + adapter-per-source (TET) + bitemporal parquet store with a single as_of(date) API that ALL reads (research, live, CI) go through; plus entity master with survivorship-free NIFTY-750 history and a regulatory-break registry.",
+    "rationale": "Free Indian endpoints will break and silently restate for 14 years; adapter isolation makes each breakage a one-file fix, bitemporality makes lookahead structurally impossible, and the PIT archive is the desk's only appreciating asset.",
+    "borrowed_from": "OpenBB provider extensions, ArcticDB bitemporal contract, Kleppmann/Denev-Amen, india-data sweep"
+   },
+   {
+    "change": "Automated bias CI (lookahead-analysis + recursive-analysis) and a CPCV+PBO station as mandatory harness gates on every candidate before pre-registered validation.",
+    "rationale": "Vintage manifests prevent lookahead in data; nothing in v1 detects lookahead in CODE, the failure mode AI-generated feature code produces at scale; PBO is the overfitting gate that scales with agentic throughput.",
+    "borrowed_from": "freqtrade lookahead/recursive analysis; Lopez de Prado AFML (CPCV, PBO)"
+   },
+   {
+    "change": "Regime->policy map rewritten as a tiny trigger/action grammar (<=5 triggers, <=6 actions), versioned and historically replayable; hedge grid rebuilt as a cost-and-capacity-constrained object encoding post-STT costs and SEBI FutEq position limits; book risk restated as per-book vol targets.",
+    "rationale": "Policy will be amended dozens of times by 2040 \u2014 as prose it drifts silently, as data every amendment has a diff and a replay; at Rs 25,000cr the Conservative book's futures hedge hits entity FutEq limits, which must be discovered in design, not in a crisis.",
+    "borrowed_from": "gs-quant Trigger/Action DSL; SEBI 2024-25 circulars; Carver vol targeting"
+   },
+   {
+    "change": "Common forecast currency (E|f|=10, cap +/-20) -> Grinold alpha conversion (residual vol x grid-IC x score, uniqueness-weighted) -> class-conditional decay priors (mechanical sleeves haircut harder/faster than judgment sleeves).",
+    "rationale": "Makes the five sleeves commensurable, gives the decay haircut a principled self-shrinking functional form, and matches the 2025 evidence that crowding kills unambiguous recipes (momentum, reversal) first.",
+    "borrowed_from": "Carver Systematic Trading; Grinold & Kahn; arXiv 2512.11913 'Not All Factors Crowd Equally'"
+   },
+   {
+    "change": "Stage 3 gains the missing cross-sectional risk model: grid-defined sector/size/beta and net-factor caps plus ex-ante tracking error vs Nifty 50 from the existing Ledoit-Wolf stack; mandatory portfolio-level netting across sleeves into one optimizer per book (sleeve paper books kept for attribution).",
+    "rationale": "The binding drawdown constraint is benchmark-relative yet no v1 module sees benchmark-relative risk; factor caps mechanically enforce the frozen policy-vs-optimizer split; at 22.3bps round-trip, netting is free alpha that grows with AUM.",
+    "borrowed_from": "Narang Inside the Black Box; Paleologo; Chincarini & Kim; AQR Craftsmanship Alpha"
+   },
+   {
+    "change": "Execution split out as a module: deterministic scheduler (ADV caps, futures-first, ban-list and rebalance-calendar aware) plus a fills ledger feeding a quarterly shrunk re-fit of the sqrt-impact coefficient.",
+    "rationale": "Own fills are the only proprietary data a free-data desk will ever own, and cost skill is the edge least arbitraged by AI copying; the loop makes the cost model self-improving as books grow toward Rs 25,000cr.",
+    "borrowed_from": "Man AHL (ML in execution first); Renaissance slippage edge per Zuckerman; Narang"
+   },
+   {
+    "change": "Death certificates at birth + self-calibrated CUSUM monitors + horizon-matched retirement (hard mechanical stops for fast/statistics-only signals, evidence-based review for slow factor sleeves) + a capped paper-traded archive with pre-registered resurrection criteria.",
+    "rationale": "Removes fresh-debate-at-moment-of-pain; crowding cycles now complete in days, and the symmetric failure modes are riding a dead fast signal and puking value at the bottom \u2014 two pre-registered tracks prevent both.",
+    "borrowed_from": "WorldQuant-style lifecycle; Millennium stop mechanism; AQR evidence-based retirement; Robeco/First Sentier quant-winter post-mortems; backward-CUSUM literature"
+   },
+   {
+    "change": "Stage 2 recast as an internal TOPS: every overlay suggestion (Claude's or principal's) logged as a scored, timestamped paper trade against the Stage-1-only counterfactual, with reduce-only influence a published grid function of rolling hit-rate starting at zero; meta-labeling multiplier in [0,1] as the eventual systematic form.",
+    "rationale": "Gives LLM/human judgment a principled, pre-registered path to earn (still reduce-only, still vetoable) influence over 15 years without contaminating Stage 1, and runs the Stage1-vs-Stage1+2 experiment continuously by construction.",
+    "borrowed_from": "Marshall Wace TOPS; Lopez de Prado meta-labeling"
+   },
+   {
+    "change": "Daily reduce-only crowding monitor per sleeve (valuation spreads, futures OI, AMFI factor-fund flows, MF-portfolio overlap, small/midcap stress-test days-to-liquidate) sitting outside the frozen block budgets like Tier-C.",
+    "rationale": "Crowded-unwind episodes are the likeliest violators of the binding drawdown constraint; India momentum is the first genuinely crowded factor via index funds, and market-derived proxies lead ownership data by weeks.",
+    "borrowed_from": "MSCI integrated factor crowding model; Resonanz quant-unwind manual; AMFI/SEBI disclosures"
+   },
+   {
+    "change": "R becomes the median of an ensemble of pre-registered grid variants of the unchanged ladder, with drift response = widen uncertainty and de-risk via existing buckets, never refit; a shadow GMM regime classifier logs daily with zero review burden.",
+    "rationale": "Regime relationships demonstrably break (stock-bond correlation flip); ensembles+shrinkage beat single specs in low-SNR regime-shifting settings, and the shadow model hedges ladder staleness without violating the no-fitted-regime-switching rule.",
+    "borrowed_from": "ai-age ensemble/shrinkage literature; Two Sigma GMM regime paper (2021)"
+   },
+   {
+    "change": "Bounded agentic research loop: Claude runs funnel tiers T0-T2 end-to-end with every candidate auto-registered BEFORE results are viewed and a pre-registered trial budget per cycle; principal reviews only <=3 survivors weekly.",
+    "rationale": "Converts the 2-person constraint into the AlphaGPT pattern (AI generates, human gates) while neutralizing the multiple-testing explosion agentic throughput causes; the trial budget stops DSR from becoming a rejection machine that tempts standard-lowering.",
+    "borrowed_from": "Man Group AlphaGPT; microsoft/RD-Agent (agent proposes, harness disposes); Harvey-Liu false-discovery estimates"
+   },
+   {
+    "change": "Monitoring inverted to exception-driven operations: one fixed-format daily page with a RAG header (push only on amber/red), monthly auto-generated attribution pack (TC per book decomposed by constraint, realized IC, netting bps, crisis-insurance metric, walk-forward tracks), monitoring attached as a subscriber never inline.",
+    "rationale": "Monitoring nobody reads is the #1 way 2-person pipelines die; a single page with pre-registered exception menus converts principal attention from scanning to deciding, and TC-vs-IC decomposition tells you whether to retire a signal or fix plumbing.",
+    "borrowed_from": "NautilusTrader subscriber pattern; Clarke-de Silva-Thorley TC; Man AHL crisis-insurance scoring"
+   },
+   {
+    "change": "Governance hardened into mechanism: anti-capitulation lock (no discretionary edits while the affected sleeve is beyond grid drawdown depth), annual auto-drafted Report on the Management of the Books with layer attribution against pre-registered nulls, stored post->20%-drawdown AGS decomposition template, and a versioned ML/AI charter reviewed only annually.",
+    "rationale": "Over-adaptation (capitulation at the trough) is the historically dominant killer of systematic funds, and AI makes refitting frictionless; a 2-person desk has no risk committee, so the ritualized pre-formatted self-review is the cheapest substitute.",
+    "borrowed_from": "First Sentier/Robeco 2018-20 post-mortems; GIC/NBIM layer attribution; Ang-Goetzmann-Schaefer 2009; Israel-Kelly-Moskowitz ML charter"
+   },
+   {
+    "change": "Ruthless scope caps as standing policy: max 11 top-level modules, 5 live sleeves + one pre-registered flow-signal research cycle (new sleeve requires retiring one), <=3 typed objects, no external engines/DBs (SQLite+parquet), one monitoring page, chrono-consistent LLM text signals deferred to year 2 behind a coverage audit.",
+    "rationale": "The two-person constraint is the binding constraint; every borrowed idea above was admitted only in its minimal form, because pipelines die from operational overload before they die from bad math.",
+    "borrowed_from": "Ops-first synthesis of all five sweeps (anti-patterns: Qlib model zoo, Nautilus/LEAN engines, vectorbt hyperopt culture)"
+   }
+  ]
+ }
+]
