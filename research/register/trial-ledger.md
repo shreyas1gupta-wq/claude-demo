@@ -202,3 +202,29 @@ Pre-declared constructions and bars:
 |---|---|---|---|
 | KW1 | 45-60y wave in real commodity prices | 6 troughs spaced 26-31y, 0/5 in [45,60] — **FAIL**; no min_gap lands on the K-band (paired with CS1's 15-21y) | fail, decisive |
 | KW2 | 45-60y price/inflation waves (UK/US/FR) | synchronized generational inflation peaks REAL (~1920/1949/1982/2010) but spacings 25-41y (median 36y, 1/10 in-window) — **FAIL**; decomposes into the already-seated inflation-regime arcs (IR1) | fail, informative |
+
+## Entries IN1–IN3 (2026-09-01) — Atlas 1.6 capex cycle (seat L11), JST R6 analogues
+Script: scripts/analyze_capex_cycle.py. PRE-REGISTERED before running (two-pass rule). India
+official series (OBICUS/IIP/GFCF) are proxy-blocked here → the atlas's own "C→B via analogues"
+clause governs: pooled JST iy (investment/GDP, 18 countries) + vaulted jst_real_returns.
+
+Pre-declared constructions and bars:
+- State: expanding Hamilton gap of iy (annual h from the shared {4,5,6} grid at midpoint 5,
+  p=1) → expanding percentile (min_obs 20). Identical machinery to the seated entries.
+- IN1 (overbuild → weak forward returns, the seat's core claim): per-country corr of the
+  capex state with FORWARD 5y cumulative real equity return. Bar: ≥70% of countries with
+  ≥40 overlapping years NEGATIVE.
+- IN2 (repair takes years): after each iy peak (extrema machinery, min_gap 8y), years until
+  iy regains the peak level (censored at sample end = counted at censoring value, stated).
+  Bar: median recovery ≥ 4 years ("balance-sheet repair takes years no information flow can
+  shortcut").
+- IN3 (the non_positive clamp's justification — asymmetry): pooled mean forward-5y real
+  equity return in top-quintile capex state vs bottom-quintile. MEASUREMENT (prior set), no
+  bar: the clamp is a design decision already made on consistency-audit grounds; IN3 records
+  what the analogue panel says about it.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| IN1 | Capex state → forward 5y real equity | 9/15 countries negative (60% vs 70% bar) — **FAIL**; between DG1 (4/16) and FC1 (17/17) on the project's scale; C→B NOT triggered, L11 stays Tier C | fail, calibrating |
+| IN2 | Post-peak repair length | 195 spells, median 4y (bar ≥4y) — **PASS at the bar**; IQR 1-12y; censoring counted against the claim as pre-stated | pass, marginal |
+| IN3 | Top-vs-bottom quintile asymmetry | top +0.242 < bottom +0.287 (mild overbuild penalty ~0.9%/yr) but middle +0.202 lowest — NON-monotone; the non_positive clamp's design now has analogue numbers behind it | measured, prior set |

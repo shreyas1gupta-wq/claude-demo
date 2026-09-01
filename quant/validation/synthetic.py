@@ -173,3 +173,38 @@ def financial_cycle_economy(T: int = 480, seed: int = 31,
     cpi = np.cumprod(1 + 0.003 + 0.001 * rng.standard_normal(T))
     return dict(credit=credit, income=income, hp=hp, cpi=cpi,
                 boom=boom, bust=bust)
+
+
+def capex_economy(T: int = 480, seed: int = 41,
+                  boom: tuple = (160, 300), bust: tuple = (300, 380)):
+    """Monthly economy with a PLANTED capex cycle (the L11 fixture).
+
+    Accelerator dynamics: utilization rises under boom forcing; capital-goods output growth
+    follows lagged utilization pressure (orders when tight); the GFCF share ratchets up with
+    both, then the bust collapses utilization first and the other legs bleed with time-to-build
+    inertia — the repair period keeps utilization depressed. Returns dict of levels + truth:
+    util (a bounded rate in [0.5, 0.95]), capgoods (an output index), gfcf_share, output."""
+    rng = np.random.default_rng(seed)
+    force = np.zeros(T)
+    force[boom[0]:boom[1]] = +0.008
+    force[bust[0]:bust[1]] = -0.015
+    util = np.empty(T)
+    util[0] = 0.72
+    g_cg = np.zeros(T)
+    capgoods = np.empty(T)
+    capgoods[0] = 100.0
+    gfcf_share = np.empty(T)
+    gfcf_share[0] = 0.28
+    g_out = 0.003 + 0.0015 * rng.standard_normal(T)
+    output = 100 * np.cumprod(1 + g_out)
+    for t in range(1, T):
+        util[t] = np.clip(util[t - 1] + force[t] + 0.10 * (0.72 - util[t - 1])
+                          + 0.003 * rng.standard_normal(), 0.5, 0.95)
+        g_cg[t] = (0.003 + 0.9 * (util[t - 1] - 0.72) + 0.25 * g_cg[t - 1]
+                   + 0.004 * rng.standard_normal())
+        capgoods[t] = capgoods[t - 1] * (1 + g_cg[t])
+        gfcf_share[t] = np.clip(gfcf_share[t - 1] + 0.25 * (util[t] - util[t - 1])
+                                * gfcf_share[t - 1] + 0.0008 * rng.standard_normal(),
+                                0.15, 0.45)
+    return dict(util=util, capgoods=capgoods, gfcf_share=gfcf_share, output=output,
+                boom=boom, bust=bust)
