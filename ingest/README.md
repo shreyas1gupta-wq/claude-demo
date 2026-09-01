@@ -73,3 +73,20 @@ pull_chinn_ito.py, plus a one-time hand-built SLR/CRR/policy-rate change-date ma
 WARNING from Part C: the IMF "Historical Public Debt Database" (Abbas et al., starts 1880/1920)
 and "Public Finances in Modern History" (starts 1800) are DIFFERENT products — scripts must name
 which; grabbing HPDD under an "1800" assumption silently pulls the wrong one.
+
+## Addendum 4 (2026-09-01) — reserve-composition pullers (from reserve Part C)
+
+New fixture family, nothing in ingest/ covers it: pull_cofer.py (data.imf.org/en/datasets/
+IMF.STA:COFER — full fresh re-pull only, NEVER a delta-append across the 2025Q3 unallocated-
+elimination break; see Part C §C.1 step-by-step re-vintage procedure before touching the existing
+`ingest/vault/debt/cofer_1995_2023q1.csv` mirror), pull_wgc_gdt.py (Gold Demand Trends quarterly
+PDF + central-banks cut; free registration needed for the data-explorer tables, PDFs open),
+pull_rbi_wss_gold.py (weekly gold tonnage/value, distinct from the existing gold-price pullers),
+pull_rbi_hyrmfer.py (semi-annual Half-Yearly Report on Management of Foreign Exchange Reserves —
+the ONLY source for the domestic-vs-BoE/BIS custody split), pull_bis_eer.py (BIS Data Portal,
+migrated 2023-11-22), pull_sdr_basket.py (one-time hand-built table of quinquennial review
+weights, event-based updates only), pull_swap_lines.py (Fed + PBoC + CFR tracker, periodic
+snapshot, not a queryable series), pull_cips_stats.py (participant counts, periodic disclosure
+only). WARNING from Part C: WGC's own "central bank net purchases" figure is an ESTIMATE (Metals
+Focus methodology), not the IMF-reported number — Q1 2026 IMF-reported was 16t vs WGC-estimated
+244t for the same quarter; scripts must pull and label both, never merge them into one series.
