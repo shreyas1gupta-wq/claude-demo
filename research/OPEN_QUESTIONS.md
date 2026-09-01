@@ -81,3 +81,13 @@ media.githubusercontent.com (LFS), objects.githubusercontent.com (release assets
 huggingface.co, kaggle.com, zenodo.org, mba.tuck.dartmouth.edu (Ken French) = BLOCKED at the
 egress proxy. Consequence: GitHub-hosted mirrors are pulled here; Kaggle/HF datasets go on the
 principal's-machine runsheet (ingest/README.md).
+
+---
+
+## Decision (principal, 2026-09-01): monograph series proceeds in CYCLE ATLAS order, 30+ pages each
+
+From the top of the atlas (Band 0, entry 0.1 debt supercycle) to the end, one at a time, every
+aspect (theory/math/cross-country/India/data/econometrics/algorithm/psychology/real data/lesson).
+Queue of record: docs/cycles/README.md. Existing monographs: credit (58pp) and momentum (52pp)
+meet the bar; fast stress is queued for upgrade at its atlas position; value/quality completes in
+flight.
