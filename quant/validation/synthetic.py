@@ -71,3 +71,47 @@ def boom_bust_economy(T: int = 480, seed: int = 7) -> dict:
     deposits = 110 * np.cumprod(1 + g_income + 0.0005 * rng.standard_normal(T))
     return dict(income=income, credit=credit, deposits=deposits,
                 boom=(200, 320), bust=(320, 400))
+
+
+def momentum_universe(N: int = 200, T: int = 1260, seed: int = 11,
+                      crash: tuple = (900, 960, 1020)):
+    """Daily panel of N stocks with PLANTED cross-sectional momentum and a PLANTED
+    Daniel-Moskowitz-style momentum crash (the L3 fixture).
+
+    Mechanics: each stock's drift mu_i,t is a slow AR(1) (rho=0.997 daily) => past winners
+    genuinely keep winning (the momentum effect). Market path m_t is calm, then a bear
+    (crash[0]..crash[1]), then a violent rebound (crash[1]..crash[2]). Each stock's beta rises
+    with its OWN drawdown (leverage effect), so by the rebound the loser leg is high-beta and
+    rallies hardest — the planted WML crash. Returns (prices[N,T], market[T], phases dict)."""
+    rng = np.random.default_rng(seed)
+    # calibration note (dev falsification, 2026-09-01): first cut used sig_mu=3.5e-4
+    # (stationary drift dispersion ~0.45%/day -> WML ~+25%/MONTH, absurd) and a bear with no
+    # vol spike (panic guard had nothing to see) - the planted crash never crashed because the
+    # drift channel dwarfed the beta channel. Retuned: realistic momentum spread, crisis vol
+    # 3x in the bear/rebound, stronger leverage-effect slope.
+    rho, sig_mu = 0.997, 8e-5
+    mu = np.zeros((N, T))
+    mu[:, 0] = rng.normal(0, sig_mu / np.sqrt(1 - rho**2), N)
+    eps_mu = rng.normal(0, sig_mu, (N, T))
+    for t in range(1, T):
+        mu[:, t] = rho * mu[:, t - 1] + eps_mu[:, t]
+    g_m = np.full(T, 0.0003)
+    b0, b1, b2 = crash
+    g_m[b0:b1] = -0.005          # bear leg (~ -26% over 60d)
+    g_m[b1:b2] = +0.008          # violent rebound
+    sig_m = np.full(T, 0.008)
+    sig_m[b0:b2] = 0.024         # crisis vol regime through bear AND rebound
+    m = g_m + sig_m * rng.standard_normal(T)
+    base_beta = rng.uniform(0.7, 1.3, N)
+    r = np.zeros((N, T))
+    level = np.ones(N)
+    peak = np.ones(N)
+    for t in range(T):
+        dd = 1.0 - level / peak                       # own drawdown, known at t-1 close
+        beta_t = base_beta + 2.5 * dd                 # leverage effect: losers get high-beta
+        r[:, t] = beta_t * m[t] + mu[:, t] + 0.012 * rng.standard_normal(N)
+        level = level * (1.0 + r[:, t])
+        peak = np.maximum(peak, level)
+    prices = np.cumprod(1.0 + r, axis=1)
+    market = np.cumprod(1.0 + m)
+    return prices, market, dict(bear=(b0, b1), rebound=(b1, b2))
