@@ -5,9 +5,9 @@ Parts A, B & G · v1.0 · 2026-09-01 · Atlas entry **0.7** (`docs/CYCLE_ATLAS.m
 allocation authority**, **2030 design review**). Complements, never contradicts, `research/cycles/
 demo-deep/jst-demographics-RESULTS.md` (DG1–DG2: this program's own computation — the crude
 trailing-population-growth-to-forward-equity-return translation, pooled across 18 JST countries,
-1880–2010: **corr = −0.03** pooled, **sign-flipping across every era**, **4/16 countries positive**,
-median −0.26. The empirical spine of this file; every affirmative claim below is read against it, not
-around it). Expands `research/dossiers/07-long-waves.md` Section F (findings #14–17: Bloom-Williamson,
+1880–2010: **corr = −0.03** pooled, sign-flipping across every era, **4/16 countries positive**,
+median −0.26 — the empirical spine of this file, read against every claim below). Expands
+`research/dossiers/07-long-waves.md` Section F (findings #14–17: Bloom-Williamson,
 Bloom-Canning-Sevilla, Goodhart-Pradhan, India's fertility/window numbers — carried forward,
 re-verified where flagged, never re-litigated). Cross-references without duplicating:
 `research/cycles/realrates-deep/partAB-theory-evidence.md` A.3 (Goodhart-Pradhan as the savings/
@@ -15,11 +15,11 @@ rates channel, already scored there as live and unresolved against Schmelzing �
 caution, inherited not re-argued); `research/cycles/inflation-deep/partAB-theory-evidence.md` A.2
 (Goodhart-Pradhan again, as the inflation channel — atlas 0.5); `research/cycles/debt-deep/
 partB-cases.md` §6b (Japan 1990–present, atlas 0.1 — the bubble/deleveraging confound A.3 leans on).
-Harvest scope: why age structure is near-uniquely forecastable; the five channels through which it is
-claimed to move markets, each graded on its own evidence; Japan and China as the master and apprentice
-aging cases; India's own numbers (double weight per the brief); the named rejected uses; and the
-affirmative case — argued from DG1's own sign-inconsistency — for why L16 carries the data at full
-authority and the translation at none.
+Harvest scope: why age structure is near-uniquely forecastable; the five channels claimed to move
+markets, each graded on its own evidence; Japan and China as master and apprentice aging cases; India's
+own numbers (double weight per the brief); the named rejected uses; and the affirmative case — argued
+from DG1's own sign-inconsistency — for why L16 carries the data at full authority, the translation at
+none.
 
 ---
 
@@ -28,10 +28,10 @@ authority and the translation at none.
 ### A.1 The demographic transition as the one truly forecastable macro process
 
 Every other object in this atlas is forecast from a model of behavior — credit booms, inflation
-regimes, monetary-policy transmission — and every model of behavior can be wrong because the future
-can behave differently than the past. Age structure differs in kind, not degree: a 20-year-ahead
-projection of who will be 15–64 is, for most of that population, not a forecast of behavior at all —
-it is arithmetic on people already alive. Everyone who will be 15–64 at T+20 was born between T−49
+regimes, monetary-policy transmission — and every such model can be wrong because the future can
+behave differently than the past. Age structure differs in kind, not degree: a 20-year-ahead
+projection of who will be 15–64 is, for most of that population, arithmetic on people already alive,
+not a forecast of behavior at all. Everyone who will be 15–64 at T+20 was born between T−49
 and T+5. Roughly the first 45 of those 50 birth-years — on the order of nine-tenths of the T+20
 working-age population — is alive and countable *today*, subject only to mortality (the single most
 predictable demographic rate, rarely surprising by more than a point or two even across pandemics)
@@ -47,8 +47,8 @@ population by age and sex, projected forward under assumed fertility, mortality 
 Since the 2010s the fertility and mortality legs have run probabilistically — Bayesian hierarchical
 models fit via Markov-chain Monte Carlo, yielding a distribution of trajectories, not one point path
 — and the **2024 revision extended this to international migration for the first time**, the one leg
-previously deterministic **[Verified: cohort-component and Bayesian-hierarchical methodology via UN
-Population Division documentation and multiple independent academic summaries this session]**. This
+previously deterministic **[Verified via UN Population Division documentation and multiple independent summaries this
+session]**. This
 is Tier-A methodology by this program's own ladder (Contract §4: ≥30 independent observations,
 purged-CV-eligible) — but Tier-A on the *demographic* object, not its market translation, and that
 distinction is this file's entire argument.
@@ -56,8 +56,7 @@ distinction is this file's entire argument.
 **The revision record — a systematic, one-directional miss.** WPP's successive editions are the
 cleanest evidence of where the model has been wrong, and the direction is consistent, not noisy.
 Global population-in-2100 point forecasts fell across three consecutive editions — **11.2 billion
-(2015) → 10.9 billion (2019) → a peak of roughly 10.3 billion in the mid-2080s (2024)** **[Verified:
-via UN DESA's own 2024 Summary of Results and multiple independent secondary summaries this
+(2015) → 10.9 billion (2019) → a peak of roughly 10.3 billion in the mid-2080s (2024)** **[Verified via UN DESA's 2024 Summary of Results and multiple secondary summaries this
 session]** — each edition marking down future population because realized fertility kept coming in
 below the *previous* edition's assumption. Our World in Data's own retrospective on 50+ years of UN
 projections finds the same regional pattern: in Europe, "UN projections would often overestimate the
@@ -97,17 +96,15 @@ omnibus narrative grade.
 
 **(a) Labor-supply / growth accounting — the demographic-dividend arithmetic.** David Bloom and
 Jeffrey Williamson's "Demographic Transitions and Economic Miracles in Emerging Asia" (*World Bank
-Economic Review* 12(3), 1998, pp. 419–455) **[Verified: authors, title, journal, volume/pages via
-NBER's own working-paper page (NBER WP 6268) and the World Bank Economic Review's own listing this
-session]** is the founding decomposition: introducing demographic variables into a cross-country
-growth regression, they attribute **1.4–1.9 percentage points of East Asia's 6.11%/yr per-capita GDP
-growth, 1965–1990 — the largest regional demographic effect in their panel** — to the working-age
-share rising faster than the dependent share as fertility fell ahead of mortality. Popular summaries
+Economic Review* 12(3), 1998, pp. 419–455) **[Verified via NBER's page (NBER WP 6268) and the World Bank Economic Review's listing this
+session]** is the founding decomposition: demographic variables in a cross-country growth
+regression attribute **1.4–1.9 percentage points of East Asia's 6.11%/yr per-capita GDP growth,
+1965–1990 — the largest regional demographic effect in their panel** — to the working-age share
+rising faster than the dependent share as fertility fell ahead of mortality. Popular summaries
 round this to "**a third of the East Asian miracle**"; a companion literature puts the fuller
 contribution, including secondary savings/investment effects, as high as **one-third to one-half**
-**[Verified: the 1.4–1.9pp/6.11% figure and "roughly one-third" characterization via multiple
-independent academic summaries this session, including the paper's own World Bank-hosted PDF; the
-wider "one-third to one-half" figure — VERIFY exact source]**. This is Tier-B evidence by this
+**[Verified: the 1.4–1.9pp/6.11% figure and "roughly one-third" framing via multiple summaries this
+session, incl. the paper's World Bank-hosted PDF; the wider "one-third to one-half" figure — VERIFY]**. This is Tier-B evidence by this
 program's ladder — a single, highly-cited panel, not ≥30 observations purged of the miracle's other
 drivers (export orientation, education, the Bretton Woods-era peg) — and the load-bearing qualifier
 arrives one paper later. Bloom, Canning & Sevilla's *The Demographic Dividend* (RAND MR-1274, 2003)
@@ -124,14 +121,11 @@ push the aggregate saving rate — and, via loanable funds, the equilibrium real
 saves and up as it retires. Two modern papers formalize this cross-country. Carlos Carvalho, Andrea
 Ferrero & Fernanda Nechio, "Demographics and Real Interest Rates: Inspecting the Mechanism" (FRBSF WP
 2016-05; *European Economic Review* 2016) and its 2023–25 extension with Felipe Mazin (CEPR DP18616;
-*Journal of International Economics* 157, 2025) **[Verified: authors, venues, and progression via the
-San Francisco Fed's own hosted working paper, CEPR, and the Journal of International Economics'
-listing this session]** build a multi-country OLG model where both domestic and *foreign* demographics
+*Journal of International Economics* 157, 2025) **[Verified via SF Fed, CEPR and JIE listings this session]** build a multi-country OLG model where both domestic and *foreign* demographics
 move a country's real rate through capital mobility — a rising global old-age dependency ratio is, in
 their calibration, a first-order contributor to the secular decline in real rates since the 1980s.
 Etienne Gagnon, Benjamin Johannsen & David Lopez-Salido, "Understanding the New Normal: The Role of
-Demographics" (Fed FEDS WP 2016-080; *IMF Economic Review* 69(2), 2021) **[Verified: authors, venue,
-findings via the Federal Reserve's own hosted working paper and the IMF Economic Review's listing this
+Demographics" (Fed FEDS WP 2016-080; *IMF Economic Review* 69(2), 2021) **[Verified via the Fed's hosted working paper and the IMF Economic Review's listing this
 session]** calibrate a richer OLG model to US demographic change and find it accounts for **a little
 more than a 1-percentage-point decline in both trend real GDP growth and the real rate since the
 1980s** — a large share of the total secular decline on some estimates. Both papers are careful,
@@ -148,7 +142,7 @@ meltdown debate's clean empirical failure.** The most literature-crowded and mos
 of the five channels, and it rewards separating two distinct models the popular press routinely
 conflates. John Geanakoplos, Michael Magill & Martine Quinzii, "Demography and the Long-Run
 Predictability of the Stock Market" (*Brookings Papers on Economic Activity*, 2004, pp. 241–326)
-**[Verified: authors, venue, pages via the Brookings-hosted PDF and IDEAS/RePEc this session]** build
+**[Verified via the Brookings-hosted PDF and IDEAS/RePEc this session]** build
 a general-equilibrium "favored-cohort" model around the **MY ratio — middle-aged adults relative to
 young adults (roughly age 20–29)** — a large middle-aged cohort, accumulating retirement savings,
 bids up securities relative to a small young cohort borrowing against future income; critically, the
@@ -163,22 +157,18 @@ chosen to capture the buy-versus-sell-to-retirees dynamic rather than GMQ's borr
 distinct models; this file does not carry that conflation forward.** Liu-Spiegel's claim was precise
 and falsifiable: the M/O ratio tracked the S&P 500 trailing P/E closely through 2010, and their model
 projected P/E falling from **roughly 15 in 2010 to about 8.3 by 2025** (a 2013-vintage re-estimate:
-**17 to 8.23 by 2025**), before a partial recovery toward 9 by 2030 **[Verified: the 15→8.3 and
-17→8.23 figures via multiple independent secondary summaries and the Society of Actuaries' own 2015
-review of the paper this session; the primary FRBSF page was blocked by egress this session]**. **This
+**17 to 8.23 by 2025**), before a partial recovery toward 9 by 2030 **[Verified: figures via multiple independent secondary summaries and the Society of Actuaries' 2015
+review this session; primary FRBSF page blocked by egress]**. **This
 is now a resolved, failed forecast.** Writing in September 2026, past the 2025 target, the S&P 500
 trailing P/E has traded far above 8.3 throughout, and the SF Fed's own later commentary confirms the
 break happened in real time: "since 2011 ... the close correlation ... has disappeared, with the M/O
-ratio continuing to fall but the P/E ratio steadily climbing" **[Verified: the SF Fed's own
-acknowledgment via its 2014-and-later follow-ups, cross-checked this session; the exact current P/E
-level — VERIFY, no live market-data pull this session]**. This dated failure is the modern instance of
+ratio continuing to fall but the P/E ratio steadily climbing" **[Verified via SF Fed's 2014-and-later
+follow-ups this session; exact current P/E level — VERIFY, no live pull this session]**. This dated failure is the modern instance of
 an older one: N. Gregory Mankiw & David Weil, "The Baby Boom, the Baby Bust, and the Housing Market"
-(*Regional Science and Urban Economics* 19(2), 1989) **[Verified via ScienceDirect and multiple
-independent summaries this session]** forecast US real housing prices would **fall 47% between 1987
+(*Regional Science and Urban Economics* 19(2), 1989) **[Verified via ScienceDirect this session]** forecast US real housing prices would **fall 47% between 1987
 and 2007**; real prices instead *rose* substantially, through the largest housing boom in the modern
 US record. James Poterba's "Demographic Structure and Asset Returns" (*Review of Economics and
-Statistics* 83(4), 2001) and 2004 Jackson Hole follow-up **[Verified via MIT Economics' and the
-Kansas City Fed's own hosted PDFs this session]** is the standing rebuttal both episodes illustrate:
+Statistics* 83(4), 2001) and 2004 Jackson Hole follow-up **[Verified via MIT Economics and the Kansas City Fed's hosted PDFs this session]** is the standing rebuttal both episodes illustrate:
 **no evidence US real stock returns over 75 years correlate with age structure**, with only weak,
 inconsistent evidence even on T-bill returns; the "meltdown" intuition (retirees sell everything at
 once) ignores lifetime-uncertainty and bequest motives keeping retiree asset demand elevated longer
@@ -220,18 +210,16 @@ is excellent, the *equity translation* is not close to tradable.
 
 ### A.3 Japan as the master aging story — and China's entry into the same corridor
 
-Japan is the case every demographic-dividend or demographic-doom argument eventually cites, and this
-program's clearest instance of the attribution trap A.1 warns against in the abstract. **What the
-numbers did.** Japan's working-age (15–64) share peaked at **just under 70% in 1991–93** and has
+Japan is the case every demographic-dividend or demographic-doom argument cites, and this program's
+clearest instance of the attribution trap A.1 warns against. **What the numbers did.** Japan's working-age (15–64) share peaked at **just under 70% in 1991–93** and has
 since fallen to roughly **61%** by the early 2020s — one of the largest, fastest working-age-share
-reversals in the developed-world record **[Verified: peak level/timing and current level via multiple
-independent demographic summaries this session]**. **What else happened at the identical moment.**
+reversals in the developed-world record **[Verified via multiple independent demographic summaries this session]**. **What else happened at the identical moment.**
 Japan's equity and real-estate bubble peaked in **December 1989**, collapsing through the early-to-mid
 1990s — `debt-deep/partB-cases.md` §6b documents the aftermath: fiat-era public debt/GDP running to
 **254% (2020, JST panel)** with **zero points of sustained deleveraging**, the BOJ pinning yields near
 zero for three decades, and the Nikkei **price index not reclaiming its 1989 level until February
-2021 — 32 years later** (total return recovered faster but still took decades, running roughly
-**+1.3%/yr real (yen)** across 1989–2024 against a **−1.1%/yr real** price return). **The attribution
+2021 — 32 years later** (total return recovered faster, still decades: roughly **+1.3%/yr real (yen)**
+across 1989–2024 against a **−1.1%/yr real** price return). **The attribution
 problem, stated plainly.** Japan's working-age peak (1991–93) and its bubble peak (December 1989) sit
 within two years of each other — close enough that no clean test run only on Japan can separate "the
 lost decades were a demographic story" from "the lost decades were a balance-sheet-recession story
@@ -245,11 +233,9 @@ balance-sheet-recession story, and this program does not manufacture false resol
 (the same Contract §4 discipline `inflation-deep` A.4 applies to its own contested episode).
 
 **China's entry.** China's working-age (15–64) population **peaked around 2013–2015** and has been
-declining since **[Verified via multiple independent demographic and IMF/AMRO summaries this
-session]**; UN-projection-based estimates put the further decline at roughly **22% between 2022 and
+declining since **[Verified via multiple IMF/AMRO and demographic summaries this session]**; UN-projection-based estimates put the further decline at roughly **22% between 2022 and
 2050** (≈0.9%/yr), a drag some estimates put at **up to half a percentage point off annual GDP growth**
-through mid-century **[Verified via AMRO's own published analytical note and multiple independent
-summaries this session]**. China entered its aging corridor without Japan's coincidence timing — its
+through mid-century **[Verified via AMRO's analytical note and independent summaries this session]**. China entered its aging corridor without Japan's coincidence timing — its
 property-sector stress arrived roughly a decade *after* its working-age peak, not two years before —
 which if anything makes it a *cleaner* natural experiment for the demographic channel alone, one this
 program flags for a dedicated future dossier rather than treats fully here (out of scope for an
@@ -258,50 +244,47 @@ India-double-weighted chapter, and Chinese official-statistics access is a separ
 ### A.4 India — the actual numbers (double weight)
 
 **The working-age share and its peak window.** India's working-age share rises into a peak window
-commonly dated to the **mid-2030s to early 2040s**, though the exact year is sensitive to which age
-band and WPP vintage is used — a genuine measurement subtlety, not a rounding triviality. On a 15–59
+commonly dated to the **mid-2030s to early 2040s**, though the exact year is sensitive to age band
+and WPP vintage — a real measurement subtlety, not a rounding triviality. On a 15–59
 definition, the share is projected to reach roughly **65–69% around 2036** (World Bank and multiple
 WPP-2024-derived estimates); on the Economic Survey 2018–19's own 20–59 definition, the dividend peaks
-around **2041, at roughly 59%** **[Verified: both figures and conventions via the World Bank's own
-India office communications, Statista's WPP-2024-sourced series, and the Economic Survey 2018–19's own
-demographics chapter as cited independently this session — the two conventions do not reconcile into
-one number without restating one series on the other's age band, which this file does not attempt]**.
+around **2041, at roughly 59%** **[Verified: both figures via the World Bank's India office, Statista's WPP-2024 series, and the
+Economic Survey 2018–19's demographics chapter this session — the two conventions do not reconcile
+into one number without restating one series on the other's age band, not attempted here]**.
 India's TFR fell **below replacement (2.0 against ~2.1) per NFHS-5 (2019–21)**, down from 2.2 in
-NFHS-4 (2015–16) **[Verified via NFHS-5's own published topline and multiple independent summaries
-this session]** — compressing the dividend window relative to older "to 2045–2055" framings, exactly
+NFHS-4 (2015–16) **[Verified via NFHS-5's topline and multiple summaries this session]** — compressing the dividend window relative to older "to 2045–2055" framings, exactly
 A.1's point about WPP's systematic direction of miss. India **overtook China as the world's most
-populous country around April 2023** per UN estimate **[Verified via UN DESA's own policy brief and
-press materials this session]**.
+populous country around April 2023** per UN estimate **[Verified via UN DESA's policy brief this
+session]**.
 
 **State-level heterogeneity — the internal-migration hinge.** National aggregates conceal a two-speed
 country. Kerala, Tamil Nadu and Andhra Pradesh are already past their own working-age-share peak,
 aging on a trajectory closer to middle-income East Asia than the national figure; Uttar Pradesh, Bihar
-and Madhya Pradesh remain young and still rising **[Verified pattern/direction via dossier 07's own
-finding #17, flagged there for state-level date verification and carried forward unresolved]**. This
+and Madhya Pradesh remain young and still rising **[Verified via dossier 07's finding #17,
+flagged there for state-level date verification, carried forward unresolved]**. This
 is the mechanism by which any national dividend actually flows: Economic Survey 2016–17 used railway
 unreserved-passenger-traffic data — a genuine, if indirect, migration proxy — to produce the first
 large-scale inter-state work-migration estimate: an **annual average flow of roughly 9 million people
 between states, 2011–2016**, well above the ~4 million/year the Census series implied, with a
 separate cohort-based method putting 2001–2011 mobility at **5–6.5 million/year**, an inter-state
 migrant stock of roughly **60 million**, and inter-district migration as high as **80 million**
-**[Verified: all figures via the Economic Survey 2016–17's own published chapter (indiabudget.gov.in)
-and PIB's own summary this session]**. The direction matches the aging/young split: labor moves from
+**[Verified via the Economic Survey 2016–17's own chapter (indiabudget.gov.in) and PIB's summary]**. The direction matches the aging/young split: labor moves from
 UP, Bihar, Rajasthan, MP, Odisha, West Bengal and Assam toward Maharashtra, Delhi-NCR, Gujarat, Tamil
-Nadu, Kerala and Karnataka — the young states are the effective labor supply for the aging ones, which
-makes "India's demographic dividend" an internal-reallocation problem with its own frictions (language,
-housing, welfare portability, politics) more than a single national clock ticking toward one date.
+Nadu, Kerala and Karnataka — the young states are the aging ones' effective labor supply, which makes
+"India's demographic dividend" an internal-reallocation problem with its own frictions (language,
+housing, welfare portability, politics), not a single national clock ticking toward one date.
 
 **PLFS and the jobs-absorption condition.** Bloom-Canning-Sevilla's conditionality (A.2(a)) is not
 abstract for India — it is the entire question, and the free data (PLFS, `A-data-catalog.md` H5) now
 shows real, if qualified, movement. Female labour-force participation rose from **23.3% (2017–18) to
 41.7% (2023–24)** per the PLFS Annual Report [July 2023–June 2024], concentrated in rural areas
-(**24.6% → 47.6%**, nearly doubling, versus urban's **47.6% → 52.0%**) **[Verified: all figures via
-MOSPI's own PLFS 2023-24 Annual Report press note and PIB's own release this session]**. The honest
+(**24.6% → 47.6%**, nearly doubling, versus urban's **47.6% → 52.0%**) **[Verified via
+MOSPI's PLFS 2023-24 Annual Report press note and PIB's release this session]**. The honest
 qualifier: independent analysis (CEDA, and separate coverage of the underlying microdata) attributes
 most of the rural gain to a rise in **self-employment**, not wage or salaried work — precisely the
 distinction between counted participation and productive, income-secure employment Bloom-Canning-
-Sevilla's conditionality warns against collapsing **[Verified: the self-employment characterization
-via CEDA's own published analysis and independent secondary coverage this session]**. Not a reason to
+Sevilla's conditionality warns against collapsing **[Verified via
+CEDA's own published analysis and independent secondary coverage this session]**. Not a reason to
 dismiss the PLFS improvement — it is real, large, and directionally the single most important input
 the dividend-cashes-or-doesn't question has — but not yet evidence the conditional is *satisfied* at
 the quality Bloom-Canning-Sevilla's framework requires.
@@ -366,9 +349,8 @@ object, and the gap is measurable, if only roughly, with free data: **only a lit
 India's workforce is in the formal sector**, informal and agricultural employment together close to
 90%, and — on a worker-protections-and-benefits rather than enterprise-type basis — the ILO's more
 recent estimate puts India's informal-employment rate at roughly **87% as of 2025** **[Verified: the
-~10% formal-sector and informal-sector-scale figures via Data For India's own published analysis and
-multiple independent summaries this session; the 87% ILO figure via independent secondary coverage
-this session — VERIFY against ILO's own primary release]**. A rising working-age share that cashes out
+~10% formal-sector figure via Data For India's own analysis and multiple summaries this session; the
+87% ILO figure via secondary coverage — VERIFY against ILO's primary release]**. A rising working-age share that cashes out
 disproportionately into informal, unlisted, or subsistence-agricultural employment — which PLFS's own
 self-employment-driven participation gain (A.4) is at minimum consistent with — does not mechanically
 translate into listed-sector earnings growth, let alone at a rate an index-level "buy India on
