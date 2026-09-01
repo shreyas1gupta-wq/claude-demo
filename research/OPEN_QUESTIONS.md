@@ -66,3 +66,18 @@ Consumption gate: phase is computed/logged/displayed everywhere, but NO traded r
 quadrant or age until H66–H68 pass their pre-registered tests; first admissions reduce-only via
 the (proposed) Challenger path. Opens H66 (quadrant asymmetry at matched levels), H67 (grid
 stability: responsiveness-vs-flip-rate frontier), H68 (duration dependence of quadrant exit).
+
+---
+
+## Decision (principal, 2026-09-01): external data mirrors authorized "whenever required, freely"
+
+Kaggle / HuggingFace / GitHub and similar hosts are authorized as data sources for research.
+Discipline that STILL applies (unchanged): every pull is sha256-manifested into ingest/vault
+(WORM); mirror data must be AUTHENTICATED against an independent mirror and/or published facts
+before use (the JST R6 procedure is the template); PIT/vintage caveats recorded; mirrors never
+outrank the primary source for India-critical series once the principal's-machine pulls exist.
+Connectivity from this container (probed 2026-09-01): raw.githubusercontent.com,
+media.githubusercontent.com (LFS), objects.githubusercontent.com (release assets) = OPEN;
+huggingface.co, kaggle.com, zenodo.org, mba.tuck.dartmouth.edu (Ken French) = BLOCKED at the
+egress proxy. Consequence: GitHub-hosted mirrors are pulled here; Kaggle/HF datasets go on the
+principal's-machine runsheet (ingest/README.md).
