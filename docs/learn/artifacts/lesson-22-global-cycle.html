@@ -1,0 +1,267 @@
+<title>The Cycle That Globalized</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 22 · atlas 2.8 · seat L9</p>
+  <h1>The Cycle That Globalized</h1>
+  <p class="stand">One factor — dollar, risk appetite, US policy — moves risky assets and
+  capital flows across the world, and it binds India regardless of exchange-rate regime. We
+  measured its rise on our own panel: national equity markets' co-movement nearly TRIPLED
+  across 1990. India loads on it at +0.57. And the one bar that failed taught the seat its
+  most useful sentence: one cycle, in most places, most of the time — never "everywhere,"
+  never assumable in advance.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/22-global-cycle.md</span>
+    <span><b>Seat</b> L9 · global_cycle block (0.20) · episode τ½ 3–9 months</span>
+    <span><b>Trials</b> GF1–GF3, pre-registered</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The rise, measured</h2></div>
+  <p>Rey's claim (2013): there is one global financial cycle, driven from the center, and
+  floating your currency does not exempt you — dilemma, not trilemma. Before importing it we
+  measured its premise on our own panel: the median pairwise correlation of annual real equity
+  returns across sixteen countries, before and after 1990.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — India's market factor vs the global equal-weight factor, year by year</span>
+      <span class="figbadge">REAL DATA · GF2: corr +0.57 (1994–2015) — PASS</span></div>
+    <div class="chart" id="figScatter"></div>
+    <figcaption>Each dot is a year. India is materially inside the global cycle — the transfer
+    premise behind giving a 0.20 budget block to a global seat, measured in-house rather than
+    assumed from the literature.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Co-movement pre-1990</div><div class="v">+0.28</div><div class="d">median pairwise corr, 1900–1989</div></div>
+    <div class="stat"><div class="k">Co-movement post-1990</div><div class="v">+0.77</div><div class="d">GF1 PASS — the cleanest regime change we've printed</div></div>
+    <div class="stat"><div class="k">India's loading</div><div class="v">+0.57</div><div class="d">GF2 PASS — inside the cycle</div></div>
+    <div class="stat"><div class="k">Down-year breadth</div><div class="v">69%</div><div class="d">GF3 FAIL vs 75% bar — "everywhere" was too strong</div></div>
+  </div>
+  <div class="warnbox"><b>A standing caveat was born in GF1.</b> If co-movement tripled across
+  1990, then every analogue result computed on pre-1990 panels — diversification benefits,
+  insulation stories, crisis-transfer sizes — must be DISCOUNTED when transferred to today's
+  India. That caveat now travels with every cross-era claim in the register. And GF3's honest
+  miss (69% median breadth vs a 75% bar) bounds the other side: partial insulation is real ex
+  post — India in 2015-16 and 2022 partially proved it — but the desk never gets to assume it
+  ex ante. That asymmetry IS the seat.</div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Down years: how broad is a global down?</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — global-down years since 1950: share of countries negative</span>
+      <span class="figbadge">GF3 · median 69% · bar was 75% — FAIL, recorded</span></div>
+    <div class="chart" id="figBreadth"></div>
+    <figcaption>When the pooled world return is negative, a median of about two-thirds of
+    countries fall with it — 1974, 2008 and 2022 near-unanimous; other downs patchier. The
+    licensed sentence, written into the seat: one cycle, most places, most of the time.</figcaption>
+  </figure>
+  <p>The seat that consumes all this, L9, is the ladder's fastest macro seat (episode half-life
+  3–9 months — episodes, not eras): a dollar/VIX/US-real-rate state that conditions the SIZE of
+  the India book, with Kilian-decomposed oil inside it and FPI flows as confirm-only (flows
+  follow returns — that finding has its own atlas row). What it refuses is the standard menu:
+  Fed forecasting, flow-momentum trading, decoupling narratives, and dollar-cycle dating.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Nine episodes, one growing transfer</h2></div>
+  <p>The case record walks nine global episodes from the 1994 Fed shock to the current regime,
+  and the through-line is the TRANSFER GROWING as India's capital account opened: barely a
+  ripple in 1994; partial insulation in 1997-98 behind an unconvertible rupee; the full arrival
+  in 2008 (rupee 39→52, equity −60%); the 2013 taper tantrum as the canonical anatomy; the
+  double cycle of 2018 (global QT × domestic IL&amp;FS); 2020's fastest-stop-and-fastest-
+  reflation; the 2022 record FPI exodus met, for once, with relative equity resilience. The
+  atlas names the May-2026 INR episode as L9's live test case, and the grade is honest: the
+  rupee hit a record ~96.8 on a tariff overhang, FPI outflows and an oil spike — while the
+  VIX/dollar/US-rate triad was QUIET going in. The classic global-risk signature did not cover
+  a tariff-and-oil-driven INR event; that coverage gap is now written into the seat's file and
+  routed to its oil conditioner and a registered re-grade. A seat with a named, dated, public
+  exam — including the parts it missed — is a seat that cannot quietly fail.</p>
+</section>
+
+<footer>
+  <p>Lesson 22 of the learn-while-we-build series · Ionic quant desk · Atlas 2.8, seat L9 ·
+  monograph: docs/cycles/22-global-cycle.md · trials GF1–GF3 in research/register/trial-ledger.md
+  (pre-registered, bars unmoved) · Figures computed by us from the vaulted JST real-returns
+  table and the IIMA India factor library.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"pre":0.28,"post":0.77,"india_vs_global":[[1994,0.127,-0.006],[1995,-0.446,0.083],[1996,-0.196,0.257],[1997,0.048,0.336],[1998,-0.138,0.188],[1999,0.843,0.338],[2000,-0.367,-0.022],[2001,-0.275,-0.169],[2002,0.12,-0.265],[2003,0.969,0.199],[2004,0.128,0.179],[2005,0.364,0.25],[2006,0.301,0.219],[2007,0.593,0.058],[2008,-0.617,-0.446],[2009,0.878,0.321],[2010,0.046,0.079],[2011,-0.31,-0.144],[2012,0.149,0.141],[2013,-0.007,0.256],[2014,0.243,0.067],[2015,-0.027,0.096]],"gf2_corr":0.57,"down_years":{"1957":0.56,"1962":0.81,"1965":0.62,"1966":0.69,"1970":0.62,"1974":1.0,"1976":0.69,"1977":0.62,"1987":0.69,"1990":0.94,"1992":0.56,"1994":0.56,"2000":0.62,"2001":0.94,"2002":1.0,"2008":1.0,"2011":1.0,"2018":0.94}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figScatter');
+  const rows=DATA.india_vs_global;
+  const W=820,H=340,m={t:16,r:16,b:44,l:56},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const xs=rows.map(r=>r[2]), ys=rows.map(r=>r[1]);
+  const lo=Math.min(...xs,...ys)-0.05, hi=Math.max(...xs,...ys)+0.05;
+  const X=v=>m.l+iw*(v-lo)/(hi-lo), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'India vs global factor scatter'});
+  [-0.4,-0.2,0,0.2,0.4,0.6].filter(v=>v>lo&&v<hi).forEach(v=>{
+    svg.appendChild(el('line',{x1:X(v),x2:X(v),y1:m.t,y2:m.t+ih,stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.3:1}));
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.3:1}));
+    const tx=el('text',{x:X(v),y:H-24,'text-anchor':'middle','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    tx.textContent=(v*100).toFixed(0)+'%'; svg.appendChild(tx);
+    const ty=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    ty.textContent=(v*100).toFixed(0)+'%'; svg.appendChild(ty);});
+  svg.appendChild(el('line',{x1:X(lo+0.02),y1:Y(lo+0.02),x2:X(hi-0.02),y2:Y(hi-0.02),stroke:'var(--rule)','stroke-width':1,'stroke-dasharray':'4 4'}));
+  rows.forEach(([y,ind,glob])=>{
+    svg.appendChild(el('circle',{cx:X(glob),cy:Y(ind),r:6,fill:'var(--s1)',opacity:0.85}));
+    if(['1998','2008','2009','2013','2014'].includes(String(y))){
+      const t=el('text',{x:X(glob)+8,y:Y(ind)-6,'font-size':'10',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=y; svg.appendChild(t);}});
+  const xl=el('text',{x:m.l+iw/2,y:H-4,'text-anchor':'middle','font-size':'11.5',fill:'var(--ink-3)'});
+  xl.textContent='global equal-weight real equity return (JST panel)'; svg.appendChild(xl);
+  const yl=el('text',{x:14,y:m.t+ih/2,'font-size':'11.5',fill:'var(--ink-3)',transform:`rotate(-90 14 ${m.t+ih/2})`,'text-anchor':'middle'});
+  yl.textContent='India market factor, annual'; svg.appendChild(yl);
+  mount.appendChild(svg);
+})();
+(function(){
+  const mount=document.getElementById('figBreadth');
+  const rows=Object.entries(DATA.down_years).sort((a,b)=>a[0]-b[0]);
+  const N=rows.length,W=820,H=280,m={t:16,r:16,b:44,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const X=i=>m.l+iw*(i+0.5)/N, Y=v=>m.t+ih*(1-v);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'down-year breadth'});
+  [0.25,0.5,0.75,1].forEach(v=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(v*100)+'%'; svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0.75),y2:Y(0.75),stroke:'var(--s2)','stroke-width':1.4,'stroke-dasharray':'6 4'}));
+  const bl=el('text',{x:W-m.r-4,y:Y(0.75)-6,'text-anchor':'end','font-size':'10.5',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+  bl.textContent='bar 75%'; svg.appendChild(bl);
+  rows.forEach(([y,s],i)=>{
+    svg.appendChild(el('rect',{x:X(i)-14,y:Y(s),width:28,height:Y(0)-Y(s),rx:3,
+      fill:s>=0.75?'var(--s3)':'var(--s1)'}));
+    const t=el('text',{x:X(i),y:H-26,'text-anchor':'middle','font-size':'10',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace',
+      transform:`rotate(-45 ${X(i)} ${H-26})`});
+    t.textContent=y; svg.appendChild(t);});
+  const xl=el('text',{x:m.l+iw/2,y:H-2,'text-anchor':'middle','font-size':'11.5',fill:'var(--ink-3)'});
+  xl.textContent='share of countries with negative real equity returns, in each global-down year'; svg.appendChild(xl);
+  mount.appendChild(svg);
+})();
+</script>

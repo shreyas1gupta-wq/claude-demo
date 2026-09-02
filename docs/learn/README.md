@@ -28,6 +28,7 @@ private artifacts; this index is the registry.
 | 19 | Five Clocks, Zero Survivors | docs/cycles/19-kitchin-juglar.md (Atlas 2.4 CONTEXT + 2.5 fold) | https://claude.ai/code/artifact/5ddb5680-0383-4fb1-a585-3d1844fa96cf | docs/learn/artifacts/lesson-19-kitchin-juglar.html |
 | 20 | The Sign That Flips | docs/cycles/20-mp-cycle.md (Atlas 2.6, seat L6) | https://claude.ai/code/artifact/869dc54b-aeb1-459a-a89f-6f9d5f6815da | docs/learn/artifacts/lesson-20-mp-cycle.html |
 | 21 | The Pass We Refused to Promote | docs/cycles/21-fiscal-cycle.md (Atlas 2.7, CONTEXT) | https://claude.ai/code/artifact/16b49872-d60a-4c4e-bffc-d6f1b2b2e909 | docs/learn/artifacts/lesson-21-fiscal-cycle.html |
+| 22 | The Cycle That Globalized | docs/cycles/22-global-cycle.md (Atlas 2.8, seat L9) | https://claude.ai/code/artifact/7fc07716-3568-46bf-b8fc-4516a55f9bc1 | docs/learn/artifacts/lesson-22-global-cycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
