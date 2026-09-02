@@ -903,3 +903,16 @@ data-phase substitute if flagged). Script: scripts/analyze_f1b_tau.py.
 | # | What | Result | Status |
 |---|---|---|---|
 | F1b | Corrected tau_half of the L2 composite | Kendall-corrected 3.18 months (naive 2.92), 90% CI [2.39, 5.72]m, near_unit_root FLAGGED (rho 0.99 daily — the CI itself degrades there per the estimator's own MC1 docs; Andrews at data phase). The CI OVERLAPS the registered [1,3]m band, so under tau_half_drift_policy's hysteresis the config value STANDS — with a LENGTHENING watch noted (the estimate sits at/above the band top; the DD leg's mechanical persistence is a suspected contributor, a construction note for full F1) | measured; config stands, drift watch set |
+
+## Entry F2-WF (2026-09-02) — fold-consistency of the F2-index shortlist (M4 harness's first run)
+PRE-REGISTERED before running. Script: scripts/analyze_f2_walkforward.py. The two ADOPTABLE
+shortlist cells from F2-index ({trig 0.80, 1-of-2} x {calendar, decay}) re-evaluated over
+4 disjoint eras (M4 harness: n_folds=4, min_train=504bd, embargo=63bd ~ the F1b tau_half).
+The rule is parameter-free and expanding, so folds test CONSISTENCY: was the cell's value
+one episode's gift? BARS (per cell): keeps its shortlist seat if per-era drag <= 2.0pp/yr
+in >= 3 of 4 eras; deep-episode DD improvement reported per era containing one (only 2
+exist — no bar on that leg, stated). PhaseD is NOT re-run (display-only per F7a).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F2-WF | Shortlist fold-consistency | (pending) | pre-registered |
