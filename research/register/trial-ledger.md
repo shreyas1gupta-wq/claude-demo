@@ -756,3 +756,29 @@ Report (no bars): the 2020 COVID print; the series' full path for the monitor's 
 | # | What | Result | Status |
 |---|---|---|---|
 | CR-D2a | Comomentum calibration (survivor panel) | P1 PASS (lag-1 AC 0.65 — a real slow state). P2 **FAIL**: 2017-12..2018-06 prints 0.071 vs median 0.090, and 2017 is the sample's LOWEST year (0.041) — the pre-smallcap-unwind period shows NO Lou-Polk-style momentum crowding. Dissection (both routed to CR-D2 full): (a) India's 2018 unwind may not have been factor-crowding at all — the THIRD failure of the imported crowding narrative on India data (after CR1a skew, CR2 2025); (b) the documented deviation binds — the 2020 peak (Jun-2020, 0.162, highest year 0.120) tracks the market-wide stress-correlation regime, so market-adjustment without full residualization contaminates the measure. Bars unmoved; machinery now exists | P1 pass / P2 fail, design-informing |
+
+## Entry F2-index (2026-09-02) — the BOUNDED partial run of F2 on the vaulted index
+PRE-REGISTERED before running. Script: scripts/analyze_f2_index.py. Data: vaulted NIFTY 50
+daily (state valid from ~Sep-2008 after the 252d percentile warm-up; the GFC episode is
+only PARTIALLY testable and is flagged as such). This is F2's grid run on an INDEX-PROXY
+book (long-only, exposure 1.0, no leverage/hedge/options) with the two available legs —
+it can DISQUALIFY grid cells and shortlist survivors; it CANNOT arm the R4 mapping
+(that stays with full F2: three legs, book-level costs, M4 walk-forward). Stated
+adaptations, all documented: confirm axis {1-of-2, 2-of-2} (the third leg is data-gated);
+triggers are quantile rules on the composite's OWN expanding percentile (risk.yaml
+bucket_boundaries: no fixed numeric thresholds); action = cut exposure to 0.5 (R4 leverage
+midpoint [0.4,0.6]); costs 28bp per unit turnover (cash-delivery midpoint).
+GRID (verbatim from F2 where applicable): trigger pctile {0.8, 0.9, 0.95} × confirm
+{1-of-2, 2-of-2} × re-entry {phase-D (MEASUREMENT ONLY — F7 gates adoption), pctile-decay
+(state pctile < 0.5, the below-median normalization rule), calendar (42bd then 2 tranches
+21bd apart, state-gated — config cash_call_reentry post_R4_book, tranches=2)}. 18 cells.
+DEEP-EPISODE SET pre-named: episodes where buy-hold episode maxDD >= 20% in-window —
+expected {GFC core, EU-2011, COVID}; the set is determined by the buy-hold print, not
+chosen after seeing rule results.
+BARS per cell: SUPPORTIVE if mean deep-episode maxDD improvement >= 5pp AND full-period
+return drag vs buy-hold <= 2.0pp/yr (DESIGN risk-drag outer bound, aggressive). Report the
+whole grid (F6's spirit: never a single cell); false-fire counts included.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F2-index | 18-cell de-risk grid on real index | (pending) | pre-registered, bounded |
