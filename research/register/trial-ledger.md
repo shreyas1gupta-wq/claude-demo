@@ -332,3 +332,25 @@ month (the campaign window).
 |---|---|---|---|
 | FP1a | Pre-election direction (folk claim) | window mean +3.99%/m vs +0.72 base, 7/8 positive — **PASS as registered**, then dissected: window contains the result month (drift/surprise conflation), 2009 carries the mean (ex-2009 ≈ +1.9%/m), n=8 association only. Routed to heuristics lane as HL-7 (teach-only/paper-trade); L5 unchanged | pass, deflated honestly |
 | FP1b | Window absolute-move profile | median |monthly| 5.4% in windows vs 4.2% all months; result-month median 6.5%, range −17.7..+33.6 — L5's vol-scheduling rationale measured; direction-is-surprise re-proven | measured, prior set |
+
+## Entries GF1–GF3 (2026-09-02) — Atlas 2.8 global financial cycle (seat L9)
+Script: scripts/analyze_global_cycle.py. PRE-REGISTERED before running. Data: vaulted
+jst_real_returns.csv (16 countries, annual real equity) + iima_monthly_factors.csv (India MF).
+
+Pre-declared constructions and bars:
+- GF1 (the factor's RISE): median pairwise corr of annual real equity returns across the JST
+  panel, pre-1990 (1900-1989) vs post-1990 (1990-2015). Bar: post-1990 median exceeds
+  pre-1990 median by ≥ 0.10 (the globalization-of-the-cycle claim).
+- GF2 (India's loading): annual India market-factor return (compounded iima MF, 1994-2015)
+  vs the equal-weight JST-panel mean real return, same years (n=22, matched annual legs).
+  Bar: corr ≥ 0.30 ("India is materially inside the global cycle" — the seat's transfer
+  premise).
+- GF3 (breadth of global downs): in years where the pooled JST mean real return < 0
+  (post-1950), the median share of countries individually negative. Bar: ≥ 75% ("one cycle,
+  everywhere" in its crude testable form).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| GF1 | Pairwise co-movement, pre vs post 1990 | +0.28 → +0.77 — **PASS**, the project's cleanest regime-change print; standing caveat born: pre-1990 analogue evidence discounts on transfer | pass, strong |
+| GF2 | India's loading on the global factor | corr +0.57 (annual, 1994-2015, n=22) — **PASS**; the L9 transfer premise measured | pass |
+| GF3 | Breadth of global down-years | median 69% of countries negative vs 75% bar — **FAIL**: 'one cycle everywhere' is too strong; 'most places, most of the time' is the licensed sentence; partial insulation real but never assumable ex ante | fail, refining |
