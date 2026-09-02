@@ -391,3 +391,19 @@ dollar, global IP — a proxy licenses state-enrichment candidacy, never a stand
 |---|---|---|---|
 | CI1a | Metals-vs-ags variance shift, China era | std ratio **2.19x** (bar 1.5x) — **PASS**: something structural entered metals' relative dynamics ~2000, consistent with the China channel | pass |
 | CI1b | Named-pulse sign check (n=2) | 2/2 positive (+0.34, +0.16) — **PASS**, confounds named (global reflation/dollar in w1; supply-side reform in w2); licenses L9-enrichment CANDIDACY only, never a standalone signal; H54 graduation waits on real TSF | pass, bounded |
+
+## Entry OL1 (2026-09-02) — Atlas 2.12 oil/energy fold: the shock-type asymmetry
+Script: scripts/analyze_oil_cycle.py. PRE-REGISTERED before running. The Kilian premise in its
+crudest vault-computable form: an oil-price rise means DIFFERENT things for India depending on
+whether it rides global demand (partly self-hedging) or a supply shock (unambiguous hit).
+- Construction: annual Brent/WTI-spliced real oil return (EIA monthlies annualized; pre-1987
+  from Jacks Petroleum); world-demand proxy = pooled JST mean real equity return sign
+  (positive = demand-flavored year, negative = supply-flavored year, stated as a CRUDE proxy);
+  India leg = annual iima MF return, 1994-2015.
+- OL1: among oil-UP years (annual real oil return > +10%), mean India return in
+  demand-flavored years MINUS mean in supply-flavored years. Bar: difference ≥ +10pp
+  (demand-flavored oil-up years materially less damaging). n will be small — stated.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OL1 | Oil-up asymmetry by shock flavor | demand-flavored +38.1% vs supply-flavored −43.1% (n=11: 8/3) — **PASS by 8x, capped on dissection**: the flavor proxy IS the global-equity sign, so the print is ~GF2's loading in an oil costume (+ the 2008 annual-averaging artifact); licenses the decomposition COMMITMENT and the briefing table, not a measured oil-specific asymmetry — that waits for the real Kilian index | pass, capped |
