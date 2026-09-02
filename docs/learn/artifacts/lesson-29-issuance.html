@@ -1,0 +1,230 @@
+<title>The Signal That Shouldn't Decay</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 29 · atlas 3.2 · seat L7 · Band 3</p>
+  <h1>The Signal That Shouldn't Decay</h1>
+  <p class="stand">Nearly every edge in this project carries the same epitaph-in-waiting:
+  alpha decays. The issuance cycle is the register's rare exception by construction — issuers
+  sell paper when it's expensive because it pays them to, and nobody can arbitrage a promoter's
+  decision not to float. India's primary market has top-ticked the secondary market four times
+  in thirty years, a regulator has confirmed the froth institutionally, and the seat now has
+  its machinery: two legs, volume and reception, both required for the froth signature.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/29-issuance.md</span>
+    <span><b>Seat</b> L7 · Tier B · valuation_sentiment block · froth ⇒ shrink</span>
+    <span><b>Code</b> quant/ladder/issuance_sentiment.py · suite at 73 tests</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>An incentive, not an information gap</h2></div>
+  <p>Baker and Wurgler's finding — the share of equity in total new issues predicts market
+  returns — is usually filed under anomalies. The desk files it under INCENTIVES: a promoter
+  deciding when to sell a slice of their company is the cleanest insider trade in finance, it
+  is perfectly legal, and there is no mechanism by which arbitrageurs can make issuers stop
+  timing their own sales. That is why L7's decay prior differs from every other seat's: the
+  haircut applies to the magnitude, never the existence. The honest counters ride along —
+  pseudo-market-timing (heavy issuance mechanically clusters after run-ups) and the
+  post-publication record of the US predictor — which is why the seat is a reduce-only
+  confirm, not a timing engine.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — the planted economy: issuers chase valuation into froth; the two-leg state reads it</span>
+      <span class="figbadge">SYNTHETIC · seed 0 · froth-window state 0.90 vs winter 0.21</span></div>
+    <div class="chart" id="figFix"></div>
+    <figcaption>Issuance volume follows lagged valuation (the filing delay), listing pops ride
+    the same wave, and the winter plants no-listing months where the reception leg goes dark —
+    the state degrades to its volume leg with the leg-count exposed, the same honesty
+    machinery as every seat since L12.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Planted chase-corr</div><div class="v">+0.82</div><div class="d">volume follows lagged valuation</div></div>
+    <div class="stat"><div class="k">Froth vs winter state</div><div class="v">0.90 / 0.21</div><div class="d">the two-leg separation, tested</div></div>
+    <div class="stat"><div class="k">Both legs required</div><div class="v">yes</div><div class="d">volume alone = capital formation; pops alone = scarcity</div></div>
+    <div class="stat"><div class="k">Consumption</div><div class="v">reduce-only</div><div class="d">valuation confirm + special-sits shrink; no short path</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Four top-ticks and a regulator</h2></div>
+  <p>The case record walks India's waves: the 1992-96 free-pricing flood that ended in
+  vanishing companies; the 2004-08 great wave crowned by a 73-times-subscribed mega-IPO
+  listing within days of the all-time top; the 2021 startup wave whose record raise fell 27%
+  on listing day; and the 2023-25 SME frenzy that ran until SEBI stepped in — the ladder cites
+  that intervention as the institutional confirmation, because a regulator acting on primary-
+  market froth IS a froth reading from the one participant with the full book. Each wave's
+  aftermath asks the Baker-Wurgler question — did heavy issuance precede weak returns? — and
+  the record's answer, wave by wave, is the case chapter's scorecard. India adds a reception
+  variable most markets lack: subscription books published in real time, by investor class.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>What the seat refuses</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">no shorts</span><p>Froth is a SIZING state (shrink the special-sits sleeve, confirm the valuation read with L8) — never a short signal. Frothy markets outlast solvency; the interface has no short path by construction.</p></div>
+    <div class="trow"><span class="yr">no SME pollution</span><p>SME-board microstructure (tiny floats, circuit games) is kept as a satellite series — its 2023-25 statistics would have blinded a merged state.</p></div>
+    <div class="trow"><span class="yr">no vehicle blindness</span><p>The next wave may arrive through vehicles that don't exist yet (REITs did; SME boards did) — the calendar scraper's category audit is annual, because the fragile node moves here too.</p></div>
+    <div class="trow"><span class="yr">the gated tests</span><p>IS1 (the India Baker-Wurgler test, prior stated in the ledger) and IS2 (the ladder's own named validation episodes: 2018's freeze, 2023-24's frenzy) run when the primary-market vault lands — bars filled at the data, per the two-pass rule.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 29 of the learn-while-we-build series · Ionic quant desk · Atlas 3.2, seat L7 ·
+  monograph: docs/cycles/29-issuance.md · module: quant/ladder/issuance_sentiment.py ·
+  designs IS1/IS2 in research/register/trial-ledger.md · Fig 1 computed from the repo's
+  planted-truth fixture, badged SYNTHETIC with its seed.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"valuation":[1.0,1.003,1.0,1.013,1.014,1.002,1.009,1.035,1.052,1.035,1.007,0.994,0.995,0.949,0.948,0.926,0.916,0.91,0.909,0.923,0.948,0.949,0.979,0.967,0.976,0.996,0.998,0.983,0.966,0.959,0.965,0.947,0.946,0.946,0.96,0.967,0.976,0.964,0.964,0.982,1.013,0.987,1.018,1.044,1.057,1.059,1.049,1.075,1.11,1.139,1.157,1.155,1.121,1.114,1.12,1.087,1.09,1.093,1.102,1.072,1.054,1.042,1.016,1.05,1.037,1.042,1.034,1.064,1.086,1.094,1.044,1.042,1.053,1.07,1.054,1.087,1.055,1.039,1.055,1.053,1.09,1.088,1.07,1.058,1.033,1.006,1.018,1.028,1.053,1.034,1.066,1.056,1.084,1.071,1.052,1.054,1.071,1.07,1.054,1.024,0.995,1.005,1.024,1.02,0.997,1.015,0.988,0.975,0.989,0.944,0.955,0.946,0.952,0.953,0.96,0.976,0.963,0.993,1.008,1.025,1.046,1.059,1.073,1.07,1.037,1.032,1.015,0.985,0.992,0.981,0.961,0.943,0.951,0.962,0.99,0.991,1.012,1.039,1.06,1.009,1.033,1.038,1.044,1.049,1.054,1.057,1.046,1.005,1.003,0.987,1.009,1.003,1.004,0.987,0.978,0.979,0.95,0.959,0.96,0.938,0.894,0.911,0.91,0.905,0.906,0.948,0.95,0.955,0.928,0.965,0.985,1.008,1.008,1.026,1.032,1.042,1.037,1.005,1.025,0.985,0.981,0.978,0.959,0.973,0.971,0.964,0.977,0.968,0.998,1.005,0.995,0.957,0.933,0.959,0.96,0.957,0.993,0.967,0.958,0.951,1.001,1.024,1.046,1.047,1.095,1.142,1.16,1.189,1.188,1.203,1.255,1.278,1.344,1.343,1.37,1.38,1.405,1.416,1.416,1.41,1.482,1.488,1.454,1.45,1.473,1.47,1.505,1.531,1.532,1.527,1.511,1.502,1.479,1.51,1.547,1.525,1.506,1.476,1.465,1.411,1.399,1.437,1.44,1.467,1.465,1.508,1.518,1.515,1.571,1.566,1.544,1.551,1.554,1.578,1.561,1.579,1.597,1.584,1.588,1.572,1.621,1.606,1.596,1.575,1.57,1.571,1.589,1.577,1.575,1.548,1.534,1.593,1.615,1.598,1.572,1.554,1.556,1.559,1.547,1.524,1.557,1.569,1.563,1.561,1.553,1.497,1.505,1.49,1.476,1.471,1.493,1.476,1.455,1.477,1.499,1.486,1.504,1.504,1.516,1.496,1.464,1.443,1.411,1.379,1.263,1.235,1.202,1.169,1.128,1.104,1.088,1.059,1.028,1.033,0.991,0.994,0.98,0.947,0.927,0.895,0.896,0.892,0.869,0.837,0.835,0.846,0.835,0.835,0.819,0.814,0.801,0.801,0.764,0.773,0.764,0.768,0.757,0.76,0.735,0.757,0.719,0.697,0.702,0.731,0.735,0.728,0.698,0.694,0.694,0.728,0.739,0.706,0.746,0.735,0.716,0.744,0.741,0.731,0.733,0.748,0.765,0.734,0.772,0.786,0.774,0.753,0.73,0.731,0.716,0.7,0.716,0.722,0.713,0.727,0.753,0.728,0.714,0.732,0.744,0.746,0.785,0.776,0.76,0.757,0.774,0.772,0.776,0.77,0.771,0.765,0.786,0.815,0.816,0.823,0.822,0.843,0.855,0.895,0.88,0.894,0.909,0.908,0.925,0.901,0.949,0.925,0.948,0.929,0.956,0.951,0.957,0.961,0.985,0.98,0.921,0.911,0.92,0.916,0.936,0.96,0.96,0.933,0.964,0.988,0.983,1.026,1.017,0.994,0.991,1.013,0.993,1.033,1.013,1.031,1.04,1.035,1.054,1.021,1.047,1.043,1.029,1.043,1.061,1.073,1.109,1.124,1.142,1.123,1.117,1.122,1.114,1.113,1.115,1.125,1.115,1.101,1.079,1.056,1.076,1.07,1.082,1.051,1.009,0.987,1.011,1.032,1.037,1.018,1.015,1.008,1.0,0.95,0.936,0.936,0.97,0.975,1.005,0.997,0.992,0.914],"volume":[0.00088,0.00166,0.00066,0.0,0.00039,0.00061,0.00068,0.00024,0.0,0.00101,0.00085,0.00101,0.00037,0.00092,0.00089,0.00015,0.00067,0.00032,0.0,0.00143,0.00018,0.0,9e-05,0.0,0.00057,0.00126,0.00074,0.00156,0.00038,0.00081,0.0,0.0007,0.00063,0.0,0.00054,0.00046,8e-05,0.00063,0.00055,0.0,0.00029,0.00023,0.00136,0.00081,0.00097,0.00026,0.00064,0.00017,0.00159,0.00062,0.00038,0.00015,0.00125,0.00068,0.00148,0.00161,0.00075,0.0003,0.00107,4e-05,0.00099,0.00015,0.00237,0.00134,0.00129,0.00051,0.00065,0.0004,0.00028,5e-05,0.00167,0.00091,0.00149,0.0,0.0,0.00113,0.00083,0.0011,0.00136,0.00104,0.00078,0.00094,0.00048,0.0,0.0002,0.00182,0.00056,0.00116,0.00052,0.00021,0.00103,0.00117,0.0,0.00141,0.00156,0.00102,0.00102,0.00015,0.00165,0.00088,0.0011,0.00028,0.00091,0.00033,0.00079,0.00095,0.0,0.00166,0.00038,0.00128,0.0,0.00078,0.00037,0.00067,4e-05,0.00056,0.00018,0.0,0.0,0.001,0.001,0.00078,0.00047,0.00049,0.0013,0.00026,0.00048,0.00091,0.00058,0.00039,2e-05,0.00127,0.0,0.00012,0.0,0.00013,0.00072,0.0,0.00132,0.00199,0.00114,0.00144,0.00057,0.00045,0.00061,0.00107,0.00099,0.0014,8e-05,0.00116,0.00227,0.0,0.00146,0.00032,0.00028,0.00023,0.00123,0.00069,0.0,0.0,0.00046,0.00082,0.00069,0.0,0.0002,0.0005,0.00034,0.0,0.0,0.0,0.00051,0.0,0.0,4e-05,0.00053,0.0003,0.00116,0.0007,0.00101,0.00076,0.00076,0.00093,0.00072,0.00102,0.00104,0.00048,0.00036,0.00071,0.00088,0.00048,0.00155,0.0,0.00065,0.00068,0.00117,0.00015,0.00012,0.0,0.00019,0.00028,0.00025,0.00079,0.00056,0.00066,0.00049,0.0008,0.00069,0.00021,0.00057,0.00083,0.00124,0.00216,0.0003,0.00077,0.00202,0.00238,0.00103,0.00214,0.00195,0.00231,0.00232,0.00154,0.00244,0.00224,0.00242,0.002,0.00159,0.00389,0.00186,0.00155,0.00293,0.00211,0.00342,0.00229,0.00268,0.00229,0.00224,0.00249,0.00324,0.00253,0.00297,0.0023,0.00224,0.00244,0.00203,0.0019,0.00183,0.00201,0.00216,0.00268,0.00399,0.00182,0.00283,0.00217,0.00232,0.00261,0.00177,0.00282,0.00397,0.00375,0.00285,0.00312,0.00311,0.00266,0.0032,0.003,0.00296,0.00251,0.00248,0.00311,0.00378,0.00321,0.0027,0.00376,0.00268,0.00208,0.00287,0.00308,0.00234,0.00292,0.00376,0.00232,0.00325,0.00159,0.00283,0.00309,0.00458,0.00227,0.00349,0.00204,0.0007,0.00304,0.00153,0.00164,0.00235,0.00228,0.00245,0.00256,0.00286,0.00124,0.00184,0.00221,0.00289,0.00238,0.00341,0.00408,0.0028,0.00221,0.00178,0.00173,0.00239,0.0014,0.00049,0.00095,0.00167,0.00124,0.00073,2e-05,0.00105,0.0001,0.00035,0.0,4e-05,0.00077,0.00074,0.00048,0.0,0.0,0.00037,0.00063,0.00118,0.00128,0.0,0.00098,0.0,0.0,0.0003,0.0012,0.0,0.00064,0.0,0.00101,0.0,0.0,0.0,0.00036,9e-05,0.00053,0.0,0.00035,0.00087,0.0,0.0,0.00067,0.0,0.0,0.0,0.00082,0.00015,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.00057,0.0,0.00017,0.00029,0.0006,0.00155,0.0,0.00017,0.00017,0.0,1e-05,0.00048,0.0001,0.00012,0.00027,0.00092,0.00117,0.00039,0.0,0.0002,0.0,0.0,0.00048,0.00011,0.0,0.0,0.00093,0.001,0.00043,0.0,0.00019,0.00083,0.00108,0.00046,0.00121,0.00045,0.00097,0.0,8e-05,0.00082,0.00157,0.0,0.00021,0.00041,0.00056,0.00019,0.0,0.00131,0.00011,0.00165,0.00105,0.00167,0.00023,0.0011,0.0,0.0,0.0,0.0006,0.00131,0.00068,0.0,0.0,0.00048,0.00194,0.00077,0.00089,0.00078,0.00089,0.00027,0.00059,0.00083,0.0,0.00172,0.0004,0.0009,0.00144,0.00088,0.0001,0.00091,0.00124,0.0,0.00026,0.00124,0.00077,5e-05,0.00089,0.00171,0.00056,0.00061,0.00084,0.00114,0.00128,0.00093,0.00085,0.00073,0.0005,0.00109,0.00077,0.00142,0.0,0.00106,0.00096,0.00013,0.0,0.00074,0.00044,0.00031,0.00046,0.0,0.00088,0.00066,0.00028,0.00138,0.0],"state":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.542,0.365,0.316,0.397,0.388,0.244,0.393,0.663,0.83,0.856,0.533,0.723,0.26,0.755,0.62,0.676,0.404,0.708,0.481,0.609,0.536,0.614,0.543,0.534,0.108,0.459,0.331,0.762,0.711,0.477,0.485,0.485,0.426,0.138,0.457,0.972,0.757,0.582,0.27,0.207,0.467,0.792,0.731,0.911,0.831,0.5,0.53,0.355,0.274,0.341,0.593,0.667,0.79,0.579,0.228,0.538,0.902,0.156,0.691,0.547,0.609,0.696,0.168,0.783,0.545,0.406,0.554,0.694,0.606,0.567,0.415,0.047,0.894,0.307,0.591,0.405,0.281,0.398,0.496,0.243,0.371,0.513,0.123,0.311,0.683,0.682,0.643,0.659,0.246,0.912,0.345,0.339,0.352,0.248,0.204,0.069,0.712,0.105,0.183,0.341,0.379,0.734,0.478,0.806,0.743,0.511,0.722,0.724,0.444,0.362,0.774,0.354,0.588,0.396,0.463,0.533,0.046,0.641,0.354,0.235,0.455,0.465,0.63,0.119,0.025,0.286,0.522,0.439,0.204,0.212,0.56,0.635,0.31,0.26,0.4,0.629,0.131,0.124,0.322,0.486,0.449,0.506,0.506,0.603,0.369,0.373,0.547,0.366,0.72,0.878,0.621,0.455,0.556,0.492,0.526,0.539,0.125,0.523,0.686,0.626,0.245,0.274,0.131,0.309,0.488,0.276,0.525,0.628,0.588,0.641,0.607,0.461,0.204,0.739,0.812,0.803,0.981,0.653,0.776,0.958,0.993,0.853,0.952,0.979,0.934,0.977,0.903,0.987,0.922,0.944,0.96,0.949,0.993,0.952,0.924,0.991,0.963,0.994,0.936,0.747,0.956,0.876,0.943,0.925,0.946,0.66,0.959,0.813,0.965,0.861,0.909,0.794,0.921,0.94,0.984,0.992,0.71,0.972,0.941,0.957,0.973,0.885,0.915,0.958,0.946,0.981,0.975,0.913,0.911,0.94,0.953,0.955,0.892,0.95,0.97,0.897,0.917,0.954,0.934,0.953,0.882,0.89,0.96,0.903,0.846,0.98,0.862,0.924,0.856,0.956,0.921,0.929,0.858,0.843,0.84,0.577,0.865,0.84,0.762,0.861,0.831,0.864,0.681,0.803,0.793,0.801,0.836,0.876,0.872,0.964,0.957,0.886,0.716,0.709,0.643,0.764,0.631,0.291,0.489,0.527,0.476,0.473,0.094,0.338,0.233,0.188,0.274,0.108,0.453,0.245,0.284,0.0,0.0,0.403,0.423,0.541,0.623,0.0,0.473,0.0,0.276,0.226,0.607,0.0,0.374,0.0,0.369,0.0,0.344,0.0,0.254,0.144,0.254,0.0,0.257,0.435,0.298,0.0,0.293,0.0,0.0,0.136,0.297,0.346,0.268,0.0,0.0,0.0,0.0,0.224,0.0,0.376,0.0,0.206,0.192,0.394,0.712,0.0,0.211,0.293,0.098,0.258,0.339,0.182,0.192,0.415,0.525,0.672,0.366,0.198,0.124,0.293,0.326,0.303,0.376,0.384,0.05,0.555,0.593,0.184,0.186,0.122,0.632,0.355,0.175,0.338,0.483,0.495,0.143,0.298,0.517,0.621,0.361,0.322,0.172,0.402,0.255,0.165,0.482,0.174,0.4,0.491,0.725,0.147,0.672,0.27,0.054,0.297,0.444,0.608,0.531,0.166,0.047,0.494,0.444,0.41,0.56,0.311,0.597,0.544,0.315,0.441,0.178,0.806,0.494,0.509,0.681,0.362,0.313,0.613,0.72,0.379,0.521,0.687,0.56,0.468,0.292,0.813,0.598,0.231,0.572,0.567,0.587,0.429,0.439,0.321,0.405,0.483,0.488,0.64,0.12,0.59,0.517,0.447,0.309,0.263,0.505,0.173,0.228,0.219,0.365,0.333,0.321,0.599,0.236],"froth":[200,300],"winter":[300,380]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figFix');
+  const val=DATA.valuation, st=DATA.state, N=val.length;
+  const W=820,H=320,m={t:16,r:56,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=0.55,hi=Math.max(...val)*1.06;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo)), Y2=v=>m.t+ih*(1-v);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'issuance fixture'});
+  svg.appendChild(el('rect',{x:X(DATA.froth[0]),y:m.t,width:X(DATA.froth[1])-X(DATA.froth[0]),height:ih,fill:'var(--panel)'}));
+  svg.appendChild(el('rect',{x:X(DATA.winter[0]),y:m.t,width:X(DATA.winter[1])-X(DATA.winter[0]),height:ih,fill:'var(--warn-bg)'}));
+  const p1=val.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join('');
+  svg.appendChild(el('path',{d:p1,fill:'none',stroke:'var(--s1)','stroke-width':2}));
+  let p2='';
+  st.forEach((v,i)=>{ if(v==null) return; p2+=(p2?'L':'M')+X(i).toFixed(1)+' '+Y2(v).toFixed(1)+' ';});
+  svg.appendChild(el('path',{d:p2,fill:'none',stroke:'var(--s2)','stroke-width':1.6,'stroke-dasharray':'5 3'}));
+  const l1=el('text',{x:m.l,y:12,'font-size':'11',fill:'var(--s1)','font-family':'IBM Plex Mono,monospace'});
+  l1.textContent='— valuation (left)'; svg.appendChild(l1);
+  const l2=el('text',{x:m.l+180,y:12,'font-size':'11',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+  l2.textContent='- - two-leg froth state (right)'; svg.appendChild(l2);
+  const b1=el('text',{x:(X(DATA.froth[0])+X(DATA.froth[1]))/2,y:H-8,'text-anchor':'middle','font-size':'10.5',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+  b1.textContent='froth (issuance floods)'; svg.appendChild(b1);
+  const b2=el('text',{x:(X(DATA.winter[0])+X(DATA.winter[1]))/2,y:H-8,'text-anchor':'middle','font-size':'10.5',fill:'var(--warn-ink)','font-family':'IBM Plex Mono,monospace'});
+  b2.textContent='winter (no listings)'; svg.appendChild(b2);
+  mount.appendChild(svg);
+})();
+</script>

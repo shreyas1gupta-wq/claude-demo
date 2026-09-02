@@ -35,6 +35,7 @@ private artifacts; this index is the registry.
 | 26 | The Seat Defined by What It Refuses | docs/cycles/26-fpi-positioning.md (Atlas 2.13, seat L14) | https://claude.ai/code/artifact/617a06c3-bcf9-4e60-a471-c3d062c5a6f0 | docs/learn/artifacts/lesson-26-fpi-positioning.html |
 | 27 | The Only Real Oscillator | docs/cycles/27-enso.md (Atlas 2.14, candidate H55 — the control group) | https://claude.ai/code/artifact/0aa2a6a0-6f72-45bc-9741-18ca77a22c58 | docs/learn/artifacts/lesson-27-enso.html |
 | 28 | What Goes Up Rises Slower | docs/cycles/28-profit-share.md (Atlas 2.15, candidate H56 — Band 2 finale) | https://claude.ai/code/artifact/57d469f7-87eb-40e3-957f-ab838910a4f4 | docs/learn/artifacts/lesson-28-profit-share.html |
+| 29 | The Signal That Shouldn't Decay | docs/cycles/29-issuance.md (Atlas 3.2, seat L7) | https://claude.ai/code/artifact/bb0a36ce-65ea-4991-a62b-18360b3e85f3 | docs/learn/artifacts/lesson-29-issuance.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
