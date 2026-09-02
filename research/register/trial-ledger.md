@@ -497,3 +497,22 @@ factor exits synchronously — crash asymmetry.
 | CR1a | Skewness ordering (WML most negative) | WML +0.05, SMB +0.04, HML +0.60 — **FAIL**: the US negative-momentum-skew import dies on India's library; danger is regime-local (consistent with 03's CONDITIONAL crash finding); crash_guard's conditional design vindicated | fail, import-refining |
 | CR1b | Worst-month concentration | WML worst −4.1σ vs SMB −2.9σ / HML −3.4σ — **PASS**: synchronized-exit tail depth confirmed | pass |
 | CR2 | The mid-2025 unwind in India WML | ZERO 2025 months ≤ −2σ — the named episode is invisible at monthly academic-factor granularity; consequence: the 3.4 monitor CANNOT be monthly factor returns — AUM/comomentum legs are structural, not decorative | measured, design-setting |
+
+## Entries RT1–RT2 (2026-09-02) — Atlas 3.6 retail wave (candidate H57): DATA-GATED designs
+No trial RUNS here — no participation data is vaulted (NSDL/CDSL demat counts, SEBI retail
+F&O shares are runsheet pulls). Designs registered with acceptance shapes:
+- RT1 (the cohort-wave state): new-demat-account growth-rate + retail share of index-option
+  turnover, expanding percentiles → the H57 sub-input to L7. Acceptance at data-landing
+  (two-pass); the PRIOR stated now: the 2021-24 window must print top-decile states and the
+  post-curb 2025 window must print falling states (shape check against the public record)
+  or the construction is wrong.
+- RT2 (the VRP-compression watch): India VIX minus subsequent realized vol (the crude VRP)
+  regressed on the retail-F&O-share percentile — direction prior: high retail share
+  compresses VRP; bars at registration when both legs are vaulted.
+Also noted for the 3.5 record: NO RV-design exists — a REJECT FOR DATA registers no designs;
+its revisit trigger (a free consensus-estimate source appearing) lives in the entry's Part H.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| RT1 | Cohort-wave state (shape prior stated) | (awaits participation vault) | registered design |
+| RT2 | Retail share → VRP compression | (awaits vault + India VIX archive) | registered design |
