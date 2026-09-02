@@ -595,3 +595,22 @@ now (quant/ladder/exclusion_calendar.py); every GRADE waits on daily data:
 | H58-D2 | Results-gap dodge count | (awaits results calendar vault) | registered design |
 | H58-D3 | Expiry-day noise measurement | (awaits bhavcopy vault) | registered design |
 | RC1 | Reconstitution add/drop event study | (awaits index lists vault) | registered design |
+
+## Entry GS1 (2026-09-02) — Atlas 4.9: gold festival-seasonality demonstration
+PRE-REGISTERED before running. Script: scripts/analyze_gold_seasonality.py. Data: vaulted
+gold monthly 1833-2026; TEST WINDOW = the float era only (1972-01 onward — Bretton Woods
+convertibility suspended Aug-1971; the fixed-parity era has no monthly price process to
+test). Log returns by calendar month.
+DESIGN (a CW3-style demonstration; the interpretation rule pre-stated): D06 says India is a
+price TAKER — festival demand (Akshaya Tritiya ~Apr-May, Dhanteras ~Oct-Nov, weddings) lives
+in LOCAL premia, not the world price. Kruskal-Wallis of monthly log returns across 12
+months. p >= 0.05 → consistent: no world-price festival structure, the 4.9 CONTEXT verdict
+confirmed. p < 0.05 → the CONTEXT verdict STILL stands (12-way comparison; and any single
+strong month would need a mechanism by which Indian festivals move the WORLD price — none
+is on offer at India's ~25% share of consumer demand and ~0% of price formation venue).
+Also report (descriptive, no bar): September's median — the folk "gold's strong month"
+claim, logged for the lesson either way.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| GS1 | Gold month-of-year omnibus (float era) | H=10.87, p=0.454 (n=654, 1972-2026) — no world-price festival structure; the festival months are the WORST ranks (Apr 12/12, May 11/12, Nov 10/12) and folk-September is 6/12 — D06 price-taker verdict demonstrated, CONTEXT confirmed | measured, context-confirmed |
