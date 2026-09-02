@@ -292,3 +292,26 @@ process) and the IMF all-commodity index (1980-02..2017-06). Two cells, both dec
 |---|---|---|---|
 | KJ1a | Gold monthly, floating era | median 21m, **0%** of 28 spacings in [30,50]m — **FAIL**; spacings truncate at the 18m registration floor (no structure above resolution — a 21m clock may NOT be read from this) | fail, floor-artifact noted |
 | KJ1b | IMF all-commodity index | median 23m, **0%** of 9 in-window — **FAIL**, same shape | fail |
+
+## Entries MP1–MP3 (2026-09-02) — Atlas 2.6 monetary-policy cycle (seat L6), JST analogues
+Script: scripts/analyze_mp_cycle.py. PRE-REGISTERED before running. Per the BC2 STANDING
+WARNING these lead-lag constructions use MATCHED transformations on both legs (simple 1y
+changes, no differential smoothing) and a declared magnitude floor.
+
+Pre-declared constructions and bars:
+- Legs: Δstir_t (1y change in the JST short rate) and g_credit_t (1y growth of REAL loans,
+  tloans/cpi). Annual, per country, countries with ≥50 overlapping years.
+- MP1 (does the policy rate LEAD credit, negatively?): per country, the MOST NEGATIVE cross-
+  correlation over lags −3..+3 (positive lag = rate leads credit). Countries count toward the
+  claim only if that minimum is ≤ −0.10 (the floor). Bar: ≥60% of qualifying countries place
+  the minimum at lag ≥ +1.
+- MP2 (where does the peak effect sit? — the seat's "~1y lag" convention): pooled corr of
+  Δstir_t with g_credit at t+0, +1, +2, +3. Measurement, prior set, no bar.
+- MP3 (stance persistence): P(sign of Δstir_{t+1} = sign of Δstir_t), pooled — do
+  tightening/easing campaigns persist? Measurement, prior set.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| MP1 | Rate leads credit (negative, matched legs, floor) | 9 qualify; **67% at lag ≥ +1 — PASS** (bar 60%); direction survives the BC2-grade test; magnitudes small → regime consumption, not print-chasing | pass, modest |
+| MP2 | Lag profile of the transmission | contemporaneous +0.07 (reaction-function face), peak NEGATIVE at +1y (−0.06), decay at +2/+3 — the seat's ~1y lag convention calibrated; the sign flip is the measured case against same-day stance reads | measured, prior set |
+| MP3 | Campaign persistence | 53% annual sign-persistence — near coin flip: regime content is in the stance LEVEL, not move direction; Δ-based stance variant closed off | measured, informative |
