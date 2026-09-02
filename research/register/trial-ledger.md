@@ -915,4 +915,4 @@ exist — no bar on that leg, stated). PhaseD is NOT re-run (display-only per F7
 
 | # | What | Result | Status |
 |---|---|---|---|
-| F2-WF | Shortlist fold-consistency | (pending) | pre-registered |
+| F2-WF | Shortlist fold-consistency | **BOTH CELLS FAIL (2/4 eras within budget each)** — the full-period drags (1.23/1.83pp) were flattered by the quiet 2009-2018 eras; the 2018-2022 and 2022-2026 eras run +2.5 to +4.1pp/yr of whipsaw. The shortlist is now EMPTY of adoptable cells at index level pending full F2 — the M4 adjudicator doing its registered job on its first run. What survives in the print: in the COVID era the same cells cut the crash DD 37%→26% — the insurance economics quantified (premium 2.5-4pp/yr in whipsaw-rich eras vs an 11pp payout when the deep episode lands). Dissection note: the per-era <=2pp bar is STRICTER than the DESIGN budget's program-average framing — recorded, not relitigated; full F2's registered currency (episode DD net of costs, M4-judged, book-level) adjudicates | both fail; era-dependence measured |

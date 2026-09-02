@@ -144,3 +144,19 @@ real; the ARCHITECTURE was wrong. Symmetric averaging lets a quiet world veto a 
 FS-D4 (arm-only combination — global fire can accelerate, global calm can never subtract)
 is registered with bars and DEFERRED to the full F2 run, keeping a deliberate gap between a
 failed variant and its successor per the Contract's re-test discipline.
+
+---
+# Addendum 7 (same day): F2-WF — the walk-forward takes the shortlist away
+The M4 harness's first real run re-evaluated the two adoptable F2-index cells over four
+disjoint eras: BOTH FAIL the >=3-of-4 within-budget bar (each passes only the two quiet
+2009-2018 eras; the 2018-2022 and 2022-2026 eras cost +2.5 to +4.1pp/yr). The full-period
+drags that cleared the F2-index bar were era-averages flattered by a decade without deep
+crashes — exactly the artifact walk-forward exists to expose, on the adjudicator's very
+first outing. Two things the print keeps honest: (i) the value is real when it matters —
+in the COVID era the same rules cut the crash drawdown from 37% to 26%, so what the folds
+quantify is the PRICE of always-on insurance (2.5-4pp/yr in whipsaw-rich eras) against an
+~11pp payout when the storm arrives; (ii) the per-era bar I declared is stricter than the
+DESIGN budget's program-average framing — recorded as a possible over-tightening rather
+than relitigated, because the registered adjudicator for arming anything was always the
+FULL F2 (book-level costs, three legs, M4), which now inherits an empty index-level
+shortlist and the era-dependence finding. No bar moved; no cell rescued.
