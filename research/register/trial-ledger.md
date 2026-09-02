@@ -445,3 +445,21 @@ standardized SST anomalies, 3-month centered smooth (the ONI-convention analogue
 | EN1 | ENSO quasi-periodicity (the physics clock) | median 4.0y (dead-center) but 62% in [2,7] vs 70% bar — **FAIL**: sub-2y re-crossing artifacts + one 8y gap; the sweep's crowning lesson — even PHYSICS can't clear a strict clock bar under a real-time rule, so no financial clock ever should be expected to; ENSO consumed as a STATE | fail, doctrine-sealing |
 | EN2 | El Niño years vs India factor | +14.3% vs +14.0% (n=6) — NO equity penalty; the transfer is monsoon→CPI→RBI (H55's design), not the index | measured, prior set |
 | EN3 | Monthly sign persistence | 92% — the forecastability shadow; state representation captures the calendar's content without the calendar | measured |
+
+## Entries PS1–PS3 (2026-09-02) — Atlas 2.15 profit-share cycle (candidate H56), PWT 10.0
+Script: scripts/analyze_profit_share.py. PRE-REGISTERED before running. Proxy: capital share
+= 1 − labsh (a MACRO share, broader than corporate profits/GDP — stated). Countries with ≥50
+observations.
+- PS1 (mean reversion): per country, corr(capital-share level_t, next-10y change). Reversion
+  predicts NEGATIVE. Bar: ≥70% of countries negative.
+- PS2 (the extremes condition): pooled P(next-10y change < 0 | level in top quintile of own
+  expanding history) vs unconditional P. Bar: conditional ≥ unconditional + 15pp.
+- PS3 (India context): India's capital-share path + end-of-sample (2019) own-history
+  percentile — measurement, prior set; the atlas's 2019-24 corporate tripling is POST-sample
+  and enters via the cases record, never spliced.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| PS1 | Level → next-decade change (reversion) | **85% of 114 countries negative — PASS** (FC1-class breadth): relative mean reversion is real | pass, strong |
+| PS2 | Top-quintile conditioning | 27% vs 21% declines (+6pp vs +15pp bar) — **FAIL**: reversion operates AROUND a rising trend; extremes predict smaller RISES, not falls. H56 sharpened: extrapolation discipline, never decline prediction | fail, design-sharpening |
+| PS3 | India's arc + 2019 percentile | 0.478 = 81st own-history pct in 2019, BEFORE the listed tripling; macro-vs-listed caveat travels | measured |
