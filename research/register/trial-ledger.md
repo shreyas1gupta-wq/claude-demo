@@ -655,3 +655,18 @@ sleeve (the atlas's own cap).
 | FS-D1 | VIX term-structure adds over RV | (awaits VIX/option-chain vault) | registered design |
 | FS-D2 | Leg order-of-arrival by episode | (awaits CCIL+VIX dailies) | registered design |
 | MR1 | 1m reversal net-of-cost grade | (awaits bhavcopy vault) | registered design |
+
+## Design H59-D1 (2026-09-02) — the semiconductor-transmission test, DATA-GATED
+The last §8 candidate gets its registration — WITH THE PRIOR STATED: the desk expects this
+to FAIL. India's listed IT sector sells services (enterprise IT budgets, US BFSI spend),
+not chips; the semiconductor shipment cycle's transmission story is indirect at best.
+Design: WSTS worldwide billings YoY, expanding-percentile state (monthly, 1976-, free Blue
+Book — runsheet pull; see research/cycles/semis-candidate/DATA-PROBE.md) vs NIFTY IT
+relative returns (NSE, 1990s-), purged CV. BAR at data landing: incremental explanatory
+power over the L9 global-cycle state — if the semi cycle adds nothing beyond global macro,
+the candidate dies as designed and the death certificate blocks the "it cycles, therefore
+trade it" costume. A candidate registered to die is still knowledge.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| H59-D1 | WSTS state → NIFTY IT incremental (prior: fails) | (awaits WSTS + NIFTY IT vault) | registered design |
