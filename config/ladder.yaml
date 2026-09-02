@@ -97,7 +97,7 @@ entries:
     indicator: "ECI calendar, indiabudget.gov.in, India VIX"
     inputs: []
   - id: L6_monetary_stance
-    tau_half_months: {value: [12, 24], tier: B, source: "RBI cycles n~4-5 marginal; transmission 2-6 quarters [VERIFY primary WP] (D08)", confidence: medium, decay: n/a, changes_if: "6th completed round trip; primary RBI DEPR citation"}
+    tau_half_months: {value: [12, 24], tier: B, source: "RBI cycles n~4-5 marginal; transmission: Khundrakpam-Jain RBI WPS(DEPR) 11/2012 + Mohanty WPS(DEPR) 06/2012 (output 2-3q, inflation 3-4q, persisting 8-10q); MP2 analogue calibration peak at +1y (trial ledger 2026-09-02)", confidence: medium, decay: n/a, changes_if: "6th completed round trip (count argued in docs/cycles/20-mp-cycle.md Part B)"}
     tier: B
     reduce_only: false
     block: macro_credit_block
