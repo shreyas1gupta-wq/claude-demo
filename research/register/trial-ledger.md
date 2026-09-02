@@ -710,3 +710,27 @@ tables. Prior: a trade (re-sensitization vs earlier false fires), not a free lun
 | # | What | Result | Status |
 |---|---|---|---|
 | F2b | Percentile-memory sweep | (awaits full F2 run) | registered design |
+
+## Entry MR1-S (2026-09-02) — the SURVIVOR-PANEL preliminary of MR1: ASYMMETRIC by design
+PRE-REGISTERED before running. Script: scripts/analyze_reversal_prelim.py. Data: the
+vaulted NIFTY500 survivor panel (2012-2021; survivorship stated in its AUTHENTICATION.md).
+MR1's registered spec (point-in-time membership) is NOT met by this panel, so this
+preliminary carries a ONE-WAY decision rule, stated now:
+- it can CORROBORATE the L1 freeze (a signal that fails even on survivorship-flattered
+  data is dead);
+- it can NEVER unfreeze — a positive print is only a survivor-panel UPPER BOUND and the
+  true MR1 (point-in-time bhavcopy) remains required.
+DESIGN: monthly (month-end) 1-month-return deciles within the liquid half (top 50% by
+trailing-63d median value traded among tickers with full trailing month data); long D1
+losers / short D10 winners, equal weight, hold one month. COSTS: config/costs.yaml
+cash_delivery all-in per-side grid [24,32]bps midpoint 28bps per side, applied to actual
+monthly turnover of each side. BARS:
+- net mean monthly L-S <= 0 in EITHER half-sample (2012-2016 / 2017-2021) => freeze
+  CORROBORATED;
+- net > 0 in BOTH halves => recorded as upper-bound-positive, freeze UNCHANGED (one-way).
+Also reported (no bars): gross vs net decomposition; Nagel-style stress conditionality
+(mean gross L-S in top-decile NIFTY-vol months vs others).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| MR1-S | Survivor-panel reversal, net of costs | (pending) | pre-registered, one-way |
