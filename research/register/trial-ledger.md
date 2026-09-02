@@ -248,3 +248,29 @@ Pre-declared construction and bars:
 |---|---|---|---|
 | SC1 | IL&FS window: SMB bottom-decile AND market not | SMB −24.8% (18th pct), market −20.2% (16th) — **FAIL**: the freeze propagated to a broad macro event within 12m; that is the CASE for routing the signature to L2 (faster variables), not for equity-factor detection | fail, informative |
 | SC2 | CP-freeze signature vs L2 | (design only) | runsheet-gated |
+
+## Entries BC1–BC3 (2026-09-02) — Atlas 2.3 business cycle proper, JST R6 analogues
+Script: scripts/analyze_business_cycle.py. PRE-REGISTERED before running (two-pass rule).
+Series: rgdpmad (real GDP per capita, Maddison line in JST). India is NOT in JST — these are
+the analogue calibrations behind a CONTEXT entry; India dating itself is the cases chapter's
+job (Dua-Banerji chronology) and the nowcast surface is runsheet-gated.
+
+Pre-declared constructions and bars:
+- State: expanding Hamilton gap of log rgdpmad (h=2y annual for the SHORT cycle — declared
+  here as the business-cycle band's own h, distinct from the medium-cycle h=5; p=1) →
+  expanding percentile (min_obs 20). Extrema machinery as before, min_gap 2y.
+- BC1 (the 4-5y claim): pooled peak-to-peak spacing of the growth-cycle state. Bar: median
+  spacing in [3, 6]y AND ≥50% of spacings in [3, 7]y.
+- BC2 (the imported "credit leads growth" direction): per country, peak of the cross-
+  correlation between the credit gap (credit monograph construction, h=5) and the GDP gap
+  (h=2) over lags −5..+5y (positive lag = credit leads). Bar: ≥60% of countries with ≥60
+  overlapping years show peak at lag ≥ +1y. If this FAILS, the imported direction is shaky
+  even on its home panel — the Saini caution generalizes.
+- BC3 (persistence, measurement, prior set): P(state stays on the same side of 0.5 next
+  year), pooled — the growth-regime stickiness number, no bar.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| BC1 | Growth-cycle spacing vs the 4-5y claim | median 6y, 65% in [3,7]y — **PASS**; the band exists on real-time machinery | pass |
+| BC2 | Does credit lead growth on the home panel? | **FAIL, 11%** — 16/18 countries peak at NEGATIVE lags (−3..−5): GDP leads credit at cycle frequency almost everywhere; the Saini India finding generalizes. Caveats logged (h mismatch, grid-edge pinning, location-only) — none rescue the import. STANDING WARNING added: imported lead-lag directions are hypotheses, never assumptions; J1's crisis-AUROC claim untouched | fail, major finding |
+| BC3 | Growth-state persistence | P(same side next year) = 77% pooled — growth regimes persist (cf. IR2 81%) | measured, prior set |
