@@ -734,3 +734,25 @@ Also reported (no bars): gross vs net decomposition; Nagel-style stress conditio
 | # | What | Result | Status |
 |---|---|---|---|
 | MR1-S | Survivor-panel reversal, net of costs | GROSS +0.20%/mo (t=0.39 — nothing, even survivorship-flattered) − cost drag 0.99%/mo (89% monthly one-side turnover × the 28bp stack) = NET −0.80%/mo; NEGATIVE IN BOTH HALVES (−1.20 / −0.42) — **FREEZE CORROBORATED** under the one-way rule. Twist logged (measurement): top-decile-vol months print gross −0.36%/mo vs +0.26 calm — the OPPOSITE sign of Nagel's US stress-spike, n≈12, tagged for the true MR1 | freeze corroborated |
+
+## Entry CR-D2a (2026-09-02) — comomentum on the survivor panel: bars registered at data-landing
+CR-D2's registration (docs/cycles/30-rotation-crowding.md Part F) deferred acceptance bars
+to the moment stock-level returns were vaulted; the survivor panel (2012-2021) is that
+moment for a PRELIMINARY leg (the true NSE-500 PIT run stays registered as CR-D2). This is
+a MONITOR CALIBRATION, not a signal test — the bars are shape checks, stated before any
+construction runs. Script: scripts/analyze_comomentum.py.
+CONSTRUCTION (documented deviation from Lou-Polk: market-adjusted weekly returns instead of
+FF3 residuals — the factor library is monthly; deviation recorded): monthly, within the
+liquid half, rank by 12-2 momentum; comomentum(t) = average pairwise correlation of
+trailing-52-week market-adjusted weekly returns within the LOSER decile (Lou-Polk's own
+portfolio choice).
+BARS (shape priors):
+- P1 (slow state): lag-1 monthly autocorrelation of the comomentum series > 0.5 — a
+  monitor must be a state, not noise.
+- P2 (the 2018 accumulation): the 2017-12..2018-06 mean comomentum prints ABOVE the full-
+  sample median (the pre-smallcap-unwind crowding the public record describes).
+Report (no bars): the 2020 COVID print; the series' full path for the monitor's dashboard.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CR-D2a | Comomentum calibration (survivor panel) | (pending) | pre-registered shape checks |
