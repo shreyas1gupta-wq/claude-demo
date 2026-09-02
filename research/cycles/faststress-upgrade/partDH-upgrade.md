@@ -57,3 +57,22 @@ funding-leads-vol in credit-transmission crises (Brunnermeier-Pedersen + the 201
 record, B). **Awaits India data:** F1–F7 in full, FS-D1/FS-D2. **Unknowable:** the next
 spike's date — the seat reacts in days; it never predicts, and the monograph's every claim
 is resolution-stamped.
+
+
+---
+
+## Post-assembly addendum (2026-09-02, same day): three of this monograph's designs printed
+
+Run on the vaulted NIFTY daily mirror the same day this upgrade was assembled (full prints:
+research/cycles/daily-batch/daily-RESULTS.md; ledger entries F2-index, F7a, FS-D3):
+- **F2 (bounded index run):** 3/18 grid cells supportive, all at trigger 0.80 + 1-of-2
+  confirm; the "any one arms" asymmetry measured; shortlist {calendar, decay} re-entry.
+- **F7 (first real print, F7a):** FAIL (63bd forward returns U vs D at matched high state,
+  p=0.653) — per this document's own frozen rule, **phase is display-only for L2**; the
+  phaseD grid dominance was re-attributed to re-entry earliness (doctrine: levels, not
+  directions). F2c (direction-free calendar-21bd) registered.
+- **FS-D3 (interim global-VIX confirm leg):** REFUSED — symmetric averaging diluted domestic
+  detection (lost the 2024 episode) while accelerating global-origin crises (2011 lag
+  91→13bd); FS-D4 (arm-only) registered, deferred to full F2.
+None of these bounded prints arms the R4 mapping; the full F2 (three legs, book costs, M4
+walk-forward) remains the registered adjudicator.
