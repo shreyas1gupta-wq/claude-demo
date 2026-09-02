@@ -48,3 +48,18 @@ Script: scripts/analyze_nifty_daily.py. Data: vaulted NIFTY 50 daily mirror
   threshold grid; adjudication stays episode-DD-improvement NET of costs (F2's original
   currency), never raw detection counts. Prior stated: trailing windows re-sensitize at
   the cost of earlier false fires; the desk expects a trade, not a free lunch.
+
+---
+# Addendum (same day): CR-D2a — the comomentum calibration
+Prints: 108 months (2013-2021); lag-1 AC 0.65 (P1 PASS — the monitor is a state, not
+noise); the 2018-accumulation shape prior FAILED — late-2017 comomentum was the SAMPLE'S
+LOWEST (2017 annual mean 0.041 vs median 0.090), and the series instead peaks in Jun-2020
+(the stress-correlation regime). Two dissections, both honest and both routed to the full
+CR-D2 (PIT + FF-residualized): India's 2018 smallcap unwind may simply not have been a
+momentum-crowding event — making this the THIRD independent print where the imported
+factor-crowding narrative fails to appear in Indian data (CR1a: no negative WML skew;
+CR2: the 2025 "quant unwind" invisible; CR-D2a: no 2017-18 comomentum build) — and/or the
+simplified market-adjustment (not full residualization) lets the market-wide correlation
+regime contaminate the measure, as the 2020 peak suggests. Either way the machinery now
+exists, the bars were not moved, and the crowding candidate's monitors are calibrated
+against their first real prints.
