@@ -54,7 +54,15 @@ ceiling.
 | 5.1–5.3 | Fast-stress (L2) UPGRADE to full standard: vol clustering / VIX structure / funding | **DONE** — docs/cycles/02-fast-stress.md v2 (~15.2k words; FS-U1/FS-U2 printed on the vault; the order-of-arrival taxonomy pre-registered; FS-D1/FS-D2 registered; the long-queued upgrade delivered) + Lesson 36 |
 | 5.4–5.6 | Reversal Tier-C flag (MR1) / seasonal reject / intraday out-of-scope — the atlas closer | **DONE** — docs/cycles/36-fastlayer-close.md (~6.6k words; three disciplined refusals with the counterparty argument) + Lesson 37. **BAND 5 COMPLETE — EVERY ATLAS BAND ADDRESSED** |
 | §8 H59 | Semiconductor cycle candidate (the last unaddressed candidate) | **DONE** — docs/cycles/37-semis-candidate.md (~6.5k words; H59-D1 registered with stated prior: FAILS; FY26 divergence the real-time corroboration; candidate ledger CLOSED) + Lesson 38 |
-| — | **Atlas-completion capstone** | **IN PROGRESS** — synthesis + master verdict table drafted (research/cycles/capstone/) |
+| — | **Atlas-completion capstone** | **DONE** — docs/cycles/38-atlas-close.md (the synthesis + the master verdict table: 55 rows, 7 doctrines with prints, the confession ledger, revisit triggers) + Lesson 39 |
+
+## THE CYCLE ATLAS IS COMPLETE (2026-09-02)
+Every band (0-5) and every §8 candidate (H53-H59) has its verdict and address — 38 monographs,
+39 lessons (published + archived), 10 tested ladder modules (87 tests green), 50+ pre-registered
+trials with bars never moved, ~25 data-gated designs registered with bars/priors stated in
+advance. The register's own reading of what it all means: docs/cycles/38-atlas-close.md.
+Next phase: the data phase (runsheet pulls on the principal's machine; every design's bars are
+already written) + the standing principal inputs (funding_rate, ADV table).
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
 rejection argued in 30 pages is still knowledge); seats get the full standard incl. module+tests.

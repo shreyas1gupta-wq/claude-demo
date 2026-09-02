@@ -1,0 +1,241 @@
+<title>The Atlas, Closed</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 39 · the capstone · Bands 0–5 complete</p>
+  <h1>The Atlas, Closed</h1>
+  <p class="stand">Fifty-five rows, thirty-seven monographs, ten tested modules, fifty-plus
+  pre-registered trials whose bars never moved after a print. This is the closing lesson: what
+  the honesty machinery actually produced when it was pointed at every cycle claim the
+  industry sells — and why the deepest finding of the whole atlas is a negative one that now
+  carries a measurement instead of an assumption.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/38-atlas-close.md</span>
+    <span><b>Backbone</b> the master verdict table</span>
+    <span><b>Trail</b> research/register/trial-ledger.md</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The census</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Every atlas row's verdict, by band</span>
+    <span class="figbadge">VERDICT CENSUS · compiled from the register's own tables</span></div>
+    <div class="chart" id="figCensus"></div>
+    <figcaption>Seats earn machinery and tests; folds earn an address (so the label can't
+    re-enter as new alpha); context entries earn a pre-written refusal; candidates earn a
+    registered design; rejects earn a print or an argument. Note the shape: the middle bands —
+    where the industry's marketing lives — are mostly folds, candidates, and refusals. No
+    return budget moved anywhere in Bands 3–5.</figcaption>
+  </figure>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The finding under everything</h2></div>
+  <p>Six clock claims were tested under pre-registered bars: the Kitchin inventory clock, the
+  business-cycle clock, the 18-year property clock, the commodity supercycle clock, the
+  Kondratieff wave, and the dollar/Fed round-trip. Five failed. The sixth PASSED — and was
+  refused promotion, because one pass under a permissive bar is how data-mining begins. Then
+  the control group sealed it: ENSO, the one oscillator on Earth with a physical forcing
+  mechanism, printed the best clock score in the register — 62% in-band — and still failed
+  the 70% bar.</p>
+  <div class="keyresult"><div class="t">The doctrine, now measured</div>
+  <div class="big">If the planet's own oscillator cannot keep calendar time to our standard,
+  no credit cycle will. Markets have persistence, not periodicity.</div>
+  <p>Everything the desk trades is a STATE with a half-life — read for permission, never for
+  prediction. That was the program's founding assumption; it is now its measured result.</p></div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Seven doctrines, each with a print</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">states, not dates</span><p>Five clock fails + the refused sixth + the ENSO ceiling (Lessons 19, 23, 27).</p></div>
+    <div class="trow"><span class="yr">resolution</span><p>Event-scale phenomena need event-scale tests: the 2025 unwind and Budget-day vol both invisible monthly; clustering measurably thinned by aggregation (Lessons 30, 33, 36).</p></div>
+    <div class="trow"><span class="yr">direction is surprise</span><p>Pre-election sign predicted the result month 3 times in 8. Windows are scheduled; direction is never traded (Lesson 32).</p></div>
+    <div class="trow"><span class="yr">pass ≠ promotion</span><p>Three clean passes — the dollar clock, the pre-election tilt, April small-cap — all refused budget on decay, costs, and counts. Each bought instrumentation instead (Lessons 21, 23, 33).</p></div>
+    <div class="trow"><span class="yr">registered to die</span><p>Designs carry stated priors, rejects carry cost accounting and revisit triggers — refusals with prints, addresses, or prices, never shrugs (Lessons 31, 38).</p></div>
+    <div class="trow"><span class="yr">mechanics ≠ information</span><p>Sixteen statutory drain dates, expiry flows, reconstitution pops — mapped so the signals can't lie; the ops module's namespace is TESTED to contain no alpha surface (Lesson 34).</p></div>
+    <div class="trow"><span class="yr">the two-edged knife</span><p>The omnibus that killed month-of-year seasonals also killed festival gold; the imports the literature loves (credit-leads-growth, momentum's negative skew) died on India's own data (Lessons 18, 30, 33, 35).</p></div>
+  </div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>The confession ledger, and what's next</h2></div>
+  <p>The register keeps its failures visible on purpose: an authentication file once carried
+  invented numbers written before the checks ran (caught, corrected, the two-pass rule
+  extended); a test suite was once committed red because a shell pipe masked the exit code;
+  a monograph once shipped a pre-trim draft; a results file once printed +nan; a dossier's
+  memory of the presidential-cycle literature was corrected at verification. The authority of
+  everything above rests on these entries as much as on the passes — a register that never
+  catches itself isn't honest, it's unexamined.</p>
+  <p>What remains is the data phase: every registered design is waiting on vaults the
+  principal's machine must pull (India VIX, CCIL, bhavcopy, TSF, WSTS...), each with its bars
+  or priors already written. The machine is built; the atlas is closed; the next person who
+  joins this desk starts at Lesson 1 and ends here, and then the register belongs to them
+  too.</p>
+</section>
+
+<footer>
+  <p>Lesson 39 — the capstone of the learn-while-we-build series · Ionic quant desk ·
+  synthesis: docs/cycles/38-atlas-close.md · backbone: research/cycles/capstone/
+  master-verdict-table.md · every claim above traces to a ledgered trial or a monograph
+  section; Fig 1 compiled from the register's own verdict tables.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"bands": [["Band 0", [1, 0, 5, 0, 1]], ["Band 1", [2, 1, 1, 1, 1]], ["Band 2", [4, 5, 2, 3, 1]], ["Band 3", [2, 2, 0, 2, 3]], ["Band 4", [1, 4, 4, 1, 2]], ["Band 5", [1, 2, 0, 1, 2]]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const CATS=[['seats','var(--s3)'],['folds / execution','var(--s1)'],['context','var(--s4)'],['candidates / instrumented','#9b7bd4'],['rejects / out-of-scope','var(--s2)']];
+  const rows=DATA.bands;
+  const W=820,H=330,m={t:22,r:60,b:52,l:74},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const maxN=16;
+  const X=v=>m.l+iw*v/maxN;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'verdicts by band'});
+  [0,5,10,15].forEach(g=>{
+    svg.appendChild(el('line',{x1:X(g),x2:X(g),y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:X(g),y:H-34,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=g; svg.appendChild(t);});
+  rows.forEach(([name,counts],i)=>{
+    const y=m.t+ih*(i+0.5)/rows.length, bh=Math.min(30,ih/rows.length*0.62);
+    let acc=0;
+    counts.forEach((c,j)=>{
+      if(c>0){svg.appendChild(el('rect',{x:X(acc),y:y-bh/2,width:X(acc+c)-X(acc)-1.5,height:bh,rx:3,fill:CATS[j][1],opacity:0.9}));}
+      acc+=c;});
+    const t=el('text',{x:m.l-8,y:y+4,'text-anchor':'end','font-size':'12.5',fill:'var(--ink-2)','font-weight':'600'});
+    t.textContent=name; svg.appendChild(t);
+    const n=el('text',{x:X(acc)+6,y:y+4,'font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    n.textContent=acc+' rows'; svg.appendChild(n);});
+  let lx=m.l;
+  CATS.forEach(([nm,c])=>{
+    svg.appendChild(el('rect',{x:lx,y:H-22,width:11,height:11,rx:2,fill:c}));
+    const t=el('text',{x:lx+15,y:H-12,'font-size':'11',fill:'var(--ink-2)'});
+    t.textContent=nm; svg.appendChild(t);
+    lx+=15+nm.length*6.1+18;});
+  document.getElementById('figCensus').appendChild(svg);
+})();
+</script>

@@ -45,6 +45,7 @@ private artifacts; this index is the registry.
 | 36 | The Layer That Reacts in Days | docs/cycles/02-fast-stress.md v2 (Atlas 5.1-5.3, seat L2 upgraded to full standard) | https://claude.ai/code/artifact/438f0778-6bc5-4ca0-ba74-d5fe0ff88c93 | docs/learn/artifacts/lesson-36-faststress-upgrade.html |
 | 37 | Knowing Your Counterparty | docs/cycles/36-fastlayer-close.md (Atlas 5.4-5.6 — the atlas's closing rows) | https://claude.ai/code/artifact/5396c2b4-5185-4bf7-8cfd-6c632460f630 | docs/learn/artifacts/lesson-37-fastlayer-close.html |
 | 38 | Registered to Die | docs/cycles/37-semis-candidate.md (candidate H59 — the candidate ledger closes) | https://claude.ai/code/artifact/645e58c9-8b46-4876-a542-8824b8ccd53b | docs/learn/artifacts/lesson-38-semis-candidate.html |
+| 39 | The Atlas, Closed | docs/cycles/38-atlas-close.md (the capstone — Bands 0-5 + candidates H53-H59 all addressed) | https://claude.ai/code/artifact/ab2f5204-87ac-4676-affc-7d7f36495316 | docs/learn/artifacts/lesson-39-atlas-close.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
