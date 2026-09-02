@@ -9,7 +9,7 @@ for exact URLs, formats, and pitfalls).
 ## Priority 1 — unblocks the most machinery
 | Pull | Free source | Vault destination | Unblocks |
 |---|---|---|---|
-| Daily bhavcopy, NIFTY-750 point-in-time (equities + indices, with membership history) | NSE/BSE archives | ingest/vault/bhavcopy/ | Phase-0 fixtures; F1-F7 (fast stress on the real episode set); MR1; CR-D1/D2/D3 (comomentum); RC1 prices; H58-D2/D3 counting; CW2 daily verification; the price-only factor book (Contract §7.7) |
+| Daily bhavcopy, NIFTY-750 point-in-time (equities + indices, with membership history) | NSE/BSE archives | ingest/vault/bhavcopy/ | Phase-0 fixtures; F1-F7 (fast stress on the real episode set); MR1; CR-D1/D2/D3 (comomentum); RC1 prices; H58-D2/D3 counting; CW2 daily verification; the price-only factor book (Contract §7.7). **PARTIALLY MIRRORED 2026-09-02** (remote leg): NIFTY 50 index daily 2007-2026 (ingest/vault/index/, 6/6 anchors) ran CW-D1a/DW1/F1a/F2a; NIFTY500 SURVIVOR panel 2012-2021 (ingest/vault/panel/, misses recorded) ran MR1-S (freeze corroborated) + CR-D2a. The PIT pull remains required — mirrors cannot discharge MR1/CR-D2/F2 proper |
 | India VIX daily archive (2009-) + option-chain IV snapshots | NSE archive | ingest/vault/vix/ | CW-D1 (budget-day vol); F5 (IV vs RV); FS-D1 (term structure); VRP designs |
 | CCIL rates: TREPS/call/CP + RBI LAF daily position | CCIL publications, RBI DBIE/WSS | ingest/vault/funding/ | H58-D1 (drain quarantine grading); FS-D2 (order-of-arrival); L2 funding leg calibration |
 
