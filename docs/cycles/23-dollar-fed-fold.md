@@ -764,3 +764,22 @@ headwind at −0.34 (DL2); realized Fed paths do not carry the dollar at annual 
 arc completes on any schedule; L9 reads the percentile and the smile map, and refuses the
 date. **Process:** pass-and-refuse exercised twice in one band (FP1a, DL1) — the promotion
 gate, not the significance test, is where this register's discipline lives.
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: the dollar-smile temptation
+
+Dollar commentary is finance's weather report — always available, always confident, always
+offering a trade. Its psychological pull on an India desk is double. First, IMPORTED
+AUTHORITY: the dollar cycle arrives wrapped in Fed communication, BIS research, and sell-side
+frameworks (the "dollar smile"), and borrowed conviction is cheaper than earned conviction —
+which is exactly why DL1's PASS was the register's most dangerous moment. A clock that
+passes once, dressed in institutional authority, begs for promotion; the refusal (one pass,
+permissive bar, decayed mechanism) is this program's clearest demonstration that evidence
+discipline must bind hardest when the story is most respectable. Second, HEDGING THEATER:
+dollar strength "explains" Indian drawdowns after the fact so well (DL2's −0.34) that the
+operator is tempted to pre-hedge every Fed meeting — converting a diffuse Tier-B headwind
+into concrete recurring costs. The fold into L9 is the structural answer: the dollar reads
+as one input of the global-cycle state, sized by the block budget, never as a standalone
+trade. The operator's rule of thumb survives in one line: the dollar is context you carry,
+not a bet you place.

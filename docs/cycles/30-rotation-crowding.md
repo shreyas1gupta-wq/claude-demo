@@ -763,3 +763,21 @@ observables from day one because CR2 forced the issue. **Unknowable:** the next 
 trigger and venue; monitors watch accumulation, never predict the shock. **Process:** the
 paired entry pattern held — one fold with evidence, one candidate with its design constraint
 measured before a single rupee of AUM data exists.
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: chasing the rotation, fearing the crowd
+
+Factor rotation is the industry's most seductive product story because it converts hindsight
+into apparent foresight: every quarter SOME factor led, so every quarter a rotation call
+"would have" paid, and the operator's memory of near-misses does the selling. This entry
+retired rotation precisely because the harvest is static (own the blend; rebalancing does
+the rotating) — and the psychological rule that follows is REFUSING THE QUARTERLY POST-
+MORTEM'S INVITATION: performance reviews will forever show "value led this quarter" and the
+desk must hear that as description, not instruction. Crowding pulls on the opposite emotion
+— fear of the stampede — and its trap is PREMATURE EXIT: unwind headlines (2025's included)
+tempt the operator to de-risk factor sleeves on narrative, when this program's own prints
+(CR1a, CR2, CR-D2a) show the imported crowding signatures failing to appear in Indian data.
+The monitors exist so fear has an instrument instead of a veto: watch accumulation, act only
+through the registered reduce-only paths. The card: rotation is never traded, crowding is
+never guessed — one is harvested statically, the other is measured or ignored.

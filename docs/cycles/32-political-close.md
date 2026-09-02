@@ -627,3 +627,21 @@ THREE rejects (3.5 the register's first REJECT-FOR-DATA with cost accounting; 3.
 elections; 3.9 the presidential cycle); 3.1 was already done at standard. The intra-cycle
 band is where the industry's marketing lives; the register's job here was mostly refusal
 with evidence, and every refusal carries its print, address, or price.
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: election adrenaline
+
+Election season is the one window where the whole country trades the operator's own emotions
+back at them: exit polls, victory speeches, and a terminal that gaps. Three failure modes
+concentrate here. CONVICTION BY IDENTITY — the operator's own politics leak into "the market
+wants X," and the register's answer is PL1's number (3/8: the pre-election consensus sign
+anti-predicts the result month at this n) taped where opinions form. THE HALT ILLUSION —
+2004 and 2009 both hit circuit breakers, in OPPOSITE directions; a halt feels like
+information but is only magnitude, and magnitude was already priced into L5's vol scheduling
+— the seat that widens insurance without picking a side. THE MANDATE TRADE — the itch to
+re-lever the moment a "clear mandate" prints; the mandate-clarity re-lever rule exists as a
+PRE-REGISTERED design precisely so this decision was made in the calm years, not at 11 AM on
+counting day with the terminal red or blue. The operator's whole job in an election window
+fits in one sentence: execute the schedule written years earlier, and let the surprise be
+someone else's trade.

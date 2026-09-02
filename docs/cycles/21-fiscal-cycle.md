@@ -799,3 +799,22 @@ slowest-accruing evidence base in the register, stated. **Unknowable:** whether 
 survives its own paper trade; the lane scores it forward. **Process:** first pass-then-deflate
 entry — the two-pass rule held (bar unmoved, pass recorded, deflation written after the print,
 promotion refused).
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: budget-headline adrenaline
+
+Fiscal news is the loudest recurring macro theater in India — a televised event with a
+countdown clock — and it produces the specific operator failure of CONFUSING SALIENCE WITH
+TRADABILITY. The budget-day feed delivers dozens of sector-specific "announcements" that beg
+for same-day expression; FP1a/FP1b measured what survives that noise (windows are loud,
+direction uninformative), and HL-7's paper-trade routing exists precisely so the tilt
+temptation has a supervised outlet instead of a live one. The second trap is NARRATIVE
+CAPTURE BY COMPOSITION: "stimulus is coming" reads bullish until one checks WHICH line items
+move (the composition-not-deficits signature this entry measured) — the operator must ask
+"capex or revenue spending?" before feeling anything. Third, the CROWDING ASYMMETRY: every
+desk in Mumbai watches the same speech; whatever is obvious at 11:05 AM is priced by 11:06.
+The seat's answer is structural: L5 schedules risk around the window and refuses direction;
+the operator's answer is a pre-written card — composition first, paper-trade second, no
+same-day sector expression — read BEFORE the finance minister stands up, because after is
+too late to be calm.

@@ -704,3 +704,22 @@ Kitchin's mechanism (bullwhip) as CONTEXT with a live 2021-24 specimen.
 carries a stated expectation of weakness.
 **Unknowable:** whether post-2021 "just-in-case" restocking re-amplifies inventory waves — the
 PMI-wave read through L9 watches; no clock will be granted regardless (the sweep is the prior).
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: the seduction of short clocks
+
+The Kitchin and Juglar labels survive in practitioner folklore precisely because they flatter
+two operator weaknesses. First, PATTERN HUNGER AT TRADEABLE FREQUENCY: a 40-month clock
+promises several round trips per career — unlike a Kondratieff, you could actually TRADE it,
+which makes the operator want it to be true, and wanting is where diligence dies. KJ1's 0%
+in-window print is the antidote kept on file: when the urge arrives to time an "inventory
+restock leg," the desk re-reads the print, not the story. Second, MECHANISM LAUNDERING:
+inventory dynamics are real (the bullwhip is physics), so the operator slides from "the
+mechanism exists" to "the calendar exists" without noticing the step — the same slide this
+register blocks everywhere by separating state from clock. The discipline for this entry is
+therefore refusal-by-reflex: any pitch that dates a turn off a fixed inventory or capex
+period gets answered with the ledger row, and the real content (inventory/capex STATES) is
+already consumed where it lives — L10 and L11 — so nothing tradable is lost by the refusal.
+The operator's job here is to feel the pull of the clock and file it as information about
+themselves, not about the market.

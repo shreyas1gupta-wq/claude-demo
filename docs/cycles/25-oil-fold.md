@@ -780,3 +780,20 @@ short end the shale era flattened; India's transfer flipped sign twice as an exp
 class supply geometry (the May-2026 episode file); the seat conditions on decomposed states
 and refuses barrel-price forecasts. **Process:** a pass capped on dissection within the hour
 of printing — the register's muscle memory now.
+
+---
+
+## Part G (addendum, 2026-09-02 depth audit) — Operator psychology: trading the barrel's story
+
+Oil is the most narratively over-supplied input in macro: every price move arrives with a
+ready-made story (OPEC, shale, war premium, demand collapse), and the stories CONFLICT in
+their India implication — a supply-shock rise is an India tax, a demand-boom rise is an
+India tailwind. The operator failure this entry guards against is SIGN-BLIND CONSUMPTION:
+reacting to the price level while skipping the decomposition question (whose shock is it?).
+OL1's +81pp pass was deliberately CAPPED on exactly this dissection — a naive oil state
+helps until the one regime where it inverts, and the desk hardened the decomposition
+commitment (Kilian-class supply/demand splits, OL-D1/D2) before any consumption. The second
+trap is IMMEDIACY: crude prints continuously and loudly, inviting sub-weekly reaction from a
+weekly-cadence book — the fold into L9 exists so oil reaches the book only as a digested
+input of the global state, at the ladder's pace, not the tape's. The operator's card: name
+the shock before naming the trade; if the shock can't be named, there is no trade.
