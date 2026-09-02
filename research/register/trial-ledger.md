@@ -614,3 +614,21 @@ claim, logged for the lesson either way.
 | # | What | Result | Status |
 |---|---|---|---|
 | GS1 | Gold month-of-year omnibus (float era) | H=10.87, p=0.454 (n=654, 1972-2026) — no world-price festival structure; the festival months are the WORST ranks (Apr 12/12, May 11/12, Nov 10/12) and folk-September is 6/12 — D06 price-taker verdict demonstrated, CONTEXT confirmed | measured, context-confirmed |
+
+## Entries FS-U1 / FS-U2 (2026-09-02) — Atlas 5.1: vol clustering demonstrated on OUR library
+PRE-REGISTERED before running. Script: scripts/analyze_vol_clustering.py. FRAMING STATED
+NOW: vol clustering is Tier-A physics (the most replicated fact in finance); these are
+DEMONSTRATION trials at monthly resolution on the vaulted series — the value is (a) the
+Cycle School chart computed by us, (b) a library-integrity check (a FAIL would indict the
+library or the monthly-aggregation claim, not the daily fact), and (c) an honest measure of
+how much clustering SURVIVES monthly aggregation (the fast layer is daily by design; the
+resolution theorem cuts both ways and the print quantifies the loss).
+- FS-U1 (India market factor): |MF| monthly, 1993-2025. BAR: Ljung-Box on |ret| lags 1-6
+  p < 0.05 AND lag-1 autocorrelation of |ret| positive.
+- FS-U2 (gold, float era): |log ret| monthly, 1972-2026. Same bar.
+Both bars two-legged; interpretations AFTER the prints.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FS-U1 | Monthly vol clustering, India MF | |ret| ACF(1..6) 0.141-0.188 all positive, LB(6) Q=60.3 p=4e-11 — **PASS**: clustering survives monthly aggregation clearly, though at ~0.15-0.19 vs the ~0.2-0.4 typical of daily |ret| — the aggregation loss is visible and quantified | pass, demonstration |
+| FS-U2 | Monthly vol clustering, gold | ACF(1..6) 0.17-0.245 all positive, LB(6) Q=166.3 p=3e-33 — **PASS**: the Tier-A fact holds cross-asset on our vault; library integrity corroborated | pass, demonstration |
