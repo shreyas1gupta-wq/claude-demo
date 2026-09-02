@@ -522,3 +522,13 @@ the honest-read stage because the parent registration existed in writing. Conseq
 prints recorded (day-only FAIL p=0.110; ±1 PASS p=0.0049), neither bar moved, and the rule
 is extended: a partial run of a registered design must QUOTE the parent bars verbatim in
 its own registration — paraphrase is where windows drift.
+
+## Process note #6 (2026-09-02) — a trial re-implemented machinery the library already had
+F1a estimated tau_half with an inline AR(1) + moving-block bootstrap and had to disown its
+own CI — re-discovering, step for step, the failure Track R's MC1 documented on 2026-08-31
+inside quant/stats/tau_half.py (which also carries the fix). No result was corrupted (F1a's
+CI was flagged unreliable in the same breath it was printed), but the effort was duplicated
+and the first print carried a worse method than the repo already owned. Rule extended:
+before writing estimation code inside a trial script, CHECK quant/stats/ — a trial must use
+Track-R machinery where it exists, and a gap found there is filed as Track-R work, not
+worked around inline.

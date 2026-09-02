@@ -889,3 +889,17 @@ days <= +50%, and by construction may not lose any domestically-detected episode
 | # | What | Result | Status |
 |---|---|---|---|
 | FS-D4 | Arm-only global-VIX input | (deferred to full F2) | registered design |
+
+## Entry F1b (2026-09-02) — F1a's deferred estimate, completed with Track-R machinery
+F1a measured tau_half ~61 trading days with an inline AR(1) and a moving-block-bootstrap CI
+it then had to disown (point estimate outside its own CI). Track R's estimate_tau_half
+(quant/stats/tau_half.py) already documents EXACTLY that failure from its 2026-08-31 Monte
+Carlo (MC1: block resampling of levels chops persistence; 0-7% coverage at rho>=0.9) and
+carries the fix (Kendall correction + parametric pivot bootstrap). F1b re-runs the same
+composite through the library estimator. MEASUREMENT (no bar): corrected tau_half + 90% CI
+in months vs the ladder's [1,3]; near_unit_root flag reported (Andrews remains the
+data-phase substitute if flagged). Script: scripts/analyze_f1b_tau.py.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F1b | Corrected tau_half of the L2 composite | Kendall-corrected 3.18 months (naive 2.92), 90% CI [2.39, 5.72]m, near_unit_root FLAGGED (rho 0.99 daily — the CI itself degrades there per the estimator's own MC1 docs; Andrews at data phase). The CI OVERLAPS the registered [1,3]m band, so under tau_half_drift_policy's hysteresis the config value STANDS — with a LENGTHENING watch noted (the estimate sits at/above the band top; the DD leg's mechanical persistence is a suspected contributor, a construction note for full F1) | measured; config stands, drift watch set |
