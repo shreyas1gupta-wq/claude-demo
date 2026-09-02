@@ -1,0 +1,213 @@
+<title>The Day the Data Arrived</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 40 · the data phase opens · the remote leg</p>
+  <h1>The Day the Data Arrived</h1>
+  <p class="stand">The atlas closed with twenty-five designs waiting on data. Then two mirrors
+  of that data turned out to be reachable from here — a full daily NIFTY history and a
+  survivor panel of 487 stocks — and the machine got to do, for the first time at scale, the
+  thing it was built for: run pre-registered designs on real prices, bars already written,
+  nothing decided after the print. One afternoon produced two passes, four honest fails, one
+  corroborated freeze, a process error caught by its own paper trail, and a discovery about
+  the ladder's own memory.</p>
+  <div class="meta">
+    <span><b>Companion to</b> research/cycles/daily-batch/ + the two new vaults</span>
+    <span><b>Trials run</b> CW-D1a · DW1 · F1a · F2a · MR1-S · CR-D2a</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Authenticating a stranger's data</h2></div>
+  <p>A mirror on GitHub is a stranger's copy of exchange data. The vault discipline treats it
+  like one: BEFORE looking at the values, write down anchors the true data must hit —
+  independently documented facts like "March 23, 2020 closed at 7,610, down ~13%" — then
+  check. The index series hit six of six. The stock panel hit its two event anchors exactly
+  (Yes Bank's −56.1% on the moratorium day; Reliance's +14.7% in the 2020 rebound) and MISSED
+  two structural bars — both misses recorded, neither bar moved, both traced to composition
+  facts rather than bad data. One check "failure" turned out to be a bug in the check itself
+  (NaN cells failing a greater-than-zero test), fixed and confessed in the record. And one
+  bias cannot be checked away: the panel's roster is the index AS OF 2021, backfilled — a
+  SURVIVOR panel, stamped as such on everything it touches.</p>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>What the daily resolution settled</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">budget vol</span><p>Lesson 33 showed February ordinary at monthly resolution. At daily resolution, the budget ±1-day window carries ~60% higher |returns| (p=0.005) — the resolution theorem now measured on BOTH sides of the same event. The L5 seat's claim finally rests on our own print. (The day-only cut failed at n=19; and the partial registration mis-copied its parent's window — caught because the parent was written down. Process note #5.)</p></div>
+    <div class="trow"><span class="yr">weekdays</span><p>No day-of-week structure (p=0.587) — and India's Monday is the BEST median, the opposite sign of the famous US weekend effect. The 5.5 reject now carries evidence it never needed.</p></div>
+    <div class="trow"><span class="yr">the fast layer</span><p>The L2 composite's half-life on real data: ~2.9 months — inside the ladder's registered [1,3] band. Its episode test FAILED honestly at 7 of 11: one untestable (warm-up), two misses that VALIDATE the three-leg design (2013 lived on the funding leg the two-leg run didn't have), and one discovery.</p></div>
+  </div>
+  <div class="keyresult"><div class="t">The discovery — the 2008 shadow</div>
+  <div class="big">Once a mega-crisis enters an expanding percentile's history, a Feb-2018-size
+  vol spike ranks low and the state stays cold.</div>
+  <p>Expanding percentiles buy no-look-ahead at the price of post-crisis de-sensitization.
+  This is now a measured property of the whole ladder's machinery, and design F2b — expanding
+  vs trailing-window percentiles, priced in episode drawdown terms — is registered to price
+  the trade-off.</p></div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>A freeze corroborated, a narrative's third no-show</h2></div>
+  <p>The one-month reversal flag (L1) has been frozen since its lesson argued the desk cannot
+  win a race against market-makers. The survivor panel allowed a one-way test, registered as
+  such: it could corroborate the freeze but never unfreeze it, because survivorship flatters
+  the signal. The print: gross +0.20% a month (t=0.39 — nothing, even flattered), minus ~1%
+  a month of transaction costs at 89% monthly turnover, equals −0.80% a month, negative in
+  both half-samples. The freeze is corroborated on data biased in the signal's favor — the
+  cleanest kill in the register.</p>
+  <p>And the crowding monitor got its first calibration: comomentum IS a real slow state
+  (autocorrelation 0.65), but the 2017-18 "crowding built before the smallcap unwind" prior
+  FAILED — late 2017 prints the lowest comomentum in the sample. That makes three independent
+  prints where the imported factor-crowding narrative fails to appear in Indian data: no
+  negative momentum skew, no visible 2025 unwind, and now no 2017 build. Either India's
+  factor book genuinely isn't crowded the way America's is, or the simplified construction
+  is contaminated by stress-correlation regimes (the series peaks in June 2020, which points
+  that way too) — both explanations are on the record, and the full residualized run will
+  arbitrate.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>What a mirror cannot do</h2></div>
+  <p>None of this discharges the true runsheet. A survivor panel cannot run the real MR1
+  (which requires point-in-time membership precisely so that dead names count); a mirror
+  vault is superseded the day the exchange pull lands; and India VIX, CCIL funding rates,
+  and the flow series remain unreachable from here. The runsheet now records what the
+  mirrors did and the exact line where their authority stops. The pattern this lesson
+  preserves: pre-registration is what made a windfall of data SAFE to use on the same
+  afternoon it arrived — every bar was already written, so nothing the data said could
+  tempt the desk into deciding after the fact.</p>
+</section>
+
+<footer>
+  <p>Lesson 40 of the learn-while-we-build series · Ionic quant desk · companion to the
+  remote data leg of 2026-09-02 · vaults: ingest/vault/index/ + ingest/vault/panel/ (both
+  AUTHENTICATION.md files carry the two-pass record) · trials CW-D1a/DW1/F1a/F2a/MR1-S/
+  CR-D2a + process note #5 in research/register/ · all bars pre-registered, none moved.</p>
+</footer>
+</div>
+
+<script>const DATA = null;</script>
