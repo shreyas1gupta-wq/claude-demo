@@ -852,4 +852,4 @@ in/after stress).
 
 | # | What | Result | Status |
 |---|---|---|---|
-| N4a | 12-1 vs 52wk-high structure | (pending) | pre-registered |
+| N4a | 12-1 vs 52wk-high structure | mean Spearman rho 0.519 (range −0.17..0.88), top-decile overlap only 19% — **COMPLEMENT**: the L3 blend earns its place (the signals pick substantially different names). Stress prior FAILED instructively: rho RISES in top-vol months (0.623 vs 0.507) — during a crash both signals compress toward 'who fell least'; GH04's divergence mechanism lives in POST-TROUGH REBOUNDS, which vol-decile months do not isolate. The mis-specified conditioning window is recorded; full N4 gets rebound-window definitions | complement confirmed; prior mis-windowed |

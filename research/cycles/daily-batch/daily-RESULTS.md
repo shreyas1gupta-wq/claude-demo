@@ -117,3 +117,16 @@ calibrated on 54 years of vaulted data.
 The through-line with F2-index: on Indian equity at monthly cadence, SPEED is where
 drawdown control lives — the fast lookback exits crashes the slow ones ride. This is the
 CONTRACT's own prior ("shorter lookbacks have higher confidence") arriving as measurement.
+
+---
+# Addendum 5 (same day): N4a — the blend justified, a prior mis-windowed
+Mean cross-sectional Spearman correlation between 12-1 momentum and 52-week-high proximity:
+0.519, with only 19% top-decile overlap — COMPLEMENT, decisively: the frozen L3 construct's
+rank blend combines two substantially different name-pickers, and a redundancy
+simplification is off the table. The declared stress prior failed the interesting way:
+correlation RISES in high-vol months (0.62 vs 0.51) because a crash compresses both signals
+toward "who fell least" — George-Hwang's divergence (momentum chases the rebound, the
+anchor does not) is a POST-TROUGH phenomenon, and top-decile-vol months are not rebound
+months. The full N4 inherits a properly-defined rebound window. Survivorship note: both
+signals computed on the identical roster — the structure verdict is robust to the panel's
+bias in a way return claims are not (stated at registration).

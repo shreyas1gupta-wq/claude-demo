@@ -2,7 +2,7 @@
 version: 0.9
 
 momentum:
-  construct: "rank blend of 12-1 + 6-1 total return + 52wk-high proximity; skip-month retained"
+  construct: "rank blend of 12-1 + 6-1 total return + 52wk-high proximity; skip-month retained (blend justified by N4a 2026-09-02: rho 0.52, top-decile overlap 19% — COMPLEMENT, trial ledger)"
   rejected_standalone: ["3-1 momentum"]
   haircut: {value: [0.25, 0.35], tier: B, source: "Jacobs-Mueller (non-US decay small) vs Sharma et al India risk-absorption; anchor AJV 21.9%/yr (D01)", confidence: medium, decay: "to 0.58 if post-2015 PIT subsample weak", changes_if: "PIT estimate"}
   crash_guard: "inverse trailing vol of momentum spread (Barroso-Santa-Clara) + bear-state quantile cut (Daniel-Moskowitz)"
