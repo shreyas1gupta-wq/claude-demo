@@ -84,3 +84,19 @@ Caveats carried: GFC partially inside the percentile warm-up; n(deep)=2; single-
 in-sample; index proxy with flat 28bp costs. NONE of this arms R4 — the shortlist
 {0.80, 1of2} x {calendar, decay} goes to the full F2 (three legs, book costs, M4
 walk-forward), which this run makes cheaper by 15 cells.
+
+---
+# Addendum 3 (same day): F7a — the phase-direction test fails, and clarifies everything
+At matched high stress (state pctile >= 0.8), falling-from-high days offer NO forward-return
+advantage over rising days (63bd medians +5.62% vs +5.67%, MW p=0.653; n=18/34 at 21bd
+spacing). Per F7's frozen decision rule, phase stays display-only for L2. The valuable part
+is the reconciliation with F2-index's grid, where the phaseD re-entry family DOMINATED:
+that dominance was earliness — being back in the market sooner during V-shaped recoveries —
+not direction information, because BOTH directions at high state carry ~+5.5%/63bd forward
+returns (the Daniel-Moskowitz panic-state rebound, level-driven). Doctrine gains a sibling:
+**levels, not directions** — the stress LEVEL prices the rebound; the phase arrow adds
+nothing measurable at this resolution. Consequence registered as F2c: the full F2 grid adds
+a direction-free calendar-21bd re-entry variant expected to match phaseD's numbers without
+any F7 dependence. The 2026-09-01 phase directive survives as DISPLAY machinery (trails on
+every state), and its one traded ambition just got its honest answer from its own
+pre-registered gate.

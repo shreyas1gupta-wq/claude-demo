@@ -802,4 +802,16 @@ Challenger status for L2 re-entry, reduce-only first, exactly as the parent regi
 
 | # | What | Result | Status |
 |---|---|---|---|
-| F7a | U-vs-D at matched high state | (pending) | pre-registered |
+| F7a | U-vs-D at matched high state | 63bd forward returns: D median +5.62% vs U +5.67%, MW p=0.653 — **FAIL** (return leg decisively flat; DD leg mildly favors D, 7.03 vs 7.63, insufficient alone). Per the parent F7's registered rule: **phase stays display-only for L2**. The reconciliation with F2-index is the finding: phaseD's grid dominance came from re-entering EARLIER (less time out during V-recoveries), not from D carrying information — BOTH directions at high state show ~+5.5%/63bd forward returns. THE LEVEL carries the rebound; the DIRECTION adds nothing. 'States, never dates' gains a sibling: LEVELS, NOT DIRECTIONS | fail, doctrine-refining |
+
+
+## Design F2c (2026-09-02) — registered at the F7a honest read
+F7a's reconciliation implies the phaseD family's F2-index advantage is EARLINESS, not phase
+information. The full F2 grid therefore adds a direction-free early-calendar re-entry
+variant: calendar-21bd (re-enter after 21bd in 2 state-gated tranches). Prior stated: it
+should approximate phaseD's drag numbers WITHOUT the F7 dependence; if it does, the phase
+overlay exits the re-entry conversation entirely (display and diagnostics only, everywhere).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F2c | Calendar-21bd re-entry variant | (awaits full F2) | registered design |
