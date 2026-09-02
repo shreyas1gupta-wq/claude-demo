@@ -315,3 +315,20 @@ Pre-declared constructions and bars:
 | MP1 | Rate leads credit (negative, matched legs, floor) | 9 qualify; **67% at lag ≥ +1 — PASS** (bar 60%); direction survives the BC2-grade test; magnitudes small → regime consumption, not print-chasing | pass, modest |
 | MP2 | Lag profile of the transmission | contemporaneous +0.07 (reaction-function face), peak NEGATIVE at +1y (−0.06), decay at +2/+3 — the seat's ~1y lag convention calibrated; the sign flip is the measured case against same-day stance reads | measured, prior set |
 | MP3 | Campaign persistence | 53% annual sign-persistence — near coin flip: regime content is in the stance LEVEL, not move direction; Δ-based stance variant closed off | measured, informative |
+
+## Entries FP1a–FP1b (2026-09-02) — Atlas 2.7 fiscal/political cycle, India factors
+Script: scripts/analyze_fiscal_cycle.py. PRE-REGISTERED before running. Data: vaulted
+iima_monthly_factors.csv (MF = market factor, monthly, 1993-10..2025-12). General-election
+RESULT months (fixed list, public record): 1996-05, 1998-03, 1999-10, 2004-05, 2009-05,
+2014-05, 2019-05, 2024-06 (n=8 — tiny, stated). Window = the 3 months ENDING in the result
+month (the campaign window).
+- FP1a (the folk "pre-election rally"): PASSES only if the mean window monthly MF return
+  exceeds the all-months mean AND ≥6/8 elections have positive window means. (The atlas/L5
+  prior says direction is SURPRISE — this trial grades the folk claim against that prior.)
+- FP1b (the L5 scheduling rationale): median |monthly MF return| inside windows vs all
+  months — measurement, prior set, no bar (L5 schedules vol, not direction).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FP1a | Pre-election direction (folk claim) | window mean +3.99%/m vs +0.72 base, 7/8 positive — **PASS as registered**, then dissected: window contains the result month (drift/surprise conflation), 2009 carries the mean (ex-2009 ≈ +1.9%/m), n=8 association only. Routed to heuristics lane as HL-7 (teach-only/paper-trade); L5 unchanged | pass, deflated honestly |
+| FP1b | Window absolute-move profile | median |monthly| 5.4% in windows vs 4.2% all months; result-month median 6.5%, range −17.7..+33.6 — L5's vol-scheduling rationale measured; direction-is-surprise re-proven | measured, prior set |
