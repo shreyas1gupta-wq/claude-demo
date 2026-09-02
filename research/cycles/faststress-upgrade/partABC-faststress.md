@@ -734,23 +734,20 @@ than an endogenous India credit-cycle bust, even though its magnitude in India w
 Fed Chairman Bernanke's **22 May 2013** congressional testimony raising the prospect of QE
 tapering, the rupee depreciated roughly **28% between April and August 2013**, from about ₹54 to a
 then-lifetime low of **₹68.85 on 28 August 2013**; the Nifty fell from an intraday high near
-**5,808.50 (1 August 2013) to an intraday low of 5,118.85 (28 August 2013)** — a peak-to-trough
+**5,808.50 (1 August 2013)** to an intraday low of **5,118.85 (28 August 2013)** — a peak-to-trough
 decline of roughly **15–18%**, already independently confirmed in this program's own verification
 log and `credit-deep partB` §B1's cross-country record. This is the canonical **funding/currency
-transmission** case, distinct in mechanism from a domestic credit-cycle bust: the shock originated
-entirely outside India (a US monetary-policy-expectations repricing), and its India-specific
-transmission ran through the **capital account** — FII outflows, rupee depreciation, and the
-resulting pressure on India's then-large current-account deficit (the "Fragile Five," per Morgan
+transmission** case: the shock originated entirely outside India (a US monetary-policy-expectations
+repricing), and its India transmission ran through the **capital account** — FII outflows, rupee
+depreciation, pressure on India's then-large current-account deficit (the "Fragile Five," Morgan
 Stanley's James Lord, already documented in `globalcycle-deep partA` §A.3iii) — rather than through
 a pre-existing domestic funding freeze. RBI's own defense (the 15 July 2013 MSF corridor hike to an
-effective 10.25%, and incoming Governor Rajan's 4 September 2013 FCNR(B) swap window raising roughly
-**$34 billion**) is `docs/cycles/20-mp-cycle.md`'s own documented case, cross-referenced not
-re-derived here. **Order-of-arrival: currency/funding stress (the capital-account channel) and
-equity realized volatility move essentially together over the acute April–August window, both
-downstream of a single external trigger — this is a "quiet-triad-turns-loud" episode in L9's own
-vocabulary (`globalcycle-deep partB` §B1.4) rather than a clean funding-leads or vol-leads case,
-and is the direct historical analogue the May-2026 episode (case 8 below) explicitly, and by
-contemporary reporting's own framing, replays.**
+effective 10.25%, Governor Rajan's 4 September 2013 FCNR(B) swap window raising roughly **$34
+billion**) is `docs/cycles/20-mp-cycle.md`'s own documented case, cross-referenced not re-derived
+here. **Order-of-arrival: currency/funding stress and equity realized volatility move essentially
+together over the acute window, both downstream of a single external trigger** — a "quiet-triad-
+turns-loud" episode in L9's own vocabulary (`globalcycle-deep partB` §B1.4), and the direct
+historical analogue the May-2026 episode (case 8) explicitly replays.
 
 **4. February 2018 — global Volmageddon and the LTCG Budget, disentangled.** Two shocks landed in
 India inside the same eight-day window, and disentangling them is itself the design lesson. On
@@ -806,24 +803,20 @@ cleanest India instance of the credit-transmission ordering A.7 formalizes, and 
 session.** On **23 March 2020**, the Sensex fell **3,935 points (13%)** to close at 25,981 and the
 Nifty fell **1,135 points (13%)**; a **10% decline triggered a market-wide circuit breaker at
 9:58am**, halting trading for **45 minutes** — the second such coordinated halt inside ten days.
-India VIX **rose to 71.56** that session `[the 82.69 CBOE global record close of 16 March 2020 is
-the US index; separately-sourced India-specific readings this pass converge on the low-to-high 70s
-for 23 March, with dossier D04's own independently-verified figure citing an intraday extreme near
-80–87 on the same date — both figures describe the same acute window and are retained together
-rather than reconciled to a single decimal, consistent with D04's own treatment]`, and over the full
-February–March episode the Nifty fell **~38.4% peak-to-trough over 69 trading days** (D04's
-verified figure), recovering over the following 231 days. Of 2,401 BSE-traded stocks that session,
-**2,036 declined against only 233 advances** — a breadth reading near-total in its one-sidedness.
-Unlike IL&FS, no domestic credit-cycle precondition drove this episode: the trigger (a global
-pandemic and the resulting lockdowns) arrived entirely exogenously, and equity realized/implied
-volatility moved first and hardest, exactly mirroring the global case (§B.1.4). Funding stress in
-India followed within the same acute window rather than leading it — RBI's own liquidity
-interventions (LAF operations, TLTRO announcements) arrived alongside, not ahead of, the equity
-collapse — consistent with the exogenous-shock ordering (vol → drawdown → funding-if-at-all) A.7
-formalizes and `partDH-upgrade.md` Part D already states as its own pre-registered shape check for
-this exact episode. **Order-of-arrival: realized volatility and India VIX move together and first;
-drawdown is the largest-magnitude and most persistent leg; funding stress (domestic) is
-contemporaneous, not leading.**
+India VIX **rose to 71.56** that session `[D04's own independently-verified figure cites an
+intraday extreme nearer 80–87 the same date; both are retained together rather than reconciled,
+consistent with D04's own treatment]`, and over the full February–March episode the Nifty fell
+**~38.4% peak-to-trough over 69 trading days** (D04's verified figure), recovering over the
+following 231 days. Of 2,401 BSE-traded stocks that session, **2,036 declined against only 233
+advances**. Unlike IL&FS, no domestic credit-cycle precondition drove this episode: the trigger (a
+global pandemic and the resulting lockdowns) arrived entirely exogenously, and equity
+realized/implied volatility moved first and hardest, mirroring the global case (§B.1.4). Funding
+stress in India followed within the same acute window rather than leading it — RBI's own
+interventions (LAF operations, TLTRO) arrived alongside, not ahead of, the equity collapse —
+consistent with the exogenous-shock ordering A.7 formalizes and `partDH-upgrade.md` Part D states
+as its own pre-registered shape check for this exact episode. **Order-of-arrival: realized
+volatility and India VIX move together and first; drawdown is the largest and most persistent leg;
+funding stress is contemporaneous, not leading.**
 
 **7. June 4, 2024 — election day: fast vol without funding stress, the taxonomy's clean contrast.**
 Exit polls released **1 June 2024** had pointed to a comfortable National Democratic Alliance
@@ -848,56 +841,48 @@ are genuinely separable phenomena, not two names for one thing, and the closest 
 analogue to 1987's own vol-without-funding archetype (§B.1.1).
 
 **8. May 2026 — the INR/FII episode, as already documented and verified in this program's own
-record.** Per `docs/cycles/02-fast-stress.md` §3 (which names this episode explicitly as a "stress
-episode for L2 even though non-qualifying for the DD test per the 2026-08 verification") and the
-fuller reconstruction already verified in `research/cycles/globalcycle-deep/partB-cases.md` §B9 and
-`research/register/verification-log.md` §4 (source: Bloomberg, "Rupee Plunge Sees India Turn to 2013
-Taper Tantrum Playbook: INR/USD," 22 May 2026), USD/INR swung from a low of **89.86 in early January
-2026** to an intraday record high of **96.84 on 20 May 2026** (an acute window of roughly **₹96.6–
-96.8/$ between 19–21 May 2026**), before a partial recovery to roughly **94.35** by late H1 2026.
-Three forces compounded: sustained **FPI equity outflows** (**₹32,963 crore in May 2026 alone**,
-part of a cumulative **₹2.25 lakh crore CY2026 outflow** already exceeding all of CY2025's ₹1.66
-lakh crore); a **Brent crude spike from the $70/bbl range to $95–105/bbl** on Strait of Hormuz
-disruption; and a lingering US-India bilateral tariff overhang. RBI (Governor Sanjay Malhotra) was
-reported weighing an FCNR(B)-style emergency NRI-deposit scheme, explicitly echoing the 2013
-playbook (case 3 above). **What makes this episode instructive precisely by being unusual, and
-already stated in this program's own verified record:** the equity impact was comparatively mild —
-Nifty 50 shed roughly **4% over four acute sessions** and closed the month down only **≈1.87%**
-(Sensex ≈−2.78%) — and **India VIX rose only to ≈18.6**, nowhere near a fast-crisis print (contrast
-case 6's 71+ reading). **Order-of-arrival: the currency/FII-flow leg (this seat's funding-adjacent
-confirm input, per `02-fast-stress.md` §4's own construction — "NSDL FPI outflow rank... may pull
-the state DOWN as well as up") moved first and carried nearly the entire episode's signature;
-realized equity volatility and India VIX stayed comparatively quiet throughout.** This is, in the
-taxonomy's own terms, the mirror image of case 5 (IL&FS): a genuine funding/flow-side stress episode
-that never propagated into an equity-vol event at all — precisely the honest limit `02-fast-stress.
-md` §1.5 states outright ("nothing free" predicts the spike itself) applied to the *composition*
-question rather than the timing question: a properly-constructed funding/flow confirm leg would
-register this episode as elevated even while the RV leg alone would have missed it almost entirely,
-the single cleanest illustrated case, across all eight India episodes in this record, for why L2's
-construction reads all three legs jointly rather than defaulting to realized vol as a sufficient
-statistic for "stress" generally.
+record.** Per `docs/cycles/02-fast-stress.md` §3 (a "stress episode for L2 even though non-
+qualifying for the DD test per the 2026-08 verification") and the fuller reconstruction already
+verified in `research/cycles/globalcycle-deep/partB-cases.md` §B9 and `research/register/
+verification-log.md` §4 (Bloomberg, "Rupee Plunge Sees India Turn to 2013 Taper Tantrum Playbook:
+INR/USD," 22 May 2026), USD/INR swung from a low of **89.86 in early January 2026** to an intraday
+record high of **96.84 on 20 May 2026** (an acute window of roughly **₹96.6–96.8/$ between 19–21
+May 2026**), before a partial recovery to roughly **94.35** by late H1 2026. Three forces
+compounded: sustained **FPI equity outflows** (**₹32,963 crore in May 2026 alone**, part of a
+cumulative **₹2.25 lakh crore CY2026 outflow** already exceeding all of CY2025's ₹1.66 lakh crore);
+a **Brent crude spike from $70/bbl to $95–105/bbl** on Strait of Hormuz disruption; and a lingering
+US-India tariff overhang. RBI (Governor Sanjay Malhotra) was reported weighing an FCNR(B)-style
+emergency NRI-deposit scheme, echoing the 2013 playbook (case 3 above). **What makes this episode
+instructive precisely by being unusual:** the equity impact was comparatively mild — Nifty 50 shed
+roughly **4% over four acute sessions** and closed the month down only **≈1.87%** (Sensex ≈−2.78%)
+— and **India VIX rose only to ≈18.6**, nowhere near a fast-crisis print (contrast case 6's 71+
+reading). **Order-of-arrival: the currency/FII-flow leg** (this seat's funding-adjacent confirm
+input, per `02-fast-stress.md` §4 — "NSDL FPI outflow rank... may pull the state DOWN as well as
+up") **moved first and carried nearly the entire episode's signature; realized equity volatility
+and India VIX stayed comparatively quiet throughout.** This is the mirror image of case 5 (IL&FS):
+a genuine funding/flow-side stress episode that never propagated into an equity-vol event at all —
+a properly-constructed funding/flow confirm leg would register this episode as elevated even while
+RV alone would have missed it almost entirely, the cleanest case in this record for why L2 reads
+all three legs jointly rather than treating realized vol as a sufficient statistic for stress.
 
 ### B.3 What the twelve cases say, read against the taxonomy
 
-Ordering the four global and eight India cases by which leg moved first reproduces
-`partDH-upgrade.md`'s own two-bucket taxonomy cleanly, with one genuinely new nuance the India
-record adds. **Funding-leads cases** (IL&FS/DHFL, case 5) show the CP/rollover leg moving weeks to
-months ahead of the equity confirmation, and the mid/small-cap tail bearing roughly double the
-headline index's damage — a credit-transmission signature. **Vol-leads, funding-absent-or-lagging
-cases** (1987, COVID globally and in India, June 2024 election day) show realized/implied
-volatility moving first and largest, with funding stress either entirely absent (1987, June 2024)
-or a same-window echo rather than a leading indicator (COVID). **The genuinely new nuance** sits in
-cases 3 and 8 (2013 taper, May 2026): both are **currency/flow-leading, vol-lagging** episodes — a
-third pattern the two-bucket taxonomy's own "funding-if-at-all" catch-all does not yet name
-separately, in which the *external* funding-adjacent leg (FII flows, the rupee, the capital
-account) carries an episode's entire signature while domestic equity realized vol stays
-comparatively contained — the honest, stated implication being that L2's funding-adjacent confirm
-input (NSDL outflow rank) and L9's global-cycle seat are reading closely related, and in these two
-cases nearly overlapping, objects, a genuine design question for FS-D2's own grading rather than one
-this chapter resolves. February 2018 (case 4) stands as the record's own worked lesson in *not*
-conflating two independent shocks landing in one calendar window — a discipline this program's own
-Atlas rows 3.7/4.1 already build into L5 and which this Part's own case-by-case method deliberately
-enforces by disentangling every case's mechanism from its calendar coincidence.
+Ordering the twelve cases by which leg moved first reproduces `partDH-upgrade.md`'s own two-bucket
+taxonomy cleanly, with one genuinely new nuance the India record adds. **Funding-leads cases**
+(IL&FS/DHFL, case 5) show the CP/rollover leg moving weeks to months ahead of the equity
+confirmation, the mid/small-cap tail bearing roughly double the headline index's damage — a
+credit-transmission signature. **Vol-leads, funding-absent-or-lagging cases** (1987, COVID globally
+and in India, June 2024 election day) show realized/implied volatility moving first and largest,
+funding stress either entirely absent (1987, June 2024) or a same-window echo (COVID). **The
+genuinely new nuance** sits in cases 3 and 8 (2013 taper, May 2026): both are **currency/flow-
+leading, vol-lagging** episodes — a third pattern the two-bucket taxonomy's "funding-if-at-all"
+catch-all does not yet name separately, in which the external funding-adjacent leg (FII flows, the
+rupee) carries an episode's entire signature while domestic equity realized vol stays
+comparatively contained — the honest implication being that L2's funding-adjacent confirm input
+and L9's global-cycle seat are reading closely related, in these two cases nearly overlapping,
+objects, a genuine design question for FS-D2's own grading rather than one this chapter resolves.
+February 2018 (case 4) stands as the record's own worked lesson in *not* conflating two independent
+shocks landing in one calendar window — a discipline Atlas rows 3.7/4.1 already build into L5.
 
 ---
 
@@ -926,34 +911,28 @@ in bulk.
 ### C.2 VIX futures, the option-chain IV-RV surface, and what must be self-archived
 
 **VIX futures — documented honestly, not oversold.** NSE listed India VIX futures on **26 February
-2014**, with three weekly contracts expiring every Tuesday running alongside standard F&O market
-hours. Liquidity never developed at scale, and NSE **discontinued India VIX futures in 2017** for
-low participation. Any FS-D1 construction that wants a genuine, market-priced *term-structure* read
-(near-month vs. far-month implied variance, rather than a single 30-day constant-maturity index
-level) therefore has **no continuously-available, exchange-traded term-structure instrument** for
-most of the sample — the honest fallback, as `partDH-upgrade.md`'s own FS-D1 registration states,
-is to reconstruct the term slope directly from the **Nifty option chain**: near-month and
-next-month implied variances are already computed *separately* inside the India VIX methodology
-itself (A.5's formula) before being time-weighted to the constant-maturity index — meaning the raw
-material for a term-structure read exists inside NSE's own computation, but the **two component
-variances are not separately published** as a standard, freely downloadable daily series; extracting
-them requires either (a) NSE's own occasional working-paper disclosures of intermediate values
-`[VERIFY: whether NSE publishes near/next-month sub-variances routinely or only in methodology
-illustrations]`, or (b) reconstructing both legs independently from raw NSE option-chain snapshots
-(strike-level best bid-ask, available live but **not archived historically by NSE itself in bulk,
-free form** — a genuine "what's free vs. what needs self-archiving" boundary): the *current* chain
-is free and public every trading session, but a multi-year *historical* option-chain time series
-usable for a backtest does not exist as a ready-made free download and must be built prospectively,
-snapshot by snapshot, from the data phase's own start date forward — precisely the kind of
-forward-only data-collection constraint `CONTRACT.md` §7 Known Prior #11 already states generally
-for this program's remote-environment network limits. **A separate, prospective 2026 development**
-(Business Standard, 20 July 2026, "NSE plans new volatility index with revised methodology; pilot
-launch soon") reports NSE piloting a **new, differently-methodologized volatility index** —
-explicitly **not** a replacement for India VIX, still in pilot testing as of this writing, and
-requiring fresh SEBI approval for any derivatives before it could support a term-structure trade —
-noted here for completeness and honestly flagged as **not yet a usable data source**, since the
-pilot's own construction and release timeline remain undetermined `[VERIFY: pilot status as of any
-later read of this chapter]`.
+2014**, three weekly contracts expiring every Tuesday alongside standard F&O hours. Liquidity never
+developed at scale, and NSE **discontinued India VIX futures in 2017** for low participation. Any
+FS-D1 construction wanting a genuine, market-priced *term-structure* read (near vs. far implied
+variance, rather than a single 30-day constant-maturity level) therefore has **no continuously-
+available, exchange-traded term instrument** for most of the sample — the honest fallback, as
+`partDH-upgrade.md`'s own FS-D1 registration states, is to reconstruct the slope directly from the
+**Nifty option chain**: near- and next-month implied variances are already computed separately
+inside the India VIX methodology (A.5's formula) before being time-weighted to constant maturity —
+the raw material exists inside NSE's own computation, but the **two component variances are not
+separately published** as a standard daily series; extracting them requires either NSE's own
+occasional working-paper disclosures of intermediate values `[VERIFY: whether published routinely
+or only in methodology illustrations]`, or reconstructing both legs from raw option-chain snapshots
+(strike-level best bid-ask, live and free every session but **not archived historically by NSE in
+bulk** — a genuine free-vs-self-archive boundary): a multi-year historical option-chain series
+usable for a backtest does not exist as a ready-made download and must be built prospectively,
+snapshot by snapshot, exactly the forward-only constraint `CONTRACT.md` §7 Known Prior #11 already
+states for this program's network limits. **A separate, prospective 2026 development** (Business
+Standard, 20 July 2026, "NSE plans new volatility index with revised methodology; pilot launch
+soon") reports NSE piloting a **new, differently-methodologized volatility index** — explicitly
+**not** a replacement for India VIX, still in pilot testing, requiring fresh SEBI approval for any
+derivatives — flagged as **not yet a usable data source** `[VERIFY: pilot status as of any later
+read]`.
 
 ### C.3 Funding data: CCIL, TREPS/repo/call rates, CP issuance rates, NSDL FPI flows
 
@@ -1042,28 +1021,23 @@ explicitly, or inherit spurious expiry-week noise that has nothing to do with ge
 
 **The 2020 circuit-halt sessions: a truncation bias in range-based RV estimators, direction stated.**
 A.2's Parkinson/Garman-Klass range estimators assume the observed daily high-low span reflects the
-*true* intraday range of a continuously-traded price process. A coordinated market-wide circuit
-halt (case 6, §B.2: the 23 March 2020 45-minute halt, one of two such coordinated halts inside ten
-days) **mechanically truncates that observed range**: trading is suspended before the session's true
-extreme is necessarily reached, and — critically — because the halt is triggered by a 10% *decline*
-specifically, the truncation is **asymmetric**, curtailing exactly the downside tail a range
-estimator exists to measure. **The direction of the resulting bias is unambiguous: a range-based RV
-estimator computed naively on a halt-session's reported high-low will systematically UNDERSTATE that
-session's true realized variance**, precisely on the sessions where the true variance is highest —
-the opposite of a random measurement error, and the opposite direction from what an operator's
-intuition (a halt session "feels" like it should read as maximally stressed) would predict. The
-**close-to-close estimator does not share this specific bias**: because trading resumes and the
-session still closes at an actual traded price (the halt merely pauses trading for its fixed
-duration, it does not cancel the session), the close-to-close return still captures the session's
-full realized move from the prior close to that day's actual close, even though the closing price
-itself may still understate the session's true (unobserved, because trading was paused) intraday
-extreme. **The construction consequence, stated as a design rule rather than a backtest finding**:
-any module (a future range-estimator upgrade to `fast_stress.py`'s current close-to-close
-`realized_vol()`, per A.2) must flag circuit-halt sessions explicitly and either (a) fall back to
-the close-to-close estimator on those specific sessions, or (b) apply a documented, pre-registered
-correction rather than silently averaging a downward-biased range observation into a rolling RV
-window exactly when the window most needs an accurate read — a genuinely new, honest construction
-note this monograph adds to the range-estimator upgrade path A.2 first names.
+*true* intraday range of a continuously-traded process. A coordinated market-wide circuit halt
+(case 6, §B.2: the 23 March 2020 45-minute halt, one of two inside ten days) **mechanically
+truncates that observed range**: trading is suspended before the session's true extreme is
+necessarily reached, and because the halt triggers on a 10% *decline* specifically, the truncation
+is **asymmetric**, curtailing exactly the downside tail a range estimator exists to measure. **The
+resulting bias is unambiguous: a range-based RV estimator computed naively on a halt-session's
+reported high-low will systematically UNDERSTATE that session's true realized variance**, precisely
+where true variance is highest — the opposite of what intuition (a halt session "should" read as
+maximally stressed) predicts. The **close-to-close estimator does not share this bias**: the
+session still closes at an actual traded price (the halt pauses trading, it does not cancel the
+session), so the close-to-close return still captures the full realized move from the prior close,
+even though the closing price itself may still understate the session's true, unobserved intraday
+extreme. **The construction consequence**: any range-estimator upgrade to `fast_stress.py`'s current
+close-to-close `realized_vol()` (per A.2) must flag circuit-halt sessions explicitly and either
+fall back to close-to-close on those sessions or apply a documented, pre-registered correction,
+rather than silently averaging a downward-biased range observation into a rolling window exactly
+when the window most needs an accurate read.
 
 **Holiday alignment across CCIL/NSE calendars.** NSE's equity-trading holiday calendar and CCIL's
 money-market (RBI-linked) holiday calendar are **not identical** — certain days are RBI/CCIL
