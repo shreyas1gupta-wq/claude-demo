@@ -46,9 +46,10 @@ def test_flag_is_risk_off_only_and_nan_safe():
     st = fpi_positioning_state(e["ownership"])
     ex = positioning_extreme(st, hi=0.9)
     ok = ~np.isnan(st)
+    ex = ex.astype(bool)
     assert not ex[~ok].any()                      # no flag without ranks
     assert not ex[ok & (st < 0.9)].any()          # never fires below the extreme
-    assert (st[ok & ex[ok]] >= 0.9).all()
+    assert (st[ok & ex] >= 0.9).all()
 
 
 def test_no_lookahead_truncation():
