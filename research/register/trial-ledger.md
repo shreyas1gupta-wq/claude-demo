@@ -833,4 +833,4 @@ Tier-B prior; NO promotion beyond the seat's existing regime role.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| TS1 | TSMOM {3,6,12}m × {NIFTY, gold} | (pending) | pre-registered |
+| TS1 | TSMOM {3,6,12}m × {NIFTY, gold} | NIFTY: ONLY k=3 passes (maxDD 22% vs 47% bh, drag 1.1pp/yr, THROUGH 2008); k=6 fails (39% DD, 3.4pp drag); k=12 fails (DD 32% vs 29% — WORSE than buy-hold, 5.8pp drag). PRIOR INVERTED — and honestly: the k=12 window starts 2009 (12m warm-up), so the '12m exits 2008' prior was UNTESTABLE in-window, not refuted; the k=3 pass includes 2008 and is real. Gold: ALL THREE pass, k=12 strongest (net +9.0% vs bh +8.0%, maxDD 34% vs 62%) — the literature prior lands exactly. Lesson: at monthly cadence on India equity, SPEED is the DD-controller (rhymes with F2-index's earliest-trigger finding); gold trend is robust at every speed | index: 1/3 pass; gold: 3/3 pass |

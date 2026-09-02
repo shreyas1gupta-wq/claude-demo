@@ -81,7 +81,7 @@ entries:
     indicator: "bhavcopy"
     inputs: []
   - id: L4_tsmom_index_gold
-    tau_half_months: {value: [6, 12], tier: B, source: "Moskowitz-Ooi-Pedersen 2012 (A global); 2 India studies (D01)", confidence: medium_high, decay: "10-20% equity / 35-45% gold", changes_if: "India cost-inclusive estimate"}
+    tau_half_months: {value: [6, 12], tier: B, source: "TS1 (2026-09-02): index k=3 sole DD-pass (22% vs 47%, through 2008), k=6/12 fail drag in-window; gold 3/3 pass, k=12 strongest (trial ledger); Moskowitz-Ooi-Pedersen 2012 (A global); 2 India studies (D01)", confidence: medium_high, decay: "10-20% equity / 35-45% gold", changes_if: "India cost-inclusive estimate"}
     tier: B
     reduce_only: false
     block: trend_tsmom

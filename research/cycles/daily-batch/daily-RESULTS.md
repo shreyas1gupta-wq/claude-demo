@@ -100,3 +100,20 @@ a direction-free calendar-21bd re-entry variant expected to match phaseD's numbe
 any F7 dependence. The 2026-09-01 phase directive survives as DISPLAY machinery (trails on
 every state), and its one traded ambition just got its honest answer from its own
 pre-registered gate.
+
+---
+# Addendum 4 (same day): TS1 — the L4 calibration, and a prior inverted
+NIFTY (2007-2026, monthly, 28bp/switch): only the 3-month rule passes its DD-shaped bar
+(maxDD 22% vs 47% buy-hold, drag 1.1pp/yr — and its window INCLUDES 2008). The 6m and 12m
+rules fail on drag (3.4/5.8pp/yr), and 12m prints a WORSE drawdown than its own-window
+buy-hold (32% vs 29%). Two honesty notes: (i) the pre-stated prior ("12m passes via the
+2008 exit; 3m whipsaws hardest") was INVERTED by the print — except that the k=12 valid
+window begins 2009 after its warm-up, so the 2008-exit half of the prior was untestable
+in-window rather than refuted; the comparability limit across k is recorded; (ii) each cell
+was barred against its OWN valid-window buy-hold, so the per-cell verdicts stand.
+Gold (float era, 654 months, 10bp [A]): all three lookbacks pass, 12m strongest — net CAGR
+ABOVE buy-hold (+9.0% vs +8.0%) with maxDD 34% vs 62%. The gold-tilt leg of L4 is now
+calibrated on 54 years of vaulted data.
+The through-line with F2-index: on Indian equity at monthly cadence, SPEED is where
+drawdown control lives — the fast lookback exits crashes the slow ones ride. This is the
+CONTRACT's own prior ("shorter lookbacks have higher confidence") arriving as measurement.
