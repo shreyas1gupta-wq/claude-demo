@@ -57,7 +57,7 @@ state_phase_convention:         # principal directive 2026-09-01: states are tra
 
 entries:
   - id: L1_reversal_1m
-    tau_half_months: {value: [0.5, 1], tier: C, source: "Jegadeesh 1990/Lehmann 1990; no India magnitude study (D01)", confidence: low, decay: "zero return budget", changes_if: "India PIT cost-inclusive estimate"}
+    tau_half_months: {value: [0.5, 1], tier: C, source: "Jegadeesh 1990/Lehmann 1990; MR1-S survivor-panel preliminary (2026-09-02): gross +0.20%/mo t=0.39, net -0.80%/mo, freeze corroborated one-way (trial ledger)", confidence: low, decay: "zero return budget", changes_if: "true MR1 on PIT bhavcopy (registered); MR1-S can never unfreeze"}
     tier: C
     reduce_only: true
     block: tierC_overlay

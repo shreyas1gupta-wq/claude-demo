@@ -733,4 +733,4 @@ Also reported (no bars): gross vs net decomposition; Nagel-style stress conditio
 
 | # | What | Result | Status |
 |---|---|---|---|
-| MR1-S | Survivor-panel reversal, net of costs | (pending) | pre-registered, one-way |
+| MR1-S | Survivor-panel reversal, net of costs | GROSS +0.20%/mo (t=0.39 — nothing, even survivorship-flattered) − cost drag 0.99%/mo (89% monthly one-side turnover × the 28bp stack) = NET −0.80%/mo; NEGATIVE IN BOTH HALVES (−1.20 / −0.42) — **FREEZE CORROBORATED** under the one-way rule. Twist logged (measurement): top-decile-vol months print gross −0.36%/mo vs +0.26 calm — the OPPOSITE sign of Nagel's US stress-spike, n≈12, tagged for the true MR1 | freeze corroborated |
