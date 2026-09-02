@@ -30,6 +30,7 @@ private artifacts; this index is the registry.
 | 21 | The Pass We Refused to Promote | docs/cycles/21-fiscal-cycle.md (Atlas 2.7, CONTEXT) | https://claude.ai/code/artifact/16b49872-d60a-4c4e-bffc-d6f1b2b2e909 | docs/learn/artifacts/lesson-21-fiscal-cycle.html |
 | 22 | The Cycle That Globalized | docs/cycles/22-global-cycle.md (Atlas 2.8, seat L9) | https://claude.ai/code/artifact/7fc07716-3568-46bf-b8fc-4516a55f9bc1 | docs/learn/artifacts/lesson-22-global-cycle.html |
 | 23 | The Clock That Passed and Wasn't Crowned | docs/cycles/23-dollar-fed-fold.md (Atlas 2.9+2.10, folds into L9) | https://claude.ai/code/artifact/6201e1f0-8ad6-4819-98ec-7aece70cf961 | docs/learn/artifacts/lesson-23-dollar-fed.html |
+| 24 | Measuring a Neighbor Through the Window | docs/cycles/24-china-impulse.md (Atlas 2.11, candidate H54) | https://claude.ai/code/artifact/60bb8885-9927-4541-b571-9619a948d6a5 | docs/learn/artifacts/lesson-24-china-impulse.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
