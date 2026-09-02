@@ -815,3 +815,22 @@ overlay exits the re-entry conversation entirely (display and diagnostics only, 
 | # | What | Result | Status |
 |---|---|---|---|
 | F2c | Calendar-21bd re-entry variant | (awaits full F2) | registered design |
+
+## Entry TS1 (2026-09-02) — L4 TSMOM calibration, both legs (index + gold)
+PRE-REGISTERED before running. Script: scripts/analyze_tsmom.py. Data: vaulted NIFTY daily
+(month-end closes, 2007-2026) + vaulted gold monthly (float era 1972-2026). Fills the gap
+docs/cycles/03-momentum-trend.md names at its L4 row ("India-specific TSMOM magnitude/cost
+estimate — D01 Tier B only"). L4 is a REGIME seat (regime-matrix input + gold tilt), so the
+bars are DD-shaped, not alpha-shaped.
+RULE FAMILY (CONTRACT §6's own flavor; MOP2012): long if trailing k-month total return > 0
+else flat; k in {3, 6, 12} (the D01/L4 lookback grid); monthly decisions applied the next
+month; costs 28bp per switch (index) / 10bp (gold ETF-era proxy, stated assumption [A]).
+BARS per (asset, k): PASS if net maxDD <= buy-hold maxDD − 10pp AND net CAGR >= buy-hold
+CAGR − 2.0pp/yr (the DESIGN risk-drag outer bound). PRIORS stated: 12m passes on DD via the
+2008 exit; 3m whipsaws hardest; gold TSMOM historically robust across the 1980-99 bear.
+Report per cell: hit rate, switches, net CAGR, maxDD, drag. Consumption: calibrates L4's
+Tier-B prior; NO promotion beyond the seat's existing regime role.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| TS1 | TSMOM {3,6,12}m × {NIFTY, gold} | (pending) | pre-registered |
