@@ -479,3 +479,21 @@ pops) are runsheet pulls (NSE/BSE/SEBI bulletins). Designs registered with accep
 |---|---|---|---|
 | IS1 | Issuance percentile → forward returns | (awaits primary-market vault) | registered design |
 | IS2 | 2018 / 2023-24 episode shape check | (awaits primary-market vault) | registered design |
+
+## Entries CR1–CR2 (2026-09-02) — Atlas 3.3/3.4 crowding, vaulted India factors
+Script: scripts/analyze_crowding.py. PRE-REGISTERED before running. Data: iima monthly factors
+(1993-10..2025-12). The crowding literature's testable shadow on returns alone: a CROWDED
+factor exits synchronously — crash asymmetry.
+- CR1a (skewness ordering): monthly skew(WML) ≤ −0.5 AND skew(WML) below BOTH skew(SMB) and
+  skew(HML). (Momentum as the crowded factor par excellence — Daniel-Moskowitz + Lou-Polk.)
+- CR1b (crash concentration): each factor's worst month in own-σ units; bar: WML's worst
+  ≤ −4σ AND more extreme than SMB's and HML's.
+- CR2 (the atlas's named episode): 2025 monthly WML prints listed; any month ≤ −2σ flagged —
+  MEASUREMENT (prior set) grading whether the "mid-2025 quant unwind" shows in India's
+  momentum factor at all.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CR1a | Skewness ordering (WML most negative) | WML +0.05, SMB +0.04, HML +0.60 — **FAIL**: the US negative-momentum-skew import dies on India's library; danger is regime-local (consistent with 03's CONDITIONAL crash finding); crash_guard's conditional design vindicated | fail, import-refining |
+| CR1b | Worst-month concentration | WML worst −4.1σ vs SMB −2.9σ / HML −3.4σ — **PASS**: synchronized-exit tail depth confirmed | pass |
+| CR2 | The mid-2025 unwind in India WML | ZERO 2025 months ≤ −2σ — the named episode is invisible at monthly academic-factor granularity; consequence: the 3.4 monitor CANNOT be monthly factor returns — AUM/comomentum legs are structural, not decorative | measured, design-setting |

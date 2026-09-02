@@ -43,7 +43,6 @@ ceiling.
 | 2.13 | FII/FPI flow cycle (L14) | **DONE** — docs/cycles/26-fpi-positioning.md (~17.7k words; flow momentum REJECTED in code — no flow API, tested; positioning extremes seated risk-off-only; FL1/FL2 data-gated; the 2000-01 anomaly kept un-smoothed) + quant/ladder/fpi_positioning.py + tests + Lesson 26 |
 | 2.14 | ENSO (El Niño / La Niña) | **DONE** — docs/cycles/27-enso.md (~19.6k words; EN1 the control-group result: best-ever 62% in-band STILL fails — the measured ceiling sealing states-never-dates; climate vault authenticated; H55 chain-conditioner design) + Lesson 27 |
 | 2.15 | Earnings / profit-share cycle | **DONE** — docs/cycles/28-profit-share.md (~10.7k words; PS1 85%/114 reversion PASS; PS2 FAIL → H56 sharpened to an extrapolation governor; India 81st pct in 2019 pre-tripling) + Lesson 28. **BAND 2 COMPLETE** |
-| 2.x | Rest of Band 2 ( 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.1 | Value-spread cycle | **DONE at standard** — inside docs/cycles/04-value-quality.md (§A.4 value spread as a state; CPV; the conditioner) |
 | 3.2 | Issuance/sentiment cycle (L7) | **DONE** — docs/cycles/29-issuance.md (~20.5k words; the persistent-incentive seat; four top-ticks + the SEBI-2024 institutional confirmation; IS1/IS2 data-gated) + quant/ladder/issuance_sentiment.py + tests + Lesson 29 |
 | 3.3/3.4 | Factor rotation (inside L8) / crowding-unwind | **IN PROGRESS** — paired entry (3.3 fold; 3.4 candidate) |
