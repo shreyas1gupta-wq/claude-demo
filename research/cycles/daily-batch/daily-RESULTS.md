@@ -63,3 +63,24 @@ simplified market-adjustment (not full residualization) lets the market-wide cor
 regime contaminate the measure, as the 2020 peak suggests. Either way the machinery now
 exists, the bars were not moved, and the crowding candidate's monitors are calibrated
 against their first real prints.
+
+---
+# Addendum 2 (same day): F2-index — the de-risk grid's first real-data pass
+Prints (script analyze_f2_index.py; buy-hold CAGR 9.4% over 2007-2026): the pre-named
+deep-episode set resolved to {GFC*, COVID} (EU-2011's in-window buy-hold DD fell short of
+the 20% gate). 3 of 18 cells SUPPORTIVE, all sharing trigger 0.80 + 1-of-2 confirm:
+- phaseD re-entry: +8.4pp mean deep-episode DD improvement at 0.56pp/yr drag (19 fires,
+  16% of days cut) — the best cell, and INADMISSIBLE for adoption until F7 passes (phase-D
+  is display-only by registration). Its dominance is the strongest case yet for running F7.
+- calendar re-entry: +5.6pp at 1.23pp/yr — the best ADOPTABLE cell.
+- decay re-entry: +5.6pp at 1.83pp/yr — clears the bar with the least headroom.
+Architecture lessons, both pre-readable from the design and now measured: (i) requiring
+2-of-2 confirmation destroys protection everywhere (the drawdown leg lags realized vol —
+the ladder's "any one arms, two confirm" asymmetry is vindicated); (ii) triggers above the
+0.80 percentile fire too late for a COVID-speed crash. Three high-trigger phaseD cells
+printed NEGATIVE drag (de-risking that ADDED return) with sub-bar protection — logged and
+not promoted (that is a timing-alpha claim this design does not adjudicate).
+Caveats carried: GFC partially inside the percentile warm-up; n(deep)=2; single-path
+in-sample; index proxy with flat 28bp costs. NONE of this arms R4 — the shortlist
+{0.80, 1of2} x {calendar, decay} goes to the full F2 (three legs, book costs, M4
+walk-forward), which this run makes cheaper by 15 cells.

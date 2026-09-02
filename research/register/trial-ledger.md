@@ -781,4 +781,4 @@ whole grid (F6's spirit: never a single cell); false-fire counts included.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| F2-index | 18-cell de-risk grid on real index | (pending) | pre-registered, bounded |
+| F2-index | 18-cell de-risk grid on real index | Deep set printed as {GFC*, COVID} (2011 fell short of 20% in-window). **3/18 SUPPORTIVE, all at trigger 0.80 + 1-of-2 confirm**: phaseD +8.4pp deep-DD improvement at 0.56pp/yr drag (19 fires; MEASUREMENT ONLY until F7), decay +5.6pp at 1.83, calendar +5.6pp at 1.23. Architecture findings: 2-of-2 confirm kills protection everywhere (the DD leg lags — 'any one arms' is now evidence-backed); triggers above 0.80 fire too late for a 23-session crash; three cells print NEGATIVE drag with sub-bar protection (logged, not promoted). Shortlist for full F2: {0.80, 1of2} x {calendar, decay}; phaseD's dominance is the case FOR running F7 | 3/18 supportive, shortlist set |
