@@ -1,0 +1,259 @@
+<title>Sixteen Dates the Fast Layer Must Ignore</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 34 · atlas 4.3 + 4.4 + 4.5 + 4.6 · the calendar as plumbing</p>
+  <h1>Sixteen Dates the Fast Layer Must Ignore</h1>
+  <p class="stand">Some dates move prices without carrying information: tax money leaves the
+  banking system on statutory days, results announcements gap single names overnight, expiry
+  flows pin index closes, and index committees force billions of passive rupees to trade at a
+  known minute. None of it is alpha for a weekly-cadence desk. All of it can make our signals
+  lie. This entry ships the plumbing map — an ops pack whose tests literally forbid it from
+  ever recommending anything.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/34-calendar-mechanics.md</span>
+    <span><b>Verdicts</b> 4.3/4.4/4.5 EXECUTION rules (H58) · 4.6 edge design + momentum hygiene</span>
+    <span><b>Designs</b> H58-D1/D2/D3 + RC1, data-gated</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Money leaves on schedule</h2></div>
+  <p>Four times a year — June 15, September 15, December 15, March 15 — Indian companies wire
+  advance-tax instalments to the government, and once a month, around the 20th, GST settles.
+  On those days tens of thousands of crore leave bank deposits for the government's account at
+  the RBI. Banking-system liquidity drains MECHANICALLY, and overnight funding rates (call
+  money, TREPS) spike on a schedule anyone can read off a statute.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — The statutory drain calendar (one year)</span>
+    <span class="figbadge">STATUTORY CALENDAR · Income-tax Act s.211 + GSTR-3B</span></div>
+    <div class="chart" id="figDrain"></div>
+    <figcaption>Sixteen known drain dates per year: twelve GST due-20ths (blue) and four
+    advance-tax instalments (orange). L2's funding-stress leg quarantines fires inside these
+    windows — flags them for confirmation by the other two legs, never acts on the calendar
+    alone.</figcaption>
+  </figure>
+  <p>Why the fast layer cares: L2's funding-stress trigger watches for exactly such spikes,
+  because in 2018 a REAL funding squeeze (the IL&amp;FS run — Lesson 17) was the earliest
+  warning anywhere. A stress classifier that can't tell September 15 from September 2018 has
+  its precision quietly eaten by sixteen false alarms a year.</p>
+  <div class="def"><div class="t">Design point · quarantine, never veto</div>
+  <p>The rule only SUPPRESSES: a funding fire inside a drain window is flagged as "probably
+  mechanical" and needs a second L2 leg (realized vol, VIX backwardation) to confirm. The
+  catastrophic failure mode — a real crisis that happens to straddle a tax date — is covered
+  by the two-of-three architecture, not by trusting the calendar.</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Gaps you don't have to buy</h2></div>
+  <p>A staged entry builds a position in tranches across days. If a tranche date crosses the
+  holding's results announcement, the desk is voluntarily short a straddle over the
+  announcement — it eats whatever the gap does, for free, in the middle of building a
+  position it hasn't finished deciding on. The pause rule defers tranches past a supplied
+  results calendar (±1 business day). The cost is a day or two of delay; the benefit is a
+  distribution of dodged gaps that design H58-D2 will simply COUNT once daily data lands —
+  a frequency report, not a hypothesis test, because prudence rules don't need p-values.</p>
+  <p>Expiry days get the same treatment: pinning and rollover flows distort closes, so
+  rebalance tranches skip them. One engineering decision matters enough to be a test: the
+  expiry WEEKDAY is a required config parameter, never a constant — SEBI's 2024-25 derivative
+  curbs and the exchanges' weekday reshuffles turned "expiry is Thursday" from a fact into a
+  bug waiting to fire. The module raises an error if you call it without saying which weekday
+  this exchange, in this era, uses.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The index add that isn't momentum</h2></div>
+  <p>Twice a year the Nifty family reconstitutes, and every index fund and ETF tracking it
+  must buy the adds and sell the drops at the effective date — a forced flow announced weeks
+  in advance. The classic literature (Shleifer's demand curves, Harris–Gurel) found large
+  entry pops in the US; the modern literature finds the effect DECAYING as arbitrage capital
+  crowded it. Design RC1 will measure India's version for the special-sits sleeve when the
+  add/drop lists are vaulted.</p>
+  <div class="keyresult"><div class="t">The hygiene rule that needs no trial</div>
+  <div class="big">An add's pre-effective pop is a one-time level shift from forced flows —
+  not a trend. It must be excluded from momentum lookbacks.</div>
+  <p>This follows from what the pop IS, not from a measurement: feeding it to L3/L4 would
+  have the trend legs chase a flow artifact that ends the day the index funds finish buying.
+  RC1 measures its SIZE for the sleeve; its exclusion from momentum is adopted now.</p></div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>An entry with zero trials, on purpose</h2></div>
+  <p>Everything here is mechanics — flows forced by statute, settlement, or index rules. The
+  register grades mechanics by counting (how many false fires quarantined, how many gaps
+  dodged, how big the reconstitution flow), so this entry registers four counting designs and
+  runs nothing today: the daily data they need isn't vaulted yet. The one design with a real
+  bar is H58-D1, because a suppression rule must EARN its existence: drain-window fires must
+  prove ≥2× as frequent as the base rate AND ≥80% mean-reverting within five business days —
+  i.e. the calendar genuinely attracts mechanical spikes — before the quarantine graduates
+  from flag to rule.</p>
+  <p>The module itself ships now, tested: <code>quant/ladder/exclusion_calendar.py</code> —
+  three deterministic calendars, seven exact tests, and a namespace test
+  (<code>test_no_alpha_surface</code>) asserting no function named anything like signal,
+  alpha, tilt, or score ever appears. The pack excludes and defers; it never recommends.
+  No seat, no budget, no ladder row — the entry's product is that the fast layer stops lying
+  to itself on sixteen known dates a year.</p>
+</section>
+
+<footer>
+  <p>Lesson 34 of the learn-while-we-build series · Ionic quant desk · Atlas 4.3–4.6 ·
+  monograph: docs/cycles/34-calendar-mechanics.md · designs H58-D1/D2/D3 + RC1 in
+  research/register/trial-ledger.md (registered, data-gated — no trials run) · Fig 1 renders
+  the statutory calendar itself; no market data is implied.</p>
+</footer>
+</div>
+
+<script>
+const DATA = null;
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const AT=[5,8,11,2]; // advance-tax months (0-based): Jun, Sep, Dec, Mar
+  const W=820,H=170,m={t:26,r:14,b:30,l:14},iw=W-m.l-m.r;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'statutory drain calendar'});
+  const y0=m.t+46;
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:y0,y2:y0,stroke:'var(--axis)','stroke-width':1.2}));
+  for(let i=0;i<12;i++){
+    const x=m.l+iw*(i+0.5)/12;
+    const t=el('text',{x:x,y:H-10,'text-anchor':'middle','font-size':'11.5',fill:'var(--muted)'});
+    t.textContent=MO[i]; svg.appendChild(t);
+    // GST due-20th tick (blue)
+    svg.appendChild(el('circle',{cx:x+iw/12*0.16,cy:y0,r:7,fill:'var(--s1)',opacity:0.75}));
+    const g=el('text',{x:x+iw/12*0.16,y:y0+3.5,'text-anchor':'middle','font-size':'8',fill:'#fff','font-weight':'700'});
+    g.textContent='20'; svg.appendChild(g);
+    if(AT.includes(i)){
+      svg.appendChild(el('circle',{cx:x-iw/12*0.18,cy:y0,r:9,fill:'var(--s2)'}));
+      const a=el('text',{x:x-iw/12*0.18,y:y0+3.5,'text-anchor':'middle','font-size':'8',fill:'#fff','font-weight':'700'});
+      a.textContent='15'; svg.appendChild(a);
+    }
+  }
+  const l1=el('text',{x:m.l,y:m.t-6,'font-size':'12',fill:'var(--ink-2)'});
+  l1.textContent='● advance-tax instalment (s.211, the 15th)'; l1.setAttribute('fill','var(--s2)'); svg.appendChild(l1);
+  const l2=el('text',{x:m.l+290,y:m.t-6,'font-size':'12',fill:'var(--s1)'});
+  l2.textContent='● GST due date (GSTR-3B, the 20th)'; svg.appendChild(l2);
+  document.getElementById('figDrain').appendChild(svg);
+})();
+</script>
