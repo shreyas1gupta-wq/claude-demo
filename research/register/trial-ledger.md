@@ -274,3 +274,21 @@ Pre-declared constructions and bars:
 | BC1 | Growth-cycle spacing vs the 4-5y claim | median 6y, 65% in [3,7]y — **PASS**; the band exists on real-time machinery | pass |
 | BC2 | Does credit lead growth on the home panel? | **FAIL, 11%** — 16/18 countries peak at NEGATIVE lags (−3..−5): GDP leads credit at cycle frequency almost everywhere; the Saini India finding generalizes. Caveats logged (h mismatch, grid-edge pinning, location-only) — none rescue the import. STANDING WARNING added: imported lead-lag directions are hypotheses, never assumptions; J1's crisis-AUROC claim untouched | fail, major finding |
 | BC3 | Growth-state persistence | P(same side next year) = 77% pooled — growth regimes persist (cf. IR2 81%) | measured, prior set |
+
+## Entry KJ1 (2026-09-02) — Atlas 2.4/2.5 Kitchin clock test on monthly commodity prices
+Script: scripts/analyze_kitchin.py. PRE-REGISTERED before running (two-pass rule). Kitchin's
+1923 claim (~40 months) was measured on bank clearings, commodity prices and interest rates —
+the vault holds his variable class at monthly cadence: gold (floating era 1968-01..2026-07;
+the fixed-price eras are excluded AT REGISTRATION because a pegged price is not a market
+process) and the IMF all-commodity index (1980-02..2017-06). Two cells, both declared:
+- Construction: expanding Hamilton gap (monthly h=24 from the shared grid, p=4) → expanding
+  percentile (min_obs 36) → extrema machinery, min_gap 18 months (just under half the claimed
+  period). NOMINAL series (no monthly deflator vaulted) — stated; at 40-month scale spacing is
+  insensitive to slow deflators.
+- Bar (same for both cells): the ~40-month clock passes only if median peak-to-peak spacing
+  is in [30, 50] months AND ≥50% of spacings fall in [30, 50].
+
+| # | What | Result | Status |
+|---|---|---|---|
+| KJ1a | Gold monthly, floating era | median 21m, **0%** of 28 spacings in [30,50]m — **FAIL**; spacings truncate at the 18m registration floor (no structure above resolution — a 21m clock may NOT be read from this) | fail, floor-artifact noted |
+| KJ1b | IMF all-commodity index | median 23m, **0%** of 9 in-window — **FAIL**, same shape | fail |
