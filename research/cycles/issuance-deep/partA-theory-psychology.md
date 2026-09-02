@@ -491,62 +491,45 @@ VERIFY against primary sources for the data phase]**.
 
 This program treats a regulator's own action as a free, dated, high-signal confirming layer —
 "a regulator acting IS a froth reading," per `partCDEFH.md` Part E — and India's primary-market
-regulatory history across three widely spaced episodes supports exactly that reading. **October
-2007**: SEBI proposed curbs on participatory notes (P-notes), which then accounted for roughly
-half of FII investment into India, in a period of intense primary- and secondary-market
-exuberance running into the pre-GFC peak; the poorly-communicated proposal triggered a
-same-day, ~9% Sensex crash (17 October 2007, among the largest single-day falls in absolute
-points to that date), followed by formal P-note restrictions (25 October 2007) that SEBI itself
-reversed within a year once the Lehman collapse changed "the context" **[Verified in outline]**
-— alongside this episode, India's primary market itself cooled sharply from its 2003–08 boom,
-with 2008–09 mobilization collapsing to roughly ₹2,034 crore across just 21 small IPOs
-**[Verified]**. Separately, and closer to a direct "IPO quality" intervention, SEBI ran a
-**mandatory IPO-grading regime from May 2007 to February 2014** (credit-rating agencies scoring
-issues 1–5 on fundamentals), made optional after a 2013 SEBI-commissioned study and investor-
-association consensus found the mandatory grade was not, in practice, serving its intended
-purpose **[Verified]** — itself a data point on how hard institutionally-mandated quality
-signals are to make stick against a determined issuance wave. **2012** brought a second, more
-direct self-discipline attempt: SEBI's Primary Market Advisory Committee's August 2012
-discussion paper on a **mandatory safety-net mechanism**, explicitly framed around "recent
-post-listing price performance" concerns and the need for "self-discipline in IPO pricing" —
-effectively proposing that issuers and merchant bankers bear a buy-back obligation toward small
-investors when a listing's post-listing price fell materially below the issue price
-**[VERIFY: final adoption status and scope of the 2012 safety-net proposal — this session
-confirmed the discussion paper's existence and framing but did not confirm whether it was
-subsequently mandated, watered down, or left voluntary]**. **2024** is the Atlas's own named
-"institutional confirmation": SEBI Chairperson Madhabi Puri Buch stated in March 2024 that the
-regulator saw "signs of price manipulation" in the SME segment ("we do see the signs... it's
-still on the kitchen table; it's not yet gone into the oven"), SEBI was separately reported
-investigating merchant bankers over inflated SME-IPO subscription figures, and — following a
-19 November 2024 consultation paper and 18 December 2024 board approval — SEBI amended the ICDR
-framework to cap SME general-corporate-purpose fund use at 15% of proceeds or ₹10 crore
-(whichever lower, down from 25%) and to tighten SME listing-eligibility norms specifically to
-curb proceeds misuse **[Verified]**. Three widely spaced episodes (2007, 2012, 2024), three
-different regulatory instruments (P-note/FII curbs, a pricing-discipline mechanism, an
-SME-eligibility tightening), one consistent regulatory posture: **the regulator moves against
-issuance/reception excess precisely when this seat's own two legs would independently be
-flagging it** — a free, institutional confirming layer this program's construction (`partCDEFH.md`
-Part C: "SEBI actions... event registry entries") is built to log and annotate the state with,
-never to substitute for the state itself.
+regulatory history across three widely spaced episodes supports exactly that reading, each a
+different instrument aimed at the same underlying excess. **2007**: SEBI's participatory-note
+curbs, arriving in the teeth of the pre-GFC primary-market boom, and a **mandatory IPO-grading
+regime (May 2007–February 2014)** requiring credit-rating agencies to score issues 1–5 on
+fundamentals — later made optional once a 2013 SEBI-commissioned review found the mandatory
+grade was not, in practice, serving its purpose **[Verified]**, itself a data point on how hard
+an institutionally-mandated quality signal is to make stick against a determined issuance wave.
+**2012**: the Primary Market Advisory Committee's discussion paper on a mandatory safety-net
+mechanism — a proposed issuer/banker buy-back obligation toward small investors when a listing's
+price fell materially below issue price, explicitly framed around "self-discipline in IPO
+pricing" **[VERIFY: final adoption status — this session confirmed the discussion paper's
+existence and framing but not whether it was subsequently mandated, watered down, or left
+voluntary]**. **2024** is the Atlas's own named "institutional confirmation": SEBI's Chairperson
+stated publicly that the regulator saw signs of manipulation in the SME segment, and the board's
+December 2024 ICDR amendments tightened SME eligibility and fund-use norms directly in response
+— the full rule set, and the oversubscription/pop record it responded to, is `partB-cases.md`
+case 7's own territory, not re-derived here. Three widely spaced episodes, three different
+regulatory instruments, one consistent posture: **the regulator moves against issuance/reception
+excess precisely when this seat's own two legs would independently be flagging it** — a free,
+institutional confirming layer this program's construction (`partCDEFH.md` Part C: "SEBI
+actions... event registry entries") is built to log and annotate the state with, never to
+substitute for the state itself.
 
 #### A.3.4 Promoter and PE exit waves — OFS as smart-money selling, read honestly
 
-The OFS mechanism (§A.3.1) has, in the current mainboard cycle, become predominantly an exit
-channel rather than a capital-formation one: across mainboard IPOs from January 2025 through
-mid-2026, **roughly 61–63% of total proceeds were OFS** (existing holders cashing out) against
-under 40% fresh capital reaching the businesses themselves **[Verified — corroborated across
-independent sources this session, precise multi-source figures ranging 61–63%]**, with private-
-equity and venture-backed sponsors generating on the order of **₹76,000+ crore (~$8.75 billion)**
-in IPO-and-post-IPO liquidity through 2025, averaging roughly $730 million per month
-**[VERIFY: precise sourcing and methodology]**. This is a direct, observable instance of §A.1's
-central claim in its purest form: a promoter or PE sponsor selling into an OFS is, definitionally,
-an insider choosing to convert a large personal stake into cash at the prevailing market price —
-the cleanest possible revealed-preference signal available anywhere in this program's data set
-(elaborated fully in Part G's psychology, §G.3). This program's own design register already
-flags OFS/promoter-selling volume as a **candidate third leg** for this seat's state (`IS-D3` per
-`partCDEFH.md` Part F: "promoter/PE OFS selling as a third leg candidate — design only,
-classification work first") — not yet admitted to the construct, because classifying OFS volume
-cleanly (distinguishing routine minimum-public-shareholding compliance sales from genuinely
+The OFS mechanism (§A.3.1) has, across recent mainboard cycles, run predominantly as an exit
+channel rather than a capital-formation one — a growing share of total mainboard proceeds
+consistently OFS (existing holders cashing out) rather than fresh capital reaching the
+businesses themselves, with promoter and private-equity block/bulk selling recurring at record
+scale for consecutive years (the specific year-by-year totals are `partB-cases.md` case 7's own
+territory). This is a direct, observable instance of §A.1's central claim in its purest form: a
+promoter or PE sponsor selling into an OFS is, definitionally, an insider choosing to convert a
+large personal stake into cash at the prevailing market price — the cleanest possible
+revealed-preference signal available anywhere in this program's data set (elaborated fully in
+Part G's psychology, §G.3). This program's own design register already flags OFS/promoter-
+selling volume as a **candidate third leg** for this seat's state (`IS-D3` per `partCDEFH.md`
+Part F: "promoter/PE OFS selling as a third leg candidate — design only, classification work
+first") — not yet admitted to the construct, because classifying OFS volume cleanly
+(distinguishing routine minimum-public-shareholding compliance sales from genuinely
 opportunistic, valuation-timed exits) is unresolved work, but flagged here as the most promising
 near-term enrichment to the two-leg state, and the reason this Part's own psychology section
 (§G.3) treats promoter timing as a signal the desk should read carefully rather than dismiss as
@@ -625,17 +608,16 @@ mechanism (sentiment moves hard-to-value names most) bites hardest.
 
 **(iv) The data-gated India test.** The ladder's own `changes_if` field is explicit and binding:
 "India pre-registered test vs 2018/2023-24 episodes." The **2018** episode is India's own
-closest analogue to a clean natural experiment for this seat: 2017 was a historically strong
-IPO year riding a broader mid-and-smallcap rally (midcap and smallcap indices up roughly 48%
-and 60% respectively that calendar year), followed by a sharp 2018 reversal in which **roughly
-57% of companies listed in 2018 traded below their issue price**, with the broader mid/smallcap
-complex falling 13–14% from its January 2018 peak and over 550 individual mid/smallcap names
-falling more than 10% that year **[Verified]** — a textbook hot-issuance-then-reversion sequence
-this seat's own two-leg construction should, if the mechanism transfers to India as theorized,
-have flagged in advance via elevated VOLUME and RECEPTION readings through 2017. The **2023–24**
-episode is the SME-frenzy-plus-mainboard-revival case already documented throughout §A.3, with
-the added benefit of a dated, named regulatory confirmation (§A.3.3) arriving inside the test
-window itself. Per this program's estimation standards (CONTRACT §9), this test must be
+closest analogue to a clean natural experiment for this seat: a historically strong 2017 IPO
+year riding a broader mid-and-smallcap rally, followed by a sharp 2018 reversal in which a
+majority of the year's listings traded below issue price against a mid/smallcap complex falling
+double digits from its own January 2018 peak (the full record: `partB-cases.md` case 5) — a
+textbook hot-issuance-then-reversion sequence this seat's own two-leg construction should, if
+the mechanism transfers to India as theorized, have flagged in advance via elevated VOLUME and
+RECEPTION readings through 2017. The **2023–24** episode is the SME-frenzy-plus-mainboard-revival
+case already documented throughout §A.3 and in full in `partB-cases.md` case 7, with the added
+benefit of a dated, named regulatory confirmation (§A.3.3) arriving inside the test window
+itself. Per this program's estimation standards (CONTRACT §9), this test must be
 **pre-registered** before being run — hypothesis, threshold construction, and the specific
 frozen episode dates fixed in advance — and is designated `IS1` (the core Baker-Wurgler-style
 India regression) and `IS2` (the 2018/2023-24 episode-shape check specifically) in
