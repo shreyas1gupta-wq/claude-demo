@@ -26,6 +26,7 @@ private artifacts; this index is the registry.
 | 17 | A Run Without Deposits | docs/cycles/17-shadow-credit.md (Atlas 2.2, inside L10 / feeds L2) | https://claude.ai/code/artifact/1b68b769-42d6-481f-b232-abfd615cf53d | docs/learn/artifacts/lesson-17-shadow-credit.html |
 | 18 | The Cycle That Earns No Seat | docs/cycles/18-business-cycle.md (Atlas 2.3, CONTEXT) | https://claude.ai/code/artifact/93f4c2f3-fc8d-4e41-b406-8740c6910b01 | docs/learn/artifacts/lesson-18-business-cycle.html |
 | 19 | Five Clocks, Zero Survivors | docs/cycles/19-kitchin-juglar.md (Atlas 2.4 CONTEXT + 2.5 fold) | https://claude.ai/code/artifact/5ddb5680-0383-4fb1-a585-3d1844fa96cf | docs/learn/artifacts/lesson-19-kitchin-juglar.html |
+| 20 | The Sign That Flips | docs/cycles/20-mp-cycle.md (Atlas 2.6, seat L6) | https://claude.ai/code/artifact/869dc54b-aeb1-459a-a89f-6f9d5f6815da | docs/learn/artifacts/lesson-20-mp-cycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
