@@ -15,3 +15,5 @@ from .capex_cycle import capex_cycle_state, clamp_non_positive  # noqa: F401
 from .fpi_positioning import fpi_positioning_state, positioning_extreme  # noqa: F401
 from .issuance_sentiment import froth_flag, issuance_sentiment_state  # noqa: F401
 from .calendar_windows import Window, calendar_schedule, windows  # noqa: F401
+from .exclusion_calendar import (drain_window_mask, expiry_days,  # noqa: F401
+                                 results_pause_mask, statutory_drain_dates)

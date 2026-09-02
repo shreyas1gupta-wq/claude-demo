@@ -570,3 +570,28 @@ license inventing a pass. Rank bars, not magic thresholds.
 | CW-D1 | Daily budget-day vol event study | (awaits India VIX vault) | registered design |
 | CW-PT1 | April tilt paper ledger | (first grading April 2027) | registered design |
 | CW2b | Feb+Mar selling-leg confirmation | (awaits library refresh) | registered design |
+
+## Designs H58-D1..D3 + RC1 (2026-09-02) — Atlas 4.3-4.6 calendar-mechanics, DATA-GATED
+Pure ops (no alpha claim anywhere in this block — the pre-stated framing). Machinery ships
+now (quant/ladder/exclusion_calendar.py); every GRADE waits on daily data:
+- H58-D1 (drain-date false-fire count): once L2's daily trigger history exists, count
+  funding-stress fires landing inside statutory drain windows (advance-tax Jun/Sep/Dec/Mar
+  15 ±2bd; GST due 20th ±1bd) vs outside; the exclusion earns its keep if drain-window fires
+  are ≥2x the base rate AND ≥80% of them mean-revert within 5bd (mechanical, not stress).
+- H58-D2 (results-date gap dodge): count staged-entry tranches that would have crossed a
+  holding's results date; report the |gap| distribution dodged vs ordinary days (bhavcopy +
+  exchange results calendar). No bar — a frequency report; the rule is mechanical prudence.
+- H58-D3 (expiry-day noise): |close-to-close| and close-auction behavior on expiry days vs
+  matched weekdays (bhavcopy). Expiry weekday is CONFIG, not constant — the 2024-25 SEBI
+  curbs + exchange moves make hardcoding a bug (documented in the module).
+- RC1 (reconstitution pop, Atlas 4.6): event study on Nifty semi-annual add/drop lists
+  (announcement→effective window) — the special-sits EDGE leg + the momentum-exclusion leg
+  (adds' pre-effective pop must NOT feed L3/L4 lookbacks). Bars at registration when the
+  add/drop lists + daily prices are vaulted.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| H58-D1 | Drain-window false-fire frequency | (awaits L2 daily history) | registered design |
+| H58-D2 | Results-gap dodge count | (awaits results calendar vault) | registered design |
+| H58-D3 | Expiry-day noise measurement | (awaits bhavcopy vault) | registered design |
+| RC1 | Reconstitution add/drop event study | (awaits index lists vault) | registered design |
