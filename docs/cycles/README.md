@@ -47,8 +47,10 @@ ceiling.
 | 3.2 | Issuance/sentiment cycle (L7) | **DONE** — docs/cycles/29-issuance.md (~20.5k words; the persistent-incentive seat; four top-ticks + the SEBI-2024 institutional confirmation; IS1/IS2 data-gated) + quant/ladder/issuance_sentiment.py + tests + Lesson 29 |
 | 3.3/3.4 | Factor rotation / crowding-unwind | **DONE** — docs/cycles/30-rotation-crowding.md (~9.2k words; rotation retired — harvested statically; CR1a skew import dies / CR1b −4.1σ exit depth / CR2 the 2025 unwind invisible monthly → monitor legs set) + Lesson 30 |
 | 3.5/3.6 | Earnings-revision / retail wave | **DONE** — docs/cycles/31-revision-retail.md (~9.5k words; REJECT-FOR-DATA enters as the fourth verdict type with cost accounting + revisit trigger; H57 instrumented on free counters with the SEBI loss studies as mechanism documentation) + Lesson 31 |
-| 3.7-3.9 | Political cycle (into L5) / state-election + US-presidential rejects | **IN PROGRESS** — Band 3 closing entry |
-| 4.x–5.x | Calendar, fast layer | queued |
+| 3.7-3.9 | Political cycle (into L5) / state-election + US-presidential rejects | **DONE** — docs/cycles/32-political-close.md (~7.4k words; PL1 3/8 — "direction is surprise" measured; reform waves = Stage-2 wave cards; 3.9's decay claim CORRECTED to mechanism-specificity on verification) + Lesson 32. **BAND 3 COMPLETE** |
+| 4.1/4.2 + 4.11/4.12 | Calendar-as-signal: Budget window (L5 seat) / April FY-end effect / month-of-year + dividend rejects | **IN PROGRESS** — CW1 FAIL / CW2 PASS-refused / CW3 null; quant/ladder/calendar_windows.py seated + 7 tests |
+| 4.3–4.10 | Calendar mechanics (H58 ops pack) + CONTEXT quartet | queued |
+| 5.x | Fast layer (incl. the queued L2 upgrade to standard) | queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
 rejection argued in 30 pages is still knowledge); seats get the full standard incl. module+tests.
