@@ -30,7 +30,10 @@ ceiling.
 | 1.3 | Commodity supercycle | **DONE** — docs/cycles/14-commodity-supercycle.md (~28.2k words; CS1 clock FAIL / CS2 breadth PASS / CS3-CS4 mechanism FAIL; H53 = state-only Tier-C) + Lesson 14 |
 | 1.4/1.5 | Kondratieff / Perez surges | **DONE** — docs/cycles/15-long-waves.md (~9.5k words; KW1/KW2 both FAIL, K-band empty at every resolution; Perez = red-team lens) + Lesson 15 |
 | 1.6 | India infra/capex supercycle | **DONE** — docs/cycles/16-capex-cycle.md (~26.3k words; IN1 FAIL calibrating / IN2 PASS / IN3 non-monotone → clamp vindicated; C→B NOT triggered) + quant/ladder/capex_cycle.py + tests + Lesson 16. **BAND 1 COMPLETE** |
-| 2.x | Business-credit band (incl. credit cycle) | credit DONE at standard (docs/cycles/01, 58pp); rest queued |
+| 2.1 | Credit cycle | **DONE at standard** — docs/cycles/01 (58pp) |
+| 2.2 | NBFC/shadow-credit sub-cycle | **DONE** — docs/cycles/17-shadow-credit.md (~19k words; SC1 FAIL → L2-routing argument; no new seat, de-dup proof) + Lesson 17 |
+| 2.3 | Business cycle proper | **IN PROGRESS** |
+| 2.x | Rest of Band 2 (2.4 Kitchin CONTEXT, 2.5 Juglar fold, 2.6 RBI MP cycle, 2.7 fiscal, 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
