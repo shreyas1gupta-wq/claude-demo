@@ -48,6 +48,7 @@ private artifacts; this index is the registry.
 | 39 | The Atlas, Closed | docs/cycles/38-atlas-close.md (the capstone — Bands 0-5 + candidates H53-H59 all addressed) | https://claude.ai/code/artifact/ab2f5204-87ac-4676-affc-7d7f36495316 | docs/learn/artifacts/lesson-39-atlas-close.html |
 | 40 | The Day the Data Arrived | research/cycles/daily-batch/ + the index/panel vaults (the data phase's remote leg) | https://claude.ai/code/artifact/c1de9a8d-b675-497c-baa2-de184eeb8b65 | docs/learn/artifacts/lesson-40-data-arrives.html |
 | 41 | Speed Is the Seatbelt | research/cycles/daily-batch/ addenda 2-4 (F2-index / F7a / TS1 — the risk system on real history) | https://claude.ai/code/artifact/ed7b1e9d-ea24-4dce-b949-4000bfa04ba5 | docs/learn/artifacts/lesson-41-speed-seatbelt.html |
+| — | Cycle Program Health Board (audit dashboard) | all of docs/cycles/ + the register | https://claude.ai/code/artifact/166a370c-7141-47e9-bd48-8cd530a966d8 | docs/learn/artifacts/health-board.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to

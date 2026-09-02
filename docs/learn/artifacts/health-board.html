@@ -1,0 +1,248 @@
+<title>Cycle Program Health Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --good:#1baf7a; --good-bg:#e7f5ee; --amber:#b47607; --amber-bg:#f7efdc;
+  --gate:#5b6b8c; --gate-bg:#e9edf4; --fixed:#14634c; --fixed-bg:#e4efe9;
+  --bar:#9dbfb2; --barfill:#14634c; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --good:#33bd8c; --good-bg:#16281f; --amber:#d99e2b; --amber-bg:#2a2313;
+    --gate:#8fa2c4; --gate-bg:#1b202b; --fixed:#4fb08f; --fixed-bg:#152420;
+    --bar:#2e4a40; --barfill:#4fb08f; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --good:#33bd8c; --good-bg:#16281f; --amber:#d99e2b; --amber-bg:#2a2313;
+  --gate:#8fa2c4; --gate-bg:#1b202b; --fixed:#4fb08f; --fixed-bg:#152420;
+  --bar:#2e4a40; --barfill:#4fb08f; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:15px; line-height:1.55}
+.wrap{max-width:1260px; margin:0 auto; padding:0 20px 80px}
+header{padding:44px 0 10px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px}
+h1{font-family:"Newsreader",Georgia,serif; font-size:clamp(30px,5vw,44px); font-weight:500; margin:0; text-wrap:balance}
+.sub{color:var(--ink-2); max-width:78ch; margin:12px 0 0}
+h2{font-family:"Newsreader",Georgia,serif; font-size:24px; font-weight:500; margin:0 0 4px}
+section{margin:44px 0 0}
+.seclede{color:var(--ink-2); font-size:14px; margin:0 0 16px; max-width:78ch}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:26px 0 0}
+.tile{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tile .k{font-size:11.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-3)}
+.tile .v{font-family:"Newsreader",Georgia,serif; font-size:30px; line-height:1.1; margin-top:2px; font-variant-numeric:tabular-nums}
+.tile .d{font-size:12px; color:var(--ink-2); margin-top:2px}
+.fixedbox{background:var(--fixed-bg); border:1px solid var(--rule); border-left:3px solid var(--fixed);
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:26px 0 0}
+.fixedbox b{color:var(--accent-ink)}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:12px 16px; margin:14px 0 0; font-size:14px}
+.tablewrap{overflow-x:auto; background:var(--card); border:1px solid var(--rule); border-radius:12px; box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; font-size:13px; min-width:1150px}
+th{font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-3); font-weight:600;
+  text-align:left; padding:10px 10px; border-bottom:2px solid var(--rule); position:sticky; top:0; background:var(--card); z-index:2}
+td{padding:8px 8px; border-bottom:1px solid var(--rule-soft); vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--panel)}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.bandrow td{background:var(--panel); font-weight:600; font-size:12px; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--ink-2); padding:6px 10px}
+.entry{font-weight:600; min-width:130px}
+.entry .file{display:block; font-weight:400; font-size:11px; color:var(--ink-3); font-family:"IBM Plex Mono",monospace}
+.chip{display:inline-block; font-size:11px; font-weight:600; border-radius:999px; padding:2px 9px; white-space:nowrap}
+.c-full{background:var(--good-bg); color:var(--good)}
+.c-prop{background:var(--panel); color:var(--ink-2); border:1px solid var(--rule)}
+.c-cap{background:var(--gate-bg); color:var(--gate)}
+.c-fix{background:var(--fixed-bg); color:var(--fixed)}
+.c-gate{background:var(--gate-bg); color:var(--gate)}
+.c-warn{background:var(--amber-bg); color:var(--amber)}
+.c-verdict{background:var(--panel); color:var(--ink-2); border:1px solid var(--rule); font-weight:500}
+.wbar{display:inline-block; width:60px; height:6px; background:var(--bar); border-radius:3px; vertical-align:middle; margin-left:8px; position:relative; overflow:hidden}
+.wbar i{position:absolute; left:0; top:0; bottom:0; background:var(--barfill); border-radius:3px}
+.ok{color:var(--good); font-weight:600} .dash{color:var(--ink-3)}
+.q{display:grid; gap:10px; margin-top:14px}
+.qrow{display:grid; grid-template-columns:52px 1fr auto; gap:14px; align-items:center;
+  background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.pri{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:14px; text-align:center; border-radius:8px; padding:6px 0}
+.p1{background:var(--warn-bg); color:var(--warn-ink)} .p2{background:var(--amber-bg); color:var(--amber)} .p3{background:var(--panel); color:var(--ink-2)}
+.qrow .what{font-weight:600} .qrow .why{font-size:13px; color:var(--ink-2); font-weight:400; display:block}
+.owner{font-size:11px; font-weight:600; border-radius:999px; padding:3px 10px; white-space:nowrap}
+.o-pr{background:var(--warn-bg); color:var(--warn-ink)} .o-rs{background:var(--gate-bg); color:var(--gate)} .o-al{background:var(--panel); color:var(--ink-2); border:1px solid var(--rule)}
+.watch{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.watch span{background:var(--card); border:1px solid var(--rule); border-radius:999px; padding:5px 13px; font-size:13px; color:var(--ink-2)}
+footer{margin-top:56px; padding-top:16px; border-top:1px solid var(--rule); font-size:12.5px; color:var(--ink-3); max-width:88ch}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Ionic quant desk · the cycle program · depth &amp; health audit · 2 Sep 2026</p>
+  <h1>Cycle Program Health Board</h1>
+  <p class="sub">Every atlas entry audited against the monograph standard — words, all nine parts,
+  module + tests where seated, real-data leg, lesson. Six genuine gaps were found and <b>fixed
+  today</b>; everything else below is classified, not hidden: proportionate-by-verdict entries are
+  design, gated items wait on named data, and two inputs wait on you.</p>
+</header>
+
+<section>
+  <div class="tiles">
+    <div class="tile"><div class="k">Monographs</div><div class="v">38</div><div class="d">536k words total</div></div>
+    <div class="tile"><div class="k">Full standard</div><div class="v">17</div><div class="d">≥15k words, all parts</div></div>
+    <div class="tile"><div class="k">Proportionate</div><div class="v">20</div><div class="d">by verdict (context/fold/reject)</div></div>
+    <div class="tile"><div class="k">Lessons</div><div class="v">41</div><div class="d">published + archived</div></div>
+    <div class="tile"><div class="k">Modules · tests</div><div class="v">12 · 96</div><div class="d">all green</div></div>
+    <div class="tile"><div class="k">Ledger</div><div class="v">~65</div><div class="d">trials/designs, bars never moved</div></div>
+    <div class="tile"><div class="k">Vaults</div><div class="v">8</div><div class="d">manifested, two-pass authenticated</div></div>
+    <div class="tile"><div class="k">Gaps open</div><div class="v">0</div><div class="d">fixable-now class — all closed</div></div>
+  </div>
+  <div class="fixedbox"><b>Fixed today (the audit's yield):</b> six monographs were missing Part G
+  (operator psychology) — the paired-entry era's true standard violations. All six now carry it:
+  <span class="mono">19 kitchin-juglar · 21 fiscal · 23 dollar-fed · 25 oil · 30 rotation-crowding ·
+  32 political</span>. Nothing else in the corpus violates the standard; the rest of this board is
+  classification and queue.</div>
+</section>
+
+<section>
+  <h2>The depth scorecard — all 38 entries</h2>
+  <p class="seclede">Depth is judged against the verdict, not one bar for all: a SEAT owes the full
+  standard (≥15k words, module, tests); a CONTEXT/FOLD/REJECT owes a proportionate monograph — the
+  full case for its verdict. The words bar is scaled to the largest entry (28.2k).</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Entry</th><th>Atlas</th><th>Verdict</th><th>Depth (words)</th><th>Class</th><th>Module + tests</th><th>Real-data leg</th><th>Lesson</th><th>Status / note</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>The improvement queue — everything open, ranked, with its owner</h2>
+  <p class="seclede">Nothing here is silently pending: each row names what unblocks it. P1 needs you;
+  P2 runs the day its data lands; P3 is scheduled maintenance.</p>
+  <div class="q">
+    <div class="qrow"><div class="pri p1">P1</div><div class="what">Principal inputs: <span class="mono">funding_rate</span> unset · ADV table PROVISIONAL
+      <span class="why">The validator warns on every run; the leverage feature and every capacity number wait on these two decisions.</span></div><span class="owner o-pr">YOU</span></div>
+    <div class="qrow"><div class="pri p1">P1</div><div class="what">Runsheet Priority-1 pulls: PIT bhavcopy · India VIX · CCIL dailies
+      <span class="why">Unblocks the full F2 pack (F2b/F2c/FS-D4, book costs, M4-judged), true MR1/CR-D2, F5/FS-D1, CW-D1's VIX leg, H58-D1 grading. Every bar is already written.</span></div><span class="owner o-pr">YOUR MACHINE</span></div>
+    <div class="qrow"><div class="pri p2">P2</div><div class="what">Priority-2 pulls: NSDL flows · issuance data · demat/F&amp;O shares · TSF · ONI+IMD · Kilian index · WSTS
+      <span class="why">Runs FL/IS/RT/CN/EN/OL/H59-D1 as registered — promotions and kills for candidates H54–H57, H59.</span></div><span class="owner o-rs">RUNSHEET</span></div>
+    <div class="qrow"><div class="pri p2">P2</div><div class="what">Band-0 context entries 08 · 09 · 11: optional Part C upgrades
+      <span class="why">Proportionate today, not violations — golden-constant, inflation-regimes, and demographics could each gain a data-engineering part if their sleeves ever escalate.</span></div><span class="owner o-al">ANNUAL LOOP</span></div>
+    <div class="qrow"><div class="pri p3">P3</div><div class="what">L13 household-debt machinery
+      <span class="why">A display/reduce-only seat with no module — by data availability, not neglect; builds when the RBI household series is vaulted.</span></div><span class="owner o-rs">RUNSHEET</span></div>
+    <div class="qrow"><div class="pri p3">P3</div><div class="what">Andrews median-unbiased τ½ estimator (near-unit-root)
+      <span class="why">F1b flagged ρ≈0.99 daily; the current CI degrades there per Track R's own Monte Carlo. Queued as Track-R work.</span></div><span class="owner o-al">TRACK R</span></div>
+  </div>
+  <div class="warnbox"><b>Discipline holds, deliberately:</b> F2b, F2c and FS-D4 are runnable-looking
+  but DEFERRED by the re-test rule — variants of same-day fails wait for the full F2 so distance and
+  the M4 framework sit between a failure and its successor. They are not forgotten; they are fenced.</div>
+</section>
+
+<section>
+  <h2>Standing watches</h2>
+  <p class="seclede">Dated triggers the annual loop checks — the only events that can move a verdict.</p>
+  <div class="watch">
+    <span>⏱ L2 τ½ <b>lengthening watch</b> (F1b CI sits at the band top)</span>
+    <span>⏱ CW-PT1 April paper trade — first grading <b>Apr 2027</b></span>
+    <span>⏱ H59 reopens if a listed Indian fab reaches index membership</span>
+    <span>⏱ 3.5 reopens if a free consensus-estimates source appears</span>
+    <span>⏱ L6 recalibrates on the 6th completed RBI round trip</span>
+    <span>⏱ CW2b runs at the next factor-library refresh</span>
+  </div>
+</section>
+
+<footer>
+  Sources of record: docs/cycles/ (38 monographs) · research/register/trial-ledger.md ·
+  research/register/RUNSHEET.md · docs/cycles/38-atlas-close.md (the master verdict table) ·
+  docs/learn/README.md (all 41 lessons). Audit method: scripted word/part detection over every
+  monograph, spot-checked by hand; the six Part-G absences were verified empty before being written.
+  This board is regenerated on request — it reads the repo, never memory.
+</footer>
+</div>
+
+<script>
+const DATA = {
+ bands: [
+  ["BAND 0 — SECULAR ARCS", [
+   ["Debt supercycle","05","0.1","SEAT L15 (structural)",23839,"FULL","display seat","real ✓","5",""],
+   ["Reserve currency","06","0.2","CONTEXT",20468,"FULL","—","real ✓","6",""],
+   ["Suprasecular rates","07","0.3","CONTEXT",6437,"PROP","—","real ✓","7","by verdict"],
+   ["Golden constant","08","0.4","CONTEXT",6506,"PROP","—","real ✓","8","annual-loop candidate"],
+   ["Inflation regimes","09","0.5","CONTEXT",7332,"PROP","—","real ✓","9","annual-loop candidate"],
+   ["War cycles","10","0.6","REJECT",7217,"PROP","—","real ✓","10","by verdict"],
+   ["Demographics","11","0.7","CONTEXT (L16)",7325,"PROP","—","real ✓","11","annual-loop candidate"]]],
+  ["BAND 1 — STRUCTURAL (10–20y)", [
+   ["Financial cycle","12","1.1","SEAT L12",23257,"FULL","financial_cycle ✓","real ✓","12",""],
+   ["Real estate","13","1.2","FOLD → L12",10961,"PROP","—","real ✓ RE1/2","13","by verdict"],
+   ["Commodity supercycle","14","1.3","CANDIDATE H53",28221,"FULL","—","real ✓ CS1-4","14",""],
+   ["Long waves","15","1.4/1.5","REJECT + CONTEXT",9461,"PROP","—","real ✓ KW1/2","15","by verdict"],
+   ["Capex supercycle","16","1.6","SEAT L11",26265,"FULL","capex_cycle ✓","real ✓ IN1-3","16",""]]],
+  ["BAND 2 — MACRO ENGINE ROOM (1–10y)", [
+   ["Credit cycle","01","2.1","SEAT L10 (anchor)",26192,"FULL","credit_cycle ✓","real ✓","1",""],
+   ["Shadow credit","17","2.2","FOLD → L10/L2",18958,"FULL","—","real ✓ SC1","17",""],
+   ["Business cycle","18","2.3","CONTEXT",18306,"FULL","—","real ✓ BC1-3","18",""],
+   ["Kitchin / Juglar","19","2.4/2.5","REJECT + FOLD",8392,"PROP","—","real ✓ KJ1","19","G FIXED today"],
+   ["MP cycle (RBI)","20","2.6","SEAT L6 (calibrated)",20139,"FULL","config seat","real ✓ MP1-3","20",""],
+   ["Fiscal cycle","21","2.7","CONTEXT → L5/L6",9670,"PROP","—","real ✓ FP1","21","G FIXED today"],
+   ["Global cycle","22","2.8","SEAT L9 (calibrated)",19271,"FULL","config seat","real ✓ GF1-3","22",""],
+   ["Dollar / Fed","23","2.9/2.10","FOLD → L9",9438,"PROP","—","real ✓ DL1-3","23","G FIXED today"],
+   ["China impulse","24","2.11","CANDIDATE H54",17463,"FULL","—","real ✓ CI1","24",""],
+   ["Oil fold","25","2.12","FOLD → L9",9239,"PROP","—","real ✓ OL1","25","G FIXED today"],
+   ["FPI positioning","26","2.13","SEAT L14",17733,"FULL","fpi_positioning ✓","real ✓","26",""],
+   ["ENSO","27","2.14","CANDIDATE H55",19557,"FULL","—","real ✓ EN1-3","27",""],
+   ["Profit share","28","2.15","CANDIDATE H56",10706,"PROP","—","real ✓ PS1-3","28","by verdict"]]],
+  ["BAND 3 — INTRA-CYCLE STATES", [
+   ["Value & quality","04","3.1","SEAT L8",22474,"FULL","value_quality ✓","real ✓","4",""],
+   ["Issuance","29","3.2","SEAT L7",20537,"FULL","issuance_sentiment ✓","real ✓","29",""],
+   ["Rotation / crowding","30","3.3/3.4","FOLD + CANDIDATE",9199,"PROP","—","real ✓ CR, CR-D2a","30","G FIXED today"],
+   ["Revisions / retail","31","3.5/3.6","DATA-REJECT + H57",9539,"PROP","—","designs gated RT1/2","31","by verdict"],
+   ["Political close","32","3.7–3.9","FOLD → L5 + 2 REJECTS",7557,"PROP","—","real ✓ PL1","32","G FIXED today"]]],
+  ["BAND 4 — ANNUAL & CALENDAR", [
+   ["Calendar signal","33","4.1/4.2 + 4.11/12","SEAT L5 + instrumented",11354,"PROP","calendar_windows ✓","real ✓ CW1-3, CW-D1a","33","seat has module+tests"],
+   ["Calendar mechanics","34","4.3–4.6","EXECUTION H58",8476,"PROP","exclusion_calendar ✓","counting designs gated","34","zero trials BY DESIGN"],
+   ["Calendar context","35","4.7–4.10","CONTEXT ×4",8081,"PROP","—","real ✓ GS1","35","by verdict"]]],
+  ["BAND 5 — THE FAST LAYER", [
+   ["Fast stress (v2 + prints)","02","5.1–5.3","SEAT L2",15398,"FULL","fast_stress ✓","real ✓ FS-U/F1b/F2/F7/FS-D3","2 · 36 · 40 · 41",""],
+   ["Momentum & trend","03","L3/L4","SEAT L3/L4",23611,"FULL","momentum ✓","real ✓ M0-5, TS1, N4a","3",""],
+   ["Fast-layer close","36","5.4–5.6","FLAG + REJECT + OOS",6786,"PROP","—","real ✓ MR1-S, DW1","37","by verdict"]]],
+  ["CANDIDATES & CAPSTONE", [
+   ["Semiconductors","37","H59","CANDIDATE (prior: fails)",6619,"PROP","—","gated (WSTS)","38","by verdict"],
+   ["The Atlas, Closed","38","capstone","SYNTHESIS",2777,"CAP","—","—","39","capstone format"]]]
+ ]};
+const MAXW = 28221;
+const tb = document.getElementById("tb");
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+for (const [band, rows] of DATA.bands){
+  tb.insertAdjacentHTML("beforeend", `<tr class="bandrow"><td colspan="9">${esc(band)}</td></tr>`);
+  for (const [name, file, atlas, verdict, words, cls, mod, data, lesson, note] of rows){
+    const w = Math.max(3, Math.round(words / MAXW * 100));
+    const clsChip = cls==="FULL" ? '<span class="chip c-full">✓ FULL</span>'
+      : cls==="CAP" ? '<span class="chip c-cap">◆ CAPSTONE</span>'
+      : '<span class="chip c-prop">◻ PROPORTIONATE</span>';
+    const noteHtml = note.includes("FIXED") ? `<span class="chip c-fix">✚ ${esc(note)}</span>`
+      : note.includes("annual") ? `<span class="chip c-warn">⏳ ${esc(note)}</span>`
+      : note ? `<span class="dash">${esc(note)}</span>` : '<span class="ok">✓ complete</span>';
+    const dataHtml = data.includes("gated") ? `<span class="chip c-gate">⏳ ${esc(data)}</span>`
+      : data==="—" ? '<span class="dash">—</span>' : `<span class="ok">${esc(data)}</span>`;
+    const modHtml = mod==="—" ? '<span class="dash">— (no seat)</span>'
+      : mod.includes("✓") ? `<span class="ok">${esc(mod)}</span>` : `<span class="dash">${esc(mod)}</span>`;
+    tb.insertAdjacentHTML("beforeend", `<tr>
+      <td class="entry">${esc(name)}<span class="file">${esc(file)}-…md</span></td>
+      <td class="num">${esc(atlas)}</td>
+      <td><span class="chip c-verdict">${esc(verdict)}</span></td>
+      <td class="num">${words.toLocaleString()}<span class="wbar"><i style="width:${w}%"></i></span></td>
+      <td>${clsChip}</td><td>${modHtml}</td><td>${dataHtml}</td>
+      <td class="num">${esc(lesson)}</td><td>${noteHtml}</td></tr>`);
+  }
+}
+</script>
