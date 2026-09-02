@@ -1,0 +1,277 @@
+<title>Only Mechanisms Buy a Test</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 33 · atlas 4.1 + 4.2 + 4.11 + 4.12 · the short clocks</p>
+  <h1>Only Mechanisms Buy a Test</h1>
+  <p class="stand">The register has already killed five long clocks — Kitchin, business,
+  property, commodity, Kondratieff — with pre-registered bars. Band 4 turns the same knife on
+  the SHORT clocks: the calendar. Twelve months make twelve free hypotheses, and a desk that
+  tests all twelve will "discover" one. So the rule here is stricter than a p-value: a month
+  buys a test only by naming its mechanism first. Two months qualified. One failed. One passed
+  — and was still refused budget.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/33-calendar-signal.md</span>
+    <span><b>Verdicts</b> 4.1 SEATED (schedule only) · 4.2 instrumented · 4.11 + 4.12 REJECT</span>
+    <span><b>Trials</b> CW1 FAIL · CW2 PASS · CW3 null</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The trap, demonstrated on purpose</h2></div>
+  <p>Calendar patterns are the oldest data-mining trap in finance: mechanism-free, infinitely
+  re-testable, and manufactured for free by noise (the Slutzky–Yule effect — smooth any random
+  series and apparent cycles appear). Test 12 months at the 5% level and you expect ~0.6 false
+  positives; test day-of-week, half-of-month, and holidays too and a "discovery" is guaranteed.
+  The Contract bans fixed-period calendar cycles outright (§8) unless a mechanism is named.</p>
+  <p>Trial CW3 ran the omnibus test — all twelve months of Indian market returns at once,
+  Kruskal–Wallis — with the interpretation rule pre-stated <i>before the print</i>: a null
+  confirms the reject; a significant print STILL doesn't promote any month, because that's what
+  a 12-way comparison does. The print: <b>p = 0.354</b>. No calendar structure. And the sweep
+  obligingly produced its own bait: November ranks #1 in volatility, December #1 in median
+  return. Both stay logged and un-interpreted — that refusal is the whole lesson.</p>
+  <div class="def"><div class="t">Definition · omnibus test</div>
+  <p>One joint test across all groups ("do the twelve months differ at all?") instead of twelve
+  separate ones. It spends the entire 5% error budget once, where twelve separate tests spend
+  5% each and quietly become a 46% chance of at least one false alarm.</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The two months that named a mechanism</h2></div>
+  <p><b>February</b> — the Union Budget. India is the rare market whose single largest annual
+  policy reveal sits on a legally fixed date (last day of February until 2016, February 1
+  since 2017 — both inside the same month). Timing is law; direction is unknowable (Lesson 32's
+  3/8). The claim is therefore about VOLATILITY, not return: trial CW1.</p>
+  <p><b>April</b> — the fiscal-year end. India's tax year closes March 31. Tax-motivated selling
+  depresses small caps into FY-end and the pressure lifts in April — the same mechanism as the
+  US "January effect" (Ritter, Roll), shifted by the fiscal calendar. Prediction: specifically
+  small-cap, specifically April. Trial CW2, on the size factor (SMB), with the month named
+  before any number was seen.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The prints</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Median |market return| by calendar month</span>
+    <span class="figbadge">REAL DATA · IIMA factor library 1993–2025 · computed by us</span></div>
+    <div class="chart" id="figCW1"></div>
+    <figcaption>CW1: February (highlighted) ranks 7th of 12 — the Budget month is perfectly
+    ordinary at monthly resolution (Mann-Whitney p = 0.522). November's #1 rank is the
+    un-mechanismed bait CW3's rule forbids us to touch.</figcaption>
+  </figure>
+  <p>CW1 <b>failed</b> — and the failure taught the register a theorem it had already met once
+  (the 2025 crowding unwind, invisible in monthly factors): <b>an event-day phenomenon must be
+  tested at event-day resolution</b>. A 1–3 day vol spike drowns inside a month. So the L5
+  budget window rests on the mechanism and the published daily-resolution India VIX record —
+  our own daily test (CW-D1) waits on the VIX vault, and the monograph says exactly that
+  instead of borrowing a pass it didn't print.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — Median small-minus-big (SMB) return by calendar month</span>
+    <span class="figbadge">REAL DATA · IIMA factor library 1993–2025 · computed by us</span></div>
+    <div class="chart" id="figCW2"></div>
+    <figcaption>CW2: April (highlighted) is the #1 month at +2.47%/mo median (Mann-Whitney
+    p = 0.020) — the FY-end mechanism's predicted month, named in advance. Feb–Mar, the two most
+    NEGATIVE months, look like the selling leg of the same story — but they weren't
+    pre-registered, so they become trial CW2b for the next data refresh, not a claim today.</figcaption>
+  </figure>
+  <div class="keyresult"><div class="t">The honest asymmetry</div>
+  <div class="big">One pre-named month passing at p = 0.020 is evidence. The best of twelve
+  months passing at p = 0.020 would be noise.</div>
+  <p>Identical numbers, opposite meanings — the entire difference is WHEN the month was chosen.
+  That is what pre-registration is for.</p></div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Pass, then refuse — again</h2></div>
+  <p>CW2 joins DL1 and FP1a in the register's strangest quadrant: passes we refuse to promote.
+  The reasons are stated, not vibes: the effect is a small-cap long in the costliest corner of
+  the book (impact plus a 20bp transaction-tax round trip); it delivers one observation per
+  year; and its US ancestor is the canonical DECAYED anomaly — the January effect faded after
+  publication (McLean–Pontiff), and India's version gets that haircut before any sizing talk.</p>
+  <p>What the pass buys instead: a Tier-C flag and a ledgered paper trade (CW-PT1 — a modeled
+  April small-cap tilt, net of the cost model, graded only after three Aprils). Promotion is a
+  conversation the paper ledger may open in 2029. Not this print.</p>
+</section>
+
+<section id="p5">
+  <div class="partkicker"><span class="partnum">PART 5</span><h2>A seat that schedules and cannot point</h2></div>
+  <p>The L5 module (<code>quant/ladder/calendar_windows.py</code>) is the ladder's only
+  SCHEDULE — not a state estimated from data, but windows built from event calendars: every
+  February, plus election windows around supplied result months (an event list, never an
+  extrapolated clock — nothing is generated beyond announced calendars). Each window carries
+  its trail (start, end, kind, anchor), overlaps count as depth, and consumption is
+  reduce-only vol scheduling by contract.</p>
+  <p>The design rule is enforced structurally: the module's namespace contains no directional
+  output, and a test asserts it stays that way —
+  <code>test_no_directional_output_exists</code>. The seat can shrink risk into a window; it
+  cannot ever place a bet on one. Rejects close the entry: month-of-year seasonals (CW3's
+  omnibus null, plus the §8 ban) and dividend season (mechanically priced — the ex-date drop
+  approximates the dividend, so there is nothing left to harvest).</p>
+</section>
+
+<footer>
+  <p>Lesson 33 of the learn-while-we-build series · Ionic quant desk · Atlas 4.1 + 4.2 + 4.11
+  + 4.12 · monograph: docs/cycles/33-calendar-signal.md · trials CW1/CW2/CW3 + designs
+  CW-D1/CW-PT1/CW2b in research/register/trial-ledger.md (pre-registered, bars unmoved) ·
+  Figs 1–2 computed by us from the vaulted IIMA factor library.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"absMF_median": [4.93, 4.27, 5.37, 3.23, 4.33, 4.34, 4.51, 3.25, 4.21, 4.03, 5.66, 3.88], "smb_median": [-1.34, -2.36, -1.7, 2.47, 0.22, 0.43, 0.57, 0.93, -1.33, 0.33, -0.19, 0.64], "stats": {"cw1_p": 0.522, "cw2_p": 0.02, "cw3_p": 0.354, "n_per_month": 32, "sample": "1993-10..2025-12"}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function bars(mountId, vals, hiIdx, opts){
+  const W=820,H=300,m={t:16,r:14,b:34,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=Math.min(0,...vals), hi=Math.max(0,...vals), pad=(hi-lo)*0.12;
+  const Y=v=>m.t+ih*(1-(v-(lo-pad))/((hi+pad)-(lo-pad)));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':opts.label});
+  opts.grid.forEach(g=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(g),y2:Y(g),stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:m.l-6,y:Y(g)+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=g; svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1.2}));
+  const bw=iw/12*0.66;
+  vals.forEach((v,i)=>{
+    const x=m.l+iw*(i+0.5)/12;
+    const y0=Y(Math.max(0,v)), y1=Y(Math.min(0,v));
+    svg.appendChild(el('rect',{x:x-bw/2,y:y0,width:bw,height:Math.max(2,y1-y0),rx:4,
+      fill:i===hiIdx?'var(--s2)':'var(--s1)',opacity:i===hiIdx?1:0.55}));
+    const t=el('text',{x:x,y:H-12,'text-anchor':'middle','font-size':'11.5',
+      fill:i===hiIdx?'var(--s2)':'var(--muted)','font-weight':i===hiIdx?'700':'400'});
+    t.textContent=MO[i]; svg.appendChild(t);
+    const vt=el('text',{x:x,y:(v>=0?y0-5:y1+13),'text-anchor':'middle','font-size':'10',
+      fill:i===hiIdx?'var(--s2)':'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    vt.textContent=v.toFixed(1); svg.appendChild(vt);});
+  if(opts.note){const[ni,txt]=opts.note;
+    const x=m.l+iw*(ni+0.5)/12;
+    const nt=el('text',{x:x,y:m.t+8,'text-anchor':'middle','font-size':'10.5',fill:'var(--muted)','font-style':'italic'});
+    nt.textContent=txt; svg.appendChild(nt);}
+  document.getElementById(mountId).appendChild(svg);
+}
+bars('figCW1', DATA.absMF_median, 1, {label:'median absolute market return by month', grid:[3,4,5], note:[10,'the bait (rank 1, no mechanism)']});
+bars('figCW2', DATA.smb_median, 3, {label:'median SMB by month', grid:[-2,-1,0,1,2], note:[1,'the unregistered selling leg → CW2b']});
+</script>

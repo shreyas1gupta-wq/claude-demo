@@ -48,8 +48,9 @@ ceiling.
 | 3.3/3.4 | Factor rotation / crowding-unwind | **DONE** — docs/cycles/30-rotation-crowding.md (~9.2k words; rotation retired — harvested statically; CR1a skew import dies / CR1b −4.1σ exit depth / CR2 the 2025 unwind invisible monthly → monitor legs set) + Lesson 30 |
 | 3.5/3.6 | Earnings-revision / retail wave | **DONE** — docs/cycles/31-revision-retail.md (~9.5k words; REJECT-FOR-DATA enters as the fourth verdict type with cost accounting + revisit trigger; H57 instrumented on free counters with the SEBI loss studies as mechanism documentation) + Lesson 31 |
 | 3.7-3.9 | Political cycle (into L5) / state-election + US-presidential rejects | **DONE** — docs/cycles/32-political-close.md (~7.4k words; PL1 3/8 — "direction is surprise" measured; reform waves = Stage-2 wave cards; 3.9's decay claim CORRECTED to mechanism-specificity on verification) + Lesson 32. **BAND 3 COMPLETE** |
-| 4.1/4.2 + 4.11/4.12 | Calendar-as-signal: Budget window (L5 seat) / April FY-end effect / month-of-year + dividend rejects | **IN PROGRESS** — CW1 FAIL / CW2 PASS-refused / CW3 null; quant/ladder/calendar_windows.py seated + 7 tests |
-| 4.3–4.10 | Calendar mechanics (H58 ops pack) + CONTEXT quartet | queued |
+| 4.1/4.2 + 4.11/4.12 | Calendar-as-signal: Budget window (L5 seat) / April FY-end effect / month-of-year + dividend rejects | **DONE** — docs/cycles/33-calendar-signal.md (~11.1k words; CW1 FAIL → the resolution theorem / CW2 PASS April rank-1 p=0.020, promotion refused / CW3 omnibus null) + quant/ladder/calendar_windows.py + tests + Lesson 33 |
+| 4.3–4.6 | Calendar mechanics: drain-date exclusions, results pause, expiry avoidance (H58) + reconstitution edge (RC1) | **IN PROGRESS** — quant/ladder/exclusion_calendar.py seated + 7 tests; designs registered |
+| 4.7–4.10 | CONTEXT quartet: monsoon / festive / gold seasonality / SIP clustering | **IN PROGRESS** — GS1 null printed (festival months rank worst) |
 | 5.x | Fast layer (incl. the queued L2 upgrade to standard) | queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
