@@ -24,6 +24,7 @@ private artifacts; this index is the registry.
 | 15 | The Fifty-Year Prophecy | docs/cycles/15-long-waves.md (Atlas 1.4 REJECT + 1.5 CONTEXT) | https://claude.ai/code/artifact/b0ceab88-d443-4654-9820-ad41e724814c | docs/learn/artifacts/lesson-15-long-waves.html |
 | 16 | The Seat That Argues Against Itself | docs/cycles/16-capex-cycle.md (Atlas 1.6, seat L11 — Band 1 finale) | https://claude.ai/code/artifact/42813366-48e0-4271-8464-dbbc80b19534 | docs/learn/artifacts/lesson-16-capex-cycle.html |
 | 17 | A Run Without Deposits | docs/cycles/17-shadow-credit.md (Atlas 2.2, inside L10 / feeds L2) | https://claude.ai/code/artifact/1b68b769-42d6-481f-b232-abfd615cf53d | docs/learn/artifacts/lesson-17-shadow-credit.html |
+| 18 | The Cycle That Earns No Seat | docs/cycles/18-business-cycle.md (Atlas 2.3, CONTEXT) | https://claude.ai/code/artifact/93f4c2f3-fc8d-4e41-b406-8740c6910b01 | docs/learn/artifacts/lesson-18-business-cycle.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to

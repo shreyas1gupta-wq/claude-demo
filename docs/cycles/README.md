@@ -32,8 +32,9 @@ ceiling.
 | 1.6 | India infra/capex supercycle | **DONE** — docs/cycles/16-capex-cycle.md (~26.3k words; IN1 FAIL calibrating / IN2 PASS / IN3 non-monotone → clamp vindicated; C→B NOT triggered) + quant/ladder/capex_cycle.py + tests + Lesson 16. **BAND 1 COMPLETE** |
 | 2.1 | Credit cycle | **DONE at standard** — docs/cycles/01 (58pp) |
 | 2.2 | NBFC/shadow-credit sub-cycle | **DONE** — docs/cycles/17-shadow-credit.md (~19k words; SC1 FAIL → L2-routing argument; no new seat, de-dup proof) + Lesson 17 |
-| 2.3 | Business cycle proper | **IN PROGRESS** |
-| 2.x | Rest of Band 2 (2.4 Kitchin CONTEXT, 2.5 Juglar fold, 2.6 RBI MP cycle, 2.7 fiscal, 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
+| 2.3 | Business cycle proper | **DONE** — docs/cycles/18-business-cycle.md (~18.3k words; BC1 PASS band real / BC2 FAIL: credit-leads-growth import dies at home, 16/18 GDP-leads / BC3 77% stickiness; CONTEXT, zero budget) + Lesson 18 |
+| 2.4/2.5 | Kitchin inventory / Juglar fold | **IN PROGRESS** — paired short entry (Kitchin CONTEXT unbudgeted; Juglar = the 19th-c name for the L10/L11 band, folded so the label can't reappear as "new") |
+| 2.x | Rest of Band 2 (2.6 RBI MP cycle, 2.7 fiscal, 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
