@@ -1,0 +1,248 @@
+<title>The Layer That Reacts in Days</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 36 · atlas 5.1 + 5.2 + 5.3 · the fast layer at full standard</p>
+  <h1>The Layer That Reacts in Days</h1>
+  <p class="stand">Every other seat on the ladder reads slow states — credit, capex, valuations —
+  and turns them into permission. The fast layer is different: it is the only part of the stack
+  allowed to act inside a week, and the price of that speed is a harder discipline. It never
+  predicts a crash (nothing free does). It reads three thermometers of market impairment —
+  realized volatility, the insurance market's term structure, and the funding system's plumbing
+  — and cuts risk while the argument is still happening.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/02-fast-stress.md (upgraded) </span>
+    <span><b>Seat</b> L2, the largest block (0.25)</span>
+    <span><b>New prints</b> FS-U1/FS-U2 · designs FS-D1/FS-D2 registered</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The most replicated fact in finance</h2></div>
+  <p>Mandelbrot wrote it in 1963: large changes tend to be followed by large changes, of either
+  sign. Volatility CLUSTERS — not because markets remember prices, but because the machinery
+  that produces prices gets impaired in bursts: information arrives in clumps, leverage unwinds
+  force selling that begets selling, and market-makers widen exactly when inventory hurts.
+  The register now has this fact in its own vault:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Autocorrelation of |monthly returns|, lags 1–6</span>
+    <span class="figbadge">REAL DATA · vaulted IIMA MF 1993–2025 + gold 1972–2026 · computed by us</span></div>
+    <div class="chart" id="figACF"></div>
+    <figcaption>FS-U1/FS-U2: every lag positive on both assets; Ljung-Box p = 4×10⁻¹¹ (India
+    market factor) and 3×10⁻³³ (gold). Note the honest caveat the desk pre-stated: these
+    monthly magnitudes (~0.14–0.25) are visibly WEAKER than the daily clustering the fast layer
+    actually runs on — aggregation destroys sharpness. The resolution theorem cuts both ways,
+    and here it is measured.</figcaption>
+  </figure>
+  <div class="def"><div class="t">Definition · Ljung-Box test</div>
+  <p>One joint test of "is there ANY autocorrelation in the first h lags?" — the time-series
+  cousin of Part 1's omnibus month test in Lesson 33. Q sums the squared autocorrelations,
+  weighted for sample size; under no-clustering it follows a chi-square. p = 10⁻¹¹ means the
+  no-clustering world would essentially never produce this sample.</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Three thermometers, one impairment</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">realized vol</span><p>The reactive leg: trailing volatility, percentile-ranked against its own expanding history. Sees the storm when it arrives. Longest history, fewest assumptions — the primary leg.</p></div>
+    <div class="trow"><span class="yr">VIX structure</span><p>The insurance market's opinion: normally, near-dated protection is CHEAPER than far-dated (contango — sellers earn a premium for boredom). When near-dated insurance bids OVER far-dated (backwardation), someone is paying up for protection THIS month — the stress signature. Design FS-D1 tests whether this flag adds anything over realized vol before it earns a seat at the table.</p></div>
+    <div class="trow"><span class="yr">funding</span><p>The plumbing: commercial-paper and repo spreads widen when balance sheets are constrained. In credit-transmission crises this leg moves FIRST — India's 2018 IL&amp;FS run showed in CP spreads weeks before index volatility. In exogenous shocks (2020) it barely moves at all.</p></div>
+  </div>
+  <p>That ordering difference is now a pre-registered CLASSIFICATION (FS-D2), not a weighting
+  scheme: funding-led crises and vol-led shocks get different playbook pages, and the claim is
+  falsifiable episode-by-episode once daily data lands. And the funding leg carries Lesson 34's
+  quarantine: fires inside the sixteen statutory drain dates are flagged mechanical and need a
+  second leg to confirm.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>What the desk refuses to claim</h2></div>
+  <p>The literature offers a tempting upgrade: vol-managed portfolios (scale positions by
+  1/σ²) reportedly RAISE returns, not just cut tails (Moreira–Muir). The register's stated
+  prior — set before any India test — is deliberately colder: the drawdown-control benefit is
+  robust across sixty years and many assets; the alpha claim failed most real-time
+  out-of-sample protocols (Cederburg et al.). So L2 is bought for what is uncontested:
+  it transfers drawdown, which is the binding constraint of this whole program. Any Sharpe
+  improvement is a bonus to be proven on Indian data under the pre-registered F3 design,
+  never assumed.</p>
+  <div class="keyresult"><div class="t">The honest bound, kept from v1.0</div>
+  <div class="big">92 of 98 planted episodes detected, median lag one day — and a first draft
+  claiming 100% was falsified and corrected.</div>
+  <p>The module's own test suite carries the measured miss rate (mild episodes leave no vol
+  signature) — and the false-fire budget (F6) prices whipsaws as tuition, per book, before
+  the rule is allowed to move money.</p></div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Selling is forced; re-buying is a choice</h2></div>
+  <p>The psychological asymmetry of the fast layer: the de-risk side is easy to obey because
+  fear cooperates with the rule. The RE-ENTRY side is where returns die — hesitation after a
+  storm compounds daily, and "wait for clarity" is unfalsifiable. The seat's answer is
+  structural: the phase overlay distinguishes the storm arriving (level high, rising — cuts
+  armed) from the storm passing (level high, FALLING — the candidate re-entry regime), and the
+  falling-from-high state stays display-only until design F7 proves, at matched stress levels,
+  that it actually differs. The desk does not trade the recovery story until the recovery
+  story survives pre-registration. With this upgrade the fast layer is done, and with it every
+  band of the atlas has its machinery: the next lesson closes the book.</p>
+</section>
+
+<footer>
+  <p>Lesson 36 of the learn-while-we-build series · Ionic quant desk · Atlas 5.1–5.3 ·
+  monograph: docs/cycles/02-fast-stress.md (v2, upgraded) + research/cycles/faststress-upgrade/ ·
+  trials FS-U1/FS-U2 + designs F1–F7, FS-D1/FS-D2 in research/register/trial-ledger.md ·
+  Fig 1 computed by us from the vaulted series.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"mf_acf": [0.141, 0.17, 0.154, 0.134, 0.188, 0.166], "gold_acf": [0.21, 0.172, 0.245, 0.202, 0.17, 0.221]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const W=820,H=300,m={t:20,r:14,b:44,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const hi=0.28;
+  const Y=v=>m.t+ih*(1-v/hi);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'autocorrelation of absolute returns'});
+  [0,0.1,0.2].forEach(g=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(g),y2:Y(g),stroke:g===0?'var(--axis)':'var(--grid)','stroke-width':g===0?1.2:1}));
+    const t=el('text',{x:m.l-6,y:Y(g)+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=g.toFixed(1); svg.appendChild(t);});
+  const groups=[['India MF |ret|','var(--s1)',DATA.mf_acf],['Gold |ret|','var(--s4)',DATA.gold_acf]];
+  const bw=iw/6*0.30;
+  for(let k=0;k<6;k++){
+    const xc=m.l+iw*(k+0.5)/6;
+    groups.forEach(([_,c,vals],gi)=>{
+      const x=xc+(gi-0.5)*bw*1.15;
+      svg.appendChild(el('rect',{x:x-bw/2,y:Y(vals[k]),width:bw,height:Y(0)-Y(vals[k]),rx:3,fill:c,opacity:0.85}));
+      const vt=el('text',{x:x,y:Y(vals[k])-4,'text-anchor':'middle','font-size':'9.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+      vt.textContent=vals[k].toFixed(2); svg.appendChild(vt);});
+    const t=el('text',{x:xc,y:H-22,'text-anchor':'middle','font-size':'11.5',fill:'var(--muted)'});
+    t.textContent='lag '+(k+1); svg.appendChild(t);
+  }
+  const l1=el('text',{x:m.l,y:H-6,'font-size':'12',fill:'var(--s1)'}); l1.textContent='■ India market factor (monthly, 1993–2025)'; svg.appendChild(l1);
+  const l2=el('text',{x:m.l+320,y:H-6,'font-size':'12',fill:'var(--s4)'}); l2.textContent='■ gold (monthly, float era 1972–2026)'; svg.appendChild(l2);
+  document.getElementById('figACF').appendChild(svg);
+})();
+</script>

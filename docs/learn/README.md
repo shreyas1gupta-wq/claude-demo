@@ -42,6 +42,7 @@ private artifacts; this index is the registry.
 | 33 | Only Mechanisms Buy a Test | docs/cycles/33-calendar-signal.md (Atlas 4.1 seat L5 + 4.2 instrumented + 4.11/4.12 rejects) | https://claude.ai/code/artifact/806376dc-6e67-4518-a9e5-22d724ef774f | docs/learn/artifacts/lesson-33-calendar-signal.html |
 | 34 | Sixteen Dates the Fast Layer Must Ignore | docs/cycles/34-calendar-mechanics.md (Atlas 4.3-4.6, H58 ops pack + RC1) | https://claude.ai/code/artifact/cd7cb8f3-9f6b-4b2b-9d9d-af5076fdc9ef | docs/learn/artifacts/lesson-34-calendar-mechanics.html |
 | 35 | The Desk's Immune System | docs/cycles/35-calendar-context.md (Atlas 4.7-4.10, CONTEXT quartet — Band 4 finale) | https://claude.ai/code/artifact/acd9806e-54cb-4376-9ef9-d45e1fc796ad | docs/learn/artifacts/lesson-35-calendar-context.html |
+| 36 | The Layer That Reacts in Days | docs/cycles/02-fast-stress.md v2 (Atlas 5.1-5.3, seat L2 upgraded to full standard) | https://claude.ai/code/artifact/438f0778-6bc5-4ca0-ba74-d5fe0ff88c93 | docs/learn/artifacts/lesson-36-faststress-upgrade.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
