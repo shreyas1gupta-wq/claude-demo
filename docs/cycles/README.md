@@ -45,8 +45,9 @@ ceiling.
 | 2.15 | Earnings / profit-share cycle | **DONE** — docs/cycles/28-profit-share.md (~10.7k words; PS1 85%/114 reversion PASS; PS2 FAIL → H56 sharpened to an extrapolation governor; India 81st pct in 2019 pre-tripling) + Lesson 28. **BAND 2 COMPLETE** |
 | 3.1 | Value-spread cycle | **DONE at standard** — inside docs/cycles/04-value-quality.md (§A.4 value spread as a state; CPV; the conditioner) |
 | 3.2 | Issuance/sentiment cycle (L7) | **DONE** — docs/cycles/29-issuance.md (~20.5k words; the persistent-incentive seat; four top-ticks + the SEBI-2024 institutional confirmation; IS1/IS2 data-gated) + quant/ladder/issuance_sentiment.py + tests + Lesson 29 |
-| 3.3/3.4 | Factor rotation (inside L8) / crowding-unwind | **IN PROGRESS** — paired entry (3.3 fold; 3.4 candidate) |
-| 3.x | Rest of Band 3 (3.5 revision REJECT-for-data, 3.6 retail wave, 3.7 political cycle in L5, 3.8/3.9 rejects) | queued in atlas order |
+| 3.3/3.4 | Factor rotation / crowding-unwind | **DONE** — docs/cycles/30-rotation-crowding.md (~9.2k words; rotation retired — harvested statically; CR1a skew import dies / CR1b −4.1σ exit depth / CR2 the 2025 unwind invisible monthly → monitor legs set) + Lesson 30 |
+| 3.5/3.6 | Earnings-revision REJECT-for-data / retail-participation wave | **IN PROGRESS** — paired entry |
+| 3.x | Rest of Band 3 (3.7 political cycle in L5, 3.8/3.9 rejects) | queued in atlas order |
 | 4.x–5.x | Calendar, fast layer | queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a

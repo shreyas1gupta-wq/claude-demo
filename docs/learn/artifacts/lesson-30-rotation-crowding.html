@@ -1,0 +1,235 @@
+<title>Nothing to Time, Something to Watch</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 30 · atlas 3.3 + 3.4 · a fold and a candidate</p>
+  <h1>Nothing to Time, Something to Watch</h1>
+  <p class="stand">Factor rotation is the most-marketed idea in quant retail: value's turn,
+  momentum's turn, rotate and win. This entry retires it — the complementarity is already
+  harvested statically and the regime conditioning already lives in a seat. What survives is
+  its dangerous cousin: CROWDING, where copycat capital piles into visible factors until a
+  shock forces everyone through the same exit. India's factor library confirms the exit's
+  depth, kills an imported stylized fact, and sets the monitor's design before its data
+  exists.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/30-rotation-crowding.md</span>
+    <span><b>Seats</b> none new — 3.3 folds into L8/L3; 3.4 = Tier-C monitors</span>
+    <span><b>Trials</b> CR1a/CR1b/CR2, pre-registered</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Why rotation folds</h2></div>
+  <p>The desk's own numbers (Lessons 3-4) measured value and momentum at −0.4 correlation in
+  India, with the 50/50 blend beating both sleeves on Sharpe — the complementarity is real and
+  it is harvested STATICALLY, by holding both. Timing the leadership would mean out-forecasting
+  the regime seats that already condition the factor book, and the factor-timing literature's
+  honest record ("deceptively difficult" is the polite version) says that game funds the
+  players who refuse it. "Rotation" retires as a label with the evidence attached; nothing to
+  time.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — the exit's depth: each factor's worst month, in its own volatility units</span>
+      <span class="figbadge">REAL DATA · India factor library 1993-2025 · CR1b PASS</span></div>
+    <div class="chart" id="figWorst"></div>
+    <figcaption>Momentum's worst month sits 4.1 standard deviations below its own mean —
+    deeper than size's (−2.9σ) or value's (−3.4σ). That is the synchronized-exit signature:
+    when a crowded factor unwinds, everyone sells the same names on the same days.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">CR1b worst months</div><div class="v">−4.1σ</div><div class="d">WML vs SMB −2.9σ, HML −3.4σ — PASS</div></div>
+    <div class="stat"><div class="k">CR1a WML skew</div><div class="v">+0.05</div><div class="d">NOT negative — the US import dies — FAIL</div></div>
+    <div class="stat"><div class="k">CR2: 2025 unwind</div><div class="v">0 hits</div><div class="d">no India WML month ≤ −2σ in 2025</div></div>
+    <div class="stat"><div class="k">Rotation signal</div><div class="v">retired</div><div class="d">harvested statically; conditioned in L8</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Two honest surprises</h2></div>
+  <div class="warnbox"><b>The skew import dies (CR1a).</b> Every US quant knows "momentum is
+  negatively skewed." India's 33-year library says: not unconditionally (+0.05, the same as
+  size; VALUE is the positively-skewed one at +0.60). No contradiction with the momentum
+  monograph's crash finding — that finding was CONDITIONAL (bear-market-then-rally windows),
+  and a conditional crash tail coexists with zero unconditional skew when normal times are
+  right-skewed. The refined sentence: India's momentum danger is REGIME-LOCAL — which is
+  exactly what the seated crash_guard implements. An unconditional de-risking of momentum
+  would have been the wrong medicine; the fail is the evidence for the design.</div>
+  <div class="warnbox"><b>The named episode is invisible (CR2).</b> The atlas cites a mid-2025
+  quant unwind. India's monthly momentum factor shows NOTHING — no 2025 month even reaches
+  −2σ. Either the episode was a US/implementation story, or unwinds live at daily and
+  intramonth granularity that monthly academic factors cannot see. Both readings force the
+  same design conclusion: the crowding monitor CANNOT be built from factor returns. Its legs
+  are the atlas's own observables — smart-beta AUM growth-rates and factor-valuation
+  percentiles — with a comomentum leg when stock-level data lands. The candidate is
+  instrumented with the right sensors from day one because the wrong sensor was tested
+  first.</div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The monitor design</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">accumulation</span><p>AMFI smart-beta/factor-fund AUM growth-rate percentiles (momentum, low-vol, quality funds) — copycat capital is countable in India's fund data, monthly, free.</p></div>
+    <div class="trow"><span class="yr">valuation</span><p>Each factor's own value-spread percentile (the L8 machinery pointed at the factor's long book) — crowding shows as the factor getting expensive against itself.</p></div>
+    <div class="trow"><span class="yr">comomentum</span><p>Abnormal within-factor correlation (the Lou-Polk gauge) once stock-level returns are vaulted — the direct crowd-thermometer, registered as a design.</p></div>
+    <div class="trow"><span class="yr">consumption</span><p>Tier-C, reduce-only monitors on momentum/low-vol/quality sleeves. Watching accumulation, never predicting the shock — the unwind's trigger and date stay unknowable, as everything in this atlas does.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 30 of the learn-while-we-build series · Ionic quant desk · Atlas 3.3 + 3.4 ·
+  monograph: docs/cycles/30-rotation-crowding.md · trials CR1a/CR1b/CR2 in
+  research/register/trial-ledger.md (pre-registered, bars unmoved) · Fig 1 computed by us
+  from the vaulted IIMA factor library.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"stats":{"WML":[0.05,-4.1,"2001-11",-27.6148308910385],"SMB":[0.04,-2.9,"2020-03",-14.0883548740201],"HML":[0.6,-3.4,"2000-01",-18.9660807542577]},"wml_2025":{"2025-01":-1.05,"2025-02":-0.01,"2025-03":-0.14,"2025-04":-0.57,"2025-05":-1.02,"2025-06":0.04,"2025-07":0.11,"2025-08":-0.08,"2025-09":-0.55,"2025-10":0.1,"2025-11":0.54,"2025-12":0.03},"wml_hist":[3.0,12.6,-3.3,-5.1,5.1,-1.0,-1.9,-9.8,-0.9,-10.2,-2.1,-4.2,0.5,-5.3,-2.2,4.9,-1.9,0.7,-2.4,1.7,-1.0,6.2,0.7,0.8,-2.9,0.4,5.7,0.1,7.1,6.9,10.9,6.1,8.6,-4.4,2.9,-1.9,3.3,-12.1,-13.9,10.1,7.8,7.6,11.7,3.1,-10.5,-0.9,14.8,4.1,8.2,-5.5,-11.9,6.4,-18.8,-9.9,3.7,1.7,12.0,-4.1,-9.0,0.7,-3.7,-0.7,15.2,11.5,10.4,-3.2,-10.8,-12.5,-0.3,-9.5,8.9,-1.7,16.1,30.5,7.7,26.7,-10.9,-21.1,-19.8,8.6,-10.7,2.6,-2.7,-6.1,-9.2,0.7,6.6,16.4,35.8,-3.3,-7.9,4.8,16.7,-5.5,21.2,-13.3,-27.6,-3.7,5.7,9.4,7.9,4.3,-4.3,-3.7,1.1,-2.3,-3.6,8.6,-9.1,3.6,8.7,3.6,5.3,-2.6,7.2,-6.5,1.2,7.1,1.0,4.8,-5.8,-3.0,3.5,4.5,8.0,3.6,-11.9,2.7,5.3,0.5,-2.2,6.2,-0.8,3.2,3.4,5.9,4.6,-6.9,-3.7,1.3,6.7,1.7,0.0,-6.1,2.6,4.0,7.4,-1.0,9.0,-1.1,-1.1,5.3,5.9,-0.4,3.9,4.8,6.0,3.1,0.0,2.4,2.0,-0.7,2.2,2.1,2.9,2.4,-0.1,20.8,1.4,-3.0,-4.4,-2.2,-5.8,-3.9,-1.5,-1.7,2.0,-2.3,5.1,17.7,12.2,-20.3,11.6,6.5,-6.4,-18.3,-25.0,-4.3,0.3,-8.5,0.5,8.7,7.2,-0.7,-0.2,1.1,2.7,1.5,-0.0,-0.1,4.5,5.0,-1.2,3.0,7.0,-5.0,5.0,3.0,-0.1,-2.2,5.3,5.0,3.8,11.6,-1.6,-0.6,8.0,6.3,-18.0,-1.9,9.3,2.0,7.1,-6.0,4.9,11.4,-7.7,2.8,-3.2,0.1,2.5,7.9,4.2,-3.6,7.9,11.5,11.6,-7.9,-7.7,-5.7,-3.8,-0.5,3.9,4.7,-9.6,-3.3,-8.7,2.7,-1.4,5.4,6.2,2.2,5.6,4.8,3.4,1.0,8.6,-5.5,3.5,3.7,9.0,5.4,2.2,-6.6,1.2,-0.3,1.1,-3.7,-2.7,-1.8,-0.2,-2.7,1.4,2.5,1.6,3.1,0.7,-0.8,4.3,-2.0,2.0,3.6,2.2,-1.0,0.2,7.4,-2.8,4.0,-0.0,-1.9,0.4,1.7,4.6,3.8,2.4,0.7,2.7,4.7,5.2,-0.8,-1.1,-3.3,5.7,-2.4,-2.6,2.7,2.9,7.2,11.5,7.0,-2.5,5.5,-8.9,1.9,0.8,10.9,13.8,-13.5,1.0,-5.8,4.3,-8.4,9.1,-0.2,-8.2,-3.8,-1.8,2.8,3.5,5.8,0.2,-1.7,3.9,2.9,-2.5,6.7,4.7,3.5,-0.5,-1.6,7.2,-2.9,-6.1,1.6,-3.0,6.2,1.7,-0.4,-1.7,-0.0,-3.2,-1.9,1.9,-3.9,2.2,2.3,6.3,0.7,1.1,3.6,5.0,-1.5,5.8,3.4,2.5,1.2,2.9,0.5,-2.2,-0.6,-1.7,2.3,2.3,2.7,-6.3,1.0,0.1,-2.9,-6.1,1.4,1.9,0.5,-2.8,1.8,4.9,1.3]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figWorst');
+  const rows=[["WML (momentum)",DATA.stats.WML],["HML (value)",DATA.stats.HML],["SMB (size)",DATA.stats.SMB]];
+  const W=820,H=260,m={t:20,r:120,b:40,l:150},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=-4.6,hi=0;
+  const X=v=>m.l+iw*(v-lo)/(hi-lo);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'worst months by factor'});
+  [-4,-3,-2,-1].forEach(v=>{
+    svg.appendChild(el('line',{x1:X(v),x2:X(v),y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:X(v),y:H-14,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v+'σ'; svg.appendChild(t);});
+  rows.forEach(([name,[sk,z,d,mn]],i)=>{
+    const y=m.t+ih*(i+0.5)/3;
+    svg.appendChild(el('rect',{x:X(z),y:y-13,width:X(0)-X(z),height:26,rx:5,
+      fill:i===0?'var(--s2)':'var(--s1)',opacity:i===0?1:0.75}));
+    const t=el('text',{x:m.l-10,y:y+4,'text-anchor':'end','font-size':'12.5',fill:'var(--ink-2)','font-weight':'600'});
+    t.textContent=name; svg.appendChild(t);
+    const vt=el('text',{x:X(z)-8,y:y+4,'text-anchor':'end','font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace'});
+    vt.textContent=z+'σ'; svg.appendChild(vt);
+    const dt=el('text',{x:W-m.r+8,y:y+4,'font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    dt.textContent=d+' ('+mn+'%)'; svg.appendChild(dt);});
+  mount.appendChild(svg);
+})();
+</script>
