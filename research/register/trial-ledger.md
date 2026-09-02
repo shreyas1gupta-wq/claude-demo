@@ -853,3 +853,25 @@ in/after stress).
 | # | What | Result | Status |
 |---|---|---|---|
 | N4a | 12-1 vs 52wk-high structure | mean Spearman rho 0.519 (range −0.17..0.88), top-decile overlap only 19% — **COMPLEMENT**: the L3 blend earns its place (the signals pick substantially different names). Stress prior FAILED instructively: rho RISES in top-vol months (0.623 vs 0.507) — during a crash both signals compress toward 'who fell least'; GH04's divergence mechanism lives in POST-TROUGH REBOUNDS, which vol-decile months do not isolate. The mis-specified conditioning window is recorded; full N4 gets rebound-window definitions | complement confirmed; prior mis-windowed |
+
+## Entry FS-D3 (2026-09-02) — CBOE VIX as the INTERIM confirm leg for L2
+PRE-REGISTERED before running. Script: scripts/analyze_global_vix_leg.py. Data: vaulted
+CBOE VIX daily (mirror, admitted with recorded misses) + vaulted NIFTY daily. L2's third
+(confirm) leg is empty pending the India VIX vault; global VIX is NOT India VIX — it is the
+Rey global-factor reading — and the question is whether it ADDS anything for INDIAN stress
+detection while the domestic leg waits. Bars declared now:
+- FS-D3a (incremental detection): on the F2a episode set (11 in-span), does adding a
+  CBOE-VIX expanding-percentile leg (three-leg composite, equal weights) detect any episode
+  the two-leg composite MISSED at the same 0.3 threshold, without losing any it caught?
+  BAR: net episodes detected (3-leg minus 2-leg) >= +1 AND false-fire days rise by <= 50%
+  (relative) — else the leg is refused as the F5 decision rule prescribes for redundant legs.
+- FS-D3b (timing, measurement no bar): for episodes both configurations catch, the median
+  detection-lag change (a global leg may fire EARLIER on global-origin crises: 2008, 2020,
+  2022 — and add nothing on domestic ones: IL&FS, 2016, 2024 — the order-of-arrival
+  taxonomy's prediction, stated as the prior).
+Consumption if PASS: interim confirm leg, explicitly superseded the day India VIX lands
+(FS-D1/F5 then adjudicate the domestic leg as registered).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FS-D3 | Global-VIX interim confirm leg | (pending) | pre-registered |
