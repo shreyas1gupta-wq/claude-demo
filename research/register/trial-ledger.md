@@ -407,3 +407,21 @@ whether it rides global demand (partly self-hedging) or a supply shock (unambigu
 | # | What | Result | Status |
 |---|---|---|---|
 | OL1 | Oil-up asymmetry by shock flavor | demand-flavored +38.1% vs supply-flavored −43.1% (n=11: 8/3) — **PASS by 8x, capped on dissection**: the flavor proxy IS the global-equity sign, so the print is ~GF2's loading in an oil costume (+ the 2008 annual-averaging artifact); licenses the decomposition COMMITMENT and the briefing table, not a measured oil-specific asymmetry — that waits for the real Kilian index | pass, capped |
+
+## Entries FL1–FL2 (2026-09-02) — Atlas 2.13 FPI positioning (seat L14): DATA-GATED designs
+No trial RUNS in this entry — no flow/ownership data is vaulted (NSDL/shareholding pulls are
+runsheet items). Designs registered NOW with acceptance bars, run when the data lands:
+- FL1 (the exclusion's quantification): on NSDL monthly equity flows vs Nifty returns,
+  matched legs, lags −6..+6m. The flows-follow-returns claim is CONFIRMED if the peak
+  |cross-corr| sits at returns-leading lags in ≥2 of 3 declared sub-eras (2003-08, 2009-14,
+  2015-26); any flow-momentum PREDICTIVE claim must clear corr ≥ 0.15 at flow-leading lags
+  with purging — else §7 REJECT stands.
+- FL2 (the seat's own test): float-scaled FPI ownership percentile ≥ 0.9 (expanding) →
+  forward 12m drawdown conditioning, purged; acceptance: top-decile positioning months show
+  deeper median max-drawdown than the unconditional median by a margin set at data-landing
+  (two-pass rule) — reduce-only consequences either way.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FL1 | Flows-follow-returns quantification | (awaits NSDL vault) | registered design |
+| FL2 | Positioning-extreme drawdown conditioning | (awaits shareholding vault) | registered design |

@@ -208,3 +208,28 @@ def capex_economy(T: int = 480, seed: int = 41,
                                 0.15, 0.45)
     return dict(util=util, capgoods=capgoods, gfcf_share=gfcf_share, output=output,
                 boom=boom, bust=bust)
+
+
+def fpi_economy(T: int = 480, seed: int = 51,
+                boom: tuple = (140, 300), unwind: tuple = (300, 380)):
+    """Monthly economy with PLANTED flows-follow-returns and a positioning unwind (L14 fixture).
+
+    Flows chase LAGGED returns (the Griffin-Nardari-Stulz direction); ownership share of float
+    integrates flows with slow attrition; the boom builds ownership to an extreme; in the
+    unwind window forced selling subtracts from returns proportional to the ownership overhang
+    (the capacity mechanism planted). Returns dict: ret, flow, ownership (share of float),
+    plus truth windows."""
+    rng = np.random.default_rng(seed)
+    ret = np.zeros(T)
+    flow = np.zeros(T)
+    own = np.empty(T)
+    own[0] = 0.10
+    for t in range(1, T):
+        base = 0.006 if boom[0] <= t < boom[1] else 0.002
+        overhang = max(own[t - 1] - 0.18, 0.0)
+        forced = -0.9 * overhang if unwind[0] <= t < unwind[1] else 0.0
+        ret[t] = base + forced + 0.035 * rng.standard_normal()
+        flow[t] = 0.12 * ret[t - 1] + 0.001 * rng.standard_normal() \
+            + (-0.05 * overhang if unwind[0] <= t < unwind[1] else 0.0)
+        own[t] = np.clip(own[t - 1] * 0.999 + flow[t], 0.02, 0.60)
+    return dict(ret=ret, flow=flow, ownership=own, boom=boom, unwind=unwind)
