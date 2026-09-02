@@ -76,3 +76,11 @@ research/cycles/daily-batch/daily-RESULTS.md; ledger entries F2-index, F7a, FS-D
   91→13bd); FS-D4 (arm-only) registered, deferred to full F2.
 None of these bounded prints arms the R4 mapping; the full F2 (three legs, book costs, M4
 walk-forward) remains the registered adjudicator.
+
+**Same-day update (F1b, F2-WF — the M4 harness's first runs):** the corrected tau_half is
+3.18 months, CI [2.39, 5.72] (config stands under drift hysteresis; lengthening watch set);
+and the walk-forward DISQUALIFIED both adoptable shortlist cells (drag within budget in only
+2 of 4 eras each — the full-period drags were flattered by the quiet 2009-2018 decade; the
+COVID-era payout, DD 37%→26%, against 2.5-4pp/yr premiums in whipsaw-rich eras, is the
+insurance economics the full F2 must price at book level). The index-level shortlist is
+EMPTY; nothing is armed.
