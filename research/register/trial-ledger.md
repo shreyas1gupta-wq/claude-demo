@@ -874,4 +874,18 @@ Consumption if PASS: interim confirm leg, explicitly superseded the day India VI
 
 | # | What | Result | Status |
 |---|---|---|---|
-| FS-D3 | Global-VIX interim confirm leg | (pending) | pre-registered |
+| FS-D3 | Global-VIX interim confirm leg | **FAIL both legs**: net episodes −1 (LOSES the 2024 election day — global VIX quiet, symmetric averaging DILUTED the domestic signal below threshold) and false fires +54%. But FS-D3b's measurement lands the taxonomy's prediction exactly: on global-origin crises the leg is a huge accelerant (EU-2011 lag +91 → +13bd; Russia +17→+9; median both-caught 24→14bd). The refusal is of SYMMETRIC AVERAGING, not of the information — routed to FS-D4 | fail; the dilution mechanism named |
+
+
+## Design FS-D4 (2026-09-02) — arm-only global-VIX input (registered at FS-D3's honest read)
+FS-D3's dissection: a global leg must never DILUTE domestic detection (2024 loss) — the
+correct architecture is ARM-ONLY (a global-VIX percentile fire can arm/accelerate the L2
+switch; its calm can never subtract). Deliberately DEFERRED to the full F2 grid run rather
+than run same-day, to keep distance from the tweak-and-retest trap (CONTRACT §9): bars set
+now — on the F2 grid, an arm-only global-VIX input must improve median detection lag on the
+pre-named global-origin episodes (2008, 2011, 2015, 2020, 2022) by >= 5bd with false-fire
+days <= +50%, and by construction may not lose any domestically-detected episode.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FS-D4 | Arm-only global-VIX input | (deferred to full F2) | registered design |

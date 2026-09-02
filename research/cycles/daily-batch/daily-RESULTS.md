@@ -130,3 +130,17 @@ anchor does not) is a POST-TROUGH phenomenon, and top-decile-vol months are not 
 months. The full N4 inherits a properly-defined rebound window. Survivorship note: both
 signals computed on the identical roster — the structure verdict is robust to the panel's
 bias in a way return claims are not (stated at registration).
+
+---
+# Addendum 6 (same day): FS-D3 — the global leg refused, for the right reason
+The CBOE-VIX mirror (vaulted, two recorded misses in its authentication) was tested as an
+interim symmetric third leg for L2. FAIL on both bars: it LOSES the one purely-domestic
+episode (election day 2024 — global vol was quiet, and equal-weight averaging pulled the
+composite under threshold) and adds 54% more false fires (global vol that never touched
+India). The same print vindicates the order-of-arrival taxonomy: on global-origin crises
+the leg is a major accelerant — EU-2011's detection lag collapses from +91 to +13 business
+days, Russia-2022 from +17 to +9, the both-caught median from 24 to 14. The information is
+real; the ARCHITECTURE was wrong. Symmetric averaging lets a quiet world veto a loud India.
+FS-D4 (arm-only combination — global fire can accelerate, global calm can never subtract)
+is registered with bars and DEFERRED to the full F2 run, keeping a deliberate gap between a
+failed variant and its successor per the Contract's re-test discipline.
