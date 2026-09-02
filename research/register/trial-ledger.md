@@ -697,7 +697,16 @@ scripts/analyze_nifty_daily.py. Budget dates are public record, listed in the sc
 
 | # | What | Result | Status |
 |---|---|---|---|
-| CW-D1a | Budget-day |ret| vs non-budget (daily) | (pending) | pre-registered |
-| DW1 | Weekday omnibus (demonstration) | (pending) | pre-registered |
-| F1a | tau_half of 2-leg composite (daily) | (pending) | pre-registered |
-| F2a | Real-episode detection >= 8/12 | (pending) | pre-registered |
+| CW-D1a | Budget-day |ret| vs non-budget (daily) | day-only median 1.14% vs 0.59%, p=0.110 — **FAIL as registered** (n=19 underpowered). PROCESS NOTE: this partial registration mis-transcribed the ORIGINAL CW-D1 window (registered as budget-day **±1**); the original-window print: median 0.95% vs 0.59%, p=0.0049 — **PASS on the original CW-D1 return-leg bar**. Both recorded; neither bar moved; VIX leg still gated | fail (partial) / pass (original leg), process note |
+| DW1 | Weekday omnibus (demonstration) | H=2.83, p=0.587 — no weekday structure; 5.5 REJECT now carries evidence; note: Monday's median is the HIGHEST (+0.102), the OPPOSITE sign of the classic weekend effect — logged, never interpreted | measured, reject-confirmed |
+| F1a | tau_half of 2-leg composite (daily) | point estimate 61 trading days (~2.9 months) — inside the registered [1,3]m band, near its top. The 63d-block bootstrap CI ([0.9,1.5]m) is UNRELIABLE here (block length ~ half-life => persistence broken, phi biased down; the point estimate falls outside its own CI). Method inadequacy documented; proper CI deferred to full F1 (bias-corrected machinery) | measured; CI method flagged |
+| F2a | Real-episode detection >= 8/11 in-span | **7/11 — FAIL as registered.** Dissection: Jan-2008 UNTESTABLE (expanding-percentile warm-up NaN — vault starts 2007-09; a coverage artifact the registration failed to anticipate; post-hoc 7/10 does NOT flip the verdict); taper-2013 miss (max 0.20) VALIDATES the three-leg design — 2013 was funding/FX-led, exactly the absent confirm leg; demonetization miss consistent (index barely moved); Feb-2018 miss (−0.10) is a genuine finding: THE 2008 SHADOW — once a mega-crisis enters the expanding history, 2018-size vol spikes rank low; percentile de-sensitization after tail events is now a measured property. False fires 2.6% of days (measurement) | fail, design-informing |
+
+## Design F2b (2026-09-02) — percentile-memory sweep (the 2008-shadow follow-up)
+Registered at the daily-batch honest read (research/cycles/daily-batch/daily-RESULTS.md):
+expanding vs trailing-{5y,10y} percentiles on the F2 detection/false-fire/DD-improvement
+tables. Prior: a trade (re-sensitization vs earlier false fires), not a free lunch.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F2b | Percentile-memory sweep | (awaits full F2 run) | registered design |

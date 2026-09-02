@@ -514,3 +514,11 @@ must only ever be written from output. Standing rule restated and extended: auth
 protocols get the same treatment as trial interpretations — bars first, results only after
 the print, and any file that mixes both must be written in two passes (bars pass, results
 pass), never one.
+
+## Process note #5 (2026-09-02) — partial registration transposed its parent's window
+CW-D1a (the partial daily run of CW-D1) registered "budget-day only" as primary where the
+parent CW-D1 design (registered earlier the same day) specified "budget-day ±1". Caught at
+the honest-read stage because the parent registration existed in writing. Consequence: both
+prints recorded (day-only FAIL p=0.110; ±1 PASS p=0.0049), neither bar moved, and the rule
+is extended: a partial run of a registered design must QUOTE the parent bars verbatim in
+its own registration — paraphrase is where windows drift.
