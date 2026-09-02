@@ -526,3 +526,29 @@ result-month sign? Report the agreement rate; L5's "direction is surprise" predi
 | # | What | Result | Status |
 |---|---|---|---|
 | PL1 | Pre-window sign → result-month sign | **3/8 agreement** — at/below coin-flip: 'direction is surprise' measured; L5's scheduling-only design + HL-7's paper-trade routing both re-confirmed | measured, prior set |
+
+## Entries CW1–CW3 (2026-09-02) — Atlas 4.1/4.2/4.11: the calendar-as-signal trials
+PRE-REGISTERED before running (bars below written before any number was computed).
+Script: scripts/analyze_calendar.py. Data: iima_monthly_factors.csv (MF, SMB; 1993-11..2025-12).
+Resolution caveat stated NOW: Budget-day vol is a 1–3 day phenomenon; monthly granularity
+attenuates it severely (the CR2 lesson). A CW1 FAIL therefore routes to "real at daily
+resolution, invisible monthly" ONLY IF the literature/VIX record supports it — it does NOT
+license inventing a pass. Rank bars, not magic thresholds.
+- CW1 (Budget-month vol, 4.1): |MF| by calendar month. BAR: February's median |MF| ranks in
+  the top 3 of 12 months AND one-sided Mann-Whitney (|MF| Feb vs non-Feb) p < 0.10. July
+  (election-year full budgets) is NOT tested — documented limitation.
+- CW2 (FY-end small-cap reversal, 4.2): SMB by calendar month. BAR: April's median SMB ranks
+  #1 or #2 of 12 months AND April median SMB > 0 AND one-sided Mann-Whitney p < 0.10.
+  A FAIL kills the EDGE hypothesis at monthly resolution (it was registered "small,
+  cost-fragile" in the atlas — the C-tier prior).
+- CW3 (month-of-year omnibus, 4.11): Kruskal-Wallis of MF across 12 months. INTERPRETATION
+  RULE PRE-STATED: p ≥ 0.05 → consistent with no calendar structure, REJECT confirmed;
+  p < 0.05 → the REJECT STILL STANDS (Contract §8 mechanism ban; 12-way comparisons expect
+  ~0.6 false positives at 5%) — the print is logged and dissected, promoted NEVER. This
+  trial is a demonstration, and that purpose is declared before the print.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CW1 | Feb |MF| rank + MW test | Feb rank 7/12, median 4.27 vs 4.22, p=0.522 — **FAIL**: the Budget month is ordinary at monthly resolution (the CR2 pattern again); L5's budget scheduling rests on the daily-resolution VIX record + the fixed-date mechanism, NOT on this print | fail, resolution-routed |
+| CW2 | Apr SMB rank + MW test | Apr median SMB +2.47, rank 1/12, p=0.020 — **PASS**: the FY-end small-cap-rebound signature is real at monthly resolution; post-hoc note (NOT pre-registered): Feb/Mar are the two most NEGATIVE SMB months — the selling leg of the same mechanism, tagged for a follow-up trial. Promotion: Tier-C instrumentation + pre-registered paper-trade, NO return budget (cost-fragile per the atlas prior) | pass, promotion-refused |
+| CW3 | 12-month omnibus (demonstration) | H=12.13, p=0.354 — no calendar structure; the 4.11 REJECT confirmed exactly as pre-stated (and the rank-1 months in CW1/CW3 stay logged, never interpreted) | measured, reject-confirmed |
