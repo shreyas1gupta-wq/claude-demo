@@ -516,3 +516,13 @@ its revisit trigger (a free consensus-estimate source appearing) lives in the en
 |---|---|---|---|
 | RT1 | Cohort-wave state (shape prior stated) | (awaits participation vault) | registered design |
 | RT2 | Retail share → VRP compression | (awaits vault + India VIX archive) | registered design |
+
+## Entry PL1 (2026-09-02) — Atlas 3.7: direction-is-surprise, formalized
+Script: scripts/analyze_political.py. PRE-REGISTERED before running. Data: iima MF monthly;
+the 8 general-election result months (FP1's fixed list). MEASUREMENT (prior set, no bar —
+n=8): does the pre-window sign (mean of the 2 months BEFORE the result month) predict the
+result-month sign? Report the agreement rate; L5's "direction is surprise" predicts ~coin-flip.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| PL1 | Pre-window sign → result-month sign | **3/8 agreement** — at/below coin-flip: 'direction is surprise' measured; L5's scheduling-only design + HL-7's paper-trade routing both re-confirmed | measured, prior set |
