@@ -40,7 +40,8 @@ ceiling.
 | 2.9/2.10 | Dollar cycle / Fed cycle | **DONE** — docs/cycles/23-dollar-fed-fold.md (~9.4k words; DL1 first clock PASS, promotion REFUSED; DL2 India headwind −0.34; DL3 zero — the fold evidence-backed; four honesty quadrants complete) + Lesson 23 |
 | 2.11 | China credit impulse (H54) | **DONE** — docs/cycles/24-china-impulse.md (~17.5k words; CI1a 2.19x + CI1b 2/2 proxy passes, bounded; H54 candidate non-promotable until TSF; the sign-flip watch documented) + Lesson 24 |
 | 2.12 | Oil/energy cycle | **DONE** — docs/cycles/25-oil-fold.md (~9.2k words; OL1 +81pp pass capped on dissection; the decomposition commitment hardened; label retired into OPEC/shale regimes) + Lesson 25 |
-| 2.13 | FII/FPI flow cycle (L14) | **IN PROGRESS** |
+| 2.13 | FII/FPI flow cycle (L14) | **DONE** — docs/cycles/26-fpi-positioning.md (~17.7k words; flow momentum REJECTED in code — no flow API, tested; positioning extremes seated risk-off-only; FL1/FL2 data-gated; the 2000-01 anomaly kept un-smoothed) + quant/ladder/fpi_positioning.py + tests + Lesson 26 |
+| 2.14 | ENSO (El Niño / La Niña) | **IN PROGRESS** |
 | 2.x | Rest of Band 2 ( 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 

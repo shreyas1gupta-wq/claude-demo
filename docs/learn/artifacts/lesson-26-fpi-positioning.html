@@ -1,0 +1,236 @@
+<title>The Seat Defined by What It Refuses</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 26 · atlas 2.13 · seat L14 · Band 2 nears its close</p>
+  <h1>The Seat Defined by What It Refuses</h1>
+  <p class="stand">"FIIs are buying" is India's most-marketed market signal — and the evidence
+  says flows FOLLOW returns, so the desk rejects flow momentum outright and enforces the
+  rejection in code: the module has no flow output to misuse. What survives is slower and
+  stranger: foreign ownership as a measure of exit crowding, flagged only at high extremes,
+  only to reduce risk. This lesson teaches the exclusion, the capacity mechanism, and the
+  structural change that may be blunting it.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/26-fpi-positioning.md</span>
+    <span><b>Seat</b> L14 · Tier C · reduce-only · risk-off only</span>
+    <span><b>Code</b> quant/ladder/fpi_positioning.py · suite at 69 tests</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Flows follow returns — and the interface knows it</h2></div>
+  <p>Across emerging markets, foreign flows chase past returns far more than they predict
+  future ones (Griffin-Nardari-Stulz's daily-flow VARs; the India-specific confirmations). The
+  desk's planted-truth fixture makes the direction visible: an economy where flows are built
+  to chase lagged returns prints a follow-correlation of +0.97 while the lead-correlation sits
+  at zero — and the test suite verifies the seat's module cannot even EXPRESS a flow-momentum
+  signal, because no flow-named function exists in its interface. The atlas's §7 rejection is
+  enforced structurally, not just registered.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — the planted economy: flows chase lagged returns; ownership builds to an extreme</span>
+      <span class="figbadge">SYNTHETIC · seed 0 · follow-corr +0.97, lead-corr +0.03</span></div>
+    <div class="chart" id="figFix"></div>
+    <figcaption>The fixture's ownership share (share of free float) rides the boom into its
+    own expanding 90th-percentile extreme — where the risk-off flag arms — then the unwind
+    window plants the capacity mechanism: forced selling proportional to the overhang. The
+    machinery detects the crowding, never the flows.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Planted follow-corr</div><div class="v">+0.97</div><div class="d">flows chase lagged returns — the GNS direction</div></div>
+    <div class="stat"><div class="k">Planted lead-corr</div><div class="v">≈ 0</div><div class="d">flows do not predict — the excluded signal</div></div>
+    <div class="stat"><div class="k">Flow-named API</div><div class="v">none</div><div class="d">the §7 REJECT enforced in code, tested</div></div>
+    <div class="stat"><div class="k">Flag design</div><div class="v">risk-off only</div><div class="d">high extremes only — an empty theater has no exit problem</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The capacity mechanism, and its denominator</h2></div>
+  <p>Why do positioning EXTREMES survive when flow momentum dies? Because an extreme foreign
+  ownership position is a crowded exit: unwinding it takes real capital and real time, and in
+  a risk-off episode everyone reaches the door together (fire-sale economics — Coval-Stafford,
+  Greenwood-Thesmar fragility). That is REGIME information — it conditions how bad a bad
+  episode can get — not alpha. Two design details carry the honesty: the denominator is FREE
+  FLOAT (raw ownership shares mislead in a market where promoters hold half the register), and
+  the flag is asymmetric by mechanism — low ownership is information about absence, not about
+  forced selling, so the seat stays silent there. Everything is Tier C and reduce-only; the
+  seat's own India numbers (FL1/FL2) are registered designs awaiting the shareholding-pattern
+  and NSDL vaults, with roughly twenty years of quarterly ranks needed before an "extreme"
+  means anything.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The structural question the record poses</h2></div>
+  <p>The case record's five eras end on a genuine open question. In FY2022, foreign investors
+  sold a record sum of Indian equity — and the market absorbed it with only a modest drawdown,
+  because a domestic bid (the SIP culture, insurance and pension flows) had grown deep enough
+  to take the other side. The capacity mechanism assumes the exit door's width is fixed;
+  India may be widening the door. The desk's read: the mechanism is not dead — a crowded exit
+  still costs something — but its CONSEQUENCE SIZING now carries a domestic-counterweight
+  annotation, and each future unwind episode is one more observation on whether the flag's
+  bite is fading. That question arrives on the market's schedule, not ours; the seat waits at
+  its clamp, which is what Tier-C seats are for.</p>
+</section>
+
+<footer>
+  <p>Lesson 26 of the learn-while-we-build series · Ionic quant desk · Atlas 2.13, seat L14 ·
+  monograph: docs/cycles/26-fpi-positioning.md · module: quant/ladder/fpi_positioning.py ·
+  designs FL1/FL2 in research/register/trial-ledger.md (data-gated) · Fig 1 computed from the
+  repo's planted-truth fixture, badged SYNTHETIC with its seed.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"ownership":[0.1,0.1,0.101,0.104,0.103,0.107,0.104,0.101,0.091,0.086,0.085,0.088,0.088,0.085,0.088,0.086,0.084,0.08,0.08,0.081,0.08,0.085,0.08,0.086,0.089,0.097,0.103,0.105,0.106,0.101,0.103,0.097,0.094,0.102,0.104,0.109,0.113,0.112,0.115,0.124,0.123,0.123,0.123,0.122,0.118,0.122,0.121,0.119,0.118,0.119,0.118,0.114,0.115,0.113,0.118,0.115,0.106,0.104,0.103,0.107,0.114,0.118,0.12,0.12,0.12,0.113,0.111,0.108,0.111,0.112,0.119,0.11,0.112,0.113,0.114,0.108,0.104,0.103,0.098,0.098,0.097,0.092,0.094,0.092,0.098,0.099,0.107,0.112,0.115,0.119,0.113,0.104,0.103,0.106,0.106,0.103,0.104,0.096,0.102,0.1,0.096,0.093,0.091,0.084,0.087,0.089,0.089,0.091,0.088,0.087,0.09,0.084,0.085,0.084,0.082,0.085,0.082,0.08,0.084,0.078,0.07,0.057,0.062,0.066,0.076,0.073,0.072,0.072,0.078,0.081,0.081,0.077,0.074,0.071,0.071,0.067,0.063,0.073,0.07,0.065,0.067,0.062,0.064,0.064,0.051,0.048,0.044,0.041,0.045,0.042,0.042,0.038,0.04,0.043,0.044,0.045,0.045,0.044,0.05,0.054,0.052,0.049,0.051,0.047,0.051,0.053,0.053,0.055,0.058,0.059,0.059,0.065,0.061,0.067,0.066,0.067,0.077,0.07,0.069,0.076,0.076,0.082,0.077,0.08,0.077,0.079,0.076,0.08,0.083,0.079,0.085,0.085,0.081,0.078,0.075,0.072,0.068,0.071,0.071,0.073,0.08,0.083,0.084,0.08,0.076,0.072,0.072,0.07,0.07,0.068,0.067,0.073,0.067,0.072,0.081,0.076,0.08,0.09,0.095,0.097,0.091,0.092,0.098,0.103,0.108,0.106,0.11,0.112,0.115,0.115,0.113,0.111,0.108,0.104,0.109,0.106,0.104,0.096,0.097,0.098,0.098,0.084,0.087,0.084,0.082,0.079,0.086,0.082,0.082,0.088,0.088,0.084,0.089,0.083,0.089,0.089,0.093,0.092,0.089,0.097,0.106,0.099,0.1,0.097,0.101,0.111,0.112,0.117,0.116,0.12,0.112,0.108,0.108,0.113,0.117,0.118,0.121,0.126,0.128,0.122,0.12,0.125,0.123,0.125,0.125,0.131,0.136,0.139,0.145,0.142,0.141,0.141,0.148,0.147,0.147,0.145,0.141,0.133,0.134,0.136,0.132,0.124,0.122,0.122,0.124,0.124,0.119,0.12,0.118,0.116,0.107,0.11,0.118,0.12,0.116,0.117,0.116,0.11,0.116,0.119,0.126,0.132,0.129,0.124,0.121,0.123,0.122,0.12,0.126,0.129,0.133,0.131,0.127,0.138,0.136,0.136,0.132,0.13,0.133,0.129,0.131,0.13,0.125,0.13,0.134,0.141,0.141,0.139,0.134,0.141,0.139,0.138,0.144,0.134,0.134,0.135,0.134,0.132,0.135,0.135,0.138,0.141,0.142,0.144,0.15,0.143,0.15,0.15,0.148,0.143,0.135,0.132,0.123,0.124,0.12,0.117,0.121,0.121,0.129,0.138,0.142,0.144,0.14,0.141,0.15,0.15,0.148,0.152,0.141,0.14,0.145,0.139,0.135,0.13,0.129,0.128,0.127,0.13,0.124,0.127,0.125,0.12,0.118,0.117,0.116,0.116,0.113,0.116,0.123,0.124,0.126,0.129,0.133,0.131,0.129,0.128,0.129,0.129,0.126,0.126,0.126,0.122,0.119,0.119,0.116,0.119,0.129,0.134,0.137,0.138,0.138,0.139,0.136,0.134,0.136,0.14,0.14,0.137,0.136,0.134,0.132,0.136,0.134,0.134,0.137,0.138,0.141,0.138,0.132,0.124,0.129,0.134,0.13,0.131,0.136,0.137,0.134,0.137,0.135,0.133,0.137,0.132,0.13,0.125,0.125,0.119,0.114,0.116,0.118,0.118,0.118,0.115,0.119,0.12,0.127,0.123,0.11,0.109,0.103,0.1],"state":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,0.972,0.973,0.947,0.974,0.975,0.951,0.929,0.907,0.886,0.867,0.891,0.851,0.833,0.816,0.82,0.784,0.731,0.736,0.704,0.764,0.732,0.579,0.5,0.475,0.617,0.721,0.839,0.873,0.859,0.846,0.636,0.597,0.574,0.594,0.614,0.845,0.569,0.603,0.662,0.707,0.513,0.429,0.372,0.253,0.25,0.247,0.207,0.217,0.202,0.306,0.314,0.552,0.636,0.787,0.867,0.67,0.446,0.398,0.521,0.495,0.417,0.433,0.214,0.354,0.31,0.218,0.186,0.165,0.058,0.124,0.16,0.178,0.185,0.147,0.127,0.198,0.062,0.088,0.053,0.043,0.112,0.051,0.034,0.101,0.0,0.0,0.0,0.008,0.016,0.032,0.032,0.031,0.039,0.062,0.123,0.122,0.061,0.053,0.03,0.03,0.022,0.015,0.072,0.036,0.021,0.035,0.007,0.028,0.028,0.0,0.0,0.0,0.0,0.013,0.007,0.013,0.0,0.007,0.032,0.039,0.051,0.064,0.038,0.082,0.094,0.093,0.08,0.092,0.073,0.109,0.12,0.12,0.137,0.148,0.153,0.158,0.192,0.162,0.213,0.211,0.222,0.294,0.247,0.235,0.3,0.304,0.385,0.311,0.353,0.314,0.333,0.283,0.34,0.407,0.337,0.461,0.469,0.389,0.32,0.272,0.245,0.213,0.247,0.246,0.27,0.383,0.436,0.453,0.368,0.302,0.257,0.266,0.226,0.211,0.205,0.18,0.288,0.192,0.266,0.433,0.333,0.406,0.587,0.63,0.65,0.593,0.613,0.659,0.732,0.822,0.796,0.833,0.846,0.895,0.904,0.861,0.828,0.79,0.735,0.804,0.758,0.734,0.601,0.619,0.637,0.622,0.434,0.502,0.434,0.4,0.333,0.49,0.415,0.41,0.528,0.53,0.429,0.542,0.417,0.545,0.539,0.591,0.589,0.552,0.642,0.778,0.664,0.681,0.636,0.691,0.846,0.858,0.925,0.922,0.967,0.86,0.805,0.802,0.876,0.924,0.928,0.975,0.996,0.996,0.968,0.957,0.989,0.979,0.989,0.989,0.997,0.997,0.997,0.997,0.993,0.99,0.986,0.997,0.993,0.993,0.983,0.97,0.96,0.96,0.96,0.95,0.927,0.901,0.898,0.921,0.928,0.853,0.864,0.832,0.816,0.691,0.718,0.837,0.882,0.813,0.816,0.801,0.714,0.812,0.847,0.944,0.95,0.944,0.917,0.874,0.896,0.881,0.857,0.933,0.945,0.955,0.943,0.931,0.967,0.964,0.961,0.941,0.929,0.947,0.921,0.927,0.921,0.892,0.922,0.951,0.974,0.974,0.966,0.946,0.974,0.957,0.955,0.983,0.927,0.927,0.935,0.924,0.902,0.936,0.933,0.947,0.967,0.981,0.984,0.997,0.975,0.997,0.992,0.989,0.965,0.911,0.868,0.791,0.81,0.76,0.699,0.767,0.767,0.842,0.929,0.958,0.971,0.935,0.945,0.99,0.995,0.979,0.997,0.928,0.918,0.967,0.908,0.88,0.825,0.815,0.806,0.798,0.822,0.774,0.797,0.781,0.704,0.658,0.649,0.64,0.64,0.604,0.64,0.753,0.776,0.793,0.823,0.862,0.836,0.807,0.798,0.806,0.821,0.785,0.781,0.779,0.723,0.657,0.67,0.621,0.674,0.81,0.879,0.902,0.902,0.912,0.919,0.885,0.859,0.883,0.924,0.92,0.893,0.875,0.843,0.832,0.88,0.858,0.845,0.89,0.895,0.933,0.891,0.813,0.704,0.783,0.845,0.784,0.8,0.877,0.886,0.836,0.891,0.856,0.815,0.889,0.801,0.773,0.711,0.708,0.618,0.531,0.551,0.582,0.591,0.58,0.538,0.607,0.627,0.741,0.681,0.478,0.469,0.405,0.371],"boom":[140,300],"unwind":[300,380]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figFix');
+  const own=DATA.ownership, st=DATA.state, N=own.length;
+  const W=820,H=320,m={t:16,r:56,b:34,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=0.05,hi=Math.max(...own)*1.08;
+  const X=i=>m.l+iw*i/(N-1), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo)), Y2=v=>m.t+ih*(1-v);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'fixture ownership and state'});
+  svg.appendChild(el('rect',{x:X(DATA.boom[0]),y:m.t,width:X(DATA.boom[1])-X(DATA.boom[0]),height:ih,fill:'var(--panel)'}));
+  svg.appendChild(el('rect',{x:X(DATA.unwind[0]),y:m.t,width:X(DATA.unwind[1])-X(DATA.unwind[0]),height:ih,fill:'var(--warn-bg)'}));
+  const p1=own.map((v,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(v).toFixed(1)).join('');
+  svg.appendChild(el('path',{d:p1,fill:'none',stroke:'var(--s1)','stroke-width':2}));
+  let p2='';
+  st.forEach((v,i)=>{ if(v==null) return; p2+=(p2?'L':'M')+X(i).toFixed(1)+' '+Y2(v).toFixed(1)+' ';});
+  svg.appendChild(el('path',{d:p2,fill:'none',stroke:'var(--s2)','stroke-width':1.6,'stroke-dasharray':'5 3'}));
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y2(0.9),y2:Y2(0.9),stroke:'var(--s3)','stroke-width':1.3,'stroke-dasharray':'2 4'}));
+  const ft=el('text',{x:W-m.r-4,y:Y2(0.9)-5,'text-anchor':'end','font-size':'10',fill:'var(--s3)','font-family':'IBM Plex Mono,monospace'});
+  ft.textContent='extreme threshold 0.9'; svg.appendChild(ft);
+  const l1=el('text',{x:m.l,y:12,'font-size':'11',fill:'var(--s1)','font-family':'IBM Plex Mono,monospace'});
+  l1.textContent='— ownership / float (left)'; svg.appendChild(l1);
+  const l2=el('text',{x:m.l+240,y:12,'font-size':'11',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+  l2.textContent='- - expanding percentile (right)'; svg.appendChild(l2);
+  const b1=el('text',{x:(X(DATA.boom[0])+X(DATA.boom[1]))/2,y:H-8,'text-anchor':'middle','font-size':'10.5',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+  b1.textContent='boom (ownership builds)'; svg.appendChild(b1);
+  const b2=el('text',{x:(X(DATA.unwind[0])+X(DATA.unwind[1]))/2,y:H-8,'text-anchor':'middle','font-size':'10.5',fill:'var(--warn-ink)','font-family':'IBM Plex Mono,monospace'});
+  b2.textContent='unwind'; svg.appendChild(b2);
+  mount.appendChild(svg);
+})();
+</script>
