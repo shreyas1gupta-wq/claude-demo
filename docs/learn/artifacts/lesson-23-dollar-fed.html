@@ -1,0 +1,257 @@
+<title>The Clock That Passed and Wasn't Crowned</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 23 · atlas 2.9 + 2.10 · folds into L9</p>
+  <h1>The Clock That Passed and Wasn't Crowned</h1>
+  <p class="stand">We built a real dollar index from 65 years of exchange rates, tested the
+  famous "7-to-10-year dollar cycle" — and for the first time in this project, a clock-shaped
+  bar PASSED. This lesson is about why the desk still refused to crown it, why the India
+  headwind number underneath it matters more, and why the Fed cycle folds away on its own
+  evidence. Two of finance's most name-dropped cycles retire into three legs of one seat.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/23-dollar-fed-fold.md</span>
+    <span><b>Seats</b> none new — both are legs of L9</span>
+    <span><b>Trials</b> DL1–DL3, pre-registered</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The index, and the pass</h2></div>
+  <p>No dollar index reaches this desk through the proxy, so we built one: the chained,
+  CPI-adjusted, equal-weight real appreciation of the US dollar against the JST panel's
+  currencies, 1950–2015. Its peaks are the arcs the historiography names — the Bretton Woods
+  strain, the 1984 super-dollar, the tech dollar, the 2009 crisis spike:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — the real equal-weight dollar index, peaks marked</span>
+      <span class="figbadge">REAL DATA · built from JST xrusd + CPI · DL1: median spacing 9y — PASS on n=4</span></div>
+    <div class="chart" id="figIdx"></div>
+    <figcaption>Spacings [15, 9, 7, 9]: median 9 years, inside the claimed band — the bar,
+    registered before the run, was met. And the desk refused the promotion anyway: four
+    intervals cannot overturn a five-band sweep of clock funerals; one of the four sits at 15
+    years; and the series ends 2015, truncating the 2011–2022 climb. A pass is a claim about
+    the registered construction, not about the world — the same sentence that governed the
+    pre-election rally governs here.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">DL1 spacings</div><div class="v">[15,9,7,9]</div><div class="d">median 9y — PASS, promotion refused</div></div>
+    <div class="stat"><div class="k">DL2 India headwind</div><div class="v">−0.34</div><div class="d">dollar-up vs India equity — PASS at the bar</div></div>
+    <div class="stat"><div class="k">DL3 Fed → dollar</div><div class="v">≈ 0</div><div class="d">realized policy paths don't carry the dollar</div></div>
+    <div class="stat"><div class="k">Labels retired</div><div class="v">2</div><div class="d">"dollar cycle" · "Fed cycle" — prints attached</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The number that actually matters</h2></div>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 2 — annual dollar change vs India's market factor, 1994–2015</span>
+      <span class="figbadge">DL2 · corr −0.34 · the atlas's "most reliable macro headwind", tested</span></div>
+    <div class="chart" id="figScatter"></div>
+    <figcaption>Dollar-up years lean India-down. This is the dollar leg's transfer coefficient —
+    the companion to the global factor's +0.57 loading — and it is what L9 actually consumes:
+    a percentile state conditioning the size of the India book, with the "smile" (strong dollar
+    in US booms AND global crises, weak in synchronized growth) as the regime map that explains
+    WHY the correlation isn't tighter. No date appears anywhere in that machinery.</figcaption>
+  </figure>
+  <div class="warnbox"><b>Why the Fed cycle folds on evidence, not just parsimony.</b> DL3
+  asked the crudest form of the question: do annual changes in the US policy rate explain
+  realized dollar moves? Same-year −0.03, next-year +0.06 — zero. The rate-differential
+  mechanism is real but operates through EXPECTATIONS at higher frequency; a "Fed cycle seat"
+  built on realized policy paths would be empty. L9's US-policy leg therefore reads real-yield
+  LEVELS, and announcement-day trading stays refused (the same refusal the RBI seat made in
+  Lesson 20 — the symmetry is deliberate).</div>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The four quadrants of honesty</h2></div>
+  <p>With this entry, the trial register has now demonstrated every combination of outcome and
+  action — which is the real curriculum of this band:</p>
+  <div class="timeline">
+    <div class="trow"><span class="yr">fail → reject</span><p>The clock funerals: 40 months, 18 years, 30-40 years, 45-60 years — bars failed, claims retired with prints.</p></div>
+    <div class="trow"><span class="yr">fail → learn</span><p>SC1 (the freeze reached everyone within a year → detection moved to fast variables); GF3 (69% breadth → the licensed insulation sentence); CS3/4 (trend-domination named, retry registered).</p></div>
+    <div class="trow"><span class="yr">pass → adopt</span><p>FC1's 17/17 co-movement; MP1's surviving transmission direction; GF1/GF2's globalization and loading; DL2's headwind — numbers now doing work inside seats.</p></div>
+    <div class="trow"><span class="yr">pass → refuse</span><p>FP1a's pre-election rally (n=8, window flaw); DL1's dollar clock (n=4, sweep prior). The promotion gate — not the significance test — is where the discipline lives.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 23 of the learn-while-we-build series · Ionic quant desk · Atlas 2.9 + 2.10 ·
+  monograph: docs/cycles/23-dollar-fed-fold.md · trials DL1–DL3 in
+  research/register/trial-ledger.md · Figures computed by us from a dollar index built
+  in-house from the JST panel (xrusd + CPI, authenticated, manifested).</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"index":[[1950,0.0],[1951,-0.037],[1952,-0.125],[1953,-0.147],[1954,-0.167],[1955,-0.194],[1956,-0.21],[1957,-0.202],[1958,-0.218],[1959,-0.225],[1960,-0.234],[1961,-0.251],[1962,-0.27],[1963,-0.298],[1964,-0.329],[1965,-0.359],[1966,-0.371],[1967,-0.337],[1968,-0.334],[1969,-0.317],[1970,-0.317],[1971,-0.409],[1972,-0.45],[1973,-0.55],[1974,-0.639],[1975,-0.606],[1976,-0.629],[1977,-0.699],[1978,-0.787],[1979,-0.795],[1980,-0.745],[1981,-0.606],[1982,-0.495],[1983,-0.396],[1984,-0.286],[1985,-0.454],[1986,-0.622],[1987,-0.799],[1988,-0.745],[1989,-0.744],[1990,-0.858],[1991,-0.856],[1992,-0.756],[1993,-0.679],[1994,-0.773],[1995,-0.832],[1996,-0.783],[1997,-0.654],[1998,-0.683],[1999,-0.59],[2000,-0.494],[2001,-0.435],[2002,-0.592],[2003,-0.759],[2004,-0.823],[2005,-0.688],[2006,-0.766],[2007,-0.858],[2008,-0.772],[2009,-0.84],[2010,-0.819],[2011,-0.797],[2012,-0.807],[2013,-0.805],[2014,-0.679],[2015,-0.577]],"peaks":[1969,1984,1993,2000,2009],"spacings":[15,9,7,9],"dl2":-0.34,"scatter":[[1994,-0.094,0.127],[1995,-0.06,-0.446],[1996,0.05,-0.196],[1997,0.129,0.048],[1998,-0.029,-0.138],[1999,0.093,0.843],[2000,0.096,-0.367],[2001,0.059,-0.275],[2002,-0.157,0.12],[2003,-0.168,0.969],[2004,-0.063,0.128],[2005,0.134,0.364],[2006,-0.077,0.301],[2007,-0.092,0.593],[2008,0.086,-0.617],[2009,-0.068,0.878],[2010,0.021,0.046],[2011,0.022,-0.31],[2012,-0.01,0.149],[2013,0.002,-0.007],[2014,0.125,0.243],[2015,0.102,-0.027]]};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figIdx');
+  const rows=DATA.index, N=rows.length;
+  const ys=rows.map(r=>r[1]), yr0=rows[0][0], yr1=rows[N-1][0];
+  let lo=Math.min(...ys), hi=Math.max(...ys); const pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+  const W=820,H=300,m={t:14,r:16,b:34,l:50},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const X=y=>m.l+iw*(y-yr0)/(yr1-yr0), Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'real dollar index'});
+  for(let y=1950;y<=2010;y+=10){
+    svg.appendChild(el('line',{x1:X(y),x2:X(y),y1:m.t,y2:m.t+ih,stroke:'var(--grid)','stroke-width':1}));
+    const t=el('text',{x:X(y),y:H-12,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);}
+  const path=rows.map((r,i)=>(i?'L':'M')+X(r[0]).toFixed(1)+' '+Y(r[1]).toFixed(1)).join('');
+  svg.appendChild(el('path',{d:path,fill:'none',stroke:'var(--s1)','stroke-width':2}));
+  const lut=Object.fromEntries(rows.map(r=>[r[0],r[1]]));
+  DATA.peaks.forEach(y=>{ if(lut[y]==null) return;
+    svg.appendChild(el('path',{d:`M${X(y)} ${Y(lut[y])-12} l-6 -10 h12 z`,fill:'var(--s3)'}));
+    const t=el('text',{x:X(y),y:Y(lut[y])-28,'text-anchor':'middle','font-size':'10',fill:'var(--s3)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=y; svg.appendChild(t);});
+  const yl=el('text',{x:14,y:m.t+ih/2,'font-size':'11.5',fill:'var(--ink-3)',transform:`rotate(-90 14 ${m.t+ih/2})`,'text-anchor':'middle'});
+  yl.textContent='cum. log real appreciation'; svg.appendChild(yl);
+  mount.appendChild(svg);
+})();
+(function(){
+  const mount=document.getElementById('figScatter');
+  const rows=DATA.scatter;
+  const W=820,H=320,m={t:16,r:16,b:44,l:56},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const xs=rows.map(r=>r[1]), ys=rows.map(r=>r[2]);
+  const xlo=Math.min(...xs)-0.02, xhi=Math.max(...xs)+0.02;
+  const ylo=Math.min(...ys)-0.06, yhi=Math.max(...ys)+0.06;
+  const X=v=>m.l+iw*(v-xlo)/(xhi-xlo), Y=v=>m.t+ih*(1-(v-ylo)/(yhi-ylo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'dollar vs India scatter'});
+  svg.appendChild(el('line',{x1:X(0),x2:X(0),y1:m.t,y2:m.t+ih,stroke:'var(--axis)','stroke-width':1.2}));
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:'var(--axis)','stroke-width':1.2}));
+  rows.forEach(([y,du,ind])=>{
+    svg.appendChild(el('circle',{cx:X(du),cy:Y(ind),r:6,fill:du>0&&ind<0?'var(--s2)':'var(--s1)',opacity:0.85}));
+    if(['2008','2013','2009','2014'].includes(String(y))){
+      const t=el('text',{x:X(du)+8,y:Y(ind)-6,'font-size':'10',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+      t.textContent=y; svg.appendChild(t);}});
+  const xl=el('text',{x:m.l+iw/2,y:H-6,'text-anchor':'middle','font-size':'11.5',fill:'var(--ink-3)'});
+  xl.textContent='real dollar-index change (annual, log)'; svg.appendChild(xl);
+  const yl=el('text',{x:14,y:m.t+ih/2,'font-size':'11.5',fill:'var(--ink-3)',transform:`rotate(-90 14 ${m.t+ih/2})`,'text-anchor':'middle'});
+  yl.textContent='India market factor, annual'; svg.appendChild(yl);
+  mount.appendChild(svg);
+})();
+</script>

@@ -37,7 +37,8 @@ ceiling.
 | 2.6 | Monetary-policy cycle (RBI) | **DONE** — docs/cycles/20-mp-cycle.md (~20.1k words; MP1 PASS — first surviving imported direction; MP2 sign-flip calibrates the ~1y lag; MP3 closes the Δ-variant; L6 primary citations landed; round-trip count 3-4 of the 6 changes_if needs) + Lesson 20 |
 | 2.7 | Fiscal/political spending cycle | **DONE** — docs/cycles/21-fiscal-cycle.md (~9.7k words; FP1a the register's first pass-then-deflate — HL-7 teach-only; composition-not-deficits signature; CONTEXT folded into L5/L6) + Lesson 21 |
 | 2.8 | Global financial cycle | **DONE** — docs/cycles/22-global-cycle.md (~19.3k words; GF1 +0.28→+0.77 the cleanest regime change; GF2 India +0.57; GF3 FAIL refines to "most places, most of the time"; May-2026 live exam graded — triad was quiet, coverage gap logged) + Lesson 22 |
-| 2.9/2.10 | Dollar cycle / Fed cycle | **IN PROGRESS** — fold rows into L9 (sub-faces; labels retired with prints) |
+| 2.9/2.10 | Dollar cycle / Fed cycle | **DONE** — docs/cycles/23-dollar-fed-fold.md (~9.4k words; DL1 first clock PASS, promotion REFUSED; DL2 India headwind −0.34; DL3 zero — the fold evidence-backed; four honesty quadrants complete) + Lesson 23 |
+| 2.11 | China credit impulse (H54) | **IN PROGRESS** |
 | 2.x | Rest of Band 2 ( 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 
