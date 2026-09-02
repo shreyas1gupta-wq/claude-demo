@@ -372,3 +372,22 @@ of [Δlog xrusd_i − π_i + π_US] (USD real appreciation), USA excluded from t
 | DL1 | Dollar-swing spacing vs 7-10y | peaks [1969,1984,1993,2000,2009], spacings [15,9,7,9], median 9y — **PASS as registered on n=4**, promotion REFUSED (FP1a precedent + the five-fail frequency-sweep prior; index ends 2015); swings real, clock not crowned, L9 leg stays a state | pass, not promoted |
 | DL2 | Dollar-up = India headwind | corr −0.34 (bar ≤ −0.30) — **PASS**; the dollar leg's India transfer number (companion to GF2) | pass |
 | DL3 | US rate → dollar (lag profile) | −0.03 same-year, +0.06 next — ZERO at annual frequency: realized-policy paths don't carry the dollar; the 2.10 fold into L9's real-yield-LEVEL leg is evidence-backed | measured, fold-supporting |
+
+## Entries CI1a–CI1b (2026-09-02) — Atlas 2.11 China credit impulse (candidate H54), proxy trials
+Script: scripts/analyze_china_impulse.py. PRE-REGISTERED before running. China is in neither
+JST nor the vault (BIS blocked; no mirror — commodity partC C.6); these are PROXY trials on
+the China-demand channel in commodity prices. Confounds stated at registration: energy,
+dollar, global IP — a proxy licenses state-enrichment candidacy, never a standalone signal.
+- Basket: metals_rel = mean log real price of {Iron ore, Copper, Steel, Zinc, Nickel,
+  Aluminum} MINUS mean log real price of the agriculture group (grains+softs+animal), Jacks
+  annual. IMF monthly analogue: Metals Price Index minus Agricultural Raw Materials+Food.
+- CI1a (the China era changed the metals-ags relative dynamics): std of 3y Δmetals_rel,
+  2000-2015 vs 1950-1999 (Jacks). Bar: post-2000 std ≥ 1.5× pre-2000 std.
+- CI1b (named-pulse sign check, IMF monthly, n=2 windows — tiny, stated): cumulative
+  metals-minus-ags log change positive in BOTH windows [2008-11..2010-12] and
+  [2016-01..2017-06]. Bar: 2/2 positive.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CI1a | Metals-vs-ags variance shift, China era | std ratio **2.19x** (bar 1.5x) — **PASS**: something structural entered metals' relative dynamics ~2000, consistent with the China channel | pass |
+| CI1b | Named-pulse sign check (n=2) | 2/2 positive (+0.34, +0.16) — **PASS**, confounds named (global reflation/dollar in w1; supply-side reform in w2); licenses L9-enrichment CANDIDACY only, never a standalone signal; H54 graduation waits on real TSF | pass, bounded |
