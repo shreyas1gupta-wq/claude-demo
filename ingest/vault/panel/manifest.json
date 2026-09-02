@@ -1,0 +1,12 @@
+{
+ "n500_adjclose_2012_2022.csv.gz": {
+  "bytes": 3649216,
+  "sha256": "9486fbb9128fd71372d0277753f1cc52ff5f06e1a5a75de8df320bc6c68b8418",
+  "vintage": "2026-09-02"
+ },
+ "n500_value_traded_2012_2022.csv.gz": {
+  "bytes": 4261344,
+  "sha256": "468a0faf404fc7521168629457cf30c3a3befd1f57636881ade212b73bcfa182",
+  "vintage": "2026-09-02"
+ }
+}
