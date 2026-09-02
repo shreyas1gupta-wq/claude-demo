@@ -354,3 +354,21 @@ Pre-declared constructions and bars:
 | GF1 | Pairwise co-movement, pre vs post 1990 | +0.28 → +0.77 — **PASS**, the project's cleanest regime-change print; standing caveat born: pre-1990 analogue evidence discounts on transfer | pass, strong |
 | GF2 | India's loading on the global factor | corr +0.57 (annual, 1994-2015, n=22) — **PASS**; the L9 transfer premise measured | pass |
 | GF3 | Breadth of global down-years | median 69% of countries negative vs 75% bar — **FAIL**: 'one cycle everywhere' is too strong; 'most places, most of the time' is the licensed sentence; partial insulation real but never assumable ex ante | fail, refining |
+
+## Entries DL1–DL3 (2026-09-02) — Atlas 2.9/2.10 dollar/Fed folds
+Script: scripts/analyze_dollar_cycle.py. PRE-REGISTERED before running. Construction: REAL
+equal-weight dollar index vs the JST panel currencies, 1950-2015 — chained mean over countries
+of [Δlog xrusd_i − π_i + π_US] (USD real appreciation), USA excluded from the currency set.
+- DL1 (the "~7-10y dollar swing" claim): peaks of the index (3y smooth, min_gap 4y). Bar:
+  median peak-to-peak spacing in [7,10]y AND ≥50% of spacings in [6,11]y.
+- DL2 (EM headwind transfer): corr of annual index change vs India market-factor annual
+  return, 1994-2015 (n=22). Bar: corr ≤ −0.30 ("EM equity's single most reliable macro
+  headwind" — the atlas's own sentence, tested on India).
+- DL3 (the Fed sub-face): corr of ΔUS short rate (stir_USA) vs SAME-year and NEXT-year index
+  change — measurement, prior set (the rate-differential mechanism's crude read).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| DL1 | Dollar-swing spacing vs 7-10y | peaks [1969,1984,1993,2000,2009], spacings [15,9,7,9], median 9y — **PASS as registered on n=4**, promotion REFUSED (FP1a precedent + the five-fail frequency-sweep prior; index ends 2015); swings real, clock not crowned, L9 leg stays a state | pass, not promoted |
+| DL2 | Dollar-up = India headwind | corr −0.34 (bar ≤ −0.30) — **PASS**; the dollar leg's India transfer number (companion to GF2) | pass |
+| DL3 | US rate → dollar (lag profile) | −0.03 same-year, +0.06 next — ZERO at annual frequency: realized-policy paths don't carry the dollar; the 2.10 fold into L9's real-yield-LEVEL leg is evidence-backed | measured, fold-supporting |
