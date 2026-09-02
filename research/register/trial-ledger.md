@@ -782,3 +782,24 @@ whole grid (F6's spirit: never a single cell); false-fire counts included.
 | # | What | Result | Status |
 |---|---|---|---|
 | F2-index | 18-cell de-risk grid on real index | Deep set printed as {GFC*, COVID} (2011 fell short of 20% in-window). **3/18 SUPPORTIVE, all at trigger 0.80 + 1-of-2 confirm**: phaseD +8.4pp deep-DD improvement at 0.56pp/yr drag (19 fires; MEASUREMENT ONLY until F7), decay +5.6pp at 1.83, calendar +5.6pp at 1.23. Architecture findings: 2-of-2 confirm kills protection everywhere (the DD leg lags — 'any one arms' is now evidence-backed); triggers above 0.80 fire too late for a 23-session crash; three cells print NEGATIVE drag with sub-bar protection (logged, not promoted). Shortlist for full F2: {0.80, 1of2} x {calendar, decay}; phaseD's dominance is the case FOR running F7 | 3/18 supportive, shortlist set |
+
+## Entry F7a (2026-09-02) — the phase-quadrant asymmetry test (H66 fast band), first real run
+PARENT: F7 (docs/cycles/02-fast-stress.md §5, frozen): "at matched state LEVELS: forward
+1-3m returns and DD, U vs D; passes => re-entry rules may condition on D via Challenger,
+reduce-only first; fails => phase stays display-only for L2." Parent decision rule quoted
+VERBATIM per process note #5. The parent fixed the comparison but not numeric bars; bars
+declared NOW, before running. Script: scripts/analyze_f7_phase.py. Data: vaulted NIFTY
+daily; the same composite/phase construction as F2-index (k_slope=21, smooth=5).
+DESIGN: qualifying days = state expanding-percentile >= 0.8 (the F2 trigger zone — re-entry
+is what F7 gates). Split by phase direction: U (rising: quadrant boom/recovery-rising
+coding) vs D (falling-from-high: slowdown quadrant). To limit overlap inflation, sample
+every 21st qualifying day per group. BARS (all three required to PASS):
+- median forward 63bd return (D) > (U), one-sided MW p < 0.10;
+- mean forward 63bd max-drawdown (D) < (U);
+- n >= 10 sampled days in EACH group (else UNDERPOWERED verdict, no pass/fail).
+Forward 21bd horizon reported as secondary (no bar). PASS => phase-D graduates to
+Challenger status for L2 re-entry, reduce-only first, exactly as the parent registered.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F7a | U-vs-D at matched high state | (pending) | pre-registered |
