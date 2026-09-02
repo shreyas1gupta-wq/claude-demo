@@ -1,0 +1,211 @@
+<title>Speed Is the Seatbelt</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 41 · the data phase, leg two · the risk system meets real history</p>
+  <h1>Speed Is the Seatbelt</h1>
+  <p class="stand">Leg one landed the data; leg two pointed the risk system at eighteen years
+  of real Indian market history and asked the program's central question: does cutting risk on
+  the fast-stress state actually buy drawdown protection at a price inside the budget? The
+  answer came back with a shape nobody ordered but everything now confirms: protection lives
+  at the FASTEST settings, and the direction of travel — the phase arrow the desk spent a
+  directive building — adds nothing a level didn't already say.</p>
+  <div class="meta">
+    <span><b>Trials</b> F2-index (18 cells) · F7a · TS1</span>
+    <span><b>Doctrine</b> levels, not directions · speed is the DD-controller</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Three cells out of eighteen</h2></div>
+  <p>F2's grid — trigger percentile × confirmation strictness × re-entry family — was frozen
+  before any real data existed. Run on the vaulted index (long-only proxy, costs in), exactly
+  three cells cleared both pre-stated bars (≥5pp less drawdown in the deep episodes, ≤2pp/yr
+  of return drag) — and all three share the same left edge: the EARLIEST trigger (0.80) with
+  the LOOSEST confirmation (any one leg). Requiring both legs to confirm destroyed protection
+  everywhere, because the drawdown leg lags realized vol — by the time both agree, a
+  COVID-speed crash is over. The ladder's "any one arms, two confirm" asymmetry, written as a
+  design principle, is now a measured fact.</p>
+  <div class="keyresult"><div class="t">The shortlist</div>
+  <div class="big">Trigger 0.80, one-leg confirm, calendar re-entry: −5.6pp of deep-episode
+  drawdown for 1.23pp/yr — the best adoptable cell.</div>
+  <p>The phase-D re-entry cell printed even better (+8.4pp at 0.56pp/yr) — and is inadmissible,
+  because phase-conditioned rules were gated behind their own test. Which the desk then ran.</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The arrow that failed its exam</h2></div>
+  <p>F7 was frozen months ago with its consequence attached: if "falling-from-high" days don't
+  actually differ from "rising" days at matched stress levels, the phase overlay stays
+  display-only. The print: at high stress, forward 3-month returns are +5.62% (falling) vs
+  +5.67% (rising), p=0.65. No difference. FAIL — and the frozen rule executed itself: phase
+  stays display-only.</p>
+  <p>So why did the phase-D re-entry cell dominate the grid? Because it re-entered EARLIER —
+  and at high stress levels, everything forward-looking is rebound-rich regardless of
+  direction (the panic-state rebound is priced by the LEVEL). The dominance was earliness
+  wearing a phase costume. The register's oldest doctrine — states, never dates — gains a
+  sibling: <b>levels, not directions</b>. A direction-free early-calendar variant (F2c) is
+  registered to prove the costume empty at the full run.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The trend seat gets its numbers — and a humbling</h2></div>
+  <p>TS1 calibrated L4's two legs. On the index, only the FASTEST lookback (3-month sign)
+  passed its drawdown bar — 22% max drawdown against 47% for buy-and-hold, through 2008, at
+  1.1pp/yr of drag — while the 6- and 12-month rules failed on cost and the 12-month rule
+  actually printed a WORSE drawdown than its own-window buy-and-hold. The desk's stated prior
+  ("12m passes via the 2008 exit; 3m whipsaws hardest") was inverted — with one honest
+  asterisk: the 12-month cell's warm-up excludes 2008 entirely, so its half of the prior was
+  untestable, not refuted. On gold, all three lookbacks passed and the slowest was strongest
+  (net return ABOVE buy-and-hold with maxDD 34% vs 62% across 54 years) — the literature
+  arriving intact.</p>
+  <div class="warnbox"><b>The converging lesson of the whole leg:</b> Indian equity crashes are
+  FAST, so every drawdown-control mechanism that works here works by being fast — the 0.80
+  trigger, the one-leg confirm, the 3-month lookback. Gold trends are SLOW, and slow rules
+  win there. The seatbelt must match the speed of the crash it's built for; the CONTRACT's
+  own prior ("shorter lookbacks, higher confidence") is now a measurement.</div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>What this leg cannot claim</h2></div>
+  <p>Every number above is an index-proxy, single-path, in-sample calibration with flat costs
+  — it shortlists cells and calibrates priors; it arms nothing. The full F2 (three legs,
+  book-level costs, walk-forward) remains registered, now fifteen cells cheaper. Three cells
+  printed NEGATIVE drag — de-risking that added return — and were deliberately not promoted:
+  that is a timing-alpha claim, and this design does not adjudicate alpha. The discipline
+  that refused those free-looking returns is the same one that made every other number in
+  this lesson believable.</p>
+</section>
+
+<footer>
+  <p>Lesson 41 of the learn-while-we-build series · Ionic quant desk · trials F2-index / F7a /
+  TS1 + design F2c in research/register/trial-ledger.md (all bars pre-stated; the F7 gate
+  executed as frozen) · full prints in research/cycles/daily-batch/daily-RESULTS.md ·
+  companion vaults: ingest/vault/index/ + commodities/gold.</p>
+</footer>
+</div>
+
+<script>const DATA = null;</script>
