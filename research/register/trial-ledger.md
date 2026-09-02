@@ -552,3 +552,21 @@ license inventing a pass. Rank bars, not magic thresholds.
 | CW1 | Feb |MF| rank + MW test | Feb rank 7/12, median 4.27 vs 4.22, p=0.522 — **FAIL**: the Budget month is ordinary at monthly resolution (the CR2 pattern again); L5's budget scheduling rests on the daily-resolution VIX record + the fixed-date mechanism, NOT on this print | fail, resolution-routed |
 | CW2 | Apr SMB rank + MW test | Apr median SMB +2.47, rank 1/12, p=0.020 — **PASS**: the FY-end small-cap-rebound signature is real at monthly resolution; post-hoc note (NOT pre-registered): Feb/Mar are the two most NEGATIVE SMB months — the selling leg of the same mechanism, tagged for a follow-up trial. Promotion: Tier-C instrumentation + pre-registered paper-trade, NO return budget (cost-fragile per the atlas prior) | pass, promotion-refused |
 | CW3 | 12-month omnibus (demonstration) | H=12.13, p=0.354 — no calendar structure; the 4.11 REJECT confirmed exactly as pre-stated (and the rank-1 months in CW1/CW3 stay logged, never interpreted) | measured, reject-confirmed |
+
+## Designs CW-D1 / CW-PT1 / CW2b (2026-09-02) — Atlas 4.1/4.2 follow-ons, DATA-GATED
+- CW-D1 (daily budget-window vol): India VIX daily (NSE, 2009-) + NIFTY daily around budget
+  days vs matched non-event days; bar: one-sided p < 0.05 on budget-day ±1 |return| and VIX
+  change (n≈18 budgets+interims). Pre-2001 5pm-presentation era excluded by design (event-day
+  definition break). Runsheet pull.
+- CW-PT1 (April small-cap paper trade): modeled tilt Apr-1..Apr-30 net of config/costs.yaml,
+  ledgered like HL-7; promotion discussable only after 3 Aprils AND net-positive in ≥2.
+- CW2b (the selling leg, pre-registered for the NEXT factor-library refresh): Feb+Mar pooled
+  median SMB < 0 AND MW one-sided p < 0.10 vs the other ten months. Registered BEFORE any
+  new data exists; the current library's print is quarantined as the post-hoc observation
+  that motivated it and cannot grade it.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CW-D1 | Daily budget-day vol event study | (awaits India VIX vault) | registered design |
+| CW-PT1 | April tilt paper ledger | (first grading April 2027) | registered design |
+| CW2b | Feb+Mar selling-leg confirmation | (awaits library refresh) | registered design |
