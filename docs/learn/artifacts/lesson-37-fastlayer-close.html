@@ -1,0 +1,216 @@
+<title>Knowing Your Counterparty</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 37 · atlas 5.4 + 5.5 + 5.6 · the atlas closes</p>
+  <h1>Knowing Your Counterparty</h1>
+  <p class="stand">The last band of the atlas is the fastest — and speed is where a desk must
+  know exactly who sits on the other side of the trade. The closing entry is three refusals,
+  each argued to its strongest form first: a real premium we decline because collecting it
+  means racing market-makers; a calendar pattern that died in public forty years ago; and a
+  layer of genuine structure we rule out of scope rather than pretend to trade. With these
+  three addresses filed, every row of the Cycle Atlas has its verdict.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/36-fastlayer-close.md</span>
+    <span><b>Verdicts</b> 5.4 Tier-C flag, frozen (MR1) · 5.5 REJECT · 5.6 out of scope</span>
+    <span><b>Atlas</b> Bands 0–5 all addressed</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>A real premium we refuse to collect</h2></div>
+  <p>One-month cross-sectional reversal — buy last month's losers, sell last month's winners,
+  within a liquid universe — is not a data-mining artifact. It is the return to PROVIDING
+  LIQUIDITY: when someone must sell a falling stock now, whoever takes the other side gets
+  paid for immediacy and inventory risk, and that payment spikes exactly when markets are
+  stressed. The mechanism survives being known (someone must always be paid to warehouse
+  risk). So why refuse it?</p>
+  <p>Because the premium is paid PER TRADE, and the strategy is nothing but trades: turnover
+  runs over a hundred percent a month, India's securities transaction tax alone takes 20
+  basis points per round trip, and every transaction-cost study in the literature puts
+  reversal first in line to die net of costs. Worse, collecting immediacy premia at daily
+  speed means competing with colocated market-makers whose whole business is this trade.
+  The register's verdict: a Tier-C FLAG with zero return budget — reversal may inform the
+  TIMING of entries the book already wants (don't chase a name that just spiked), and design
+  MR1 defines the only path that could ever unfreeze more: net-of-cost survival in both
+  half-samples plus the decay haircut, graded when stock-level data lands. Even that pass
+  would cap it at "flag".</p>
+  <div class="keyresult"><div class="t">The counterparty question</div>
+  <div class="big">Every speed game has a professional on the other side. A weekly-cadence
+  desk wins by not showing up to races it cannot finish.</div>
+  <p>Against an HFT market-maker in the immediacy trade, we lose. Against no one in a
+  monthly rebalance of slow states, the plumbing map (Lesson 34) is enough.</p></div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The pattern that died in public</h2></div>
+  <p>The weekend effect — negative average Monday returns — was documented by French in 1980
+  on decades of US data, celebrated, harvested… and then it vanished. The data-snooping
+  bootstrap literature later showed why it was always suspect: test enough calendar splits
+  and something "works" by construction. It is the same lesson the register has now taught
+  itself three times with its own money-free prints — the CW3 omnibus null on months, GS1's
+  festival months ranking worst, and here the band's last calendar claim: day-of-week and
+  expiry-day drift carry no mechanism that survives costs at our scale. REJECT, with no
+  trial spent — proving a priced-at-zero negative on daily data would cost more than the
+  claim was ever worth.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Out of scope is not a verdict on truth</h2></div>
+  <p>Intraday structure — the U-shaped volume curve at open and close, auction effects — is
+  REAL, mechanism-backed microstructure. The register neither rejects it nor trades it: this
+  is an end-of-day, weekly-cadence program by design, and execution algorithms inherit
+  standard participation logic. The distinction matters enough to be its own verdict type:
+  a REJECT says "we tested or reasoned this to death"; OUT OF SCOPE says "true or not, it is
+  not this program's game" — and writing it down prevents the silence from ever being read
+  as ignorance, or worse, as an invitation.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>The atlas, fully addressed</h2></div>
+  <p>With this entry, every band has its machinery and every row its address:</p>
+  <div class="timeline">
+    <div class="trow"><span class="yr">Band 0</span><p>Secular arcs — context that sizes the gold floor and the tail hedges; no clocks survived.</p></div>
+    <div class="trow"><span class="yr">Band 1</span><p>Structural cycles — the financial cycle seated (L12), capex seated (L11), the supercycles state-only or rejected.</p></div>
+    <div class="trow"><span class="yr">Band 2</span><p>The macro engine room — credit (L10, the anchor), monetary (L6), global (L9), the frequency sweep's five dead clocks, ENSO's measured ceiling.</p></div>
+    <div class="trow"><span class="yr">Band 3</span><p>Intra-cycle states — issuance seated (L7), positioning seated (L14), crowding instrumented, the industry's marketing mostly refused with prints.</p></div>
+    <div class="trow"><span class="yr">Band 4</span><p>The annual layer — scheduling (L5), mechanics (H58), immunity (the context quartet); no return budget moved.</p></div>
+    <div class="trow"><span class="yr">Band 5</span><p>The fast layer — L2 at full standard, and the speed games declined by name.</p></div>
+  </div>
+  <p>What remains is the closing of the book itself: one candidate (H59, semiconductors)
+  awaiting its research-first pass, and the capstone — the synthesis that reads the whole
+  register back and counts what the honesty machinery actually produced.</p>
+</section>
+
+<footer>
+  <p>Lesson 37 of the learn-while-we-build series · Ionic quant desk · Atlas 5.4–5.6 (the
+  closing rows) · monograph: docs/cycles/36-fastlayer-close.md · design MR1 in
+  research/register/trial-ledger.md · no desk trials for this entry, by design — the closer's
+  product is addresses, not prints.</p>
+</footer>
+</div>
+
+<script>const DATA = null;</script>

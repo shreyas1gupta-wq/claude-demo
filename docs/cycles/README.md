@@ -52,7 +52,9 @@ ceiling.
 | 4.3–4.6 | Calendar mechanics: drain-date exclusions, results pause, expiry avoidance (H58) + reconstitution edge (RC1) | **DONE** — docs/cycles/34-calendar-mechanics.md (~8.3k words; ZERO trials by design — counting designs H58-D1..D3 + RC1 registered; quant/ladder/exclusion_calendar.py + 7 tests; L2 role carries the quarantine) + Lesson 34 |
 | 4.7–4.10 | CONTEXT quartet: monsoon / festive / gold seasonality / SIP clustering | **DONE** — docs/cycles/35-calendar-context.md (~7.9k words; GS1 null p=0.454, festival months rank WORST — D06 demonstrated; the refusal card; no data obligations by verdict) + Lesson 35. **BAND 4 COMPLETE** |
 | 5.1–5.3 | Fast-stress (L2) UPGRADE to full standard: vol clustering / VIX structure / funding | **DONE** — docs/cycles/02-fast-stress.md v2 (~15.2k words; FS-U1/FS-U2 printed on the vault; the order-of-arrival taxonomy pre-registered; FS-D1/FS-D2 registered; the long-queued upgrade delivered) + Lesson 36 |
-| 5.4–5.6 | Reversal Tier-C flag (MR1) / seasonal reject / intraday out-of-scope — the atlas closer | **IN PROGRESS** — Parts D-H done; chapters writing |
+| 5.4–5.6 | Reversal Tier-C flag (MR1) / seasonal reject / intraday out-of-scope — the atlas closer | **DONE** — docs/cycles/36-fastlayer-close.md (~6.6k words; three disciplined refusals with the counterparty argument) + Lesson 37. **BAND 5 COMPLETE — EVERY ATLAS BAND ADDRESSED** |
+| §8 H59 | Semiconductor cycle candidate (the last unaddressed candidate) | **DONE** — docs/cycles/37-semis-candidate.md (~6.5k words; H59-D1 registered with stated prior: FAILS; FY26 divergence the real-time corroboration; candidate ledger CLOSED) + Lesson 38 |
+| — | **Atlas-completion capstone** | **IN PROGRESS** — synthesis + master verdict table drafted (research/cycles/capstone/) |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
 rejection argued in 30 pages is still knowledge); seats get the full standard incl. module+tests.
