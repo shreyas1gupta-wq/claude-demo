@@ -1,0 +1,237 @@
+<title>Not All Barrels Are Alike</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 25 · atlas 2.12 · folds into L9's decomposed leg</p>
+  <h1>Not All Barrels Are Alike</h1>
+  <p class="stand">For a country importing 85%+ of its crude, an oil spike sounds like
+  unambiguous bad news. It isn't — and the difference between the two kinds of oil-up year is
+  worth eighty percentage points of Indian equity returns. This lesson teaches the Kilian
+  decomposition, walks the OPEC-and-shale regime history, and then does the register's
+  signature move on its own giant result: caps it, because the proxy can't prove what it
+  suggests.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/25-oil-fold.md</span>
+    <span><b>Seat</b> none new — L9's Kilian leg (seated at design); label retired</span>
+    <span><b>Trial</b> OL1 (pre-registered, passed by 8x, capped)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The eighty-point split</h2></div>
+  <p>Take every year from 1994–2015 in which real oil rose more than 10%. Split them by one
+  crude flag: was the world equity market up (a demand-flavored year — oil rising because the
+  world is booming) or down (a supply-flavored year — oil rising against a weakening world)?
+  Then look at what India's market did:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — India's return in every oil-up year, by flavor</span>
+      <span class="figbadge">REAL DATA · OL1 · demand-flavored +38.1% vs supply-flavored −43.1%</span></div>
+    <div class="chart" id="figBars"></div>
+    <figcaption>Eleven oil-up years: eight demand-flavored (India averaged +38.1%), three
+    supply-flavored (−43.1%). The same commodity, opposite worlds. The pre-registered bar
+    asked for a 10-point spread; the print delivered eighty-one.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">OL1 spread</div><div class="v">+81.2pp</div><div class="d">bar was +10pp — PASS by 8×</div></div>
+    <div class="stat"><div class="k">Demand-flavored years</div><div class="v">+38.1%</div><div class="d">n=8 — oil as a symptom of boom</div></div>
+    <div class="stat"><div class="k">Supply-flavored years</div><div class="v">−43.1%</div><div class="d">n=3 — oil as a tax in a bust</div></div>
+    <div class="stat"><div class="k">The cap</div><div class="v">declared</div><div class="d">the proxy can't separate oil from the global factor</div></div>
+  </div>
+  <div class="warnbox"><b>Why the desk capped its own best-looking print.</b> The flavor flag
+  IS the global equity sign — so "supply-flavored oil-up" years are, by construction, global
+  bust years, and India falls in global busts whatever oil is doing (its global loading is
+  +0.57, Lesson 22). This print is therefore CONSISTENT with the Kilian asymmetry and nearly
+  indistinguishable from the global factor wearing an oil costume (2008's annual averaging —
+  a first-half spike netted against a second-half crash — even sneaks a crash year into the
+  "oil-up" set). What it licenses: the commitment that raw oil price never enters the ladder,
+  and this table as a briefing exhibit. What it doesn't: a measured oil-specific asymmetry.
+  That waits for the real identification machinery.</div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The decomposition, and the identification ladder</h2></div>
+  <p>Kilian's 2009 result — not all oil price shocks are alike — separates oil moves into
+  supply shocks, aggregate-demand shocks, and precautionary-demand shocks, using the structure
+  of the oil market (supply's short-run inelasticity, a freight-based measure of global
+  activity) rather than the equity tape. That is the machinery L9's oil leg is committed to,
+  and the entry's identification ladder is explicit: the equity-sign proxy (today's shadow,
+  capped) → the Kilian activity index (the runsheet pull, where the real replication is
+  registered — the desk expects the asymmetry to survive but SHRINK once the global factor is
+  controlled) → the full structural VAR literature (reference, not desk machinery). A state
+  that cannot tell a $20 symptom from a $20 tax is worse than no state.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Regimes, not a cycle — and the fold</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">1973–86</span><p>The embargo/revolution era, then the quota system's slow unraveling into the 1986 collapse — the first proof that cartel floors are regimes, not physics.</p></div>
+    <div class="trow"><span class="yr">1998–2008</span><p>The $10 trough, then the discipline era riding China's demand — the decade that taught everyone the wrong lesson about permanence.</p></div>
+    <div class="trow"><span class="yr">2014–20</span><p>The market-share war against shale — the structural break: a supply curve with a fast short end; then April 2020's negative print as the era's absurdist coda.</p></div>
+    <div class="trow"><span class="yr">2016–26</span><p>OPEC+, the 2022 invasion spike and price caps, voluntary-cut politics, and the 2026 Hormuz-tension spike that drove the rupee's May episode (Lesson 22's live exam) — regimes stacked on regimes, no clock anywhere.</p></div>
+    <div class="trow"><span class="yr">the fold</span><p>"The oil cycle" retires as a label: the supercycle content is the commodity monograph's, the decomposed state is L9's leg, the administered-price wedge is the fiscal/MP chapters', and the shock-type table is this entry's briefing artifact. No new seat, no new budget.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 25 of the learn-while-we-build series · Ionic quant desk · Atlas 2.12 ·
+  monograph: docs/cycles/25-oil-fold.md · trial OL1 in research/register/trial-ledger.md
+  (pre-registered, passed, capped) · Fig 1 computed by us from vaulted EIA Brent, JST returns
+  and the IIMA factor library.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"rows":[[1996,0.211,"demand",-0.196],[1999,0.397,"demand",0.843],[2000,0.598,"supply",-0.367],[2003,0.157,"demand",0.969],[2004,0.324,"demand",0.128],[2005,0.423,"demand",0.364],[2006,0.197,"demand",0.301],[2007,0.112,"demand",0.593],[2008,0.336,"supply",-0.617],[2010,0.293,"demand",0.046],[2011,0.399,"supply",-0.31]],"means":{"demand":0.381,"supply":-0.431}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figBars');
+  const rows=DATA.rows;
+  const N=rows.length,W=820,H=320,m={t:18,r:16,b:46,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=-0.7,hi=1.0;
+  const X=i=>m.l+iw*(i+0.5)/N, Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'oil-up years India returns'});
+  [-0.5,0,0.5,1.0].forEach(v=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.3:1}));
+    const t=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(v*100)+'%'; svg.appendChild(t);});
+  rows.forEach(([y,oil,flavor,ind],i)=>{
+    const demand=flavor==='demand';
+    svg.appendChild(el('rect',{x:X(i)-24,y:Math.min(Y(0),Y(ind)),width:48,height:Math.abs(Y(ind)-Y(0)),rx:4,
+      fill:demand?'var(--s3)':'var(--s2)'}));
+    const t=el('text',{x:X(i),y:ind>=0?Y(ind)-8:Y(ind)+16,'text-anchor':'middle','font-size':'10.5',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(ind>0?'+':'')+(ind*100).toFixed(0)+'%'; svg.appendChild(t);
+    const yt=el('text',{x:X(i),y:H-28,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    yt.textContent=y; svg.appendChild(yt);
+    const ot=el('text',{x:X(i),y:H-14,'text-anchor':'middle','font-size':'9.5',fill:'var(--ink-3)','font-family':'IBM Plex Mono,monospace'});
+    ot.textContent='oil+'+Math.round(oil*100)+'%'; svg.appendChild(ot);});
+  const k1=el('text',{x:m.l,y:12,'font-size':'11',fill:'var(--s3)','font-family':'IBM Plex Mono,monospace'});
+  k1.textContent='■ demand-flavored (world up)'; svg.appendChild(k1);
+  const k2=el('text',{x:m.l+240,y:12,'font-size':'11',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+  k2.textContent='■ supply-flavored (world down)'; svg.appendChild(k2);
+  mount.appendChild(svg);
+})();
+</script>
