@@ -1,0 +1,248 @@
+<title>The Desk's Immune System</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 35 · atlas 4.7 + 4.8 + 4.9 + 4.10 · Band 4 finale</p>
+  <h1>The Desk's Immune System</h1>
+  <p class="stand">Four seasonal stories every Indian desk hears every year: the monsoon watch,
+  the festive-demand rally, Dhanteras gold, and the SIP wall of money. All four describe real
+  economics. None of the four is a trade. This closing entry of the annual band exists to
+  write the refusals down BEFORE the stories run — because a verdict on file in September is
+  worth more than a debate in October.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/35-calendar-context.md</span>
+    <span><b>Verdicts</b> four CONTEXT (one with an EXECUTION lens)</span>
+    <span><b>Trial</b> GS1 null, festival months rank worst</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>Why anticipated demand can't move a world price</h2></div>
+  <p>Gold is storable, cheap to hold relative to its value, and traded in a single world
+  market. If everyone knows Indian demand jumps at Dhanteras, anyone can buy in September and
+  sell into the festival — so the price impact gets arbitraged backward until it disappears
+  into the ordinary cost of carry. Anticipation IS the arbitrage; only SURPRISES move such a
+  price. What festival demand can move is the LOCAL wedge — the premium Indian dealers charge
+  over landed cost when the import pipeline tightens. That wedge is real, seasonal, and it is
+  an execution-hygiene input (don't buy the gold sleeve through a fat premium week), not a
+  timing signal.</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — Median gold monthly return by calendar month (float era)</span>
+    <span class="figbadge">REAL DATA · vaulted gold monthly 1972–2026, n=654 · computed by us</span></div>
+    <div class="chart" id="figGS1"></div>
+    <figcaption>GS1: the omnibus test finds no calendar structure (Kruskal–Wallis p = 0.454)
+    — and the festival months themselves (highlighted: April/May for Akshaya Tritiya, November
+    for Dhanteras/weddings) are the three WORST-ranked months of twelve. A desk that believed
+    "buy gold before Dhanteras" was long the 10th-worst month. January's rank 1 gets the CW3
+    treatment: no mechanism, no interpretation.</figcaption>
+  </figure>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>The monsoon is a chain, not a trade</h2></div>
+  <p>Rainfall → kharif sowing → rural income → consumption demand and food prices → the RBI's
+  reaction. Every link is real; the chain is long, and by the time it reaches the index it is
+  honestly unquantified. The tradable object was built two entries before this one: the ENSO
+  state (Lesson 27) tilts the odds of a deficient monsoon, and the register's H55 design
+  conditions RURAL-FACING SECTORS, reduce-only, on that chain — never the index. The refusal
+  card reads: sector reduce-only via ENSO/IMD; index claim unquantified; no trade. The 2014-15
+  back-to-back El Niño droughts are the chain working; the years good monsoons met weak
+  markets are the index claim failing — both live in the monograph's case file.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The wall of money that's already in the price</h2></div>
+  <p>Festive-quarter demand (autos, consumption, jewellery) is a flow fact that every analyst
+  models and every earnings estimate contains — CONTEXT only. The SIP story is subtler:
+  ₹20,000+ crore of systematic mutual-fund purchases really does land early each month,
+  clustered on popular debit dates. Real, mechanical — and small against the exchanges' daily
+  traded value once spread across names and days. Monthly data can't even see it. Its honest
+  routing is the H58 ops lens from Lesson 34 (a known demand pulse an execution algo might
+  care about), and its listing here is protective: the atlas holds the claim so it cannot
+  return in a pitch deck as discovered alpha.</p>
+  <div class="keyresult"><div class="t">What CONTEXT means as a verdict</div>
+  <div class="big">Real economics · datable seasons · zero budget — and the refusal written
+  down before the story runs.</div>
+  <p>The register's taxonomy now spans evidence-reject, fold, context, data-reject,
+  pass-adopt, and pass-refuse. CONTEXT is not a shrug; it is a pre-paid decision.</p></div>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>Band 4 closes</h2></div>
+  <p>The annual band's tally: one seat (L5 — the schedule that cannot point), one ops pack
+  (H58 — tested refusals to recommend), one instrumented pass (CW2's April, budget refused,
+  paper trade ledgered), one edge design (RC1 reconstitution, sleeve-side), four CONTEXT
+  verdicts with one demonstration print (GS1), and two rejects with omnibus evidence (CW3).
+  No return budget moved anywhere in the band — exactly what the atlas predicted: the
+  calendar contributes scheduling, mechanics, and immunity. Next: the fast layer, where the
+  register's oldest seat (L2) finally gets its full-standard upgrade.</p>
+  <div class="timeline">
+    <div class="trow"><span class="yr">4.1 seated</span><p>Budget + election windows → L5, reduce-only vol scheduling; the monthly print abstained (the resolution theorem), the daily design is registered.</p></div>
+    <div class="trow"><span class="yr">4.2 held</span><p>April small-cap: the register's cleanest calendar pass — and its promotion refused on costs, count, and the decayed US ancestor.</p></div>
+    <div class="trow"><span class="yr">4.3-4.6 ops</span><p>Sixteen drain dates, results pauses, expiry avoidance, reconstitution hygiene — the plumbing map, no alpha claimed.</p></div>
+    <div class="trow"><span class="yr">4.7-4.12 immune</span><p>Four context refusals on file + two rejects — the annual stories answered before they run.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 35 of the learn-while-we-build series · Ionic quant desk · Atlas 4.7–4.10 (Band 4
+  finale) · monograph: docs/cycles/35-calendar-context.md · trial GS1 in
+  research/register/trial-ledger.md (pre-registered, interpretation rule pre-stated) · Fig 1
+  computed by us from the vaulted gold monthly series.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"gold_median": [1.5, 0.9, 0.3, -0.6, -0.4, 0.0, 0.0, 0.57, 0.21, 0.01, -0.34, 0.43], "stats": {"p": 0.454, "n": 654, "sample": "1972-02..2026-07"}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const vals=DATA.gold_median, festival=[3,4,10];
+  const W=820,H=300,m={t:16,r:14,b:34,l:46},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=Math.min(0,...vals)-0.25, hi=Math.max(0,...vals)+0.25;
+  const Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'median gold return by month'});
+  [-0.5,0,0.5,1,1.5].forEach(g=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(g),y2:Y(g),stroke:g===0?'var(--axis)':'var(--grid)','stroke-width':g===0?1.2:1}));
+    const t=el('text',{x:m.l-6,y:Y(g)+4,'text-anchor':'end','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=g+'%'; svg.appendChild(t);});
+  const bw=iw/12*0.66;
+  vals.forEach((v,i)=>{
+    const x=m.l+iw*(i+0.5)/12, fest=festival.includes(i);
+    const y0=Y(Math.max(0,v)), y1=Y(Math.min(0,v));
+    svg.appendChild(el('rect',{x:x-bw/2,y:y0,width:bw,height:Math.max(2,y1-y0),rx:4,
+      fill:fest?'var(--s2)':'var(--s1)',opacity:fest?1:0.55}));
+    const t=el('text',{x:x,y:H-12,'text-anchor':'middle','font-size':'11.5',
+      fill:fest?'var(--s2)':'var(--muted)','font-weight':fest?'700':'400'});
+    t.textContent=MO[i]; svg.appendChild(t);
+    const vt=el('text',{x:x,y:(v>=0?y0-5:y1+13),'text-anchor':'middle','font-size':'10',
+      fill:fest?'var(--s2)':'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    vt.textContent=v.toFixed(2); svg.appendChild(vt);});
+  const note=el('text',{x:m.l+iw*3.5/12,y:m.t+10,'text-anchor':'middle','font-size':'10.5',fill:'var(--s2)','font-style':'italic'});
+  note.textContent='the festival months'; svg.appendChild(note);
+  document.getElementById('figGS1').appendChild(svg);
+})();
+</script>
