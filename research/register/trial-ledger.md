@@ -463,3 +463,19 @@ observations.
 | PS1 | Level → next-decade change (reversion) | **85% of 114 countries negative — PASS** (FC1-class breadth): relative mean reversion is real | pass, strong |
 | PS2 | Top-quintile conditioning | 27% vs 21% declines (+6pp vs +15pp bar) — **FAIL**: reversion operates AROUND a rising trend; extremes predict smaller RISES, not falls. H56 sharpened: extrapolation discipline, never decline prediction | fail, design-sharpening |
 | PS3 | India's arc + 2019 percentile | 0.478 = 81st own-history pct in 2019, BEFORE the listed tripling; macro-vs-listed caveat travels | measured |
+
+## Entries IS1–IS2 (2026-09-02) — Atlas 3.2 issuance/sentiment (seat L7): DATA-GATED designs
+No trial RUNS here — primary-market histories (issue calendars, subscription books, listing
+pops) are runsheet pulls (NSE/BSE/SEBI bulletins). Designs registered with acceptance shapes:
+- IS1 (the Baker-Wurgler India test): monthly issuance value / market cap, expanding
+  percentile, vs forward 12m and 24m index returns, purged. Acceptance bars set at data-
+  landing (two-pass); the PRIOR is stated now: top-quintile issuance months → below-median
+  forward returns in ≥60% of instances or the volume leg is demoted to confirm-only.
+- IS2 (the ladder's changes_if episodes): the two-leg state's reads through 2018 (pipeline
+  freeze) and 2023-24 (SME frenzy + SEBI curbs) must match the narrative chronology
+  directionally (shape check, dates pre-listed at registration when data lands).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| IS1 | Issuance percentile → forward returns | (awaits primary-market vault) | registered design |
+| IS2 | 2018 / 2023-24 episode shape check | (awaits primary-market vault) | registered design |

@@ -233,3 +233,31 @@ def fpi_economy(T: int = 480, seed: int = 51,
             + (-0.05 * overhang if unwind[0] <= t < unwind[1] else 0.0)
         own[t] = np.clip(own[t - 1] * 0.999 + flow[t], 0.02, 0.60)
     return dict(ret=ret, flow=flow, ownership=own, boom=boom, unwind=unwind)
+
+
+def issuance_economy(T: int = 480, seed: int = 61,
+                     froth: tuple = (200, 300), winter: tuple = (300, 380)):
+    """Monthly economy with PLANTED issuance-chases-valuation (the L7 fixture).
+
+    A slow valuation wave (price/fundamental ratio) peaks in the froth window; issuance
+    volume responds to LAGGED valuation (issuers file when markets are expensive — the
+    Baker-Wurgler incentive, with a filing delay), first-day pops rise with the same wave,
+    and in the winter both collapse while some months have NO listings (pop = NaN — the
+    degradation reality). Returns dict: valuation, volume_ratio, pop, plus truth windows."""
+    rng = np.random.default_rng(seed)
+    val = np.empty(T)
+    val[0] = 1.0
+    for t in range(1, T):
+        target = 1.6 if froth[0] <= t < froth[1] else (0.7 if winter[0] <= t < winter[1]
+                                                       else 1.0)
+        val[t] = val[t - 1] + 0.06 * (target - val[t - 1]) + 0.02 * rng.standard_normal()
+    vol = np.empty(T)
+    pop = np.empty(T)
+    for t in range(T):
+        v_lag = val[max(t - 4, 0)]
+        vol[t] = max(0.0002 + 0.004 * max(v_lag - 0.9, 0.0)
+                     + 0.0006 * rng.standard_normal(), 0.0)
+        pop[t] = 0.02 + 0.30 * max(val[t] - 1.0, 0.0) + 0.05 * rng.standard_normal()
+        if winter[0] <= t < winter[1] and rng.random() < 0.5:
+            pop[t] = np.nan   # no listings that month
+    return dict(valuation=val, volume_ratio=vol, pop=pop, froth=froth, winter=winter)
