@@ -35,7 +35,8 @@ ceiling.
 | 2.3 | Business cycle proper | **DONE** — docs/cycles/18-business-cycle.md (~18.3k words; BC1 PASS band real / BC2 FAIL: credit-leads-growth import dies at home, 16/18 GDP-leads / BC3 77% stickiness; CONTEXT, zero budget) + Lesson 18 |
 | 2.4/2.5 | Kitchin inventory / Juglar fold | **DONE** — docs/cycles/19-kitchin-juglar.md (~8.4k words; KJ1 0% in-window — the frequency sweep closes: five clocks, five pre-registered fails, bands survive) + Lesson 19 |
 | 2.6 | Monetary-policy cycle (RBI) | **DONE** — docs/cycles/20-mp-cycle.md (~20.1k words; MP1 PASS — first surviving imported direction; MP2 sign-flip calibrates the ~1y lag; MP3 closes the Δ-variant; L6 primary citations landed; round-trip count 3-4 of the 6 changes_if needs) + Lesson 20 |
-| 2.7 | Fiscal/political spending cycle | **IN PROGRESS** |
+| 2.7 | Fiscal/political spending cycle | **DONE** — docs/cycles/21-fiscal-cycle.md (~9.7k words; FP1a the register's first pass-then-deflate — HL-7 teach-only; composition-not-deficits signature; CONTEXT folded into L5/L6) + Lesson 21 |
+| 2.8 | Global financial cycle | **IN PROGRESS** |
 | 2.x | Rest of Band 2 ( 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
 | 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
 

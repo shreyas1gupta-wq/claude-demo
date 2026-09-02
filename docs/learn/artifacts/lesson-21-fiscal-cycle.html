@@ -1,0 +1,234 @@
+<title>The Pass We Refused to Promote</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 21 · atlas 2.7 · CONTEXT folded into L5/L6</p>
+  <h1>The Pass We Refused to Promote</h1>
+  <p class="stand">The pre-election rally is one of Indian markets' favorite folk beliefs — and
+  our pre-registered test PASSED it. This lesson is about what a disciplined desk does next:
+  dissect the pass, find the window design flaw and the one global rebound carrying the mean,
+  refuse promotion, and send the claim to the heuristics lane to be scored one election at a
+  time. Plus the political-budget-cycle literature, and why India's fiscal signature is
+  composition, not deficits.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/21-fiscal-cycle.md</span>
+    <span><b>Seat</b> none — election windows are L5's; fiscal dominance is L15's</span>
+    <span><b>Trials</b> FP1a/FP1b · card HL-7 (teach-only/paper-trade)</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The folk claim meets its bar — and clears it</h2></div>
+  <p>Before running anything: window = the three months ending in each general-election result
+  month, n = 8 elections (1996–2024), pass bar = window mean above the unconditional mean AND
+  at least 6 of 8 windows positive. The print:</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — pre-election window returns, eight general elections</span>
+      <span class="figbadge">REAL DATA · India market factor · FP1a: PASS as registered</span></div>
+    <div class="chart" id="figWin"></div>
+    <figcaption>Window means average +3.99%/month against an all-months base of +0.72%, with
+    seven of eight positive. The bar was met. And then the dissection begins — because a pass
+    is a claim about the registered construction, not about the world.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">Window mean</div><div class="v">+4.0%/m</div><div class="d">vs +0.72%/m base · 7/8 positive — PASS</div></div>
+    <div class="stat"><div class="k">…excluding 2009</div><div class="v">+1.9%/m</div><div class="d">one global-rebound window carries the mean</div></div>
+    <div class="stat"><div class="k">Result months</div><div class="v">−17.7…+33.6%</div><div class="d">direction IS surprise (2004 / 2009)</div></div>
+    <div class="stat"><div class="k">Sample</div><div class="v">n = 8</div><div class="d">one new observation per ~5 years</div></div>
+  </div>
+  <div class="warnbox"><b>The three deflators, in order of force.</b> First: the registered
+  window ENDS IN the result month — so May 2009's +33.6% result-day shock sits inside its own
+  "pre-election" window. The design conflates drift with surprise; that flaw is fixed in a
+  registered follow-up design (window ends the month before; world-market control), not by
+  re-running today. Second: the 2009 window (+18.8%/m) is mostly the global post-crisis
+  rebound wearing an election costume. Third: eight windows is an association, not an
+  attribution. The pass stands in the ledger exactly as registered — AND it is refused
+  promotion. Those two sentences coexisting is the whole discipline.</div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>What the windows are actually for</h2></div>
+  <p>FP1b measured the part the ladder already uses: election windows are LOUD — median
+  absolute monthly move 5.4% inside windows against 4.2% overall, and result months are
+  violent in both directions (2004's −17.7% and 2009's +33.6% are the same phenomenon with
+  opposite signs). That is why seat L5 schedules risk DOWN into these windows without holding
+  any directional view: you can know when the coin will be flipped without knowing how it
+  lands. The folk tilt, meanwhile, goes where suggestive-but-tiny evidence belongs — the
+  heuristics lane, carded as HL-7, teach-only/paper-trade, scored forward one election at a
+  time. The next data point arrives around 2029. The lane can wait; that is what it is for.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>India's real fiscal signature: composition</h2></div>
+  <p>The political-budget-cycle literature predicts exactly what India's record shows — and it
+  isn't bigger deficits before elections. Rogoff's signaling model says incumbents shift
+  spending toward VISIBLE items; Shi-Svensson found the cycles are larger in developing
+  democracies; Brender-Drazen found voters learn, so the crude version decays. India's
+  exhibits: a transfer scheme announced in an interim budget weeks before the 2019 election;
+  waiver waves around state elections; and, in the other direction, 2013-14's consolidation
+  INTO an election under a ratings threat — the exception that kills any mechanical rule. The
+  desk's harvest is a composition watch (transfer outlays vs capex share from the monthly
+  accounts) as briefing context. The fiscal-dominance REGIME — the thing that could actually
+  re-rate everything — already has its own seat in the debt monograph's L15, where it belongs.</p>
+</section>
+
+<footer>
+  <p>Lesson 21 of the learn-while-we-build series · Ionic quant desk · Atlas 2.7 ·
+  monograph: docs/cycles/21-fiscal-cycle.md · trials FP1a/FP1b + card HL-7 in
+  research/register/ · Fig 1 computed by us from the vaulted IIMA monthly factor library.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"elections":[["1996-05",1.95],["1998-03",1.81],["1999-10",4.0],["2004-05",-5.21],["2009-05",18.77],["2014-05",5.03],["2019-05",1.66],["2024-06",3.89]],"all_mean":0.72,"med_win":5.386784162952106,"med_all":4.230893655257059,"result_abs":{"1996-05":4.6,"1998-03":6.4,"1999-10":3.8,"2004-05":17.7,"2009-05":33.6,"2014-05":9.8,"2019-05":1.0,"2024-06":6.6}};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figWin');
+  const rows=DATA.elections, N=rows.length;
+  const W=820,H=300,m={t:18,r:16,b:44,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=-7,hi=20;
+  const X=i=>m.l+iw*(i+0.5)/N, Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'election windows'});
+  [-5,0,5,10,15].forEach(v=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.3:1}));
+    const t=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v+'%'; svg.appendChild(t);});
+  svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(DATA.all_mean),y2:Y(DATA.all_mean),stroke:'var(--s2)','stroke-width':1.4,'stroke-dasharray':'6 4'}));
+  const bl=el('text',{x:W-m.r-4,y:Y(DATA.all_mean)-6,'text-anchor':'end','font-size':'10.5',fill:'var(--s2)','font-family':'IBM Plex Mono,monospace'});
+  bl.textContent='all-months mean +'+DATA.all_mean+'%/m'; svg.appendChild(bl);
+  rows.forEach(([e,v],i)=>{
+    svg.appendChild(el('rect',{x:X(i)-26,y:Math.min(Y(0),Y(v)),width:52,height:Math.abs(Y(v)-Y(0)),rx:4,
+      fill:v>=0?'var(--s1)':'var(--s2)'}));
+    const t=el('text',{x:X(i),y:v>=0?Y(v)-8:Y(v)+16,'text-anchor':'middle','font-size':'11',fill:'var(--ink-2)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=(v>0?'+':'')+v.toFixed(1); svg.appendChild(t);
+    const yt=el('text',{x:X(i),y:H-24,'text-anchor':'middle','font-size':'11',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    yt.textContent=e.slice(0,4); svg.appendChild(yt);});
+  const xl=el('text',{x:m.l+iw/2,y:H-4,'text-anchor':'middle','font-size':'11.5',fill:'var(--ink-3)'});
+  xl.textContent='mean monthly market-factor return, 3-month window ending in the result month (%/m)'; svg.appendChild(xl);
+  mount.appendChild(svg);
+})();
+</script>
