@@ -425,3 +425,23 @@ runsheet items). Designs registered NOW with acceptance bars, run when the data 
 |---|---|---|---|
 | FL1 | Flows-follow-returns quantification | (awaits NSDL vault) | registered design |
 | FL2 | Positioning-extreme drawdown conditioning | (awaits shareholding vault) | registered design |
+
+## Entries EN1–EN3 (2026-09-02) — Atlas 2.14 ENSO (candidate H55), statsmodels SST vault
+Script: scripts/analyze_enso.py. PRE-REGISTERED before running (two-pass). Series: by-month
+standardized SST anomalies, 3-month centered smooth (the ONI-convention analogue, declared).
+- Episode onset = first month of a run with smoothed anomaly ≥ +0.5σ lasting ≥ 5 consecutive
+  months (El Niño); symmetric at ≤ −0.5σ for La Niña.
+- EN1 (THE QUASI-PERIODICITY TEST — the frequency sweep's physics counterpoint): El Niño
+  onset-to-onset spacings, 1950-2010. Bar: median in [2,7]y AND ≥70% of spacings in [2,7]y.
+  If ENSO passes where five financial clocks failed, the register gains its control group:
+  the machinery CAN crown a clock when physics provides one.
+- EN2 (India transfer shadow): India factor annual return in El Niño-onset years vs all
+  years, 1994-2010 overlap (n≈4 — tiny; measurement, prior set, no bar; the real India test
+  is monsoon/CPI, runsheet).
+- EN3 (forecastability shadow): P(smoothed anomaly sign persists next month) — measurement.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| EN1 | ENSO quasi-periodicity (the physics clock) | median 4.0y (dead-center) but 62% in [2,7] vs 70% bar — **FAIL**: sub-2y re-crossing artifacts + one 8y gap; the sweep's crowning lesson — even PHYSICS can't clear a strict clock bar under a real-time rule, so no financial clock ever should be expected to; ENSO consumed as a STATE | fail, doctrine-sealing |
+| EN2 | El Niño years vs India factor | +14.3% vs +14.0% (n=6) — NO equity penalty; the transfer is monsoon→CPI→RBI (H55's design), not the index | measured, prior set |
+| EN3 | Monthly sign persistence | 92% — the forecastability shadow; state representation captures the calendar's content without the calendar | measured |
