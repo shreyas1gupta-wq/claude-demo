@@ -69,7 +69,7 @@ entries:
     tier: B
     reduce_only: false
     block: fast_stress
-    role: "reactive risk-off switch: realized-vol top-decile rank, India-VIX backwardation, CCIL/NSDL funding-flow stress rank; any one arms R4 cuts, two confirm"
+    role: "reactive risk-off switch: realized-vol top-decile rank, India-VIX backwardation, CCIL/NSDL funding-flow stress rank; any one arms R4 cuts, two confirm; funding-leg fires inside statutory drain windows (advance-tax s.211 dates, GST due 20th) are quarantined as mechanical per H58 (quant/ladder/exclusion_calendar.py; grading H58-D1 data-gated)"
     indicator: "bhavcopy vol, NSE India-VIX archive, CCIL, NSDL FPI"
     inputs: []
   - id: L3_momentum_composite
