@@ -1,0 +1,225 @@
+<title>What Goes Up Rises Slower</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 28 · atlas 2.15 · candidate H56 · BAND 2 CLOSES</p>
+  <h1>What Goes Up Rises Slower</h1>
+  <p class="stand">"Profit margins are the most mean-reverting series in finance" is one of
+  value investing's founding slogans. We tested it on 114 countries and seventy years: the
+  reversion is real at extraordinary breadth — and the slogan is still wrong. High profit
+  shares don't fall; they rise slower. That distinction redesigns the candidate seat, reframes
+  India's earnings boom, and closes Band 2 with its thirteenth entry.</p>
+  <div class="meta">
+    <span><b>Companion to</b> docs/cycles/28-profit-share.md</span>
+    <span><b>Seat</b> none — candidate H56: an extrapolation governor for the valuation block</span>
+    <span><b>Trials</b> PA1 + PS1–PS3, pre-registered</span>
+    <span><b>Sep 2026</b></span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>The pair of prints that redesigned the seat</h2></div>
+  <p>The proxy: each country's macro capital share (one minus the labor share, Penn World
+  Table, 1950–2019 — broader than corporate profits over GDP, a caveat that travels with
+  every use). Two pre-registered questions: does today's level predict the next decade's
+  change (reversion)? And do EXTREMES predict outright declines (the tradable version)?</p>
+  <figure>
+    <div class="fighead"><span class="figtitle">Fig 1 — corr(level, next-decade change), all 114 qualifying countries</span>
+      <span class="figbadge">REAL DATA · PWT 10.0 · PS1: 85% negative — PASS at FC1-class breadth</span></div>
+    <div class="chart" id="figCorrs"></div>
+    <figcaption>Relative mean reversion is one of the broadest regularities this register has
+    ever measured — 97 of 114 countries negative. And then PS2: conditional on sitting in the
+    top quintile of a country's own history, the next decade brings an outright DECLINE only
+    27% of the time, against 21% unconditionally — six points, where the bar demanded fifteen.
+    Both prints are true at once because the whole distribution drifts UPWARD (the global
+    labor-share decline): reversion operates around a rising trend.</figcaption>
+  </figure>
+  <div class="stats">
+    <div class="stat"><div class="k">PS1 breadth</div><div class="v">85%</div><div class="d">of 114 countries — reversion is real</div></div>
+    <div class="stat"><div class="k">PS2 declines at extremes</div><div class="v">27% vs 21%</div><div class="d">+6pp vs a +15pp bar — FAIL</div></div>
+    <div class="stat"><div class="k">The licensed sentence</div><div class="v">rises slower</div><div class="d">never "must fall"</div></div>
+    <div class="stat"><div class="k">India 2019 percentile</div><div class="v">81st</div><div class="d">of its own history — BEFORE the listed tripling</div></div>
+  </div>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Kalecki's discipline, and India's live question</h2></div>
+  <p>The profits identity — profits equal investment plus dividends minus household and
+  government saving plus net exports — is an accounting truth, not a forecast, and its job is
+  to discipline stories: WHY a share rose determines WHICH reversion forces apply. India's
+  listed-corporate profit share roughly tripled from its FY20 trough — tax cuts, deleveraging
+  completed, formalization concentrating profits in listed large-caps, and the identity's
+  fiscal leg running hot. Some of those tailwinds are exhaustible in exactly the way the US
+  literature found for 1989-2019's margin expansion (rates and taxes did much of the work) —
+  so the honest question isn't "when do margins crash" (PS2 says that question earns no
+  seat) but "how much of projected earnings growth silently assumes the share KEEPS rising?"
+  That is what candidate H56 governs: at high percentiles of the share's own history, the
+  valuation block's earnings-extrapolation input gets a registered haircut, read jointly with
+  the value spread so an expensive market priced off boom-share earnings gets flagged as the
+  double-count it is. Tier C, reduce-only, no decline forecast anywhere in the interface.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>Band 2 closes: the ledger of a band</h2></div>
+  <div class="timeline">
+    <div class="trow"><span class="yr">13 entries</span><p>Credit (done at standard) through profit share — every one with pre-registered trials, honest reads, and its content routed without double-counting.</p></div>
+    <div class="trow"><span class="yr">5 labels retired</span><p>Juglar, the Kitchin clock, the dollar cycle, the Fed cycle, the oil cycle — each with its failing (or capped) print attached so it can never re-enter as new alpha.</p></div>
+    <div class="trow"><span class="yr">3 candidates instrumented</span><p>H54 (China impulse, proxy-shadowed), H55 (ENSO chain conditioner), H56 (the extrapolation governor) — each with acceptance tests registered before their data lands.</p></div>
+    <div class="trow"><span class="yr">1 seat calibrated, 2 modules shipped</span><p>L6's lag convention got its analogue number and its primary citations; L14's positioning module enforces its own exclusion in code; (L11's module closed Band 1).</p></div>
+    <div class="trow"><span class="yr">the doctrine</span><p>The frequency sweep (five financial clocks, five fails) plus the ENSO control group (the best score physics can produce still fails the bar) — "states and bands, never dates" left this band as a measured result. Zero unplanned seats. The budget algebra held.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Lesson 28 of the learn-while-we-build series · Ionic quant desk · Atlas 2.15 — Band 2
+  complete · monograph: docs/cycles/28-profit-share.md · vault: ingest/vault/macro (PWT 10.0,
+  authenticated with one marginal miss recorded) · trials PS1–PS3 in
+  research/register/trial-ledger.md · Fig 1 computed by us from the vaulted PWT series.</p>
+</footer>
+</div>
+
+<script>
+const DATA = {"corrs":{"Angola":-0.72,"Argentina":-0.77,"Armenia":0.04,"Australia":-0.24,"Austria":-0.27,"Azerbaijan":-0.03,"Bahrain":0.13,"Barbados":-0.76,"Belarus":-0.35,"Belgium":-0.01,"Bolivia":-0.6,"Bosnia and Herzegovina":-0.11,"Botswana":-0.27,"Brazil":-0.04,"Bulgaria":-0.25,"Burkina Faso":-0.61,"Cameroon":-0.3,"Canada":-0.42,"Chad":-0.76,"Chile":-0.58,"China":-0.65,"Colombia":-0.81,"Costa Rica":NaN,"Cote d'Ivoire":0.24,"Croatia":-0.56,"Cyprus":-0.32,"Czechia":-0.55,"Denmark":-0.54,"Dominican Republic":0.16,"Ecuador":-0.47,"Egypt":-0.54,"Estonia":-0.44,"Finland":-0.36,"France":-0.52,"Gabon":-0.56,"Georgia":-0.71,"Germany":-0.38,"Greece":-0.26,"Guatemala":0.29,"Honduras":-0.49,"Hong Kong":-0.28,"Hungary":0.17,"Iceland":-0.62,"India":0.08,"Indonesia":-0.11,"Iran":-0.76,"Iraq":-0.12,"Ireland":0.24,"Israel":0.17,"Italy":-0.26,"Jamaica":-0.79,"Japan":-0.22,"Jordan":-0.85,"Kazakhstan":-0.42,"Kenya":-0.6,"Kuwait":-0.82,"Kyrgyzstan":-0.41,"Latvia":-0.58,"Lebanon":NaN,"Lithuania":-0.35,"Luxembourg":-0.58,"Malaysia":0.26,"Malta":-0.4,"Mauritius":-0.27,"Mexico":-0.04,"Moldova":-0.62,"Morocco":-0.42,"Mozambique":-0.73,"Namibia":-0.64,"Netherlands":-0.04,"New Zealand":-0.36,"Niger":-0.75,"Nigeria":-0.35,"North Macedonia":-0.05,"Norway":-0.47,"Oman":-0.72,"Panama":0.36,"Paraguay":-0.76,"Peru":-0.5,"Philippines":-0.89,"Poland":-0.34,"Portugal":-0.29,"Qatar":-0.18,"Romania":-0.74,"Russia":-0.63,"Rwanda":-0.65,"Saudi Arabia":-0.56,"Senegal":NaN,"Serbia":-0.1,"Singapore":-0.65,"Slovakia":-0.51,"Slovenia":-0.31,"South Africa":-0.48,"South Korea":-0.28,"Spain":-0.08,"Sri Lanka":-0.17,"Sudan":-0.34,"Sweden":-0.42,"Switzerland":-0.65,"Taiwan":0.46,"Tajikistan":-0.55,"Tanzania":-0.8,"Thailand":-0.61,"Trinidad and Tobago":-0.39,"Tunisia":-0.23,"Turkey":-0.17,"Ukraine":-0.65,"United Kingdom":-0.31,"United States":-0.48,"Uruguay":-0.52,"Uzbekistan":NaN,"Venezuela":-0.73,"Zambia":NaN,"Zimbabwe":-0.41},"p_unc":0.21,"p_cond":0.273,"paths":{"Germany":[[1950,0.332],[1951,0.332],[1952,0.332],[1953,0.332],[1954,0.332],[1955,0.332],[1956,0.332],[1957,0.332],[1958,0.332],[1959,0.332],[1960,0.332],[1961,0.332],[1962,0.332],[1963,0.332],[1964,0.332],[1965,0.332],[1966,0.332],[1967,0.332],[1968,0.332],[1969,0.332],[1970,0.332],[1971,0.332],[1972,0.332],[1973,0.332],[1974,0.332],[1975,0.332],[1976,0.332],[1977,0.332],[1978,0.332],[1979,0.332],[1980,0.332],[1981,0.332],[1982,0.332],[1983,0.332],[1984,0.332],[1985,0.332],[1986,0.332],[1987,0.332],[1988,0.332],[1989,0.332],[1990,0.332],[1991,0.332],[1992,0.324],[1993,0.322],[1994,0.338],[1995,0.339],[1996,0.342],[1997,0.353],[1998,0.36],[1999,0.355],[2000,0.346],[2001,0.359],[2002,0.364],[2003,0.366],[2004,0.38],[2005,0.387],[2006,0.402],[2007,0.41],[2008,0.395],[2009,0.374],[2010,0.384],[2011,0.384],[2012,0.372],[2013,0.369],[2014,0.372],[2015,0.371],[2016,0.37],[2017,0.367],[2018,0.358],[2019,0.358]],"India":[[1950,0.246],[1951,0.246],[1952,0.246],[1953,0.246],[1954,0.246],[1955,0.246],[1956,0.246],[1957,0.246],[1958,0.246],[1959,0.246],[1960,0.246],[1961,0.246],[1962,0.246],[1963,0.246],[1964,0.246],[1965,0.246],[1966,0.246],[1967,0.246],[1968,0.246],[1969,0.246],[1970,0.246],[1971,0.246],[1972,0.246],[1973,0.246],[1974,0.246],[1975,0.246],[1976,0.266],[1977,0.246],[1978,0.268],[1979,0.291],[1980,0.263],[1981,0.283],[1982,0.293],[1983,0.281],[1984,0.285],[1985,0.301],[1986,0.304],[1987,0.301],[1988,0.303],[1989,0.318],[1990,0.32],[1991,0.324],[1992,0.33],[1993,0.344],[1994,0.358],[1995,0.376],[1996,0.377],[1997,0.377],[1998,0.389],[1999,0.398],[2000,0.405],[2001,0.417],[2002,0.442],[2003,0.45],[2004,0.486],[2005,0.499],[2006,0.518],[2007,0.519],[2008,0.499],[2009,0.489],[2010,0.489],[2011,0.488],[2012,0.489],[2013,0.484],[2014,0.484],[2015,0.493],[2016,0.482],[2017,0.478],[2018,0.478],[2019,0.478]],"Japan":[[1950,0.379],[1951,0.379],[1952,0.379],[1953,0.379],[1954,0.379],[1955,0.379],[1956,0.379],[1957,0.379],[1958,0.379],[1959,0.379],[1960,0.379],[1961,0.379],[1962,0.379],[1963,0.379],[1964,0.379],[1965,0.379],[1966,0.379],[1967,0.379],[1968,0.379],[1969,0.379],[1970,0.379],[1971,0.379],[1972,0.379],[1973,0.379],[1974,0.379],[1975,0.379],[1976,0.379],[1977,0.379],[1978,0.379],[1979,0.379],[1980,0.379],[1981,0.382],[1982,0.378],[1983,0.374],[1984,0.385],[1985,0.394],[1986,0.403],[1987,0.411],[1988,0.42],[1989,0.423],[1990,0.426],[1991,0.417],[1992,0.409],[1993,0.404],[1994,0.396],[1995,0.401],[1996,0.411],[1997,0.404],[1998,0.403],[1999,0.408],[2000,0.418],[2001,0.418],[2002,0.43],[2003,0.437],[2004,0.446],[2005,0.446],[2006,0.446],[2007,0.45],[2008,0.435],[2009,0.426],[2010,0.439],[2011,0.427],[2012,0.43],[2013,0.437],[2014,0.435],[2015,0.444],[2016,0.435],[2017,0.436],[2018,0.436],[2019,0.436]],"United States":[[1950,0.372],[1951,0.366],[1952,0.355],[1953,0.356],[1954,0.363],[1955,0.373],[1956,0.36],[1957,0.361],[1958,0.364],[1959,0.371],[1960,0.363],[1961,0.366],[1962,0.371],[1963,0.374],[1964,0.376],[1965,0.381],[1966,0.377],[1967,0.37],[1968,0.366],[1969,0.356],[1970,0.351],[1971,0.362],[1972,0.361],[1973,0.359],[1974,0.359],[1975,0.374],[1976,0.378],[1977,0.378],[1978,0.378],[1979,0.377],[1980,0.376],[1981,0.386],[1982,0.383],[1983,0.396],[1984,0.398],[1985,0.398],[1986,0.392],[1987,0.384],[1988,0.379],[1989,0.388],[1990,0.385],[1991,0.385],[1992,0.38],[1993,0.386],[1994,0.392],[1995,0.393],[1996,0.393],[1997,0.39],[1998,0.377],[1999,0.374],[2000,0.363],[2001,0.36],[2002,0.37],[2003,0.379],[2004,0.383],[2005,0.394],[2006,0.394],[2007,0.396],[2008,0.396],[2009,0.409],[2010,0.412],[2011,0.407],[2012,0.405],[2013,0.407],[2014,0.406],[2015,0.404],[2016,0.406],[2017,0.404],[2018,0.406],[2019,0.403]]},"india_2019_pct":0.81};
+function el(t,a){const n=document.createElementNS('http://www.w3.org/2000/svg',t);for(const k in a)n.setAttribute(k,a[k]);return n;}
+(function(){
+  const mount=document.getElementById('figCorrs');
+  const vals=Object.values(DATA.corrs).sort((a,b)=>a-b);
+  const N=vals.length,W=820,H=300,m={t:16,r:16,b:40,l:52},iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const lo=-1,hi=0.6;
+  const X=i=>m.l+iw*(i+0.5)/N, Y=v=>m.t+ih*(1-(v-lo)/(hi-lo));
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':'PS1 correlations, 114 countries'});
+  [-0.75,-0.5,-0.25,0,0.25,0.5].forEach(v=>{
+    svg.appendChild(el('line',{x1:m.l,x2:W-m.r,y1:Y(v),y2:Y(v),stroke:v===0?'var(--axis)':'var(--grid)','stroke-width':v===0?1.3:1}));
+    const t=el('text',{x:m.l-6,y:Y(v)+4,'text-anchor':'end','font-size':'10.5',fill:'var(--muted)','font-family':'IBM Plex Mono,monospace'});
+    t.textContent=v.toFixed(2); svg.appendChild(t);});
+  vals.forEach((v,i)=>{
+    svg.appendChild(el('rect',{x:X(i)-2.4,y:Math.min(Y(0),Y(v)),width:4.8,height:Math.max(Math.abs(Y(v)-Y(0)),1),
+      fill:v<0?'var(--s1)':'var(--s2)'}));});
+  const xl=el('text',{x:m.l+iw/2,y:H-6,'text-anchor':'middle','font-size':'11.5',fill:'var(--ink-3)'});
+  xl.textContent='countries, sorted — corr(capital-share level, next-10y change); 97/114 negative'; svg.appendChild(xl);
+  mount.appendChild(svg);
+})();
+</script>

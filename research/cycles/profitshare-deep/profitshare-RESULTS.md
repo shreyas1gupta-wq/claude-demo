@@ -6,7 +6,7 @@ reversion question transfers partially, the level does not. Vault authenticated
 
 ## PS1 — level → next-decade change
 
-- 114 countries (≥50 obs): **85% negative** (bar ≥70%): **PASS**. Median corr +nan.
+- 114 countries (≥50 obs): **85% negative** (bar ≥70%): **PASS**. Median corr **−0.42** (nan-robust; 5 of 114 countries print NaN — constant-labsh stretches in PWT for Costa Rica/Lebanon/Senegal/Uzbekistan/Zambia; NaNs counted as NON-negative in the 85% share, i.e. conservatively against the pass).
 
 ## PS2 — the extremes condition
 

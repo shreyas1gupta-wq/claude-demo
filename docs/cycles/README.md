@@ -42,9 +42,10 @@ ceiling.
 | 2.12 | Oil/energy cycle | **DONE** — docs/cycles/25-oil-fold.md (~9.2k words; OL1 +81pp pass capped on dissection; the decomposition commitment hardened; label retired into OPEC/shale regimes) + Lesson 25 |
 | 2.13 | FII/FPI flow cycle (L14) | **DONE** — docs/cycles/26-fpi-positioning.md (~17.7k words; flow momentum REJECTED in code — no flow API, tested; positioning extremes seated risk-off-only; FL1/FL2 data-gated; the 2000-01 anomaly kept un-smoothed) + quant/ladder/fpi_positioning.py + tests + Lesson 26 |
 | 2.14 | ENSO (El Niño / La Niña) | **DONE** — docs/cycles/27-enso.md (~19.6k words; EN1 the control-group result: best-ever 62% in-band STILL fails — the measured ceiling sealing states-never-dates; climate vault authenticated; H55 chain-conditioner design) + Lesson 27 |
-| 2.15 | Earnings / profit-share cycle | **IN PROGRESS** — Band 2 finale |
+| 2.15 | Earnings / profit-share cycle | **DONE** — docs/cycles/28-profit-share.md (~10.7k words; PS1 85%/114 reversion PASS; PS2 FAIL → H56 sharpened to an extrapolation governor; India 81st pct in 2019 pre-tripling) + Lesson 28. **BAND 2 COMPLETE** |
 | 2.x | Rest of Band 2 ( 2.8 global financial cycle, 2.9-2.10 dollar/Fed inside L9, 2.11 China impulse, 2.12 oil, 2.13 FII/FPI, 2.14 ENSO, 2.15 profit share) | queued in atlas order |
-| 3.x–5.x | Intra-cycle, calendar, fast layer | fast stress NEEDS UPGRADE to standard; momentum DONE (03, 52pp); value/quality IN ASSEMBLY (04); rest queued |
+| 3.x | Intra-cycle band | **NEXT** — fast stress (L2) UPGRADE to standard at its atlas position; momentum DONE at standard (03); value/quality DONE (04); remaining 3.x entries in atlas order |
+| 4.x–5.x | Calendar, fast layer | queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
 rejection argued in 30 pages is still knowledge); seats get the full standard incl. module+tests.
