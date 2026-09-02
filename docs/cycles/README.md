@@ -46,8 +46,8 @@ ceiling.
 | 3.1 | Value-spread cycle | **DONE at standard** — inside docs/cycles/04-value-quality.md (§A.4 value spread as a state; CPV; the conditioner) |
 | 3.2 | Issuance/sentiment cycle (L7) | **DONE** — docs/cycles/29-issuance.md (~20.5k words; the persistent-incentive seat; four top-ticks + the SEBI-2024 institutional confirmation; IS1/IS2 data-gated) + quant/ladder/issuance_sentiment.py + tests + Lesson 29 |
 | 3.3/3.4 | Factor rotation / crowding-unwind | **DONE** — docs/cycles/30-rotation-crowding.md (~9.2k words; rotation retired — harvested statically; CR1a skew import dies / CR1b −4.1σ exit depth / CR2 the 2025 unwind invisible monthly → monitor legs set) + Lesson 30 |
-| 3.5/3.6 | Earnings-revision REJECT-for-data / retail-participation wave | **IN PROGRESS** — paired entry |
-| 3.x | Rest of Band 3 (3.7 political cycle in L5, 3.8/3.9 rejects) | queued in atlas order |
+| 3.5/3.6 | Earnings-revision / retail wave | **DONE** — docs/cycles/31-revision-retail.md (~9.5k words; REJECT-FOR-DATA enters as the fourth verdict type with cost accounting + revisit trigger; H57 instrumented on free counters with the SEBI loss studies as mechanism documentation) + Lesson 31 |
+| 3.7-3.9 | Political cycle (into L5) / state-election + US-presidential rejects | **IN PROGRESS** — Band 3 closing entry |
 | 4.x–5.x | Calendar, fast layer | queued |
 
 Context-only/rejected entries get proportionate monographs (the full case for the verdict — a
