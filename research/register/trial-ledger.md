@@ -670,3 +670,34 @@ trade it" costume. A candidate registered to die is still knowledge.
 | # | What | Result | Status |
 |---|---|---|---|
 | H59-D1 | WSTS state → NIFTY IT incremental (prior: fails) | (awaits WSTS + NIFTY IT vault) | registered design |
+
+## Entries CW-D1a / DW1 / F1a / F2a (2026-09-02) — the FIRST DAILY-RESOLUTION batch
+The NIFTY 50 daily vault (2007-09..2026-04, mirror authenticated 6/6, ingest/vault/index/)
+unblocks partial runs of already-registered designs. PRE-REGISTERED before running; script:
+scripts/analyze_nifty_daily.py. Budget dates are public record, listed in the script
+(2008-2026 fulls + interims; the Mar-16-2012 late budget included; span is all 11am-era).
+- CW-D1a (the return leg of CW-D1, whose bar was set at registration): budget-day |return|
+  vs all non-budget days, one-sided Mann-Whitney p < 0.05. The VIX leg of CW-D1 stays gated
+  (no VIX vault yet); this is a PARTIAL run and is labeled as such. Secondary (no bar):
+  the same test on budget-day ±1 window.
+- DW1 (5.5 demonstration addendum): Kruskal-Wallis of daily returns across the five
+  weekdays. INTERPRETATION RULE PRE-STATED (the CW3/GS1 mold): p >= 0.05 confirms the 5.5
+  REJECT with evidence; p < 0.05 does NOT reinstate day-of-week trading (5-way comparison,
+  no mechanism) — logged and dissected only. This upgrades 36-fastlayer-close's "no trial
+  spent" to "trial spent for free once the data landed for other reasons".
+- F1a (partial F1): AR(1) half-life of the two-leg composite (RV21 pct + DD pct, weights
+  0.5/0.5 — the module test defaults, stated as such; confirm legs absent, n_legs=2).
+  MEASUREMENT with a moving-block bootstrap CI (block 63d, 1000 draws); registered ladder
+  value is tau_half [1,3] months — the print either sits inside/overlapping or triggers the
+  changes_if note. No pass/fail bar (F1's design: CI -> ladder).
+- F2a (detection-only leg of F2): composite >= 0.3 within [start-5bd, end+21bd] of each of
+  the 12 in-span pre-named episodes (docs/cycles/02-fast-stress.md §3). BAR: >= 8/12
+  detected, misses named and dissected. Also reported (no bar): false-fire days (>= 0.3
+  outside every episode window ±2 months) and median detection lag from episode start.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CW-D1a | Budget-day |ret| vs non-budget (daily) | (pending) | pre-registered |
+| DW1 | Weekday omnibus (demonstration) | (pending) | pre-registered |
+| F1a | tau_half of 2-leg composite (daily) | (pending) | pre-registered |
+| F2a | Real-episode detection >= 8/12 | (pending) | pre-registered |
