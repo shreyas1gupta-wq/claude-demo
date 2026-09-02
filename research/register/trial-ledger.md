@@ -632,3 +632,26 @@ Both bars two-legged; interpretations AFTER the prints.
 |---|---|---|---|
 | FS-U1 | Monthly vol clustering, India MF | |ret| ACF(1..6) 0.141-0.188 all positive, LB(6) Q=60.3 p=4e-11 — **PASS**: clustering survives monthly aggregation clearly, though at ~0.15-0.19 vs the ~0.2-0.4 typical of daily |ret| — the aggregation loss is visible and quantified | pass, demonstration |
 | FS-U2 | Monthly vol clustering, gold | ACF(1..6) 0.17-0.245 all positive, LB(6) Q=166.3 p=3e-33 — **PASS**: the Tier-A fact holds cross-asset on our vault; library integrity corroborated | pass, demonstration |
+
+## Designs FS-D1 / FS-D2 (2026-09-02) — Atlas 5.2/5.3 folds into L2, DATA-GATED
+Registered in research/cycles/faststress-upgrade/partDH-upgrade.md (bars there):
+- FS-D1 (backwardation flag, distinct from F5's IV-level redundancy test): near/far implied
+  variance ratio; must ADD episode AUROC over the RV leg (incremental, purged) or be excluded.
+- FS-D2 (order-of-arrival taxonomy): first top-decile print per leg per episode; 2018
+  funding-led and 2020 vol-led orderings are the pre-stated shape checks; failing them kills
+  the classification, not the legs.
+
+## Design MR1 (2026-09-02) — Atlas 5.4: 1-month cross-sectional reversal, DATA-GATED
+Tier-C flag with ZERO return budget by atlas verdict (the most cost-fragile anomaly known;
+20bp STT round trip; no India magnitude studies). Design registered so the flag is graded,
+never guessed: on vaulted bhavcopy, decile long-short 1-month reversal within the liquid
+half of NIFTY 750, NET of the config/costs.yaml stack per book; acceptance shape: the freeze
+is permanent unless net-of-cost spread > 0 across BOTH halves of the sample AND survives the
+McLean-Pontiff haircut — and even then consumption stays "H08-informing flag", never a
+sleeve (the atlas's own cap).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| FS-D1 | VIX term-structure adds over RV | (awaits VIX/option-chain vault) | registered design |
+| FS-D2 | Leg order-of-arrival by episode | (awaits CCIL+VIX dailies) | registered design |
+| MR1 | 1m reversal net-of-cost grade | (awaits bhavcopy vault) | registered design |
