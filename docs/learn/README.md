@@ -38,6 +38,7 @@ private artifacts; this index is the registry.
 | 29 | The Signal That Shouldn't Decay | docs/cycles/29-issuance.md (Atlas 3.2, seat L7) | https://claude.ai/code/artifact/bb0a36ce-65ea-4991-a62b-18360b3e85f3 | docs/learn/artifacts/lesson-29-issuance.html |
 | 30 | Nothing to Time, Something to Watch | docs/cycles/30-rotation-crowding.md (Atlas 3.3 fold + 3.4 candidate) | https://claude.ai/code/artifact/aeca03ef-54fc-4b98-8000-cd9ede90ad13 | docs/learn/artifacts/lesson-30-rotation-crowding.html |
 | 31 | The Cycle We Believe and Still Refuse | docs/cycles/31-revision-retail.md (Atlas 3.5 data-reject + 3.6 candidate H57) | https://claude.ai/code/artifact/6e9d300c-fcdb-4636-8718-1649805eb51e | docs/learn/artifacts/lesson-31-revision-retail.html |
+| 32 | Timing Is Law, Direction Is Surprise | docs/cycles/32-political-close.md (Atlas 3.7 fold + 3.8/3.9 rejects — Band 3 finale) | https://claude.ai/code/artifact/a7ff9183-e601-429b-9b38-8cae2766cb33 | docs/learn/artifacts/lesson-32-political-close.html |
 | — | Cycle Stack Pipeline v2 (reference page) | docs/PIPELINE.md | https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db | docs/learn/artifacts/pipeline-v2.html |
 
 Preservation rule (principal directive 2026-09-01): every lesson/teaching page is COMMITTED to
