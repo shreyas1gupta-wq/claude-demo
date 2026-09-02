@@ -779,33 +779,28 @@ fortnight.
 
 **5. September–October 2018 (IL&FS) plus the June 2019 DHFL aftershock — the funding-leads-equity
 case.** Infrastructure Leasing & Financial Services first showed strain in **June 2018** (a delayed
-₹450 crore inter-corporate-deposit repayment to SIDBI), defaulted on a **few hundred crore** of
+₹450 crore inter-corporate-deposit repayment to SIDBI), defaulted on a few hundred crore of
 commercial paper in **late August 2018** (repaid two days later), then defaulted on a **₹1,000
 crore term loan** and failed to meet CP redemption obligations due **14 September 2018** — the
-crisis's acceleration point, after which IL&FS Financial Services was barred from the CP market
-until March 2019. Total IL&FS-group defaults reached **₹46.4 billion** by November 2018. The Sensex
-itself moved comparatively modestly by the standards of this record — dossier D04's own verified
-figure puts the **Nifty 50** drawdown at roughly **−15% (August→October 2018)** while the
-**Midcap** index fell **19–30%** and the **Smallcap** index fell as much as **~32%**, a divergence
-of roughly 2× between the headline index and the mid/small tail — the *funding* freeze (a
-non-bank, shadow-credit-sector event) transmitted into equities through the **credit-supply**
-channel to NBFC-dependent borrowers and smaller, funding-constrained issuers well before it showed
-up as a headline-index-level shock, exactly the mechanism A.7 formalizes and this program's own
-**SC1** trial (`research/register/trial-ledger.md`, 2026-09-02) measures on real India factor data
-(the small-cap factor at the 18th percentile of its own rolling-window history in the crunch
-window, the market factor at the 16th — both stressed, the funding-adjacent leg first and somewhat
-more so). The aftershock arrived roughly nine months later: **Dewan Housing Finance Corporation
-(DHFL)** defaulted on **₹1,000 crore of bonds** in **early June 2019**, with domestic rating
-agencies **CRISIL and ICRA downgrading its commercial paper to 'default' (D)** in the first week of
-June 2019 — direct, documented confirmation that the funding freeze IL&FS triggered had not
-resolved within the shadow-banking sector nine months on, and that CP-market stress (a fast,
-priced-daily signal) continued to lead further NBFC-sector equity and credit deterioration rather
-than merely echoing it. **Order-of-arrival: funding stress (CP defaults, the CP-market access ban)
-leads by weeks to months; the mid/small-cap equity drawdown follows, larger in magnitude than the
-headline index; the broad Nifty 50-level "confirmation" (§4 of this program's own module design)
-is the smallest and last-arriving of the three legs** — the cleanest India instance of the
-credit-transmission ordering A.7 formalizes, and the case `partDH-upgrade.md`'s FS-D2 design names
-explicitly as its own pre-stated shape check.
+acceleration point, after which IL&FS Financial Services was barred from the CP market until March
+2019. Total IL&FS-group defaults reached **₹46.4 billion** by November 2018. The Sensex moved
+comparatively modestly by this record's standards — dossier D04's verified figure puts the
+**Nifty 50** drawdown at roughly **−15%** (August→October 2018) while the **Midcap** index fell
+**19–30%** and the **Smallcap** index fell as much as **~32%**, roughly double the headline index —
+the funding freeze transmitted into equities through the **credit-supply** channel to NBFC-dependent
+borrowers well before it showed up as a headline-level shock, the mechanism A.7 formalizes and this
+program's own **SC1** trial (2026-09-02) measures on real India factor data (small-cap at the 18th
+percentile of its own rolling-window history in the crunch window, market at the 16th — both
+stressed, the funding-adjacent leg marginally more so). The aftershock arrived roughly nine months
+later: **Dewan Housing Finance Corporation (DHFL)** defaulted on **₹1,000 crore of bonds** in
+**early June 2019**, with **CRISIL and ICRA downgrading its commercial paper to 'default' (D)** the
+same week — direct confirmation the funding freeze IL&FS triggered had not resolved within the
+shadow-banking sector nine months on, and that CP-market stress continued to lead further
+NBFC-sector deterioration rather than merely echoing it. **Order-of-arrival: funding stress (CP
+defaults, the CP-market ban) leads by weeks to months; the mid/small-cap drawdown follows, larger
+than the headline index; the broad Nifty 50 "confirmation" is smallest and last-arriving** — the
+cleanest India instance of the credit-transmission ordering A.7 formalizes, and the case
+`partDH-upgrade.md`'s FS-D2 design names as its own pre-stated shape check.
 
 **6. March 2020 — the COVID crash: −13.2% single day, India VIX in the 80s, the circuit-breaker
 session.** On **23 March 2020**, the Sensex fell **3,935 points (13%)** to close at 25,981 and the
