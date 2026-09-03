@@ -332,3 +332,20 @@ Q1: capture + adapters + as-of store for revision-prone series; harness runner/r
 8. **Year-2 priority order:** chrono-LLM coverage audit vs the flow-signal research cycle vs meta-label training — pick the single first claim on the year-2 breadth budget.
 9. **Challenger calendar:** fix the four quarterly review dates and the annual date now, a year ahead, so no review date can be chosen (or avoided) in reaction to performance.
 10. **Cut order beyond the minimum set:** if Q1–Q2 telemetry shows the attention budget is violated, confirm the pre-declared order in which non-minimum modules get frozen (suggest: overlay scoring first, then funnel throughput halved, then crowding to log-only).
+
+---
+
+## Machinery status addendum (2026-09-02) — what now exists as tested code
+
+| Pipeline component | Code | Tests | Status |
+|---|---|---|---|
+| Ladder seat modules (10) | quant/ladder/*.py | planted-truth + real fixture | live |
+| Regime-score assembler (Stage-1 spine) | quant/regime.py | 8 exact (incl. Tier-C overlay, reduce-only clamps) | live; first real timeline in research/cycles/daily-batch/regime-DEMO.md |
+| Bucket mapping (quantile rules) | quant/regime.bucket_path | warm-up = no-bucket enforced | live |
+| M4 walk-forward adjudicator | quant/validation/walkforward.py | 5 exact | live; first outing disqualified the F2-index shortlist |
+| Estimation (tau, DSR, purged CV, Hamilton, bootstrap) | quant/stats/ | Monte-Carlo validated (Track R) | live; Andrews near-unit-root variant queued |
+| Statutory + impact + per-book turnover cost | quant/costs/ (incl. book.py) | 4 + golden | live; ADV PROVISIONAL travels on every number |
+| Challenger registry (adaptivity-admission law) | config/challengers.yaml + validator gate | 4 enforcement tests | live in CI; 'online' is review-gated |
+| Paper-trade ledger | research/register/paper-ledger.md | format + lapse policy | PT-1, PT-2 open |
+| Ingestion kit (Priority-1) | ingest/pull_* (bhavcopy, indices, VIX, CCIL, AMFI, NSDL, FRED) | auth skeletons via --emit-auth-template | awaiting principal-machine runs |
+| Vaults (8) + manifest + two-pass authentication | ingest/vault/ | manifest WORM; misses recorded | live |
