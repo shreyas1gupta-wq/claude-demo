@@ -1181,5 +1181,5 @@ reading declared below):
 
 | # | What | Result | Status |
 |---|---|---|---|
-| F4a-21d | redundancy + adds, 21d window | (registered, not yet run) | registered partial |
-| F4a-63d | redundancy + adds, 63d window | (registered, not yet run) | registered partial |
+| F4a-21d | redundancy + adds, 21d window | Spearman(corr_p, rv_p) = 0.765 (below the 0.80 redundancy bar) BUT AUROC 0.716 vs RV's 0.748 — the correlation leg is a WORSE episode classifier; parent rule ⇒ **EXCLUDED as confirm input**. 1,745 joint days 2014-2021; 5 of 6 in-span episodes covered (taper lost to percentile warm-up — stated); days with a zero-variance top-50 name drop mechanically (suspended names) | **excluded (one-way: failed to add even on flattered data)** |
+| F4a-63d | redundancy + adds, 63d window | Spearman 0.649, AUROC 0.663 vs RV 0.759 — even further from adding at the quarter window | **excluded** — and the doctrine consolidates: F4a + F5a + FS-D3 make it THREE candidate confirm-inputs (cross-sectional correlation, domestic implied vol, global implied vol) refused at index resolution; the L2 composite's realized-vol spine is now measured against every proposed echo and kept all three times | **excluded; the RV-spine doctrine, third print** |

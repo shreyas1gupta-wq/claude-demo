@@ -1316,3 +1316,14 @@ exposure through every rally. The doctrine line sharpens: **speed is the seatbel
 continuity is a more expensive seatbelt** — episode-triggered rules buy most of the
 protection at half the premium; the full F2/F3 adjudicates that trade at book level under
 M4. Nothing arms; the desk's no-leverage constraint also removes MM's entire levered side.
+
+**Same-day addendum (2026-09-03) — F4a: the third echo refused.** The correlation-spike leg
+ran as a survivor-panel partial (one-way reading declared at registration): mean pairwise
+correlation of the real-time-safe top-50 is NOT rank-redundant with realized vol (Spearman
+0.765/0.649 at 21/63d) yet classifies the frozen episodes WORSE than RV at both windows
+(AUROC 0.716 and 0.663 vs RV's ~0.75) — excluded as a confirm input per F4's own rule, and
+decisively-leaning even under survivorship flattery. The tally: cross-sectional correlation
+(F4a), domestic implied vol (F5a), and global implied vol (FS-D3) have each been offered as
+confirmation for the fast-stress composite and each measured as an echo or worse. The RV
+spine stands three-for-three; the full F4 on PIT data remains registered but the burden has
+visibly shifted.
