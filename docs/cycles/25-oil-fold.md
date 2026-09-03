@@ -815,3 +815,21 @@ now measured, not just committed. Also vaulted: Känzig (2021) oil-supply-news s
 1975-2025 from the author's own repo (4/4 sign anchors on documented OPEC events) — OL-D2's
 windfall design has its instrument when its day comes. Still owed: the BH decomposition and
 post-2019 Kilian months (runsheet).
+
+**Same-day addendum (2026-09-03, evening) — OL-D2a: the windfall does not survive an
+unconditional test, for the H53a reason.** The reverse experiment ran with the Känzig
+instrument at its registered, microscopic power (n=4 oil-down years, one cell n=1): FAIL,
+−102.5pp against a +10pp bar — recorded as underpowered, exactly as the registration
+pre-stated a fail would be. The dissection is what ships: the sole "demand-driven" down-year
+(2009) is the GFC-rebound year magnified by the annual-averaging artifact OL1 already
+documented for 2008, and all three supply-driven downs (1998, 2001, 2015) are global
+risk-off years for reasons far bigger than oil — the common global factor owns oil-DOWN
+years exactly as H53a showed it owns the commodity-currency link. The windfall thesis
+("oil crash = India windfall") therefore survives only as a CONDITIONAL hypothesis — does
+a supply-driven oil decline add anything AFTER L9's global state is read — and no
+unconditional briefing line ships. Two measured casualties from one week: the petro-rupee
+heuristic and the windfall heuristic, both killed by the same confound, both replaced by
+the same conditional-only formulation. Instruments behaved exactly as designed: Känzig
+correctly called 2009's OPEC cuts supply-contractionary while the Kilian activity index
+fell in all four years — supply-news and activity are different questions, which is why
+both are vaulted.
