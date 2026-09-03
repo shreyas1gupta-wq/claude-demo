@@ -936,3 +936,15 @@ H66's fast-band leg (FAIL); these two close the file at this resolution.
 |---|---|---|---|
 | H67a | Dead-band grid flip counts | 7.4 / 6.9 / 6.0 flips-per-year across {0.15, 0.25, 0.35}; median runs 25-27bd — the display is stable at every grid point; 0.35 buys the longest runs (mean 38bd). Calibration recorded; display keeps the registered mid-point 0.25 (no reason to move) | measured, display calibrated |
 | H68a | Age effect at high state (prior: fails) | young (age<=21bd) median fwd63 +6.17% vs old +5.65% — diff 0.52pp, MW p=0.843: **NO age effect, prior lands.** With F7a (direction) and H68a (age) both failed at index resolution, THE PHASE FILE CLOSES: the LEVEL carries all measurable information; quadrant and age are captions for the reader, not inputs for a rule | fail-as-predicted; phase file closed |
+
+## Entry F1c (2026-09-02) — the near-unit-root re-estimate F1b's flag queued
+PRE-REGISTERED before running. F1b flagged rho~0.99 daily (near_unit_root: the Kendall
+path's CI degrades there per MC1); the queued remedy — Andrews-style median-unbiased
+inversion — is now built and Monte-Carlo tested (quant/stats/andrews.py). F1c re-estimates
+the L2 composite's tau_half with it. MEASUREMENT (no bar): rho_mu + simulated central
+interval, in months, vs the ladder's [1,3] and F1b's 3.18m [2.39, 5.72]. Script:
+scripts/analyze_f1c_andrews.py. Grid-edge hits reported, never hidden.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F1c | Andrews tau_half of the L2 composite | median-unbiased rho 0.9897 -> tau 3.19 months, 90% interval [2.19, 4.63]m (no grid edge) — CORROBORATES F1b's 3.18m with a tighter, properly-constructed interval; two independent estimators agree; the lengthening watch STANDS (the interval still reaches above the band top); the P3 Andrews queue item is DONE | measured, convergent |
