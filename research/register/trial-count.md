@@ -40,10 +40,11 @@ this census exists so that can never happen silently.
 | OL-D1a (primary + flavor-agreement table) | 2 | 2 |
 | EN-D2a (pooled + 3 eras + LPA sensitivity + secondary definition) | 6 | 6 |
 | OL-D2a (primary + instrument-agreement) | 2 | 2 |
-| **RUNNING TOTAL (run cells)** | | **136** |
+| F3a (MM full-period + Cederburg OOS + capped net-of-cost) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **139** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
-F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3-F6 (F5a partial HAS run; full F5 still owed) · FS-D1/D2/D4 ·
+F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3 full/F4/F6 (F3a + F5a partials HAVE run) · FS-D1/D2/D4 ·
 CW-PT1 (3 Aprils) · CW2b · MR1 · CR-D1/D2/D3 · RT1/2 · FL1/2 · IS1/2 · CN-D1/2/3 · EN-D1 (EN-D2a's link-1 partial HAS run; the full annual re-print stands) ·
 OL-D1 full/OL-D2 (OL-D1a partial HAS run) · H58-D1/2/3 · RC1 · H59-D1 · PT-1/PT-2 gradings. Plus the frozen future sweeps the
 registry names (hedge grid × buckets <=28 cells; block-weight sweep).

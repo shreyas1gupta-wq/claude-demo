@@ -1299,3 +1299,20 @@ detection. The VRP proxy printed positive on 85.4% of days (mean +0.0076 annuali
 variance): the premium exists, is documented, and remains unconsumed pending its own
 registration (the parent's own rule). The FULL F5 (NSE primary series + M4 adjudication)
 stays owed; FS-D1 (term structure) still needs option chains.
+
+---
+
+**Dated addendum (2026-09-03, late) — F3a: the vol-managed lure, priced on the index.**
+F3's partial ran on the index vault as registered, and every clause of the design's prior
+got a number. Full-period Moreira-Muir (uncapped): alpha +5.76%/yr at t=1.67 — the classic
+seduction, positive but unproven — with maxDD 26% vs 55% (DD control robust, as stated).
+Cederburg's real-time protocol then does what it did in the US: the out-of-sample Sharpe
+improvement vanishes (0.60 vs 0.62; the return difference's CI spans zero) — full-period
+evidence flattered by hindsight-calibrated scaling, exactly why the parent forbade promotion
+from it. The desk-feasible cell (capped at 1, net of costs) surprised the registered prior:
+maxDD 22%, BETTER than the F2-index fast-trigger survivors — but at −4.86%/yr net drag,
+roughly double their whipsaw-era premium, because continuous de-risking holds 0.73 average
+exposure through every rally. The doctrine line sharpens: **speed is the seatbelt, and
+continuity is a more expensive seatbelt** — episode-triggered rules buy most of the
+protection at half the premium; the full F2/F3 adjudicates that trade at book level under
+M4. Nothing arms; the desk's no-leverage constraint also removes MM's entire levered side.
