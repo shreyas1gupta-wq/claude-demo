@@ -117,3 +117,19 @@ the full F2 / data-phase runs.
 | B3-5 | The two standing inputs | funding_rate unset; ADV table PROVISIONAL — the validator warns on every run and every cost number carries the stamp. | provide values / confirm brokers' terms; the leverage feature stays dark until then |
 
 Recommendation recorded (desk view, not a decision): B3-1(b), B3-2(a), B3-3(a), B3-4(a).
+
+## Batch 4 (2026-09-03) — from the manager & frontier sweep (research/frontier/)
+- **B4-1 — Candidate adoption**: the sweep names H60-VRP (options-data-gated) and
+  H61-FLOWMULT (NSDL+AMFI-gated). Adopt both into the runsheet's unblock lists as stated?
+  Desk recommendation: YES both — each has a mechanism, a dated structural break to respect
+  (BR4), and free data on your machine.
+- **B4-2 — Track T priority**: Track T (technical-quant-systematic) has opened with T1 +
+  T-CTRL1 on vaulted data. Post-run, its backlog (T2 trend-on-states, T3 gold-equity TSMOM,
+  T4 India low-vol one-way) competes with data-phase prep for desk time. Desk recommendation:
+  run the backlog opportunistically (it needs no new data) but NOTHING in Track T outranks
+  the Priority-1 pulls.
+- **B4-3 — Derivatives/market-neutral scope** (the Estee genre: cash-futures & index arb,
+  market-making adjacent): a different BUSINESS (infra, margin, ops risk), not a signal on
+  the current books. Decide whether a Stage-3+ scoping study is wanted at all, or whether
+  the program's mandate stays cash + protective derivatives only. Desk recommendation:
+  defer to Stage 3; revisit only after the full F2/HG1 land.

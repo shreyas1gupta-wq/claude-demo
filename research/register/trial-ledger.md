@@ -1278,3 +1278,46 @@ table) and DECISION-GATED as stated below; this entry discharges the forward ref
 |---|---|---|---|
 | HG1 | Hedge grid × buckets, 28 cells | (registered; gated on Phase-0 data AND B3-1) | registered design |
 | BW1 | Block-weight ±5pp neighborhood | (registered; gated on Phase-0 data) | registered design |
+
+## Principal directive + the reopened generation (2026-09-03, evening)
+The principal (in session): "check all top amc and funds and pms/aif/us based... anything
+missed or anything can add alpha significantly... new theories that can work in 2026-2040...
+then move from cycle to technical-quant-systematic stuff." Candidate generation, closed at
+atlas completion, is REOPENED under the same discipline (bars before data; census; DSR;
+crowding haircuts). The sweep of record: research/frontier/manager-frontier-sweep.md.
+Named candidates from the sweep (registrations deferred to their data, priors stated there):
+- **H60-VRP** — India variance-risk-premium harvesting; must era-split at breaks BR3/BR4;
+  gated on options-chain data (runsheet). F5a's descriptive print (IV>RV on 85% of days) is
+  the motivating observation, quarantined as such.
+- **H61-FLOWMULT** — the India price multiplier (Gabaix-Koijen inelastic-markets frame:
+  aggregate multiplier ~5 [NBER w28967]); gated on NSDL FPI + AMFI SIP flows (AMFI probed
+  BLOCKED at this proxy 2026-09-03 — principal pull; puller exists). Reframes L14's theory.
+TRACK T OPENS (technical-quant-systematic; charter in the sweep doc §C): T-series ledger
+IDs, same census/DSR/cost law, control-group-first.
+
+## Entries T1 / T-CTRL1 (2026-09-03) — Track T's first pair, PRE-REGISTERED before running
+**T1 — overnight/intraday decomposition (index).** Data: the index vault's OHLC (Open
+column authenticated with the vault's 6/6 admission). Definitions fixed: overnight
+o_t = Open_t/Close_{t−1} − 1; intraday i_t = Close_t/Open_t − 1 (o+i compounds to
+close-to-close). Cells: (1) full-sample decomposition — annualized mean of each component
+and share of total return; (2) the anomaly test — BAR: the US signature (overnight mean > 0,
+intraday mean ≤ 0) with Newey-West t on mean(o−i) ≥ 2; (3) era split at BR3 (2019
+weekly-expiry) + COVID-window sensitivity (descriptive). PRIOR on record: signature PRESENT
+but attenuated, and mechanically loaded in India — the Indian overnight window carries most
+global news (US close → India open). CONSUMPTION CAP stated now: even a PASS cannot arm a
+trade (2 trades/day dies at STT instantly); the print's use is EXECUTION TIMING for the
+desk's staged deployments (open vs close tranches) and Track T context. No alpha claim.
+**T-CTRL1 — the Brock-Lakonishok-LeBaron MA-rule family (the control group).** Track T
+opens the way the cycle program opened (ENSO): with the most-mined space in the field and a
+registered expectation of death. Rules: the canonical VMA set — fast/slow (1,50), (1,150),
+(5,150), (1,200), (2,200), each with 0% and 1% bands = 10 rules; long/flat (no shorting;
+flat = 0 excess), signal evaluated on close t−1, position held day t. Costs: 28bps per unit
+turnover (the F2-grid convention, quoted). BAR per rule: survives only if net Sharpe >
+buy-hold Sharpe AND deflated-Sharpe p < 0.05 at n_trials = census_n() + 10. PRIOR on
+record: ZERO survivors. A surprise pass promotes NOTHING — it goes to the challenger lane
+discussion like every pass.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| T1 | Overnight/intraday decomposition + signature test | (registered, not yet run) | registered |
+| T-CTRL1 | BLL MA family, 10 rules, net + DSR | (registered, not yet run) | registered control |
