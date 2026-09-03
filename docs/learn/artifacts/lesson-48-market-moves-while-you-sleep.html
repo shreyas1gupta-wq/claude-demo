@@ -1,0 +1,207 @@
+<title>The Market That Moves While You Sleep</title>
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --chart-surface:#fcfcfb; --grid:#e1e0d9; --axis:#c3c2b7; --muted:#898781;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --band-stress:rgba(235,104,52,0.10);
+  --code-bg:#eef1ea; --shadow:0 1px 3px rgba(20,32,28,0.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --band-stress:rgba(217,89,38,0.14);
+    --code-bg:#1c2320; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --chart-surface:#1a1a19; --grid:#2c2c2a; --axis:#383835; --muted:#898781;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --band-stress:rgba(217,89,38,0.14);
+  --code-bg:#1c2320; --shadow:none;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 96px}
+h1,h2,h3{font-family:"Newsreader",Georgia,serif; text-wrap:balance; line-height:1.15; margin:0}
+h1{font-size:clamp(34px,6vw,52px); font-weight:500}
+h2{font-size:29px; font-weight:500; margin:0 0 6px}
+h3{font-size:21px; font-weight:600; margin:40px 0 10px}
+p{margin:0 0 16px; max-width:70ch}
+a{color:var(--accent-ink)}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-size:0.88em}
+code{background:var(--code-bg); padding:1px 5px; border-radius:4px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin:0 0 14px}
+header.hero{padding:64px 0 8px; border-bottom:1px solid var(--rule); margin-bottom:8px}
+.stand{font-size:19px; color:var(--ink-2); max-width:62ch; margin:18px 0 22px;
+  font-family:"Newsreader",Georgia,serif; line-height:1.5}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; color:var(--ink-3); padding-bottom:26px}
+.meta b{color:var(--ink-2); font-weight:600}
+nav.toc{position:sticky; top:0; z-index:5; background:var(--ground); border-bottom:1px solid var(--rule);
+  display:flex; gap:2px; overflow-x:auto; padding:8px 0; margin-bottom:40px}
+nav.toc a{font-size:13px; text-decoration:none; color:var(--ink-2); padding:5px 11px;
+  border-radius:999px; white-space:nowrap}
+nav.toc a:hover{background:var(--panel); color:var(--ink)}
+section{margin:0 0 72px}
+.partkicker{display:flex; align-items:baseline; gap:14px; border-top:3px solid var(--accent);
+  padding-top:18px; margin-bottom:22px}
+.partnum{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent);
+  letter-spacing:0.1em; font-weight:600; white-space:nowrap}
+.lede{color:var(--ink-2); font-size:17px}
+.def{border-left:3px solid var(--accent); background:var(--panel); padding:14px 18px;
+  border-radius:0 8px 8px 0; margin:20px 0; max-width:700px}
+.def .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent);
+  font-weight:600; margin-bottom:4px}
+.def p{margin:0; font-size:15px}
+.def p+p{margin-top:8px}
+.keyresult{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:18px 22px; margin:22px 0; box-shadow:var(--shadow); max-width:700px}
+.keyresult .t{font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; margin-bottom:6px}
+.keyresult .big{font-family:"Newsreader",Georgia,serif; font-size:22px; line-height:1.35}
+.keyresult p{font-size:15px; color:var(--ink-2); margin:8px 0 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:14px 18px;
+  margin:20px 0; font-size:15px; max-width:700px}
+.warnbox b{font-weight:600}
+figure{margin:28px 0; background:var(--card); border:1px solid var(--rule); border-radius:12px;
+  padding:18px 18px 12px; box-shadow:var(--shadow)}
+figure .fighead{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  flex-wrap:wrap; margin-bottom:4px}
+figure .figtitle{font-weight:600; font-size:15px}
+figure .figbadge{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:999px; padding:2px 9px; white-space:nowrap}
+figure figcaption{font-size:13.5px; color:var(--ink-2); margin-top:10px; line-height:1.55;
+  border-top:1px solid var(--rule-soft); padding-top:10px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; margin:6px 0 4px; font-size:13px; color:var(--ink-2)}
+.legend .sw{display:inline-block; width:14px; height:4px; border-radius:2px; vertical-align:middle; margin-right:6px}
+.chart{position:relative}
+.chart svg{display:block; width:100%; height:auto}
+.tip{position:absolute; pointer-events:none; background:var(--card); border:1px solid var(--rule);
+  border-radius:8px; padding:7px 10px; font-size:12.5px; line-height:1.5;
+  box-shadow:0 2px 10px rgba(0,0,0,0.12); display:none; min-width:130px; z-index:3}
+.tip .tt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:11px; margin-bottom:2px}
+.tip .row{display:flex; justify-content:space-between; gap:12px}
+.tip .row .nm{color:var(--ink-2)} .tip .row .vl{font-family:"IBM Plex Mono",monospace}
+table{border-collapse:collapse; width:100%; font-size:14px; margin:18px 0}
+.tablewrap{overflow-x:auto; margin:18px 0}
+th{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3);
+  text-align:left; font-weight:600; padding:8px 12px 8px 0; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px 9px 0; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.eq{background:var(--panel); border-radius:8px; padding:14px 18px; margin:18px 0;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; overflow-x:auto; max-width:700px}
+.eq .lbl{font-family:"IBM Plex Sans",sans-serif; font-size:12px; color:var(--ink-3); margin-top:6px}
+.tiergrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin:20px 0}
+.tier{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:14px 16px; box-shadow:var(--shadow)}
+.tier .tl{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:14px}
+.tier p{font-size:13.5px; color:var(--ink-2); margin:6px 0 0}
+.timeline{margin:22px 0; max-width:720px}
+.trow{display:grid; grid-template-columns:110px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid var(--rule-soft)}
+.trow .yr{font-family:"IBM Plex Mono",monospace; font-size:13px; color:var(--accent); font-weight:600; padding-top:2px; white-space:nowrap}
+.trow p{font-size:14px; color:var(--ink-2); margin:0}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:18px 0; max-width:700px}
+.stat{background:var(--card); border:1px solid var(--rule); border-radius:10px; padding:12px 16px; box-shadow:var(--shadow)}
+.stat .k{font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:0.08em}
+.stat .v{font-size:26px; font-family:"Newsreader",Georgia,serif; margin-top:2px}
+.stat .d{font-size:12.5px; color:var(--ink-2)}
+footer{border-top:1px solid var(--rule); padding-top:22px; font-size:13px; color:var(--ink-3); line-height:1.7}
+@media (max-width:560px){ .trow{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<div class="wrap">
+<header class="hero">
+  <p class="eyebrow">Cycle School · Lesson 48 · legs 19-20 · the generation reopens, Track T begins</p>
+  <h1>The Market That Moves While You Sleep</h1>
+  <p class="stand">The principal reopened candidate generation with a wide brief: sweep the
+  field — India's quant PMS boom, the global systematic giants — for anything missed;
+  find the theories 2026-2040 rewards before the herd does; then step past cycles into
+  technical-systematic territory. The sweep produced two named candidates, a breaks registry,
+  and a new track that opened the only honest way a track can: with a control group that
+  died on schedule — and one print that rewrites where the desk should place its orders.</p>
+  <div class="meta">
+    <span><b>Sweep</b> research/frontier/ · candidates H60-VRP, H61-FLOWMULT · breaks BR1-BR5</span>
+    <span><b>Track T</b> T1 PASS (overnight +24%/yr) · T-CTRL1 0/10 as registered</span>
+    <span><b>Census 179</b> · Sep 2026</span>
+  </div>
+</header>
+
+<section id="p1">
+  <div class="partkicker"><span class="partnum">PART 1</span><h2>What the field is actually doing</h2></div>
+  <p>India's systematic scene is arriving fast — five quant PMS launches in 2025 alone,
+  AlphaGrep at multi-thousand-crore scale, factor shops advertising "300+ factors" — which is
+  itself the finding: the STANDARD factor menu is crowding in India on schedule, and the
+  desk's 25-35% forward haircuts were the right call before the evidence arrived. The global
+  read was different: AQR's "trends everywhere" (trend applied to macro series and factors,
+  not just prices) and the 2025 dispersion between good and average trend implementations
+  are genuinely instructive; return stacking is a leverage decision we haven't made; tail
+  hedging is our hedge grid wearing a hat; and the macro-quantamental school is convergent
+  validation — sophisticated desks independently arrived at the genre this program has been
+  building with harder pre-registration. Marketing numbers were consumed nowhere: every
+  adopted idea lands as a registered candidate with bars, or it doesn't land.</p>
+</section>
+
+<section id="p2">
+  <div class="partkicker"><span class="partnum">PART 2</span><h2>Two candidates and a registry of broken clocks</h2></div>
+  <p>Two ideas survived the constraint filter. H60-VRP: India's variance risk premium —
+  F5a already measured implied above realized on 85% of days — funded historically by retail
+  lottery demand that SEBI's 2024-26 derivative curbs are actively reshaping. H61-FLOWMULT:
+  the inelastic-markets frame (a dollar of flow moves aggregate value about five dollars,
+  and the effect persists) applied to the most flows-rich story in world markets — India's
+  SIP culture meeting FPI swings. Both are data-gated on the principal's pulls; both carry
+  their priors already. And because the SEBI curbs are a dated fact that every
+  derivatives-adjacent design must now respect, the long-referenced BREAKS REGISTRY finally
+  became a file: five dated structural breaks, append-only, checked by the annual loop —
+  regime changes as registered facts rather than post-hoc excuses.</p>
+</section>
+
+<section id="p3">
+  <div class="partkicker"><span class="partnum">PART 3</span><h2>The overnight print</h2></div>
+  <p>Track T's first registered test asked where the NIFTY's return actually accrues. The
+  answer is extreme: over 2007-2026, the overnight session (close to next open) earned
+  <b>+24% a year</b> while the intraday session (open to close) LOST 12.6% a year — a
+  36-point annual gap at t=7.6, robust with COVID excised, and strengthening since 2019.
+  The desk's prior said the US signature would appear "attenuated"; it appears at full
+  strength, and the miss is booked. The registered consumption cap does the disciplining:
+  nobody trades this (two trades a day is suicide at Indian transaction taxes, and index
+  opens are auction prints). What it changes is EXECUTION: staged deployment tranches now
+  have measured evidence to default to buying at the close, not the open — across a
+  multi-tranche program, the average overnight accrual is real money the old habit left on
+  the table.</p>
+</section>
+
+<section id="p4">
+  <div class="partkicker"><span class="partnum">PART 4</span><h2>A graveyard to calibrate the bar</h2></div>
+  <p>Track T opened the way the cycle program opened. The atlas began by testing calendar
+  clocks against ENSO — the planet's own oscillator — and letting the control group fail;
+  Track T began with the Brock-Lakonishok-LeBaron moving-average family, the most-mined rule
+  set in finance. Net of costs and deflated for 174 trials of selection: <b>0 of 10 rules
+  survive</b>, precisely as registered — the best two nose past buy-and-hold raw and die
+  under deflation. That graveyard is the point. Every future T-design now faces a bar that
+  has already refused the famous stuff, judged by a census that counts every look this
+  program has ever taken. The track's backlog (trend-on-states, gold-equity cross-asset,
+  an India low-volatility factor) inherits that standard on day one.</p>
+</section>
+
+<footer>
+  <p>Lesson 48 of the learn-while-we-build series · Ionic quant desk · the sweep:
+  research/frontier/manager-frontier-sweep.md · breaks: research/register/breaks-registry.md ·
+  Track T results: research/track-t/T-RESULTS.md · trials T1 / T-CTRL1 in the ledger ·
+  census 179 · suite 121 green at time of writing.</p>
+</footer>
+</div>
+
+<script>const DATA = null;</script>
