@@ -32,3 +32,20 @@ future T-design must clear the bar these could not, and the census that killed t
 (174 trials) is the same census that will judge the survivors.
 
 Census: T1 = 5 reads (full + bar + 2 eras + ex-COVID); T-CTRL1 = 10 cells → +15.
+
+## T3 / T4 (2026-09-03, late) — the backlog pair. Script: scripts/analyze_t3_t4.py
+**T3 (dual momentum NIFTY vs INR-gold): FAIL at both k, and more decisively than the prior
+predicted.** Net Sharpe 1.14 (k=3) / 1.13 (k=12) against INR-gold alone at 1.19 and the
+50/50 static at 1.17 — and in the k=12 window the static's maxDD (11%) beat the rotation's
+(18%) too. The registered prior expected the Sharpe fail but a DD consolation; there is
+none — the 50/50 blend STRICTLY dominated. Honest read: a relative rule imposes one lookback
+on two assets TS1 already showed trend at different speeds; the rotation buys timing risk
+and sells the rebalancing premium. The quiet star of the print is the diversifier itself:
+INR-gold Sharpe 1.19 over 2007-2026 — gold's USD run compounded by rupee depreciation — the
+measured base for the books' standing gold allocations.
+**T4 (India low-vol quintile, one-way): INCONCLUSIVE — the shape without the certificate.**
+Beta 0.67, Sharpe 1.45 vs 1.34, maxDD 24% vs 34%: the defensive anomaly's exact signature;
+alpha +2.65%/yr at NW t=1.88 misses the registered t≥2. Because the declared one-way runs
+AGAINST low-vol on survivor data, this fail refutes nothing — and confirms nothing. The PIT
+run decides; nothing enters the factor library today.
+Census: +4 → 183.

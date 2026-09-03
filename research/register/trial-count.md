@@ -46,7 +46,8 @@ this census exists so that can never happen silently.
 | H58-D3a (full + 2 era reads) | 3 | 3 |
 | T1 (full + bar + 2 eras + ex-COVID) | 5 | 5 |
 | T-CTRL1 (10 MA rules) | 10 | 10 |
-| **RUNNING TOTAL (run cells)** | | **179** |
+| T3 (2 k-cells) + T4 (Sharpe + alpha reads) | 4 | 4 |
+| **RUNNING TOTAL (run cells)** | | **183** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

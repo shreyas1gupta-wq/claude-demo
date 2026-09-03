@@ -1354,6 +1354,6 @@ from TS1 (which tested each asset's OWN trend); T3 tests RELATIVE momentum as a 
 
 | # | What | Result | Status |
 |---|---|---|---|
-| T3-k3 | Dual momentum k=3 vs singles + 50/50 | (registered, not yet run) | registered |
-| T3-k12 | Dual momentum k=12 vs singles + 50/50 | (registered, not yet run) | registered |
-| T4 | Low-vol quintile vs universe (one-way) | (registered, not yet run) | registered |
+| T3-k3 | Dual momentum k=3 vs singles + 50/50 | **FAIL** — net Sharpe 1.14 vs INR-gold alone 1.19 and 50/50 static 1.17; maxDD 23% vs 24% (no DD edge either). Side print worth its own line: INR-GOLD's OWN Sharpe was 1.19 over 2007-2026 (USD gold × depreciation) — the diversifier carried the era | **fail; prior's Sharpe half confirmed** |
+| T3-k12 | Dual momentum k=12 vs singles + 50/50 | **FAIL, and the prior's DD half was WRONG (recorded)**: net Sharpe 1.13; in the k=12 window the 50/50's maxDD was 11% vs the rotation's 18% — dual momentum was worse on BOTH axes. The static blend strictly dominated: a relative rule forces one speed onto two assets that TS1 showed trend at different speeds (3m equity / 12m gold), and loses both. The V-entries' diversification arithmetic wins again | **fail both halves; 50/50 dominance recorded** |
+| T4 | Low-vol quintile vs universe (one-way) | Signature VISIBLE, bar MISSED: Sharpe 1.45 vs universe 1.34, CAPM beta 0.67, maxDD 24% vs 34% — the defensive shape exactly; but alpha +2.65%/yr at NW t=1.88 < 2 fails the joint bar. Per the DECLARED one-way (survivorship biases AGAINST low-vol), a fail is INCONCLUSIVE — the anomaly is neither confirmed nor dead here; the PIT test stays owed and no factor-library candidacy arises (the bar is the bar) | **inconclusive per one-way; PIT owed** |
