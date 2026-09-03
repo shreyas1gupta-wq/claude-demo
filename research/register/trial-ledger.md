@@ -916,3 +916,23 @@ exist — no bar on that leg, stated). PhaseD is NOT re-run (display-only per F7
 | # | What | Result | Status |
 |---|---|---|---|
 | F2-WF | Shortlist fold-consistency | **BOTH CELLS FAIL (2/4 eras within budget each)** — the full-period drags (1.23/1.83pp) were flattered by the quiet 2009-2018 eras; the 2018-2022 and 2022-2026 eras run +2.5 to +4.1pp/yr of whipsaw. The shortlist is now EMPTY of adoptable cells at index level pending full F2 — the M4 adjudicator doing its registered job on its first run. What survives in the print: in the COVID era the same cells cut the crash DD 37%→26% — the insurance economics quantified (premium 2.5-4pp/yr in whipsaw-rich eras vs an 11pp payout when the deep episode lands). Dissection note: the per-era <=2pp bar is STRICTER than the DESIGN budget's program-average framing — recorded, not relitigated; full F2's registered currency (episode DD net of costs, M4-judged, book-level) adjudicates | both fail; era-dependence measured |
+
+## Entries H67a / H68a (2026-09-02) — the phase file's remaining gates, at index resolution
+PRE-REGISTERED before running. Script: scripts/analyze_phase_gates.py. Data: the vaulted
+index; the same L2 composite/phase construction as F7a (k_slope=21, smooth=5). F7a closed
+H66's fast-band leg (FAIL); these two close the file at this resolution.
+- H67a (dead-band calibration — MEASUREMENT, no bar): for the registered dead-band grid
+  {0.15, 0.25, 0.35}, count direction flips per year and the median run length. The grid's
+  JOB is hysteresis; the print shows what each point buys. No adoption question arises
+  (phase is display-only per F7a) — this calibrates the DISPLAY.
+- H68a (age effect): within high-state days (state pctile >= 0.8), does quadrant AGE add
+  information — median forward 63bd return of YOUNG (age <= 21bd) vs OLD (age > 21bd)
+  high-state days, sampled every 21st qualifying day per group. PRIOR STATED: FAILS (F7a
+  showed the level carries the rebound; age is direction's cousin). BAR: |median
+  difference| must exceed 2pp with MW two-sided p < 0.10 AND n >= 10 per group to count as
+  an effect; anything less = no age effect, the display keeps age as a caption only.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| H67a | Dead-band grid flip counts | (pending) | pre-registered measurement |
+| H68a | Age effect at high state (prior: fails) | (pending) | pre-registered |
