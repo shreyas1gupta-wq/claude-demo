@@ -1232,3 +1232,49 @@ Thursdays (weekday-matched by construction — necessary because weekly Thursday
 | # | What | Result | Status |
 |---|---|---|---|
 | H58-D3a | Expiry-day |ret| vs other Thursdays | **No index-level expiry effect**: 224 monthly-expiry days median \|ret\| 0.674% vs 0.574% on 702 other Thursdays, two-sided p=0.211; weaker in both eras (pre-2019 p=0.345; weekly-era p=0.479). At close-to-close index resolution the expiry day is an ordinary Thursday. The exclusion calendar's expiry rule stays exactly what the parent said it was — mechanical prudence, no alpha claim, no measured index cost of ignoring it — and its true object (single-stock close-auction mechanics) remains bhavcopy-gated | **documented; null at index resolution** |
+
+## Entries HG1 / BW1 (2026-09-03) — the two frozen future sweeps, PRE-REGISTERED YEARS early
+Both sweeps have lived as forward references since design time (config/risk.yaml's
+"trial-ledger #1"; config/ladder.yaml's "trial-ledger entry #13"). They will run under
+maximum temptation — they size the actual books — so their bars are fixed NOW, while no
+number exists to argue with. Both are DATA-GATED (Phase-0 PIT bhavcopy + the rebuilt episode
+table) and DECISION-GATED as stated below; this entry discharges the forward references.
+
+**HG1 — the hedge-grid × regime-bucket joint sweep.**
+- GRID (frozen; the validator already refuses alterations): the 7-point hedge grid
+  {0, 25, 50, 75, 100, 125, 150}% × the 4 regime buckets = 28 cells, swept JOINTLY,
+  exactly as config/risk.yaml's sweep_note states.
+- METRIC (PIPELINE.md's own words, quoted): "crisis-insurance currency: payoff in
+  worst-decile NIFTY months net of bleed, with India-specific bleed (STT, roll costs)
+  validated first".
+- BARS, fixed now: a cell is ADMISSIBLE only if (i) mean worst-decile-month payoff net of
+  bleed > 0; (ii) annualized bleed ≤ the hedge share of the exposure-drag budget THAT B3-1
+  FIXES — if B3-1 is unanswered when the data lands, THE SWEEP MAY NOT RUN (sequencing bar);
+  (iii) admissibility must hold era-split in the M4 walk-forward, not merely full-period
+  (the F2-WF precedent); (iv) any Sharpe-flavored read deflates with
+  n_trials ≥ quant.stats.dsr.census_n() + 28.
+- PRIORS on record: R4 cells with hedge ≥ 100% pay their way in crisis months; R1 cells with
+  hedge > 25% fail the bleed bar; the two Tier-C hedge-effectiveness placeholders
+  ([0.60,0.75] slow-bear, [0.45,0.60] fast-crash) get MEASURED here and their illustrative
+  values retire either way.
+
+**BW1 — the regime-score block-weight sweep.**
+- INCUMBENT (the standing design split, Tier C by its own provenance): fast_stress 0.25,
+  trend_tsmom 0.20, macro_credit 0.20, global_cycle 0.20, valuation_sentiment 0.10,
+  calendar 0.05.
+- GRID (frozen now): the incumbent plus every single 5pp transfer between an ordered pair of
+  blocks (6×5 = 30 candidates; any vector with a block < 0 or > 0.30 is dropped at run time
+  and counted). No second transfer, no re-optimization — one step from the incumbent, once.
+- BARS, fixed now: a challenger vector REPLACES the incumbent only if it dominates on BOTH
+  registered currencies — episode-conditional DD improvement AND full-period exposure drag —
+  era-split in M4 with purged CV (embargo per the blocks' tau bands), and survives DSR at
+  n_trials ≥ census_n() + |valid cells|. Ties or single-currency wins keep the incumbent
+  (the split is a design choice; evidence must beat it on its own stated terms, twice).
+- PRIOR on record: the incumbent survives — the F2-WF and F6a prints already show the fast
+  block carrying the DD constraint, and no measured result to date argues for moving 5pp
+  anywhere else.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| HG1 | Hedge grid × buckets, 28 cells | (registered; gated on Phase-0 data AND B3-1) | registered design |
+| BW1 | Block-weight ±5pp neighborhood | (registered; gated on Phase-0 data) | registered design |

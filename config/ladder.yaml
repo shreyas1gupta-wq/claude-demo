@@ -18,7 +18,7 @@ budgets:
     tier: C
     confidence: low
     decay: n/a
-    changes_if: "block-weight sweep in the data phase (trial-ledger entry #13); purged-CV evidence that a different split dominates"
+    changes_if: "BW1 (trial-ledger, registered 2026-09-03: ±5pp single-transfer neighborhood; dominance on BOTH currencies in M4 with purged CV); nothing else moves this split"
   tierC_overlay_cap: 0.10     # negative-only shift of regime score R
 
 tau_half_drift_policy:        # principal directive 2026-08-31: cycles drift; be flexible (ATLAS §17)

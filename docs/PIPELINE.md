@@ -349,3 +349,17 @@ Q1: capture + adapters + as-of store for revision-prone series; harness runner/r
 | Paper-trade ledger | research/register/paper-ledger.md | format + lapse policy | PT-1, PT-2 open |
 | Ingestion kit (Priority-1) | ingest/pull_* (bhavcopy, indices, VIX, CCIL, AMFI, NSDL, FRED) | auth skeletons via --emit-auth-template | awaiting principal-machine runs |
 | Vaults (8) + manifest + two-pass authentication | ingest/vault/ | manifest WORM; misses recorded | live |
+
+## Machinery status refresh (2026-09-03) — deltas since the addendum above
+
+| Delta | Where | Status |
+|---|---|---|
+| Andrews near-unit-root estimator (was "queued") | quant/stats/andrews.py | live, MC-tested; F1c consumed it (3.19m, CI [2.19,4.63]) |
+| auroc promoted from script-local to library | quant/stats/metrics.py | live, 3 planted-truth tests (process note #6) |
+| Census→DSR wiring | quant/stats/dsr.census_n() | live; rising-floor test; Sharpe claims can no longer undercount trials |
+| Commit gate as machinery | .githooks/pre-commit + .github/workflows/ci.yml | live both sides; refuse-path proven with a red canary; remote runs green |
+| Reproducibility audit | research/register/REPRODUCIBILITY.md | first pass 2026-09-03: 50/50 scripts, 29/29 headlines reproduce; annual re-run wired |
+| Puller template tests | tests/test_landing_day.py | emit + WORM-refusal verified for both flag-bearing pullers |
+| Vaults | ingest/vault/ (now 10) | + India VIX 2010-23, INR/USD, Kilian, Känzig, ONI 1950-2026, AISMR 1872-2016 — all two-pass, mirror frontier EXHAUSTED 2026-09-03 |
+| Future sweeps pre-registered | trial-ledger HG1 / BW1 | bars frozen years ahead of their data; risk.yaml/ladder.yaml forward references discharged |
+| Census | research/register/trial-count.md | 164 run cells; suite 121 green |

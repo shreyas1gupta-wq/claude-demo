@@ -15,7 +15,7 @@ regime_buckets_provenance:
   tier: B
   confidence: medium
   decay: "re-derive against the rebuilt episode table (data phase)"
-  changes_if: "hedge-grid x regime joint sweep (trial-ledger #1); measured hedge effectiveness"
+  changes_if: "HG1 (trial-ledger, registered 2026-09-03: 28 cells, crisis-insurance metric, bleed bar fixed by B3-1, M4-judged); measured hedge effectiveness retires the Tier-C placeholders"
 bucket_boundaries: "quantile/sign rules on regime score R's own history - no fixed numeric thresholds"
 sweep_note: "hedge grid x 4 buckets (<=28 cells) swept JOINTLY; full grid enters the deflated-Sharpe trial ledger"
 

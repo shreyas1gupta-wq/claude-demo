@@ -103,6 +103,14 @@ the full F2 / data-phase runs.
 | # | Question | Context (the print that opened it) | Options on the table |
 |---|---|---|---|
 | B3-1 | Is the risk-drag budget PER-ERA or PROGRAM-AVERAGE? | F2-WF disqualified both index shortlist cells under a per-era <=2pp/yr bar; the DESIGN table reads as a program average. The choice decides how the full F2 adjudicates whipsaw-rich eras vs the COVID payout (37%->26%). | (a) per-era (strict, what F2-WF used); (b) program-average with a per-era ceiling (e.g. <=2x budget); (c) episode-conditional only |
+> **Desk note (2026-09-03, post-F6a) — the budget you are setting is an EXPOSURE-drag
+> budget.** The false-fire ledger measured transaction whipsaw at 0.02-0.28%/yr across the
+> entire de-risk grid at index-futures costs — a rounding error. The 2.5-4pp/yr era drags
+> the walk-forward measured are the price of standing de-risked, not of trading. Friction
+> needs no budget line at this scale; the B3-1 options are unchanged, but the quantity they
+> govern is exposure drag. (F3a adds a bound: the always-on capped vol-managed variant costs
+> ~4.9pp/yr for maxDD 22% — the continuous end of the same trade.)
+
 | B3-2 | L2 tau_half band: keep [1,3]m or widen the top? | F1b (Kendall 3.18m, CI [2.39,5.72]) and F1c (Andrews 3.19m, [2.19,4.63]) agree the estimate sits AT/above the band top; the drift policy's hysteresis kept the config value, lengthening watch set. | (a) keep [1,3] until full F1 on PIT data; (b) widen to [1,4] now (everything keyed to tau re-derives mechanically) |
 | B3-3 | Approve the challenger review calendar? | config/challengers.yaml fixed quarterly dates (Dec-1-2026 onward) + annual (Sep-1-2027); the validator refuses 'online' outside them. Dates were set by the desk; the principal should own them. | (a) approve as set; (b) supply preferred dates (one edit; the gate machinery is date-agnostic) |
 | B3-4 | Priority order for the Priority-1 pulls? | Pullers are ready with auth skeletons (pull_india_vix.py, pull_ccil.py, pull_nse_bhavcopy.py). PIT bhavcopy unblocks the most (full F2/MR1/CR-D2); India VIX unblocks CW-D1/F5/FS-D1; CCIL unblocks H58-D1/FS-D2. | (a) bhavcopy first (default recommendation); (b) VIX+CCIL first (smaller pulls, faster wins) |
