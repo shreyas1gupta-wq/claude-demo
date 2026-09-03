@@ -79,3 +79,23 @@ uncertain):
 Admission rule (stated now): each file admits on ITS OWN anchors (Kilian needs K1-K5
 majority with K1 mandatory; Känzig needs Z1-Z4 all, given its primary-grade chain);
 a miss is recorded, never re-barred.
+
+### Pass 2 — results (2026-09-03, script: scripts/extract_oil_structural.py)
+
+| # | Result | Verdict |
+|---|---|---|
+| K1 | sample max **190.7 in 2008-05** (the published corrected-series boom peak) | **PASS** |
+| K2 | 2008-10..2009-12 min −74.2 vs 10th pct −56.1 | **PASS** |
+| K3 | 1974-75 min −37.8 vs 25th pct −35.2 | **PASS** |
+| K4 | Spearman with PCPS All-Commodity YoY = **0.634** (294 months, bar ≥ 0.25) | **PASS** |
+| K5 | 558 contiguous months, both signs, max abs 190.7 | **PASS** |
+| Z1 | 2014-11-27 surprise = −10.79 (negative as barred) | **PASS** |
+| Z2 | 2016-11-30 surprise = +8.90 (positive as barred) | **PASS** |
+| Z3 | 2020-03-06 surprise = −10.61 (negative as barred) | **PASS** |
+| Z4 | 612 rows 1975M01..2025M12; news-shock mean +0.0000 vs 0.5·std 0.297 | **PASS** |
+
+**Kilian: 5/5 PASS — ADMITTED** (weak chain, anchors carried it; only the Kilian_Index
+column is authenticated/consumable; coverage ends 2019-06 — every consumer states it).
+**Känzig: 4/4 PASS — ADMITTED** (author-maintained repo, primary-grade; vintage 2025M12).
+The runsheet's Kilian/BH row is PARTIALLY MIRRORED: the Baumeister-Hamilton decomposition
+proper and post-2019 Kilian months remain principal-machine pulls.

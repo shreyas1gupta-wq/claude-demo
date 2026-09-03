@@ -1028,3 +1028,39 @@ IV seat (parent requires the full series + M4); it can only kill redundancy or r
 |---|---|---|---|
 | CW-D1v | Budget-day ±1 \|Δlog VIX\| elevated vs other days | **PASS** — window \|dlogVIX\| median 5.53% vs 2.60% elsewhere, one-sided MW p = 2.7e-06 (n=45 window days, 15 events). DESCRIPTIVE (no bar): mean dlogVIX is NEGATIVE all three days — day −1 −1.8%, day 0 **−8.9%**, day +1 −2.9% — the uncertainty CRUSH: implied vol is bid before the window opens and collapses through the speech. Both CW-D1 legs are now graded (return leg: CW-D1a's parent-window print p=0.0049) — the parent CW-D1 is DISCHARGED at mirror coverage; the 2009/2024-26 events remain unobserved (NSE primary pull) | **pass (partial, 15/≈18 events)** |
 | F5a | IV-vs-RV redundancy + incremental episode AUROC | Neither bar fired ⇒ the registered fallback: **correlated but not additive — RV stays primary** (the parent's own decision). Spearman(iv_p, rv_p) = 0.763 (redundancy bar ≥0.80 not met); AUROC(IV→episodes) = 0.770 vs AUROC(RV) = 0.786 on 2,866 joint days, 8 frozen episodes covered — the domestic implied leg is a slightly WORSE episode classifier than realized vol, echoing FS-D3's refusal of the global leg. VRP proxy (descriptive only): mean +0.0076 ann-variance, positive 85.4% of days — the premium exists; consumption still requires its own registration. The full F5 (proper series + M4) stays owed | **rv-primary (partial)** |
+
+## Vault admission (2026-09-03) — the Kilian index + the Känzig oil-supply-news shocks
+Two files into ingest/vault/commodities/ under the dated two-pass section there: the monthly
+Kilian global-real-activity index 1973-2019 (replication-repo mirror, weak chain, **5/5
+anchors** incl. the published boom peak 190.7 in 2008-05 and 0.634 cross-vault Spearman with
+PCPS YoY) and Känzig (2021 AER) oil-supply-news shocks vintage 2025M12 (**the author's own
+repo** — primary-grade; **4/4 anchors**, all three documented OPEC-event signs correct).
+Runsheet's Kilian/BH row → PARTIALLY MIRRORED; BH decomposition + post-2019 Kilian months
+still owed.
+
+## Entry OL-D1a (2026-09-03) — PRE-REGISTERED before running: OL1 with the REAL structural flavor
+Parent design QUOTED VERBATIM (research/cycles/oil-fold/partDH-verdict-routing.md): "**OL-D1**
+the Kilian-index pull + replication of OL1 with structural flavors (acceptance registered at
+pull; the desk expects the asymmetry to SURVIVE but shrink once the global factor is
+controlled)." Parent trial OL1 QUOTED VERBATIM (ledger 2026-09-02): "among oil-UP years
+(annual real oil return > +10%), mean India return in demand-flavored years MINUS mean in
+supply-flavored years. Bar: difference ≥ +10pp (demand-flavored oil-up years materially less
+damaging). n will be small — stated." OL1's print: +38.1% vs −43.1% (spread +81.2pp, n=11:
+8/3), PASS capped BECAUSE the flavor proxy was the global-equity sign itself.
+This is acceptance-at-pull; bars fixed NOW:
+- Construction: OL1's verbatim, changing ONLY the flavor definition: a year is
+  demand-flavored if its mean monthly Kilian index EXCEEDS the prior year's mean (global
+  real activity rising), supply-flavored otherwise. Oil return and India leg exactly as OL1
+  (annual real oil return > +10%; India = annual iima MF return, 1994-2015; mirror coverage
+  1973-2019 covers all of it).
+- PRIMARY BAR (unchanged from parent): demand-flavored mean MINUS supply-flavored mean
+  ≥ +10pp among oil-up years. Desk prior ON RECORD: PASSES but the spread SHRINKS below
+  OL1's +81.2pp.
+- SECONDARY (descriptive, no bar): the flavor-agreement table — in how many of the n
+  oil-up years do the Kilian flavor and OL1's equity-sign flavor coincide; plus each year
+  named with both flavors. If n in either flavor cell is 0, the primary is UNTESTABLE and
+  recorded as such (no bar moved).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OL-D1a | OL1 replicated with Kilian-index flavor | (registered, not yet run) | registered partial |

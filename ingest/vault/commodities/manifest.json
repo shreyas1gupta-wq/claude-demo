@@ -24,6 +24,16 @@
   "sha256": "5f625b602f90ad24916b22ea679b192d465c8606249e6c67673177de8fc015ca",
   "vintage": "2026-09-01"
  },
+ "kilian_index_monthly_1973_2019.csv": {
+  "bytes": 15928,
+  "sha256": "5ea3cd01260862351ead1beb0ed454eda99af10851f46eed331530f668346313",
+  "vintage": "2026-09-03"
+ },
+ "kilian_replication_raw.xlsx": {
+  "bytes": 79504,
+  "sha256": "17e349995c615209b9af234e49c8e7d37b0e6ba685a773d6f3f4a76de0b3a475",
+  "vintage": "2026-09-03"
+ },
  "metal_production_clio_usgs.csv": {
   "bytes": 1332214,
   "sha256": "801b92f02182f9af6e8ea9a0cdd06f84e0f00bad5bea6da4fa7c5a4d88e7d5dc",
@@ -33,6 +43,16 @@
   "bytes": 5736,
   "sha256": "59324e1f057746e39582ca2708b0bb057a4ed051cae51c40db3a677fd985fe5b",
   "vintage": "2026-09-01"
+ },
+ "oil_supply_news_2025M12_raw.xlsx": {
+  "bytes": 110802,
+  "sha256": "8aa80042f84071ea310b3c2f604b177aed57ee7575e6a18aed5b8ad52ec353de",
+  "vintage": "2026-09-03"
+ },
+ "oil_supply_news_monthly_1975_2025.csv": {
+  "bytes": 21986,
+  "sha256": "67a61e2117372854797707657fc62b0a8fa6eb0eae4d3be413ebec2a0fc9c241",
+  "vintage": "2026-09-03"
  },
  "wti_monthly_eia.csv": {
   "bytes": 8751,
