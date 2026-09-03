@@ -56,3 +56,23 @@ inspection — NONE of those years serves as an anchor.
 Admission rule (stated now): each file admits on its own anchors — ONI needs O1-O5 all
 (primary-adjacent chain); AISMR needs ≥4 of R1-R5 with R5 (units) mandatory; misses recorded,
 never re-barred.
+
+### Pass 2 — results (2026-09-03, script: scripts/extract_climate_enso.py)
+
+| # | Result | Verdict |
+|---|---|---|
+| O1 | 1997 max anom +2.40 (the published peak, exactly) | **PASS** |
+| O2 | 2015 max anom +2.75 | **PASS** |
+| O3 | 1988 min anom −1.85 | **PASS** |
+| O4 | 2023 max anom +2.06 | **PASS** |
+| O5 | all full years 12 rows; anom ∈ [−2.03, +2.75]; ends AMJ-2026 | **PASS** |
+| R1 | 1877 JJAS 604.0mm vs bottom decile 735.8mm — the Great Famine, visible | **PASS** |
+| R2 | 1972 JJAS 652.8mm < 763.3mm (90% of mean) | **PASS** |
+| R3 | 2002 JJAS 646.8mm < 763.3mm | **PASS** |
+| R4 | 1961 JJAS 1020.2mm vs top decile 949.3mm | **PASS** |
+| R5 | 145 contiguous years; JJAS=Σmonths (max dev 1 unit); mean 848.2mm — the canonical scale, units confirmed | **PASS** |
+
+**ONI: 5/5 PASS — ADMITTED** (the runsheet's post-2010 continuation is closed at mirror
+grade). **AISMR: 5/5 PASS — ADMITTED** (weak chain, anchors carried it; IITM/IMD primaries
+stay owed). The 61-year statsmodels SST file remains vaulted for EN1's history; the ONI table
+supersedes it for episode work from 1950 on.

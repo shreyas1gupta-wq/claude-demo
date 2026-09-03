@@ -1064,3 +1064,39 @@ This is acceptance-at-pull; bars fixed NOW:
 | # | What | Result | Status |
 |---|---|---|---|
 | OL-D1a | OL1 replicated with Kilian-index flavor | **PASS — and the desk's registered prior printed true on BOTH halves**: demand-flavored +36.8% vs supply-flavored −9.1%, diff **+46.0pp** (bar ≥ +10pp), the spread SHRINKING from OL1's +81.2pp exactly as predicted. The flavor split rebalanced 8/3 → 6/5 and agrees with the equity-sign proxy in only 7/11 oil-up years — OL1's proxy really was measuring risk appetite, and the REAL activity flavor still separates India's oil-up outcomes decisively (1999/2003/2007 demand-years +84/+97/+59% vs 2008/2011 supply-years −62/−31%). The supply-flavored mean softened from −43.1% to −9.1% (1996 and 2005-06 reclassified) — the asymmetry is real but the catastrophe cell was partly the equity sign talking to itself. Consumption: the L9 oil fold's shock-type briefing table now carries a MEASURED structural print; still no standalone signal (n=11, annual) | **pass, prior confirmed (partial: Kilian mirror 1973-2019)** |
+
+## Vault admission (2026-09-03) — ONI seasonal 1950-2026 + AISMR JJAS 1872-2016
+Two mirrors into ingest/vault/climate/ (dated two-pass section): the NOAA CPC ONI table
+(ahuang11/ninodata mirror, **5/5 anchors** incl. the exact 1997 peak +2.40) and the
+IITM-shape all-India summer-monsoon series (student-repo vendored, weak chain, **5/5
+anchors** incl. 1877's 604mm and the canonical 848.2mm mean confirming units). Runsheet's
+ONI+IMD row → PARTIALLY MIRRORED (IMD %-of-LPA official bulletins + post-2016 rainfall
+still owed).
+
+## Entry EN-D2a (2026-09-03) — PRE-REGISTERED before running: the first-link contingency,
+computed at last. Parent design QUOTED VERBATIM (research/cycles/enso-deep/partCDEFH.md):
+"**EN-D2** the chain contingency table maintained live (cases chapter's base-rate exhibit,
+re-printed annually)." The B4a exhibit's own [VERIFY] flag records three UN-RECONCILED
+countings (71% / 44% / 47%) with a defended range of "roughly 45-70%". This partial computes
+the FIRST LINK ONLY (El Niño → all-India monsoon deficiency) on the two vaulted series with
+ONE fixed definition pair, resolving that flag with a reconciled counting. Definitions fixed
+NOW, before any table is computed:
+- EL NIÑO YEAR (primary): mean ONI anom over the monsoon-season windows MJJ, JJA, JAS, ASO
+  of year Y ≥ +0.5. (Secondary, descriptive: Y counted El Niño if ≥3 of those 4 seasons
+  carry the file's own CPC-style el_nino label.)
+- DROUGHT/DEFICIENT YEAR: JJAS(Y) < 90% of LPA, LPA = the vaulted series' full-sample mean
+  (self-referenced, no magic number). Sensitivity print (no bar): LPA = 1961-2010 mean.
+- SPAN: the joint 1950-2016. ERA SPLIT as registered in the cases chapter: 1950-1969,
+  1970-1990, 1991-2016 (the Green-Revolution / liberalization / inflation-targeting
+  boundaries; the 2016 IT boundary leaves no post-2016 rainfall in this vault — stated).
+- OUTPUT: the full 2×2 (El Niño × deficient) pooled + per era; P(deficient | El Niño),
+  P(deficient | not), and the lift.
+- VERIFICATION BAR (on the compilation, not a promotion bar): pooled P(deficient | El Niño)
+  ∈ [45%, 70%] — the record's own defended range. Outside ⇒ a recorded miss on B4a's
+  compilation; the computed table stands either way and the [VERIFY] flag resolves.
+This partial does NOT run EN-D1 (sector returns + food-CPI remain data-gated) and promotes
+nothing (H55 stays Tier-C candidate; Contract §4 requires the purged era-split EN-D1).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| EN-D2a | First-link contingency (computed, reconciled) | (registered, not yet run) | registered partial |

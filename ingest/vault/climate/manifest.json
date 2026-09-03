@@ -1,7 +1,27 @@
 {
+ "aismr_jjas_1872_2016.csv": {
+  "bytes": 1610,
+  "sha256": "38b1d2dce081711802a77402ca7dbcf795add7d2402f104926ef86f55cda5416",
+  "vintage": "2026-09-03"
+ },
+ "aismr_monthly_1872_2016_raw.csv": {
+  "bytes": 4375,
+  "sha256": "1c40077e14136d6f7e9613b1a8ccf371863102bfba1b647f25c4b5187ecda236",
+  "vintage": "2026-09-03"
+ },
  "elnino_sst_1950_2010.csv": {
   "bytes": 5508,
   "sha256": "b647be00e0fd264be9764e317e6b963f35030014ecca2b21b204521716e463ad",
   "vintage": "2026-09-02"
+ },
+ "oni_seasonal_1950_2026.csv": {
+  "bytes": 20582,
+  "sha256": "9b977ff9dc034935858de7ccb5b2c6cbf6bb727b1e96ada87c38476df46d8f4f",
+  "vintage": "2026-09-03"
+ },
+ "oni_seasonal_1950_2026_raw.csv": {
+  "bytes": 36875,
+  "sha256": "e06caa040ec0af98199424ff287bef9ebd783ce3612af05f918b7dde0d08998b",
+  "vintage": "2026-09-03"
  }
 }
