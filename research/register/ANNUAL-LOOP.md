@@ -32,6 +32,9 @@ this file is where they live so none is forgotten. Run order: top to bottom. Nex
 - [ ] H58-D1 grading if L2 daily trigger history exists (the drain quarantine earns 'online' or loses its lane)
 
 ## 5. Registry hygiene [Q]
+- [ ] Reproducibility audit: re-run the full scripts/analyze_*.py corpus per
+      research/register/REPRODUCIBILITY.md (run, diff, restore); book any non-reproducing
+      headline as a process note BEFORE anything else that year consumes those numbers
 - [ ] config/costs.yaml statutory rates: re-verify EVERY Union Budget (two hikes in 18 months precedent)
 - [ ] ADV table: still PROVISIONAL? (replace with live bhavcopy medians when vaulted; recompute capacity)
 - [ ] capacity_bounds recalibration if any book AUM moved ±50%; SAST mcap floor vs live mcap each rebalance

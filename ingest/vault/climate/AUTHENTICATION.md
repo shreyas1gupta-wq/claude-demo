@@ -76,3 +76,13 @@ never re-barred.
 grade). **AISMR: 5/5 PASS — ADMITTED** (weak chain, anchors carried it; IITM/IMD primaries
 stay owed). The 61-year statsmodels SST file remains vaulted for EN1's history; the ONI table
 supersedes it for episode work from 1950 on.
+
+### Verification note (2026-09-03) — the Niño-region [VERIFY] flag RESOLVED
+The header's "[VERIFY region definition — Niño 1+2 per docs]" is resolved BY COMPUTATION
+against the newly vaulted ONI table: the file's climatology has mean 23.09°C and a 5.66°C
+seasonal amplitude (Niño 3.4 sits ~26.5-28°C with ~1.5-2°C amplitude — excluded on level
+alone), and its monthly anomalies correlate 0.664 with ONI/Niño-3.4 anomalies over 732
+overlapping months — the documented cross-region relationship. **Region confirmed: Niño 1+2.**
+Consequence already correctly priced: EN1's episode chronology used this file only for
+event-year ranking (EA1b/EA1c anchors), which is region-robust; episode WORK from 1950 on
+now uses the ONI table (the 3.4-based operational standard), as the pass-2 note above says.

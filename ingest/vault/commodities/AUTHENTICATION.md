@@ -99,3 +99,9 @@ column is authenticated/consumable; coverage ends 2019-06 — every consumer sta
 **Känzig: 4/4 PASS — ADMITTED** (author-maintained repo, primary-grade; vintage 2025M12).
 The runsheet's Kilian/BH row is PARTIALLY MIRRORED: the Baumeister-Hamilton decomposition
 proper and post-2019 Kilian months remain principal-machine pulls.
+
+### Verification note (2026-09-03) — the metal-units [VERIFY] flag RESOLVED
+A5's "[VERIFY column units in provenance]" is resolved from the file's own committed
+provenance (metal_production_clio_usgs.provenance.json): "Both sources report primary
+production in thousand metric tonnes. Note: Gold production is measured in metric tons."
+— exactly the kt/t reading A5's pass used. No number changes.

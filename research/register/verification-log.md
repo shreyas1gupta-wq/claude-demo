@@ -532,3 +532,21 @@ and the first print carried a worse method than the repo already owned. Rule ext
 before writing estimation code inside a trial script, CHECK quant/stats/ — a trial must use
 Track-R machinery where it exists, and a gap found there is filed as Track-R work, not
 worked around inline.
+
+## 2026-09-03 — vault-flag resolutions (computation, not literature)
+- **climate Niño-region [VERIFY] RESOLVED**: the statsmodels SST file is **Niño 1+2** —
+  mean 23.09°C / seasonal amplitude 5.66°C (3.4 excluded on level alone) and anomaly corr
+  0.664 with the vaulted ONI (3.4) over 732 months. Consequence already priced: the file
+  served only region-robust event-year ranking; episode work post-1950 uses the ONI table.
+- **commodities metal-units [VERIFY] RESOLVED** from the committed provenance json: metals
+  in thousand tonnes, gold in tonnes — the exact reading A5's pass used. No number changes.
+
+## 2026-09-03 — process note #7 (from the first reproducibility audit)
+Analyze scripts that regenerate their RESULTS files truncate the hand-appended
+"Honest read" sections on re-run — the interpretation-after-the-print discipline lives in
+those appended sections, so a bare re-run destroys record content while reproducing the
+numbers. The audit (research/register/REPRODUCIBILITY.md) diffed all 19 affected files —
+every computed line reproduced byte-identically; only hand-appended text was lost — and
+restored them from HEAD. Rule: reproduction = run, diff, restore; the committed RESULTS
+file (prints + appended interpretation) is the record. Also recorded there: the
+analyze_value_panels sample-end recovery-print artifact (committed hand-correction stands).
