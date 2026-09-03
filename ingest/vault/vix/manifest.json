@@ -1,0 +1,12 @@
+{
+ "india_vix_daily_2010_2023.csv": {
+  "bytes": 132500,
+  "sha256": "6fefb9b110cd53836cb6d9b74a38d89b36819165c423b2c3050e8fdff538d103",
+  "vintage": "2026-09-03"
+ },
+ "india_vix_daily_2010_2023_raw.csv": {
+  "bytes": 383429,
+  "sha256": "02f34641dda52bec988c60ff728ed2e79c3253d2e48b2af73f27549de6d3f348",
+  "vintage": "2026-09-03"
+ }
+}

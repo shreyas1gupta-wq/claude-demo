@@ -978,3 +978,53 @@ purged) remains registered and is NOT discharged by this link check.
 | # | What | Result | Status |
 |---|---|---|---|
 | H53a | Energy-price change → INR depreciation (annual) | **FAIL — with an INVERTED sign**: Fuel/Energy rho = −0.518 (p one-sided 0.995), All-Commodity −0.635; effective window 1993-2016, n=24 (the PCPS columns' NaN head shrank the registered ~36 — recorded, bar unmoved). Dissection: commodity booms are GLOBAL RISK-ON years with EM inflows — INR APPRECIATES when commodities rise (2003-07) and weakens when they crash (2008/2013/2015); the common global factor owns both series, so the unconditional ToT channel is not identifiable and points the wrong way. CONSEQUENCE: H53's registered full test ('does the ToT state ADD TO L9') was the right formulation all along — the candidate can never be promoted on any unconditional print, and this fail is the evidence why. The naive 'oil up = INR down = India down' desk heuristic is hereby a measured casualty | fail, sign inverted; conditional-only framing locked |
+
+## Vault admission (2026-09-03) — India VIX daily 2010-2023, TradingView-export mirror
+Source: github.com/Gaurav7888/Predicting_Market_Volatility @ 1ee886e, "NSE_INDIAVIX, 1D.csv"
+(TradingView daily export). Two-pass AUTHENTICATION (ingest/vault/vix/): **6/6 anchors PASS**,
+including the exact published all-time closing high 83.6075 on 2020-03-24 and 0.728 monthly
+level correlation with the CBOE VIX vault; both Saturday budget sessions present. The weakest
+provenance chain admitted so far (NSE → TradingView → user export → GitHub) — admitted on
+anchors, with the NSE primary pull STILL REQUIRED on the runsheet (bhavcopy precedent).
+Coverage 2010-07-23..2023-04-05: no 2009 head, no post-Apr-2023 tail — every consumer below
+is a PARTIAL of its parent and quotes the parent verbatim (process note #5).
+
+## Entries CW-D1v / F5a (2026-09-03) — PRE-REGISTERED before any number is computed
+**CW-D1v — the VIX leg of CW-D1, partial (mirror coverage).** Parent design QUOTED VERBATIM
+from its 2026-09-02 registration: "CW-D1 (daily budget-window vol): India VIX daily (NSE,
+2009-) + NIFTY daily around budget days vs matched non-event days; bar: one-sided p < 0.05
+on budget-day ±1 |return| and VIX change (n≈18 budgets+interims). Pre-2001 5pm-presentation
+era excluded by design (event-day definition break)."
+Partial scope fixed now: VIX leg ONLY (the return leg already graded — CW-D1a, both prints
+booked). Event set = the canonical BUDGET_DAYS list (scripts/analyze_nifty_daily.py)
+intersected with the vault span = 15 events (2011-02-28 .. 2023-02-01, incl. interims
+2014-02-17 and 2019-02-01; DEVIATION from parent n≈18 stated: mirror coverage). Reading of
+"VIX change" fixed BEFORE the run: PRIMARY BAR = |Δlog VIX| on budget-day ±1 window days vs
+all other days, one-sided Mann-Whitney (elevated), p < 0.05. SECONDARY (descriptive, no
+bar): signed mean Δlog VIX split by day −1 / day 0 / day +1 — the uncertainty-resolution
+shape (run-up, then crush) is reported, never graded. Saturday budget sessions are present
+in the vault, so no event-day remapping is needed.
+
+**F5a — partial of F5 (daily closes only, mirror coverage).** Parent QUOTED VERBATIM from
+docs/cycles/02-fast-stress.md §"harvest": "F5 | India-VIX vs RV redundancy + VRP | IV rank
+vs RV rank correlation + incremental AUROC; IV−RV spread (variance-risk-premium proxy) as
+separate candidate | Redundant ⇒ RV stays primary (longer history); IV adds ⇒ confirm seat;
+VRP tested as its own pre-registration before any use."
+Partial scope fixed now: (i) RV = 21d realized vol of the NIFTY 50 index vault, expanding
+percentile (house construction, min_obs=252 — the DW1/F2a machinery); IV = expanding
+percentile of India VIX close (min_obs=252 ⇒ usable from ~2011-07). (ii) REDUNDANCY BAR:
+Spearman(IV pctile, RV pctile) ≥ 0.80 on days where both exist ⇒ REDUNDANT (RV stays
+primary, per parent rule). (iii) ADDS BAR: AUROC(IV pctile → §3 in-span episode days) ≥
+AUROC(RV pctile → same) + 0.03, evaluated ONLY on days where both legs exist; episode set =
+the frozen §3 in-span list intersected with the joint span (expected: EU-2011*, taper,
+China-deval, demonetization, Feb-2018, IL&FS, COVID, Russia-2022; *EU-2011 clipped by IV
+warm-up — days actually covered are printed, set frozen regardless). If NEITHER bar fires:
+"correlated but not additive" ⇒ RV stays primary. (iv) VRP proxy (IV² − 252·21d-RV², daily,
+annualized): DESCRIPTIVE PRINT ONLY — mean/quartiles/sign frequency; consumption requires
+its own future registration per the parent's decision rule. This partial CANNOT confirm the
+IV seat (parent requires the full series + M4); it can only kill redundancy or record adds.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CW-D1v | Budget-day ±1 \|Δlog VIX\| elevated vs other days | (registered, not yet run) | registered partial |
+| F5a | IV-vs-RV redundancy + incremental episode AUROC | (registered, not yet run) | registered partial |

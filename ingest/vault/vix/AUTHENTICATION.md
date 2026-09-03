@@ -46,3 +46,23 @@ sessions) is CHECKED and REPORTED in pass 2; if absent, the CW-D1v event day map
 next trading day — stated at that design's registration, before its run.
 
 <!-- PASS 2 IS APPENDED BELOW THIS LINE, AFTER COMMIT -->
+
+## Pass 2 — results (2026-09-03, script: scripts/extract_india_vix.py)
+Extraction: 3,142 rows, 2010-07-23 .. 2023-04-05, as specified.
+
+| # | Result | Verdict |
+|---|---|---|
+| A1 | 2020-03-24 close = **83.6075** = sample max (the published all-time closing high, matched to 4 decimals) | **PASS** |
+| A2 | 2015-08-24 close = 28.13 (bar [26, 30]) | **PASS** |
+| A3 | yearly rows 2011-2022 all ∈ [243, 252] | **PASS** |
+| A4 | closes ∈ [10.45, 83.61]; dates monotone; 0 duplicates | **PASS** |
+| A5 | Feb-2018 window max = 20.01 on 2018-02-06 (bar [17, 23]) | **PASS** |
+| A6 | monthly level corr with CBOE VIX vault = **0.728** over 154 months (bar ≥ 0.55) | **PASS** |
+
+**6/6 PASS — ADMITTED.** Saturday budget special sessions 2015-02-28 and 2020-02-01 both
+PRESENT (reported check). Sample min close 10.45 (within A4's structural band; no anchor
+claimed the exact low). The provenance chain remains the weakest admitted — the anchors,
+not the chain, carry this admission; the NSE primary pull stays on the runsheet.
+Coverage limits carried by every consumer: starts 2010-07-23 (misses the 2009 head), ends
+2023-04-05 (misses the 2024 election spike and everything after) — every design run on this
+vault is a PARTIAL of its parent and says so.
