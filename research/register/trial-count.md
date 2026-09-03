@@ -43,12 +43,13 @@ this census exists so that can never happen silently.
 | F3a (MM full-period + Cederburg OOS + capped net-of-cost) | 3 | 3 |
 | F4a (2 windows × redundancy+adds reads) | 4 | 4 |
 | F6a (18 grid cells, ledger reads) | 18 | 18 |
-| **RUNNING TOTAL (run cells)** | | **161** |
+| H58-D3a (full + 2 era reads) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **164** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
 CW-PT1 (3 Aprils) · CW2b · MR1 · CR-D1/D2/D3 · RT1/2 · FL1/2 · IS1/2 · CN-D1/2/3 · EN-D1 (EN-D2a's link-1 partial HAS run; the full annual re-print stands) ·
-OL-D1 full/OL-D2 (OL-D1a partial HAS run) · H58-D1/2/3 · RC1 · H59-D1 · PT-1/PT-2 gradings. Plus the frozen future sweeps the
+OL-D1 full/OL-D2 (OL-D1a partial HAS run) · H58-D1/2 + D3 close-auction leg (D3a index partial ran: null) · RC1 · H59-D1 · PT-1/PT-2 gradings. Plus the frozen future sweeps the
 registry names (hedge grid × buckets <=28 cells; block-weight sweep).
 
 ## Use

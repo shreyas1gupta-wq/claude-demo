@@ -690,3 +690,14 @@ Verdicts: 4.3/4.4/4.5 EXECUTION rules seated (ops pack, no alpha claim, tests en
 framing). 4.6 split: special-sits EDGE design registered (RC1, sleeve-side) + momentum
 exclusion adopted as hygiene. No seat, no budget, no new ladder row — the entry's product
 is that the fast layer stops lying to itself on sixteen known dates a year.
+
+---
+
+**Dated addendum (2026-09-03) — H58-D3a: the expiry day is an ordinary Thursday, at index
+resolution.** The design's index partial ran (224 monthly expiries vs 702 other Thursdays,
+weekday-matched because the weekly-expiry era makes Thursday itself special): median
+|close-to-close| 0.674% vs 0.574%, two-sided p=0.211, and weaker in both era splits. No
+measurable index-level expiry noise — which is the correct null for this block, whose rule
+was always mechanical prudence about single-stock CLOSE-AUCTION behavior (still
+bhavcopy-gated), never an index alpha claim. The exclusion stays; nothing about it is now
+owed an index justification.

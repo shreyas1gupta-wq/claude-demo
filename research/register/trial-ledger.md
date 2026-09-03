@@ -1231,4 +1231,4 @@ Thursdays (weekday-matched by construction — necessary because weekly Thursday
 
 | # | What | Result | Status |
 |---|---|---|---|
-| H58-D3a | Expiry-day |ret| vs other Thursdays | (registered, not yet run) | registered partial |
+| H58-D3a | Expiry-day |ret| vs other Thursdays | **No index-level expiry effect**: 224 monthly-expiry days median \|ret\| 0.674% vs 0.574% on 702 other Thursdays, two-sided p=0.211; weaker in both eras (pre-2019 p=0.345; weekly-era p=0.479). At close-to-close index resolution the expiry day is an ordinary Thursday. The exclusion calendar's expiry rule stays exactly what the parent said it was — mechanical prudence, no alpha claim, no measured index cost of ignoring it — and its true object (single-stock close-auction mechanics) remains bhavcopy-gated | **documented; null at index resolution** |
