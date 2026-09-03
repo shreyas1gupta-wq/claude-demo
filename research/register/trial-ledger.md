@@ -934,5 +934,5 @@ H66's fast-band leg (FAIL); these two close the file at this resolution.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| H67a | Dead-band grid flip counts | (pending) | pre-registered measurement |
-| H68a | Age effect at high state (prior: fails) | (pending) | pre-registered |
+| H67a | Dead-band grid flip counts | 7.4 / 6.9 / 6.0 flips-per-year across {0.15, 0.25, 0.35}; median runs 25-27bd — the display is stable at every grid point; 0.35 buys the longest runs (mean 38bd). Calibration recorded; display keeps the registered mid-point 0.25 (no reason to move) | measured, display calibrated |
+| H68a | Age effect at high state (prior: fails) | young (age<=21bd) median fwd63 +6.17% vs old +5.65% — diff 0.52pp, MW p=0.843: **NO age effect, prior lands.** With F7a (direction) and H68a (age) both failed at index resolution, THE PHASE FILE CLOSES: the LEVEL carries all measurable information; quadrant and age are captions for the reader, not inputs for a rule | fail-as-predicted; phase file closed |

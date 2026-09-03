@@ -52,7 +52,7 @@ state_phase_convention:         # principal directive 2026-09-01: states are tra
     tier: B
     confidence: medium
     decay: n/a
-    changes_if: "H66 (quadrant asymmetry) / H67 (dead-band grid) / H68 (age effect) results; any band where velocity estimation proves too noisy at its data frequency"
+    changes_if: "PHASE FILE CLOSED at index resolution 2026-09-02: F7a/H66 fast-band FAIL (direction, p=0.65), H68a FAIL (age, p=0.84), H67a display calibrated (dead-band 0.25 kept) — phase is display/trail machinery only; reopens only on a pre-registered pass at another band/resolution"
 
 
 entries:
