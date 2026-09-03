@@ -37,3 +37,45 @@ the check ran (two-pass rule):
 |---|---|---|---|
 | A6a | vs vaulted annual gold_silver_1915.csv: corr of Δlog annual means, 1915-2015 | ≥ 0.95 | corr = 0.963 (n=100) — **PASS** |
 | A6b | anchors: Jan-1980 monthly in [600,700] USD/oz; 2011 peak month in [1700,1900]; 1935-1967 fixed era ≈ 35 ±1 | all three | Jan-1980 = 675 PASS; 2011 peak = 1,772 PASS; fixed era **MISS as stated** — 72/396 months print 33.85 (1940-44) and 31.69 (1949), wartime/post-war market quotes my anchor failed to anticipate. The bar is NOT moved (M0 precedent): the miss is recorded, the file is accepted on A6a + the two passing anchors, and the 1940s window is flagged as a quote-basis change in any analysis touching it |
+
+---
+
+## 2026-09-03 additions — the Kilian index + the Känzig oil-supply-news shocks (two-pass)
+
+### Pass 1 — sources, extraction specs, and anchors (committed BEFORE any value check)
+
+**File 1: kilian_replication_raw.xlsx** — from github.com/mauep2025/Global-Oil-Market
+(third-party Kilian-2009 replication repo; sheet columns Data/RAC/WTI/Oil_Prod/Oil_Inv/
+Kilian_Index/Hamilton_Index, monthly 1973-01..2019-06, 558 rows). Provenance chain:
+Kilian/Dallas-Fed series → a replication author's workbook → GitHub — a WEAK chain (the
+TradingView class); the anchors below carry the admission. Extraction: Data + Kilian_Index
+only → kilian_index_monthly_1973_2019.csv; the price/production columns are NOT consumed
+and are NOT authenticated. Disclosure: rows 0-2 of the sheet were seen during format
+inspection (Kilian_Index −8.32, −3.54, +14.35) — early-1973 rows serve as no anchor.
+
+**File 2: oil_supply_news_2025M12_raw.xlsx** — from github.com/dkaenzig/oilsupplynews,
+THE AUTHOR'S OWN distribution repo for Känzig (2021 AER) oil-supply-news shocks, vintage
+2025M12; sheets Daily / Monthly (+pre-Covid variants); Monthly = 612 rows 1975M01..2025M12
+(surprise + VAR news shock). Provenance: effectively primary (author-maintained). Extraction:
+Monthly sheet → oil_supply_news_monthly_1975_2025.csv; Daily sheet → consumed only for the
+sign anchors below. Disclosure: sheet names, column names, row counts and END DATES were
+seen during format inspection; no shock VALUES were read.
+
+Anchors — bars stated BEFORE values are read (scale-free where the series' units are
+uncertain):
+
+| # | File | Anchor | Bar |
+|---|---|---|---|
+| K1 | Kilian | pre-GFC global boom = the sample's activity top | sample MAX month falls in 2007-01..2008-10 |
+| K2 | Kilian | GFC collapse | window 2008-10..2009-12 contains a bottom-decile value of the full sample |
+| K3 | Kilian | first-oil-shock recession | window 1974-01..1975-12 contains a bottom-quartile value |
+| K4 | Kilian | cross-vault co-movement | Spearman(Kilian_Index, PCPS All-Commodity YoY%) ≥ 0.25 monthly over the 1981-2017 overlap |
+| K5 | Kilian | structure | 558 contiguous months 1973-01..2019-06; both signs present; all |values| ≤ 300 |
+| Z1 | Känzig | 2014-11-27 OPEC "no cut" (price collapse) | daily surprise on that date NEGATIVE |
+| Z2 | Känzig | 2016-11-30 Vienna cut agreement (price jump) | daily surprise on that date POSITIVE |
+| Z3 | Känzig | 2020-03-06 OPEC+ collapse (price war) | daily surprise on that date NEGATIVE |
+| Z4 | Känzig | structure | Monthly sheet 612 rows 1975M01..2025M12; monthly news-shock |mean| < 0.5 × its std |
+
+Admission rule (stated now): each file admits on ITS OWN anchors (Kilian needs K1-K5
+majority with K1 mandatory; Känzig needs Z1-Z4 all, given its primary-grade chain);
+a miss is recorded, never re-barred.
