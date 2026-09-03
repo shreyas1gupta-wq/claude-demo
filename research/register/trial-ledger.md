@@ -1209,3 +1209,26 @@ trade-off has two ends).
 | # | What | Result | Status |
 |---|---|---|---|
 | F6a | 18-cell false-fire ledger | **The premium decomposed**: whipsaw TRANSACTION cost is 0.02-0.28%/yr across the entire grid at {8,16,28}bps — a rounding error against F2-WF's 2.5-4pp/yr drags, which are therefore ~pure EXPOSURE drag (time de-risked), not trading cost. Prior (i) CONFIRMED: false-fire share falls monotonically 58%→0% as trigger rises and confirm tightens. Prior (ii) CONFIRMED: the F2-index survivors (0.80/1-of-2 decay+calendar) pay the highest non-phaseD whipsaw (0.10%/yr at 28bps; the phaseD re-entry family re-fires pathologically — up to 1.0 fires/yr at 89% false — and was never a survivor). Prior (iii) MISSED as testable: only 2 deep episodes in-span and GFC is warm-up-untestable (the state is NaN through most of it — the F2a shadow), so the one testable deep episode is COVID and even the slowest cell (0.95/2-of-2) caught it; n=1, underpowered, recorded not moved. CONSEQUENCE for B3-1: the drag budget decision is really an EXPOSURE-drag budget — transaction cost needs no budget line at index-futures scale | **documented; 2 priors confirmed, 1 missed (n=1), the drag decomposition ships** |
+
+## Entry H58-D3a (2026-09-03) — PRE-REGISTERED before running: expiry-day noise, index partial
+Parent design QUOTED VERBATIM (ledger 2026-09-02): "H58-D3 (expiry-day noise):
+|close-to-close| and close-auction behavior on expiry days vs matched weekdays (bhavcopy).
+Expiry weekday is CONFIG, not constant — the 2024-25 SEBI curbs + exchange moves make
+hardcoding a bug (documented in the module)." The block's framing binds: "Pure ops (no alpha
+claim anywhere in this block)".
+Partial scope FIXED NOW (index vault; the close-auction leg needs bhavcopy and is NOT
+discharged): expiry day = the LAST trading Thursday of each calendar month, shifted to the
+immediately preceding trading day when that Thursday is a holiday (2007-2026; the monthly
+F&O expiry convention across this sample — the 2024-25 weekday moves affect WEEKLY expiries,
+noted, and the sample's monthly convention is checked against the holiday-shift rule, with
+the module's config-not-constant warning carried). MATCHED CONTROL: all OTHER trading
+Thursdays (weekday-matched by construction — necessary because weekly Thursday expiries from
+2019 make Thursday itself special).
+- Cell 1 (full sample): median |close-to-close| on monthly-expiry days vs other Thursdays;
+  two-sided Mann-Whitney p. DESCRIPTIVE — no bar, per the parent's no-alpha framing;
+  consumption is the exclusion calendar's mechanical-prudence rule, unchanged either way.
+- Cell 2 (era split, descriptive): pre-2019 vs 2019+ (the weekly-expiry era).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| H58-D3a | Expiry-day |ret| vs other Thursdays | (registered, not yet run) | registered partial |
