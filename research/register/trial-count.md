@@ -48,7 +48,8 @@ this census exists so that can never happen silently.
 | T-CTRL1 (10 MA rules) | 10 | 10 |
 | T3 (2 k-cells) + T4 (Sharpe + alpha reads) | 4 | 4 |
 | T2 (level + trend reads) | 2 | 2 |
-| **RUNNING TOTAL (run cells)** | | **185** |
+| T1b (4 conditionings) + T6-TOM (full + 2 eras + fingerprint) | 8 | 8 |
+| **RUNNING TOTAL (run cells)** | | **193** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

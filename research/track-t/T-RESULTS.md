@@ -57,3 +57,18 @@ n=142). The levels-not-directions doctrine, closed at index resolution for the f
 now also holds at the slow-macro band; the phase file's reopening clause does not activate.
 Track T's runnable backlog is now EMPTY: T5 (volume rules) and everything sharper waits on
 PIT data; H60/H61 wait on their pulls. Census: +2 → 185.
+
+## T1b / T6-TOM (2026-09-03, night). Script: scripts/analyze_t1b_t6.py
+**T1b — the overnight drift is a calm-days phenomenon, and stress is an INTRADAY event.**
+In-episode overnight: +9.2%/yr at t=+0.66 (the registered null); in-episode INTRADAY:
+−66.3%/yr at t=−3.3. The prior expected stress to land overnight (global news); it lands in
+the local session — a mechanism miss worth having on record. Ops guidance shipped: buy-at-
+close holds on calm days (T1's +24%/yr accrual); in stress there is no drift to protect, so
+de-risk fires may execute at the next open without measurable sacrifice.
+**T6-TOM — the premium is real; the SIP fingerprint is not.** Full-sample turn-of-month
+premium +7.2bp/day (p=0.025) — bar (i) pass. But across BR6 the premium SHRANK (+12.2 →
++3.8bp/d), the opposite of the SIP-amplification prediction — booked AGAINST H61's
+index-level motivation exactly as the registration promised. The aggregate-multiplier test
+(H61 proper, flows data) remains live and unbiased by this; the calendar shadow just isn't
+where the inelasticity shows.
+Census: +8 → 193.
