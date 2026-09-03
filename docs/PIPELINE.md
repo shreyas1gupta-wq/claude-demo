@@ -363,3 +363,14 @@ Q1: capture + adapters + as-of store for revision-prone series; harness runner/r
 | Vaults | ingest/vault/ (now 10) | + India VIX 2010-23, INR/USD, Kilian, Känzig, ONI 1950-2026, AISMR 1872-2016 — all two-pass, mirror frontier EXHAUSTED 2026-09-03 |
 | Future sweeps pre-registered | trial-ledger HG1 / BW1 | bars frozen years ahead of their data; risk.yaml/ladder.yaml forward references discharged |
 | Census | research/register/trial-count.md | 164 run cells; suite 121 green |
+
+## Track P kickoff (2026-09-03) — the ML pipeline's first committed machinery
+Per the reopened-generation directive, pipeline-v2's architecture began landing as tested
+code YEARS before its data: `quant/pipeline/labeling.py` (triple-barrier events +
+meta-labels — the design's chosen ML consumption: bet-sizing filters, never raw direction)
+and `quant/pipeline/vintage.py` (as-of-stamped series whose `asof(view_date)` accessor is
+the anti-lookahead primitive; `final()` is diagnostics-only by convention). Both
+planted-truth tested (tests/test_pipeline.py: deterministic barrier hits incl. the short
+side; revisions invisible before publication). Purged CV + the M4 walk-forward already
+exist in quant/stats and quant/validation. At bhavcopy landing, Phase-0 fixtures exercise
+this scaffold before any ML design registers.
