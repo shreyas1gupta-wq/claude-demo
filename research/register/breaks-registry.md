@@ -12,5 +12,7 @@ tuned, never moved. Append-only.
 | BR4 | **SEBI retail-derivatives curbs package** | 2024-11 → 2025-H1 (phased) | index-options microstructure: contract size ₹15-20L, weekly-expiry rationalization (one weekly expiry per exchange), upfront premium collection, expiry-day tail-margin | SEBI circulars Oct-2024 onward [press-sourced 2026-09-03 sweep; pin circular numbers at options-data landing]. EVERY derivatives-adjacent design (H60-VRP, FS-D1, F5 full, H58 family) must era-split pre/post FY25 |
 | BR5 | T+1 settlement completion (context) | 2023-01 | cash-equity settlement mechanics, funding legs | phased completion Jan-2023; relevant to H58-D1 funding windows and any cash-futures basis work |
 
+| BR6 | SIP-era onset (systematic monthly retail flows boom) | ~FY2015 (2015-04) | turn-of-month microstructure; flow-based designs (H61, T6-TOM) | AMFI SIP book ~Rs1.2k cr/mo (2014) to >Rs20k cr/mo (2025) [press-sourced 2026-09-03; pin AMFI series at pull] |
+
 Consumers to date: EN designs (BR2), H58-D3a (BR3), the H60/H61 candidates registered
-2026-09-03 (BR4). The annual loop checks this table for new breaks each September.
+2026-09-03 (BR4); T6-TOM (BR6). The annual loop checks this table for new breaks each September.

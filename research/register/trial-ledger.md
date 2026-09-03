@@ -1376,3 +1376,38 @@ the TREND of a slow macro state add to its LEVEL in predicting India equity?
 | # | What | Result | Status |
 |---|---|---|---|
 | T2 | Kilian trend incremental to level → NIFTY | **FAIL — the prior confirmed and the doctrine extends**: trend-sign beta +0.33%/mo at NW t=+0.48 (bar ≥2, nowhere near); the level itself also unconditional-inert here (t=−0.54, n=142 — consistent with L9's conditional-transfer framing). LEVELS-NOT-DIRECTIONS now has prints at BOTH bands (fast: F7a/H67a/H68a at index resolution; slow: T2 at monthly-macro) and the phase file's reopening clause does NOT activate. The trends-everywhere motif dies in our consumable form | **fail as registered; doctrine at both bands** |
+
+## Entries T1b / T6-TOM (2026-09-03, night) — PRE-REGISTERED before running
+**T1b — the overnight drift under stress (T1's conditional follow-on).** T1 printed the
+unconditional split; the ops question is whether the overnight accrual SURVIVES stress —
+it prices the desk's choice of execution time for de-risk fires (sell at next open vs wait
+for close).
+- Cells fixed: mean overnight and intraday returns (i) inside the frozen §3 episode windows
+  vs outside; (ii) on days where the prior day's rv_p ≥ 0.90 (the state the fires actually
+  see) vs below. NW t on the overnight mean within each condition.
+- BAR (one, pre-stated): overnight mean IN-EPISODE ≥ 0 with NW |t| < 2 counts as "drift
+  ABSENT in stress" (the null); overnight mean in-episode SIGNIFICANTLY NEGATIVE (t ≤ −2)
+  = "overnight is where stress lands" — either way the consumption is execution guidance,
+  no trade. PRIOR on record: in-episode overnight mean is NEGATIVE (global bad news lands
+  overnight in India), i.e., the unconditional +24%/yr drift is a CALM-days phenomenon.
+**T6-TOM — turn-of-month, era-split for the SIP age (the H61 fingerprint at index level).**
+The inelastic-markets candidate predicts systematic flow days move prices. India's most
+systematic flow is the monthly SIP cycle, which BOOMED from ~FY2015. Registered NOW as
+break **BR6 (SIP-era onset, FY2015)** in the breaks registry — source: AMFI SIP-book growth
+from ~₹1.2k cr/mo (2014) to >₹20k cr/mo (2025) [press-sourced; pin AMFI numbers at pull].
+- Design: ToM window = last trading day of month + first 4 of the next (the Lakonishok-Smidt
+  convention, fixed); mean daily return in-window vs out, full sample + era split at BR6
+  (2007-2015-03 vs 2015-04-2026). MW one-sided (in-window greater) p per era.
+- BARS: (i) ToM premium present full-sample (p < 0.05); (ii) the H61 FINGERPRINT = the
+  in-window minus out-of-window daily mean is LARGER post-BR6 than pre (direction only,
+  descriptive — n too small for a difference test to bind, stated). PRIOR on record: (i)
+  passes (ToM is the most robust calendar regularity known); (ii) the desk EXPECTS the
+  fingerprint (SIP flows are ToM-concentrated) — a reversed sign would count against H61's
+  index-level relevance and be recorded as such.
+- CONSUMPTION CAP: no trade from either print (calendar tilts live under L5's regime and
+  CW's cost discipline); T6 feeds H61's motivation and the deployment-timing playbook only.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| T1b | Overnight mean in/out of stress (2 conditionings) | (registered, not yet run) | registered |
+| T6-TOM | ToM premium + SIP-era fingerprint | (registered, not yet run) | registered |
