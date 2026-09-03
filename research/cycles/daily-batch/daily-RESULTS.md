@@ -160,3 +160,17 @@ DESIGN budget's program-average framing — recorded as a possible over-tighteni
 than relitigated, because the registered adjudicator for arming anything was always the
 FULL F2 (book-level costs, three legs, M4), which now inherits an empty index-level
 shortlist and the era-dependence finding. No bar moved; no cell rescued.
+
+---
+# Addendum 8 (2026-09-02, evening): H53a — the link that runs backwards
+The first measurable link of the H53 candidate (commodity prices → INR) FAILED with an
+inverted sign: annual energy-price changes correlate NEGATIVELY with INR depreciation
+(rho −0.52; all-commodity −0.64; 1993-2016, n=24 after the PCPS NaN head — recorded). The
+mechanism story ("India imports energy, so energy up weakens INR") is real micro but swamped
+by the macro: commodity booms ARE global risk-on episodes, and risk-on brings EM inflows
+that strengthen INR — 2003-07 oil tripled while INR appreciated; 2008, 2013 and 2015
+commodity crashes were INR's worst years. The global factor owns both series. Consequences:
+(i) H53 stays exactly as registered — the ToT state must prove it ADDS TO L9, conditionally,
+and can never be promoted on an unconditional print; (ii) a folk desk heuristic ("oil up =
+India down") is now a measured casualty at annual horizon; (iii) the fx vault (INR/USD
+1973-2026, 4/4 anchors) is admitted machinery for the conditional test when CAD lands.

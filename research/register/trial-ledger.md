@@ -977,4 +977,4 @@ purged) remains registered and is NOT discharged by this link check.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| H53a | Energy-price change → INR depreciation (annual) | (pending) | pre-registered |
+| H53a | Energy-price change → INR depreciation (annual) | **FAIL — with an INVERTED sign**: Fuel/Energy rho = −0.518 (p one-sided 0.995), All-Commodity −0.635; effective window 1993-2016, n=24 (the PCPS columns' NaN head shrank the registered ~36 — recorded, bar unmoved). Dissection: commodity booms are GLOBAL RISK-ON years with EM inflows — INR APPRECIATES when commodities rise (2003-07) and weakens when they crash (2008/2013/2015); the common global factor owns both series, so the unconditional ToT channel is not identifiable and points the wrong way. CONSEQUENCE: H53's registered full test ('does the ToT state ADD TO L9') was the right formulation all along — the candidate can never be promoted on any unconditional print, and this fail is the evidence why. The naive 'oil up = INR down = India down' desk heuristic is hereby a measured casualty | fail, sign inverted; conditional-only framing locked |
