@@ -1321,3 +1321,39 @@ discussion like every pass.
 |---|---|---|---|
 | T1 | Overnight/intraday decomposition + signature test | **PASS — and NOT attenuated (prior half-missed, recorded)**: overnight +24.0%/yr (NW t=+10.5) vs intraday −12.6%/yr (t=−2.9), gap t=+7.6; robust ex-COVID; STRONGER post-BR3 (+41.7%/yr gap). The entire Nifty premium accrues overnight. Consumption cap holds (no trade — STT); the print is EXECUTION-TIMING evidence: staged deployments default to buy-at-close. Full honest read: research/track-t/T-RESULTS.md | **pass; execution-timing consumption only** |
 | T-CTRL1 | BLL MA family, 10 rules, net + DSR | **0/10 survivors — the control group died on schedule**: best cells net Sharpe 0.56-0.58 vs buy-hold 0.55, ALL DSR < 0.95 at n_trials=174. Track T's bar is now calibrated by a printed graveyard, as the cycle program's was by ENSO | **prior confirmed (0 survivors)** |
+
+## Entries T3 / T4 (2026-09-03) — Track T backlog pair, PRE-REGISTERED before running
+**T3 — dual momentum, NIFTY vs INR-gold (the Antonacci rotation, India version).** Distinct
+from TS1 (which tested each asset's OWN trend); T3 tests RELATIVE momentum as a rotation.
+- Data fixed: NIFTY monthly (index vault closes); INR-gold = gold_monthly (USD) × the fx
+  vault's INR/USD (both authenticated); joint span 2007-10..2026-04 monthly.
+- Rule: at each month-end, hold the asset with the higher trailing-k total return; k ∈
+  {3, 12} — TS1's two winners (3m won on the index, 12m on gold; a relative rule must pick,
+  so both are cells and the TENSION is the point). Long-only, fully invested, switch cost
+  28 bps per full rotation (the grid convention; an ETF switch is cheaper — conservative).
+- BARS per k-cell: SURVIVES only if net Sharpe > BOTH single assets AND > the monthly-
+  rebalanced 50/50 static, AND DSR > 0.95 at n_trials = census_n() + 2. Max-DD vs 50/50
+  documented either way.
+- PRIOR on record: FAILS the Sharpe bar against the 50/50 static (the diversification
+  arithmetic the V-entries measured is hard to beat by timing) but IMPROVES maxDD — the
+  desk expects dual momentum here to be a DD tool wearing an alpha costume.
+**T4 — the India low-volatility quintile (survivor partial, one-way FAVORING the null).**
+- Data: survivor panel daily 2012-2021. Monthly rebalance: rank names with ≥252 trailing
+  daily obs by trailing-252d vol; LONG the bottom quintile equal-weight; UNIVERSE = equal-
+  weight all ranked names. 2012 warm-up; effective 2013-2021.
+- ONE-WAY DECLARED (the reverse of MR1-S's direction): the panel's dead names were
+  disproportionately HIGH-vol losers, so their absence flatters the high-vol side and biases
+  AGAINST the low-vol premium — a PASS here is decisive-leaning; a FAIL is inconclusive
+  (PIT still owed either way).
+- BARS: low-vol quintile Sharpe > universe Sharpe AND monthly CAPM alpha vs universe with
+  NW t ≥ 2 (both, jointly, = the anomaly present); DSR context at census_n() + 2.
+- PRIOR on record: PRESENT (the defensive anomaly is the most replicated cross-sectional
+  regularity after momentum, and the one-way bias runs against it here) — but consumption
+  even on a pass is CANDIDATE-for-the-factor-library only (a low-vol SLEEVE needs PIT + the
+  full cost stack + a McLean-Pontiff haircut conversation).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| T3-k3 | Dual momentum k=3 vs singles + 50/50 | (registered, not yet run) | registered |
+| T3-k12 | Dual momentum k=12 vs singles + 50/50 | (registered, not yet run) | registered |
+| T4 | Low-vol quintile vs universe (one-way) | (registered, not yet run) | registered |
