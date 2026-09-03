@@ -1549,3 +1549,19 @@ REALIZED links. **Awaits India data [C]:** H55's sector test (runsheet). **Unkno
 given year's monsoon from the ENSO state alone — the chain has two more links and the desk
 reads them in order. **Process:** the control-group entry did exactly what it was designed
 for — calibrating every other funeral in the sweep.
+
+---
+
+**Dated addendum (2026-09-03) — EN-D2a: the first link, finally computed.** Two mirrors
+landed (ONI 1950-2026, 5/5 anchors; the IITM-shape all-India monsoon series 1872-2016, 5/5
+anchors — ingest/vault/climate/), and the base-rate exhibit's [VERIFY] flag — three
+irreconcilable countings, 44-71% — resolved into one reconciled number computed under a
+pre-registered definition pair: **P(deficient monsoon | El Niño year) = 56.2% (9/16),
+against a 14% base rate — lift 4.1x** (verification bar [45,70]% PASS). The surprise is the
+era split: the meteorological link is STRONGEST in the modern era (1991-2016: 67% vs 5%,
+lift 13.3x) — so the falling drought-severity this entry documented lives downstream, in the
+Green-Revolution and policy buffers of links 2-3, not in the sky. The chain conditioner
+reads REALIZED links in order, exactly as designed; H55 remains Tier-C candidate pending
+EN-D1 (sector returns + food-CPI, purged, era-split — still data-gated). The 2023-24 El
+Niño's monsoon is outside this vault's coverage: the annual EN-D2 re-print picks it up when
+the IMD primary lands.

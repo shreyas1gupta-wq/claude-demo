@@ -539,7 +539,19 @@ magnitude without agreeing on a single number — itself the honest finding:
 India-specific indicator, and this Part's own EN1-onset-year cross-reference respectively) and are
 not directly reconciled — the honest range this record can defend is roughly 45-70%, not a single
 point estimate]`. **The first-link base rate (El Niño → Indian drought) is real, well above a coin
-flip, and nowhere near deterministic** — consistent with EN1's own finding that even ENSO's
+flip, and nowhere near deterministic**
+
+> **UPDATE (2026-09-03) — the [VERIFY] flag above is RESOLVED by a computed, reconciled
+> counting (EN-D2a, pre-registered; scripts/analyze_en_d2a.py).** On the two-pass-
+> authenticated ONI (1950-2026) and AISMR (1872-2016) vaults, with ONE fixed definition
+> pair (El Niño year = mean monsoon-season ONI ≥ +0.5; deficient = JJAS < 90% of LPA):
+> **16 El Niño years, 9 deficient → 56.2%**, inside this record's defended 45-70% range
+> (verification bar PASS); non-El-Niño base rate 14%, lift 4.1x. The three original
+> countings stay visible above as the honest history. The era split SHARPENS this record's
+> own story: link 1 (El Niño → deficiency) is strongest in the MODERN era (1991-2016: 67%
+> vs 5%, lift 13.3x) — the non-stationarity this Part documents is in links 2-3 (the
+> Green-Revolution and policy buffers), not in the meteorology. 1997's great save confirmed;
+> 2014 printed deficient but sub-threshold on the primary El Niño definition (borderline). — consistent with EN1's own finding that even ENSO's
 *periodicity* clears no bar with certainty, only a strong prior. The chain's remaining links show a
 similar pattern of "real but not mechanical":
 
