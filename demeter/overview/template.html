@@ -1,0 +1,548 @@
+<title>Demeter Dual-Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F5F7FB; --surface:#FFFFFF; --band:#EDF0F7; --line:#DEE3EE; --line-2:#C9D0DF;
+  --ink:#131A2B; --ink-2:#4A5470; --ink-3:#7A849E; --navy:#14213D; --navy-ink:#F4F6FB;
+  --strategy:#2748C6; --strategy-soft:rgba(39,72,198,.14); --spy:#B7861B; --spy-soft:rgba(183,134,27,.16);
+  --pos:#1E8E63; --neg:#D8432E; --pos-soft:rgba(30,142,99,.12); --neg-soft:rgba(216,67,46,.12); --cash:#8A93AB;
+  --shade:rgba(20,33,61,.045); --tip-bg:#14213D; --tip-ink:#F4F6FB; --focus:#2748C6;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif; --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1424; --surface:#161E33; --band:#1B2540; --line:#2A3450; --line-2:#3A4562;
+    --ink:#E9EDF6; --ink-2:#B3BBD0; --ink-3:#8791AA; --navy:#0B1020; --navy-ink:#E9EDF6;
+    --strategy:__STRAT_DARK__; --strategy-soft:rgba(102,132,245,.22); --spy:__SPY_DARK__; --spy-soft:rgba(214,168,63,.22);
+    --pos:#2FAA7A; --neg:#E9604B; --pos-soft:rgba(61,187,138,.16); --neg-soft:rgba(240,107,87,.16); --cash:#7C86A0;
+    --shade:rgba(233,237,246,.05); --tip-bg:#E9EDF6; --tip-ink:#0E1424; --focus:#8FA6FF;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1424; --surface:#161E33; --band:#1B2540; --line:#2A3450; --line-2:#3A4562;
+  --ink:#E9EDF6; --ink-2:#B3BBD0; --ink-3:#8791AA; --navy:#0B1020; --navy-ink:#E9EDF6;
+  --strategy:__STRAT_DARK__; --strategy-soft:rgba(102,132,245,.22); --spy:__SPY_DARK__; --spy-soft:rgba(214,168,63,.22);
+  --pos:#2FAA7A; --neg:#E9604B; --pos-soft:rgba(61,187,138,.16); --neg-soft:rgba(240,107,87,.16); --cash:#7C86A0;
+  --shade:rgba(233,237,246,.05); --tip-bg:#E9EDF6; --tip-ink:#0E1424; --focus:#8FA6FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--strategy)} a:focus-visible,button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05}
+h2{font-size:clamp(24px,3vw,32px);line-height:1.15}
+h3{font-size:20px;line-height:1.25}
+p{margin:0 0 .8em;max-width:68ch}
+.eyebrow{font:600 11.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.muted{color:var(--ink-2)} .faint{color:var(--ink-3)}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,3vw,36px)}
+/* nav */
+.top{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--navy-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:50px;overflow-x:auto;scrollbar-width:none}
+.top .wrap::-webkit-scrollbar{display:none}
+.brand{font-family:var(--serif);font-size:19px;white-space:nowrap;color:var(--navy-ink);text-decoration:none}
+.brand i{font-style:italic;color:#D9B25C}
+.top nav{display:flex;gap:16px;margin-left:auto}
+.top nav a{color:var(--navy-ink);opacity:.78;text-decoration:none;font-size:13px;white-space:nowrap}
+.top nav a:hover{opacity:1}
+/* header */
+header.hero{padding:44px 0 26px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero .lede{font-size:17px;color:var(--ink-2);margin-top:14px;max-width:62ch}
+.meta-list{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px;margin:0}
+.meta-list dt{color:var(--ink-3)} .meta-list dd{margin:0;color:var(--ink)}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:26px 0 0}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 14px 12px;min-width:0}
+.kpi .eyebrow{margin-bottom:8px}
+.kpi .v{font-family:var(--serif);font-size:34px;line-height:1;letter-spacing:-.01em}
+.kpi .s{margin-top:8px;font-size:12.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.kpi .s b{color:var(--spy);font-weight:600}
+/* sections */
+section{padding:40px 0 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;margin-bottom:18px}
+.sec-head p{margin:6px 0 0;color:var(--ink-2)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px 14px;min-width:0}
+.card h3{margin-bottom:4px}
+.card .sub{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:4px 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:14px;height:3px;border-radius:2px;background:var(--ink-3)}
+.sw.strat{background:var(--strategy)} .sw.spy{background:var(--spy)} .sw.box{height:12px;width:12px;border-radius:2px}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{font-family:var(--sans);font-size:11.5px;fill:var(--ink-3)}
+.chart .tick{fill:var(--ink-3)} .chart .endlabel{font-size:11.5px;font-weight:600}
+.chart .endlabel.strat{fill:var(--strategy)} .chart .endlabel.spy{fill:var(--spy)}
+.chart .grid{stroke:var(--line);stroke-width:1} .chart .zero{stroke:var(--line-2);stroke-width:1.2}
+.chart .line{stroke-width:2;stroke-linejoin:round;stroke-linecap:round} .chart .line.strat{stroke:var(--strategy)} .chart .line.spy{stroke:var(--spy)}
+.chart .area.strat{fill:var(--strategy);opacity:.16} .chart .area.spy{fill:var(--spy);opacity:.18}
+.chart .dot.strat{fill:var(--strategy);stroke:var(--surface);stroke-width:2} .chart .dot.spy{fill:var(--spy);stroke:var(--surface);stroke-width:2}
+.chart .crosshair{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3}
+.chart .shade{fill:var(--shade)} .chart .shade-label{font-size:11px;fill:var(--ink-3);font-weight:600;letter-spacing:.04em}
+.chart .bar.strat{fill:var(--strategy)} .chart .bar.spy{fill:var(--spy)} .chart .bar:hover{opacity:.85}
+.chart .barlabel{font-size:10.5px;fill:var(--ink-2)}
+.chart .ref{stroke:var(--ink-3);stroke-dasharray:4 4;stroke-width:1}
+.chart .fit{stroke:var(--strategy);stroke-width:1.6}
+.chart .pt{fill:var(--strategy);stroke:var(--surface);stroke-width:1.2;opacity:.9} .chart .pt.hollow{fill:var(--surface);stroke:var(--strategy);stroke-width:1.8;opacity:1}
+.chart .pt:hover{r:7}
+.chart .quad-pos{fill:var(--pos);opacity:.06} .chart .quad-neg{fill:var(--neg);opacity:.06}
+.chart .annot{font-size:11px;fill:var(--ink-2)}
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink-2);background:var(--band);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td.lbl,th.lbl{text-align:left;color:var(--ink);font-weight:500}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--band)}
+.tbl-compact th,.tbl-compact td{padding:5px 8px;font-size:12.5px}
+.spy-row td{color:var(--spy);font-style:italic}
+.stat-tbl th,.stat-tbl td{padding:5px 6px;font-size:12px}
+.stat-tbl th.group{text-align:center;border-left:1px solid var(--line-2)} .stat-tbl td.gl,.stat-tbl th.gl{border-left:1px solid var(--line-2)}
+.stat-tbl td.strat,td.strat{font-weight:600} th.group{text-align:center} .stat-tbl td.stated{color:var(--ink-3)}
+.ok{color:var(--pos);font-size:11px;margin-left:4px} .warn{color:var(--spy);font-size:11px;margin-left:4px}
+.heat td{padding:6px 6px;text-align:center;font-size:12.2px;min-width:52px;border-bottom:1px solid var(--line)}
+.heat td.y{font-weight:600;text-align:left} .heat td.ytd{font-weight:600;border-left:1px solid var(--line-2)}
+.heat th{text-align:center} .heat th:first-child{text-align:left}
+.toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.toggle button{background:var(--surface);color:var(--ink-2);border:0;padding:6px 12px;font:500 12.5px var(--sans);cursor:pointer}
+.toggle button+button{border-left:1px solid var(--line-2)}
+.toggle button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink)}
+/* quadrants */
+.quads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.quads{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.quad{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;border-top:4px solid var(--cash)}
+.quad.gain{border-top-color:var(--pos)} .quad.loss{border-top-color:var(--neg)}
+.quad .v{font-family:var(--serif);font-size:32px;line-height:1} .quad .p{font-size:13px;color:var(--ink-2);margin-top:4px}
+.quad .bar{height:6px;background:var(--band);border-radius:3px;margin-top:10px;overflow:hidden} .quad .bar i{display:block;height:100%;background:var(--ink-3)}
+.quad.gain .bar i{background:var(--pos)} .quad.loss .bar i{background:var(--neg)}
+.quad .d{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+/* engine diagram */
+.engine{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+@media (max-width:760px){.engine{grid-template-columns:1fr}}
+.eng{border:1px solid var(--line);border-radius:6px;padding:16px 18px;background:var(--surface)}
+.eng.one{border-top:4px solid var(--strategy)} .eng.two{border-top:4px solid var(--cash)}
+.eng h3{margin-bottom:6px} .eng ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
+.signal{align-self:center;text-align:center;padding:14px 16px;border:1px dashed var(--line-2);border-radius:6px;font-size:13px;color:var(--ink-2);max-width:220px}
+.signal b{display:block;font-family:var(--serif);font-size:20px;color:var(--ink);font-weight:400}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 22px;margin:0;font-size:13.5px}
+.facts dt{color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.06em} .facts dd{margin:0 0 4px}
+.phen td{white-space:normal;vertical-align:top;text-align:left;font-size:13px;line-height:1.45;min-width:180px}
+.phen th{text-align:left}
+.takeaways{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
+@media (max-width:900px){.takeaways{grid-template-columns:1fr}}
+.takeaways li{padding:10px 0 10px 14px;border-left:3px solid var(--strategy);font-size:14.5px;color:var(--ink-2)}
+.takeaways li b{color:var(--ink);font-weight:600}
+.capture{display:grid;grid-template-columns:150px 1fr 64px;gap:8px 12px;align-items:center;font-size:13px}
+.capture .lab{color:var(--ink-2)} .capture .track{position:relative;height:10px;background:var(--band);border-radius:5px}
+.capture .track i{position:absolute;left:0;top:0;height:100%;border-radius:5px} .capture .track em{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--ink-3)}
+.capture .val{text-align:right;font-weight:600}
+.capture .up i{background:var(--strategy)} .capture .down i{background:var(--neg)}
+.note{font-size:13px;color:var(--ink-2);background:var(--band);border-left:3px solid var(--spy);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+.defs{columns:2;column-gap:28px;font-size:13px} @media (max-width:800px){.defs{columns:1}}
+.defs dt{font-weight:600;break-after:avoid} .defs dd{margin:0 0 8px;color:var(--ink-2)}
+footer{padding:30px 0 50px;color:var(--ink-3);font-size:12.5px}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);padding:8px 10px;border-radius:6px;font-size:12.5px;line-height:1.4;box-shadow:0 6px 24px rgba(0,0,0,.18);display:none;max-width:260px}
+#tip .tip-h{font-weight:600;margin-bottom:4px;opacity:.85} #tip .tip-r{display:flex;align-items:center;gap:6px;justify-content:space-between}
+#tip .tip-r b{margin-left:12px;font-family:var(--mono);font-weight:500} #tip .sw{width:10px;height:3px}
+</style>
+
+<div class="top"><div class="wrap">
+  <a class="brand" href="#top">Demeter <i>Dual-Engine</i></a>
+  <nav aria-label="Sections">
+    <a href="#strategy">Strategy</a><a href="#growth">Growth</a><a href="#years">Years</a><a href="#monthly">Monthly</a><a href="#stats">Statistics</a><a href="#downside">Downside</a><a href="#rolling">Rolling</a><a href="#distribution">Distribution</a><a href="#quadrants">Quadrants</a><a href="#method">Method</a>
+  </nav>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Strategy overview · Share Class B · data through June 2026</div>
+      <h1 style="margin-top:10px">Demeter Dual-Engine Quantitative Equity Strategy</h1>
+      <p class="lede">A daily, rules-based switch between levered long S&amp;P 500 / NASDAQ futures and cash, live since July 2012. This overview rebuilds every published figure from the monthly record and adds the analytics an allocator needs: growth, drawdowns, calendar years, rolling windows, capture ratios and the four-quadrant daily framework.</p>
+    </div>
+    <dl class="meta-list">
+      <dt>Manager</dt><dd>Demeter Tactical Investments · Jeffrey A. Sexton, Founder &amp; CIO</dd>
+      <dt>Live record</dt><dd id="m-live"></dd>
+      <dt>Instruments</dt><dd>S&amp;P 500 and/or NASDAQ futures at 2:1–3:1 (Engine One) · T-bills (Engine Two)</dd>
+      <dt>Rebalance</dt><dd>Daily at 3:59 PM New York time</dd>
+      <dt>Benchmark</dt><dd>SPY (SPDR S&amp;P 500 ETF Trust, total return)</dd>
+      <dt>Prepared by</dt><dd>Ionic Wealth research, from Demeter's published factsheet tables</dd>
+    </dl>
+  </div>
+  <div class="kpis" id="kpis"></div>
+</div></header>
+
+<main>
+<section id="strategy"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What it is</div><h2>Two engines, one signal</h2><p>The architecture is deliberately simple; the work is in the signal that decides, every afternoon, which engine runs tomorrow.</p></div></div>
+  <div class="engine">
+    <div class="eng one"><div class="eyebrow">Engine One</div><h3>Levered long index futures</h3>
+      <ul><li>S&amp;P 500 and/or NASDAQ futures at a fixed multiplier</li><li>Variable leverage 2:1 to 3:1 when conviction is high; unlevered or reduced exposure when volatility is elevated but not bearish</li><li>Active in low-volatility, positive-momentum regimes</li></ul></div>
+    <div class="signal"><b>Daily signal</b>3:59 PM NY · rules-based, no discretion · detects the transition between calm bull regimes and high-volatility bear or crash regimes<br><span class="faint">cash on roughly half of trading days</span></div>
+    <div class="eng two"><div class="eyebrow">Engine Two</div><h3>Fully liquid cash</h3>
+      <ul><li>Zero equity exposure, earning the risk-free rate</li><li>Active when the model detects bearish conditions, heightened stress or adverse events that raise downside risk</li><li>Avoids buying equities at panic-level volatility premiums</li></ul></div>
+  </div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Key takeaways from the record</h3><p class="sub">Every number below is recomputed from the 168 published monthly returns.</p><ul class="takeaways" id="takeaways"></ul></div>
+    <div class="card"><h3>About the firm</h3>
+      <p>Demeter Tactical Investments is a quantitative investment firm building systematic, research-driven strategies designed to navigate changing market environments, combining academic financial research, data-driven analysis and disciplined risk management for sophisticated investors.</p>
+      <p>Founder and CIO Jeffrey A. Sexton studied under Nobel laureate Eugene Fama at the University of Chicago. The investment framework is built around well-documented academic phenomena, emphasising rigorous research, systematic decision-making and long-term capital growth with a strong focus on risk management.</p>
+      <dl class="facts" style="margin-top:8px">
+        <dt>Signal live since</dt><dd>July 2012, governing real capital in a real account</dd>
+        <dt>Family-office period</dt><dd>Jul 2012 – Jul 2023</dd>
+        <dt>Commingled fund</dt><dd>Aug 2023 – present (Share Class B shown)</dd>
+        <dt>Cash management</dt><dd>~50% of trading days</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Five academic phenomena the signal exploits</h3><p class="sub">As described by the manager. The source lists the fifth row under the heading "Volatility Clustering"; its content is the variance risk premium, so it is labelled accordingly here.</p>
+    <div class="tbl-wrap"><table class="phen"><thead><tr><th>Phenomenon</th><th>Academic finding</th><th>How Demeter exploits it</th></tr></thead><tbody>
+      <tr><td class="lbl">Volatility clustering</td><td>High-volatility periods cluster together; calm regimes also persist. A single large daily move predicts elevated volatility in subsequent sessions.</td><td>The signal detects volatility-regime transitions in real time. When high-vol clustering begins, the engine shifts to cash, systematically avoiding the avalanche of losses that follow the first large negative shock.</td></tr>
+      <tr><td class="lbl">Leverage effect</td><td>Equity price declines mechanically raise financial leverage, amplifying future volatility asymmetrically: volatility rises faster on down-moves than it falls on up-moves.</td><td>By the time the leverage effect amplifies volatility the engine is typically already in cash. The levered long position is active only when leverage-effect risk is subdued, capturing upside while sidestepping down-move amplification.<sup title="Source text truncated; opening clause reconstructed">†</sup></td></tr>
+      <tr><td class="lbl">Mean reversion</td><td>Over intermediate horizons asset prices exhibit negative serial autocorrelation; overshooting is eventually corrected and the market reverts toward fundamental value.</td><td>The signal captures oversold conditions preceding mean-reversion rallies, re-entering levered positions at depressed prices. This buy-low dynamic systematically harvests the recovery premium.</td></tr>
+      <tr><td class="lbl">Regime switching</td><td>Equity markets alternate between distinct statistical regimes (low-vol bull; high-vol bear; crash) with very different return and correlation properties.</td><td>The dual-engine architecture is explicitly a regime-switching system: Engine One (levered SPX/NQ) in the low-vol, positive-momentum regime; Engine Two (cash) in the high-vol, negative-momentum regime.</td></tr>
+      <tr><td class="lbl">Variance risk premium</td><td>Implied volatility systematically exceeds realised volatility; the spread compensates option sellers for bearing variance risk and expands dramatically in high-fear periods.</td><td>By sidestepping the market during fear spikes, the engine avoids purchasing equities at panic-level volatility premiums and re-enters only when those premiums have dissipated.</td></tr>
+    </tbody></table></div>
+    <p class="faint" style="font-size:12px;margin:8px 0 0">† The manager's text for this cell begins mid-sentence ("…already in cash"); the opening clause is a reconstruction and should be confirmed with the manager.</p>
+  </div>
+</div></section>
+
+<section id="growth"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Compounding</div><h2>Growth of $1,000 and drawdowns</h2><p>Log scale, so equal vertical distances are equal percentage moves. Shaded band marks the family-office period; the unshaded tail is the commingled fund.</p></div><div class="legend"><span><i class="sw strat"></i>Strategy</span><span><i class="sw spy"></i>SPY</span></div></div>
+  <div class="card"><h3 id="growth-title"></h3><p class="sub">Jul 2012 = $1,000. Hover for values.</p><div id="c-growth"></div></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Drawdown from prior peak</h3><p class="sub">Monthly data; the strategy's deepest drawdown is shallower than half of SPY's.</p><div id="c-dd"></div></div>
+    <div class="card"><h3>Largest drawdown episodes</h3><p class="sub">Peak-to-trough on month-end values.</p><div class="tbl-wrap" id="t-dd"></div></div>
+  </div>
+</div></section>
+
+<section id="years"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Calendar years</div><h2>Year-by-year returns</h2><p>2012 covers Jul–Dec and 2026 covers Jan–Jun. Bars are labelled for the strategy; SPY values are in the table and on hover.</p></div><div class="legend"><span><i class="sw strat"></i>Strategy</span><span><i class="sw spy"></i>SPY</span></div></div>
+  <div class="card"><div id="c-years"></div></div>
+  <div class="tbl-wrap" style="margin-top:18px" id="t-years"></div>
+</div></section>
+
+<section id="monthly"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Monthly record</div><h2>Month-by-month returns</h2><p>The published table, colour-coded. Switch between the strategy, SPY and the monthly excess of the strategy over SPY.</p></div>
+    <div class="toggle" role="group" aria-label="Heatmap series"><button aria-pressed="true" data-k="strategy">Strategy</button><button aria-pressed="false" data-k="spy">SPY</button><button aria-pressed="false" data-k="excess">Excess vs SPY</button></div></div>
+  <div class="tbl-wrap heat" id="t-heat"></div>
+  <p class="faint" style="font-size:12.5px;margin-top:8px">Colour saturates at ±10% (excess view ±15%). Jul 2023 closes the family-office period; Aug 2023 opens the commingled fund (2023 Aug–Dec: <span id="ps-c"></span>; Jan–Jul: <span id="ps-f"></span>).</p>
+</div></section>
+
+<section id="stats"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Risk and return</div><h2>Statistics by window</h2><p>Recomputed from the monthly record with Demeter's stated conventions (Sharpe on monthly excess over 3-month T-bills, annualised as mean × 12 over st.dev × √12). A tick marks agreement with the published factsheet within tolerance; the S&amp;P 500 price-only column is quoted from the factsheet because no monthly price-index series was supplied.</p></div></div>
+  <div class="tbl-wrap stat-tbl" id="t-stats"></div>
+  <p class="faint" id="recon-note" style="font-size:12.5px;margin-top:8px"></p>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Family-office vs commingled-fund periods</h3><p class="sub">Same conventions; the fund period is short (35 months) so treat its ratios with care.</p><div class="tbl-wrap" id="t-periods"></div></div>
+    <div class="card"><h3>Up- and down-market capture</h3><p class="sub">Strategy return in SPY-up months relative to SPY, and likewise in SPY-down months. The vertical mark is 100%.</p><div class="capture" id="capture"></div></div>
+  </div>
+</div></section>
+
+<section id="downside"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Behaviour when it matters</div><h2>Down markets and the monthly scatter</h2><p>Each point is one month. Points above the dashed 45° line are months the strategy beat SPY; the solid line is the fitted relationship (beta).</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Strategy vs SPY, monthly</h3><p class="sub" id="scatter-sub"></p><div id="c-scatter"></div><div class="legend"><span><i class="sw box" style="background:var(--strategy)"></i>Family-office period</span><span><i class="sw box" style="background:transparent;border:2px solid var(--strategy)"></i>Commingled fund</span></div></div>
+    <div class="card"><h3>SPY's ten worst months</h3><p class="sub" id="worst-sub"></p><div class="tbl-wrap" id="t-spyworst"></div>
+      <h3 style="margin-top:18px">Strategy's ten worst months</h3><p class="sub">Leverage cuts both ways: the deepest strategy losses came while invested.</p><div class="tbl-wrap" id="t-stratworst"></div></div>
+  </div>
+  <div class="grid3" style="margin-top:22px" id="updown"></div>
+</div></section>
+
+<section id="rolling"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Consistency</div><h2>Rolling windows</h2><p>Trailing 12-month returns, and 36-month beta, correlation and Sharpe ratio versus SPY. Rolling beta near 0.5 with a Sharpe well above SPY's is the signature of a strategy that is in cash for much of the time yet levered when invested.</p></div><div class="legend"><span><i class="sw strat"></i>Strategy</span><span><i class="sw spy"></i>SPY</span></div></div>
+  <div class="card"><h3>Rolling 12-month return</h3><p class="sub" id="r12-sub"></p><div id="c-r12"></div></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Rolling 36-month Sharpe ratio</h3><p class="sub">Monthly excess over T-bills, annualised.</p><div id="c-r36s"></div></div>
+    <div class="card"><h3>Rolling 36-month beta and correlation to SPY</h3><p class="sub">Beta (solid) and correlation (dashed) of the strategy.</p><div id="c-r36b"></div></div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:18px" id="t-rollstats"></div>
+</div></section>
+
+<section id="distribution"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Shape of returns</div><h2>Distribution of monthly returns</h2><p>A fat right tail (the +55% of March 2020) and a left tail that is not fatter than SPY's, despite leverage.</p></div><div class="legend"><span><i class="sw strat"></i>Strategy</span><span><i class="sw spy"></i>SPY</span></div></div>
+  <div class="card"><h3>Months per return bucket</h3><p class="sub" id="dist-sub"></p><div id="c-hist"></div></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Strategy's ten best months</h3><p class="sub">The 2020 recovery dominates.</p><div class="tbl-wrap" id="t-stratbest"></div></div>
+    <div class="card"><h3>Streaks and averages</h3><p class="sub">Consecutive months and average month by sign.</p><div class="tbl-wrap" id="t-streaks"></div></div>
+  </div>
+</div></section>
+
+<section id="quadrants"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Daily framework</div><h2>The four quadrants</h2><p>Demeter classifies every trading day by whether the strategy was invested and whether the market rose. Positive days are a minority; the record is built on avoiding losses and amplifying the days that are caught.</p></div></div>
+  <div class="quads" id="quads"></div>
+  <div class="note" id="quad-note"></div>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Method and data</div><h2>How these figures were produced</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Source and reconciliation</h3>
+      <p>Monthly returns for the strategy and SPY were transcribed from Demeter's factsheet tables (family-office period Jul 2012 – Jul 2023; commingled fund Aug 2023 – Jun 2026, Share Class B). Compounding the transcribed months reproduces every published year-to-date and period figure within 0.02 percentage points, and the since-inception growth of $1,000 to within $2 of the published $44,217.</p>
+      <p id="recon-detail"></p>
+      <p id="tb3-note"></p>
+    </div>
+    <div class="card"><h3>Definitions used</h3><dl class="defs" id="defs"></dl></div>
+  </div>
+  <div class="card" style="margin-top:22px" id="model-card"><h3>Companion research: can the engine be reverse-engineered?</h3><p id="model-text">A separate research note tests a panel of rules-based dual-engine models on S&amp;P 500 and NASDAQ data (1885–2026) against this record, out of sample, including lower-turnover variants.</p><p id="model-link"></p></div>
+</div></section>
+</main>
+<footer><div class="wrap">Prepared by Ionic Wealth research from Demeter Tactical Investments' published monthly returns and statistics (Share Class B, as of June 2026). SPY = SPDR S&amp;P 500 ETF Trust total return. Past performance is not indicative of future results; leverage magnifies losses as well as gains. Figures recomputed independently; see the Method section for conventions and tolerances.</div></footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = __ANALYTICS_JSON__;
+const S = __STATED_JSON__;
+const MODEL_URL = __MODEL_URL__;
+const $ = (s, r=document) => r.querySelector(s);
+const NS='http://www.w3.org/2000/svg';
+const fmt = {
+  pct:(v,d=2,sign=false)=> v==null||!isFinite(v)?'—':((sign&&v>0?'+':'')+v.toFixed(d)+'%'),
+  num:(v,d=2)=> v==null||!isFinite(v)?'—':v.toFixed(d),
+  int:v=> v==null?'—':Math.round(v).toLocaleString('en-US'),
+  money:v=> v==null?'—':'$'+Math.round(v).toLocaleString('en-US'),
+  mon:(m)=>{ if(!m) return '—'; const [y,mm]=m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mm-1]+' '+y; }
+};
+const cls=v=> v==null?'':(v>0?'pos':v<0?'neg':'');
+function el(tag, attrs={}, parent){ const e=document.createElementNS(NS, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(parent) parent.appendChild(e); return e; }
+function h(tag, attrs={}, html){ const e=document.createElement(tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(html!=null) e.innerHTML=html; return e; }
+function niceTicks(a,b,n=5){ const span=b-a||1; const step0=span/n; const mag=Math.pow(10,Math.floor(Math.log10(step0))); const norm=step0/mag; const step=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag; const t=[]; for(let v=Math.ceil(a/step)*step; v<=b+1e-9; v+=step) t.push(+v.toFixed(10)); return t; }
+const tip=$('#tip');
+function showTip(ev, html){ tip.innerHTML=html; tip.style.display='block'; const w=tip.offsetWidth, hh=tip.offsetHeight; let x=ev.clientX+14, y=ev.clientY+14; if(x+w>window.innerWidth-8) x=ev.clientX-w-14; if(y+hh>window.innerHeight-8) y=ev.clientY-hh-14; tip.style.left=x+'px'; tip.style.top=y+'px'; }
+function hideTip(){ tip.style.display='none'; }
+
+/* ---------- line / area chart ---------- */
+function lineChart(node, cfg){
+  const W=cfg.width||960, H=cfg.height||300, m={t:16,r:cfg.rightPad==null?(W<700?84:92):cfg.rightPad,b:30,l:cfg.leftPad||56};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b, n=cfg.x.length;
+  const xs=i=> m.l + (n>1? i/(n-1)*iw : 0);
+  const vals=[]; cfg.series.forEach(s=> s.values.forEach(v=>{ if(v!=null&&isFinite(v)) vals.push(v);}));
+  let y0,y1;
+  if(cfg.yDomain){ [y0,y1]=cfg.yDomain; } else { y0=Math.min(...vals); y1=Math.max(...vals); if(cfg.includeZero){y0=Math.min(0,y0);y1=Math.max(0,y1);} if(cfg.yType!=='log'){ const pad=(y1-y0)*0.07; y0-=pad; y1+=pad; } else { y0*=0.85; y1*=1.15; } }
+  let ys, ticks;
+  if(cfg.yType==='log'){ const l0=Math.log10(y0), l1=Math.log10(y1); ys=v=> m.t+ih-(Math.log10(v)-l0)/(l1-l0)*ih; ticks=[]; for(let e=Math.floor(l0); e<=Math.ceil(l1); e++) for(const k of [1,2,5]){ const v=k*Math.pow(10,e); if(v>=y0&&v<=y1) ticks.push(v);} }
+  else { ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih; ticks=niceTicks(y0,y1,cfg.nTicks||5); }
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  if(cfg.shade) cfg.shade.forEach(s=>{ el('rect',{x:xs(s.from),y:m.t,width:xs(s.to)-xs(s.from),height:ih,class:'shade'},svg); if(s.label){ const t=el('text',{x:xs(s.from)+8,y:m.t+14,class:'shade-label'},svg); t.textContent=s.label; } });
+  ticks.forEach(t=>{ const y=ys(t); el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'grid'},svg); const tx=el('text',{x:m.l-8,y:y+4,class:'tick','text-anchor':'end'},svg); tx.textContent=cfg.yFmt?cfg.yFmt(t):t; });
+  if(cfg.yType!=='log' && y0<0 && y1>0) el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  (cfg.refLines||[]).forEach(r=>{ if(r.y>=y0&&r.y<=y1){ el('line',{x1:m.l,x2:m.l+iw,y1:ys(r.y),y2:ys(r.y),class:'ref'},svg); const t=el('text',{x:m.l+iw-4,y:ys(r.y)-5,class:'annot','text-anchor':'end'},svg); t.textContent=r.label; } });
+  const xt = cfg.xTicks || cfg.x.map((lab,i)=> lab.endsWith('-01')?i:null).filter(i=>i!=null);
+  xt.forEach(i=>{ el('line',{x1:xs(i),x2:xs(i),y1:m.t+ih,y2:m.t+ih+4,class:'grid'},svg); const tx=el('text',{x:xs(i),y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=cfg.xFmt?cfg.xFmt(cfg.x[i]):cfg.x[i].slice(0,4); });
+  cfg.series.forEach(s=>{
+    let d='', pen=false, first=null, last=null;
+    s.values.forEach((v,i)=>{ if(v==null||!isFinite(v)){pen=false;return;} d+=(pen?'L':'M')+xs(i).toFixed(1)+' '+ys(v).toFixed(1); pen=true; if(first==null) first=i; last=i; });
+    if(s.area && first!=null){ let a='M'+xs(first).toFixed(1)+' '+ys(0).toFixed(1); s.values.forEach((v,i)=>{ if(v==null) return; a+='L'+xs(i).toFixed(1)+' '+ys(v).toFixed(1); }); a+='L'+xs(last).toFixed(1)+' '+ys(0).toFixed(1)+'Z'; el('path',{d:a,class:'area '+s.cls},svg); }
+    const p=el('path',{d,class:'line '+s.cls,fill:'none'},svg); if(s.dash) p.setAttribute('stroke-dasharray','5 4');
+    if(cfg.endLabels!==false && last!=null){ const t=el('text',{x:m.l+iw+8,y:ys(s.values[last])+4,class:'endlabel '+s.cls},svg); t.textContent=(s.short||s.name)+' '+(cfg.yFmt?cfg.yFmt(s.values[last]):s.values[last]); }
+  });
+  if(cfg.endLabels!==false){ // de-collide end labels
+    const labs=[...svg.querySelectorAll('.endlabel')].sort((a,b)=>+a.getAttribute('y')-+b.getAttribute('y')); for(let i=1;i<labs.length;i++){ const prev=+labs[i-1].getAttribute('y'), cur=+labs[i].getAttribute('y'); if(cur-prev<13) labs[i].setAttribute('y',prev+13); } }
+  const hl=el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,class:'crosshair',style:'display:none'},svg);
+  const dots=cfg.series.map(s=> el('circle',{r:4,class:'dot '+s.cls,style:'display:none'},svg));
+  const overlay=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent'},svg);
+  overlay.addEventListener('mousemove',ev=>{ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W; const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/iw*(n-1)))); hl.setAttribute('x1',xs(i)); hl.setAttribute('x2',xs(i)); hl.style.display='';
+    let rows=`<div class="tip-h">${cfg.xTip?cfg.xTip(cfg.x[i]):fmt.mon(cfg.x[i])}</div>`;
+    cfg.series.forEach((s,k)=>{ const v=s.values[i]; if(v==null){dots[k].style.display='none';} else {dots[k].setAttribute('cx',xs(i)); dots[k].setAttribute('cy',ys(v)); dots[k].style.display='';} rows+=`<div class="tip-r"><span><i class="sw ${s.cls}"></i> ${s.name}</span><b>${v==null?'—':(cfg.tipFmt||cfg.yFmt||(x=>x))(v)}</b></div>`; });
+    (cfg.extraTip||[]).forEach(e=>{ rows+=`<div class="tip-r"><span>${e.name}</span><b>${e.fmt(e.values[i])}</b></div>`; });
+    showTip(ev, rows); });
+  overlay.addEventListener('mouseleave',()=>{hl.style.display='none';dots.forEach(d=>d.style.display='none');hideTip();});
+}
+
+/* ---------- grouped bar chart ---------- */
+function barChart(node, cfg){
+  const W=cfg.width||960, H=cfg.height||300, m={t:20,r:16,b:30,l:52};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b, n=cfg.cats.length;
+  const vals=[]; cfg.series.forEach(s=> s.values.forEach(v=>{ if(v!=null) vals.push(v);}));
+  let y0=Math.min(0,...vals), y1=Math.max(0,...vals); const pad=(y1-y0)*0.1; y0-= (y0<0?pad:0); y1+=pad;
+  const ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  niceTicks(y0,y1,5).forEach(t=>{ const y=ys(t); el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'grid'},svg); const tx=el('text',{x:m.l-8,y:y+4,class:'tick','text-anchor':'end'},svg); tx.textContent=cfg.yFmt?cfg.yFmt(t):t; });
+  el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  const gw=iw/n, k=cfg.series.length, bw=Math.min(28, gw*0.72/k), gap=2;
+  cfg.cats.forEach((c,i)=>{ const cx=m.l+gw*i+gw/2; const tx=el('text',{x:cx,y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=c;
+    cfg.series.forEach((s,j)=>{ const v=s.values[i]; if(v==null) return; const x=cx-(k*bw+(k-1)*gap)/2+j*(bw+gap); const y=Math.min(ys(v),ys(0)); const hgt=Math.max(1,Math.abs(ys(v)-ys(0)));
+      const r=el('rect',{x,y,width:bw,height:hgt,rx:2,class:'bar '+s.cls},svg);
+      r.addEventListener('mousemove',ev=>{ let rows=`<div class="tip-h">${cfg.catTip?cfg.catTip(c,i):c}</div>`; cfg.series.forEach(ss=>{ rows+=`<div class="tip-r"><span><i class="sw ${ss.cls}"></i> ${ss.name}</span><b>${cfg.yFmt(ss.values[i])}</b></div>`; }); (cfg.extraTip||[]).forEach(e=>{ rows+=`<div class="tip-r"><span>${e.name}</span><b>${e.fmt(e.values[i])}</b></div>`; }); showTip(ev,rows); });
+      r.addEventListener('mouseleave',hideTip);
+      if(s.label){ const t=el('text',{x:x+bw/2,y: v>=0? y-4 : y+hgt+11, class:'barlabel','text-anchor':'middle'},svg); t.textContent=cfg.labelFmt?cfg.labelFmt(v):v; }
+    });
+  });
+}
+
+/* ---------- scatter ---------- */
+function scatter(node, pts, cfg){
+  const W=cfg.width||960, H=cfg.height||440, m={t:16,r:20,b:34,l:54};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const xv=pts.map(p=>p.spy), yv=pts.map(p=>p.strategy);
+  const x0=Math.floor(Math.min(...xv)/5)*5-1, x1=Math.ceil(Math.max(...xv)/5)*5+1, y0=Math.floor(Math.min(...yv)/5)*5-2, y1=Math.ceil(Math.max(...yv)/5)*5+2;
+  const xs=v=> m.l+(v-x0)/(x1-x0)*iw, ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':'Monthly strategy return versus SPY return'},node);
+  el('rect',{x:xs(x0),y:ys(y1),width:xs(0)-xs(x0),height:ys(0)-ys(y1),class:'quad-pos'},svg);
+  el('rect',{x:xs(x0),y:ys(0),width:xs(0)-xs(x0),height:ys(y0)-ys(0),class:'quad-neg'},svg);
+  niceTicks(y0,y1,6).forEach(t=>{ el('line',{x1:m.l,x2:m.l+iw,y1:ys(t),y2:ys(t),class:'grid'},svg); const tx=el('text',{x:m.l-8,y:ys(t)+4,class:'tick','text-anchor':'end'},svg); tx.textContent=fmt.pct(t,0); });
+  niceTicks(x0,x1,6).forEach(t=>{ el('line',{x1:xs(t),x2:xs(t),y1:m.t,y2:m.t+ih,class:'grid'},svg); const tx=el('text',{x:xs(t),y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=fmt.pct(t,0); });
+  el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg); el('line',{x1:xs(0),x2:xs(0),y1:m.t,y2:m.t+ih,class:'zero'},svg);
+  const lo=Math.max(x0,y0), hi=Math.min(x1,y1); el('line',{x1:xs(lo),y1:ys(lo),x2:xs(hi),y2:ys(hi),class:'ref'},svg);
+  const nn=pts.length, mx=xv.reduce((a,b)=>a+b,0)/nn, my=yv.reduce((a,b)=>a+b,0)/nn; let sxy=0,sxx=0; for(let i=0;i<nn;i++){sxy+=(xv[i]-mx)*(yv[i]-my); sxx+=(xv[i]-mx)**2;} const beta=sxy/sxx, alpha=my-beta*mx;
+  el('line',{x1:xs(x0),y1:ys(alpha+beta*x0),x2:xs(x1),y2:ys(alpha+beta*x1),class:'fit'},svg);
+  const a1=el('text',{x:xs(x1)-6,y:ys(alpha+beta*x1)-8,class:'annot','text-anchor':'end'},svg); a1.textContent=`fit: β = ${beta.toFixed(2)}, α = ${fmt.pct(alpha,2,true)} / month`;
+  const a2=el('text',{x:xs(x0)+8,y:ys(y1)+14,class:'annot'},svg); a2.textContent='SPY down, strategy up';
+  const a3=el('text',{x:xs(x0)+8,y:ys(y0)-8,class:'annot'},svg); a3.textContent='SPY down, strategy down';
+  const a4=el('text',{x:m.l+iw-6,y:m.t+ih-8,class:'annot','text-anchor':'end'},svg); a4.textContent='SPY monthly return →';
+  pts.forEach(p=>{ const c=el('circle',{cx:xs(p.spy),cy:ys(p.strategy),r:4.5,class:'pt'+(p.period==='commingled_fund'?' hollow':'')},svg);
+    c.addEventListener('mousemove',ev=> showTip(ev,`<div class="tip-h">${fmt.mon(p.month)}</div><div class="tip-r"><span>Strategy</span><b>${fmt.pct(p.strategy,2,true)}</b></div><div class="tip-r"><span>SPY</span><b>${fmt.pct(p.spy,2,true)}</b></div><div class="tip-r"><span>Excess</span><b>${fmt.pct(p.strategy-p.spy,2,true)}</b></div>`)); c.addEventListener('mouseleave',hideTip); });
+  return {beta, alpha};
+}
+
+/* ---------- helpers for tables ---------- */
+function table(cols, rows, opts={}){ const t=h('table',{class:opts.cls||''}); const thead=h('thead'); const tr=h('tr'); cols.forEach(c=> tr.appendChild(h('th',{class:c.cls||''},c.label))); thead.appendChild(tr); t.appendChild(thead); const tb=h('tbody'); rows.forEach(r=>{ const trr=h('tr',{class:r._cls||''}); cols.forEach(c=>{ const v=r[c.key]; const td=h('td',{class:(c.cls||'')+' '+(c.color?cls(v):'')}, c.fmt?c.fmt(v,r):v); trr.appendChild(td); }); tb.appendChild(trr); }); t.appendChild(tb); return t; }
+
+/* ============================== render ============================== */
+const SI=D.windows.since_inception, ss=SI.strategy, sp=SI.spy, ser=D.series, N=ser.months.length;
+$('#m-live').textContent=`${fmt.mon(D.meta.inception)} – ${fmt.mon(D.meta.as_of)} · ${D.meta.n_months} months`;
+$('#growth-title').textContent=`$1,000 became ${fmt.money(ss.growth_of_1000)} in the strategy and ${fmt.money(sp.growth_of_1000)} in SPY`;
+
+/* KPIs */
+const kpis=[
+  {l:'Annualised return',v:fmt.pct(ss.annualized_return_pct,2),s:`SPY <b>${fmt.pct(sp.annualized_return_pct,2)}</b>`},
+  {l:'Growth of $1,000',v:fmt.money(ss.growth_of_1000),s:`SPY <b>${fmt.money(sp.growth_of_1000)}</b>`},
+  {l:'Maximum drawdown',v:fmt.pct(ss.max_drawdown_pct,2),s:`SPY <b>${fmt.pct(sp.max_drawdown_pct,2)}</b>`},
+  {l:'Sharpe ratio',v:fmt.num(ss.sharpe,2),s:`SPY <b>${fmt.num(sp.sharpe,2)}</b>`},
+  {l:'Down capture',v:fmt.pct(ss.down_capture_pct,0),s:`up capture <b>${fmt.pct(ss.up_capture_pct,0)}</b>`},
+  {l:'Beta to SPY',v:fmt.num(ss.beta_to_spy,2),s:`correlation <b>${fmt.num(ss.correlation_to_spy,2)}</b>`},
+];
+$('#kpis').append(...kpis.map(k=> h('div',{class:'kpi'},`<div class="eyebrow">${k.l}</div><div class="v">${k.v}</div><div class="s"><span>Since Jul 2012</span><span>${k.s}</span></div>`)));
+
+/* takeaways */
+const ud=D.up_down_analysis, cy=D.calendar_years;
+const fullYears=cy.filter(y=>!y.partial);
+const beatYears=fullYears.filter(y=>y.excess_pct>0).length, negSpyYears=fullYears.filter(y=>y.spy_pct<0), posInNeg=negSpyYears.filter(y=>y.strategy_pct>0).length;
+const ddS=D.drawdowns.strategy[0], ddP=D.drawdowns.spy[0];
+const tk=[
+  `<b>${fmt.pct(ss.annualized_return_pct,1)} a year vs ${fmt.pct(sp.annualized_return_pct,1)} for SPY</b> over ${D.meta.n_months} months, turning $1,000 into ${fmt.money(ss.growth_of_1000)} against ${fmt.money(sp.growth_of_1000)}.`,
+  `<b>Worst drawdown ${fmt.pct(ss.max_drawdown_pct,2)}</b> (${fmt.mon(ddS.peak)} to ${fmt.mon(ddS.trough)}, recovered ${fmt.mon(ddS.recovery)}) versus ${fmt.pct(sp.max_drawdown_pct,2)} for SPY (${fmt.mon(ddP.peak)} to ${fmt.mon(ddP.trough)}).`,
+  `<b>Positive in ${posInNeg} of SPY's ${negSpyYears.length} negative calendar years</b> (${negSpyYears.map(y=>y.year+': '+fmt.pct(y.strategy_pct,1,true)+' vs '+fmt.pct(y.spy_pct,1,true)).join('; ')}); beat SPY in ${beatYears} of ${fullYears.length} full years.`,
+  `<b>Down-capture ${fmt.pct(ss.down_capture_pct,0)}, up-capture ${fmt.pct(ss.up_capture_pct,0)}.</b> In SPY's ${ud.n_spy_down_months} down months the strategy averaged ${fmt.pct(ud.strategy_avg_in_spy_down_pct,2,true)} against SPY's ${fmt.pct(ud.spy_avg_in_down_pct,2,true)}, and was itself positive in ${fmt.pct(ud.strategy_positive_when_spy_down_pct,0)} of them.`,
+  `<b>Beta ${fmt.num(ss.beta_to_spy,2)}, correlation ${fmt.num(ss.correlation_to_spy,2)}</b>: roughly half the market's sensitivity on average, consistent with being in cash about half the time and levered when invested.`,
+  `<b>Sharpe ${fmt.num(ss.sharpe,2)} vs ${fmt.num(sp.sharpe,2)}</b> and Sortino ${fmt.num(ss.sortino,2)} vs ${fmt.num(sp.sortino,2)}, despite annualised volatility of ${fmt.num(ss.annualized_std_dev,3)} against SPY's ${fmt.num(sp.annualized_std_dev,3)}.`,
+];
+$('#takeaways').append(...tk.map(t=>h('li',{},t)));
+
+/* growth + drawdown */
+const foEnd=ser.period.lastIndexOf('family_office');
+const janTicks=ser.months.map((m,i)=> m.endsWith('-01')&&(+m.slice(0,4))%2===0?i:null).filter(i=>i!=null);
+lineChart($('#c-growth'),{x:ser.months,height:360,yType:'log',yFmt:v=>fmt.money(v),xTicks:janTicks,aria:'Growth of 1000 dollars, strategy versus SPY, log scale',
+  series:[{name:'Strategy',short:'Strategy',values:ser.growth_strategy,cls:'strat'},{name:'SPY',short:'SPY',values:ser.growth_spy,cls:'spy'}],
+  shade:[{from:0,to:foEnd,label:'FAMILY-OFFICE PERIOD'}], extraTip:[{name:'Strategy month',values:ser.strategy,fmt:v=>fmt.pct(v,2,true)},{name:'SPY month',values:ser.spy,fmt:v=>fmt.pct(v,2,true)}]});
+lineChart($('#c-dd'),{x:ser.months,width:600,height:330,yFmt:v=>fmt.pct(v,0),includeZero:true,xTicks:janTicks,aria:'Drawdown from peak, strategy versus SPY',
+  series:[{name:'SPY',short:'SPY',values:ser.dd_spy,cls:'spy',area:true},{name:'Strategy',short:'Strategy',values:ser.dd_strategy,cls:'strat',area:true}]});
+const ddRows=[...D.drawdowns.strategy.slice(0,4).map(d=>({...d,_s:'Strategy'})),...D.drawdowns.spy.slice(0,4).map(d=>({...d,_s:'SPY',_cls:'spy-row'}))];
+$('#t-dd').appendChild(table([{key:'_s',label:'Series',cls:'lbl'},{key:'depth_pct',label:'Depth',fmt:v=>fmt.pct(v,2),color:true},{key:'peak',label:'Peak',fmt:fmt.mon},{key:'trough',label:'Trough',fmt:fmt.mon},{key:'length_months',label:'To trough (mo)'},{key:'recovery',label:'Recovered',fmt:v=>v?fmt.mon(v):'not yet'},{key:'recovery_months',label:'Recovery (mo)',fmt:v=>v==null?'—':v}],ddRows,{cls:'tbl-compact'}));
+
+/* years */
+barChart($('#c-years'),{cats:cy.map(y=>String(y.year)+(y.partial?'*':'')),height:320,yFmt:v=>fmt.pct(v,0),labelFmt:v=>fmt.pct(v,1),aria:'Calendar-year returns, strategy versus SPY',
+  series:[{name:'Strategy',values:cy.map(y=>y.strategy_pct),cls:'strat',label:true},{name:'SPY',values:cy.map(y=>y.spy_pct),cls:'spy'}],
+  catTip:(c,i)=> cy[i].year+(cy[i].partial?` (${cy[i].n_months} months)`:''), extraTip:[{name:'Excess',values:cy.map(y=>y.excess_pct),fmt:v=>fmt.pct(v,2,true)}]});
+$('#t-years').appendChild(table([{key:'year',label:'Year',cls:'lbl',fmt:(v,r)=>v+(r.partial?` <span class="faint">(${r.n_months} mo)</span>`:'')},{key:'strategy_pct',label:'Strategy',fmt:v=>fmt.pct(v,2,true),color:true},{key:'spy_pct',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'excess_pct',label:'Excess',fmt:v=>fmt.pct(v,2,true),color:true},{key:'strategy_best_month_pct',label:'Best month',fmt:v=>fmt.pct(v,2,true)},{key:'strategy_worst_month_pct',label:'Worst month',fmt:v=>fmt.pct(v,2,true)},{key:'strategy_pos_months',label:'Positive months',fmt:(v,r)=>`${v} / ${r.n_months}`},{key:'spy_pos_months',label:'SPY positive',fmt:(v,r)=>`${v} / ${r.n_months}`},{key:'months_strategy_beat_spy',label:'Beat SPY (months)',fmt:(v,r)=>`${v} / ${r.n_months}`}],cy,{cls:'tbl-compact'}));
+
+/* heatmap */
+function mix(c1,c2,t){ const p=c=>[parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)]; const a=p(c1),b=p(c2); return `rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')})`; }
+function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function heatColor(v,lim){ if(v==null) return {bg:'transparent',fg:'var(--ink-3)'}; const t=Math.max(-1,Math.min(1,v/lim)); const surf=cssVar('--surface')||'#ffffff'; const pos=cssVar('--pos'), neg=cssVar('--neg'); const toHex=c=>{ if(c.startsWith('#')) return c; const m=c.match(/\d+/g); return '#'+m.slice(0,3).map(x=>(+x).toString(16).padStart(2,'0')).join(''); }; const target=t>=0?toHex(pos):toHex(neg); const bg=mix(toHex(surf),target,Math.abs(t)*0.85); return {bg, fg: Math.abs(t)>0.62?'#fff':'var(--ink)'}; }
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function renderHeat(kind){
+  const lim= kind==='excess'?15:10; const wrap=$('#t-heat'); wrap.innerHTML='';
+  const t=h('table'); t.appendChild(h('thead',{},'<tr><th>Year</th>'+MON.map(m=>`<th>${m}</th>`).join('')+'<th>Year</th></tr>'));
+  const tb=h('tbody');
+  D.monthly_table.forEach(r=>{ const tr=h('tr'); tr.appendChild(h('td',{class:'y'},String(r.year)));
+    for(let i=0;i<12;i++){ const s=r.strategy[i], p=r.spy[i]; const v= kind==='strategy'?s: kind==='spy'?p: (s==null||p==null?null:+(s-p).toFixed(2)); const c=heatColor(v,lim); const td=h('td',{style:`background:${c.bg};color:${c.fg}`}, v==null?'':fmt.pct(v,2)); if(v!=null){ td.addEventListener('mousemove',ev=>showTip(ev,`<div class="tip-h">${MON[i]} ${r.year}</div><div class="tip-r"><span>Strategy</span><b>${fmt.pct(s,2,true)}</b></div><div class="tip-r"><span>SPY</span><b>${fmt.pct(p,2,true)}</b></div><div class="tip-r"><span>Excess</span><b>${fmt.pct(s-p,2,true)}</b></div>`)); td.addEventListener('mouseleave',hideTip);} tr.appendChild(td); }
+    const ytd= kind==='strategy'?r.strategy_ytd_pct: kind==='spy'?r.spy_ytd_pct: +(r.strategy_ytd_pct-r.spy_ytd_pct).toFixed(2); tr.appendChild(h('td',{class:'ytd '+cls(ytd)},fmt.pct(ytd,2)));
+    tb.appendChild(tr); });
+  t.appendChild(tb); wrap.appendChild(t);
+}
+renderHeat('strategy');
+document.querySelectorAll('.toggle button').forEach(b=> b.addEventListener('click',()=>{ document.querySelectorAll('.toggle button').forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true'); renderHeat(b.dataset.k); }));
+const psF=D.period_split.family_office, psC=D.period_split.commingled_fund;
+$('#ps-f').textContent=`strategy ${fmt.pct(psF.strategy_2023_jan_jul_pct,2,true)}, SPY ${fmt.pct(psF.spy_2023_jan_jul_pct,2,true)}`;
+$('#ps-c').textContent=`strategy ${fmt.pct(psC.strategy_2023_aug_dec_pct,2,true)}, SPY ${fmt.pct(psC.spy_2023_aug_dec_pct,2,true)}`;
+
+/* statistics table */
+const recon={}; (D.reconciliation||[]).forEach(r=>{ recon[`${r.window}|${r.series}|${r.metric}`]=r; });
+const METRICS=[['total_growth_pct','Total growth',v=>fmt.pct(v,2)],['annualized_return_pct','Annualised return',v=>fmt.pct(v,2)],['annualized_std_dev','Annualised std. dev.',v=>fmt.num(v,3)],['max_drawdown_pct','Maximum drawdown',v=>fmt.pct(v,2)],['pct_positive_months','% positive months',v=>fmt.pct(v,1)],['sharpe','Sharpe ratio',v=>fmt.num(v,3)],['sortino','Sortino ratio',v=>fmt.num(v,3)],['calmar','Calmar ratio',v=>fmt.num(v,3)],['correlation_to_spy','Correlation to SPY',v=>fmt.num(v,3)],['beta_to_spy','Beta to SPY',v=>fmt.num(v,3)],['alpha_ann_jensen_pct','Alpha (annualised, Jensen)',v=>fmt.pct(v,2)],['up_capture_pct','Up capture vs SPY',v=>fmt.pct(v,1)],['down_capture_pct','Down capture vs SPY',v=>fmt.pct(v,1)],['growth_of_1000','Growth of $1,000',v=>fmt.money(v)]];
+const WINS=[['since_inception','Since inception'],['rolling_120m','Rolling 120 months'],['rolling_60m','Rolling 60 months'],['rolling_12m','Rolling 12 months']];
+(function(){ const t=h('table'); let head=`<tr><th rowspan="2" class="lbl">Statistic</th>`; WINS.forEach(([k,l])=>{ const w=D.windows[k]; head+=`<th colspan="3" class="group">${l}<div class="faint" style="font-weight:400">${fmt.mon(w.start)} – ${fmt.mon(w.end)}</div></th>`; }); head+='</tr><tr>'; WINS.forEach(()=>{ head+='<th class="gl">Strategy</th><th>SPY</th><th title="S&amp;P 500 price-only index, as published">S&amp;P&nbsp;px*</th>'; }); head+='</tr>'; t.appendChild(h('thead',{},head));
+  const tb=h('tbody'); METRICS.forEach(([k,l,f])=>{ const tr=h('tr'); tr.appendChild(h('td',{class:'lbl'},l)); WINS.forEach(([w])=>{ const win=D.windows[w]; const vs=win.strategy[k], vp=win.spy[k]; const stated=win.sp500_price_stated?win.sp500_price_stated[k]:null; const rs=recon[`${w}|strategy|${k}`], rp=recon[`${w}|spy|${k}`]; const mark=r=> r? (r.ok?`<span class="ok" title="matches factsheet ${r.stated}">✓</span>`:`<span class="warn" title="factsheet ${r.stated}; ${r.note||''}">≈</span>`):''; tr.appendChild(h('td',{class:'gl strat'},f(vs)+mark(rs))); tr.appendChild(h('td',{},f(vp)+mark(rp))); tr.appendChild(h('td',{class:'stated'}, stated==null?'—':f(stated))); }); tb.appendChild(tr); }); t.appendChild(tb); $('#t-stats').appendChild(t);
+  const rsum=D.reconciliation_summary||{}; $('#recon-note').innerHTML=`* S&amp;P px = S&amp;P 500 price-only index, values as published (not recomputed). Reconciliation: <b>${rsum.n_ok} of ${rsum.n_checks}</b> published figures match within tolerance (✓); the remaining ${rsum.n_fail} differ only by the rounding drift of compounding 2-decimal monthly returns (≈). Hover a mark to see the published value.`;
+})();
+/* period table */
+(function(){ const keys=[['annualized_return_pct','Annualised return',v=>fmt.pct(v,2)],['annualized_std_dev','Annualised std. dev.',v=>fmt.num(v,3)],['max_drawdown_pct','Max drawdown',v=>fmt.pct(v,2)],['sharpe','Sharpe',v=>fmt.num(v,2)],['sortino','Sortino',v=>fmt.num(v,2)],['calmar','Calmar',v=>fmt.num(v,2)],['beta_to_spy','Beta',v=>fmt.num(v,2)],['correlation_to_spy','Correlation',v=>fmt.num(v,2)],['up_capture_pct','Up capture',v=>fmt.pct(v,0)],['down_capture_pct','Down capture',v=>fmt.pct(v,0)],['pct_positive_months','% positive months',v=>fmt.pct(v,0)],['best_month_pct','Best month',v=>fmt.pct(v,2,true)],['worst_month_pct','Worst month',v=>fmt.pct(v,2,true)],['growth_of_1000','Growth of $1,000',v=>fmt.money(v)]];
+  const fo=D.windows.family_office, cf=D.windows.commingled_fund; const t=h('table',{class:'tbl-compact'});
+  t.appendChild(h('thead',{},`<tr><th rowspan="2" class="lbl"></th><th colspan="2" class="group">Family office<div class="faint" style="font-weight:400">${fmt.mon(fo.start)} – ${fmt.mon(fo.end)} · ${fo.n_months} mo</div></th><th colspan="2" class="group gl">Commingled fund<div class="faint" style="font-weight:400">${fmt.mon(cf.start)} – ${fmt.mon(cf.end)} · ${cf.n_months} mo</div></th></tr><tr><th>Strategy</th><th>SPY</th><th class="gl">Strategy</th><th>SPY</th></tr>`));
+  const tb=h('tbody'); keys.forEach(([k,l,f])=>{ tb.appendChild(h('tr',{},`<td class="lbl">${l}</td><td class="strat">${f(fo.strategy[k])}</td><td>${f(fo.spy[k])}</td><td class="gl strat">${f(cf.strategy[k])}</td><td>${f(cf.spy[k])}</td>`)); }); t.appendChild(tb); $('#t-periods').appendChild(t); })();
+/* capture bars */
+(function(){ const c=$('#capture'); const maxv=140; [...WINS,['family_office','Family office'],['commingled_fund','Commingled fund']].forEach(([k,l])=>{ const w=D.windows[k].strategy; [['up','Up capture',w.up_capture_pct],['down','Down capture',w.down_capture_pct]].forEach(([kind,lab,v])=>{ c.appendChild(h('div',{class:'lab'},`${l}<div class="faint" style="font-size:11.5px">${lab}</div>`)); c.appendChild(h('div',{class:'track '+kind},`<i style="width:${Math.min(100,v/maxv*100)}%"></i><em style="left:${100/maxv*100}%"></em>`)); c.appendChild(h('div',{class:'val'},fmt.pct(v,1))); }); }); })();
+
+/* scatter + worst tables */
+const fit=scatter($('#c-scatter'), D.scatter, {width:600,height:560});
+$('#scatter-sub').textContent=`${D.scatter.length} months. Fitted beta ${fit.beta.toFixed(2)}; ${ud.months_strategy_beat_spy} months (${fmt.pct(ud.months_strategy_beat_spy_pct,0)}) above the 45° line.`;
+$('#worst-sub').textContent=`In SPY's ${ud.n_spy_down_months} negative months the strategy beat SPY ${fmt.pct(ud.strategy_beat_spy_in_down_months_pct,0)} of the time and finished positive in ${ud.strategy_positive_when_spy_down_n} of them.`;
+const wcols=[{key:'month',label:'Month',cls:'lbl',fmt:fmt.mon},{key:'spy',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'strategy',label:'Strategy',fmt:v=>fmt.pct(v,2,true),color:true},{key:'x',label:'Excess',fmt:(v,r)=>fmt.pct(r.strategy-r.spy,2,true),color:true}];
+$('#t-spyworst').appendChild(table(wcols,D.best_worst.spy_worst_10.map(r=>({...r,x:r.strategy-r.spy})),{cls:'tbl-compact'}));
+$('#t-stratworst').appendChild(table([wcols[0],wcols[2],wcols[1],wcols[3]],D.best_worst.strategy_worst_10.map(r=>({...r,x:r.strategy-r.spy})),{cls:'tbl-compact'}));
+$('#t-stratbest').appendChild(table([wcols[0],wcols[2],wcols[1],wcols[3]],D.best_worst.strategy_best_10.map(r=>({...r,x:r.strategy-r.spy})),{cls:'tbl-compact'}));
+/* up/down tiles */
+[['SPY-up months',ud.n_spy_up_months,`Strategy averaged <b>${fmt.pct(ud.strategy_avg_in_spy_up_pct,2,true)}</b> vs SPY <b>${fmt.pct(ud.spy_avg_in_up_pct,2,true)}</b>; beat SPY in ${fmt.pct(ud.strategy_beat_spy_in_up_months_pct,0)} of them.`],
+ ['SPY-down months',ud.n_spy_down_months,`Strategy averaged <b>${fmt.pct(ud.strategy_avg_in_spy_down_pct,2,true)}</b> vs SPY <b>${fmt.pct(ud.spy_avg_in_down_pct,2,true)}</b>; positive in ${fmt.pct(ud.strategy_positive_when_spy_down_pct,0)} of them.`],
+ ['Months beating SPY',ud.months_strategy_beat_spy,`${fmt.pct(ud.months_strategy_beat_spy_pct,0)} of all ${N} months. Average month: strategy <b>${fmt.pct(ss.avg_month_pct,2,true)}</b>, SPY <b>${fmt.pct(sp.avg_month_pct,2,true)}</b>; median ${fmt.pct(ss.median_month_pct,2,true)} vs ${fmt.pct(sp.median_month_pct,2,true)}.`]].forEach(([l,v,s])=> $('#updown').appendChild(h('div',{class:'card'},`<div class="eyebrow">${l}</div><div class="v" style="font-family:var(--serif);font-size:34px;margin:6px 0 4px">${v}</div><p class="sub" style="margin:0;color:var(--ink-2)">${s}</p>`)));
+
+/* rolling */
+lineChart($('#c-r12'),{x:ser.months,height:280,yFmt:v=>fmt.pct(v,0),includeZero:true,xTicks:janTicks,aria:'Rolling 12-month returns',series:[{name:'Strategy',values:ser.rolling12_strategy,cls:'strat'},{name:'SPY',values:ser.rolling12_spy,cls:'spy'}],tipFmt:v=>fmt.pct(v,2,true)});
+const r12=D.annual_rolling.rolling_12m_strategy_stats;
+$('#r12-sub').textContent=`${r12.n_windows} windows: strategy min ${fmt.pct(r12.min,1,true)}, median ${fmt.pct(r12.median,1,true)}, max ${fmt.pct(r12.max,1,true)}; positive in ${fmt.pct(r12.pct_positive,0)} and ahead of SPY in ${fmt.pct(r12.pct_beating_spy,0)} of windows.`;
+lineChart($('#c-r36s'),{x:ser.months,width:600,height:320,yFmt:v=>fmt.num(v,1),includeZero:true,xTicks:janTicks,aria:'Rolling 36-month Sharpe ratio',series:[{name:'Strategy',values:ser.rolling36_sharpe_strategy,cls:'strat'},{name:'SPY',values:ser.rolling36_sharpe_spy,cls:'spy'}],tipFmt:v=>fmt.num(v,2)});
+lineChart($('#c-r36b'),{x:ser.months,width:600,height:320,yFmt:v=>fmt.num(v,1),includeZero:true,xTicks:janTicks,aria:'Rolling 36-month beta and correlation',series:[{name:'Beta',short:'Beta',values:ser.rolling36_beta,cls:'strat'},{name:'Correlation',short:'Corr.',values:ser.rolling36_corr,cls:'strat',dash:true}],refLines:[{y:1,label:'β = 1'}],tipFmt:v=>fmt.num(v,2)});
+(function(){ const ar=D.annual_rolling; const rows=[['Rolling 12-month return',ar.rolling_12m_strategy_stats],['Rolling 36-month annualised return',ar.rolling_36m_ann_strategy_stats],['Rolling 60-month annualised return',ar.rolling_60m_ann_strategy_stats]].map(([l,s])=>({l, n:s.n_windows, min:s.min, med:s.median, mean:s.mean, max:s.max, pp:s.pct_positive, pb:s.pct_beating_spy}));
+  $('#t-rollstats').appendChild(table([{key:'l',label:'Strategy window',cls:'lbl'},{key:'n',label:'Windows'},{key:'min',label:'Minimum',fmt:v=>fmt.pct(v,2,true),color:true},{key:'med',label:'Median',fmt:v=>fmt.pct(v,2,true)},{key:'mean',label:'Mean',fmt:v=>fmt.pct(v,2,true)},{key:'max',label:'Maximum',fmt:v=>fmt.pct(v,2,true)},{key:'pp',label:'% positive',fmt:v=>fmt.pct(v,0)},{key:'pb',label:'% beating SPY',fmt:v=>fmt.pct(v,0)}],rows,{cls:'tbl-compact'})); })();
+
+/* distribution */
+const dist=D.distribution;
+barChart($('#c-hist'),{cats:dist.bin_labels,height:300,yFmt:v=>fmt.int(v),labelFmt:v=>fmt.int(v),aria:'Histogram of monthly returns',series:[{name:'Strategy',values:dist.strategy_counts,cls:'strat',label:true},{name:'SPY',values:dist.spy_counts,cls:'spy'}],catTip:c=>c+' per month',extraTip:[{name:'Strategy share',values:dist.strategy_pct_of_months,fmt:v=>fmt.pct(v,1)},{name:'SPY share',values:dist.spy_pct_of_months,fmt:v=>fmt.pct(v,1)}]});
+$('#dist-sub').textContent=`Strategy: ${ss.n_up_months} up months (avg ${fmt.pct(ss.avg_up_month_pct,2,true)}) and ${ss.n_down_months} down (avg ${fmt.pct(ss.avg_down_month_pct,2,true)}); SPY: ${sp.n_up_months} up (avg ${fmt.pct(sp.avg_up_month_pct,2,true)}) and ${sp.n_down_months} down (avg ${fmt.pct(sp.avg_down_month_pct,2,true)}).`;
+(function(){ const st=D.streaks; const rows=[{m:'Longest winning streak (months)',s:st.strategy_longest_win_months,p:st.spy_longest_win_months},{m:'Longest losing streak (months)',s:st.strategy_longest_loss_months,p:st.spy_longest_loss_months},{m:'Positive months',s:`${ss.n_up_months} / ${N}`,p:`${sp.n_up_months} / ${N}`},{m:'Average up month',s:fmt.pct(ss.avg_up_month_pct,2,true),p:fmt.pct(sp.avg_up_month_pct,2,true)},{m:'Average down month',s:fmt.pct(ss.avg_down_month_pct,2,true),p:fmt.pct(sp.avg_down_month_pct,2,true)},{m:'Best month',s:fmt.pct(ss.best_month_pct,2,true),p:fmt.pct(sp.best_month_pct,2,true)},{m:'Worst month',s:fmt.pct(ss.worst_month_pct,2,true),p:fmt.pct(sp.worst_month_pct,2,true)},{m:'Longest drawdown (months, peak to recovery)',s:ss.longest_drawdown_months,p:sp.longest_drawdown_months}];
+  $('#t-streaks').appendChild(table([{key:'m',label:'',cls:'lbl'},{key:'s',label:'Strategy'},{key:'p',label:'SPY'}],rows,{cls:'tbl-compact'})); })();
+
+/* quadrants */
+(function(){ const q=D.quadrants; const items=[['Loss avoidance','loss_avoidance_days','In cash while the market fell','cash'],['Gain sacrifice','gain_sacrifice_days','In cash while the market rose','cash'],['Amplified gains','amplified_gains_days','Invested (levered) and the market rose','gain'],['Amplified losses','amplified_losses_days','Invested (levered) and the market fell','loss']];
+  const sum=items.reduce((a,[,k])=>a+q[k],0); const c=$('#quads');
+  items.forEach(([l,k,d,kind])=>{ const v=q[k]; c.appendChild(h('div',{class:'quad '+kind},`<div class="eyebrow">${l}</div><div class="v">${fmt.int(v)}</div><div class="p">${fmt.pct(v/sum*100,1)} of ${fmt.int(sum)} days</div><div class="bar"><i style="width:${v/sum*100}%"></i></div><div class="d">${d}</div>`)); });
+  const cashShare=(q.loss_avoidance_days+q.gain_sacrifice_days)/sum*100, posShare=q.amplified_gains_days/sum*100, posStated=q.amplified_gains_days/q.stated_total_days*100;
+  $('#quad-note').innerHTML=`The manager reports <b>${fmt.int(q.stated_total_days)}</b> trading days and positive returns on about <b>${q.stated_pct_positive_days}%</b> of them (${fmt.int(q.amplified_gains_days)} ÷ ${fmt.int(q.stated_total_days)} = ${fmt.pct(posStated,1)}). The four quadrant counts as published sum to <b>${fmt.int(sum)}</b> days, on which basis ${fmt.pct(posShare,1)} of days were positive and <b>${fmt.pct(cashShare,1)}</b> were spent in cash (the manager quotes ~50%). The two totals should be confirmed with the manager; both are preserved here. Compounding at ${fmt.pct(ss.annualized_return_pct,1)} a year while positive on fewer than a third of days is the point of the framework: the payoff comes from the size of the gains caught and the losses avoided, not from how often the strategy is right.`; })();
+
+/* method */
+(function(){ const rsum=D.reconciliation_summary||{}; $('#recon-detail').innerHTML=`Of ${rsum.n_checks} published statistics (fourteen metrics × two series × four windows, plus period totals), <b>${rsum.n_ok} reconcile within tolerance</b>. ${rsum.n_fail? `The ${rsum.n_fail} that do not are SPY total-growth figures over 120 and 168 months, off by 0.06 and 0.23 percentage points respectively, which is the drift from compounding 2-decimal monthly returns.`:''} Three conventions were identified from the published table by testing alternatives: population standard deviations, Sortino computed as annualised return over downside deviation (no risk-free term), and capture ratios on cumulative returns in up and down months.`;
+  $('#tb3-note').innerHTML=`<b>Risk-free rate.</b> ${D.meta.tb3ms_source} ${D.meta.tb3ms_note}`;
+  const defs=D.meta.definitions||{}; const dl=$('#defs'); Object.entries(defs).forEach(([k,v])=>{ dl.appendChild(h('dt',{},k.replace(/_/g,' '))); dl.appendChild(h('dd',{},v)); });
+  if(MODEL_URL){ $('#model-link').innerHTML=`<a href="${MODEL_URL}">Open the replication study →</a>`; } else { $('#model-link').innerHTML=`<span class="faint">Research note: <code>demeter/model/RESULTS.md</code> in the repository.</span>`; } })();
+</script>

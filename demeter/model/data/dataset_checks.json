@@ -1,0 +1,78 @@
+{
+  "fred_overlap_days": 2479,
+  "fred_overlap_daily_ret_corr": 0.99724986307728,
+  "fred_overlap_mean_abs_diff_bps": 4.200638963069224,
+  "extension_dividend_yield_pct_annual": 1.5086937439576564,
+  "extension_rows": 35,
+  "extension_from": "2025-12-22",
+  "extension_to": "2026-02-11",
+  "es_vs_synthetic_daily_era_1990_2013": {
+    "daily_corr": 0.9886758897993301,
+    "weekly_corr": 0.9968937579038849,
+    "monthly_corr": 0.9979670764532679,
+    "ann_mean_diff_pct": -0.5109459693596133,
+    "es_ann_excess_pct": 6.669763854889801,
+    "syn_ann_excess_pct": 7.180709824249415
+  },
+  "es_vs_synthetic_hourly_era_2013_2024": {
+    "daily_corr": 0.9028444568380871,
+    "weekly_corr": 0.9748053857789608,
+    "monthly_corr": 0.9931799774692059,
+    "ann_mean_diff_pct": -0.312036710138972,
+    "es_ann_excess_pct": 12.440767692612258,
+    "syn_ann_excess_pct": 12.75280440275123
+  },
+  "es_vs_synthetic_demeter_window_2012_2024": {
+    "daily_corr": 0.9068783531937139,
+    "weekly_corr": 0.9754793221936509,
+    "monthly_corr": 0.9933141476215103,
+    "ann_mean_diff_pct": -0.3196034178254321,
+    "es_ann_excess_pct": 13.214736191085555,
+    "syn_ann_excess_pct": 13.534339608910987
+  },
+  "nq_vs_ixic_2000_2018_corr": 0.9277911888355888,
+  "rf_vs_fedfunds_implied_1990_2024_mean_diff_pct": -0.3493383467412849,
+  "coverage": {
+    "spx_px": {
+      "first": "1885-03-20",
+      "last": "2026-02-11",
+      "n": 35289
+    },
+    "spx_tr": {
+      "first": "1885-03-20",
+      "last": "2026-02-11",
+      "n": 35289
+    },
+    "rf_pct": {
+      "first": "1885-03-20",
+      "last": "2026-02-11",
+      "n": 35289
+    },
+    "vix_close": {
+      "first": "1990-01-02",
+      "last": "2026-02-11",
+      "n": 9091
+    },
+    "es_ret": {
+      "first": "1982-09-15",
+      "last": "2024-03-28",
+      "n": 10471
+    },
+    "nq_ret": {
+      "first": "1999-12-15",
+      "last": "2024-03-28",
+      "n": 6110
+    },
+    "ixic_close": {
+      "first": "1999-01-04",
+      "last": "2018-12-31",
+      "n": 5031
+    },
+    "ff_implied_pct": {
+      "first": "1990-03-13",
+      "last": "2024-03-28",
+      "n": 8577
+    }
+  },
+  "rows": 35289
+}

@@ -1,0 +1,35 @@
+{
+  "_source": "Demeter Tactical Investments factsheet tables (Share Class B, as of June 2026). Transcribed from supplied images. Percent values are in percent units; ratios are unitless; std dev is annualized as a decimal.",
+  "period_ytd_stated": {
+    "strategy": {"2012": 10.84, "2013": 32.60, "2014": 12.93, "2015": 9.95, "2016": 21.94, "2017": 33.27, "2018": 23.35, "2019": 17.10, "2020": 165.14, "2021": 40.97, "2022": 19.24, "2023_jan_jul": 26.43, "2023_aug_dec": -0.87, "2024": 22.41, "2025": 42.26, "2026_jan_jun": 6.12},
+    "spy":      {"2012": 5.63,  "2013": 32.26, "2014": 13.58, "2015": 1.29, "2016": 11.85, "2017": 21.72, "2018": -4.47, "2019": 31.36, "2020": 18.29,  "2021": 28.63, "2022": -18.19, "2023_jan_jul": 20.58, "2023_aug_dec": 4.63, "2024": 24.90, "2025": 17.77, "2026_jan_jun": 10.16}
+  },
+  "statistics": {
+    "_columns": ["strategy", "spy", "sp500_price"],
+    "_note_spy": "SPY = SPDR S&P 500 ETF Trust (total return); S&P 500 = price-only index (reference).",
+    "_note_sharpe": "Sharpe methodology: monthly excess over period-matched FRED 3-Month T-Bill (TB3MS), annualized as (mean x 12) / (st.dev x sqrt(12)).",
+    "rolling_12m":  {"total_growth_pct": [29.09, 22.21, 20.86], "annualized_return_pct": [29.09, 22.21, 20.86], "annualized_std_dev": [0.141, 0.125, 0.126], "max_drawdown_pct": [-8.06, -5.72, -5.92], "pct_positive_months": [66.7, 75.0, 66.7], "sharpe": [1.625, 1.364, 1.271], "sortino": [4.725, 4.324, 3.954], "calmar": [3.608, 3.885, 3.526], "correlation_to_spy": [0.794, 1.000, null], "beta_to_spy": [0.893, 1.000, null], "alpha_ann_jensen_pct": [8.04, 0.00, null], "up_capture_pct": [112.0, 100.0, null], "down_capture_pct": [62.3, 100.0, null], "growth_of_1000": [1291, 1222, 1209]},
+    "rolling_60m":  {"total_growth_pct": [221.74, 86.69, 74.51], "annualized_return_pct": [26.33, 13.30, 11.78], "annualized_std_dev": [0.166, 0.157, 0.157], "max_drawdown_pct": [-13.42, -23.92, -24.77], "pct_positive_months": [65.0, 63.3, 61.7], "sharpe": [1.279, 0.647, 0.560], "sortino": [3.395, 1.391, 1.208], "calmar": [1.962, 0.556, 0.476], "correlation_to_spy": [0.743, 1.000, null], "beta_to_spy": [0.787, 1.000, null], "alpha_ann_jensen_pct": [14.11, 0.00, null], "up_capture_pct": [109.5, 100.0, null], "down_capture_pct": [54.5, 100.0, null], "growth_of_1000": [3217, 1867, 1745]},
+    "rolling_120m": {"total_growth_pct": [2045.62, 318.89, 257.43], "annualized_return_pct": [35.88, 15.40, 13.58], "annualized_std_dev": [0.244, 0.153, 0.153], "max_drawdown_pct": [-13.65, -23.92, -24.77], "pct_positive_months": [72.5, 70.8, 67.5], "sharpe": [1.275, 0.862, 0.758], "sortino": [4.647, 1.628, 1.407], "calmar": [2.629, 0.644, 0.548], "correlation_to_spy": [0.328, 1.000, null], "beta_to_spy": [0.522, 1.000, null], "alpha_ann_jensen_pct": [25.45, 0.00, null], "up_capture_pct": [116.8, 100.0, null], "down_capture_pct": [18.8, 100.0, null], "growth_of_1000": [21456, 4189, 3574]},
+    "since_inception": {"total_growth_pct": [4321.71, 598.80, 449.39], "annualized_return_pct": [31.08, 14.90, 12.94], "annualized_std_dev": [0.217, 0.140, 0.140], "max_drawdown_pct": [-13.65, -23.92, -24.77], "pct_positive_months": [72.0, 70.2, 67.9], "sharpe": [1.273, 0.942, 0.819], "sortino": [4.109, 1.754, 1.489], "calmar": [2.277, 0.623, 0.522], "correlation_to_spy": [0.360, 1.000, null], "beta_to_spy": [0.556, 1.000, null], "alpha_ann_jensen_pct": [21.09, 0.00, null], "up_capture_pct": [115.0, 100.0, null], "down_capture_pct": [28.0, 100.0, null], "growth_of_1000": [44217, 6988, 5494]}
+  },
+  "quadrants_daily": {
+    "_source_note": "Source states '4 Quadrants (3219 Days)' and 'Out of 3,219 trading days ... positive returns on only 31% of the days'. The four quadrant counts as given sum to 3,477, not 3,219. Both figures are preserved here; the discrepancy is flagged in the overview.",
+    "stated_total_days": 3219,
+    "loss_avoidance_days": 804,
+    "gain_sacrifice_days": 883,
+    "amplified_gains_days": 1022,
+    "amplified_losses_days": 768,
+    "stated_pct_positive_days": 31
+  },
+  "strategy_facts": {
+    "live_since": "July 2012",
+    "rebalance": "Daily at 3:59 PM New York time",
+    "leverage": "Variable, 2:1 to 3:1 based on market conditions",
+    "cash_share_of_trading_days": "~50%",
+    "instruments": "S&P 500 futures and/or NASDAQ futures (Engine One); fully liquid cash (Engine Two)",
+    "share_class": "Share Class B",
+    "as_of": "June 2026",
+    "founder_cio": "Jeffrey A. Sexton (studied under Nobel Laureate Eugene Fama, University of Chicago)"
+  }
+}
