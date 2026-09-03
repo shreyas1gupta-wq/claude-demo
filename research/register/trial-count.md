@@ -37,12 +37,13 @@ this census exists so that can never happen silently.
 | H53a (Fuel primary + All-Commodity secondary) — census omission fixed 2026-09-03, cells ran 2026-09-02 | 2 | 2 |
 | CW-D1v (budget±1 \|dlogVIX\| vs other days) | 1 | 1 |
 | F5a (rank-corr redundancy + AUROC compare + VRP descriptive — all consumed looks) | 3 | 3 |
-| **RUNNING TOTAL (run cells)** | | **126** |
+| OL-D1a (primary + flavor-agreement table) | 2 | 2 |
+| **RUNNING TOTAL (run cells)** | | **128** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3-F6 (F5's daily-close partial F5a HAS run; full F5 still owed) · FS-D1/D2/D4 ·
 CW-PT1 (3 Aprils) · CW2b · MR1 · CR-D1/D2/D3 · RT1/2 · FL1/2 · IS1/2 · CN-D1/2/3 · EN-D1/2 ·
-OL-D1/2 · H58-D1/2/3 · RC1 · H59-D1 · PT-1/PT-2 gradings. Plus the frozen future sweeps the
+OL-D1 full/OL-D2 (OL-D1a partial HAS run) · H58-D1/2/3 · RC1 · H59-D1 · PT-1/PT-2 gradings. Plus the frozen future sweeps the
 registry names (hedge grid × buckets <=28 cells; block-weight sweep).
 
 ## Use

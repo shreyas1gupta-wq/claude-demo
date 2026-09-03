@@ -21,7 +21,7 @@ for exact URLs, formats, and pitfalls).
 | NSDL/CDSL demat account counts + SEBI retail F&O turnover shares | monthly bulletins | ingest/vault/participation/ | RT1/RT2 (H57) |
 | China TSF (aggregate financing) monthly | PBoC releases / BIS mirrors | ingest/vault/china/ | CN-D1/D2/D3 (H54 promote-or-kill) |
 | NOAA ONI (post-2010 continuation) + IMD % of LPA seasonal | NOAA/IMD bulletins | ingest/vault/climate/ | EN-D1/D2 (H55 chain-conditioner) |
-| Kilian / Baumeister-Hamilton oil decomposition indexes | authors' pages (free) | ingest/vault/commodities/ | OL-D1/D2 (the decomposition commitment) |
+| Kilian / Baumeister-Hamilton oil decomposition indexes | authors' pages (free) | ingest/vault/commodities/ | OL-D1/D2 (the decomposition commitment). **PARTIALLY MIRRORED 2026-09-03**: Kilian index 1973-2019 (replication mirror, 5/5 anchors) ran OL-D1a (PASS +46pp, prior confirmed); Känzig supply-news shocks 1975-2025 vaulted from the author's own repo (4/4 anchors). Still owed: the BH decomposition proper + post-2019 Kilian months |
 
 ## Priority 3 — narrow designs
 | Pull | Free source | Vault destination | Unblocks |

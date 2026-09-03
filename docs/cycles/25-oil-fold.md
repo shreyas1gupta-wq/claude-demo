@@ -797,3 +797,21 @@ trap is IMMEDIACY: crude prints continuously and loudly, inviting sub-weekly rea
 weekly-cadence book — the fold into L9 exists so oil reaches the book only as a digested
 input of the global state, at the ladder's pace, not the tape's. The operator's card: name
 the shock before naming the trade; if the shock can't be named, there is no trade.
+
+---
+
+**Dated addendum (2026-09-03) — OL-D1a: the real Kilian index arrives, and the prior prints
+true twice.** A replication-repo mirror of the monthly Kilian index (1973-2019, 5/5 anchors
+incl. the published 190.7 boom peak of May-2008) let OL-D1's partial run as registered:
+OL1's construction verbatim, with the flavor finally STRUCTURAL — global real activity
+rising vs falling — instead of the equity-sign proxy this chapter flagged as its weakest
+rung. The print: demand-flavored oil-up years +36.8% for India vs supply-flavored −9.1%,
+a +46.0pp spread that PASSES the parent's +10pp bar while SHRINKING from OL1's +81.2pp —
+exactly the two-sided prior registered at pull ("survive but shrink"). The flavors agree in
+only 7 of 11 oil-up years, and the reclassified years (1996, 2005-06 to supply; 2000 to
+demand) soften the supply-side catastrophe from −43.1% to −9.1%: the asymmetry is real, but
+part of OL1's violence was the equity sign grading itself. The shock-type briefing table is
+now measured, not just committed. Also vaulted: Känzig (2021) oil-supply-news shocks
+1975-2025 from the author's own repo (4/4 sign anchors on documented OPEC events) — OL-D2's
+windfall design has its instrument when its day comes. Still owed: the BH decomposition and
+post-2019 Kilian months (runsheet).

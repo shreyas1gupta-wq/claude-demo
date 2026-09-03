@@ -1063,4 +1063,4 @@ This is acceptance-at-pull; bars fixed NOW:
 
 | # | What | Result | Status |
 |---|---|---|---|
-| OL-D1a | OL1 replicated with Kilian-index flavor | (registered, not yet run) | registered partial |
+| OL-D1a | OL1 replicated with Kilian-index flavor | **PASS — and the desk's registered prior printed true on BOTH halves**: demand-flavored +36.8% vs supply-flavored −9.1%, diff **+46.0pp** (bar ≥ +10pp), the spread SHRINKING from OL1's +81.2pp exactly as predicted. The flavor split rebalanced 8/3 → 6/5 and agrees with the equity-sign proxy in only 7/11 oil-up years — OL1's proxy really was measuring risk appetite, and the REAL activity flavor still separates India's oil-up outcomes decisively (1999/2003/2007 demand-years +84/+97/+59% vs 2008/2011 supply-years −62/−31%). The supply-flavored mean softened from −43.1% to −9.1% (1996 and 2005-06 reclassified) — the asymmetry is real but the catastrophe cell was partly the equity sign talking to itself. Consumption: the L9 oil fold's shock-type briefing table now carries a MEASURED structural print; still no standalone signal (n=11, annual) | **pass, prior confirmed (partial: Kilian mirror 1973-2019)** |
