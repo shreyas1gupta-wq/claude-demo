@@ -1100,3 +1100,25 @@ nothing (H55 stays Tier-C candidate; Contract §4 requires the purged era-split 
 | # | What | Result | Status |
 |---|---|---|---|
 | EN-D2a | First-link contingency (computed, reconciled) | **VERIFICATION BAR PASS — the [VERIFY] flag resolves**: pooled P(deficient \| El Niño) = **56.2%** (9 of 16), inside the defended [45,70]%; base rate without El Niño **14%** → lift **4.1x** — the first link is real and now stands on one reconciled counting instead of three irreconcilable ones. THE SHARPENING: era-split shows the METEOROLOGICAL link STRENGTHENING (1950-69: 29%, lift 1.9x; 1970-90: 100% on n=3; 1991-2016: **67% vs 5%, lift 13.3x**) — the non-stationarity the cases chapter documented (falling drought severity/impact) lives in links 2-3 (Green-Revolution and policy buffers), NOT in link 1. 1997 confirmed as the great save (El Niño, no deficiency); 2014 deficient but sub-threshold on the primary definition (borderline, noted). Robust: secondary CPC-label definition agrees 94%; LPA choice immaterial (56% either way). H55 stays Tier-C candidate — EN-D1 (sector returns + food-CPI, purged, era-split) remains the promotion test | **bar pass; [VERIFY] resolved (partial: link 1 only)** |
+
+## Entry OL-D2a (2026-09-03) — PRE-REGISTERED before running: the windfall reverse experiment
+Parent design QUOTED VERBATIM (research/cycles/oil-fold/partDH-verdict-routing.md): "**OL-D2**
+the windfall asymmetry (supply-driven oil-DOWN years — 2014-16 — as the reverse experiment;
+design only, n tiny)." The instrument the design lacked is now vaulted (Känzig 2021 supply-news
+shocks, author-repo, 4/4 anchors). Bars fixed NOW:
+- Construction: OL1's verbatim oil/India legs (annual Brent log return; India = annual iima MF
+  return, 1994-2015). OIL-DOWN year: annual log oil return < −log(1.10) (the mirror of OL1's
+  +10% up-threshold). FLAVOR (the pre-stated instrument): a down-year is SUPPLY-DRIVEN if the
+  annual SUM of Känzig monthly news shocks < 0 (net supply-expanding news, price-falling);
+  DEMAND-DRIVEN otherwise. (Känzig sign convention: positive = supply-contractionary.)
+- PRIMARY BAR: mean India return in supply-driven down-years MINUS demand-driven down-years
+  ≥ +10pp (the windfall: an importer should fare better when oil falls because of supply).
+  DESK PRIOR stated: expected to PASS, at MICROSCOPIC power (n≈4-5 down-years total) — a
+  fail at this n refutes nothing and is recorded as underpowered, not as a death.
+- SECONDARY (descriptive): the year table with BOTH instruments (Känzig annual sum + the
+  Kilian activity direction from OL-D1a) — instrument agreement reported.
+- Empty cell ⇒ UNTESTABLE recorded, bar unmoved.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OL-D2a | Windfall asymmetry in oil-DOWN years | (registered, not yet run) | registered partial |
