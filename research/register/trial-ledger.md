@@ -1375,4 +1375,4 @@ the TREND of a slow macro state add to its LEVEL in predicting India equity?
 
 | # | What | Result | Status |
 |---|---|---|---|
-| T2 | Kilian trend incremental to level → NIFTY | (registered, not yet run) | registered |
+| T2 | Kilian trend incremental to level → NIFTY | **FAIL — the prior confirmed and the doctrine extends**: trend-sign beta +0.33%/mo at NW t=+0.48 (bar ≥2, nowhere near); the level itself also unconditional-inert here (t=−0.54, n=142 — consistent with L9's conditional-transfer framing). LEVELS-NOT-DIRECTIONS now has prints at BOTH bands (fast: F7a/H67a/H68a at index resolution; slow: T2 at monthly-macro) and the phase file's reopening clause does NOT activate. The trends-everywhere motif dies in our consumable form | **fail as registered; doctrine at both bands** |

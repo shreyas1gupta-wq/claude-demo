@@ -49,3 +49,11 @@ alpha +2.65%/yr at NW t=1.88 misses the registered t≥2. Because the declared o
 AGAINST low-vol on survivor data, this fail refutes nothing — and confirms nothing. The PIT
 run decides; nothing enters the factor library today.
 Census: +4 → 183.
+
+## T2 (2026-09-03, late) — trend-on-states at the slow band. Script: scripts/analyze_t2_trendstates.py
+**FAIL as registered** — the Kilian index's 12m trend sign adds nothing to its level for
+next-month NIFTY (t=+0.48 vs the ≥2 bar; the level itself inert unconditionally at t=−0.54,
+n=142). The levels-not-directions doctrine, closed at index resolution for the fast state,
+now also holds at the slow-macro band; the phase file's reopening clause does not activate.
+Track T's runnable backlog is now EMPTY: T5 (volume rules) and everything sharper waits on
+PIT data; H60/H61 wait on their pulls. Census: +2 → 185.
