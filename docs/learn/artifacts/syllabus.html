@@ -1,0 +1,162 @@
+<title>The Cycle School Syllabus</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --visited:#7d8a84;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --visited:#5f6d67;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --visited:#5f6d67;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:15.5px; line-height:1.55}
+.wrap{max-width:860px; margin:0 auto; padding:0 20px 90px}
+header{padding:46px 0 8px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px}
+h1{font-family:"Newsreader",Georgia,serif; font-size:clamp(30px,5vw,42px); font-weight:500; margin:0; text-wrap:balance}
+.sub{color:var(--ink-2); max-width:70ch; margin:12px 0 0}
+.refbox{background:var(--panel); border:1px solid var(--rule); border-radius:10px;
+  padding:14px 18px; margin:26px 0 0; font-size:14px; color:var(--ink-2)}
+.refbox b{color:var(--ink)}
+.refbox a{color:var(--accent-ink); font-weight:600}
+h2{font-family:"Newsreader",Georgia,serif; font-size:21px; font-weight:500; margin:44px 0 4px;
+  padding-top:18px; border-top:1px solid var(--rule)}
+.bandnote{color:var(--ink-3); font-size:13px; margin:0 0 14px}
+ol.syll{list-style:none; margin:0; padding:0; display:grid; gap:2px}
+.row{display:grid; grid-template-columns:52px 1fr; gap:14px; padding:11px 10px;
+  border-radius:8px; align-items:baseline}
+.row:hover{background:var(--panel)}
+.num{font-family:"IBM Plex Mono",monospace; font-size:17px; font-weight:500;
+  color:var(--accent); text-align:right; font-variant-numeric:tabular-nums}
+.row a.t{font-family:"Newsreader",Georgia,serif; font-size:18.5px; font-weight:500;
+  color:var(--accent-ink); text-decoration:none}
+.row a.t:hover{text-decoration:underline}
+.row a.t:visited{color:var(--visited)}
+.what{display:block; color:var(--ink-2); font-size:13.5px; margin-top:2px; max-width:68ch}
+.ref{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-3)}
+footer{margin-top:54px; padding-top:16px; border-top:1px solid var(--rule);
+  font-size:12.5px; color:var(--ink-3); max-width:76ch}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Ionic quant desk · Cycle School · the reading order</p>
+  <h1>The Cycle School Syllabus</h1>
+  <p class="sub">All 49 lessons, numbered in the order they were built — which is the order to
+  read them from scratch. Each number opens that cycle's own published page: the story, the
+  numbers we computed, and what the desk decided. Titles you've already opened turn grey, so
+  the list keeps your place. Read 1 → 49 and you have the whole program.</p>
+  <div class="refbox"><b>Keep beside you while reading:</b>
+    <a href="https://claude.ai/code/artifact/166a370c-7141-47e9-bd48-8cd530a966d8">The Cycle Program, One Page</a>
+    (the live scoreboard — findings, verdicts, your open decisions) and the
+    <a href="https://claude.ai/code/artifact/88c0c9f6-cc82-441d-b0cf-0a7ffb4164db">Pipeline v2 reference</a>
+    (how the machine fits together). Neither is numbered — they are maps, not chapters.</div>
+</header>
+
+<h2>Foundations — the first four seats (read these first)</h2>
+<p class="bandnote">The program's method is established here: pre-registered bars, real data, verdicts that refuse promotion.</p>
+<ol class="syll">
+<li class="row"><span class="num">1</span><span><a class="t" href="https://claude.ai/code/artifact/9222bf65-9bc4-4474-ac6e-903e042f3e89">The Credit Cycle, From Zero</a><span class="what">Where it all started — the anchor seat: why credit booms warn of crises years ahead, and what an honest AUROC looks like. <span class="ref">docs/cycles/01 · seat L10</span></span></span></li>
+<li class="row"><span class="num">2</span><span><a class="t" href="https://claude.ai/code/artifact/c0a03c8b-311e-4ac9-bf2f-988c1e32ea08">Fast Stress, From Zero</a><span class="what">The days-not-months layer that carries the drawdown mandate. <span class="ref">docs/cycles/02 · seat L2</span></span></span></li>
+<li class="row"><span class="num">3</span><span><a class="t" href="https://claude.ai/code/artifact/4088dc52-ecc8-4d78-8edc-98ca1c3efa87">Momentum, From Zero</a><span class="what">The strongest anomaly, its crashes, and the haircut that prices its future. <span class="ref">docs/cycles/03 · L3/L4</span></span></span></li>
+<li class="row"><span class="num">4</span><span><a class="t" href="https://claude.ai/code/artifact/fb951fc3-74d6-4257-af9a-a0203e57908e">Value and Quality, From Zero</a><span class="what">The patient factors, their winters, and the spread-conditioned patience rule. <span class="ref">docs/cycles/04 · seat L8</span></span></span></li>
+</ol>
+
+<h2>Band 0 — secular arcs (decades to centuries)</h2>
+<p class="bandnote">The slowest forces: context that shapes every book, tradeable almost never.</p>
+<ol class="syll">
+<li class="row"><span class="num">5</span><span><a class="t" href="https://claude.ai/code/artifact/5526aa4b-7612-4b35-8b89-dd5122670179">The Debt Mountain</a><span class="what">Debt supercycles and fiscal dominance — the 200-year backdrop. <span class="ref">Atlas 0.1 · L15</span></span></span></li>
+<li class="row"><span class="num">6</span><span><a class="t" href="https://claude.ai/code/artifact/8c9f1c65-3b00-4944-b5be-adbcc2474930">The Slowest Regime</a><span class="what">Reserve-currency transitions — real, huge, and useless as a signal. <span class="ref">Atlas 0.2</span></span></span></li>
+<li class="row"><span class="num">7</span><span><a class="t" href="https://claude.ai/code/artifact/4f4a9002-d208-4cbc-927e-d7d3894e54fe">The Trend You Must Not Trade</a><span class="what">Suprasecular real rates: seven centuries of drift ≠ a position. <span class="ref">Atlas 0.3</span></span></span></li>
+<li class="row"><span class="num">8</span><span><a class="t" href="https://claude.ai/code/artifact/37aa562c-a26f-43e2-b44e-843a0c1cf8a7">The Golden Constant</a><span class="what">What gold actually preserves, on 190 years of vaulted prices. <span class="ref">Atlas 0.4</span></span></span></li>
+<li class="row"><span class="num">9</span><span><a class="t" href="https://claude.ai/code/artifact/1adf5986-d2d2-4588-8730-963b0f88b9c0">Inflation Runs in Generations</a><span class="what">Inflation-regime arcs and the 81% one-year stickiness that makes states readable. <span class="ref">Atlas 0.5</span></span></span></li>
+<li class="row"><span class="num">10</span><span><a class="t" href="https://claude.ai/code/artifact/63ae2d48-ec0f-4da0-bede-19b4f1d03dda">The Cycles We Refuse</a><span class="what">War/hegemonic cycles — the program's first full rejection, and why refusals are wealth. <span class="ref">Atlas 0.6 · REJECT</span></span></span></li>
+<li class="row"><span class="num">11</span><span><a class="t" href="https://claude.ai/code/artifact/96172315-0117-41e3-a9e6-ea673477ea6a">Destiny Isn't a Trade</a><span class="what">Demographics: the truest long force, the emptiest signal. Band 0 closes. <span class="ref">Atlas 0.7 · L16</span></span></span></li>
+</ol>
+
+<h2>Band 1 — structural cycles (10–20 years)</h2>
+<ol class="syll">
+<li class="row"><span class="num">12</span><span><a class="t" href="https://claude.ai/code/artifact/8f7604fc-5522-4534-bf49-cf43c6f8f7dc">Credit and Concrete</a><span class="what">The Borio financial cycle — the program's slowest SEAT. <span class="ref">Atlas 1.1 · seat L12</span></span></span></li>
+<li class="row"><span class="num">13</span><span><a class="t" href="https://claude.ai/code/artifact/1ac1dedf-b78f-4758-b147-6de1f118272b">The Clock That Wasn't</a><span class="what">The "18-year" real-estate cycle, measured and folded into L12. <span class="ref">Atlas 1.2 · FOLD</span></span></span></li>
+<li class="row"><span class="num">14</span><span><a class="t" href="https://claude.ai/code/artifact/52f37648-7295-415a-a6b1-32888a7a84ab">Eight Arcs, Not Four</a><span class="what">Commodity supercycles on 170 years of real prices; candidate H53 is born (and later killed in lesson 43). <span class="ref">Atlas 1.3 · H53</span></span></span></li>
+<li class="row"><span class="num">15</span><span><a class="t" href="https://claude.ai/code/artifact/b0ceab88-d443-4654-9820-ad41e724814c">The Fifty-Year Prophecy</a><span class="what">Kondratieff rejected on its own data; Perez kept as context. <span class="ref">Atlas 1.4/1.5</span></span></span></li>
+<li class="row"><span class="num">16</span><span><a class="t" href="https://claude.ai/code/artifact/42813366-48e0-4271-8464-dbbc80b19534">The Seat That Argues Against Itself</a><span class="what">India's capex supercycle — a seat with its own counterargument built in. Band 1 closes. <span class="ref">Atlas 1.6 · seat L11</span></span></span></li>
+</ol>
+
+<h2>Band 2 — the macro engine room (1–10 years)</h2>
+<p class="bandnote">The program's biggest band: twelve entries, four seats, the states-never-dates doctrine forged here.</p>
+<ol class="syll">
+<li class="row"><span class="num">17</span><span><a class="t" href="https://claude.ai/code/artifact/1b68b769-42d6-481f-b232-abfd615cf53d">A Run Without Deposits</a><span class="what">NBFC/shadow credit — IL&amp;FS anatomy, feeding L10 and L2. <span class="ref">Atlas 2.2</span></span></span></li>
+<li class="row"><span class="num">18</span><span><a class="t" href="https://claude.ai/code/artifact/93f4c2f3-fc8d-4e41-b406-8740c6910b01">The Cycle That Earns No Seat</a><span class="what">The business cycle proper: real, datable, already shadowed by the seated states. <span class="ref">Atlas 2.3 · CONTEXT</span></span></span></li>
+<li class="row"><span class="num">19</span><span><a class="t" href="https://claude.ai/code/artifact/5ddb5680-0383-4fb1-a585-3d1844fa96cf">Five Clocks, Zero Survivors</a><span class="what">Kitchin and Juglar meet pre-registered bars; the funeral that calibrated all funerals. <span class="ref">Atlas 2.4/2.5</span></span></span></li>
+<li class="row"><span class="num">20</span><span><a class="t" href="https://claude.ai/code/artifact/869dc54b-aeb1-459a-a89f-6f9d5f6815da">The Sign That Flips</a><span class="what">The RBI policy cycle and why its equity sign is regime-dependent. <span class="ref">Atlas 2.6 · seat L6</span></span></span></li>
+<li class="row"><span class="num">21</span><span><a class="t" href="https://claude.ai/code/artifact/16b49872-d60a-4c4e-bffc-d6f1b2b2e909">The Pass We Refused to Promote</a><span class="what">Fiscal cycles pass a bar and stay unseated — promotion discipline in action. <span class="ref">Atlas 2.7</span></span></span></li>
+<li class="row"><span class="num">22</span><span><a class="t" href="https://claude.ai/code/artifact/7fc07716-3568-46bf-b8fc-4516a55f9bc1">The Cycle That Globalized</a><span class="what">Rey's global financial cycle — the L9 seat every commodity story later answers to. <span class="ref">Atlas 2.8 · seat L9</span></span></span></li>
+<li class="row"><span class="num">23</span><span><a class="t" href="https://claude.ai/code/artifact/6201e1f0-8ad6-4819-98ec-7aece70cf961">The Clock That Passed and Wasn't Crowned</a><span class="what">The dollar cycle passes its bar; the desk still refuses the clock. <span class="ref">Atlas 2.9/2.10 · FOLD</span></span></span></li>
+<li class="row"><span class="num">24</span><span><a class="t" href="https://claude.ai/code/artifact/60bb8885-9927-4541-b571-9619a948d6a5">Measuring a Neighbor Through the Window</a><span class="what">China's credit impulse from mirror data; candidate H54 waits on TSF. <span class="ref">Atlas 2.11 · H54</span></span></span></li>
+<li class="row"><span class="num">25</span><span><a class="t" href="https://claude.ai/code/artifact/7b1d4ba3-6054-4fb7-87ab-c43c6c112a50">Not All Barrels Are Alike</a><span class="what">Oil folds into L9: shock TYPE decides what a barrel means for India (proven in lesson 44). <span class="ref">Atlas 2.12 · FOLD</span></span></span></li>
+<li class="row"><span class="num">26</span><span><a class="t" href="https://claude.ai/code/artifact/617a06c3-bcf9-4e60-a471-c3d062c5a6f0">The Seat Defined by What It Refuses</a><span class="what">FPI flows: a seat built on what it will NOT infer from flows. <span class="ref">Atlas 2.13 · seat L14</span></span></span></li>
+<li class="row"><span class="num">27</span><span><a class="t" href="https://claude.ai/code/artifact/0aa2a6a0-6f72-45bc-9741-18ca77a22c58">The Only Real Oscillator</a><span class="what">ENSO — the planet's own cycle as the control group; even it fails the clock bar. <span class="ref">Atlas 2.14 · H55</span></span></span></li>
+<li class="row"><span class="num">28</span><span><a class="t" href="https://claude.ai/code/artifact/57d469f7-87eb-40e3-957f-ab838910a4f4">What Goes Up Rises Slower</a><span class="what">Profit-share mean reversion; Band 2 closes with candidate H56. <span class="ref">Atlas 2.15 · H56</span></span></span></li>
+</ol>
+
+<h2>Band 3 — intra-cycle states (months to years)</h2>
+<ol class="syll">
+<li class="row"><span class="num">29</span><span><a class="t" href="https://claude.ai/code/artifact/bb0a36ce-65ea-4991-a62b-18360b3e85f3">The Signal That Shouldn't Decay</a><span class="what">Issuance and sentiment — the L7 seat and its decay logic. <span class="ref">Atlas 3.2 · seat L7</span></span></span></li>
+<li class="row"><span class="num">30</span><span><a class="t" href="https://claude.ai/code/artifact/aeca03ef-54fc-4b98-8000-cd9ede90ad13">Nothing to Time, Something to Watch</a><span class="what">Factor rotation and crowding: monitors, never vetoes. <span class="ref">Atlas 3.3/3.4</span></span></span></li>
+<li class="row"><span class="num">31</span><span><a class="t" href="https://claude.ai/code/artifact/6e9d300c-fcdb-4636-8718-1649805eb51e">The Cycle We Believe and Still Refuse</a><span class="what">Earnings revisions (no free data = no trial) and the retail wave (H57). <span class="ref">Atlas 3.5/3.6</span></span></span></li>
+<li class="row"><span class="num">32</span><span><a class="t" href="https://claude.ai/code/artifact/a7ff9183-e601-429b-9b38-8cae2766cb33">Timing Is Law, Direction Is Surprise</a><span class="what">Political cycles: the calendar is real, the sign predicted 3 of 8 elections. Band 3 closes. <span class="ref">Atlas 3.7-3.9</span></span></span></li>
+</ol>
+
+<h2>Band 4 — annual &amp; calendar</h2>
+<ol class="syll">
+<li class="row"><span class="num">33</span><span><a class="t" href="https://claude.ai/code/artifact/806376dc-6e67-4518-a9e5-22d724ef774f">Only Mechanisms Buy a Test</a><span class="what">The calendar seat (L5): budget vol, the April pass that was refused promotion. <span class="ref">Atlas 4.1/4.2 · seat L5</span></span></span></li>
+<li class="row"><span class="num">34</span><span><a class="t" href="https://claude.ai/code/artifact/cd7cb8f3-9f6b-4b2b-9d9d-af5076fdc9ef">Sixteen Dates the Fast Layer Must Ignore</a><span class="what">Pure ops: drain windows, results dates, expiry — the H58 exclusion pack. <span class="ref">Atlas 4.3-4.6 · H58</span></span></span></li>
+<li class="row"><span class="num">35</span><span><a class="t" href="https://claude.ai/code/artifact/acd9806e-54cb-4376-9ef9-d45e1fc796ad">The Desk's Immune System</a><span class="what">Four calendar folk-claims dissected without spending trials. Band 4 closes. <span class="ref">Atlas 4.7-4.10</span></span></span></li>
+</ol>
+
+<h2>Band 5 + the close — the fast layer, and the atlas ends</h2>
+<ol class="syll">
+<li class="row"><span class="num">36</span><span><a class="t" href="https://claude.ai/code/artifact/438f0778-6bc5-4ca0-ba74-d5fe0ff88c93">The Layer That Reacts in Days</a><span class="what">Fast stress upgraded to the full standard — L2's complete anatomy. <span class="ref">Atlas 5.1-5.3 · seat L2</span></span></span></li>
+<li class="row"><span class="num">37</span><span><a class="t" href="https://claude.ai/code/artifact/5396c2b4-5185-4bf7-8cfd-6c632460f630">Knowing Your Counterparty</a><span class="what">Reversal frozen at Tier C; the atlas's last rows close. <span class="ref">Atlas 5.4-5.6</span></span></span></li>
+<li class="row"><span class="num">38</span><span><a class="t" href="https://claude.ai/code/artifact/645e58c9-8b46-4876-a542-8824b8ccd53b">Registered to Die</a><span class="what">The semiconductor candidate, registered with a prior of failure — knowledge either way. <span class="ref">H59</span></span></span></li>
+<li class="row"><span class="num">39</span><span><a class="t" href="https://claude.ai/code/artifact/ab2f5204-87ac-4676-affc-7d7f36495316">The Atlas, Closed</a><span class="what">The capstone: 38 monographs, the master verdict table, what the whole sweep proved. <span class="ref">docs/cycles/38</span></span></span></li>
+</ol>
+
+<h2>The data phase — real prints on real vaults</h2>
+<p class="bandnote">The registered designs meet authenticated data; doctrines get their numbers.</p>
+<ol class="syll">
+<li class="row"><span class="num">40</span><span><a class="t" href="https://claude.ai/code/artifact/c1de9a8d-b675-497c-baa2-de184eeb8b65">The Day the Data Arrived</a><span class="what">First mirrors vaulted (NIFTY daily, survivor panel); the first daily-resolution prints. <span class="ref">legs 1-2</span></span></span></li>
+<li class="row"><span class="num">41</span><span><a class="t" href="https://claude.ai/code/artifact/ed7b1e9d-ea24-4dce-b949-4000bfa04ba5">Speed Is the Seatbelt</a><span class="what">The risk system on real history: only fast rules protected in fast crashes. <span class="ref">F2-index · TS1</span></span></span></li>
+<li class="row"><span class="num">42</span><span><a class="t" href="https://claude.ai/code/artifact/4a678b79-8313-4164-bd30-999c936ddbbb">The Machine That Says No</a><span class="what">Stage-1 infrastructure: the regime spine, the walk-forward judge, challenger law in CI. <span class="ref">leg 4</span></span></span></li>
+<li class="row"><span class="num">43</span><span><a class="t" href="https://claude.ai/code/artifact/c5ec6631-cc05-46cd-aa32-cf4ba3a33150">The Echo and the Crush</a><span class="what">Budget-day implied vol crushes −8.9% on day 0; the petro-rupee heuristic dies. <span class="ref">legs 5-6</span></span></span></li>
+<li class="row"><span class="num">44</span><span><a class="t" href="https://claude.ai/code/artifact/2e4b147c-b280-4a4e-93e3-dc88c90fa9df">The Prior That Printed Twice</a><span class="what">The real Kilian index arrives; the oil asymmetry survives AND shrinks, as predicted. <span class="ref">leg 7</span></span></span></li>
+<li class="row"><span class="num">45</span><span><a class="t" href="https://claude.ai/code/artifact/c5cebe8a-673b-46cf-bed0-0a53cdb860ac">The Link That Got Stronger</a><span class="what">El Niño → deficient monsoon computed: 56% vs 14% base; the fragility lives downstream. <span class="ref">leg 8</span></span></span></li>
+<li class="row"><span class="num">46</span><span><a class="t" href="https://claude.ai/code/artifact/f79601e7-9dc6-4e60-af05-083dc94ad094">The Re-run</a><span class="what">The register survives its own reproduction: 50/50 scripts, 29/29 headlines. <span class="ref">leg 10</span></span></span></li>
+<li class="row"><span class="num">47</span><span><a class="t" href="https://claude.ai/code/artifact/33d25167-2ad8-40e1-adf3-6d9939f4bed4">Four Trials Hiding in Plain Sight</a><span class="what">The vol-managed lure priced; the third echo refused; the premium is exposure, not friction. <span class="ref">legs 13-16</span></span></span></li>
+</ol>
+
+<h2>The frontier — the generation reopens, Track T begins</h2>
+<ol class="syll">
+<li class="row"><span class="num">48</span><span><a class="t" href="https://claude.ai/code/artifact/496b1e66-2265-4457-9b5b-6967cb3d4775">The Market That Moves While You Sleep</a><span class="what">The manager sweep, candidates H60/H61, and the overnight discovery: +24%/yr while the market is closed. <span class="ref">legs 19-20</span></span></span></li>
+<li class="row"><span class="num">49</span><span><a class="t" href="https://claude.ai/code/artifact/9c9d4fee-0f27-410b-99f9-0e57fd3806f5">Five Prints and a Scaffold</a><span class="what">Track T's full harvest — five priors graded in public — and the ML pipeline's first tested steel. <span class="ref">legs 21-24</span></span></span></li>
+</ol>
+
+<footer>
+  Source of record: docs/learn/README.md (every row above, plus archive copies in
+  docs/learn/artifacts/). This syllabus is regenerated when new lessons publish; the
+  numbering is append-only, like everything else in the register.
+</footer>
+</div>
