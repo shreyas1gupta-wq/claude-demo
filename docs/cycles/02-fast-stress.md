@@ -1327,3 +1327,15 @@ decisively-leaning even under survivorship flattery. The tally: cross-sectional 
 confirmation for the fast-stress composite and each measured as an echo or worse. The RV
 spine stands three-for-three; the full F4 on PIT data remains registered but the burden has
 visibly shifted.
+
+**Same-day addendum (2026-09-03) — F6a: the premium decomposed.** The false-fire ledger ran
+on the F2-index grid verbatim and settled where the insurance premium actually lives:
+transaction whipsaw across all 18 cells costs 0.02-0.28%/yr at index-futures rates — a
+rounding error — so the 2.5-4pp/yr drags the walk-forward measured are almost entirely
+EXPOSURE drag, the price of standing de-risked while the market rises. False-fire discipline
+behaves exactly as designed (58%→0% share as trigger and confirm tighten; the phaseD
+re-entry family re-fires pathologically and remains excluded), and the speed trade-off's far
+end could not be convicted: with GFC warm-up-untestable, the single testable deep episode
+(COVID) was caught even by the slowest cell — n=1, recorded, not concluded. Decision B3-1
+sharpens accordingly: the budget being set is an exposure-drag budget; transaction cost
+needs no line at this scale.
