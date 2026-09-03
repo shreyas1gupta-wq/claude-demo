@@ -1411,3 +1411,53 @@ from ~₹1.2k cr/mo (2014) to >₹20k cr/mo (2025) [press-sourced; pin AMFI numb
 |---|---|---|---|
 | T1b | Overnight mean in/out of stress (2 conditionings) | **Null as barred — the drift is a CALM-DAYS phenomenon** (in-episode overnight +9.2%/yr at t=+0.66, nothing) — but the prior's mechanism was WRONG (recorded): stress does NOT land overnight; it lands INTRADAY (in-episode intraday −66.3%/yr, t=−3.3; out-of-episode intraday only −6%/yr, t=−1.5). India's crisis damage is a local-session event. EXECUTION consumption: in stress the buy-at-close argument vanishes (no drift to capture) and de-risk fires executed at next open sacrifice no measurable drift | **null confirmed; mechanism prior missed; ops guidance ships** |
 | T6-TOM | ToM premium + SIP-era fingerprint | Bar (i) **PASS**: full-sample ToM premium +7.2bp/day (p=0.025). Bar (ii) **the fingerprint is ABSENT — booked against H61's index-level relevance as pre-stated**: the premium SHRANK across BR6 (+12.2bp/d pre-2015 → +3.8bp/d, p=0.29 in the SIP era). The naive SIP-amplification story fails at the index calendar; the honest reading is the US-style decay pattern (deeper markets absorb the systematic flow) and/or SIP-date dispersion. H61's core (the aggregate flow multiplier) is untouched — but it can no longer claim this bump as motivation, and the sweep doc's C3 line inherits this print | **premium real, fingerprint absent (recorded against)** |
+
+## Entry EN-D1a (2026-09-03) — PRE-REGISTERED before running: onset-conditioned sectoral
+contrast, the runnable partial of EN-D1. Parent design QUOTED VERBATIM
+(research/cycles/enso-deep/partCDEFH.md): "**EN-D1** H55's promotion test (sector
+conditional returns on REALIZED rainfall deficits + food-CPI spikes, purged, era-split;
+bars at registration — runsheet step 73)." Principal directive 2026-09-03: "El Niño onset
+marked... we can check sectoral impact on logically impacted sectors for this not all...
++1 or -1 sigma next 1y or 6month." STATED DEVIATION from the parent: conditions on El Niño
+ONSET (the real-time-knowable state) rather than realized rainfall deficit — the tradeable
+timing; realized-deficit conditioning, food-CPI, purging and era-split all remain the full
+EN-D1's, which this partial does NOT run and CANNOT replace. Promotes nothing (H55 stays
+Tier-C candidate).
+
+Data: ONI seasonal 1950-2026 (climate vault, CPC-style labels) × N500 SURVIVOR panel
+adjclose 2012-2022 (panel vault). ONE-WAY DECLARATION (survivorship stated at admission):
+dead rural/smallcap names are absent, inflating the treated basket's measured return, i.e.
+biasing AGAINST finding treated underperformance — so a treated-underperforms print is
+admissible evidence; a null print is INCONCLUSIVE, never evidence against H55.
+
+Definitions fixed NOW, before any number:
+- ONSET: first season labeled `el_nino` in the vaulted ONI file following >=2 consecutive
+  non-el_nino seasons, sustained el_nino for >=3 consecutive seasons. Event date = first
+  panel trading day after the onset season's last calendar month. All onsets inside the
+  panel's usable span run; expected from the record: the 2014-16 event and the 2018-19
+  event (the script prints what the rule finds; no hand-picking).
+- TREATED basket (rural/monsoon-exposed, equal-weight, declared ex ante, only names present
+  in the panel; M&M absent from the panel — recorded): HINDUNILVR, DABUR, EMAMILTD,
+  GODREJCP, BRITANNIA, MARICO, ITC, HEROMOTOCO, BAJAJ-AUTO, ESCORTS, UPL, PIIND,
+  COROMANDEL, CHAMBLFERT, GNFC, RALLIS, KSCL, JYOTHYLAB, VBL (19).
+- PLACEBO basket (export-oriented, monsoon-orthogonal; the "not all sectors" control):
+  TCS, INFY, WIPRO, HCLTECH, TECHM, MPHASIS, MINDTREE, SUNPHARMA, DRREDDY, CIPLA, LUPIN,
+  AUROPHARMA, DIVISLAB (13).
+- MARKET: equal-weight mean of all panel names alive that day.
+- OUTCOME (the principal's spec): basket-minus-market cumulative return over the next 126
+  and 252 trading days from the event date, z-scored against that basket's own full-sample
+  distribution of overlapping rolling 126/252-day market-relative returns.
+- BARS (set NOW): (i) TREATED: z <= -1 at either horizon in EVERY onset found -> PASS
+  (sectoral transmission real at 1-sigma); z <= -1 in some but not all -> MIXED (recorded,
+  no consumption beyond context); no onset with z <= -1 -> NULL (inconclusive under the
+  one-way declaration). (ii) PLACEBO CONTROL: |z| < 1 at both horizons in every onset ->
+  control CLEAN; any |z| >= 1 -> control CONTAMINATED and the treated print may not be
+  read as sectoral (market/global factor owns it — the H53a lesson).
+- PRIOR on record: 2015 treated z <= -1 plausible (the 2014+2015 double-deficit rural
+  distress is documented); the weak 2018-19 event likely null; PASS-in-every-onset ~25%.
+  Placebo clean ~60% (IT carries global beta; 2015-16 had a global RV episode).
+- Census: 2 baskets x 2 horizons = 4 run cells.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| EN-D1a | Onset-conditioned sectoral contrast, survivor panel (interpretation hand-appended AFTER the print) | Rule found 3 in-panel onsets: 2014 SON, 2018 ASO, 2019 OND (the last is the 2018-19 event's label lapse re-triggering — the rule ran as written, no hand-picking). TREATED: NO onset reaches z <= -1 at either horizon (2014: +0.39/-0.38; 2018: -0.27/+0.39; 2019: +1.99/+0.34) -> **NULL**. PLACEBO: CLEAN for 2014 and 2018 (all abs z < 1) but **CONTAMINATED for 2019 OND** (+1.33 6m / +1.34 12m) — those windows are the COVID crash/recovery, which also owns treated's +1.99 (defensive staples in the crash), so the 2019 cells may not be read as sectoral, exactly as the control was designed to catch. PRIOR MISS recorded: the registration called 2015 treated z <= -1 plausible; measured -0.38 at 12m only. Mechanism read: the panel's rural-REVENUE large caps are urban-margin franchises, and the true rural casualties are dead names a survivor panel cannot hold — the bias the one-way declaration anticipated. Under that declaration this NULL is INCONCLUSIVE, not evidence against H55 | **null — inconclusive (one-way); H55 stays Tier-C candidate; full EN-D1 (PIT panel + realized deficits + food-CPI) remains the promotion test; census +4 = 197** |
