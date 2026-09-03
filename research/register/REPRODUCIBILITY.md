@@ -24,6 +24,9 @@ The committed RESULTS file carries the hand-corrected reading ("**not recovered 
 end (2024-11)**"), which is the true one. The committed record is right; the script's raw
 print is the artifact. Fixing the script's edge case is Track-R hygiene, not urgent — the
 record, not the print, is authoritative (this file says so now).
+**FIXED 2026-09-03 (same day):** `winters()` now flags open-ended drawdowns and prints
+"not recovered at sample end"; verified by run-diff-restore — the regenerated RESULTS file
+is now byte-identical to the committed record, hand-corrected line included.
 
 ## Process note #7 — scripts that WRITE their RESULTS files truncate hand-appended sections
 Several analyze scripts regenerate their `*-RESULTS.md` wholesale on every run. The

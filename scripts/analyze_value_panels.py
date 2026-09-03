@@ -114,6 +114,9 @@ def main() -> int:
     dd_us = dd_series(us3.HML)
     dd_in = dd_series(ind.HML.dropna())
     def winters(dd, thresh=0.2):
+        # each row carries an open-endedness flag: a drawdown still >2% at the final
+        # observation has NOT recovered — printing the sample-end month as a recovery
+        # date was the audit-caught artifact (REPRODUCIBILITY.md, 2026-09-03)
         out, in_w = [], False
         for dt, v in dd.items():
             if v > thresh and not in_w:
@@ -121,17 +124,25 @@ def main() -> int:
             elif in_w:
                 peakv = max(peakv, v)
                 if v < 0.02:
-                    out.append((start, dt, peakv)); in_w = False
+                    out.append((start, dt, peakv, False)); in_w = False
         if in_w:
-            out.append((start, dd.index[-1], peakv))
+            out.append((start, dd.index[-1], peakv, True))
         return out
     res += ["## V4 — Value winters (HML drawdowns > 20%, peak depth, recovery)", "",
             "| Panel | Start | End (recovered<2%) | Max depth |", "|---|---|---|---|"]
+    any_open = False
     for lab, w in [("US", winters(dd_us)), ("India (mirror)", winters(dd_in))]:
-        for s0, s1, depth in w:
-            res.append(f"| {lab} | {s0:%Y-%m} | {s1:%Y-%m} | {depth * 100:.0f}% |")
-    res += ["", "The US 2017-2020 winter and its 2020-2022 recovery, and any Indian analogues,",
-            "are the empirical basis for the SPREAD-CONDITIONED patience rule (never abandonment,",
+        for s0, s1, depth, open_end in w:
+            end = (f"**not recovered at sample end ({s1:%Y-%m})**" if open_end
+                   else f"{s1:%Y-%m}")
+            any_open = any_open or open_end
+            res.append(f"| {lab} | {s0:%Y-%m} | {end} | {depth * 100:.0f}% |")
+    res += [""]
+    if any_open:
+        res += ["Note the last US row: by this HML construction the post-2009 drawdown was still open at the 202411 vintage — 'value's recovery' since 2020 is a partial climb inside a historic hole, not a round trip. The US winters and India's 2018-2022 and any Indian analogues,"]
+    else:
+        res += ["The US 2017-2020 winter and its 2020-2022 recovery, and any Indian analogues,"]
+    res += ["are the empirical basis for the SPREAD-CONDITIONED patience rule (never abandonment,",
             "never doubling down — the valuation_sentiment block consumes the spread state).", ""]
 
     OUT.parent.mkdir(parents=True, exist_ok=True)

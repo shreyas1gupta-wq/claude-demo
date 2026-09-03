@@ -550,3 +550,21 @@ every computed line reproduced byte-identically; only hand-appended text was los
 restored them from HEAD. Rule: reproduction = run, diff, restore; the committed RESULTS
 file (prints + appended interpretation) is the record. Also recorded there: the
 analyze_value_panels sample-end recovery-print artifact (committed hand-correction stands).
+
+## 2026-09-03 (evening) — two config-touching literature flags worked
+- **costs.yaml Y "[VERIFY coefficients]" RESOLVED — order-unity CONFIRMED.** The square-root
+  impact law prefactor is stated as Y ~ 1 ("a market-specific prefactor of order unity") in
+  Toth, Lemperiere, Deremble, de Lataillade, Kockelkoren & Bouchaud, "Anomalous price impact
+  and the critical nature of liquidity in financial markets," Phys. Rev. X 1, 021006 (2011),
+  and re-confirmed by the 2025 PRX "Strict Universality of the Square-Root Law" study; the
+  law holds across equities, futures and options. Our registered [0.5, 1.0] band sits inside
+  order-unity as its conservative half. VALUE UNCHANGED; source note upgraded with citations;
+  confidence stays medium (India-specific calibration still owed — changes_if unchanged).
+- **Hamilton (2018) monthly h/p = 24/12 (open row 6) — upgraded to CORROBORATED, primary
+  still unread.** Two independent authoritative implementations of the paper's own
+  recommendation state exactly this convention: MathWorks Econometrics Toolbox `hfilter`
+  docs (quarterly h=8/p=4; monthly h=24/p=12) and QuantEcon's filter documentation. The
+  primary PDF (UCSD/NBER/REStat) remains proxy-blocked, so per row 6's own remedy the tier
+  HOLDS at B — the flag moves from "very likely" to "corroborated by two implementations,
+  primary unread." Our quant/stats/hamilton.py takes h and p as required arguments (no
+  silent defaults), so no code is affected either way.
