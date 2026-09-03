@@ -57,3 +57,8 @@ Any Sharpe-like claim on ANY strategy this program produces must call
 quant/stats/dsr.py::deflated_sharpe_ratio with n_trials >= the RUNNING TOTAL above at the
 time of the claim (plus that strategy's own sweep cells). The census is append-only; the
 total is never revised downward.
+
+## Machinery note (2026-09-03)
+The RUNNING TOTAL is now read mechanically: `quant.stats.dsr.census_n()` parses this file
+(tests/test_landing_day.py enforces a rising floor), so a Sharpe claim wired through it can
+never silently undercount trials. Update the table; the code follows.

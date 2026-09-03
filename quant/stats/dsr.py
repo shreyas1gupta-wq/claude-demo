@@ -60,3 +60,22 @@ def min_track_record_length(sr_hat: float, sr_benchmark: float, skew: float, kur
     z = norm.ppf(confidence)
     num = 1.0 - skew * sr_hat + (kurt - 1.0) / 4.0 * sr_hat ** 2
     return float(1.0 + num * (z / (sr_hat - sr_benchmark)) ** 2)
+
+
+def census_n(register_path=None) -> int:
+    """The trial census's RUNNING TOTAL, read from the register (never hardcoded).
+
+    trial-count.md's contract: any Sharpe-like claim must call deflated_sharpe_ratio with
+    n_trials >= this number at claim time (plus the strategy's own sweep cells). This helper
+    makes that rule mechanical — callers read the census, they don't remember it.
+    """
+    import re
+    from pathlib import Path
+    if register_path is None:
+        register_path = Path(__file__).resolve().parents[2] / \
+            "research" / "register" / "trial-count.md"
+    text = Path(register_path).read_text()
+    m = re.search(r"RUNNING TOTAL \(run cells\)\*\* \| \| \*\*(\d+)\*\*", text)
+    if not m:
+        raise ValueError(f"census RUNNING TOTAL not found in {register_path}")
+    return int(m.group(1))
