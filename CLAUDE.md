@@ -27,7 +27,10 @@ it before any research or parameter work; nothing below overrides it.
    committed BEFORE checking values — near-miss #4). Mirrors never outrank primary pulls.
 3. **Gated commits**: `python3 -m pytest tests/ -q` AND `python3 config/validator.py` must
    both pass before every commit (use `PIPESTATUS`, never pipe pytest through tail and read
-   `$?`). Commit and push EVERYTHING, always, to the designated branch.
+   `$?`). ENFORCED AS MACHINERY since 2026-09-03: `.githooks/pre-commit` runs both gates
+   (install once per clone: `git config core.hooksPath .githooks`) and
+   `.github/workflows/ci.yml` re-runs them on every push. Commit and push EVERYTHING,
+   always, to the designated branch.
 4. **No magic numbers** (grids/quantile ranks with provenance); Hamilton never HP; Tier-C is
    reduce-only; adaptive rules live in `config/challengers.yaml` lanes (the validator
    refuses un-reviewed 'online').

@@ -568,3 +568,12 @@ analyze_value_panels sample-end recovery-print artifact (committed hand-correcti
   HOLDS at B — the flag moves from "very likely" to "corroborated by two implementations,
   primary unread." Our quant/stats/hamilton.py takes h and p as required arguments (no
   silent defaults), so no code is affected either way.
+
+## 2026-09-03 (late) — the commit gate becomes machinery
+The pytest+validator gate (discipline #3) was manual and slipped once today (a
+markdown-only commit landed before the gates ran; both were green minutes before and after,
+so nothing red entered the record — but the slip is the point). Now enforced twice over:
+`.githooks/pre-commit` refuses any local commit with either gate red (core.hooksPath wired,
+install line documented in CLAUDE.md), and `.github/workflows/ci.yml` re-runs both gates on
+every push. The rule that was a sentence is now a mechanism — the challenger-lane principle
+applied to our own process.

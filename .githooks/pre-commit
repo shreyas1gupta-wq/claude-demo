@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# The commit gate as machinery (process discipline #3, enforced after the 2026-09-03 slip):
+# pytest AND the registry validator must both pass before ANY commit lands.
+# Installed via: git config core.hooksPath .githooks   (documented in CLAUDE.md)
+set -u
+cd "$(git rev-parse --show-toplevel)"
+
+echo "[gate] pytest..."
+if ! python3 -m pytest tests/ -q; then
+    echo "[gate] REFUSED: pytest red — the commit does not land." >&2
+    exit 1
+fi
+
+echo "[gate] registry validator..."
+if ! python3 config/validator.py; then
+    echo "[gate] REFUSED: validator errored — the commit does not land." >&2
+    exit 1
+fi
+
+echo "[gate] green — commit allowed."
