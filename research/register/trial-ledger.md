@@ -1319,5 +1319,5 @@ discussion like every pass.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| T1 | Overnight/intraday decomposition + signature test | (registered, not yet run) | registered |
-| T-CTRL1 | BLL MA family, 10 rules, net + DSR | (registered, not yet run) | registered control |
+| T1 | Overnight/intraday decomposition + signature test | **PASS — and NOT attenuated (prior half-missed, recorded)**: overnight +24.0%/yr (NW t=+10.5) vs intraday −12.6%/yr (t=−2.9), gap t=+7.6; robust ex-COVID; STRONGER post-BR3 (+41.7%/yr gap). The entire Nifty premium accrues overnight. Consumption cap holds (no trade — STT); the print is EXECUTION-TIMING evidence: staged deployments default to buy-at-close. Full honest read: research/track-t/T-RESULTS.md | **pass; execution-timing consumption only** |
+| T-CTRL1 | BLL MA family, 10 rules, net + DSR | **0/10 survivors — the control group died on schedule**: best cells net Sharpe 0.56-0.58 vs buy-hold 0.55, ALL DSR < 0.95 at n_trials=174. Track T's bar is now calibrated by a printed graveyard, as the cycle program's was by ENSO | **prior confirmed (0 survivors)** |
