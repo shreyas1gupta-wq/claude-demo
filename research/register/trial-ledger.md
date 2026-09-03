@@ -960,3 +960,21 @@ exists to close). CONSEQUENCE REGISTERED: when the FULL F2's episode set is re-f
 before its PIT run, the Feb-2016 window is a candidate for inclusion, to be decided from
 the public record BEFORE any rule output on it is seen; this note is the dated evidence
 that the candidate was raised by the state machinery, not cherry-picked afterward.
+
+## Entry H53a (2026-09-02) — the ToT→INR link: H53's first-test first LINK, bounded
+PRE-REGISTERED before running. Script: scripts/analyze_tot_inr.py. Data: vaulted IMF PCPS
+monthly (1980-2017) + the new INR/USD monthly vault (Fed H.10 mirror, 4/4 anchors). H53's
+registered first test asks whether the ToT state adds to L9's India transfer via the
+INR/CAD channel; CAD is not vaulted, so this bounded leg tests only the channel's FIRST
+LINK — do commodity-price moves transmit to the currency at all?
+DESIGN: non-overlapping calendar-year (Dec-to-Dec) log changes, 1980-2017 overlap (n~36).
+Primary: PCPS Fuel(Energy) index (India's dominant commodity import) vs INR/USD change
+(positive = depreciation). MECHANISM PRIOR: energy up => ToT worse => INR depreciates =>
+POSITIVE Spearman. BAR: rho > 0 AND one-sided p < 0.10. Secondary (no bar): the
+All-Commodity index. CONFOUND STATED NOW: nominal INR trends on inflation differentials;
+annual CHANGES limit but do not remove this; the full H53 test (real exchange rate + CAD,
+purged) remains registered and is NOT discharged by this link check.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| H53a | Energy-price change → INR depreciation (annual) | (pending) | pre-registered |
