@@ -948,3 +948,15 @@ scripts/analyze_f1c_andrews.py. Grid-edge hits reported, never hidden.
 | # | What | Result | Status |
 |---|---|---|---|
 | F1c | Andrews tau_half of the L2 composite | median-unbiased rho 0.9897 -> tau 3.19 months, 90% interval [2.19, 4.63]m (no grid edge) — CORROBORATES F1b's 3.18m with a tighter, properly-constructed interval; two independent estimators agree; the lengthening watch STANDS (the interval still reaches above the band top); the P3 Andrews queue item is DONE | measured, convergent |
+
+## Process/design note (2026-09-02) — the machinery flagged an episode the pre-named list lacks
+The Stage-1 regime demo (regime-DEMO.md) independently printed a 14-session R4 episode over
+2016-02-11..2016-03-01 — the global-selloff bottom — which is NOT in the §3 pre-named
+episode set of docs/cycles/02-fast-stress.md (that list has "Aug 2015 China deval" but
+nothing for the Jan-Feb 2016 continuation). DISCIPLINE APPLIED: the §3 set stays FROZEN for
+every design already registered against it (F2a/F2-index/F7a/FS-D3 denominators are
+untouched — adding an episode after seeing rule results is exactly the door the freeze
+exists to close). CONSEQUENCE REGISTERED: when the FULL F2's episode set is re-frozen
+before its PIT run, the Feb-2016 window is a candidate for inclusion, to be decided from
+the public record BEFORE any rule output on it is seen; this note is the dated evidence
+that the candidate was raised by the state machinery, not cherry-picked afterward.
