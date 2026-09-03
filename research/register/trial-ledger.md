@@ -1122,3 +1122,37 @@ shocks, author-repo, 4/4 anchors). Bars fixed NOW:
 | # | What | Result | Status |
 |---|---|---|---|
 | OL-D2a | Windfall asymmetry in oil-DOWN years | **FAIL — underpowered exactly as pre-stated (n=4, one cell n=1), and the dissection is the finding**: supply-driven downs (1998/2001/2015 per Känzig) averaged −14.7% for India vs the sole demand-driven down (2009) at +87.8% — diff −102.5pp against a +10pp bar. But 2009 is the GFC-rebound year AND an annual-averaging artifact (oil's 2009 annual mean sits below 2008's even though oil RALLIED all year — the same artifact OL1 documented for 2008); and the three supply-driven downs are Asian-crisis, dotcom and China-slowdown years — **the global factor owns oil-DOWN years exactly as it owned the ToT→INR link (H53a)**. Instruments diverge as they should: Känzig calls 2009 supply-CONTRACTIONARY (OPEC's Dec-2008 cuts) while Kilian activity fell in all 4 years (agreement 1/4). CONSEQUENCE: the windfall claim survives only CONDITIONALLY (net of L9's global state) — 'oil crash = India windfall' joins 'oil up = INR down' in the measured-casualty column at descriptive grade; no unconditional briefing line ships | **fail (underpowered, as pre-stated); conditional-only framing — the H53a rhyme** |
+
+## Entry F3a (2026-09-03) — PRE-REGISTERED before running: vol-managed NIFTY, the index partial
+Parent design QUOTED VERBATIM (docs/cycles/02-fast-stress.md harvest table): "F3 |
+**Vol-managed Nifty (two-sided)** | Moreira-Muir c/σ̂² scaling, full-period AND Cederburg
+real-time OOS protocol; costs in | Stated prior: DD control robust, alpha unproven. Either
+result documented; alpha claim may NOT be promoted from full-period evidence alone."
+Partial scope FIXED NOW (mirror coverage: NIFTY 50 index vault 2007-09..2026-04; the full F3
+on PIT data remains owed):
+- Construction: MONTHLY strategy. w_t = c / σ̂²_{t−1}, σ̂²_{t−1} = previous month's realized
+  variance of daily returns (annualized), applied over month t. Buy-hold = the index.
+- Cell F3a-1 (full-period, uncapped — the literature replication): c set so managed
+  unconditional monthly vol equals buy-hold vol (the MM convention). DOCUMENT: monthly
+  regression alpha of managed on buy-hold (t-stat, NW lags 3), Sharpe pair, maxDD pair.
+  PRIOR: direction per MM plausible, magnitude unproven for India; nothing promotes.
+- Cell F3a-2 (Cederburg real-time OOS): c re-estimated EXPANDING (only data through t−1;
+  first 36 months warm-up), same scaling. DOCUMENT: OOS Sharpe(managed) − Sharpe(buy-hold),
+  with a 90% CI from quant/stats/bootstrap.stationary_bootstrap on the monthly return
+  difference (mean_block=6 months, n=2000, seed=0 — first seed, no curation). PRIOR ON
+  RECORD: the improvement is ABSENT out-of-sample (the Cederburg-et-al. finding
+  generalizes); i.e., the CI includes 0.
+- Cell F3a-3 (desk-feasible): weights CAPPED at 1 (no leverage — funding_rate is unset and
+  the leverage feature is dark), NET of costs at 16 bps per unit turnover (index_futures
+  registry HI end, conservative; |Δw| monthly). DOCUMENT: maxDD delta vs buy-hold, net
+  annualized drag/premium, COVID-window DD. PRIOR: DD improves but by LESS than the
+  F2-index fast-trigger cells (vol scaling is slower than trigger logic) at lower whipsaw
+  cost.
+No promotion bar exists by the parent's own rule — these are documentation cells with
+priors; consumption is knowledge for the full F2/F3 adjudication, never an armed rule.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F3a-1 | MM full-period replication (uncapped) | (registered, not yet run) | registered partial |
+| F3a-2 | Cederburg real-time OOS Sharpe diff | (registered, not yet run) | registered partial |
+| F3a-3 | Capped-at-1, net-of-cost DD economics | (registered, not yet run) | registered partial |
