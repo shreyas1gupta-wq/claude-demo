@@ -174,3 +174,35 @@ commodity crashes were INR's worst years. The global factor owns both series. Co
 and can never be promoted on an unconditional print; (ii) a folk desk heuristic ("oil up =
 India down") is now a measured casualty at annual horizon; (iii) the fx vault (INR/USD
 1973-2026, 4/4 anchors) is admitted machinery for the conditional test when CAD lands.
+
+# Addendum 9 (2026-09-03): CW-D1v + F5a — the implied-vol mirror's two prints
+Script: scripts/analyze_indiavix.py. Vault: ingest/vault/vix/ (TradingView-export mirror,
+6/6 anchors incl. the exact 83.6075 COVID print; weakest provenance chain admitted, anchors
+carried it; NSE primary pull still owed).
+
+**CW-D1v — PASS (p = 2.7e-06), and the shape is the story.** Budget-window |dlogVIX| runs
+at 2.1x the everyday level (median 5.53% vs 2.60%), clearing the registered bar with room.
+The signed decomposition (descriptive, never barred) says WHERE the movement lives: the
+mean change is negative on all three window days — −1.8% the day before, **−8.9% on budget
+day itself**, −2.9% the day after. India VIX does not spike INTO the budget window; it is
+already bid by then, and the event trades as a pure uncertainty crush, day 0 being the
+single largest average implied-vol decline of the calendar. Combined with CW-D1a's return
+leg (±1 |return| elevated, p=0.0049), the parent CW-D1 design is now discharged at mirror
+coverage: budget vol is real on BOTH the realized and implied side, at daily resolution,
+invisible monthly — the resolution theorem's cleanest two-sided confirmation yet. L5
+consumes this as schedule-the-vol, never direction; the crush shape is exactly why the
+seat sells no options and takes no directional view: the market has already priced the
+event before any tradeable window opens.
+
+**F5a — neither bar fired ⇒ the parent's own fallback: RV stays primary.** Rank correlation
+of the two expanding percentiles is 0.763 — high, but below the 0.80 redundancy bar; and on
+the incremental test the domestic implied leg is a slightly WORSE episode classifier than
+realized vol (AUROC 0.770 vs 0.786 on 2,866 joint days, 8 frozen episodes). This is the
+second implied-vol leg the machinery has refused — FS-D3 refused the GLOBAL (CBOE) leg for
+dilution; F5a now shows the DOMESTIC leg adds nothing at index resolution either. The
+emerging doctrine line: for episode detection, implied vol indexes are rank-echoes of
+realized vol — the L2 composite keeps its RV spine and buys no confirmation from IV. The
+VRP proxy prints positive on 85.4% of days (mean +0.0076 annualized variance) — the
+premium is real and remains UNCONSUMED: its own registration, its own day.
+
+Census: +2 (H53a, omission fixed) +1 (CW-D1v) +3 (F5a) = TRUE N 126.

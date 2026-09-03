@@ -1283,3 +1283,19 @@ and the walk-forward DISQUALIFIED both adoptable shortlist cells (drag within bu
 COVID-era payout, DD 37%→26%, against 2.5-4pp/yr premiums in whipsaw-rich eras, is the
 insurance economics the full F2 must price at book level). The index-level shortlist is
 EMPTY; nothing is armed.
+
+---
+
+**Dated addendum (2026-09-03) — F5a: the domestic implied leg refused, like the global one.**
+The India VIX mirror (ingest/vault/vix/, 6/6 anchors, 2010-2023) let F5's daily-close partial
+run as registered (F5a, ledger 2026-09-03). Neither bar fired: Spearman rank correlation of
+the IV and RV expanding percentiles is 0.763 (below the 0.80 redundancy bar), and the IV
+percentile is a slightly WORSE episode classifier than the RV percentile (AUROC 0.770 vs
+0.786, 2,866 joint days, 8 frozen episodes) — so the parent's fallback governs: **RV stays
+primary; the composite buys no confirmation from implied vol.** Taken with FS-D3's refusal of
+the CBOE leg, both implied-vol candidates (global and domestic) have now failed to add over
+realized vol at index resolution — implied indexes are rank-echoes of RV for episode
+detection. The VRP proxy printed positive on 85.4% of days (mean +0.0076 annualized
+variance): the premium exists, is documented, and remains unconsumed pending its own
+registration (the parent's own rule). The FULL F5 (NSE primary series + M4 adjudication)
+stays owed; FS-D1 (term structure) still needs option chains.

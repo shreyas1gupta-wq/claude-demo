@@ -909,3 +909,20 @@ sizing conversation, per Contract §5.
 Verdicts: 4.1 SEATED (scheduling only, mechanism + daily-resolution literature; our monthly
 print abstains). 4.2 INSTRUMENTED (pass→refuse promotion; flag + paper trade). 4.11 REJECT
 (omnibus-confirmed). 4.12 REJECT (priced mechanics, Elton-Gruber; no trial spent).
+
+---
+
+**Dated addendum (2026-09-03) — CW-D1v: the implied side of budget vol, and the crush.**
+The India VIX mirror ran CW-D1's VIX leg as registered (CW-D1v, ledger 2026-09-03): budget
+±1 |dlogVIX| at 2.1x everyday levels (median 5.53% vs 2.60%), one-sided p = 2.7e-06 across
+15 events 2011-2023 — **PASS**, discharging the parent CW-D1 at mirror coverage (return leg
+already graded via CW-D1a's parent-window print, p=0.0049). The descriptive decomposition is
+the operator's lesson: mean implied-vol change is NEGATIVE on all three window days (−1.8%
+day −1, −8.9% day 0, −2.9% day +1) — the VIX is bid long before the window and the event
+itself trades as a pure uncertainty crush. Budget vol is therefore real on BOTH sides
+(realized AND implied) at daily resolution while staying invisible monthly — the resolution
+theorem's cleanest two-sided print. Consumption unchanged: L5 schedules exposure around the
+event and takes no direction; the crush shape shows the option-selling temptation is exactly
+the trade the seat refuses (the premium is compensation for the 3/8 sign-prediction record
+PL1 measured, not free money). Events outside mirror coverage (2009 pair, 2024-2026) remain
+for the NSE primary pull.
