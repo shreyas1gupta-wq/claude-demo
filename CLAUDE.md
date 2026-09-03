@@ -59,5 +59,10 @@ ruled RV-primary (both implied legs refused); OL-D1a PASSED with its two-sided p
 confirmed; EN-D2a resolved the B4a [VERIFY] at 56%/4.1x. Census 136 run cells; 45 lessons;
 suite 118 green. **THE MIRROR FRONTIER IS EXHAUSTED (2026-09-03)** — every runsheet row is
 either partially mirrored to its limit or probed dead (TSF, WSTS); the next data event is
-necessarily principal-machine. Blocked on the principal: OPEN_QUESTIONS batch 3 + the
-Priority-1 pulls.
+necessarily principal-machine. SAME DAY, by principal directive: candidate generation
+REOPENED (research/frontier/manager-frontier-sweep.md; candidates H60-VRP, H61-FLOWMULT;
+breaks-registry.md BR1-BR6); TRACK T (technical-quant-systematic) opened and its runnable
+backlog fully run — census 193, suite 125 (headline: the NIFTY premium accrues OVERNIGHT,
++24%/yr, calm-days only, stress is intraday; F3a-F6a all booked; T-CTRL1/T2/T3 graveyards);
+TRACK P scaffold landed (quant/pipeline: triple-barrier, meta-labels, vintage stamping).
+49 lessons. Blocked on the principal: OPEN_QUESTIONS batches 3+4 + the Priority-1 pulls.
