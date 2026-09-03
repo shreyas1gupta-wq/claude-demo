@@ -46,8 +46,15 @@ it before any research or parameter work; nothing below overrides it.
   (survivorship stated — one-way uses only), CBOE VIX 1990-2026, IIMA monthly factors,
   gold 1833-2026, JST, commodities, climate (see ingest/vault/*/AUTHENTICATION.md).
 
-## Where work stands (2026-09-02)
-Atlas complete; data phase's remote legs done (~20 trials run on mirrors); Stage-1
-machinery live (quant/regime.py, walk-forward, book costs, challenger CI, paper ledger);
-the phase file CLOSED at index resolution (levels, not directions). Blocked on the
-principal: OPEN_QUESTIONS batch 3 + the Priority-1 runsheet pulls. Suite 115 green.
+## Where work stands (2026-09-03)
+Atlas complete; Stage-1 machinery live (quant/regime.py, walk-forward, book costs,
+challenger CI, paper ledger); the phase file CLOSED at index resolution. Mirror legs 5-9
+done: fx + India VIX + Kilian + Känzig + ONI + AISMR vaulted (10 vaults); H53a and OL-D2a
+FAILED unconditionally (the global factor owns both commodity links — conditional-only
+framings locked); CW-D1v PASSED (budget vol on the implied side, the day-0 crush); F5a
+ruled RV-primary (both implied legs refused); OL-D1a PASSED with its two-sided prior
+confirmed; EN-D2a resolved the B4a [VERIFY] at 56%/4.1x. Census 136 run cells; 45 lessons;
+suite 118 green. **THE MIRROR FRONTIER IS EXHAUSTED (2026-09-03)** — every runsheet row is
+either partially mirrored to its limit or probed dead (TSF, WSTS); the next data event is
+necessarily principal-machine. Blocked on the principal: OPEN_QUESTIONS batch 3 + the
+Priority-1 pulls.

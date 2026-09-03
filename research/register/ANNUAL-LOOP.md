@@ -17,6 +17,9 @@ this file is where they live so none is forgotten. Run order: top to bottom. Nex
 - [ ] Config updates ONLY where the new CI excludes the standing value (hysteresis); everything keyed to tau re-derives
 - [ ] L2 LENGTHENING watch: F1b/F1c printed ~3.2m vs band [1,3] — check whether full-F1 (PIT) has resolved B3-2
 - [ ] H65a/H65b drift watch: informational band compressing? balance-sheet band lengthening?
+- [ ] EN-D2 annual re-print: re-run scripts/analyze_en_d2a.py on the freshest ONI + rainfall vaults
+      (the 2023-24 El Niño's monsoon enters when the IMD primary lands); update the B4a box if the
+      pooled rate leaves [45,70]% — as a recorded event, never a moved bar
 
 ## 3. Decay haircuts & crowding
 - [ ] Momentum haircut escalation check (post-2015 PIT subsample, when the primary library exists)

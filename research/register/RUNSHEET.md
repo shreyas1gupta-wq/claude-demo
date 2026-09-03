@@ -1,5 +1,8 @@
 # THE RUNSHEET — every data pull the register is waiting on
-Consolidated 2026-09-02 at atlas completion. Each pull is FREE (Contract §3), lands in
+Consolidated 2026-09-02 at atlas completion. **MIRROR FRONTIER EXHAUSTED 2026-09-03**: the
+remote legs have mirrored every row a GitHub-reachable source could serve (see the per-row
+PARTIALLY MIRRORED notes) and probed the rest dead (TSF, WSTS); everything below now waits
+on the principal's machine. Each pull is FREE (Contract §3), lands in
 ingest/vault/ under manifest + two-pass AUTHENTICATION discipline, and unblocks designs whose
 bars/priors are ALREADY WRITTEN in research/register/trial-ledger.md — no design decisions
 remain at pull time; the machine runs as registered. Pulls happen on the principal's machine
