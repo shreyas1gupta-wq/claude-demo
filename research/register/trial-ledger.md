@@ -1183,3 +1183,29 @@ reading declared below):
 |---|---|---|---|
 | F4a-21d | redundancy + adds, 21d window | Spearman(corr_p, rv_p) = 0.765 (below the 0.80 redundancy bar) BUT AUROC 0.716 vs RV's 0.748 — the correlation leg is a WORSE episode classifier; parent rule ⇒ **EXCLUDED as confirm input**. 1,745 joint days 2014-2021; 5 of 6 in-span episodes covered (taper lost to percentile warm-up — stated); days with a zero-variance top-50 name drop mechanically (suspended names) | **excluded (one-way: failed to add even on flattered data)** |
 | F4a-63d | redundancy + adds, 63d window | Spearman 0.649, AUROC 0.663 vs RV 0.759 — even further from adding at the quarter window | **excluded** — and the doctrine consolidates: F4a + F5a + FS-D3 make it THREE candidate confirm-inputs (cross-sectional correlation, domestic implied vol, global implied vol) refused at index resolution; the L2 composite's realized-vol spine is now measured against every proposed echo and kept all three times | **excluded; the RV-spine doctrine, third print** |
+
+## Entry F6a (2026-09-03) — PRE-REGISTERED before running: the whipsaw/false-fire ledger, index partial
+Parent design QUOTED VERBATIM (docs/cycles/02-fast-stress.md harvest table): "F6 | **Whipsaw /
+false-fire ledger** | Full threshold-grid table: false-fire rate, round-trip cost per false
+fire by book, missed-episode rate (per §4's measured-bound rule) | The de-risk rule must
+clear the cost-in-SR speed limit per book; Conservative likely needs the slowest cell —
+documented per book."
+Partial scope FIXED NOW: the F2-index grid VERBATIM (same state construction, same 18 cells:
+triggers {0.80, 0.90, 0.95} × confirm {1-of-2, 2-of-2} × re-entry {decay, phaseD, calendar};
+same frozen episode list; same COST=28bps per unit turnover). Definitions fixed:
+- FIRE = an entry into the de-risked position (the grid's own fires counter, start-indexed).
+- TRUE fire = start date inside any frozen episode window; FALSE fire otherwise.
+- MISSED episode = a deep episode (buy-hold window DD ≥ 20%, the grid's own bound) with no
+  fire starting inside its window.
+- Ledger per cell: fires/yr, false-fire share, missed-deep-episode count, whipsaw cost/yr at
+  three cost points {8, 16, 28} bps per unit turnover (index-futures registry lo/hi + the
+  parent grid's own 28) — the PER-BOOK cost-in-SR grading is the full F6, NOT discharged
+  here (books need their own mixes and the M4 frame; stated).
+No pass/fail bar (documentation trial per parent); priors ON RECORD: (i) false-fire share
+FALLS as trigger rises and confirm tightens; (ii) the 0.80/1-of-2 survivors of F2-index pay
+the HIGHEST whipsaw cost; (iii) 0.95/2-of-2 misses at least one deep episode (the speed
+trade-off has two ends).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F6a | 18-cell false-fire ledger | (registered, not yet run) | registered partial |
