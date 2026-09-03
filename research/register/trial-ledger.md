@@ -1156,3 +1156,30 @@ priors; consumption is knowledge for the full F2/F3 adjudication, never an armed
 | F3a-1 | MM full-period replication (uncapped) | **The parent's prior verbatim, in numbers**: alpha +5.76%/yr at NW t=1.67 — positive, NOT significant (alpha unproven, exactly as stated); Sharpe 0.61 vs 0.51; maxDD 26% vs 55% (DD control robust, exactly as stated). Weights ranged 0.03-6.12 (mean 1.16) — the uncapped strategy LEVERS 6x in calm, which the desk cannot do (funding_rate dark) | documented; prior confirmed both halves |
 | F3a-2 | Cederburg real-time OOS Sharpe diff | **Prior CONFIRMED: the improvement is absent out-of-sample.** Expanding-c real-time: OOS Sharpe 0.60 vs buy-hold 0.62 (diff −0.02); mean return diff +8.05%/yr but 90% stationary-bootstrap CI [−0.97, +17.41]%/yr INCLUDES 0 (mean_block=6, seed=0) — the extra return arrives with proportional extra vol and huge dispersion. The Cederburg finding generalizes to India at index resolution | documented; prior confirmed |
 | F3a-3 | Capped-at-1, net-of-cost DD economics | **Prior WRONG in direction on DD — recorded**: the desk-feasible capped variant's maxDD is 22% vs buy-hold 55% (COVID window 10% vs 23%) — BETTER than the F2-index fast-trigger survivors (26% COVID DD), not worse as registered. The price is why it still cannot arm: **−4.86%/yr net drag** (mean weight 0.73 in a rising market; costs trivial at 0.32%/yr on 2x annual turnover) — roughly double the F2 cells' whipsaw-era premium and far outside any drag budget. The insurance-economics doctrine sharpens: continuous de-risking buys MORE protection at MUCH higher premium than episode-triggered de-risking; the full F2/F3 must adjudicate this trade at book level, and the desk cannot access the levered side of MM at all | documented; DD prior missed, recorded |
+
+## Entry F4a (2026-09-03) — PRE-REGISTERED before running: the correlation-spike leg, survivor partial
+Parent design QUOTED VERBATIM (docs/cycles/02-fast-stress.md harvest table): "F4 |
+**Correlation-spike increment** | Mean pairwise correlation (top-50 names, window grid)
+percentile; incremental episode AUROC over RV alone | Adds ⇒ enters as confirm input
+candidate; redundant ⇒ documented, excluded."
+Partial scope FIXED NOW (data: the SURVIVOR panel 2012-2021, survivorship stated — one-way
+reading declared below):
+- Top-50: by PREVIOUS calendar year's median daily value traded (n500_value_traded),
+  refreshed each January — real-time-safe by construction.
+- Signal: mean pairwise correlation of daily returns across the top-50, trailing windows
+  {21, 63} days (the house month/quarter grid); expanding percentile, min_obs 252.
+- RV leg: the index vault's 21d realized-vol expanding percentile (the F5a construction,
+  verbatim); all comparisons on joint non-NaN days.
+- BARS (the F5a house precedent, quoted): REDUNDANT if Spearman(corr_p, rv_p) ≥ 0.80;
+  ADDS if AUROC(corr_p → episodes) ≥ AUROC(rv_p → episodes) + 0.03. Episodes = frozen §3
+  in-span (2012-2021): taper, China deval, demonetization, Feb-2018, IL&FS, COVID (6).
+- ONE-WAY READING (survivorship): dead names were disproportionately high-vol; their absence
+  most plausibly SMOOTHS the correlation signal's stress spikes, but the bias direction on
+  the AUROC increment is not provable here. Declared: a REDUNDANT / no-adds print is
+  decisive-leaning (the leg failed even on clean survivors); an ADDS print caps at
+  "[VERIFY-PIT] confirm-input CANDIDATE" — the parent's promotion needs the PIT panel.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| F4a-21d | redundancy + adds, 21d window | (registered, not yet run) | registered partial |
+| F4a-63d | redundancy + adds, 63d window | (registered, not yet run) | registered partial |
