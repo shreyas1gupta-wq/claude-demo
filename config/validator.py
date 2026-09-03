@@ -226,12 +226,38 @@ def main() -> int:
             err(f"{label}: missing or incomplete section-level provenance stanza '{key}' "
                 f"(must carry {sorted(PROVENANCE_KEYS)})")
 
+    # ---- challenger registry (the adaptivity-admission law; PIPELINE) ------------------
+    ch_path = ROOT / "challengers.yaml"
+    if not ch_path.exists():
+        err("challengers.yaml missing - every adaptive rule must be laned")
+    else:
+        ch = load("challengers.yaml")
+        LANES = {"shadow", "challenger", "online"}
+        cal = ch.get("review_calendar", {})
+        if not cal.get("quarterly") or not cal.get("annual"):
+            err("challengers: review_calendar must fix quarterly + annual dates in advance")
+        seen = set()
+        for r in ch.get("rules", []):
+            rid, lane = r.get("id"), r.get("lane")
+            if not rid or rid in seen:
+                err(f"challengers: missing/duplicate rule id {rid!r}")
+            seen.add(rid)
+            if lane not in LANES:
+                err(f"challengers.{rid}: lane {lane!r} not in {sorted(LANES)}")
+            if lane in ("challenger", "online") and not r.get("win_criteria"):
+                err(f"challengers.{rid}: lane '{lane}' requires win_criteria")
+            if lane == "online":
+                err(f"challengers.{rid}: 'online' admission is review-gated - promote only "
+                    "at a review_calendar date via an explicit commit citing the win print")
+            if not r.get("source") or not r.get("promotion_path"):
+                err(f"challengers.{rid}: source and promotion_path are required")
+
     # ---- report ----------------------------------------------------------------------
     for w in WARNINGS:
         print(f"WARN  {w}")
     for e in ERRORS:
         print(f"ERROR {e}")
-    print(f"\n{len(ERRORS)} error(s), {len(WARNINGS)} warning(s) across 6 registry files.")
+    print(f"\n{len(ERRORS)} error(s), {len(WARNINGS)} warning(s) across 6 registry files + challengers.")
     if ERRORS:
         print("REGISTRY REFUSED TO LOAD.")
         return 1

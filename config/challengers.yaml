@@ -1,0 +1,35 @@
+# CHALLENGER REGISTRY — the single adaptivity-admission law (PIPELINE §Challenger registry)
+# Every adaptive or promotable rule lives in EXACTLY ONE lane. The validator enforces:
+# lanes are {shadow, challenger, online}; nothing may be 'online' before its review_date
+# and win_criteria exist; production code may consume ONLY rules marked online.
+# Promotions happen ONLY at the fixed review dates (set a year ahead; never reactive).
+review_calendar:
+  quarterly: ["2026-12-01", "2027-03-01", "2027-06-01", "2027-09-01"]
+  annual: "2027-09-01"
+  provenance: "PIPELINE.md §Challenger registry — dates fixed in advance so none can be chosen or avoided in reaction to performance"
+rules:
+  - id: phase_overlay_L2_reentry
+    lane: shadow
+    source: "F7a FAIL (2026-09-02): phase stays display-only per the frozen gate"
+    promotion_path: "a future F7 pass on fuller data -> challenger (reduce-only) -> online"
+  - id: cw2_april_smallcap_flag
+    lane: shadow
+    source: "CW2 pass, promotion refused; graded via paper-ledger PT-2 (3 Aprils, >=2 net-positive)"
+    promotion_path: "PT-2 tally met -> challenger discussion at the following quarterly review; cap: flag only"
+  - id: hl7_preelection_tilt
+    lane: shadow
+    source: "HL-7 teach-only; paper-ledger PT-1"
+    promotion_path: "per-event grading; no promotion path to sizing (teach-only by registration)"
+  - id: l1_reversal_flag
+    lane: shadow
+    source: "frozen; MR1-S corroborated the freeze one-way (2026-09-02)"
+    promotion_path: "true MR1 (PIT) is the only path; even a pass caps at flag"
+  - id: crowding_monitors_h_cr
+    lane: shadow
+    source: "CR-D2a calibrated (P1 pass / P2 fail); monitors log, never veto"
+    promotion_path: "full CR-D2 (PIT, residualized) -> challenger as reduce-only conditioner"
+  - id: h58_drain_quarantine
+    lane: challenger
+    source: "wired into L2 role text; grading H58-D1 (>=2x rate AND >=80% mean-reversion bars)"
+    win_criteria: "H58-D1 bars as registered in the trial ledger"
+    promotion_path: "H58-D1 pass -> online at the next quarterly review (quarantine only, two-of-three override retained)"
