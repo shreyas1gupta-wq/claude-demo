@@ -99,8 +99,9 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
 .opanel{border-radius:14px;padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px}
 .opanel.dom{background:#F4F4FC}
 .opanel.off{background:#EBF4F5}
-.ohead{display:flex;align-items:baseline;gap:11px}
-.ohead .t{font-family:var(--dis);font-size:21px;font-weight:600;letter-spacing:-.2px}
+.ohead{display:flex;align-items:baseline;gap:11px;min-height:26px}
+.ohead .s::after{content:"\200B"}
+.ohead .t{font-family:var(--dis);font-size:21px;font-weight:600;letter-spacing:-.2px;line-height:1.15}
 .opanel.dom .ohead .t{color:var(--indigo)}.opanel.off .ohead .t{color:var(--teal-d)}
 .ohead .s{font-size:10px;color:var(--grey);letter-spacing:.3px}
 .ohead .tot{margin-left:auto;font-family:var(--ui);font-size:13px;font-weight:700;color:var(--indigo)}
@@ -138,6 +139,7 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
 .ocard.slim .rt{text-align:right;flex:0 0 auto}
 .ocard.slim .rt .v{font-family:var(--ui);font-size:12px;font-weight:700;color:var(--teal-d)}
 .ocard.slim .rt .l{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
+.offnote:empty{display:none}
 .offnote{margin-top:auto;font-size:10px;color:var(--teal-d);line-height:1.55;opacity:.8;border-top:1px solid rgba(11,84,96,.14);padding-top:12px}
 .live{color:var(--green);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
 .newq{color:var(--amber-d);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
@@ -272,7 +274,7 @@ table.ptab td.z{color:#C4C4D0}
     <div class="ci">
      <span class="cnum">01</span>
      <div class="cbody"><div class="ctxt" contenteditable="" data-ek="e4">The offerings</div><div class="cd2" contenteditable="" data-ek="e5">Domestic and offshore&nbsp;</div></div>
-     <div class="cfig"><b contenteditable="" data-ek="e6">7+&nbsp;</b><small>product AUM</small></div>
+     <div class="cfig"><b contenteditable="" data-ek="e6">7+</b><small>strategies</small></div>
     </div>
     <div class="ci">
      <span class="cnum">02</span>
@@ -318,7 +320,7 @@ table.ptab td.z{color:#C4C4D0}
         <div class="ct2" contenteditable="" data-ek="e28">Advisory-led PMS</div>
         <div class="sn" contenteditable="" data-ek="e29">CoPilot</div>
         <div class="sd" contenteditable="" data-ek="e30">The client drives; Ionic advises. Our research and structure, every decision still theirs.</div>
-        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="" data-ek="e31">₹394.6 Cr</div></div><div class="b"><div class="l">Share of shelf</div><div class="v" contenteditable="" data-ek="e32">35.5%</div></div></div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="" data-ek="e31">₹394.6 Cr</div></div><div class="b"><div class="l">Share of shelf</div><div class="v" contenteditable="" data-ek="e32">35.6%</div></div></div>
        </div>
        <div class="ocard">
         <div class="ct2" contenteditable="" data-ek="e33">Second income · treasury</div>
@@ -336,7 +338,7 @@ table.ptab td.z{color:#C4C4D0}
      </div>
 
      <div class="opanel off anim" style="--d:2">
-      <div class="ohead"><span class="t" contenteditable="" data-ek="e43">Offshore</span><span class="s" contenteditable="" data-ek="e44"><br></span><span class="tot" contenteditable="" data-ek="e45">~$30M</span></div>
+      <div class="ohead"><span class="t" contenteditable="" data-ek="e43">Offshore</span><span class="s" contenteditable="" data-ek="e44"></span><span class="tot" contenteditable="" data-ek="e45">~$30M</span></div>
       <div class="ocore">
        <div style="flex:1">
         <div class="ct" contenteditable="" data-ek="e46">Global core · flagship</div>
@@ -356,7 +358,7 @@ table.ptab td.z{color:#C4C4D0}
         <div class="rt"><div class="v" contenteditable="" data-ek="e57">FY26</div><div class="l">Target</div></div>
        </div>
       </div>
-      <div class="offnote" contenteditable="" data-ek="e58"><br></div>
+      <div class="offnote" contenteditable="" data-ek="e58"></div>
      </div>
 
     </div>
@@ -396,10 +398,10 @@ table.ptab td.z{color:#C4C4D0}
      <div class="bk b3">
       <div style="flex:1">
        <div class="bl" contenteditable="" data-ek="e69">Bucket 3 · Focused products</div>
-       <div class="bv" contenteditable="" data-ek="e70">₹7<span class="u"> Cr</span></div>
+       <div class="bv" contenteditable="" data-ek="e70">₹6.9<span class="u"> Cr</span></div>
        <div class="bd" contenteditable="" data-ek="e71"><b>Unique products.</b> Navigate, Global, Yield Enhancer — smallest bucket, highest yield per rupee.</div>
       </div>
-      <div class="bshare"><div class="p" contenteditable="" data-ek="e72">0.19%</div><div class="q">of book</div></div>
+      <div class="bshare"><div class="p" contenteditable="" data-ek="e72">0.18%</div><div class="q">of book</div></div>
      </div>
     </div>
 
@@ -437,7 +439,7 @@ table.ptab td.z{color:#C4C4D0}
      </div>
     </div>
    </div>
-   <div class="src anim" style="--d:5">Cards are the live <b>RM Platform Review</b> (HNI book, ₹Cr, latest 25 Aug 2026) — one card per RM, ranked by platform AUM; remark and action are editable. <span class="tent">Tentative — books yet to be finalised for 31 Aug 2026.</span> Reconciles to the master workbook: total book ₹3,773.6 Cr · platform ₹497.67 Cr · focus ₹6.9 Cr · 2,290 clients · 478 platform clients · 13.2% penetration. Penetration = platform AUM ÷ total book. Phase ratios are directional (RM cohorts by tenure, DOJ) — the shape of the curve, not a forecast.</div>
+   <div class="src anim" style="--d:5">Cards are the live <b>RM Platform Review</b> (HNI book, ₹Cr) — one card per RM, ranked by platform AUM; remark and action are editable. <span class="tent">Tentative — books yet to be finalised for 31 Aug 2026.</span> Reconciles to the master workbook: total book ₹3,773.6 Cr · platform ₹497.67 Cr · focus ₹6.9 Cr · 2,290 clients · 478 platform clients · 13.2% penetration. Penetration = platform AUM ÷ total book. Phase ratios are directional (RM cohorts by tenure, DOJ) — the shape of the curve, not a forecast.</div>
   </section>
 
   <!-- ============ 4 · QUESTIONS ============ -->
@@ -511,7 +513,7 @@ slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d
 let RM=JSON.parse(document.getElementById('rmdata').textContent);
 let ri=0,rtimer=null;
 const rmcard=document.getElementById('rmcard'),rmdots=document.getElementById('rmdots');
-RM.forEach((_,i)=>{const d=document.createElement('div');d.className='rmd'+(i===0?' on':'');d.onclick=()=>{stopRM();ri=i;paintRM(i);};rmdots.appendChild(d);});
+RM.forEach((r,i)=>{const d=document.createElement('div');d.className='rmd'+(i===0?' on':'');d.title=(i+1)+' · '+r.rm;d.onclick=()=>{stopRM();ri=i;paintRM(i);};rmdots.appendChild(d);});
 const cr=v=>{v=Number(v);if(!v||isNaN(v))return '<span class="mut">&ndash;</span>';return v.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});};
 const arrow=d=>d>0.01?'<span class="arrow pos">&#9650;</span>':(d<-0.01?'<span class="arrow neg">&#9660;</span>':'<span class="arrow mut">&#8226;</span>');
 function flagOf(r){const br=r.prod.filter(p=>p.aug>0).length;
@@ -557,7 +559,7 @@ function paintRM(i){const r=RM[i];
   +'<div class="sec"><h4>Focussed product</h4>'
    +'<div class="st"><span class="k">Focus Mar</span><span class="val">'+cr(r.f_mar)+'</span></div>'
    +'<div class="st"><span class="k">Focus Jul/Aug</span><span class="val big">'+cr(r.f_aug)+'</span></div>'
-   +'<div class="st"><span class="k">% of total AUM</span><span class="val">'+(r.tot_aug?(r.f_aug/r.tot_aug*100).toFixed(2)+'%':'&ndash;')+'</span></div>'
+   +'<div class="st"><span class="k">% of book</span><span class="val">'+(r.tot_aug?(r.f_aug/r.tot_aug*100).toFixed(2)+'%':'&ndash;')+'</span></div>'
    +'<div class="st"><span class="k">Focus clients</span><span class="val">'+(r.f_cl||0)+'</span></div>'
    +'<div class="st"><span class="k">Focus + Plat. cl.</span><span class="val '+(r.cl_focplat>0?'pos':'mut')+'">'+r.cl_focplat+'</span></div></div>'
   +'</div>'
@@ -595,7 +597,7 @@ document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle
  document.getElementById('btnFull').textContent=document.fullscreenElement?'⛶ Exit':'⛶ Fullscreen';fit();});
 
 /* ---------- edit persistence ---------- */
-const LS='ionic_strategic_meet_v2';
+const LS='ionic_strategic_meet_v3';
 const isSnap=document.documentElement.dataset.snapshot==='1';
 let store={edits:{}};
 if(isSnap){try{localStorage.removeItem(LS);}catch(e){}document.documentElement.removeAttribute('data-snapshot');}
