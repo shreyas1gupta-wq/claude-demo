@@ -1,0 +1,413 @@
+<title>Reverse-Engineering Demeter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+__SHARED_STYLE__
+<style>
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--spy);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0 0}
+.verdict h2{font-size:24px;margin-bottom:8px}
+.verdict p{font-size:15.5px;color:var(--ink-2);max-width:78ch}
+.verdict p b{color:var(--ink)}
+.ladder{display:grid;grid-template-columns:auto 1fr;gap:0;margin:0}
+.ladder .n{font-family:var(--serif);font-size:26px;color:var(--strategy);padding:12px 16px 12px 0;border-right:1px solid var(--line);text-align:right;min-width:56px}
+.ladder .b{padding:12px 0 12px 18px;border-bottom:1px solid var(--line)}
+.ladder .n{border-bottom:1px solid var(--line)}
+.ladder .b:last-of-type,.ladder .n:last-of-type{border-bottom:0}
+.ladder h4{margin:0 0 3px;font:600 14px var(--sans)}
+.ladder p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.trap{border:1px solid var(--neg);border-radius:6px;background:var(--neg-soft);padding:16px 18px}
+.trap h3{color:var(--ink)}
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font:600 11px var(--sans);letter-spacing:.03em;text-transform:uppercase}
+.pill.ok{background:var(--pos-soft);color:var(--pos)} .pill.bad{background:var(--neg-soft);color:var(--neg)} .pill.mid{background:var(--spy-soft);color:var(--spy)}
+td.rank{color:var(--ink-3);width:26px}
+tr.hi td{background:var(--strategy-soft)}
+.rules-src{font-family:var(--mono);font-size:12px;white-space:pre-wrap;color:var(--ink-2);background:var(--band);padding:12px 14px;border-radius:6px;overflow-x:auto;max-height:340px;overflow-y:auto}
+.paramlist{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.paramlist code{font-family:var(--mono);font-size:12px;background:var(--band);border:1px solid var(--line);border-radius:4px;padding:3px 7px}
+.chart .bar.model{fill:var(--strategy)} .chart .bar.dem{fill:var(--pos)} .chart .bar.spy{fill:var(--spy)}
+.chart .line.model{stroke:var(--strategy)} .chart .line.dem{stroke:var(--pos)} .chart .line.cash{stroke:var(--cash);stroke-dasharray:4 4}
+.chart .endlabel.model{fill:var(--strategy)} .chart .endlabel.dem{fill:var(--pos)} .chart .endlabel.cash{fill:var(--cash)}
+.chart .area.model{fill:var(--strategy);opacity:.16}
+.sw.model{background:var(--strategy)} .sw.dem{background:var(--pos)} .sw.cash{background:var(--cash)}
+.grid2 .tbl-wrap table.tbl-compact th,.grid2 .tbl-wrap table.tbl-compact td{padding:5px 7px;font-size:12px}
+.limit li{margin-bottom:9px}
+.limit{padding-left:20px;font-size:14px;color:var(--ink-2);max-width:80ch}
+.limit b{color:var(--ink)}
+</style>
+
+<div class="top"><div class="wrap">
+  <a class="brand" href="#top">Replication <i>Study</i></a>
+  <nav aria-label="Sections">
+    <a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#fingerprint">Fingerprint</a><a href="#trap">The trap</a><a href="#leaderboard">Leaderboard</a><a href="#model">The model</a><a href="#versus">vs Demeter</a><a href="#sensitivity">Sensitivity</a><a href="#limits">Limits</a>
+  </nav>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Replication study · S&amp;P 500 and NASDAQ, 1885–2026 · out-of-sample Jul 2012 – Jan 2026</div>
+      <h1 style="margin-top:10px">Can a rules-based dual-engine model match Demeter?</h1>
+      <p class="lede">Six candidate models built on 141 years of index data, each tuned only on data ending June 2012 and then run untouched across Demeter's live record. This is what the honest out-of-sample answer looks like — including one model that would have looked like a triumph if the test had started in 2012.</p>
+    </div>
+    <dl class="meta-list">
+      <dt>Question</dt><dd>Reproduce or beat 31.1% a year at a −13.65% drawdown, with fewer trades</dd>
+      <dt>Development sample</dt><dd id="m-dev"></dd>
+      <dt>Out-of-sample</dt><dd id="m-oos"></dd>
+      <dt>Engine</dt><dd>Daily close decision, applied next day; leverage 0–3× on S&amp;P 500 total return over T-bills; 2 bp per unit traded</dd>
+      <dt>Data</dt><dd id="m-data"></dd>
+      <dt>Prepared by</dt><dd>Ionic Wealth research</dd>
+    </dl>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="verdict" id="verdict"><h2>The verdict</h2><div id="verdict-text"></div></div>
+</div></header>
+
+<main>
+<section id="method"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">How the test was run</div><h2>Method</h2><p>The discipline matters more than the models. Everything below was fixed before the out-of-sample window was looked at.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Rules of the exercise</h3>
+      <div class="ladder">
+        <div class="n">1</div><div class="b"><h4>Signal definition</h4><p>A model is a function of daily market data returning a target leverage between 0 and 3 for the next session. Leverage 0 is the cash engine, earning the 3-month T-bill.</p></div>
+        <div class="n">2</div><div class="b"><h4>Causality enforced by test</h4><p>Every model is re-run on truncated histories at five cut-off dates; if any signal value changes, the model is rejected. All six candidates pass.</p></div>
+        <div class="n">3</div><div class="b"><h4>Development window only</h4><p>Parameters were chosen on data ending 30 June 2012 and checked for a plateau on the longer 1950–2012 sample. Out-of-sample results were computed once per model, after freezing.</p></div>
+        <div class="n">4</div><div class="b"><h4>Costs charged</h4><p>2 bp of notional per unit of leverage traded, plus a financing-spread sensitivity of up to 50 bp a year on borrowed exposure. Cash earns the actual T-bill rate — Demeter books cash at 0%.</p></div>
+      </div>
+    </div>
+    <div class="card"><h3>Data and its limits</h3><div id="data-notes"></div>
+      <h3 style="margin-top:16px">Return accounting</h3>
+      <p class="sub" style="margin-bottom:6px">For target leverage <span class="mono">L</span> on day <span class="mono">t</span>, the next day's portfolio return is</p>
+      <div class="rules-src" style="max-height:none">r[t+1] = rf[t+1] + L·(total_return[t+1] − rf[t+1])
+         − max(L−1, 0)·financing_spread/252
+         − |L − L_prev|·cost_bps/10,000</div>
+      <p class="sub" style="margin-top:8px">This is a futures-like accounting: the levered leg pays financing above the risk-free rate, the cash leg earns it.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="fingerprint"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What the record implies</div><h2>Demeter's fingerprint</h2><p>Before building anything, the published monthly returns were inverted against daily market data to ask what the underlying daily rule must have been doing. Implied exposure is the month's strategy return divided by SPY's, for months where SPY moved more than 2%.</p></div></div>
+  <div class="grid3" id="fp-tiles"></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Ingredients the record supports</h3><ol class="limit" id="fp-in"></ol></div>
+    <div class="card"><h3>What the record rules out</h3><ol class="limit" id="fp-out"></ol></div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Monthly implied exposure</h3><p class="sub">Each bar is one month's implied exposure to SPY. Three months are exactly 0.00% — full cash. Note the negative bars: months where the strategy and the market moved in opposite directions, which no fixed exposure can produce.</p><div id="c-exposure"></div></div>
+</div></section>
+
+<section id="trap"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">The central finding</div><h2>The rule that looks brilliant — until you test it earlier</h2><p>The single best-fitting archetype for Demeter's record is "hold 3× while VIX is below its 10-day average, otherwise cash". Across Demeter's live window it compounds at 18.3% a year. Across 1990–2012 it loses money and draws down 92%.</p></div></div>
+  <div class="grid2">
+    <div class="card trap"><h3>Same rule, two eras</h3><div class="tbl-wrap" style="margin-top:10px" id="t-trap"></div>
+      <p class="sub" style="margin-top:10px">Buying when implied volatility has just fallen is buying after up days. In a fourteen-year bull market that is a momentum tailwind; through 2000–02 and 2008 it is a whipsaw machine. A study that started its backtest in 2012 would have shipped this model.</p></div>
+    <div class="card"><h3>Development versus out-of-sample Sharpe, all candidates</h3><p class="sub">Models below the diagonal did worse out of sample than in development. Models far above it — top left — were selected by the recent regime, not by evidence.</p><div id="c-devoos"></div></div>
+  </div>
+</div></section>
+
+<section id="leaderboard"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">All candidates</div><h2>Leaderboard</h2><p>Out-of-sample is Jul 2012 – Jan 2026 on S&amp;P 500 total return with 2 bp costs. Development is the window each model was tuned on. Demeter and the passive references are shown on the same window and accounting.</p></div></div>
+  <div class="tbl-wrap" id="t-board"></div>
+  <p class="faint" style="font-size:12.5px;margin-top:8px" id="board-note"></p>
+</div></section>
+
+<section id="model"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Recommendation</div><h2 id="model-title"></h2><p id="model-sub"></p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>The rules</h3><div class="ladder" id="model-rules"></div><div class="paramlist" id="model-params"></div></div>
+    <div class="card"><h3>Growth of $1,000, out of sample</h3><p class="sub">Log scale. Cash line is the T-bill engine alone — what the model earns when it is out of the market.</p><div class="legend"><span><i class="sw model"></i>Model</span><span><i class="sw spy"></i>SPY</span><span><i class="sw cash"></i>Cash (T-bills)</span></div><div id="c-eq"></div></div>
+  </div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Drawdown from prior peak</h3><p class="sub" id="dd-sub"></p><div class="legend"><span><i class="sw model"></i>Model</span><span><i class="sw spy"></i>SPY</span></div><div id="c-dd"></div></div>
+    <div class="card"><h3>Where the leverage sat</h3><p class="sub">Share of out-of-sample trading days at each target leverage, against Demeter's ~50% cash and 2:1–3:1 invested profile.</p><div id="c-lev"></div><div class="tbl-wrap" style="margin-top:12px" id="t-quad"></div></div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Calendar years: model, Demeter and SPY</h3><p class="sub" id="years-sub"></p><div class="legend"><span><i class="sw model"></i>Recommended model</span><span><i class="sw dem"></i>Demeter</span><span><i class="sw spy"></i>SPY</span></div><div id="c-years"></div><div class="tbl-wrap" style="margin-top:14px" id="t-years"></div></div>
+  <div class="card" style="margin-top:22px"><h3>Behaviour across eras</h3><p class="sub">The same frozen parameters run over four sub-periods. The 1950–1989 result is the model's best era; 1990–2011 is the development window; the last two rows are out of sample.</p><div class="tbl-wrap" id="t-sub"></div></div>
+</div></section>
+
+<section id="versus"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Side by side</div><h2>Where the model falls short of Demeter</h2><p>The gap is not in returns — it is entirely in the downside. The models capture more of the market's upside than Demeter does and far more of its downside.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Head-to-head, out-of-sample window</h3><div class="tbl-wrap" id="t-versus"></div></div>
+    <div class="card"><h3>The months that define the record</h3><p class="sub">Demeter's four signature episodes and how the recommended model handled the same months.</p><div class="tbl-wrap" id="t-episodes"></div>
+      <p class="sub" style="margin-top:10px" id="episodes-note"></p></div>
+  </div>
+</div></section>
+
+<section id="sensitivity"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Does it survive contact with reality</div><h2>Sensitivity</h2><p>Trading costs, financing spreads, parameter perturbations, a longer out-of-sample window and a different instrument.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Costs and financing</h3><p class="sub">Annualised return at each trading cost and financing spread. A low-turnover model is barely affected by costs; the financing spread on levered exposure matters more.</p><div class="tbl-wrap" id="t-cost"></div></div>
+    <div class="card"><h3>What breaks it</h3><p class="sub">The model's weak spots, from the perturbation grid and the variant runs below.</p><ul class="limit" id="weak-list" style="margin-top:4px"></ul></div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Parameter perturbations</h3><p class="sub">Each of the six parameters moved ±15% and ±30% from its frozen value, re-run out of sample. A plateau — not a spike at the chosen value — is what robustness looks like.</p><div id="c-param"></div></div>
+  <div class="card" style="margin-top:22px"><h3>Different windows and instruments</h3><div class="tbl-wrap" id="t-variants"></div>
+    <p class="faint" style="font-size:12.5px;margin-top:8px">The 2005-start window includes the 2008 crisis, which is outside both the development sample's end and the Demeter comparison. The NASDAQ and E-mini futures rows use the actual futures series, which end 28 March 2024.</p></div>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What this study does not establish</div><h2>Limitations</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Caveats that bite</h3><ul class="limit" id="limits-list"></ul></div>
+    <div class="card"><h3>What would move the answer</h3><ul class="limit" id="next-list"></ul>
+      <h3 style="margin-top:16px">Reproducing this</h3>
+      <div class="rules-src" style="max-height:none">cd demeter/model
+python3 data/build_dataset.py            # market_daily.csv from raw/ mirrors
+python3 evaluate.py signals/final_model_fewtrades.py
+python3 build_report.py                  # report/index.html</div>
+      <p class="sub" style="margin-top:8px" id="overview-link"></p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Ionic Wealth research. Backtested results are hypothetical, carry no assurance of future performance, and benefit from hindsight in ways live trading does not. Leverage magnifies losses as well as gains. Market data comes from public mirrors of Yahoo, FRED, CBOE and CME sources; see <span class="mono">demeter/model/data/PROVENANCE.md</span>. Demeter's returns are as published by the manager and were not independently audited.</div></footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const R = __REPORT_JSON__;
+__SHARED_HELPERS__
+
+/* ---------- charts specific to this report ---------- */
+function scatterXY(node, pts, cfg){
+  const W=cfg.width||600, H=cfg.height||360, m={t:30,r:20,b:38,l:52};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const xs=v=> m.l+(v-cfg.x0)/(cfg.x1-cfg.x0)*iw, ys=v=> m.t+ih-(v-cfg.y0)/(cfg.y1-cfg.y0)*ih;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  niceTicks(cfg.y0,cfg.y1,5).forEach(t=>{ el('line',{x1:m.l,x2:m.l+iw,y1:ys(t),y2:ys(t),class:'grid'},svg); const x=el('text',{x:m.l-8,y:ys(t)+4,class:'tick','text-anchor':'end'},svg); x.textContent=t.toFixed(1); });
+  niceTicks(cfg.x0,cfg.x1,5).forEach(t=>{ el('line',{x1:xs(t),x2:xs(t),y1:m.t,y2:m.t+ih,class:'grid'},svg); const x=el('text',{x:xs(t),y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); x.textContent=t.toFixed(1); });
+  if(cfg.x0<0&&cfg.x1>0) el('line',{x1:xs(0),x2:xs(0),y1:m.t,y2:m.t+ih,class:'zero'},svg);
+  if(cfg.y0<0&&cfg.y1>0) el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  const lo=Math.max(cfg.x0,cfg.y0), hi=Math.min(cfg.x1,cfg.y1);
+  el('line',{x1:xs(lo),y1:ys(lo),x2:xs(hi),y2:ys(hi),class:'ref'},svg);
+  const dl=el('text',{x:xs(hi)-4,y:ys(hi)+14,class:'annot','text-anchor':'end'},svg); dl.textContent='same in both windows';
+  const xl=el('text',{x:m.l+iw,y:m.t+ih+34,class:'annot','text-anchor':'end'},svg); xl.textContent=cfg.xLabel;
+  const yl=el('text',{x:m.l-44,y:m.t-8,class:'annot','text-anchor':'start'},svg); yl.textContent=cfg.yLabel;
+  pts.forEach(p=>{ const c=el('circle',{cx:xs(p.x),cy:ys(p.y),r:6,class:'pt'+(p.hollow?' hollow':'')},svg);
+    c.addEventListener('mousemove',ev=>showTip(ev,`<div class="tip-h">${p.label}</div><div class="tip-r"><span>${cfg.xLabel}</span><b>${p.x.toFixed(2)}</b></div><div class="tip-r"><span>${cfg.yLabel}</span><b>${p.y.toFixed(2)}</b></div>${p.extra?`<div class="tip-r"><span>${p.extra}</span></div>`:''}`)); c.addEventListener('mouseleave',hideTip);
+    const t=el('text',{x:xs(p.x)+9,y:ys(p.y)+4,class:'annot'},svg); t.textContent=p.short||''; });
+}
+function stackBar(node, rows, cfg){
+  const W=cfg.width||600, H=cfg.height||190, m={t:24,r:16,b:38,l:130};
+  const iw=W-m.l-m.r, rowH=(H-m.t-m.b)/rows.length;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  rows.forEach((r,i)=>{ const y=m.t+i*rowH+4, h2=rowH-14; let x=m.l;
+    const lab=el('text',{x:m.l-10,y:y+h2/2+4,class:'tick','text-anchor':'end'},svg); lab.textContent=r.label;
+    r.parts.forEach(p=>{ const w=p.v/100*iw; if(w<=0) return;
+      const rect=el('rect',{x:x+1,y,width:Math.max(0,w-2),height:h2,rx:2,fill:p.color},svg);
+      rect.addEventListener('mousemove',ev=>showTip(ev,`<div class="tip-h">${r.label}</div><div class="tip-r"><span>${p.name}</span><b>${p.v.toFixed(1)}%</b></div>`)); rect.addEventListener('mouseleave',hideTip);
+      if(w>44){ const t=el('text',{x:x+w/2,y:y+h2/2+4,class:'tick','text-anchor':'middle',fill:'#fff'},svg); t.textContent=p.v.toFixed(0)+'%'; }
+      x+=w; }); });
+  [0,25,50,75,100].forEach(p=>{ const x=m.l+p/100*iw; el('line',{x1:x,x2:x,y1:m.t-6,y2:H-m.b+2,class:'grid'},svg); const t=el('text',{x,y:H-m.b+18,class:'tick','text-anchor':'middle'},svg); t.textContent=p+'%'; });
+}
+
+/* ============================== render ============================== */
+const F_=R.final, FW=R.fewtrades, REC = FW || F_, REC_KEY = FW ? R.fewtrades_key : R.final_key;
+const DEM=F_.demeter_stats, SPY=F_.spy_stats_model_data, W=F_.window;
+const oosStart=F_.oos.start_date, oosEnd=F_.oos.end_date;
+$('#m-dev').textContent = `${F_.dev.start_date} to ${F_.dev.end_date} · parameters frozen at the end of it`;
+$('#m-oos').textContent = `${oosStart} to ${oosEnd} · ${W.n_months} months, never used for tuning`;
+const dc=R.dataset_checks;
+$('#m-data').textContent = `${fmt.int(dc.rows)} daily rows, ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}`;
+
+/* KPIs: recommended model vs Demeter vs SPY */
+const kpi=[
+ {l:'Model annualised return', v:fmt.pct(REC.oos.annualized_return_pct,1), s:`Demeter <b>${fmt.pct(DEM.annualized_return_pct,1)}</b> · SPY ${fmt.pct(SPY.annualized_return_pct,1)}`},
+ {l:'Model maximum drawdown', v:fmt.pct(REC.oos.max_drawdown_pct,1), s:`Demeter <b>${fmt.pct(DEM.max_drawdown_pct,1)}</b> · SPY ${fmt.pct(SPY.max_drawdown_pct,1)}`},
+ {l:'Model Sharpe ratio', v:fmt.num(REC.oos.sharpe,2), s:`Demeter <b>${fmt.num(DEM.sharpe,2)}</b> · SPY ${fmt.num(SPY.sharpe,2)}`},
+ {l:'Model down capture', v:fmt.pct(REC.oos.down_capture_pct,0), s:`Demeter <b>${fmt.pct(DEM.down_capture_pct,0)}</b> · the unreplicated part`},
+ {l:'Position changes a year', v:fmt.num(REC.oos.position_changes_per_year,1), s:`Demeter rebalances <b>daily</b>`},
+ {l:'Days in cash', v:fmt.pct(REC.oos.pct_days_cash,0), s:`Demeter <b>~50%</b>`},
+];
+$('#kpis').append(...kpi.map(k=>h('div',{class:'kpi'},`<div class="eyebrow">${k.l}</div><div class="v">${k.v}</div><div class="s"><span>${oosStart.slice(0,7)}–${oosEnd.slice(0,7)}</span><span>${k.s}</span></div>`)));
+
+$('#verdict-text').innerHTML = `<p><b>No.</b> The recommended model — a slow trend gate, a volatility-tiered leverage ladder and a short forced-cash window after a volatility shock — compounds at <b>${fmt.pct(REC.oos.annualized_return_pct,1)}</b> a year out of sample against SPY's ${fmt.pct(SPY.annualized_return_pct,1)}, with a <b>${fmt.pct(REC.oos.max_drawdown_pct,1)}</b> drawdown and about <b>${fmt.num(REC.oos.position_changes_per_year,0)} position changes a year</b> instead of a daily rebalance. Demeter's published record is ${fmt.pct(DEM.annualized_return_pct,1)} a year at ${fmt.pct(DEM.max_drawdown_pct,2)}: roughly <b>${fmt.pct(DEM.annualized_return_pct-REC.oos.annualized_return_pct,1)} a year of return and ${fmt.pct(Math.abs(REC.oos.max_drawdown_pct)-Math.abs(DEM.max_drawdown_pct),0)} of drawdown</b> that these rules do not reach.</p>
+<p>The gap is one-sided. On the upside the models are competitive — up-capture ${fmt.pct(REC.oos.up_capture_pct,0)} against Demeter's ${fmt.pct(DEM.up_capture_pct,0)}. On the downside they are not close: down-capture <b>${fmt.pct(REC.oos.down_capture_pct,0)} versus ${fmt.pct(DEM.down_capture_pct,0)}</b>. What these rules cannot reproduce is being flat through the worst days and levered into the recovery — Demeter's March 2020 was <b>+55.3%</b> while SPY fell 12.4%. Monthly correlation between the model and Demeter is only ${fmt.num(REC.corr_with_demeter,2)}: this is a different strategy that happens to beat the index, not a replica.</p>
+<p>Note also that neither the model nor Demeter's own published Sharpe should be read as "better than the index at everything": over this window SPY's Sharpe was ${fmt.num(SPY.sharpe,2)}, above every model here. The models add return by taking leverage, and they add it unevenly across eras.</p>`;
+
+/* data notes */
+(function(){
+  const es=dc.es_vs_synthetic_demeter_window_2012_2024, esd=dc.es_vs_synthetic_daily_era_1990_2013;
+  $('#data-notes').innerHTML = `<p>The S&amp;P 500 total-return and 3-month T-bill series come from a public mirror of Yahoo and FRED data covering ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}; VIX from CBOE's own history (${dc.coverage.vix_close.first} onward); E-mini S&amp;P and NASDAQ futures from a back-adjusted futures archive ending ${dc.coverage.es_ret.last}.</p>
+  <p>Two checks worth stating: monthly total returns reproduce Demeter's own published SPY column with correlation 0.9998, and actual E-mini futures returns track the synthetic "total return minus T-bill" leg with daily correlation ${fmt.num(esd.daily_corr,3)} before 2013 and ${fmt.num(es.daily_corr,2)} after (weekly ${fmt.num(es.weekly_corr,2)}, monthly ${fmt.num(es.monthly_corr,2)}) — the later futures source is sparser, which is why the synthetic leg is the primary test asset and the futures leg is a cross-check.</p>
+  <p class="faint" style="font-size:12.5px">Daily index data ends ${dc.coverage.spx_px.last} and the T-bill series ends 2025-12-19 (held flat afterwards), so the comparison window stops at January 2026 while Demeter's factsheet runs to June 2026.</p>`;
+})();
+
+/* fingerprint tiles */
+const inf=R.inference||{};
+(function(){
+  const rows=(inf.exposure_rows||[]).filter(r=>r.exposure!=null);
+  const ds=inf.down_summary||{}, r36=inf.rolling36||{};
+  const tiles=[
+    ['Implied exposure, median', rows.length? fmt.num(rows.map(r=>r.exposure).sort((a,b)=>a-b)[Math.floor(rows.length/2)],2)+'×' : '—', `Across ${rows.length} months where SPY moved more than 2%. Mean of the SPY-down months: <b>${fmt.num(ds.mean_exposure,2)}×</b>.`],
+    ['Full-cash months', (inf.full_cash_months||[]).length, `Months printing exactly 0.00%: ${(inf.full_cash_months||[]).map(fmt.mon).join(', ')} — SPY fell 4.97%, 8.73% and 8.26% in them.`],
+    ['Rolling 36-month beta', `${fmt.num(r36.beta_min,2)} – ${fmt.num(r36.beta_max,2)}`, `Median ${fmt.num(r36.beta_median,2)}; down-capture median ${fmt.pct(r36.down_capture_median,0)}. Exposure is not a constant, and not a function of the volatility level.`],
+  ];
+  $('#fp-tiles').append(...tiles.map(([l,v,s])=>h('div',{class:'card'},`<div class="eyebrow">${l}</div><div style="font-family:var(--serif);font-size:34px;line-height:1;margin:6px 0 6px">${v}</div><p class="sub" style="margin:0;color:var(--ink-2)">${s}</p>`)));
+  const ing=[
+    ['Fast, asymmetric de-levering on a downside volatility shock','February 2020 is consistent with holding 1.5–2× through the first shock days and cutting within one to two sessions of the second — the month landed at −13.65%, not the −22% that 3× held throughout would have produced.'],
+    ['Re-entry on volatility <i>dissipation</i>, not on calm','Every path that reproduces March 2020 is in cash 6–20 March and at 3× on 24–26 March, with VIX above 60 and realised volatility above 80%. Waiting for calm forfeits the month.'],
+    ['Leverage tiered by volatility regime','Implied exposure runs about 1.2× when VIX is under 13 and about 0.7× when VIX is 20–30, but the crisis-rebound months carry the highest constant-equivalent leverage of all.'],
+    ['Hysteresis long enough to sit out whole months','Three months at exactly 0.00%, and the manager\'s own quadrant counts show more up days spent in cash (883) than down days avoided (804).'],
+    ['Short-horizon timing at high leverage inside calm regimes','Twenty-seven months require a constant-leverage equivalent above 3× or below 0×, which no fixed position can produce.'],
+    ['Long-or-cash only, discrete leverage, daily decision','Every month is reproducible with a {0,1,2,3} path and at most two intra-month switches. No shorting is needed, even in March 2020.'],
+  ];
+  $('#fp-in').append(...ing.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+  const out=[
+    ['A slow trend filter as the invest/cash gate','The S&amp;P closed below its 200-day average on every single trading day of March 2020, April 2020, July 2022, October 2022 and November 2022 — months in which Demeter earned +55.3%, +29.7%, +10.6%, +10.0% and +5.3%.'],
+    ['Volatility-<i>level</i> gating','April 2020 ran at roughly 2.3× with VIX between 31 and 57. Gates of "VIX below 20/30" or "realised vol below 15/25%" return about zero in March and April 2020, and the worst months began with VIX at 13–19.'],
+    ['Any exposure fixed within the month','Eleven months have the opposite sign to SPY and twenty-seven need leverage outside 0–3× to be explained by a constant position.'],
+    ['Ungated one-day mean reversion','Buying 3× after every down day gives −29% in February 2020 and −36% across 2022, against the record\'s −13.65% and +19.2%.'],
+  ];
+  $('#fp-out').append(...out.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+  const ex=(inf.exposure_rows||[]);
+  barChart($('#c-exposure'),{cats:ex.map(r=>r.month),height:300,yFmt:v=>fmt.num(v,1)+'×',
+    series:[{name:'Implied exposure',values:ex.map(r=>r.exposure),cls:'strat'}],
+    catTip:c=>fmt.mon(c), extraTip:[{name:'Strategy',values:ex.map(r=>r.strategy),fmt:v=>fmt.pct(v,2,true)},{name:'SPY',values:ex.map(r=>r.spy),fmt:v=>fmt.pct(v,2,true)}]});
+  const svg=$('#c-exposure').querySelector('svg');
+  if(svg){ svg.querySelectorAll('.tick').forEach((t,i)=>{ if(t.textContent && t.textContent.match(/^\d{4}-\d{2}$/)) t.textContent = t.textContent.endsWith('-01')? t.textContent.slice(0,4) : ''; }); }
+})();
+
+/* the trap */
+(function(){
+  const trap=R.candidates['vix_dissipation'], rec=R.candidates[REC_KEY];
+  const rows=[
+    {w:'Development 1990 – Jun 2012', c:trap.dev.annualized_return_pct, s:trap.dev.sharpe, d:trap.dev.max_drawdown_pct, v:'bad'},
+    {w:'Out of sample Jul 2012 – 2026', c:trap.oos.annualized_return_pct, s:trap.oos.sharpe, d:trap.oos.max_drawdown_pct, v:'ok'},
+    {w:'Full history 1990 – 2026', c:trap.full.annualized_return_pct, s:trap.full.sharpe, d:trap.full.max_drawdown_pct, v:'bad'},
+  ];
+  $('#t-trap').appendChild(table([{key:'w',label:'Window',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max drawdown',fmt:v=>fmt.pct(v,1),color:true},{key:'v',label:'',fmt:v=>`<span class="pill ${v}">${v==='ok'?'looks great':'ruinous'}</span>`}],rows,{cls:'tbl-compact'}));
+  const pts=Object.entries(R.candidates).map(([k,c])=>({x:c.dev.sharpe, y:c.oos.sharpe, label:k.replace(/_/g,' '), short:k==='vix_dissipation'?'VIX rule':(k===REC_KEY?'recommended':''), hollow:k!==REC_KEY, extra:`${fmt.pct(c.oos.annualized_return_pct,1)} out-of-sample CAGR`}));
+  const xs=pts.map(p=>p.x), ys=pts.map(p=>p.y);
+  scatterXY($('#c-devoos'), pts, {x0:Math.min(-0.4,...xs)-0.1, x1:Math.max(...xs)+0.15, y0:Math.min(0,...ys)-0.1, y1:Math.max(...ys)+0.15, xLabel:'Development Sharpe', yLabel:'Out-of-sample Sharpe', aria:'Development versus out-of-sample Sharpe for each candidate'});
+})();
+
+/* leaderboard */
+(function(){
+  const order=Object.entries(R.candidates).sort((a,b)=>b[1].oos.sharpe-a[1].oos.sharpe);
+  const rows=order.map(([k,c],i)=>({rank:i+1, name:k.replace(/_/g,' '), family:c.family, oc:c.oos.annualized_return_pct, os:c.oos.sharpe, od:c.oos.max_drawdown_pct, ch:c.oos.position_changes_per_year, cash:c.oos.pct_days_cash, dc:c.dev.annualized_return_pct, ds:c.dev.sharpe, dd:c.dev.max_drawdown_pct, la:c.lookahead_ok, corr:c.corr_with_demeter, _cls: k===REC_KEY?'hi':''}));
+  rows.push({rank:'', name:'Demeter (published)', family:'the target', oc:DEM.annualized_return_pct, os:DEM.sharpe, od:DEM.max_drawdown_pct, ch:null, cash:null, dc:null, ds:null, dd:null, la:null, corr:1});
+  rows.push({rank:'', name:'SPY buy & hold', family:'passive reference', oc:SPY.annualized_return_pct, os:SPY.sharpe, od:SPY.max_drawdown_pct, ch:0, cash:0, dc:null, ds:null, dd:null, la:null, corr:null, _cls:'spy-row'});
+  (R.bh_refs||[]).filter(r=>r.name!=='Buy & hold 1x').forEach(r=> rows.push({rank:'', name:r.name+' (no costs)', family:'levered passive reference', oc:r.cagr_pct, os:r.sharpe, od:r.max_dd_pct, ch:0, cash:0, dc:null, ds:null, dd:null, la:null, corr:null, _cls:'spy-row'}));
+  $('#t-board').appendChild(table([
+    {key:'rank',label:'',cls:'rank'},{key:'name',label:'Candidate',cls:'lbl'},{key:'family',label:'Family',cls:'lbl'},
+    {key:'oc',label:'OOS annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'os',label:'OOS Sharpe',fmt:v=>fmt.num(v,2)},{key:'od',label:'OOS max DD',fmt:v=>fmt.pct(v,1),color:true},
+    {key:'ch',label:'Changes / yr',fmt:v=>v==null?'—':fmt.num(v,1)},{key:'cash',label:'Days in cash',fmt:v=>v==null?'—':fmt.pct(v,0)},
+    {key:'dc',label:'DEV annualised',fmt:v=>v==null?'—':fmt.pct(v,2),color:true},{key:'ds',label:'DEV Sharpe',fmt:v=>v==null?'—':fmt.num(v,2)},{key:'dd',label:'DEV max DD',fmt:v=>v==null?'—':fmt.pct(v,1),color:true},
+    {key:'corr',label:'Monthly corr. with Demeter',fmt:v=>v==null?'—':fmt.num(v,2)},
+    {key:'la',label:'Causality test',fmt:v=>v==null?'—':(v?'<span class="pill ok">pass</span>':'<span class="pill bad">fail</span>')}],rows,{cls:'tbl-compact'}));
+  $('#board-note').innerHTML=`Sorted by out-of-sample Sharpe. The highlighted row is the recommendation — chosen on development evidence, not on this column. <b>${Object.values(R.candidates).filter(c=>c.dev.sharpe<0.2&&c.oos.sharpe>0.6).length} of ${Object.keys(R.candidates).length} candidates</b> look good out of sample while having been unusable in development; ranking on out-of-sample results alone would pick one of them. Levered passive references are shown without trading costs, which flatters them.`;
+})();
+
+/* the model */
+(function(){
+  $('#model-title').textContent = REC_KEY==='final_model_fewtrades' ? 'The recommended model: fewer trades, better drawdown' : 'The recommended model';
+  $('#model-sub').innerHTML = `${REC.hypothesis}`;
+  const steps=[['1','Trend hysteresis','Enter when the index closes above its 100-day average; exit when it closes below its 200-day average. Between the two, the previous state persists.'],
+    ['2','Shock override','Force cash for five sessions after any daily loss worse than three trailing standard deviations.'],
+    ['3','Volatility tier','While invested: 3× below 10% realised volatility, 2× below 15%, otherwise 1×.'],
+    ['4','Weekly, sticky decisions','The level is read on the last trading day of each week and held for at least twenty sessions before it may change.']];
+  $('#model-rules').append(...steps.flatMap(([n,t,d])=>[h('div',{class:'n'},n), h('div',{class:'b'},`<h4>${t}</h4><p>${d}</p>`)]));
+  $('#model-params').append(...Object.entries(REC.params).map(([k,v])=>h('code',{},`${k} = ${v}`)), h('code',{},`shock_z = 3.0 (fixed)`), h('code',{},`${REC.n_params} tunable parameters`));
+  const s=REC_KEY===R.fewtrades_key ? R.fewtrades_series_oos : R.final_series_oos;
+  const jan=s.months.map((m,i)=> m.endsWith('-01')&&(+m.slice(0,4))%2===0?i:null).filter(i=>i!=null);
+  lineChart($('#c-eq'),{x:s.months,width:600,height:330,yType:'log',yFmt:v=>fmt.money(v),xTicks:jan,rightPad:78,aria:'Growth of 1000 dollars out of sample',
+    series:[{name:'Model',short:'Model',values:s.eq_model,cls:'model'},{name:'SPY',short:'SPY',values:s.eq_spy,cls:'spy'},{name:'Cash (T-bills)',short:'Cash',values:s.eq_cash,cls:'cash'}],
+    extraTip:[{name:'Average leverage',values:s.avg_lev,fmt:v=>fmt.num(v,2)+'×'}]});
+  lineChart($('#c-dd'),{x:s.months,width:600,height:300,yFmt:v=>fmt.pct(v,0),includeZero:true,xTicks:jan,rightPad:74,aria:'Drawdown of the model versus SPY',
+    series:[{name:'SPY',short:'SPY',values:s.dd_spy,cls:'spy',area:true},{name:'Model',short:'Model',values:s.dd_model,cls:'model',area:true}]});
+  $('#dd-sub').innerHTML=`Model worst drawdown <b>${fmt.pct(REC.oos.max_drawdown_pct,2)}</b> on month-end values (${fmt.pct(REC.oos.max_drawdown_daily_pct,2)} on daily), against SPY's ${fmt.pct(SPY.max_drawdown_pct,2)} and Demeter's ${fmt.pct(DEM.max_drawdown_pct,2)}.`;
+  const ld=REC.leverage_distribution_oos||{};
+  const cols=['var(--cash)','var(--strategy)','var(--spy)','var(--pos)'];
+  const lvKeys=Object.keys(ld).sort((a,b)=>parseFloat(a)-parseFloat(b));
+  stackBar($('#c-lev'), [
+    {label:'Recommended model', parts:lvKeys.map(k=>({name:`${parseFloat(k)}× leverage`, v:ld[k], color:cols[Math.round(parseFloat(k))]||'var(--ink-3)'}))},
+    {label:'Demeter (published)', parts:[{name:'cash',v:48.5,color:'var(--cash)'},{name:'invested at 1–3×',v:51.5,color:'var(--strategy)'}]},
+  ], {width:600, height:150, aria:'Share of days at each leverage level'});
+  $('#c-lev').insertAdjacentHTML('afterend', `<div class="legend">${lvKeys.map(k=>`<span><i class="sw box" style="background:${cols[Math.round(parseFloat(k))]}"></i>${parseFloat(k)}×${parseFloat(k)===0?' (cash engine)':''}</span>`).join('')}</div>`);
+  const q=REC.oos;
+  const qrows=[
+    {m:'Loss avoidance — in cash while the market fell', a:q.quad_loss_avoidance_pct, b:23.1},
+    {m:'Gain sacrifice — in cash while the market rose', a:q.quad_gain_sacrifice_pct, b:25.4},
+    {m:'Amplified gains — invested and the market rose', a:q.quad_amplified_gains_pct, b:29.4},
+    {m:'Amplified losses — invested and the market fell', a:q.quad_amplified_losses_pct, b:22.1}];
+  $('#t-quad').appendChild(table([{key:'m',label:'Four-quadrant day mix',cls:'lbl'},{key:'a',label:'Model',fmt:v=>fmt.pct(v,1)},{key:'b',label:'Demeter',fmt:v=>fmt.pct(v,1)}],qrows,{cls:'tbl-compact'}));
+  const yr=REC.yearly_oos||[];
+  barChart($('#c-years'),{cats:yr.map(y=>String(y.year)),height:300,yFmt:v=>fmt.pct(v,0),
+    series:[{name:'Model',values:yr.map(y=>y.model),cls:'model'},{name:'Demeter',values:yr.map(y=>y.demeter),cls:'dem'},{name:'SPY',values:yr.map(y=>y.spy),cls:'spy'}],
+    catTip:(c,i)=>`${c}${yr[i].n_months<12?` (${yr[i].n_months} months)`:''}`});
+  const beat=yr.filter(y=>y.model>y.demeter).length;
+  $('#years-sub').innerHTML=`The model beat Demeter in <b>${beat} of ${yr.length}</b> calendar years, and beat SPY in ${yr.filter(y=>y.model>y.spy).length}. 2013 is the model's standout (${fmt.pct(yr.find(y=>y.year===2013).model,1)} against Demeter's ${fmt.pct(yr.find(y=>y.year===2013).demeter,1)}) — a calm, strongly trending year, exactly the regime the volatility tier levers into. 2020 and 2022 are where it loses the comparison.`;
+  $('#t-years').appendChild(table([{key:'year',label:'Year',cls:'lbl',fmt:(v,r)=>v+(r.n_months<12?` <span class="faint">(${r.n_months} mo)</span>`:'')},{key:'model',label:'Model',fmt:v=>fmt.pct(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>fmt.pct(v,2,true),color:true},{key:'spy',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'x',label:'Model − Demeter',fmt:(v,r)=>fmt.pct(r.model-r.demeter,2,true),color:false}],yr,{cls:'tbl-compact'}));
+  const sp=(REC.sub_periods||[]).map(p=>({...p, era: p.start.slice(0,4)+'–'+p.end.slice(0,4)}));
+  $('#t-sub').appendChild(table([{key:'era',label:'Period',cls:'lbl'},{key:'cagr_pct',label:'Model annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'spy_cagr_pct',label:'SPY annualised',fmt:v=>fmt.pct(v,2)},{key:'sharpe',label:'Model Sharpe',fmt:v=>fmt.num(v,2)},{key:'spy_sharpe',label:'SPY Sharpe',fmt:v=>fmt.num(v,2)},{key:'max_dd_pct',label:'Model max DD',fmt:v=>fmt.pct(v,1),color:true},{key:'spy_max_dd_pct',label:'SPY max DD',fmt:v=>fmt.pct(v,1)},{key:'pct_days_cash',label:'Days in cash',fmt:v=>fmt.pct(v,0)},{key:'changes_per_year',label:'Changes / yr',fmt:v=>fmt.num(v,1)}],sp,{cls:'tbl-compact'}));
+})();
+
+/* versus Demeter */
+(function(){
+  const rows=[['Annualised return','annualized_return_pct','pct'],['Annualised std. dev.','annualized_std_dev','num'],['Sharpe ratio','sharpe','num'],['Sortino ratio','sortino','num'],['Calmar ratio','calmar','num'],['Maximum drawdown','max_drawdown_pct','pct'],['% positive months','pct_positive_months','pct0'],['Beta to SPY','beta_to_spy','num'],['Correlation to SPY','correlation_to_spy','num'],['Alpha (ann., Jensen)','alpha_ann_jensen_pct','pct'],['Up capture','up_capture_pct','pct0'],['Down capture','down_capture_pct','pct0'],['Growth of $1,000','growth_of_1000','money']];
+  const f=(kind,v)=> v==null?'—':kind==='pct'?fmt.pct(v,2):kind==='pct0'?fmt.pct(v,0):kind==='money'?fmt.money(v):fmt.num(v,2);
+  const data=rows.map(([l,k,kind])=>({m:l, a:f(kind,REC.oos[k]), b:f(kind,F_.oos[k]), c:f(kind,DEM[k]), d:f(kind,SPY[k])}));
+  $('#t-versus').appendChild(table([{key:'m',label:'',cls:'lbl'},{key:'a',label:'Recommended',cls:'strat'},{key:'b',label:'Daily variant'},{key:'c',label:'Demeter'},{key:'d',label:'SPY'}],data,{cls:'tbl-compact'}));
+  const monthly=REC.monthly_oos||[];
+  const pick=['2020-02','2020-03','2020-04','2022-04','2022-06','2022-10','2018-12','2015-08'];
+  const ep=pick.map(m=>monthly.find(x=>x.month===m)).filter(Boolean);
+  $('#t-episodes').appendChild(table([{key:'month',label:'Month',cls:'lbl',fmt:fmt.mon},{key:'spy',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>fmt.pct(v,2,true),color:true},{key:'model',label:'Model',fmt:v=>fmt.pct(v,2,true),color:true}],ep,{cls:'tbl-compact'}));
+  const mar=ep.find(e=>e.month==='2020-03');
+  $('#episodes-note').innerHTML=`March 2020 is the whole story in one row: Demeter <b>${fmt.pct(mar?mar.demeter:null,1,true)}</b>, the model <b>${fmt.pct(mar?mar.model:null,1,true)}</b>. A trend gate cannot be levered long in a month when the index spends every session below its 200-day average, and a volatility tier cannot lever into 80% realised volatility. Reproducing that month requires a rule that re-enters at 3× within a day of the low — which, on this evidence, no parameterisation reproduced without failing catastrophically in earlier decades. Monthly correlation with Demeter across the window: ${fmt.num(REC.corr_with_demeter,2)}; same-sign months ${fmt.pct(REC.same_sign_pct,0)}.`;
+})();
+
+/* sensitivity */
+(function(){
+  const cs=REC.cost_sensitivity_oos||[];
+  $('#t-cost').appendChild(table([{key:'cost_bps',label:'Cost (bp)',cls:'lbl',fmt:v=>fmt.num(v,0)},{key:'fin_bps',label:'Financing (bp p.a.)',fmt:v=>fmt.num(v,0)},{key:'cagr_pct',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'sharpe',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'max_dd_pct',label:'Max drawdown',fmt:v=>fmt.pct(v,1)}],cs,{cls:'tbl-compact'}));
+  const ps=(REC.param_sensitivity_oos||[]);
+  const base=ps.find(p=>p.variant==='base');
+  barChart($('#c-param'),{cats:ps.map(p=>p.variant.replace(/_/g,' ')),height:330,yFmt:v=>fmt.pct(v,0),rotateLabels:true,refLines:base?[{y:base.cagr_pct,label:'frozen parameters'}]:[],
+    series:[{name:'Annualised return',values:ps.map(p=>p.cagr_pct),cls:'model'}],
+    catTip:c=>c, extraTip:[{name:'Sharpe',values:ps.map(p=>p.sharpe),fmt:v=>fmt.num(v,2)},{name:'Max drawdown',values:ps.map(p=>p.max_dd_pct),fmt:v=>fmt.pct(v,1)},{name:'Changes / yr',values:ps.map(p=>p.changes_per_year),fmt:v=>fmt.num(v,1)}]});
+  const within=ps.filter(p=>base&&Math.abs(p.sharpe-base.sharpe)<=0.25*Math.abs(base.sharpe)).length;
+  if(base){
+    const worst=[...ps].filter(p=>p.variant!=='base').sort((a,b)=>a.sharpe-b.sharpe).slice(0,2);
+    const ddw=[...ps].sort((a,b)=>a.max_dd_pct-b.max_dd_pct)[0];
+    const chg=[...ps].sort((a,b)=>b.changes_per_year-a.changes_per_year)[0];
+    const items=[
+      [`Sharpe range across perturbations`, `${fmt.num(Math.min(...ps.map(p=>p.sharpe)),2)} to ${fmt.num(Math.max(...ps.map(p=>p.sharpe)),2)} against ${fmt.num(base.sharpe,2)} at the frozen values — the frozen point is inside the plateau, not on a peak.`],
+      [`Weakest settings`, `${worst.map(w=>`<span class="mono">${w.variant.replace(/_/g,' ')}</span> (Sharpe ${fmt.num(w.sharpe,2)})`).join(' and ')}. Both shorten the trend gate, which is what protects the model in bear markets.`],
+      [`Worst drawdown under perturbation`, `${fmt.pct(ddw.max_dd_pct,1)} at <span class="mono">${ddw.variant.replace(/_/g,' ')}</span>, against ${fmt.pct(base.max_dd_pct,1)} at the frozen values.`],
+      [`Turnover is stable`, `the busiest perturbation trades ${fmt.num(chg.changes_per_year,1)} times a year against ${fmt.num(base.changes_per_year,1)} at the frozen values, so the low-turnover claim does not depend on a lucky parameter.`],
+    ];
+    $('#weak-list').append(...items.map(([t,d])=>h('li',{},`<b>${t}:</b> ${d}`)));
+  }
+  const v=R.variants||{};
+  const vr=[];
+  if(v.oos2005) vr.push({w:'Longer out-of-sample from 2005 (includes 2008)', c:v.oos2005.oos.annualized_return_pct, s:v.oos2005.oos.sharpe, d:v.oos2005.oos.max_drawdown_pct, n:'Same frozen parameters; 2008 is outside the development window used for selection.'});
+  if(v.fin40) vr.push({w:'40 bp financing spread on levered exposure', c:v.fin40.oos.annualized_return_pct, s:v.fin40.oos.sharpe, d:v.fin40.oos.max_drawdown_pct, n:'A realistic futures financing cost above the T-bill rate.'});
+  if(v.es) vr.push({w:'Traded on actual E-mini S&P futures (to Mar 2024)', c:v.es.oos.annualized_return_pct, s:v.es.oos.sharpe, d:v.es.oos.max_drawdown_pct, n:'Uses the back-adjusted futures series rather than the synthetic leg; the post-2013 futures source is sparse.'});
+  if(v.nq) vr.push({w:'Traded on NASDAQ-100 futures (to Mar 2024)', c:v.nq.oos.annualized_return_pct, s:v.nq.oos.sharpe, d:v.nq.oos.max_drawdown_pct, n:'The signal is still computed on the S&P; only the traded instrument changes. Higher return and higher drawdown, as expected from a higher-beta index.'});
+  vr.push({w:'Base case (S&P 500 total return, 2 bp)', c:REC.oos.annualized_return_pct, s:REC.oos.sharpe, d:REC.oos.max_drawdown_pct, n:`${within} of ${ps.length} parameter perturbations keep Sharpe within 25% of the base.`});
+  $('#t-variants').appendChild(table([{key:'w',label:'Variant',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max drawdown',fmt:v=>fmt.pct(v,1),color:true},{key:'n',label:'Note',cls:'lbl'}],vr,{cls:'tbl-compact'}));
+})();
+
+/* limits */
+(function(){
+  const n=Object.keys(R.candidates).length;
+  const lim=[
+    [`Six models were built and each was evaluated out of sample`, `Even with parameters frozen, running ${n} candidates against one window is a multiple-comparison exercise: the best of six will look better than any single honest test. The recommendation was chosen on development evidence to blunt this, not eliminate it.`],
+    ['The design process itself saw the record', `The inference section above was derived from Demeter's published monthly returns, which cover the out-of-sample window. Knowing that a shock exit and a volatility tier matter is itself information from that period, even though no parameter was fitted to it.`],
+    ['One market, one regime', `Out of sample is a single fourteen-year window dominated by a bull market with two short crashes. The 2005-start variant is the closest thing here to an independent stress test, and it returns materially less.`],
+    ['Costs are modelled, not measured', `2 bp per unit of notional and a flat financing spread are reasonable for E-mini futures but ignore slippage on gap days, margin calls at 3× leverage, roll costs and the tax treatment of futures gains. The 3:59 PM decision assumes execution at the close.`],
+    ['Demeter\'s returns are as published', `They are net figures from the manager's own factsheet, not audited statements, and the family-office period (Jul 2012 – Jul 2023) predates the commingled fund. The four-quadrant day counts published by the manager sum to 3,477 against a stated total of 3,219.`],
+    ['The data has seams', `The last 35 daily rows are extrapolated from a price index with an assumed dividend accrual, the T-bill rate is held flat after 19 December 2025, and the futures series ends in March 2024. None of these affect the headline conclusions, all are disclosed in the provenance file.`],
+  ];
+  $('#limits-list').append(...lim.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+  const nxt=[
+    ['Get intraday and options data', `Demeter's edge lives inside the day and in the implied-volatility surface: the re-entry that produced March 2020 happened within a day of the low. Daily closes cannot see it. VIX futures term structure and the variance risk premium are the obvious next inputs.`],
+    ['Test on a genuinely untouched period', `The strongest available test is a walk-forward across 1950–2012 with re-selection every decade, plus a paper-traded live period going forward. Neither has been run here.`],
+    ['Model the crash exit properly', `A rule triggered by consecutive multi-sigma days plus an implied-volatility jump — rather than a trailing-vol threshold — is the most promising unexplored direction, and it is the one that separates the model's 146% down-capture from Demeter's 23%.`],
+    ['Decide what the mandate actually is', `If the objective is Demeter-like drawdown control rather than maximum return, the low-turnover model is already close on drawdown (${fmt.pct(REC.oos.max_drawdown_pct,1)}) and the remaining gap is mostly leverage applied in calm regimes.`],
+  ];
+  $('#next-list').append(...nxt.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+  if(R.overview_url) $('#overview-link').innerHTML=`Companion page: <a href="${R.overview_url}">Demeter Dual-Engine strategy overview →</a>`;
+  else $('#overview-link').innerHTML=`Companion page: the strategy overview at <span class="mono">demeter/overview/index.html</span>.`;
+})();
+</script>

@@ -5,7 +5,6 @@ import argparse, json
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-STRAT_DARK, SPY_DARK = "#6684F5", "#B98A2A"
 
 
 def main():
@@ -16,7 +15,7 @@ def main():
     analytics = json.loads((HERE / "analytics.json").read_text())
     stated = json.loads((HERE / "data" / "stated_figures.json").read_text())
     html = (tpl.replace("__ANALYTICS_JSON__", js(analytics)).replace("__STATED_JSON__", js(stated))
-               .replace("__MODEL_URL__", json.dumps(a.model_url)).replace("__STRAT_DARK__", STRAT_DARK).replace("__SPY_DARK__", SPY_DARK))
+               .replace("__MODEL_URL__", json.dumps(a.model_url)))
     out = HERE / "overview" / "index.html"; out.write_text(html)
     print(f"wrote {out} ({out.stat().st_size/1024:.0f} KB)")
 

@@ -370,7 +370,7 @@ function lineChart(node, cfg){
 
 /* ---------- grouped bar chart ---------- */
 function barChart(node, cfg){
-  const W=cfg.width||960, H=cfg.height||300, m={t:20,r:16,b:30,l:52};
+  const W=cfg.width||960, H=cfg.height||300, m={t:20,r:16,b:cfg.rotateLabels?86:30,l:52};
   const iw=W-m.l-m.r, ih=H-m.t-m.b, n=cfg.cats.length;
   const vals=[]; cfg.series.forEach(s=> s.values.forEach(v=>{ if(v!=null) vals.push(v);}));
   let y0=Math.min(0,...vals), y1=Math.max(0,...vals); const pad=(y1-y0)*0.1; y0-= (y0<0?pad:0); y1+=pad;
@@ -379,8 +379,11 @@ function barChart(node, cfg){
   const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
   niceTicks(y0,y1,5).forEach(t=>{ const y=ys(t); el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'grid'},svg); const tx=el('text',{x:m.l-8,y:y+4,class:'tick','text-anchor':'end'},svg); tx.textContent=cfg.yFmt?cfg.yFmt(t):t; });
   el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  (cfg.refLines||[]).forEach(r=>{ if(r.y>=y0&&r.y<=y1){ el('line',{x1:m.l,x2:m.l+iw,y1:ys(r.y),y2:ys(r.y),class:'ref'},svg); const t=el('text',{x:m.l+iw-4,y:ys(r.y)-5,class:'annot','text-anchor':'end'},svg); t.textContent=r.label; } });
   const gw=iw/n, k=cfg.series.length, bw=Math.min(28, gw*0.72/k), gap=2;
-  cfg.cats.forEach((c,i)=>{ const cx=m.l+gw*i+gw/2; const tx=el('text',{x:cx,y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=c;
+  cfg.cats.forEach((c,i)=>{ const cx=m.l+gw*i+gw/2;
+    if(cfg.rotateLabels){ const tx=el('text',{x:cx,y:m.t+ih+12,class:'tick','text-anchor':'end',transform:`rotate(-40 ${cx} ${m.t+ih+12})`},svg); tx.textContent=c; }
+    else { const tx=el('text',{x:cx,y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=c; }
     cfg.series.forEach((s,j)=>{ const v=s.values[i]; if(v==null) return; const x=cx-(k*bw+(k-1)*gap)/2+j*(bw+gap); const y=Math.min(ys(v),ys(0)); const hgt=Math.max(1,Math.abs(ys(v)-ys(0)));
       const r=el('rect',{x,y,width:bw,height:hgt,rx:2,class:'bar '+s.cls},svg);
       r.addEventListener('mousemove',ev=>{ let rows=`<div class="tip-h">${cfg.catTip?cfg.catTip(c,i):c}</div>`; cfg.series.forEach(ss=>{ rows+=`<div class="tip-r"><span><i class="sw ${ss.cls}"></i> ${ss.name}</span><b>${cfg.yFmt(ss.values[i])}</b></div>`; }); (cfg.extraTip||[]).forEach(e=>{ rows+=`<div class="tip-r"><span>${e.name}</span><b>${e.fmt(e.values[i])}</b></div>`; }); showTip(ev,rows); });
