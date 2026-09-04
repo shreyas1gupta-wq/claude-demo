@@ -146,84 +146,68 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
 .build{color:var(--grey);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
 
 /* ============ 3 · THE BOOK, RM BY RM ============ */
-.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;position:relative}
-.bk{border-radius:11px;padding:11px 15px 12px;display:flex;align-items:flex-start;gap:12px}
-.bk.b1{background:#F1F1FB;border-left:3px solid #B9BEDD}
-.bk.b2{background:linear-gradient(120deg,#2A30B8,var(--indigo-d));color:#fff;border-left:3px solid var(--amber)}
-.bk.b3{background:#FFF6E8;border-left:3px solid var(--amber)}
-.bk .bl{font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--grey)}
-.bk.b2 .bl{color:var(--amber)}
-.bk .bv{font-family:var(--ui);font-size:27px;font-weight:700;line-height:1;margin-top:4px;color:var(--indigo);letter-spacing:-.7px}
-.bk.b2 .bv{color:#fff}.bk.b3 .bv{color:var(--amber-d)}
-.bk .bv .u{font-size:12px;font-weight:600}
-.bk .bd{font-size:9.8px;line-height:1.45;color:var(--slate);margin-top:5px}
-.bk.b2 .bd{color:#C9CDF0}
-.bk .bd b{color:var(--indigo);font-weight:700}.bk.b2 .bd b{color:#fff}
-.bk .bshare{margin-left:auto;text-align:right;flex:0 0 auto}
-.bk .bshare .p{font-family:var(--ui);font-size:15px;font-weight:700;color:var(--indigo)}
-.bk.b2 .bshare .p{color:var(--amber)}.bk.b3 .bshare .p{color:var(--amber-d)}
-.bk .bshare .q{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
-.bk.b2 .bshare .q{color:#AEB3E6}
-
 .rmcols{display:grid;grid-template-columns:1.98fr 1fr;gap:15px;margin-top:12px;align-items:start}
+.rmleft{display:flex;flex-direction:column}
 /* --- RM card: the live RM Platform Review card, as it ships --- */
 .rmcard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(20,24,80,.07);transition:opacity .3s}
 .rmcard.fade{opacity:0}
-.chd{display:flex;align-items:center;gap:10px;padding:10px 13px 11px;border-bottom:1px solid var(--line)}
-.rank2{width:23px;height:23px;border-radius:7px;background:var(--pearl);color:var(--indigo);font-family:var(--ui);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 23px}
-.rmn{font-family:var(--dis);font-size:17.5px;font-weight:600;line-height:1}
-.rmmeta2{font-size:8.8px;color:var(--grey);margin-top:2px}
+.chd{display:flex;align-items:center;gap:11px;padding:15px 16px 16px;border-bottom:1px solid var(--line)}
+.rank2{width:26px;height:26px;border-radius:8px;background:var(--pearl);color:var(--indigo);font-family:var(--ui);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex:0 0 26px}
+.rmn{font-family:var(--dis);font-size:19px;font-weight:600;line-height:1}
+.rmmeta2{font-size:10px;color:var(--grey);margin-top:2px}
 .pill{font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:12px;white-space:nowrap;letter-spacing:.4px;text-transform:uppercase}
 .pill.none,.pill.slip{background:#FDE7E4;color:var(--coral)}
 .pill.new{background:#E3F4EA;color:var(--green)}
 .pill.single{background:#FFF1D9;color:#9A6A12}
 .penbig{margin-left:auto;text-align:right}
-.penbig .pv{font-family:var(--ui);font-size:23px;font-weight:700;line-height:1;letter-spacing:-.7px}
-.penbig .pl{font-size:6.8px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-top:2px}
-.remark{display:flex;gap:8px;align-items:flex-start;padding:8px 13px;background:#F6F7FF;border-bottom:1px solid var(--line)}
-.remark .star{color:var(--amber);font-size:12px;line-height:1.25;flex:0 0 auto}
-.remark .rtx{font-size:10.4px;font-weight:600;color:var(--ink);flex:1;line-height:1.35}
-.rgrid{display:grid;grid-template-columns:1.06fr .82fr 1.24fr 1.56fr 1.0fr}
-.sec{padding:10px 11px 11px;border-right:1px solid var(--line)}
+.penbig .pv{font-family:var(--ui);font-size:26px;font-weight:700;line-height:1;letter-spacing:-.7px}
+.penbig .pl{font-size:7.6px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-top:2px}
+.remark{display:flex;gap:9px;align-items:flex-start;padding:13px 16px;background:#F6F7FF;border-bottom:1px solid var(--line)}
+.remark .star{color:var(--amber);font-size:14px;line-height:1.25;flex:0 0 auto}
+.remark .rtx{font-size:11.2px;font-weight:600;color:var(--ink);flex:1;line-height:1.35}
+.rgrid{display:grid;grid-template-columns:1.02fr .8fr 1.3fr 1.46fr 1.1fr}
+.sec{padding:13px 12px 18px;border-right:1px solid var(--line)}
 .sec:last-child{border-right:none}
-.sec h4{margin:0 0 7px;font-size:7.2px;letter-spacing:.7px;text-transform:uppercase;color:var(--indigo);font-weight:700;font-family:var(--ui)}
-.st{display:flex;justify-content:space-between;align-items:baseline;gap:5px;padding:2.6px 0;font-size:10px}
+.sec h4{margin:0 0 9px;font-size:7.6px;letter-spacing:.7px;text-transform:uppercase;color:var(--indigo);font-weight:700;font-family:var(--ui)}
+.st{display:flex;justify-content:space-between;align-items:baseline;gap:6px;padding:10px 0;font-size:10.4px}
 .st .k{color:var(--grey)}
 .st .val{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
-.st .val.big{font-size:13px;letter-spacing:-.3px}
+.st .val.big{font-size:13.4px;letter-spacing:-.3px}
 .pos{color:var(--green)}.neg{color:var(--coral)}.mut{color:#B7B7C2}
-.trend{display:flex;gap:5px;align-items:baseline;margin-top:3px}
-.trend .a{font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.trend{display:flex;gap:6px;align-items:baseline;margin-top:6px}
+.trend .a{font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums}
 .arrow{font-size:8px}
-table.ptab{width:100%;border-collapse:collapse;font-size:9.2px}
-table.ptab th{font-size:6.8px;color:var(--grey);text-transform:uppercase;letter-spacing:.2px;font-weight:700;text-align:right;padding:0 2px 2px}
+table.ptab{width:100%;border-collapse:collapse;font-size:9.6px}
+table.ptab th{font-size:7.1px;color:var(--grey);text-transform:uppercase;letter-spacing:.2px;font-weight:700;text-align:right;padding:0 2px 2px}
 table.ptab th.l{text-align:left}
-table.ptab td{padding:3px 2px;text-align:right;border-top:1px solid #F0F0F6;font-variant-numeric:tabular-nums;font-weight:600}
+table.ptab td{padding:7px 2px;text-align:right;border-top:1px solid #F0F0F6;font-variant-numeric:tabular-nums;font-weight:600}
 table.ptab td.l{text-align:left}
 table.ptab td.z{color:#C4C4D0}
-.act{padding:8px 13px;border-top:1px solid var(--line);display:flex;gap:9px;align-items:center;background:#FCFCFA}
-.act .lbl{font-size:7.2px;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);font-weight:700}
-.act .inp{flex:1;font-size:9.8px;color:var(--ink);min-height:13px}
+.act{padding:14px 16px;border-top:1px solid var(--line);display:flex;gap:9px;align-items:center;background:#FCFCFA}
+.act .lbl{font-size:8.2px;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);font-weight:700}
+.act .inp{flex:1;font-size:10.6px;color:var(--ink);min-height:13px}
 .act .inp:empty:before{content:'Add action / owner\2026';color:#B7B7C2}
 .rmdots{display:flex;gap:6px;justify-content:center;margin-top:9px}
 .rmd{width:7px;height:7px;border-radius:50%;background:#C9CDF0;cursor:pointer}.rmd.on{background:var(--amber);width:18px;border-radius:5px;transition:.3s}
-.t5soft{margin-top:8px;font-size:8.8px;color:var(--grey);line-height:1.5;text-align:center}
+.t5soft{margin-top:14px;font-size:9.6px;color:var(--grey);line-height:1.5;text-align:center}
 .t5soft b{color:var(--indigo);font-weight:700}
 .t5soft .sep{color:#C9CDF0;margin:0 5px}
 /* --- right rail: the vintage hypothesis --- */
 .hyp{background:var(--tile);border-radius:12px;padding:13px 15px 14px;display:flex;flex-direction:column;min-height:340px}
 .hyp h4{margin:0;font-size:14.5px;font-weight:600;color:var(--indigo);letter-spacing:-.2px;line-height:1.15}
 .hyp .hs{font-size:9.2px;color:var(--grey);margin-top:4px;line-height:1.4}
-.hphases{margin-top:10px;display:flex;flex-direction:column;gap:7px}
-.hp{background:#fff;border-radius:9px;padding:7px 11px 8px;border-left:3px solid}
-.hp.h1x{border-color:#B9BEDD}.hp.h2x{border-color:var(--corn)}.hp.h3x{border-color:var(--amber)}
-.hp .hn{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-weight:700}
-.hprow{display:flex;align-items:baseline;gap:10px;margin-top:2px}
-.hp .ht{font-family:var(--dis);font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.12;flex:1}
-.hp .hfrw{text-align:right;flex:0 0 auto}
-.hp .hfr{font-family:var(--ui);font-size:16px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.4px}
-.hp .hcap{font-size:6.6px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
-.hp .hd{font-size:8.7px;color:var(--grey);margin-top:4px;line-height:1.35}
+.vchart{margin-top:10px;background:#fff;border-radius:10px;padding:4px 2px 2px}
+.draw.d1{animation-delay:.3s}.draw.d2{animation-delay:.75s}.draw.d3{animation-delay:1.2s}
+.lgd{margin-top:11px;display:flex;flex-direction:column;gap:7px}
+.lgr{display:flex;align-items:center;gap:10px;background:#fff;border-radius:9px;padding:8px 11px}
+.lgr i{width:16px;height:4px;border-radius:2px;flex:0 0 16px}
+.lgr.t1 i{background:#8E93C9}.lgr.t2 i{background:var(--indigo)}.lgr.t3 i{background:var(--amber-d)}
+.lgr .lb{flex:1;min-width:0}
+.lgr .lb b{display:block;font-family:var(--dis);font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.1}
+.lgr .lb span{display:block;font-size:8.6px;color:var(--grey);margin-top:2px;line-height:1.3}
+.lgr .lf{text-align:right;flex:0 0 auto}
+.lgr .lf b{font-family:var(--ui);font-size:15px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.4px}
+.lgr .lf small{display:block;font-size:6.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
 .sens{margin-top:auto;background:#FFF6E8;border-radius:10px;padding:10px 12px;border-left:3px solid var(--amber)}
 .sens .sv{font-family:var(--ui);font-size:19px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.5px}
 .sens .sd2{font-size:8.9px;color:var(--slate);line-height:1.42;margin-top:4px}
@@ -233,16 +217,12 @@ table.ptab td.z{color:#C4C4D0}
 /* ============ 4 · QUESTIONS ============ */
 .qslide{background:linear-gradient(180deg,#EEF0FF 0%,#F6F4FF 52%,#fff 100%)}
 .mtn{position:absolute;left:0;right:0;bottom:0;width:100%;height:452px;z-index:0}
-.qsteps{position:absolute;left:52px;right:52px;bottom:116px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:end;z-index:2}
-.qstep{background:#fff;border-radius:14px;border-top:4px solid var(--amber);box-shadow:0 14px 40px rgba(20,24,80,.18);padding:22px 24px 20px;position:relative;min-height:224px;display:flex;flex-direction:column}
-.qstep.s2{margin-bottom:82px}.qstep.s3{margin-bottom:164px}
+.qsteps{position:absolute;left:52px;right:52px;bottom:148px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:end;z-index:2}
+.qstep{background:#fff;border-radius:14px;border-top:4px solid var(--amber);box-shadow:0 14px 40px rgba(20,24,80,.18);padding:22px 26px 24px;position:relative;display:flex;flex-direction:column}
+.qstep.s2{margin-bottom:90px}.qstep.s3{margin-bottom:180px}
 .qflag{position:absolute;top:-15px;left:20px;font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--indigo);background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 11px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
 .qstep .qn{font-family:var(--ui);font-size:8.5px;font-weight:700;color:var(--amber-d);letter-spacing:2.2px;text-transform:uppercase;margin-top:3px}
-.qstep h3{font-family:var(--dis);margin:11px 0 0;font-size:24px;font-weight:500;line-height:1.16;color:var(--indigo);letter-spacing:-.4px}
-.qstep .qfoot{margin-top:auto;padding-top:15px;border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:12px}
-.qstep .qfig b{display:block;font-family:var(--ui);font-size:21px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.5px}
-.qstep .qfig small{display:block;font-size:7.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:4px}
-.qstep .qarrow{margin-left:auto;font-size:16px;color:#D7D9EC}
+.qstep h3{font-family:var(--dis);margin:12px 0 0;font-size:27px;font-weight:500;line-height:1.16;color:var(--indigo);letter-spacing:-.4px}
 .qthread{position:absolute;left:44px;right:44px;bottom:20px;z-index:2;text-align:center;font-size:11.5px;color:#EDEEFA;text-shadow:0 1px 6px rgba(12,14,36,.55)}
 .qthread b{color:var(--amber);font-weight:700}
 </style></head>
@@ -376,37 +356,10 @@ table.ptab td.z{color:#C4C4D0}
    <div class="pad" style="padding-top:30px">
     <div class="eyebrow anim" style="--d:0"><span class="d"></span>HNI RM book · 31 Aug 2026</div>
     <h2 class="ttl anim" style="--d:0" contenteditable="" data-ek="e59">The book, RM by RM</h2>
-    <div class="sub anim" style="--d:0" contenteditable="" data-ek="e60">Every HNI RM book is read in three buckets — <b>Total</b>, <b>Platform</b>, <b>Focused</b> — each won by a different force, each worth more per rupee than the last.</div>
-
-    <div class="buckets anim" style="--d:1">
-     <div class="bk b1">
-      <div style="flex:1">
-       <div class="bl" contenteditable="" data-ek="e61">Bucket 1 · Total book</div>
-       <div class="bv" contenteditable="" data-ek="e62">₹3,774<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable="" data-ek="e63"><b>Transfer of assets.</b> Custody moves across with the RM — the relationship arrives before the mandate.</div>
-      </div>
-      <div class="bshare"><div class="p" contenteditable="" data-ek="e64">100%</div><div class="q">of book</div></div>
-     </div>
-     <div class="bk b2">
-      <div style="flex:1">
-       <div class="bl" contenteditable="" data-ek="e65">Bucket 2 · Platform AUM</div>
-       <div class="bv" contenteditable="" data-ek="e66">₹497.7<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable="" data-ek="e67"><b>Transfer converted.</b> Custody becomes a mandate — won on performance and on the domain expert in the room.</div>
-      </div>
-      <div class="bshare"><div class="p" contenteditable="" data-ek="e68">13.2%</div><div class="q">of book</div></div>
-     </div>
-     <div class="bk b3">
-      <div style="flex:1">
-       <div class="bl" contenteditable="" data-ek="e69">Bucket 3 · Focused products</div>
-       <div class="bv" contenteditable="" data-ek="e70">₹6.9<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable="" data-ek="e71"><b>Unique products.</b> Navigate, Global, Yield Enhancer — smallest bucket, highest yield per rupee.</div>
-      </div>
-      <div class="bshare"><div class="p" contenteditable="" data-ek="e72">0.18%</div><div class="q">of book</div></div>
-     </div>
-    </div>
+    <div class="sub anim" style="--d:0" contenteditable="" data-ek="e60">One card per RM — and the shape every book follows: custody transfers first, the platform mandate follows, focused products come last.</div>
 
     <div class="rmcols">
-     <div class="anim" style="--d:2">
+     <div class="rmleft anim" style="--d:2">
       <div class="rmcard" id="rmcard"></div>
       <div class="rmdots" id="rmdots"></div>
       <div class="t5soft" contenteditable="">Top 5 RMs by platform AUM — Pratyaksha <b>₹81.1 Cr</b><span class="sep">·</span>Ishan <b>₹42.6 Cr</b><span class="sep">·</span>Saurabh <b>₹25.8 Cr</b><span class="sep">·</span>Hiral <b>₹24.5 Cr</b><span class="sep">·</span>Gowtham <b>₹21.4 Cr</b> — together <b>₹195.5 Cr</b>, 39% of platform AUM across 72 RMs and 13 desks.</div>
@@ -414,23 +367,38 @@ table.ptab td.z{color:#C4C4D0}
 
      <div class="hyp anim" style="--d:3">
       <h4 contenteditable="">The hypothesis: a book matures with vintage</h4>
-      <div class="hs" contenteditable="">Custody moves in months; the mandate moves in years. Early vintage is almost all transfer — penetration builds gradually, focused products last.</div>
-      <div class="hphases">
-       <div class="hp h1x">
-        <div class="hn" contenteditable="">Phase 1 · early months</div>
-        <div class="hprow"><div class="ht" contenteditable="">Transfer of AUM</div><div class="hfrw"><div class="hfr" contenteditable="">1/30</div><div class="hcap">of new money</div></div></div>
-        <div class="hd" contenteditable="">The relationship moves; assets sit where they always sat.</div>
-       </div>
-       <div class="hp h2x">
-        <div class="hn" contenteditable="">Phase 2 · first year</div>
-        <div class="hprow"><div class="ht" contenteditable="">Platform penetration</div><div class="hfrw"><div class="hfr" contenteditable="">1/7</div><div class="hcap">of new money</div></div></div>
-        <div class="hd" contenteditable="">First mandate — almost always the core, once performance shows up.</div>
-       </div>
-       <div class="hp h3x">
-        <div class="hn" contenteditable="">Phase 3 · mature book</div>
-        <div class="hprow"><div class="ht" contenteditable="">Focused products</div><div class="hfrw"><div class="hfr" contenteditable="">1/3</div><div class="hcap">of new money</div></div></div>
-        <div class="hd" contenteditable="">Platform is the default opening; satellites get added on top.</div>
-       </div>
+      <div class="hs" contenteditable="">Custody moves in months; the mandate moves in years. Three things enter the book in order, and each one lags the one before it.</div>
+      <div class="vchart">
+       <svg viewBox="0 0 440 228" style="width:100%;height:auto;display:block">
+        <defs>
+         <linearGradient id="gTr" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#CBCFE6"/><stop offset="100%" stop-color="#8E93C9"/></linearGradient>
+         <linearGradient id="gPl" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7C83D8"/><stop offset="100%" stop-color="#242BA1"/></linearGradient>
+         <linearGradient id="gFo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#F3CE96"/><stop offset="100%" stop-color="#D98A1F"/></linearGradient>
+        </defs>
+        <rect x="34" y="14" width="394" height="196" rx="9" fill="#fff"/>
+        <line x1="46" y1="200" x2="416" y2="200" stroke="#E9E9F2" stroke-width="1"/>
+        <g stroke="#E9E9F2" stroke-width="1" stroke-dasharray="3 4"><line x1="169.3" y1="30" x2="169.3" y2="200"/><line x1="292.7" y1="30" x2="292.7" y2="200"/></g>
+        <path class="draw d1" d="M46,165 C80,112 128,52 182,42 C262,34 344,33 416,32" fill="none" stroke="url(#gTr)" stroke-width="4.5" stroke-linecap="round"/>
+        <path class="draw d2" d="M46,196 C78,194 118,178 168,152 C240,118 340,100 416,91" fill="none" stroke="url(#gPl)" stroke-width="4.5" stroke-linecap="round"/>
+        <path class="draw d3" d="M46,200 C100,200 148,198 190,190 C260,174 344,158 416,147" fill="none" stroke="url(#gFo)" stroke-width="4.5" stroke-linecap="round"/>
+        <circle class="dotmark" style="--d:9" cx="416" cy="32" r="5" fill="#8E93C9"/>
+        <circle class="dotmark" style="--d:11" cx="416" cy="91" r="5" fill="#242BA1"/>
+        <circle class="dotmark" style="--d:13" cx="416" cy="147" r="5" fill="#D98A1F"/>
+        <g font-family="Reddit Sans" font-size="9.5" font-weight="700" text-anchor="end">
+         <text x="410" y="25" fill="#8E93C9">TRANSFER OF AUM</text>
+         <text x="410" y="84" fill="#242BA1">PLATFORM</text>
+         <text x="410" y="140" fill="#D98A1F">FOCUSED</text>
+        </g>
+        <g font-family="Reddit Sans" font-size="9" font-weight="700" fill="#A6A6B4" text-anchor="middle">
+         <text x="107" y="222">EARLY MONTHS</text><text x="231" y="222">FIRST YEAR</text><text x="354" y="222">MATURE BOOK</text>
+        </g>
+        <text x="-107" y="41" font-family="Reddit Sans" font-size="7.5" font-weight="700" fill="#C2C6DE" transform="rotate(-90)" text-anchor="middle">DEPTH OF RELATIONSHIP</text>
+       </svg>
+      </div>
+      <div class="lgd">
+       <div class="lgr t1"><i></i><div class="lb"><b contenteditable="">Transfer of AUM</b><span contenteditable="">Early months &middot; custody moves with the RM</span></div><div class="lf"><b contenteditable="">1/30</b><small>of new money</small></div></div>
+       <div class="lgr t2"><i></i><div class="lb"><b contenteditable="">Platform</b><span contenteditable="">First year &middot; the first mandate, won on performance</span></div><div class="lf"><b contenteditable="">1/7</b><small>of new money</small></div></div>
+       <div class="lgr t3"><i></i><div class="lb"><b contenteditable="">Focused</b><span contenteditable="">Mature book &middot; the shelf gets added on top</span></div><div class="lf"><b contenteditable="">1/3</b><small>of new money</small></div></div>
       </div>
       <div class="sens">
        <div class="sv" contenteditable="">+₹257 Cr</div>
@@ -464,28 +432,16 @@ table.ptab td.z{color:#C4C4D0}
      <span class="qflag" contenteditable="">Base camp</span>
      <div class="qn" contenteditable="">Q1 · Assets arrive</div>
      <h3 contenteditable="">How do we get assets across faster?</h3>
-     <div class="qfoot">
-      <div class="qfig"><b contenteditable="">₹3,774 Cr</b><small>total book transferred</small></div>
-      <span class="qarrow">→</span>
-     </div>
     </div>
     <div class="qstep s2 popin" style="--d:2">
      <span class="qflag" contenteditable="">The climb</span>
      <div class="qn" contenteditable="">Q2 · Assets convert</div>
      <h3 contenteditable="">How do we lift penetration past 13.2%?</h3>
-     <div class="qfoot">
-      <div class="qfig"><b contenteditable="">₹3,276 Cr</b><small>in custody, not on platform</small></div>
-      <span class="qarrow">→</span>
-     </div>
     </div>
     <div class="qstep s3 popin" style="--d:3">
      <span class="qflag" contenteditable="">The summit</span>
      <div class="qn" contenteditable="">Q3 · Revenue earned</div>
      <h3 contenteditable="">How do we turn platform AUM into revenue?</h3>
-     <div class="qfoot">
-      <div class="qfig"><b contenteditable="">₹6.9 Cr</b><small>focused, on ₹498 Cr platform</small></div>
-      <span class="qarrow">→</span>
-     </div>
     </div>
    </div>
    <div class="qthread anim" style="--d:6"><span contenteditable="">One thread — move transferred custody into <b>platform and focused products, faster</b>. That is where performance and margin compound.</span></div>
