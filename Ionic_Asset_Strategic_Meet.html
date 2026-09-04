@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" data-snapshot="1"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ionic Asset — Strategic Meet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Reddit+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --indigo:#242BA1;--indigo-d:#161A6E;--royal:#2B31C4;--amber:#FBB040;--amber-d:#D98A1F;
+ --corn:#7BA0FF;--pearl:#F2F2ED;--tile:#EDEDF2;--coral:#FF5F49;--green:#1F9D57;--teal:#127C8B;--teal-d:#0B5460;--slate:#343A63;
+ --ink:#1A1A2E;--grey:#7A7A88;--line:#E4E4EE;--s:1;
+ --dis:'Newsreader',Georgia,'Times New Roman',serif;
+ --ui:'Reddit Sans',system-ui,Arial,sans-serif;
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0;height:100%}
+body{font-family:var(--ui);color:var(--ink);background:radial-gradient(1200px 700px at 50% -10%,#20255f,#0c0e24);overflow:hidden}
+h1,h2,h3,h4,.dis{font-family:var(--dis)}
+.num{font-family:var(--ui);font-variant-numeric:tabular-nums}
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.stage{position:relative;width:1280px;height:720px;transform:scale(var(--s));transform-origin:center center;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 40px 100px rgba(0,0,0,.55)}
+body.fs .stage{border-radius:0;box-shadow:none}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease;background:#fff}
+.slide.active{opacity:1;visibility:visible}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:none}}
+@keyframes slidein{from{opacity:0;transform:translateX(-16px)}to{opacity:1;transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.anim{opacity:0}
+.slide.active .anim{animation:rise .55s cubic-bezier(.2,.75,.25,1) forwards;animation-delay:calc(var(--d,0)*.06s)}
+.slide.active .popin{animation:pop .5s cubic-bezier(.2,.9,.3,1.2) forwards;animation-delay:calc(var(--d,0)*.06s)}
+.slide.active .slidein{animation:slidein .5s ease forwards;animation-delay:calc(var(--d,0)*.06s)}
+.hud{position:fixed;left:0;right:0;bottom:16px;display:flex;align-items:center;justify-content:center;gap:14px;z-index:50}
+.hbtn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.hbtn:hover{background:#fff;color:var(--indigo)}
+.dots{display:flex;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s}
+.dot.on{background:var(--amber);width:22px;border-radius:6px}
+.count{color:#C9CDF0;font-size:12px;min-width:44px;text-align:center}
+/* TOOLBAR */
+.tools{position:fixed;top:14px;right:16px;display:flex;gap:8px;z-index:60}
+.tbtn{display:flex;align-items:center;gap:6px;height:32px;padding:0 12px;border-radius:16px;border:1px solid rgba(255,255,255,.26);background:rgba(255,255,255,.10);color:#fff;font-family:var(--ui);font-size:11.5px;font-weight:600;cursor:pointer;letter-spacing:.2px;backdrop-filter:blur(6px)}
+.tbtn:hover{background:#fff;color:var(--indigo);border-color:#fff}
+.tbtn.save{background:var(--amber);color:#20244F;border-color:var(--amber)}
+.tbtn.save:hover{background:#fff}
+.toast{position:fixed;bottom:64px;left:50%;transform:translateX(-50%) translateY(10px);background:#20244F;color:#fff;font-size:12px;font-weight:600;padding:9px 16px;border-radius:20px;opacity:0;pointer-events:none;transition:.25s;z-index:70;border:1px solid rgba(255,255,255,.18)}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hover{opacity:1}
+.classif{position:absolute;top:8px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:.5px;color:#B9BCE0;font-weight:600}
+
+/* ============ IONIC ASSET LOGO ============ */
+.lock{position:absolute;top:26px;right:44px;text-align:center}
+.lgw{display:flex;align-items:flex-end;justify-content:center;line-height:1;white-space:nowrap;font-family:var(--ui);color:var(--indigo)}
+.lgw .b{font-weight:700;font-size:19px;letter-spacing:2.2px}
+.lgw .lt{font-weight:400;font-size:19px;letter-spacing:1.6px;margin-left:7px}
+.lgo{position:relative;display:inline-block;width:15px;height:15px;margin:0 2.6px 1px 1.4px;flex:0 0 15px}
+.lgo i{position:absolute;border-radius:50%;display:block}
+.lgo .rb{width:15px;height:15px;bottom:0;left:0;border:2.8px solid var(--indigo);z-index:2}
+.lgo .ra{width:14px;height:14px;top:-7.6px;left:0.6px;border:2.8px solid var(--amber);z-index:1}
+.lgsub{font-family:var(--ui);font-weight:400;font-size:7px;letter-spacing:3.1px;color:var(--indigo);margin-top:4px}
+.lock.on-dark .lgw{color:#fff}
+.lock.on-dark .lgo .rb{border-color:#fff}
+.lock.on-dark .lgsub{color:#C9CDF0}
+
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:10.5px;letter-spacing:2.6px;text-transform:uppercase;color:var(--grey);font-weight:600}
+.eyebrow .d{width:8px;height:8px;border-radius:50%;background:var(--amber);flex:0 0 8px}
+.pad{padding:40px 44px 28px}
+.ttl{font-size:34px;font-weight:600;color:var(--indigo);margin:8px 0 0;line-height:1.04;letter-spacing:-.3px}
+.sub{font-size:12.5px;color:var(--grey);margin-top:6px;max-width:940px;line-height:1.5}
+.src{position:absolute;left:44px;right:44px;bottom:12px;font-size:9.5px;color:var(--grey);line-height:1.45}
+.tent{color:var(--amber-d);font-weight:700}
+[contenteditable]{outline:none;border-radius:5px;transition:.12s}
+[contenteditable]:hover{background:rgba(251,176,64,.14)}
+[contenteditable]:focus{background:#fff;box-shadow:inset 0 0 0 1.5px var(--indigo)}
+.dark [contenteditable]:hover{background:rgba(255,255,255,.14)}.dark [contenteditable]:focus{box-shadow:inset 0 0 0 1.5px var(--amber)}
+
+/* ============ 1 · COVER ============ */
+.cover{background:linear-gradient(135deg,#2A30B8,#181c78 55%,#10143f);color:#fff}
+.cover .lock2{position:absolute;top:44px;right:60px}
+.cin{position:absolute;left:70px;top:282px;width:600px}
+.ceye{color:var(--amber);font-size:11px;letter-spacing:3.4px;text-transform:uppercase;font-weight:700}
+.cover h1{font-family:var(--dis);font-size:86px;font-weight:500;line-height:.98;margin:18px 0 0;letter-spacing:-1.5px}
+.cdash{width:64px;height:3px;background:var(--amber);margin:30px 0 18px}
+.cdate{color:var(--amber);font-family:var(--ui);font-size:17px;font-weight:600;letter-spacing:.3px}
+.cwho{color:#AEB3E6;font-size:12px;margin-top:8px;letter-spacing:.3px}
+.cagenda{position:absolute;right:64px;top:234px;width:420px;background:rgba(255,255,255,.065);border:1px solid rgba(255,255,255,.17);border-radius:16px;padding:20px 24px 8px;backdrop-filter:blur(6px)}
+.cagenda .ah{display:flex;align-items:center;gap:9px;font-size:9.5px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:700;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.ci{display:flex;align-items:flex-start;gap:14px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.09)}
+.ci:last-child{border-bottom:none}
+.ci .cnum{font-family:var(--ui);font-size:10px;font-weight:700;color:var(--amber);letter-spacing:1.4px;padding-top:5px;flex:0 0 20px}
+.ci .cbody{flex:1}
+.ci .ctxt{font-family:var(--dis);font-size:18px;font-weight:500;color:#fff;line-height:1.2}
+.ci .cd2{font-size:10.5px;color:#AEB3E6;margin-top:4px;line-height:1.4}
+.ci .cfig{margin-left:auto;text-align:right;flex:0 0 auto;padding-top:2px}
+.ci .cfig b{display:block;font-family:var(--ui);font-size:14px;font-weight:700;color:#fff;letter-spacing:-.2px}
+.ci .cfig small{display:block;font-size:7.5px;letter-spacing:.8px;text-transform:uppercase;color:#8E93C9;font-weight:700;margin-top:2px}
+.cfoot{position:absolute;left:70px;right:64px;bottom:34px;display:flex;align-items:center;justify-content:space-between;font-size:9.5px;color:#7E83B8;letter-spacing:.4px}
+
+/* ============ 2 · OFFERINGS ============ */
+.ogrid{display:grid;grid-template-columns:1.52fr 1fr;gap:22px;margin-top:26px}
+.opanel{border-radius:14px;padding:22px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.opanel.dom{background:#F4F4FC}
+.opanel.off{background:#EBF4F5}
+.ohead{display:flex;align-items:baseline;gap:11px}
+.ohead .t{font-family:var(--dis);font-size:21px;font-weight:600;letter-spacing:-.2px}
+.opanel.dom .ohead .t{color:var(--indigo)}.opanel.off .ohead .t{color:var(--teal-d)}
+.ohead .s{font-size:10px;color:var(--grey);letter-spacing:.3px}
+.ohead .tot{margin-left:auto;font-family:var(--ui);font-size:13px;font-weight:700;color:var(--indigo)}
+.opanel.off .ohead .tot{color:var(--teal-d)}
+.ocore{border-radius:11px;padding:17px 19px;color:#fff;display:flex;align-items:flex-start;gap:14px}
+.opanel.dom .ocore{background:linear-gradient(120deg,#2A30B8,var(--indigo-d))}
+.opanel.off .ocore{background:linear-gradient(120deg,var(--teal),var(--teal-d))}
+.ocore .ct{font-size:8px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--amber);margin-bottom:5px}
+.ocore .cn{font-family:var(--dis);font-size:24px;font-weight:600;line-height:1}
+.ocore .cd{font-size:11px;color:rgba(255,255,255,.82);margin-top:7px;line-height:1.5;max-width:330px}
+.ocore .cperf{font-size:9.5px;color:rgba(255,255,255,.72);margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.ocore .cperf b{background:rgba(255,255,255,.14);border-radius:5px;padding:2px 7px;color:#fff;font-weight:600;font-family:var(--ui)}
+.ocore .cperf b.gn{background:rgba(143,227,174,.2);color:#B7F0CC}
+.ocore .cm{margin-left:auto;text-align:right;flex:0 0 auto}
+.ocore .cm .v{font-family:var(--ui);font-size:26px;font-weight:700;line-height:1;letter-spacing:-.5px}
+.ocore .cm .v .u{font-size:11px;color:var(--amber);font-weight:600;margin-left:1px}
+.ocore .cm .l{font-size:7.5px;letter-spacing:.8px;text-transform:uppercase;color:rgba(255,255,255,.58);font-weight:700;margin-top:4px}
+.ocore .cm .v2{font-family:var(--ui);font-size:11.5px;font-weight:600;color:#C9CDF0;margin-top:7px}
+.osublab{font-size:8.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--grey);font-weight:700;margin:-4px 0 -6px 2px}
+.orow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.ocol{display:flex;flex-direction:column;gap:12px}
+.ocard{background:#fff;border-radius:10px;padding:14px 15px 13px;border-top:3px solid;display:flex;flex-direction:column}
+.opanel.dom .ocard{border-color:var(--amber)}.opanel.off .ocard{border-color:var(--corn)}
+.ocard .ct2{font-size:7.5px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;margin-bottom:3px}
+.opanel.dom .ocard .ct2{color:var(--amber-d)}.opanel.off .ocard .ct2{color:var(--teal-d)}
+.ocard .sn{font-family:var(--dis);font-size:17px;font-weight:600;line-height:1.05;color:var(--ink)}
+.ocard .sd{font-size:10.5px;color:var(--grey);line-height:1.5;margin:7px 0 11px;flex:1}
+.ocard .mm{display:flex;gap:10px;border-top:1px solid var(--line);padding-top:9px}
+.ocard .mm .b{flex:1}
+.ocard .mm .l{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700}
+.ocard .mm .v{font-family:var(--ui);font-size:14px;font-weight:700;margin-top:1px;letter-spacing:-.2px}
+.ocard.slim{flex-direction:row;align-items:center;gap:14px;padding:13px 15px}
+.ocard.slim .body{flex:1}
+.ocard.slim .sd{margin:5px 0 0}
+.ocard.slim .rt{text-align:right;flex:0 0 auto}
+.ocard.slim .rt .v{font-family:var(--ui);font-size:12px;font-weight:700;color:var(--teal-d)}
+.ocard.slim .rt .l{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
+.offnote{margin-top:auto;font-size:10px;color:var(--teal-d);line-height:1.55;opacity:.8;border-top:1px solid rgba(11,84,96,.14);padding-top:12px}
+.live{color:var(--green);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
+.newq{color:var(--amber-d);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
+.build{color:var(--grey);font-weight:700;font-size:8px;letter-spacing:.6px;margin-left:5px}
+
+/* ============ 3 · THE BOOK, RM BY RM ============ */
+.buckets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;position:relative}
+.bk{border-radius:11px;padding:11px 15px 12px;display:flex;align-items:flex-start;gap:12px}
+.bk.b1{background:#F1F1FB;border-left:3px solid #B9BEDD}
+.bk.b2{background:linear-gradient(120deg,#2A30B8,var(--indigo-d));color:#fff;border-left:3px solid var(--amber)}
+.bk.b3{background:#FFF6E8;border-left:3px solid var(--amber)}
+.bk .bl{font-size:7.5px;letter-spacing:1.2px;text-transform:uppercase;font-weight:700;color:var(--grey)}
+.bk.b2 .bl{color:var(--amber)}
+.bk .bv{font-family:var(--ui);font-size:27px;font-weight:700;line-height:1;margin-top:4px;color:var(--indigo);letter-spacing:-.7px}
+.bk.b2 .bv{color:#fff}.bk.b3 .bv{color:var(--amber-d)}
+.bk .bv .u{font-size:12px;font-weight:600}
+.bk .bd{font-size:9.8px;line-height:1.45;color:var(--slate);margin-top:5px}
+.bk.b2 .bd{color:#C9CDF0}
+.bk .bd b{color:var(--indigo);font-weight:700}.bk.b2 .bd b{color:#fff}
+.bk .bshare{margin-left:auto;text-align:right;flex:0 0 auto}
+.bk .bshare .p{font-family:var(--ui);font-size:15px;font-weight:700;color:var(--indigo)}
+.bk.b2 .bshare .p{color:var(--amber)}.bk.b3 .bshare .p{color:var(--amber-d)}
+.bk .bshare .q{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
+.bk.b2 .bshare .q{color:#AEB3E6}
+
+.rmcols{display:grid;grid-template-columns:1.04fr .96fr;gap:16px;margin-top:12px}
+.rmframe{background:linear-gradient(115deg,var(--indigo),var(--indigo-d));border-radius:12px;padding:4px}
+.rmtop{display:flex;align-items:center;gap:7px;padding:5px 11px 6px;color:#fff}
+.rmtop i{width:8px;height:8px;border-radius:50%}
+.rmtop .lv{margin-left:6px;font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;color:#C9CDF0;font-weight:700}
+.rmtop .live2{margin-left:auto;font-size:8.5px;color:#8FE3AE;font-weight:700;display:flex;align-items:center;gap:5px}
+.rmtop .live2 b{width:7px;height:7px;border-radius:50%;background:#28C840;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.rmcard{background:#fff;border-radius:9px;padding:11px 13px 11px;min-height:296px;transition:opacity .3s}
+.rmcard.fade{opacity:0}
+.rmhd{display:flex;align-items:center;gap:10px}
+.rmrank{width:24px;height:24px;border-radius:8px;background:var(--tile);color:var(--indigo);font-family:var(--ui);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 24px}
+.rmname{font-family:var(--dis);font-size:19px;font-weight:600;line-height:1}
+.rmmeta{font-size:9px;color:var(--grey);margin-top:2px}
+.rmpen{margin-left:auto;text-align:right}
+.rmpen .pv{font-family:var(--ui);font-size:26px;font-weight:700;line-height:1;letter-spacing:-.6px}
+.rmpen .pl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:1px}
+.rmtag{margin:8px 0;font-size:10px;font-weight:600;padding:6px 10px;border-radius:8px;line-height:1.3}
+.rmtrends{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.trd{background:var(--tile);border-radius:9px;padding:8px 10px}
+.trd .tl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;display:flex;justify-content:space-between}
+.trd .tl .up{color:var(--green)}
+.trd .seq{display:flex;align-items:baseline;gap:4px;margin-top:3px;font-family:var(--ui)}
+.trd .seq .a{font-size:15px;font-weight:700;color:var(--indigo);letter-spacing:-.3px}
+.trd .seq .mid{font-size:10px;color:#9A9AA6;font-weight:600}
+.trd .seq .ar{font-size:9px;color:#B7B7C2}
+.trd .lb{display:flex;justify-content:space-between;font-size:6.5px;color:#A0A0AC;font-weight:600;margin-top:1px}
+.rmchips{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}
+.chipc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 6px;text-align:center}
+.chipc .cv{font-family:var(--ui);font-size:15px;font-weight:700;line-height:1.1;letter-spacing:-.3px}
+.chipc .cl{font-size:6.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:3px;line-height:1.2}
+.rmprod{margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
+.rmprod .pl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-bottom:5px}
+.rmprod .pr{display:flex;gap:5px}
+.rmprod .pc{flex:1;background:var(--tile);border-radius:7px;padding:5px 5px;text-align:center}
+.rmprod .pc .n{font-size:7px;color:var(--grey);font-weight:600}
+.rmprod .pc .a{font-family:var(--ui);font-size:12.5px;font-weight:700;letter-spacing:-.2px}.rmprod .pc .a.z{color:#C4C4D0}
+.rmnext{margin-top:8px;background:#F5F6FF;border-left:3px solid var(--amber);border-radius:7px;padding:7px 10px;font-size:9.5px;line-height:1.4;color:var(--slate)}
+.rmnext b{color:var(--indigo);font-family:var(--ui);font-size:7px;letter-spacing:.8px;text-transform:uppercase;display:block;margin-bottom:2px}
+.rmdots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.rmd{width:7px;height:7px;border-radius:50%;background:#C9CDF0;cursor:pointer}.rmd.on{background:var(--amber);width:18px;border-radius:5px;transition:.3s}
+.t5soft{margin-top:7px;font-size:8.8px;color:var(--grey);line-height:1.5;text-align:center}
+.t5soft b{color:var(--indigo);font-weight:700}
+.t5soft .sep{color:#C9CDF0;margin:0 5px}
+
+.hyp{background:var(--tile);border-radius:12px;padding:12px 15px 12px;display:flex;flex-direction:column}
+.hyp h4{margin:0;font-size:15px;font-weight:600;color:var(--indigo);letter-spacing:-.2px}
+.hyp .hs{font-size:9.8px;color:var(--grey);margin-top:3px;line-height:1.45}
+.hphases{margin-top:9px;display:flex;flex-direction:column;gap:6px}
+.hp{display:flex;align-items:center;gap:10px;background:#fff;border-radius:9px;padding:7px 11px;border-left:3px solid}
+.hp.h1x{border-color:#B9BEDD}.hp.h2x{border-color:var(--corn)}.hp.h3x{border-color:var(--amber)}
+.hp .hn{font-family:var(--ui);font-size:8px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);flex:0 0 54px}
+.hp .hb{flex:1}
+.hp .ht{font-family:var(--dis);font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.15}
+.hp .hd{font-size:9px;color:var(--grey);margin-top:2px;line-height:1.3}
+.hp .hr{text-align:right;flex:0 0 auto;padding-left:6px}
+.hp .hr b{display:block;font-family:var(--ui);font-size:13px;font-weight:700;color:var(--amber-d);letter-spacing:-.2px}
+.hp .hr small{display:block;font-size:6.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:1px}
+.sens{margin-top:auto;background:#FFF6E8;border-radius:10px;padding:9px 13px;border-left:3px solid var(--amber)}
+.sens .sv{font-family:var(--ui);font-size:20px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.5px}
+.sens .sd2{font-size:9.4px;color:var(--slate);line-height:1.42;margin-top:4px}
+.sens .sd2 b{color:var(--indigo);font-weight:700}
+.draw{stroke-dasharray:1600;stroke-dashoffset:1600}
+.slide.active .draw{stroke-dashoffset:0;transition:stroke-dashoffset 1.5s cubic-bezier(.3,.7,.3,1) .35s}
+.dotmark{opacity:0}.slide.active .dotmark{animation:pop .45s cubic-bezier(.2,.9,.3,1.2) forwards;animation-delay:calc(var(--d,0)*.06s)}
+
+/* ============ 4 · QUESTIONS ============ */
+.qslide{background:linear-gradient(180deg,#EEF0FF 0%,#F6F4FF 52%,#fff 100%)}
+.mtn{position:absolute;left:0;right:0;bottom:0;width:100%;height:430px;z-index:0}
+.q2wrap{position:absolute;left:44px;right:44px;top:206px;display:grid;grid-template-columns:1fr 1fr;gap:26px;z-index:2}
+.q2{background:#fff;border-radius:15px;border-top:4px solid var(--amber);box-shadow:0 16px 44px rgba(20,24,80,.18);padding:26px 28px 24px;min-height:248px;display:flex;flex-direction:column}
+.q2 .qn{font-family:var(--ui);font-size:9.5px;font-weight:700;color:var(--amber-d);letter-spacing:2.4px;text-transform:uppercase}
+.q2 h3{font-family:var(--dis);margin:12px 0 0;font-size:31px;font-weight:500;line-height:1.14;color:var(--indigo);letter-spacing:-.6px}
+.q2 .qfoot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:16px}
+.q2 .qfig{flex:0 0 auto}
+.q2 .qfig b{display:block;font-family:var(--ui);font-size:25px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.6px}
+.q2 .qfig small{display:block;font-size:8px;letter-spacing:.9px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:4px}
+.q2 .qfig.alt b{color:var(--amber-d)}
+.q2 .qarrow{margin-left:auto;font-size:17px;color:#D7D9EC}
+.qthread{position:absolute;left:44px;right:44px;bottom:22px;z-index:2;text-align:center;font-size:12px;color:#EDEEFA;text-shadow:0 1px 6px rgba(12,14,36,.55)}
+.qthread b{color:var(--amber);font-weight:700}
+</style></head>
+<body class="">
+<div class="tools">
+ <button class="tbtn" id="btnFull" title="Fullscreen (F)">⛶ Fullscreen</button>
+ <button class="tbtn save" id="btnSave" title="Save edited copy (Ctrl+S)">⭳ Save file</button>
+ <button class="tbtn" id="btnReset" title="Discard my edits">↺ Reset</button>
+</div>
+<div class="toast" id="toast"></div>
+<div class="deck">
+ <div class="stage" id="stage">
+
+  <!-- ============ 1 · COVER (agenda folded in) ============ -->
+  <section class="slide cover dark" data-n="0">
+   <div class="lock on-dark lock2">
+    <div class="lgw"><span class="b">I</span><span class="lgo"><i class="ra"></i><i class="rb"></i></span><span class="b">NIC</span><span class="lt">ASSET</span></div>
+    <div class="lgsub">BY ANGEL ONE</div>
+   </div>
+   <div class="cin">
+    <div class="ceye anim" style="--d:0" contenteditable="">Ionic Asset · Platform Business</div>
+    <h1 class="anim" style="--d:1" contenteditable="">Strategic Meet</h1>
+    <div class="cdash anim" style="--d:2"></div>
+    <div class="cdate anim" style="--d:3" contenteditable="">September 2026 · Q2 FY27</div>
+    <div class="cwho anim" style="--d:4" contenteditable="">Offerings · the RM book · the questions that decide the next phase</div>
+   </div>
+   <div class="cagenda anim" style="--d:3">
+    <div class="ah"><span>Agenda</span></div>
+    <div class="ci">
+     <span class="cnum">01</span>
+     <div class="cbody"><div class="ctxt" contenteditable="">The offerings</div><div class="cd2" contenteditable="">Domestic and offshore — one shelf, every mandate.</div></div>
+     <div class="cfig"><b contenteditable="">₹1,110 Cr</b><small>product AUM</small></div>
+    </div>
+    <div class="ci">
+     <span class="cnum">02</span>
+     <div class="cbody"><div class="ctxt" contenteditable="">The book, RM by RM</div><div class="cd2" contenteditable="">Total, platform and focused — and how a book matures.</div></div>
+     <div class="cfig"><b contenteditable="">₹497.7 Cr</b><small>platform AUM</small></div>
+    </div>
+    <div class="ci">
+     <span class="cnum">03</span>
+     <div class="cbody"><div class="ctxt" contenteditable="">The questions</div><div class="cd2" contenteditable="">Two calls that set the next phase of growth.</div></div>
+     <div class="cfig"><b contenteditable="">Decide</b><small>in the room</small></div>
+    </div>
+   </div>
+   <div class="cfoot"><span>Classified as Internal</span><span class="tent" contenteditable="">All figures tentative — books yet to be finalised for 31 Aug 2026</span></div>
+  </section>
+
+  <!-- ============ 2 · OFFERINGS ============ -->
+  <section class="slide" data-n="1">
+   <div class="classif">Classified as Internal</div>
+   <div class="lock">
+    <div class="lgw"><span class="b">I</span><span class="lgo"><i class="ra"></i><i class="rb"></i></span><span class="b">NIC</span><span class="lt">ASSET</span></div>
+    <div class="lgsub">BY ANGEL ONE</div>
+   </div>
+   <div class="pad">
+    <div class="eyebrow anim" style="--d:0"><span class="d"></span>Offerings</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="">The only plan your portfolio needs</h2>
+    <div class="sub anim" style="--d:0" contenteditable="">One shelf, two geographies. Domestic is live and ahead of benchmark; offshore is the build we are opening this quarter.</div>
+    <div class="ogrid">
+
+     <div class="opanel dom anim" style="--d:1">
+      <div class="ohead"><span class="t" contenteditable="">Domestic</span><span class="s" contenteditable="">rupee solutions, onshore · live</span><span class="tot" contenteditable="">₹1,110 Cr</span></div>
+      <div class="ocore">
+       <div style="flex:1">
+        <div class="ct" contenteditable="">The core · default allocation</div>
+        <div class="cn" contenteditable="">Allocate</div>
+        <div class="cd" contenteditable="">One portfolio across equity, debt, gold and global — the single structure a client's entire wealth can live in.</div>
+        <div class="cperf"><span>Moderate</span><b contenteditable="">25.86% 1Y</b><b contenteditable="">34.70% SI</b><b class="gn" contenteditable="">+30.4% alpha</b></div>
+       </div>
+       <div class="cm"><div class="v" contenteditable="">₹430<span class="u">Cr</span></div><div class="l">Product AUM</div><div class="v2" contenteditable="">₹341 Cr on platform</div></div>
+      </div>
+      <div class="osublab" contenteditable="">Layered on the core</div>
+      <div class="orow">
+       <div class="ocard">
+        <div class="ct2" contenteditable="">Advisory-led PMS</div>
+        <div class="sn" contenteditable="">CoPilot</div>
+        <div class="sd" contenteditable="">The client drives; Ionic advises. Our research and structure, every decision still theirs.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹394.6 Cr</div></div><div class="b"><div class="l">Share of shelf</div><div class="v" contenteditable="">35.5%</div></div></div>
+       </div>
+       <div class="ocard">
+        <div class="ct2" contenteditable="">Second income · treasury</div>
+        <div class="sn" contenteditable="">Yield Enhancer</div>
+        <div class="sd" contenteditable="">Yield-first deployment for surplus and treasury money — steady accrual, low drama.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹158 Cr</div></div><div class="b"><div class="l">1Y vs CRISIL</div><div class="v" style="color:var(--green)" contenteditable="">11.3 / 5.2%</div></div></div>
+       </div>
+       <div class="ocard">
+        <div class="ct2" contenteditable="">Equity beyond mutual funds</div>
+        <div class="sn" contenteditable="">Navigate <span class="live">AIF</span></div>
+        <div class="sd" contenteditable="">Pure-equity portfolio run across curated PMS strategies — one vehicle, many advisors.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹127.2 Cr</div></div><div class="b"><div class="l">SI vs BSE 500</div><div class="v" style="color:var(--green)" contenteditable="">7.97 / 6.17%</div></div></div>
+       </div>
+      </div>
+     </div>
+
+     <div class="opanel off anim" style="--d:2">
+      <div class="ohead"><span class="t" contenteditable="">Offshore</span><span class="s" contenteditable="">indicative · opening now</span><span class="tot" contenteditable="">~$12M pipeline</span></div>
+      <div class="ocore">
+       <div style="flex:1">
+        <div class="ct" contenteditable="">Global core · flagship</div>
+        <div class="cn" contenteditable="">Global Asset Allocation</div>
+        <div class="cd" contenteditable="">The same core discipline of Allocate, taken offshore — 70% global equities, 20% commodities, 10% REITs.</div>
+       </div>
+       <div class="cm"><div class="v" style="font-size:17px" contenteditable="">Launched</div><div class="l">Q2 FY27</div><div class="v2" contenteditable="">first NAV cycle</div></div>
+      </div>
+      <div class="osublab" contenteditable="">Layered on the core</div>
+      <div class="ocol">
+       <div class="ocard slim">
+        <div class="body"><div class="sn" contenteditable="">Global Innovation <span class="live">LIVE</span></div><div class="sd" contenteditable="">Focused exposure to global innovation and growth.</div></div>
+        <div class="rt"><div class="v" contenteditable="">Q1 FY27</div><div class="l">Live since</div></div>
+       </div>
+       <div class="ocard slim">
+        <div class="body"><div class="sn" contenteditable="">Global Macro <span class="build">IN BUILD</span></div><div class="sd" contenteditable="">A tactical global-macro sleeve on top of the core.</div></div>
+        <div class="rt"><div class="v" contenteditable="">FY27</div><div class="l">Target</div></div>
+       </div>
+      </div>
+      <div class="offnote" contenteditable="">Offshore is a pipeline shelf, not reportable AUM — the flagship prices its first NAV cycle this quarter, and the shelf fills out through FY27.</div>
+     </div>
+
+    </div>
+   </div>
+   <div class="src anim" style="--d:4"><span class="tent">All figures tentative — books yet to be finalised for 31 Aug 2026.</span> Domestic AUM per scheme asset register (Allocate incl. Liquid Approach DPMS &amp; Summit ₹430.23 Cr). Offshore figures are indicative / pipeline and not yet reportable. Performance: Allocate Moderate vs Nifty 50 Hybrid Composite Debt 50:50; Navigate vs BSE 500 TRI; Yield Enhancer vs CRISIL Composite Bond Index.</div>
+  </section>
+
+  <!-- ============ 3 · THE BOOK, RM BY RM ============ -->
+  <section class="slide" data-n="2" data-rm="1">
+   <div class="classif">Classified as Internal</div>
+   <div class="lock">
+    <div class="lgw"><span class="b">I</span><span class="lgo"><i class="ra"></i><i class="rb"></i></span><span class="b">NIC</span><span class="lt">ASSET</span></div>
+    <div class="lgsub">BY ANGEL ONE</div>
+   </div>
+   <div class="pad" style="padding-top:30px">
+    <div class="eyebrow anim" style="--d:0"><span class="d"></span>HNI RM book · 31 Aug 2026</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="">The book, RM by RM</h2>
+    <div class="sub anim" style="--d:0" contenteditable="">Every HNI RM book is read in three buckets — <b>Total</b>, <b>Platform</b>, <b>Focused</b> — each won by a different force, each worth more per rupee than the last.</div>
+
+    <div class="buckets anim" style="--d:1">
+     <div class="bk b1">
+      <div style="flex:1">
+       <div class="bl" contenteditable="">Bucket 1 · Total book</div>
+       <div class="bv" contenteditable="">₹3,774<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable=""><b>Transfer of assets.</b> Custody moves across with the RM — the relationship arrives before the mandate.</div>
+      </div>
+      <div class="bshare"><div class="p" contenteditable="">100%</div><div class="q">of book</div></div>
+     </div>
+     <div class="bk b2">
+      <div style="flex:1">
+       <div class="bl" contenteditable="">Bucket 2 · Platform AUM</div>
+       <div class="bv" contenteditable="">₹497.7<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable=""><b>Transfer converted.</b> Custody becomes a mandate — won on performance and on the domain expert in the room.</div>
+      </div>
+      <div class="bshare"><div class="p" contenteditable="">13.2%</div><div class="q">of book</div></div>
+     </div>
+     <div class="bk b3">
+      <div style="flex:1">
+       <div class="bl" contenteditable="">Bucket 3 · Focused products</div>
+       <div class="bv" contenteditable="">₹7<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable=""><b>Unique products.</b> Navigate, Global, Yield Enhancer — smallest bucket, highest yield per rupee.</div>
+      </div>
+      <div class="bshare"><div class="p" contenteditable="">0.19%</div><div class="q">of book</div></div>
+     </div>
+    </div>
+
+    <div class="rmcols">
+     <div class="anim" style="--d:2">
+      <div class="rmframe">
+       <div class="rmtop"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span class="lv">RM Platform Review · one card per RM</span><span class="live2"><b></b>Live</span></div>
+       <div class="rmcard" id="rmcard"></div>
+      </div>
+      <div class="rmdots" id="rmdots"></div>
+      <div class="t5soft" contenteditable="">Top 5 by platform AUM — Pratyaksha <b>₹81.1 Cr</b><span class="sep">·</span>Hiral <b>₹24.5 Cr</b><span class="sep">·</span>Yashkumar <b>₹14.0 Cr</b><span class="sep">·</span>Rohan <b>₹9.4 Cr</b><span class="sep">·</span>Tahir <b>₹1.6 Cr</b> — together <b>₹130.6 Cr</b>, 26% of platform AUM across 72 RMs.</div>
+     </div>
+
+     <div class="hyp anim" style="--d:3">
+      <h4 contenteditable="">The hypothesis: a book matures with vintage</h4>
+      <div class="hs" contenteditable="">Custody moves in months; the mandate moves in years. Early vintage is almost all transfer — penetration builds gradually, focused products last.</div>
+      <svg viewBox="0 0 430 118" style="width:100%;height:auto;max-height:104px;display:block;margin-top:5px">
+       <defs>
+        <linearGradient id="ramp" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B9BEDD"></stop><stop offset="55%" stop-color="#5B62C9"></stop><stop offset="100%" stop-color="#242BA1"></stop></linearGradient>
+        <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#242BA1" stop-opacity=".16"></stop><stop offset="100%" stop-color="#242BA1" stop-opacity="0"></stop></linearGradient>
+       </defs>
+       <rect x="8" y="6" width="414" height="86" fill="#fff" rx="8"></rect>
+       <path d="M14,90 C140,89 200,80 268,62 C330,46 372,28 416,16 L416,90 Z" fill="url(#fade)"></path>
+       <path class="draw" d="M14,90 C140,89 200,80 268,62 C330,46 372,28 416,16" fill="none" stroke="url(#ramp)" stroke-width="5" stroke-linecap="round"></path>
+       <g stroke="#E4E4EE" stroke-width="1" stroke-dasharray="3 4"><line x1="148" y1="14" x2="148" y2="90"></line><line x1="282" y1="14" x2="282" y2="90"></line></g>
+       <circle class="dotmark" style="--d:6" cx="14" cy="90" r="5" fill="#B9BEDD"></circle>
+       <circle class="dotmark" style="--d:8" cx="268" cy="62" r="6" fill="#5B62C9"></circle>
+       <circle class="dotmark" style="--d:10" cx="416" cy="16" r="7" fill="#242BA1"></circle>
+       <g font-family="Reddit Sans" font-size="8.5" font-weight="700" fill="#9A9AA6" text-anchor="middle">
+        <text x="78" y="106">EARLY MONTHS</text><text x="215" y="106">FIRST YEAR</text><text x="352" y="106">MATURE BOOK</text>
+       </g>
+       <g font-family="Reddit Sans" font-size="7.5" font-weight="700" fill="#B9BEDD"><text x="16" y="19">SHARE OF NEW MONEY LANDING ON PLATFORM</text></g>
+      </svg>
+      <div class="hphases">
+       <div class="hp h1x"><div class="hn" contenteditable="">Phase 1</div><div class="hb"><div class="ht" contenteditable="">Transfer of AUM</div><div class="hd" contenteditable="">The relationship moves; assets sit where they always sat.</div></div><div class="hr"><b contenteditable="">~1 in 30</b><small>of new money</small></div></div>
+       <div class="hp h2x"><div class="hn" contenteditable="">Phase 2</div><div class="hb"><div class="ht" contenteditable="">Platform penetration</div><div class="hd" contenteditable="">First mandate — almost always the core, once performance shows up.</div></div><div class="hr"><b contenteditable="">~1 in 7</b><small>of new money</small></div></div>
+       <div class="hp h3x"><div class="hn" contenteditable="">Phase 3</div><div class="hb"><div class="ht" contenteditable="">Focused products</div><div class="hd" contenteditable="">Platform is the default opening; satellites get added on top.</div></div><div class="hr"><b contenteditable="">~1 in 3</b><small>of new money</small></div></div>
+      </div>
+      <div class="sens">
+       <div class="sv" contenteditable="">+₹257 Cr</div>
+       <div class="sd2" contenteditable="">Lifting penetration from <b>13.2%</b> to <b>20%</b> on today's <b>₹3,774 Cr</b> book takes platform AUM to <b>₹755 Cr</b> — without a single new client or a rupee of new money.</div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="src anim" style="--d:5">RM Platform Review, 31 Aug 2026. <span class="tent">Tentative — books yet to be finalised.</span> Penetration = platform AUM ÷ total book. Capture = Δ platform AUM ÷ Δ total book, Mar→Aug. Phase ratios are directional (RM cohorts by tenure, DOJ) — the shape of the curve, not a forecast. Rohan Mehta is illustrative — replace before circulating.</div>
+  </section>
+
+  <!-- ============ 4 · QUESTIONS ============ -->
+  <section class="slide qslide" data-n="3">
+   <div class="classif">Classified as Internal</div>
+   <div class="lock">
+    <div class="lgw"><span class="b">I</span><span class="lgo"><i class="ra"></i><i class="rb"></i></span><span class="b">NIC</span><span class="lt">ASSET</span></div>
+    <div class="lgsub">BY ANGEL ONE</div>
+   </div>
+   <svg class="mtn" viewBox="0 0 1280 340" preserveAspectRatio="none">
+    <path d="M0,340 L0,250 L180,170 L360,235 L520,150 L700,235 L880,120 L1080,215 L1280,140 L1280,340 Z" fill="#B9BEDD" opacity="0.55"></path>
+    <path d="M0,340 L0,300 L220,215 L430,290 L640,205 L840,285 L1040,190 L1280,255 L1280,340 Z" fill="#3A3F86"></path>
+    <path d="M0,340 L200,285 L470,335 L720,270 L980,330 L1280,290 L1280,340 Z" fill="#20244F"></path>
+   </svg>
+   <div class="pad" style="position:relative;z-index:2">
+    <div class="eyebrow anim" style="--d:0"><span class="d"></span>Next phase of growth</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="">Two questions for the room</h2>
+    <div class="sub anim" style="--d:0" contenteditable="">Everything above leads here — two calls, one thread.</div>
+   </div>
+   <div class="q2wrap">
+    <div class="q2 popin" style="--d:1">
+     <div class="qn" contenteditable="">Question 01 · Conversion</div>
+     <h3 contenteditable="">How do we convert transferred custody into mandates faster?</h3>
+     <div class="qfoot">
+      <div class="qfig"><b contenteditable="">₹3,276 Cr</b><small>in custody, not on platform</small></div>
+      <div class="qfig alt"><b contenteditable="">13.2%</b><small>penetration today</small></div>
+      <span class="qarrow">→</span>
+     </div>
+    </div>
+    <div class="q2 popin" style="--d:2">
+     <div class="qn" contenteditable="">Question 02 · Where we bet</div>
+     <h3 contenteditable="">Do we back the RMs we have, or widen the product shelf?</h3>
+     <div class="qfoot">
+      <div class="qfig"><b contenteditable="">72 RMs</b><small>26% of platform in top 5</small></div>
+      <div class="qfig alt"><b contenteditable="">₹7 Cr</b><small>focused, on ₹498 Cr platform</small></div>
+      <span class="qarrow">→</span>
+     </div>
+    </div>
+   </div>
+   <div class="qthread anim" style="--d:6"><span contenteditable="">One thread — move transferred custody into <b>platform and focused products, faster</b>. That is where performance and margin compound.</span></div>
+  </section>
+
+ </div>
+ <div class="hud"><button class="hbtn" id="prev">‹</button><div class="dots" id="dots"></div><span class="count" id="count">1 / 4</span><button class="hbtn" id="next">›</button></div>
+</div>
+
+<script id="rmdata" type="application/json">
+[{"rank":1,"name":"Pratyaksha Gupta","ml":"Vishal Khanna","v":"1.8 yr","cl":"102","pen":"32","pc":"#1F9D57","tot":["182.9","225.2","250.9"],"plat":["46.3","65.7","81.1"],"capt":"51","dplat":"+34.8","avg":"2.46","foc":"0.79","g50":"88","l50":"14","tag":"Firm's largest platform book — deep, diversified, and still compounding","tb":"#E3F4EA","tx":"#1F9D57","prod":["43.7","19.3","18.1","—"],"act":"Volume is solved; the shelf is not. ₹0.79 Cr of focused product on an ₹81 Cr platform book — Global and Yield Enhancer are the next two conversations."},{"rank":2,"name":"Hiral Desai","ml":"Vijay Krishna Chinni","v":"2.1 yr","cl":"51","pen":"17","pc":"#242BA1","tot":["97.5","136.1","143.2"],"plat":["18.7","20.8","24.5"],"capt":"13","dplat":"+5.8","avg":"2.81","foc":"—","g50":"32","l50":"19","tag":"Longest vintage on the list — clients converted, rupees have not","tb":"#FFF1D9","tx":"#9A6A12","prod":["18.7","4.2","1.7","—"],"act":"43% of clients are on platform but only 17% of the rupees — the large tickets haven't moved. Target the top 10 accounts by size, not by count."},{"rank":3,"name":"Yashkumar Jain","ml":"Vijay Krishna Chinni","v":"0.9 yr","cl":"34","pen":"57","pc":"#1F9D57","tot":["10.4","19.8","24.3"],"plat":["6.8","11.9","14.0"],"capt":"52","dplat":"+7.2","avg":"0.71","foc":"0.05","g50":"15","l50":"19","tag":"Deepest penetration in the firm — and the newest book on this list","tb":"#E3F4EA","tx":"#1F9D57","prod":["4.2","0.5","4.6","4.6"],"act":"Model book: all four products live inside a year. Document the opening playbook and run it on the next five joiners."},{"rank":4,"name":"Rohan Mehta","ml":"—","v":"1.5 yr","cl":"38","pen":"12","pc":"#242BA1","tot":["61.0","70.2","78.4"],"plat":["4.1","6.6","9.4"],"capt":"31","dplat":"+5.3","avg":"2.06","foc":"0.12","g50":"21","l50":"17","tag":"Illustrative entry — steady converter, narrow shelf","tb":"#EDEDF2","tx":"#5A5A6E","prod":["6.9","1.4","1.1","—"],"act":"Placeholder card — replace with the actual fifth RM. Pattern to look for: good capture rate, single-product book, ready for a second mandate."},{"rank":5,"name":"Tahir Jamal","ml":"Harsh Bagai","v":"1.3 yr","cl":"55","pen":"1","pc":"#FF5F49","tot":["123.3","140.7","157.5"],"plat":["—","0.5","1.6"],"capt":"5","dplat":"+1.6","avg":"2.86","foc":"0.50","g50":"27","l50":"28","tag":"₹157.5 Cr transferred, ₹1.6 Cr converted — the single largest gap","tb":"#FDE7E4","tx":"#FF5F49","prod":["0.5","—","1.0","—"],"act":"The book arrived; the mandate never followed. One core mandate on the top 5 accounts alone would move the firm-level number."}]
+</script>
+
+<script>
+/* ---------- deck ---------- */
+const slides=[...document.querySelectorAll('.slide')];let cur=0;
+function fit(){const pad=document.fullscreenElement?10:70;
+ const s=Math.min(window.innerWidth*0.985/1280,(window.innerHeight-pad)/720);
+ document.documentElement.style.setProperty('--s',s);}
+window.addEventListener('resize',fit);fit();
+const dots=document.getElementById('dots');
+slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dots.appendChild(d);});
+
+/* ---------- RM carousel ---------- */
+let RM=JSON.parse(document.getElementById('rmdata').textContent);
+let ri=0,rtimer=null;
+const rmcard=document.getElementById('rmcard'),rmdots=document.getElementById('rmdots');
+RM.forEach((_,i)=>{const d=document.createElement('div');d.className='rmd'+(i===0?' on':'');d.onclick=()=>{stopRM();ri=i;paintRM(i);};rmdots.appendChild(d);});
+function ed(k,v,extra){return '<span contenteditable data-rk="'+k+'"'+(extra||'')+'>'+v+'</span>';}
+function seq(k,a){const c=x=>x==='—'?'—':'₹'+x;
+ return '<div class="seq"><span class="a">'+ed(k+'0',c(a[0]))+'</span><span class="ar">→</span><span class="mid">'+ed(k+'1',c(a[1]))+'</span><span class="ar">→</span><span class="a">'+ed(k+'2',c(a[2]))+'</span></div>';}
+function pcell(n,k,a){return '<div class="pc"><div class="n">'+n+'</div><div class="a '+(a==='—'?'z':'')+'">'+ed(k,a==='—'?'—':'₹'+a)+'</div></div>';}
+function paintRM(i){const r=RM[i];
+ rmcard.innerHTML=
+ '<div class="rmhd"><div class="rmrank">'+r.rank+'</div>'
+ +'<div><div class="rmname">'+ed('name',r.name)+'</div><div class="rmmeta">'+ed('ml',r.ml)+' · vintage '+ed('v',r.v)+' · '+ed('cl',r.cl)+' clients</div></div>'
+ +'<div class="rmpen"><div class="pv" style="color:'+r.pc+'">'+ed('pen',r.pen)+'%</div><div class="pl">of book in platform</div></div></div>'
+ +'<div class="rmtag" style="background:'+r.tb+';color:'+r.tx+'">'+ed('tag',r.tag)+'</div>'
+ +'<div class="rmtrends">'
+ +'<div class="trd"><div class="tl"><span>Total book · ₹Cr</span><span class="up">Mar→Aug</span></div>'+seq('tot',r.tot)+'<div class="lb"><span>Mar</span><span>Jun</span><span>Aug</span></div></div>'
+ +'<div class="trd"><div class="tl"><span>Platform AUM · ₹Cr</span><span class="up">'+ed('dplat',r.dplat)+' Cr</span></div>'+seq('plat',r.plat)+'<div class="lb"><span>Mar</span><span>Jun</span><span>Aug</span></div></div>'
+ +'</div>'
+ +'<div class="rmchips">'
+ +'<div class="chipc"><div class="cv" style="color:var(--indigo)">'+ed('capt',r.capt)+'%</div><div class="cl">Capture of new money</div></div>'
+ +'<div class="chipc"><div class="cv" style="color:var(--green)">'+ed('dplat2',r.dplat)+'</div><div class="cl">Δ Platform ₹Cr</div></div>'
+ +'<div class="chipc"><div class="cv" style="color:var(--ink)">₹'+ed('avg',r.avg)+'</div><div class="cl">Avg book / client</div></div>'
+ +'<div class="chipc"><div class="cv" style="color:var(--amber-d)">'+ed('foc',r.foc==='—'?'—':'₹'+r.foc)+'</div><div class="cl">Focused AUM ₹Cr</div></div>'
+ +'</div>'
+ +'<div class="rmprod"><div class="pl">Key products · platform ₹Cr &nbsp;·&nbsp; clients '+ed('g50',r.g50)+' above ₹50L / '+ed('l50',r.l50)+' below</div>'
+ +'<div class="pr">'+pcell('Allocate','prod0',r.prod[0])+pcell('Yield Enh.','prod1',r.prod[1])+pcell('Navigate','prod2',r.prod[2])+pcell('Co-Pilot','prod3',r.prod[3])+'</div></div>'
+ +'<div class="rmnext"><b>What this book needs next</b>'+ed('act',r.act)+'</div>';
+ [...rmdots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
+}
+/* write edits back into the RM model */
+rmcard.addEventListener('focusout',e=>{const el=e.target;if(!el.dataset||!el.dataset.rk)return;
+ const k=el.dataset.rk,r=RM[ri];let t=el.textContent.trim().replace(/^₹/,'');
+ if(/^(tot|plat)[0-2]$/.test(k)){r[k.slice(0,4)][+k.slice(4)]=t;}
+ else if(/^prod[0-3]$/.test(k)){r.prod[+k.slice(4)]=t;}
+ else if(k==='dplat2'){r.dplat=t;}
+ else{r[k]=t;}
+ persist();});
+function advanceRM(){rmcard.classList.add('fade');setTimeout(()=>{ri=(ri+1)%RM.length;paintRM(ri);rmcard.classList.remove('fade');},300);}
+function rmLoop(on){if(on){if(rtimer)return;rtimer=setInterval(advanceRM,4200);}else{clearInterval(rtimer);rtimer=null;}}
+function stopRM(){clearInterval(rtimer);rtimer=null;}
+rmcard.addEventListener('focusin',stopRM);
+
+/* ---------- navigation ---------- */
+function go(i){cur=Math.max(0,Math.min(slides.length-1,i));
+ slides.forEach((s,k)=>s.classList.toggle('active',k===cur));
+ [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
+ document.getElementById('count').textContent=(cur+1)+' / '+slides.length;
+ rmLoop(slides[cur].dataset.rm==='1');}
+document.getElementById('next').onclick=()=>go(cur+1);document.getElementById('prev').onclick=()=>go(cur-1);
+window.addEventListener('keydown',e=>{
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();saveFile();return;}
+ if(e.target.isContentEditable)return;
+ if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(cur+1);}
+ if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(cur-1);}
+ if(e.key==='Home')go(0);if(e.key==='End')go(slides.length-1);
+ if(e.key.toLowerCase()==='f')toggleFull();});
+
+/* ---------- fullscreen ---------- */
+function toggleFull(){if(document.fullscreenElement){document.exitFullscreen();}
+ else{(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen).call(document.documentElement);}}
+document.getElementById('btnFull').onclick=toggleFull;
+document.addEventListener('fullscreenchange',()=>{document.body.classList.toggle('fs',!!document.fullscreenElement);
+ document.getElementById('btnFull').textContent=document.fullscreenElement?'⛶ Exit':'⛶ Fullscreen';fit();});
+
+/* ---------- edit persistence ---------- */
+const LS='ionic_strategic_meet_v2';
+const isSnap=document.documentElement.dataset.snapshot==='1';
+let store={edits:{}};
+if(isSnap){try{localStorage.removeItem(LS);}catch(e){}document.documentElement.removeAttribute('data-snapshot');}
+else{try{store=JSON.parse(localStorage.getItem(LS))||{edits:{}};}catch(e){store={edits:{}};}}
+const editables=[...document.querySelectorAll('[contenteditable]')].filter(el=>!el.closest('#rmcard'));
+editables.forEach((el,i)=>{const k='e'+i;el.dataset.ek=k;
+ if(!isSnap&&store.edits&&store.edits[k]!=null)el.innerHTML=store.edits[k];
+ el.addEventListener('blur',()=>{store.edits=store.edits||{};store.edits[el.dataset.ek]=el.innerHTML;persist();});});
+if(!isSnap&&store.rm&&Array.isArray(store.rm)&&store.rm.length===RM.length)RM=store.rm;
+function persist(){store.rm=RM;try{localStorage.setItem(LS,JSON.stringify(store));}catch(e){}}
+
+/* ---------- save edited copy ---------- */
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');
+ clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('on'),2600);}
+function saveFile(){
+ document.getElementById('rmdata').textContent='\n'+JSON.stringify(RM,null,0)+'\n';
+ document.documentElement.setAttribute('data-snapshot','1');
+ const clone=document.documentElement.cloneNode(true);
+ clone.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+ clone.querySelectorAll('.dot').forEach(d=>d.classList.remove('on'));
+ const rc=clone.querySelector('#rmcard');if(rc)rc.innerHTML='';
+ const rd=clone.querySelector('#rmdots');if(rd)rd.innerHTML='';
+ const dd=clone.querySelector('#dots');if(dd)dd.innerHTML='';
+ const tt=clone.querySelector('#toast');if(tt){tt.textContent='';tt.classList.remove('on');}
+ clone.style.removeProperty('--s');
+ document.documentElement.removeAttribute('data-snapshot');
+ const html='<!DOCTYPE html>\n<html lang="en" data-snapshot="1">'+clone.innerHTML+'</html>';
+ const d=new Date(),p=n=>String(n).padStart(2,'0');
+ const name='Ionic_Asset_Strategic_Meet_'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes())+'.html';
+ const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;
+ document.body.appendChild(a);a.click();
+ setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500);
+ toast('Saved · '+name);}
+document.getElementById('btnSave').onclick=saveFile;
+document.getElementById('btnReset').onclick=()=>{
+ if(!confirm('Discard your edits and reload the original deck?'))return;
+ try{localStorage.removeItem(LS);}catch(e){}location.reload();};
+
+paintRM(0);
+go(0);
+</script>
+</body></html>
