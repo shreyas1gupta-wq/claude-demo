@@ -1,0 +1,65 @@
+[
+ {
+  "structure": "MIDCPNIFTY futures",
+  "round_turn_bp": 13.986666666666668,
+  "rolls_per_year": 12,
+  "hold_cost_pct_per_year_1x": 2.5176000000000003,
+  "premium_pct_of_notional": null
+ },
+ {
+  "structure": "MIDCPNIFTY 30d ATM synthetic",
+  "round_turn_bp": 6.549310961131404,
+  "rolls_per_year": 12,
+  "hold_cost_pct_per_year_1x": 1.1788759730036527,
+  "premium_pct_of_notional": 4.119632368601374
+ },
+ {
+  "structure": "MIDCPNIFTY 90d ATM synthetic",
+  "round_turn_bp": 17.482586002631418,
+  "rolls_per_year": 4,
+  "hold_cost_pct_per_year_1x": 1.048955160157885,
+  "premium_pct_of_notional": 7.533809623756864
+ },
+ {
+  "structure": "MIDCPNIFTY 30d deep-ITM (10%) synthetic-equiv",
+  "round_turn_bp": 28.378257963571777,
+  "rolls_per_year": 12,
+  "hold_cost_pct_per_year_1x": 5.10808643344292,
+  "premium_pct_of_notional": 10.64217710355383
+ },
+ {
+  "structure": "Nifty futures",
+  "round_turn_bp": 8.986666666666666,
+  "rolls_per_year": 12,
+  "hold_cost_pct_per_year_1x": 1.6176,
+  "premium_pct_of_notional": null
+ },
+ {
+  "structure": "Nifty 30d ATM synthetic",
+  "round_turn_bp": 2.659804847050283,
+  "rolls_per_year": 12,
+  "hold_cost_pct_per_year_1x": 0.4787648724690509,
+  "premium_pct_of_notional": 2.754989733895804
+ },
+ {
+  "structure": "Nifty 90d ATM synthetic",
+  "round_turn_bp": 5.4962594892828225,
+  "rolls_per_year": 4,
+  "hold_cost_pct_per_year_1x": 0.3297755693569694,
+  "premium_pct_of_notional": 5.194069424587723
+ },
+ {
+  "structure": "Nifty 180d ATM synthetic",
+  "round_turn_bp": 13.193679088931733,
+  "rolls_per_year": 2,
+  "hold_cost_pct_per_year_1x": 0.395810372667952,
+  "premium_pct_of_notional": 7.675151468035987
+ },
+ {
+  "structure": "Nifty 365d ATM synthetic",
+  "round_turn_bp": 30.836437838109365,
+  "rolls_per_year": 1,
+  "hold_cost_pct_per_year_1x": 0.4625465675716405,
+  "premium_pct_of_notional": 11.455032697858499
+ }
+]

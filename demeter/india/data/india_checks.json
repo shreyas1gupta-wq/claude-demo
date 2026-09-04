@@ -1,0 +1,68 @@
+{
+  "nifty_futures_index": {
+    "start": "2016-06-24",
+    "end": "2026-08-24",
+    "n": 2209,
+    "corr_fut_vs_price": 0.9900842183412399,
+    "fut_ann_pct": 8.283631727990286,
+    "price_minus_cash_ann_pct": 7.469561457055835,
+    "basis_drag_ann_pct": 0.8140702709344525,
+    "note": "futures return minus (price return - cash) = net carry the futures holder gives up or gains, i.e. (dividend yield - basis premium)",
+    "futtri_minus_fut_ann_pct": Infinity,
+    "cash_ann_pct": 5.380485412282978
+  },
+  "carry_applied_ann_pct": 0.8140702709344525,
+  "coverage": {
+    "mcs": {
+      "first": "2021-09-15",
+      "last": "2026-08-31",
+      "n": 1231
+    },
+    "mc50": {
+      "first": "2012-02-21",
+      "last": "2026-08-31",
+      "n": 3583
+    },
+    "nifty": {
+      "first": "2012-02-21",
+      "last": "2026-08-31",
+      "n": 3583
+    },
+    "vix": {
+      "first": "2014-05-14",
+      "last": "2026-08-31",
+      "n": 3030
+    },
+    "rate1d": {
+      "first": "2016-06-23",
+      "last": "2026-08-26",
+      "n": 2295
+    },
+    "futidx": {
+      "first": "2016-06-16",
+      "last": "2026-08-26",
+      "n": 2310
+    }
+  },
+  "rows": 3583,
+  "midcap_proxy_corr_vs_mcs": {
+    "mc50": 0.9765698250834969,
+    "mc100": 0.9591741990740601,
+    "mc150": 0.9526364690823328
+  },
+  "midcap_proxy_overlap": {
+    "start": "2021-09-16",
+    "end": "2026-08-31",
+    "n": 1230
+  },
+  "annualised_price_return_pct": {
+    "mcs": 16.15710719709773,
+    "mc50": 15.250241382758723,
+    "nifty": 10.796780832873631
+  },
+  "annualised_vol_pct": {
+    "mcs": 18.651327250755596,
+    "mc50": 21.3242493110218,
+    "nifty": 16.05569583306698
+  }
+}
