@@ -14,6 +14,32 @@ holding MIDCPNIFTY through an at-the-money option synthetic (long call + short p
 that requires no forecasting skill. Deep in-the-money selling does the opposite: premium approaches
 notional, so it costs 5.11% a year, roughly double the futures it was meant to replace.
 
+## The model
+
+`india_model.py` builds and tests the recommended strategy. Chosen on Nifty Midcap 50, May 2014 – Dec 2019;
+tested on Midcap 50 from 2020 and Midcap Select from Sep 2021.
+
+**Hold 0.75x Nifty Midcap Select as an at-the-money option synthetic, and sell a 6% out-of-the-money call
+against it every month. Do not time the market.**
+
+Out of sample on Midcap Select (Sep 2021 – Aug 2026), against the same index held 1x through futures:
+
+| | Model | Futures buy & hold |
+|---|---|---|
+| Annualised return | **16.85%** | 13.97% |
+| Volatility | **14.2%** | 18.6% |
+| Sharpe | **0.75** | 0.48 |
+| Maximum drawdown | **-13.66%** | -25.44% |
+| Calmar | **1.23** | 0.55 |
+| Exposure changes a year | 0.2 | 0 |
+
+Attribution: the synthetic wrapper is worth +1.59% a year, the covered-call overlay +4.59%, and cutting
+exposure to 0.75x costs -3.30% of return while halving the drawdown.
+
+**The load-bearing assumption** is that midcap implied volatility is about 1.35x India VIX (the ratio of
+their realised volatilities). At 1.0x the overlay contributes nothing and the model underperforms plain
+synthetic buy-and-hold. One day of MIDCPNIFTY option quotes settles it — see the model report.
+
 ## Files
 
 | Path | What it is |
@@ -23,7 +49,11 @@ notional, so it costs 5.11% a year, roughly double the futures it was meant to r
 | `run_india.py` | The US-frozen model applied unchanged to Indian indices — a genuine out-of-sample test in a different market. |
 | `tune_india.py` | India-specific re-tuning of the same family (development: Midcap 50, 2012–2019). |
 | `crash_overlay.py` | The opposite posture: always invested, volatility-sized, crash exits only. |
-| `build_india_report.py` + `report/` | The interactive study page. |
+| `explore_core.py` | Seven timing families tested on the Indian development window. All seven reduced the Sharpe ratio versus staying invested. |
+| `vrp_overlay.py` | Measures India's variance risk premium (India VIX against subsequent realised volatility) and simulates monthly option-selling overlays settled on the actual index path. |
+| `india_model.py` | The model: development selection including constant-leverage variants, out-of-sample tests, and the implied-volatility sensitivity. |
+| `build_india_report.py` + `report/` | The feasibility study page (cost arithmetic, why timing fails). |
+| `build_model_report.py` + `model_report/` | The model specification page. |
 
 ## Key numbers
 

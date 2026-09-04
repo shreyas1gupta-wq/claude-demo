@@ -1,0 +1,190 @@
+{
+  "vrp": {
+    "n_days": 3009,
+    "mean_iv": 16.536095048188766,
+    "mean_rv_next": 14.05291484722401,
+    "mean_vrp": 2.4831802009647586,
+    "median_vrp": 3.2064295235838696,
+    "pct_days_positive_vrp": 79.79395147889664,
+    "iv_over_rv_ratio": 1.1767021452816446,
+    "by_year": {
+      "2014": {
+        "mean_vrp": 2.082996329060723,
+        "n": 154
+      },
+      "2015": {
+        "mean_vrp": 1.5853136640564633,
+        "n": 239
+      },
+      "2016": {
+        "mean_vrp": 2.245718578380804,
+        "n": 245
+      },
+      "2017": {
+        "mean_vrp": 3.6924451557563662,
+        "n": 248
+      },
+      "2018": {
+        "mean_vrp": 2.7796014782072653,
+        "n": 246
+      },
+      "2019": {
+        "mean_vrp": 3.319993237055589,
+        "n": 244
+      },
+      "2020": {
+        "mean_vrp": 2.0108579061727196,
+        "n": 250
+      },
+      "2021": {
+        "mean_vrp": 3.2109951270814245,
+        "n": 248
+      },
+      "2022": {
+        "mean_vrp": 2.99097378212956,
+        "n": 248
+      },
+      "2023": {
+        "mean_vrp": 2.869454266753273,
+        "n": 246
+      },
+      "2024": {
+        "mean_vrp": 1.4659990865728794,
+        "n": 249
+      },
+      "2025": {
+        "mean_vrp": 2.5142976120835896,
+        "n": 249
+      },
+      "2026": {
+        "mean_vrp": 0.5220116565903173,
+        "n": 143
+      }
+    },
+    "worst_month_vrp": -62.976129849810945,
+    "best_month_vrp": 30.544588835534284,
+    "midcap_nifty_vol_ratio": 1.3467755962354027
+  },
+  "overlay": [
+    {
+      "label": "Nifty: covered call 4% OTM",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 2.0702156285887616,
+      "mean_cycle_pct": 0.17256164325573675,
+      "win_rate_pct": 81.5068493150685,
+      "worst_cycle_pct": -7.703811764323182,
+      "best_cycle_pct": 2.38501064554102,
+      "std_cycle_pct": 1.242180542950783,
+      "mean_premium_pct": 0.6848928418660755,
+      "mean_cost_pct": 0.010249115019672567,
+      "cost_as_pct_of_premium": 1.4964552690823256,
+      "pct_cycles_assigned": 23.28767123287671
+    },
+    {
+      "label": "Nifty: covered call 6% OTM",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 1.9421894449051653,
+      "mean_cycle_pct": 0.16189009371707236,
+      "win_rate_pct": 94.52054794520548,
+      "worst_cycle_pct": -6.307719720882883,
+      "best_cycle_pct": 1.7850172255179184,
+      "std_cycle_pct": 0.8000667743801819,
+      "mean_premium_pct": 0.36906358725242117,
+      "mean_cost_pct": 0.006973915116648234,
+      "cost_as_pct_of_premium": 1.889624270052527,
+      "pct_cycles_assigned": 7.534246575342466
+    },
+    {
+      "label": "Nifty: short put 6% OTM",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 0.4746874126938217,
+      "mean_cycle_pct": 0.03956729861183534,
+      "win_rate_pct": 95.8904109589041,
+      "worst_cycle_pct": -20.88152073709389,
+      "best_cycle_pct": 4.128677038725297,
+      "std_cycle_pct": 1.82877864897195,
+      "mean_premium_pct": 0.24018966944496326,
+      "mean_cost_pct": 0.005637471969158046,
+      "cost_as_pct_of_premium": 2.3470917721754097,
+      "pct_cycles_assigned": 4.794520547945205
+    },
+    {
+      "label": "Nifty: strangle 4% call / 6% put",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 2.5449030412825837,
+      "mean_cycle_pct": 0.2121289418675721,
+      "win_rate_pct": 80.13698630136986,
+      "worst_cycle_pct": -20.092055801385484,
+      "best_cycle_pct": 4.512156122906788,
+      "std_cycle_pct": 2.153932564553083,
+      "mean_premium_pct": 0.9250825113110388,
+      "mean_cost_pct": 0.015886586988830612,
+      "cost_as_pct_of_premium": 1.7173156766649864,
+      "pct_cycles_assigned": 28.08219178082192
+    },
+    {
+      "label": "Midcap Select: covered call 5% OTM",
+      "n_cycles": 59,
+      "years": 4.91,
+      "annual_pnl_pct": 3.98498000187674,
+      "mean_cycle_pct": 0.33137665928203885,
+      "win_rate_pct": 86.4406779661017,
+      "worst_cycle_pct": -4.248223327806313,
+      "best_cycle_pct": 2.5658311453972544,
+      "std_cycle_pct": 1.2768362445259798,
+      "mean_premium_pct": 0.8414769078377565,
+      "mean_cost_pct": 0.016921778284275997,
+      "cost_as_pct_of_premium": 2.010961694451947,
+      "pct_cycles_assigned": 22.033898305084744
+    },
+    {
+      "label": "Midcap Select: covered call 8% OTM",
+      "n_cycles": 59,
+      "years": 4.91,
+      "annual_pnl_pct": 3.3440264949860703,
+      "mean_cycle_pct": 0.2780772621035064,
+      "win_rate_pct": 94.91525423728814,
+      "worst_cycle_pct": -2.034961720126948,
+      "best_cycle_pct": 1.7432851929255695,
+      "std_cycle_pct": 0.48634688917628766,
+      "mean_premium_pct": 0.3904371247594236,
+      "mean_cost_pct": 0.009538184868918394,
+      "cost_as_pct_of_premium": 2.4429502893188126,
+      "pct_cycles_assigned": 8.47457627118644
+    },
+    {
+      "label": "Midcap 50: covered call 5% OTM",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 2.4735008047477685,
+      "mean_cycle_pct": 0.2061772491557449,
+      "win_rate_pct": 78.08219178082192,
+      "worst_cycle_pct": -8.274964732882035,
+      "best_cycle_pct": 3.3113752098427605,
+      "std_cycle_pct": 1.573478871865826,
+      "mean_premium_pct": 0.9893059153760432,
+      "mean_cost_pct": 0.01934176279031895,
+      "cost_as_pct_of_premium": 1.9550841139938997,
+      "pct_cycles_assigned": 27.397260273972602
+    },
+    {
+      "label": "Midcap 50: covered call 8% OTM",
+      "n_cycles": 146,
+      "years": 12.17,
+      "annual_pnl_pct": 3.19283733994631,
+      "mean_cycle_pct": 0.26613713587168386,
+      "win_rate_pct": 92.46575342465754,
+      "worst_cycle_pct": -5.93465960365671,
+      "best_cycle_pct": 2.4218243020301435,
+      "std_cycle_pct": 0.8277850839478824,
+      "mean_premium_pct": 0.5043501614987709,
+      "mean_cost_pct": 0.011402959506427385,
+      "cost_as_pct_of_premium": 2.260921156948053,
+      "pct_cycles_assigned": 8.904109589041095
+    }
+  ]
+}
