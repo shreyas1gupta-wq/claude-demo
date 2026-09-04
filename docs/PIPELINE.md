@@ -374,3 +374,8 @@ planted-truth tested (tests/test_pipeline.py: deterministic barrier hits incl. t
 side; revisions invisible before publication). Purged CV + the M4 walk-forward already
 exist in quant/stats and quant/validation. At bhavcopy landing, Phase-0 fixtures exercise
 this scaffold before any ML design registers.
+
+## Operating companion (2026-09-03)
+The day-to-day workflow this architecture is run through — ten stations, machinery paths,
+entry/exit gates, current line status — is written down in `docs/MODEL-FACTORY.md`
+(operating document; changes nothing frozen, registers nothing).
