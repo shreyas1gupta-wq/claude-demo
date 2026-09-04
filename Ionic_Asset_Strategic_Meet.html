@@ -3,7 +3,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ionic Asset — Strategic Meet</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Reddit+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&amp;family=Reddit+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
 :root{
  --indigo:#242BA1;--indigo-d:#161A6E;--royal:#2B31C4;--amber:#FBB040;--amber-d:#D98A1F;
@@ -163,86 +163,85 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
 .bk .bshare .q{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
 .bk.b2 .bshare .q{color:#AEB3E6}
 
-.rmcols{display:grid;grid-template-columns:1.04fr .96fr;gap:16px;margin-top:12px}
-.rmframe{background:linear-gradient(115deg,var(--indigo),var(--indigo-d));border-radius:12px;padding:4px}
-.rmtop{display:flex;align-items:center;gap:7px;padding:5px 11px 6px;color:#fff}
-.rmtop i{width:8px;height:8px;border-radius:50%}
-.rmtop .lv{margin-left:6px;font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;color:#C9CDF0;font-weight:700}
-.rmtop .live2{margin-left:auto;font-size:8.5px;color:#8FE3AE;font-weight:700;display:flex;align-items:center;gap:5px}
-.rmtop .live2 b{width:7px;height:7px;border-radius:50%;background:#28C840;animation:blink 1.4s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.rmcard{background:#fff;border-radius:9px;padding:11px 13px 11px;min-height:296px;transition:opacity .3s}
+.rmcols{display:grid;grid-template-columns:1.98fr 1fr;gap:15px;margin-top:12px;align-items:start}
+/* --- RM card: the live RM Platform Review card, as it ships --- */
+.rmcard{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(20,24,80,.07);transition:opacity .3s}
 .rmcard.fade{opacity:0}
-.rmhd{display:flex;align-items:center;gap:10px}
-.rmrank{width:24px;height:24px;border-radius:8px;background:var(--tile);color:var(--indigo);font-family:var(--ui);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 24px}
-.rmname{font-family:var(--dis);font-size:19px;font-weight:600;line-height:1}
-.rmmeta{font-size:9px;color:var(--grey);margin-top:2px}
-.rmpen{margin-left:auto;text-align:right}
-.rmpen .pv{font-family:var(--ui);font-size:26px;font-weight:700;line-height:1;letter-spacing:-.6px}
-.rmpen .pl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:1px}
-.rmtag{margin:8px 0;font-size:10px;font-weight:600;padding:6px 10px;border-radius:8px;line-height:1.3}
-.rmtrends{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.trd{background:var(--tile);border-radius:9px;padding:8px 10px}
-.trd .tl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;display:flex;justify-content:space-between}
-.trd .tl .up{color:var(--green)}
-.trd .seq{display:flex;align-items:baseline;gap:4px;margin-top:3px;font-family:var(--ui)}
-.trd .seq .a{font-size:15px;font-weight:700;color:var(--indigo);letter-spacing:-.3px}
-.trd .seq .mid{font-size:10px;color:#9A9AA6;font-weight:600}
-.trd .seq .ar{font-size:9px;color:#B7B7C2}
-.trd .lb{display:flex;justify-content:space-between;font-size:6.5px;color:#A0A0AC;font-weight:600;margin-top:1px}
-.rmchips{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:9px}
-.chipc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 6px;text-align:center}
-.chipc .cv{font-family:var(--ui);font-size:15px;font-weight:700;line-height:1.1;letter-spacing:-.3px}
-.chipc .cl{font-size:6.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:3px;line-height:1.2}
-.rmprod{margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
-.rmprod .pl{font-size:7px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-bottom:5px}
-.rmprod .pr{display:flex;gap:5px}
-.rmprod .pc{flex:1;background:var(--tile);border-radius:7px;padding:5px 5px;text-align:center}
-.rmprod .pc .n{font-size:7px;color:var(--grey);font-weight:600}
-.rmprod .pc .a{font-family:var(--ui);font-size:12.5px;font-weight:700;letter-spacing:-.2px}.rmprod .pc .a.z{color:#C4C4D0}
-.rmnext{margin-top:8px;background:#F5F6FF;border-left:3px solid var(--amber);border-radius:7px;padding:7px 10px;font-size:9.5px;line-height:1.4;color:var(--slate)}
-.rmnext b{color:var(--indigo);font-family:var(--ui);font-size:7px;letter-spacing:.8px;text-transform:uppercase;display:block;margin-bottom:2px}
-.rmdots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+.chd{display:flex;align-items:center;gap:10px;padding:10px 13px 11px;border-bottom:1px solid var(--line)}
+.rank2{width:23px;height:23px;border-radius:7px;background:var(--pearl);color:var(--indigo);font-family:var(--ui);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex:0 0 23px}
+.rmn{font-family:var(--dis);font-size:17.5px;font-weight:600;line-height:1}
+.rmmeta2{font-size:8.8px;color:var(--grey);margin-top:2px}
+.pill{font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:12px;white-space:nowrap;letter-spacing:.4px;text-transform:uppercase}
+.pill.none,.pill.slip{background:#FDE7E4;color:var(--coral)}
+.pill.new{background:#E3F4EA;color:var(--green)}
+.pill.single{background:#FFF1D9;color:#9A6A12}
+.penbig{margin-left:auto;text-align:right}
+.penbig .pv{font-family:var(--ui);font-size:23px;font-weight:700;line-height:1;letter-spacing:-.7px}
+.penbig .pl{font-size:6.8px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px;font-weight:700;margin-top:2px}
+.remark{display:flex;gap:8px;align-items:flex-start;padding:8px 13px;background:#F6F7FF;border-bottom:1px solid var(--line)}
+.remark .star{color:var(--amber);font-size:12px;line-height:1.25;flex:0 0 auto}
+.remark .rtx{font-size:10.4px;font-weight:600;color:var(--ink);flex:1;line-height:1.35}
+.rgrid{display:grid;grid-template-columns:1.06fr .82fr 1.24fr 1.56fr 1.0fr}
+.sec{padding:10px 11px 11px;border-right:1px solid var(--line)}
+.sec:last-child{border-right:none}
+.sec h4{margin:0 0 7px;font-size:7.2px;letter-spacing:.7px;text-transform:uppercase;color:var(--indigo);font-weight:700;font-family:var(--ui)}
+.st{display:flex;justify-content:space-between;align-items:baseline;gap:5px;padding:2.6px 0;font-size:10px}
+.st .k{color:var(--grey)}
+.st .val{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.st .val.big{font-size:13px;letter-spacing:-.3px}
+.pos{color:var(--green)}.neg{color:var(--coral)}.mut{color:#B7B7C2}
+.trend{display:flex;gap:5px;align-items:baseline;margin-top:3px}
+.trend .a{font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.arrow{font-size:8px}
+table.ptab{width:100%;border-collapse:collapse;font-size:9.2px}
+table.ptab th{font-size:6.8px;color:var(--grey);text-transform:uppercase;letter-spacing:.2px;font-weight:700;text-align:right;padding:0 2px 2px}
+table.ptab th.l{text-align:left}
+table.ptab td{padding:3px 2px;text-align:right;border-top:1px solid #F0F0F6;font-variant-numeric:tabular-nums;font-weight:600}
+table.ptab td.l{text-align:left}
+table.ptab td.z{color:#C4C4D0}
+.act{padding:8px 13px;border-top:1px solid var(--line);display:flex;gap:9px;align-items:center;background:#FCFCFA}
+.act .lbl{font-size:7.2px;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);font-weight:700}
+.act .inp{flex:1;font-size:9.8px;color:var(--ink);min-height:13px}
+.act .inp:empty:before{content:'Add action / owner\2026';color:#B7B7C2}
+.rmdots{display:flex;gap:6px;justify-content:center;margin-top:9px}
 .rmd{width:7px;height:7px;border-radius:50%;background:#C9CDF0;cursor:pointer}.rmd.on{background:var(--amber);width:18px;border-radius:5px;transition:.3s}
-.t5soft{margin-top:7px;font-size:8.8px;color:var(--grey);line-height:1.5;text-align:center}
+.t5soft{margin-top:8px;font-size:8.8px;color:var(--grey);line-height:1.5;text-align:center}
 .t5soft b{color:var(--indigo);font-weight:700}
 .t5soft .sep{color:#C9CDF0;margin:0 5px}
-
-.hyp{background:var(--tile);border-radius:12px;padding:12px 15px 12px;display:flex;flex-direction:column}
-.hyp h4{margin:0;font-size:15px;font-weight:600;color:var(--indigo);letter-spacing:-.2px}
-.hyp .hs{font-size:9.8px;color:var(--grey);margin-top:3px;line-height:1.45}
-.hphases{margin-top:9px;display:flex;flex-direction:column;gap:6px}
-.hp{display:flex;align-items:center;gap:10px;background:#fff;border-radius:9px;padding:7px 11px;border-left:3px solid}
+/* --- right rail: the vintage hypothesis --- */
+.hyp{background:var(--tile);border-radius:12px;padding:13px 15px 14px;display:flex;flex-direction:column;min-height:340px}
+.hyp h4{margin:0;font-size:14.5px;font-weight:600;color:var(--indigo);letter-spacing:-.2px;line-height:1.15}
+.hyp .hs{font-size:9.2px;color:var(--grey);margin-top:4px;line-height:1.4}
+.hphases{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+.hp{background:#fff;border-radius:9px;padding:7px 11px 8px;border-left:3px solid}
 .hp.h1x{border-color:#B9BEDD}.hp.h2x{border-color:var(--corn)}.hp.h3x{border-color:var(--amber)}
-.hp .hn{font-family:var(--ui);font-size:8px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);flex:0 0 54px}
-.hp .hb{flex:1}
-.hp .ht{font-family:var(--dis);font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.15}
-.hp .hd{font-size:9px;color:var(--grey);margin-top:2px;line-height:1.3}
-.hp .hr{text-align:right;flex:0 0 auto;padding-left:6px}
-.hp .hr b{display:block;font-family:var(--ui);font-size:13px;font-weight:700;color:var(--amber-d);letter-spacing:-.2px}
-.hp .hr small{display:block;font-size:6.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:1px}
-.sens{margin-top:auto;background:#FFF6E8;border-radius:10px;padding:9px 13px;border-left:3px solid var(--amber)}
-.sens .sv{font-family:var(--ui);font-size:20px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.5px}
-.sens .sd2{font-size:9.4px;color:var(--slate);line-height:1.42;margin-top:4px}
+.hp .hn{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--grey);font-weight:700}
+.hprow{display:flex;align-items:baseline;gap:10px;margin-top:2px}
+.hp .ht{font-family:var(--dis);font-size:13.5px;font-weight:600;color:var(--indigo);line-height:1.12;flex:1}
+.hp .hfrw{text-align:right;flex:0 0 auto}
+.hp .hfr{font-family:var(--ui);font-size:16px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.4px}
+.hp .hcap{font-size:6.6px;letter-spacing:.5px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:2px}
+.hp .hd{font-size:8.7px;color:var(--grey);margin-top:4px;line-height:1.35}
+.sens{margin-top:auto;background:#FFF6E8;border-radius:10px;padding:10px 12px;border-left:3px solid var(--amber)}
+.sens .sv{font-family:var(--ui);font-size:19px;font-weight:700;color:var(--amber-d);line-height:1;letter-spacing:-.5px}
+.sens .sd2{font-size:8.9px;color:var(--slate);line-height:1.42;margin-top:4px}
 .sens .sd2 b{color:var(--indigo);font-weight:700}
-.draw{stroke-dasharray:1600;stroke-dashoffset:1600}
-.slide.active .draw{stroke-dashoffset:0;transition:stroke-dashoffset 1.5s cubic-bezier(.3,.7,.3,1) .35s}
 .dotmark{opacity:0}.slide.active .dotmark{animation:pop .45s cubic-bezier(.2,.9,.3,1.2) forwards;animation-delay:calc(var(--d,0)*.06s)}
 
 /* ============ 4 · QUESTIONS ============ */
 .qslide{background:linear-gradient(180deg,#EEF0FF 0%,#F6F4FF 52%,#fff 100%)}
-.mtn{position:absolute;left:0;right:0;bottom:0;width:100%;height:430px;z-index:0}
-.q2wrap{position:absolute;left:44px;right:44px;top:206px;display:grid;grid-template-columns:1fr 1fr;gap:26px;z-index:2}
-.q2{background:#fff;border-radius:15px;border-top:4px solid var(--amber);box-shadow:0 16px 44px rgba(20,24,80,.18);padding:26px 28px 24px;min-height:248px;display:flex;flex-direction:column}
-.q2 .qn{font-family:var(--ui);font-size:9.5px;font-weight:700;color:var(--amber-d);letter-spacing:2.4px;text-transform:uppercase}
-.q2 h3{font-family:var(--dis);margin:12px 0 0;font-size:31px;font-weight:500;line-height:1.14;color:var(--indigo);letter-spacing:-.6px}
-.q2 .qfoot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:16px}
-.q2 .qfig{flex:0 0 auto}
-.q2 .qfig b{display:block;font-family:var(--ui);font-size:25px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.6px}
-.q2 .qfig small{display:block;font-size:8px;letter-spacing:.9px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:4px}
-.q2 .qfig.alt b{color:var(--amber-d)}
-.q2 .qarrow{margin-left:auto;font-size:17px;color:#D7D9EC}
-.qthread{position:absolute;left:44px;right:44px;bottom:22px;z-index:2;text-align:center;font-size:12px;color:#EDEEFA;text-shadow:0 1px 6px rgba(12,14,36,.55)}
+.mtn{position:absolute;left:0;right:0;bottom:0;width:100%;height:452px;z-index:0}
+.qsteps{position:absolute;left:52px;right:52px;bottom:116px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:end;z-index:2}
+.qstep{background:#fff;border-radius:14px;border-top:4px solid var(--amber);box-shadow:0 14px 40px rgba(20,24,80,.18);padding:22px 24px 20px;position:relative;min-height:224px;display:flex;flex-direction:column}
+.qstep.s2{margin-bottom:82px}.qstep.s3{margin-bottom:164px}
+.qflag{position:absolute;top:-15px;left:20px;font-size:8.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--indigo);background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 11px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.qstep .qn{font-family:var(--ui);font-size:8.5px;font-weight:700;color:var(--amber-d);letter-spacing:2.2px;text-transform:uppercase;margin-top:3px}
+.qstep h3{font-family:var(--dis);margin:11px 0 0;font-size:24px;font-weight:500;line-height:1.16;color:var(--indigo);letter-spacing:-.4px}
+.qstep .qfoot{margin-top:auto;padding-top:15px;border-top:1px solid var(--line);display:flex;align-items:flex-end;gap:12px}
+.qstep .qfig b{display:block;font-family:var(--ui);font-size:21px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.5px}
+.qstep .qfig small{display:block;font-size:7.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--grey);font-weight:700;margin-top:4px}
+.qstep .qarrow{margin-left:auto;font-size:16px;color:#D7D9EC}
+.qthread{position:absolute;left:44px;right:44px;bottom:20px;z-index:2;text-align:center;font-size:11.5px;color:#EDEEFA;text-shadow:0 1px 6px rgba(12,14,36,.55)}
 .qthread b{color:var(--amber);font-weight:700}
 </style></head>
 <body class="">
@@ -262,31 +261,31 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
     <div class="lgsub">BY ANGEL ONE</div>
    </div>
    <div class="cin">
-    <div class="ceye anim" style="--d:0" contenteditable="">Ionic Asset · Platform Business</div>
-    <h1 class="anim" style="--d:1" contenteditable="">Strategic Meet</h1>
+    <div class="ceye anim" style="--d:0" contenteditable="" data-ek="e0">Ionic Asset · Platform Business</div>
+    <h1 class="anim" style="--d:1" contenteditable="" data-ek="e1">Strategic Meet</h1>
     <div class="cdash anim" style="--d:2"></div>
-    <div class="cdate anim" style="--d:3" contenteditable="">September 2026 · Q2 FY27</div>
-    <div class="cwho anim" style="--d:4" contenteditable="">Offerings · the RM book · the questions that decide the next phase</div>
+    <div class="cdate anim" style="--d:3" contenteditable="" data-ek="e2">September 2026 · Q2 FY27</div>
+    <div class="cwho anim" style="--d:4" contenteditable="" data-ek="e3"><br></div>
    </div>
    <div class="cagenda anim" style="--d:3">
     <div class="ah"><span>Agenda</span></div>
     <div class="ci">
      <span class="cnum">01</span>
-     <div class="cbody"><div class="ctxt" contenteditable="">The offerings</div><div class="cd2" contenteditable="">Domestic and offshore — one shelf, every mandate.</div></div>
-     <div class="cfig"><b contenteditable="">₹1,110 Cr</b><small>product AUM</small></div>
+     <div class="cbody"><div class="ctxt" contenteditable="" data-ek="e4">The offerings</div><div class="cd2" contenteditable="" data-ek="e5">Domestic and offshore&nbsp;</div></div>
+     <div class="cfig"><b contenteditable="" data-ek="e6">7+&nbsp;</b><small>product AUM</small></div>
     </div>
     <div class="ci">
      <span class="cnum">02</span>
-     <div class="cbody"><div class="ctxt" contenteditable="">The book, RM by RM</div><div class="cd2" contenteditable="">Total, platform and focused — and how a book matures.</div></div>
-     <div class="cfig"><b contenteditable="">₹497.7 Cr</b><small>platform AUM</small></div>
+     <div class="cbody"><div class="ctxt" contenteditable="" data-ek="e7">HNI book, RM by RM</div><div class="cd2" contenteditable="" data-ek="e8">How a book matures.</div></div>
+     <div class="cfig"><b contenteditable="" data-ek="e9">₹497.7 Cr</b><small>platform AUM</small></div>
     </div>
     <div class="ci">
      <span class="cnum">03</span>
-     <div class="cbody"><div class="ctxt" contenteditable="">The questions</div><div class="cd2" contenteditable="">Two calls that set the next phase of growth.</div></div>
-     <div class="cfig"><b contenteditable="">Decide</b><small>in the room</small></div>
+     <div class="cbody"><div class="ctxt" contenteditable="" data-ek="e10">The questions</div><div class="cd2" contenteditable="" data-ek="e11">That set the next phase of growth.</div></div>
+     <div class="cfig"><b contenteditable="" data-ek="e12">Decide</b><small>in the room</small></div>
     </div>
    </div>
-   <div class="cfoot"><span>Classified as Internal</span><span class="tent" contenteditable="">All figures tentative — books yet to be finalised for 31 Aug 2026</span></div>
+   <div class="cfoot"><span>Classified as Internal</span><span class="tent" contenteditable="" data-ek="e13">All figures tentative — books yet to be finalised for 31 Aug 2026</span></div>
   </section>
 
   <!-- ============ 2 · OFFERINGS ============ -->
@@ -298,66 +297,66 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
    </div>
    <div class="pad">
     <div class="eyebrow anim" style="--d:0"><span class="d"></span>Offerings</div>
-    <h2 class="ttl anim" style="--d:0" contenteditable="">The only plan your portfolio needs</h2>
-    <div class="sub anim" style="--d:0" contenteditable="">One shelf, two geographies. Domestic is live and ahead of benchmark; offshore is the build we are opening this quarter.</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="" data-ek="e14">The only plan your portfolio needs</h2>
+    <div class="sub anim" style="--d:0" contenteditable="" data-ek="e15">One shelf, two geographies. Domestic is live and ahead of benchmark; offshore is the build we are opening this quarter.</div>
     <div class="ogrid">
 
      <div class="opanel dom anim" style="--d:1">
-      <div class="ohead"><span class="t" contenteditable="">Domestic</span><span class="s" contenteditable="">rupee solutions, onshore · live</span><span class="tot" contenteditable="">₹1,110 Cr</span></div>
+      <div class="ohead"><span class="t" contenteditable="" data-ek="e16">Domestic</span><span class="s" contenteditable="" data-ek="e17">rupee solutions, onshore · live</span><span class="tot" contenteditable="" data-ek="e18">₹1,110 Cr</span></div>
       <div class="ocore">
        <div style="flex:1">
-        <div class="ct" contenteditable="">The core · default allocation</div>
-        <div class="cn" contenteditable="">Allocate</div>
-        <div class="cd" contenteditable="">One portfolio across equity, debt, gold and global — the single structure a client's entire wealth can live in.</div>
-        <div class="cperf"><span>Moderate</span><b contenteditable="">25.86% 1Y</b><b contenteditable="">34.70% SI</b><b class="gn" contenteditable="">+30.4% alpha</b></div>
+        <div class="ct" contenteditable="" data-ek="e19">The core · default allocation</div>
+        <div class="cn" contenteditable="" data-ek="e20">Allocate</div>
+        <div class="cd" contenteditable="" data-ek="e21">One portfolio across equity, debt, gold and global — the single structure a client's entire wealth can live in.</div>
+        <div class="cperf"><span>Moderate</span><b contenteditable="" data-ek="e22">25.86% 1Y</b><b contenteditable="" data-ek="e23">34.70% SI</b><b class="gn" contenteditable="" data-ek="e24">+30.4% alpha</b></div>
        </div>
-       <div class="cm"><div class="v" contenteditable="">₹430<span class="u">Cr</span></div><div class="l">Product AUM</div><div class="v2" contenteditable="">₹341 Cr on platform</div></div>
+       <div class="cm"><div class="v" contenteditable="" data-ek="e25">₹430<span class="u">Cr</span></div><div class="l">Product AUM</div><div class="v2" contenteditable="" data-ek="e26">₹341 Cr on platform</div></div>
       </div>
-      <div class="osublab" contenteditable="">Layered on the core</div>
+      <div class="osublab" contenteditable="" data-ek="e27">Layered on the core</div>
       <div class="orow">
        <div class="ocard">
-        <div class="ct2" contenteditable="">Advisory-led PMS</div>
-        <div class="sn" contenteditable="">CoPilot</div>
-        <div class="sd" contenteditable="">The client drives; Ionic advises. Our research and structure, every decision still theirs.</div>
-        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹394.6 Cr</div></div><div class="b"><div class="l">Share of shelf</div><div class="v" contenteditable="">35.5%</div></div></div>
+        <div class="ct2" contenteditable="" data-ek="e28">Advisory-led PMS</div>
+        <div class="sn" contenteditable="" data-ek="e29">CoPilot</div>
+        <div class="sd" contenteditable="" data-ek="e30">The client drives; Ionic advises. Our research and structure, every decision still theirs.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="" data-ek="e31">₹394.6 Cr</div></div><div class="b"><div class="l">Share of shelf</div><div class="v" contenteditable="" data-ek="e32">35.5%</div></div></div>
        </div>
        <div class="ocard">
-        <div class="ct2" contenteditable="">Second income · treasury</div>
-        <div class="sn" contenteditable="">Yield Enhancer</div>
-        <div class="sd" contenteditable="">Yield-first deployment for surplus and treasury money — steady accrual, low drama.</div>
-        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹158 Cr</div></div><div class="b"><div class="l">1Y vs CRISIL</div><div class="v" style="color:var(--green)" contenteditable="">11.3 / 5.2%</div></div></div>
+        <div class="ct2" contenteditable="" data-ek="e33">Second income · treasury</div>
+        <div class="sn" contenteditable="" data-ek="e34">Yield Enhancer</div>
+        <div class="sd" contenteditable="" data-ek="e35">Yield-first deployment for surplus and treasury money — steady accrual, low drama.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="" data-ek="e36">₹158 Cr</div></div><div class="b"><div class="l">1Y vs CRISIL</div><div class="v" style="color:var(--green)" contenteditable="" data-ek="e37">11.3 / 5.2%</div></div></div>
        </div>
        <div class="ocard">
-        <div class="ct2" contenteditable="">Equity beyond mutual funds</div>
-        <div class="sn" contenteditable="">Navigate <span class="live">AIF</span></div>
-        <div class="sd" contenteditable="">Pure-equity portfolio run across curated PMS strategies — one vehicle, many advisors.</div>
-        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="">₹127.2 Cr</div></div><div class="b"><div class="l">SI vs BSE 500</div><div class="v" style="color:var(--green)" contenteditable="">7.97 / 6.17%</div></div></div>
+        <div class="ct2" contenteditable="" data-ek="e38">Equity beyond mutual funds</div>
+        <div class="sn" contenteditable="" data-ek="e39">Navigate <span class="live">AIF</span></div>
+        <div class="sd" contenteditable="" data-ek="e40">Pure-equity portfolio run across curated PMS strategies — one vehicle, many advisors.</div>
+        <div class="mm"><div class="b"><div class="l">Product AUM</div><div class="v" contenteditable="" data-ek="e41">₹127.2 Cr</div></div><div class="b"><div class="l">SI vs BSE 500</div><div class="v" style="color:var(--green)" contenteditable="" data-ek="e42">7.97 / 6.17%</div></div></div>
        </div>
       </div>
      </div>
 
      <div class="opanel off anim" style="--d:2">
-      <div class="ohead"><span class="t" contenteditable="">Offshore</span><span class="s" contenteditable="">indicative · opening now</span><span class="tot" contenteditable="">~$12M pipeline</span></div>
+      <div class="ohead"><span class="t" contenteditable="" data-ek="e43">Offshore</span><span class="s" contenteditable="" data-ek="e44"><br></span><span class="tot" contenteditable="" data-ek="e45">~$30M</span></div>
       <div class="ocore">
        <div style="flex:1">
-        <div class="ct" contenteditable="">Global core · flagship</div>
-        <div class="cn" contenteditable="">Global Asset Allocation</div>
-        <div class="cd" contenteditable="">The same core discipline of Allocate, taken offshore — 70% global equities, 20% commodities, 10% REITs.</div>
+        <div class="ct" contenteditable="" data-ek="e46">Global core · flagship</div>
+        <div class="cn" contenteditable="" data-ek="e47">Global Asset Allocation</div>
+        <div class="cd" contenteditable="" data-ek="e48">The same core discipline of Allocate, taken offshore — 70% global equities, 20% commodities, 10% REITs.</div>
        </div>
-       <div class="cm"><div class="v" style="font-size:17px" contenteditable="">Launched</div><div class="l">Q2 FY27</div><div class="v2" contenteditable="">first NAV cycle</div></div>
+       <div class="cm"><div class="v" style="font-size:17px" contenteditable="" data-ek="e49">Launched</div><div class="l">Q2 FY27</div><div class="v2" contenteditable="" data-ek="e50">first NAV cycle</div></div>
       </div>
-      <div class="osublab" contenteditable="">Layered on the core</div>
+      <div class="osublab" contenteditable="" data-ek="e51">Layered on the core</div>
       <div class="ocol">
        <div class="ocard slim">
-        <div class="body"><div class="sn" contenteditable="">Global Innovation <span class="live">LIVE</span></div><div class="sd" contenteditable="">Focused exposure to global innovation and growth.</div></div>
-        <div class="rt"><div class="v" contenteditable="">Q1 FY27</div><div class="l">Live since</div></div>
+        <div class="body"><div class="sn" contenteditable="" data-ek="e52">Global Innovation <span class="live">LIVE</span></div><div class="sd" contenteditable="" data-ek="e53">Focused exposure to global innovation and growth.</div></div>
+        <div class="rt"><div class="v" contenteditable="" data-ek="e54">Q1 FY25</div><div class="l">Live since</div></div>
        </div>
        <div class="ocard slim">
-        <div class="body"><div class="sn" contenteditable="">Global Macro <span class="build">IN BUILD</span></div><div class="sd" contenteditable="">A tactical global-macro sleeve on top of the core.</div></div>
-        <div class="rt"><div class="v" contenteditable="">FY27</div><div class="l">Target</div></div>
+        <div class="body"><div class="sn" contenteditable="" data-ek="e55">Global Macro <span class="build">IN BUILD</span></div><div class="sd" contenteditable="" data-ek="e56">A tactical global-macro sleeve on top of the core.</div></div>
+        <div class="rt"><div class="v" contenteditable="" data-ek="e57">FY26</div><div class="l">Target</div></div>
        </div>
       </div>
-      <div class="offnote" contenteditable="">Offshore is a pipeline shelf, not reportable AUM — the flagship prices its first NAV cycle this quarter, and the shelf fills out through FY27.</div>
+      <div class="offnote" contenteditable="" data-ek="e58"><br></div>
      </div>
 
     </div>
@@ -374,79 +373,71 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
    </div>
    <div class="pad" style="padding-top:30px">
     <div class="eyebrow anim" style="--d:0"><span class="d"></span>HNI RM book · 31 Aug 2026</div>
-    <h2 class="ttl anim" style="--d:0" contenteditable="">The book, RM by RM</h2>
-    <div class="sub anim" style="--d:0" contenteditable="">Every HNI RM book is read in three buckets — <b>Total</b>, <b>Platform</b>, <b>Focused</b> — each won by a different force, each worth more per rupee than the last.</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="" data-ek="e59">The book, RM by RM</h2>
+    <div class="sub anim" style="--d:0" contenteditable="" data-ek="e60">Every HNI RM book is read in three buckets — <b>Total</b>, <b>Platform</b>, <b>Focused</b> — each won by a different force, each worth more per rupee than the last.</div>
 
     <div class="buckets anim" style="--d:1">
      <div class="bk b1">
       <div style="flex:1">
-       <div class="bl" contenteditable="">Bucket 1 · Total book</div>
-       <div class="bv" contenteditable="">₹3,774<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable=""><b>Transfer of assets.</b> Custody moves across with the RM — the relationship arrives before the mandate.</div>
+       <div class="bl" contenteditable="" data-ek="e61">Bucket 1 · Total book</div>
+       <div class="bv" contenteditable="" data-ek="e62">₹3,774<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable="" data-ek="e63"><b>Transfer of assets.</b> Custody moves across with the RM — the relationship arrives before the mandate.</div>
       </div>
-      <div class="bshare"><div class="p" contenteditable="">100%</div><div class="q">of book</div></div>
+      <div class="bshare"><div class="p" contenteditable="" data-ek="e64">100%</div><div class="q">of book</div></div>
      </div>
      <div class="bk b2">
       <div style="flex:1">
-       <div class="bl" contenteditable="">Bucket 2 · Platform AUM</div>
-       <div class="bv" contenteditable="">₹497.7<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable=""><b>Transfer converted.</b> Custody becomes a mandate — won on performance and on the domain expert in the room.</div>
+       <div class="bl" contenteditable="" data-ek="e65">Bucket 2 · Platform AUM</div>
+       <div class="bv" contenteditable="" data-ek="e66">₹497.7<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable="" data-ek="e67"><b>Transfer converted.</b> Custody becomes a mandate — won on performance and on the domain expert in the room.</div>
       </div>
-      <div class="bshare"><div class="p" contenteditable="">13.2%</div><div class="q">of book</div></div>
+      <div class="bshare"><div class="p" contenteditable="" data-ek="e68">13.2%</div><div class="q">of book</div></div>
      </div>
      <div class="bk b3">
       <div style="flex:1">
-       <div class="bl" contenteditable="">Bucket 3 · Focused products</div>
-       <div class="bv" contenteditable="">₹7<span class="u"> Cr</span></div>
-       <div class="bd" contenteditable=""><b>Unique products.</b> Navigate, Global, Yield Enhancer — smallest bucket, highest yield per rupee.</div>
+       <div class="bl" contenteditable="" data-ek="e69">Bucket 3 · Focused products</div>
+       <div class="bv" contenteditable="" data-ek="e70">₹7<span class="u"> Cr</span></div>
+       <div class="bd" contenteditable="" data-ek="e71"><b>Unique products.</b> Navigate, Global, Yield Enhancer — smallest bucket, highest yield per rupee.</div>
       </div>
-      <div class="bshare"><div class="p" contenteditable="">0.19%</div><div class="q">of book</div></div>
+      <div class="bshare"><div class="p" contenteditable="" data-ek="e72">0.19%</div><div class="q">of book</div></div>
      </div>
     </div>
 
     <div class="rmcols">
      <div class="anim" style="--d:2">
-      <div class="rmframe">
-       <div class="rmtop"><i style="background:#FF5F57"></i><i style="background:#FEBC2E"></i><i style="background:#28C840"></i><span class="lv">RM Platform Review · one card per RM</span><span class="live2"><b></b>Live</span></div>
-       <div class="rmcard" id="rmcard"></div>
-      </div>
+      <div class="rmcard" id="rmcard"></div>
       <div class="rmdots" id="rmdots"></div>
-      <div class="t5soft" contenteditable="">Top 5 by platform AUM — Pratyaksha <b>₹81.1 Cr</b><span class="sep">·</span>Hiral <b>₹24.5 Cr</b><span class="sep">·</span>Yashkumar <b>₹14.0 Cr</b><span class="sep">·</span>Rohan <b>₹9.4 Cr</b><span class="sep">·</span>Tahir <b>₹1.6 Cr</b> — together <b>₹130.6 Cr</b>, 26% of platform AUM across 72 RMs.</div>
+      <div class="t5soft" contenteditable="">Top 5 RMs by platform AUM — Pratyaksha <b>₹81.1 Cr</b><span class="sep">·</span>Ishan <b>₹42.6 Cr</b><span class="sep">·</span>Saurabh <b>₹25.8 Cr</b><span class="sep">·</span>Hiral <b>₹24.5 Cr</b><span class="sep">·</span>Gowtham <b>₹21.4 Cr</b> — together <b>₹195.5 Cr</b>, 39% of platform AUM across 72 RMs and 13 desks.</div>
      </div>
 
      <div class="hyp anim" style="--d:3">
       <h4 contenteditable="">The hypothesis: a book matures with vintage</h4>
       <div class="hs" contenteditable="">Custody moves in months; the mandate moves in years. Early vintage is almost all transfer — penetration builds gradually, focused products last.</div>
-      <svg viewBox="0 0 430 118" style="width:100%;height:auto;max-height:104px;display:block;margin-top:5px">
-       <defs>
-        <linearGradient id="ramp" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#B9BEDD"></stop><stop offset="55%" stop-color="#5B62C9"></stop><stop offset="100%" stop-color="#242BA1"></stop></linearGradient>
-        <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#242BA1" stop-opacity=".16"></stop><stop offset="100%" stop-color="#242BA1" stop-opacity="0"></stop></linearGradient>
-       </defs>
-       <rect x="8" y="6" width="414" height="86" fill="#fff" rx="8"></rect>
-       <path d="M14,90 C140,89 200,80 268,62 C330,46 372,28 416,16 L416,90 Z" fill="url(#fade)"></path>
-       <path class="draw" d="M14,90 C140,89 200,80 268,62 C330,46 372,28 416,16" fill="none" stroke="url(#ramp)" stroke-width="5" stroke-linecap="round"></path>
-       <g stroke="#E4E4EE" stroke-width="1" stroke-dasharray="3 4"><line x1="148" y1="14" x2="148" y2="90"></line><line x1="282" y1="14" x2="282" y2="90"></line></g>
-       <circle class="dotmark" style="--d:6" cx="14" cy="90" r="5" fill="#B9BEDD"></circle>
-       <circle class="dotmark" style="--d:8" cx="268" cy="62" r="6" fill="#5B62C9"></circle>
-       <circle class="dotmark" style="--d:10" cx="416" cy="16" r="7" fill="#242BA1"></circle>
-       <g font-family="Reddit Sans" font-size="8.5" font-weight="700" fill="#9A9AA6" text-anchor="middle">
-        <text x="78" y="106">EARLY MONTHS</text><text x="215" y="106">FIRST YEAR</text><text x="352" y="106">MATURE BOOK</text>
-       </g>
-       <g font-family="Reddit Sans" font-size="7.5" font-weight="700" fill="#B9BEDD"><text x="16" y="19">SHARE OF NEW MONEY LANDING ON PLATFORM</text></g>
-      </svg>
       <div class="hphases">
-       <div class="hp h1x"><div class="hn" contenteditable="">Phase 1</div><div class="hb"><div class="ht" contenteditable="">Transfer of AUM</div><div class="hd" contenteditable="">The relationship moves; assets sit where they always sat.</div></div><div class="hr"><b contenteditable="">~1 in 30</b><small>of new money</small></div></div>
-       <div class="hp h2x"><div class="hn" contenteditable="">Phase 2</div><div class="hb"><div class="ht" contenteditable="">Platform penetration</div><div class="hd" contenteditable="">First mandate — almost always the core, once performance shows up.</div></div><div class="hr"><b contenteditable="">~1 in 7</b><small>of new money</small></div></div>
-       <div class="hp h3x"><div class="hn" contenteditable="">Phase 3</div><div class="hb"><div class="ht" contenteditable="">Focused products</div><div class="hd" contenteditable="">Platform is the default opening; satellites get added on top.</div></div><div class="hr"><b contenteditable="">~1 in 3</b><small>of new money</small></div></div>
+       <div class="hp h1x">
+        <div class="hn" contenteditable="">Phase 1 · early months</div>
+        <div class="hprow"><div class="ht" contenteditable="">Transfer of AUM</div><div class="hfrw"><div class="hfr" contenteditable="">1/30</div><div class="hcap">of new money</div></div></div>
+        <div class="hd" contenteditable="">The relationship moves; assets sit where they always sat.</div>
+       </div>
+       <div class="hp h2x">
+        <div class="hn" contenteditable="">Phase 2 · first year</div>
+        <div class="hprow"><div class="ht" contenteditable="">Platform penetration</div><div class="hfrw"><div class="hfr" contenteditable="">1/7</div><div class="hcap">of new money</div></div></div>
+        <div class="hd" contenteditable="">First mandate — almost always the core, once performance shows up.</div>
+       </div>
+       <div class="hp h3x">
+        <div class="hn" contenteditable="">Phase 3 · mature book</div>
+        <div class="hprow"><div class="ht" contenteditable="">Focused products</div><div class="hfrw"><div class="hfr" contenteditable="">1/3</div><div class="hcap">of new money</div></div></div>
+        <div class="hd" contenteditable="">Platform is the default opening; satellites get added on top.</div>
+       </div>
       </div>
       <div class="sens">
        <div class="sv" contenteditable="">+₹257 Cr</div>
-       <div class="sd2" contenteditable="">Lifting penetration from <b>13.2%</b> to <b>20%</b> on today's <b>₹3,774 Cr</b> book takes platform AUM to <b>₹755 Cr</b> — without a single new client or a rupee of new money.</div>
+       <div class="sd2" contenteditable="">Lifting penetration from <b>13.2%</b> to <b>20%</b> on today's book takes platform AUM to <b>₹755 Cr</b> — without one new client or a rupee of new money.</div>
       </div>
      </div>
     </div>
    </div>
-   <div class="src anim" style="--d:5">RM Platform Review, 31 Aug 2026. <span class="tent">Tentative — books yet to be finalised.</span> Penetration = platform AUM ÷ total book. Capture = Δ platform AUM ÷ Δ total book, Mar→Aug. Phase ratios are directional (RM cohorts by tenure, DOJ) — the shape of the curve, not a forecast. Rohan Mehta is illustrative — replace before circulating.</div>
+   <div class="src anim" style="--d:5">Cards are the live <b>RM Platform Review</b> (HNI book, ₹Cr, latest 25 Aug 2026) — one card per RM, ranked by platform AUM; remark and action are editable. <span class="tent">Tentative — books yet to be finalised for 31 Aug 2026.</span> Reconciles to the master workbook: total book ₹3,773.6 Cr · platform ₹497.67 Cr · focus ₹6.9 Cr · 2,290 clients · 478 platform clients · 13.2% penetration. Penetration = platform AUM ÷ total book. Phase ratios are directional (RM cohorts by tenure, DOJ) — the shape of the curve, not a forecast.</div>
   </section>
 
   <!-- ============ 4 · QUESTIONS ============ -->
@@ -463,25 +454,34 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
    </svg>
    <div class="pad" style="position:relative;z-index:2">
     <div class="eyebrow anim" style="--d:0"><span class="d"></span>Next phase of growth</div>
-    <h2 class="ttl anim" style="--d:0" contenteditable="">Two questions for the room</h2>
-    <div class="sub anim" style="--d:0" contenteditable="">Everything above leads here — two calls, one thread.</div>
+    <h2 class="ttl anim" style="--d:0" contenteditable="">Three questions for the room</h2>
+    <div class="sub anim" style="--d:0" contenteditable="">One climb — assets arrive, assets convert, revenue is earned.</div>
    </div>
-   <div class="q2wrap">
-    <div class="q2 popin" style="--d:1">
-     <div class="qn" contenteditable="">Question 01 · Conversion</div>
-     <h3 contenteditable="">How do we convert transferred custody into mandates faster?</h3>
+   <div class="qsteps">
+    <div class="qstep s1 popin" style="--d:1">
+     <span class="qflag" contenteditable="">Base camp</span>
+     <div class="qn" contenteditable="">Q1 · Assets arrive</div>
+     <h3 contenteditable="">How do we get assets across faster?</h3>
      <div class="qfoot">
-      <div class="qfig"><b contenteditable="">₹3,276 Cr</b><small>in custody, not on platform</small></div>
-      <div class="qfig alt"><b contenteditable="">13.2%</b><small>penetration today</small></div>
+      <div class="qfig"><b contenteditable="">₹3,774 Cr</b><small>total book transferred</small></div>
       <span class="qarrow">→</span>
      </div>
     </div>
-    <div class="q2 popin" style="--d:2">
-     <div class="qn" contenteditable="">Question 02 · Where we bet</div>
-     <h3 contenteditable="">Do we back the RMs we have, or widen the product shelf?</h3>
+    <div class="qstep s2 popin" style="--d:2">
+     <span class="qflag" contenteditable="">The climb</span>
+     <div class="qn" contenteditable="">Q2 · Assets convert</div>
+     <h3 contenteditable="">How do we lift penetration past 13.2%?</h3>
      <div class="qfoot">
-      <div class="qfig"><b contenteditable="">72 RMs</b><small>26% of platform in top 5</small></div>
-      <div class="qfig alt"><b contenteditable="">₹7 Cr</b><small>focused, on ₹498 Cr platform</small></div>
+      <div class="qfig"><b contenteditable="">₹3,276 Cr</b><small>in custody, not on platform</small></div>
+      <span class="qarrow">→</span>
+     </div>
+    </div>
+    <div class="qstep s3 popin" style="--d:3">
+     <span class="qflag" contenteditable="">The summit</span>
+     <div class="qn" contenteditable="">Q3 · Revenue earned</div>
+     <h3 contenteditable="">How do we turn platform AUM into revenue?</h3>
+     <div class="qfoot">
+      <div class="qfig"><b contenteditable="">₹6.9 Cr</b><small>focused, on ₹498 Cr platform</small></div>
       <span class="qarrow">→</span>
      </div>
     </div>
@@ -490,11 +490,11 @@ body.fs .tools{top:10px;right:12px;opacity:.25;transition:.2s}body.fs .tools:hov
   </section>
 
  </div>
- <div class="hud"><button class="hbtn" id="prev">‹</button><div class="dots" id="dots"></div><span class="count" id="count">1 / 4</span><button class="hbtn" id="next">›</button></div>
+ <div class="hud"><button class="hbtn" id="prev">‹</button><div class="dots" id="dots"></div><span class="count" id="count">3 / 4</span><button class="hbtn" id="next">›</button></div>
 </div>
 
 <script id="rmdata" type="application/json">
-[{"rank":1,"name":"Pratyaksha Gupta","ml":"Vishal Khanna","v":"1.8 yr","cl":"102","pen":"32","pc":"#1F9D57","tot":["182.9","225.2","250.9"],"plat":["46.3","65.7","81.1"],"capt":"51","dplat":"+34.8","avg":"2.46","foc":"0.79","g50":"88","l50":"14","tag":"Firm's largest platform book — deep, diversified, and still compounding","tb":"#E3F4EA","tx":"#1F9D57","prod":["43.7","19.3","18.1","—"],"act":"Volume is solved; the shelf is not. ₹0.79 Cr of focused product on an ₹81 Cr platform book — Global and Yield Enhancer are the next two conversations."},{"rank":2,"name":"Hiral Desai","ml":"Vijay Krishna Chinni","v":"2.1 yr","cl":"51","pen":"17","pc":"#242BA1","tot":["97.5","136.1","143.2"],"plat":["18.7","20.8","24.5"],"capt":"13","dplat":"+5.8","avg":"2.81","foc":"—","g50":"32","l50":"19","tag":"Longest vintage on the list — clients converted, rupees have not","tb":"#FFF1D9","tx":"#9A6A12","prod":["18.7","4.2","1.7","—"],"act":"43% of clients are on platform but only 17% of the rupees — the large tickets haven't moved. Target the top 10 accounts by size, not by count."},{"rank":3,"name":"Yashkumar Jain","ml":"Vijay Krishna Chinni","v":"0.9 yr","cl":"34","pen":"57","pc":"#1F9D57","tot":["10.4","19.8","24.3"],"plat":["6.8","11.9","14.0"],"capt":"52","dplat":"+7.2","avg":"0.71","foc":"0.05","g50":"15","l50":"19","tag":"Deepest penetration in the firm — and the newest book on this list","tb":"#E3F4EA","tx":"#1F9D57","prod":["4.2","0.5","4.6","4.6"],"act":"Model book: all four products live inside a year. Document the opening playbook and run it on the next five joiners."},{"rank":4,"name":"Rohan Mehta","ml":"—","v":"1.5 yr","cl":"38","pen":"12","pc":"#242BA1","tot":["61.0","70.2","78.4"],"plat":["4.1","6.6","9.4"],"capt":"31","dplat":"+5.3","avg":"2.06","foc":"0.12","g50":"21","l50":"17","tag":"Illustrative entry — steady converter, narrow shelf","tb":"#EDEDF2","tx":"#5A5A6E","prod":["6.9","1.4","1.1","—"],"act":"Placeholder card — replace with the actual fifth RM. Pattern to look for: good capture rate, single-product book, ready for a second mandate."},{"rank":5,"name":"Tahir Jamal","ml":"Harsh Bagai","v":"1.3 yr","cl":"55","pen":"1","pc":"#FF5F49","tot":["123.3","140.7","157.5"],"plat":["—","0.5","1.6"],"capt":"5","dplat":"+1.6","avg":"2.86","foc":"0.50","g50":"27","l50":"28","tag":"₹157.5 Cr transferred, ₹1.6 Cr converted — the single largest gap","tb":"#FDE7E4","tx":"#FF5F49","prod":["0.5","—","1.0","—"],"act":"The book arrived; the mandate never followed. One core mandate on the top 5 accounts alone would move the firm-level number."}]
+[{"rm": "Pratyaksha Gupta", "vintage": "1.8 yr", "cl_aug": 102, "cl_jun": 93, "new_ja": 10, "g50": 88, "l50": 14, "tot_mar": 182.88, "tot_jun": 225.23, "tot_aug": 250.92, "p_jun": 65.7, "p_aug": 81.12, "p_cl": 53, "p_mar": 46.31, "prod": [{"name": "Allocate", "jun": 40.62, "aug": 43.65, "cl": 42}, {"name": "YE", "jun": 8.2, "aug": 19.33, "cl": 11}, {"name": "Navigate", "jun": 16.88, "aug": 18.14, "cl": 7}, {"name": "Co-Pilot", "jun": 0.0, "aug": 0.0, "cl": 0}], "f_mar": 0.0, "f_aug": 0.79, "f_cl": 1, "cl_focplat": 1, "remark": "Deep platform desk (32% of book), +₹15.4Cr since Jun; 10 new clients since Jun.", "ml": "Vishal Khanna"}, {"rm": "Ishan Mishra", "vintage": "1.8 yr", "cl_aug": 32, "cl_jun": 31, "new_ja": 1, "g50": 23, "l50": 9, "tot_mar": 97.85, "tot_jun": 140.79, "tot_aug": 143.65, "p_jun": 41.95, "p_aug": 42.64, "p_cl": 13, "p_mar": 24.77, "prod": [{"name": "Allocate", "jun": 40.43, "aug": 41.12, "cl": 12}, {"name": "YE", "jun": 1.52, "aug": 1.52, "cl": 1}, {"name": "Navigate", "jun": 0.0, "aug": 0.0, "cl": 0}, {"name": "Co-Pilot", "jun": 0.0, "aug": 0.0, "cl": 0}], "f_mar": 0.0, "f_aug": 0.0, "f_cl": 0, "cl_focplat": 0, "remark": "Deep platform desk (30% of book), +₹0.7Cr since Jun; no focus product yet — cross-sell Shastra/Bond.", "ml": "Vishal Khanna"}, {"rm": "Saurabh Pandey", "vintage": "1.4 yr", "cl_aug": 57, "cl_jun": 56, "new_ja": 1, "g50": 47, "l50": 10, "tot_mar": 169.62, "tot_jun": 206.87, "tot_aug": 218.07, "p_jun": 25.78, "p_aug": 25.78, "p_cl": 10, "p_mar": 21.97, "prod": [{"name": "Allocate", "jun": 20.96, "aug": 20.96, "cl": 4}, {"name": "YE", "jun": 4.42, "aug": 4.42, "cl": 5}, {"name": "Navigate", "jun": 0.4, "aug": 0.4, "cl": 1}, {"name": "Co-Pilot", "jun": 0.0, "aug": 0.0, "cl": 0}], "f_mar": 0.0, "f_aug": 0.0, "f_cl": 0, "cl_focplat": 0, "remark": "Platform at 12% of book across 18% of clients, holding; no focus product yet — cross-sell Shastra/Bond.", "ml": "Vishal Khanna"}, {"rm": "Hiral Desai", "vintage": "2.1 yr", "cl_aug": 51, "cl_jun": 44, "new_ja": 1, "g50": 32, "l50": 19, "tot_mar": 97.51, "tot_jun": 136.08, "tot_aug": 143.23, "p_jun": 20.79, "p_aug": 24.51, "p_cl": 22, "p_mar": 18.71, "prod": [{"name": "Allocate", "jun": 16.62, "aug": 18.69, "cl": 18}, {"name": "YE", "jun": 4.17, "aug": 4.17, "cl": 4}, {"name": "Navigate", "jun": 0.0, "aug": 1.65, "cl": 2}, {"name": "Co-Pilot", "jun": 0.0, "aug": 0.0, "cl": 0}], "f_mar": 0.0, "f_aug": 0.0, "f_cl": 0, "cl_focplat": 0, "remark": "Platform at 17% of book across 43% of clients, building (+₹3.7Cr Jun→Aug); no focus product yet — cross-sell Shastra/Bond.", "ml": "Vijay Krishna Chinni"}, {"rm": "Gowtham", "vintage": "1.8 yr", "cl_aug": 15, "cl_jun": 13, "new_ja": 2, "g50": 4, "l50": 11, "tot_mar": 37.96, "tot_jun": 41.35, "tot_aug": 45.53, "p_jun": 16.94, "p_aug": 21.44, "p_cl": 4, "p_mar": 15.23, "prod": [{"name": "Allocate", "jun": 0.54, "aug": 0.54, "cl": 1}, {"name": "YE", "jun": 0.0, "aug": 0.0, "cl": 0}, {"name": "Navigate", "jun": 0.0, "aug": 4.5, "cl": 3}, {"name": "Co-Pilot", "jun": 16.4, "aug": 16.4, "cl": 2}], "f_mar": 0.0, "f_aug": 0.0, "f_cl": 0, "cl_focplat": 0, "remark": "Deep platform desk (47% of book), +₹4.5Cr since Jun; no focus product yet — cross-sell Shastra/Bond.", "ml": "Srinivasa Prasanna"}]
 </script>
 
 <script>
@@ -507,46 +507,68 @@ window.addEventListener('resize',fit);fit();
 const dots=document.getElementById('dots');
 slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';d.onclick=()=>go(i);dots.appendChild(d);});
 
-/* ---------- RM carousel ---------- */
+/* ---------- RM carousel: renders the RM Platform Review card ---------- */
 let RM=JSON.parse(document.getElementById('rmdata').textContent);
 let ri=0,rtimer=null;
 const rmcard=document.getElementById('rmcard'),rmdots=document.getElementById('rmdots');
 RM.forEach((_,i)=>{const d=document.createElement('div');d.className='rmd'+(i===0?' on':'');d.onclick=()=>{stopRM();ri=i;paintRM(i);};rmdots.appendChild(d);});
-function ed(k,v,extra){return '<span contenteditable data-rk="'+k+'"'+(extra||'')+'>'+v+'</span>';}
-function seq(k,a){const c=x=>x==='—'?'—':'₹'+x;
- return '<div class="seq"><span class="a">'+ed(k+'0',c(a[0]))+'</span><span class="ar">→</span><span class="mid">'+ed(k+'1',c(a[1]))+'</span><span class="ar">→</span><span class="a">'+ed(k+'2',c(a[2]))+'</span></div>';}
-function pcell(n,k,a){return '<div class="pc"><div class="n">'+n+'</div><div class="a '+(a==='—'?'z':'')+'">'+ed(k,a==='—'?'—':'₹'+a)+'</div></div>';}
+const cr=v=>{v=Number(v);if(!v||isNaN(v))return '<span class="mut">&ndash;</span>';return v.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});};
+const arrow=d=>d>0.01?'<span class="arrow pos">&#9650;</span>':(d<-0.01?'<span class="arrow neg">&#9660;</span>':'<span class="arrow mut">&#8226;</span>');
+function flagOf(r){const br=r.prod.filter(p=>p.aug>0).length;
+ if(r.p_aug===0)return{t:'No platform book',c:'none'};
+ if((r.p_aug-r.p_jun)<-0.01)return{t:'Slipping vs Jun',c:'slip'};
+ if(r.p_mar===0)return{t:'Built since Mar',c:'new'};
+ if(br===1)return{t:'Single-product',c:'single'};return{t:'',c:''};}
+function penColor(p){return p>=0.20?'var(--green)':(p>=0.08?'var(--indigo)':'var(--coral)');}
 function paintRM(i){const r=RM[i];
+ const F=flagOf(r),pen=r.tot_aug?r.p_aug/r.tot_aug:0,penc=r.cl_aug?r.p_cl/r.cl_aug:0;
+ const dJun=r.p_aug-r.p_jun,dMar=r.tot_aug-r.tot_mar;
+ const prows=r.prod.map(p=>{const share=r.p_aug?p.aug/r.p_aug:0;const z=p.aug===0?'z':'';const d=p.aug-p.jun;
+   const dc=(p.aug===0&&p.jun===0)?'<td class="z">&ndash;</td>':'<td class="'+(d>0.005?'pos':(d<-0.005?'neg':'mut'))+'">'+(d>=0?'+':'&minus;')+Math.abs(d).toFixed(1)+'</td>';
+   return '<tr><td class="l '+z+'">'+p.name+'</td><td class="'+z+'">'+cr(p.jun)+'</td><td class="'+z+'">'+cr(p.aug)+'</td>'+dc
+     +'<td class="'+z+'">'+(r.p_aug&&p.aug>0?(share*100).toFixed(0)+'%':'&ndash;')+'</td><td class="'+z+'">'+(p.cl||'&ndash;')+'</td></tr>';}).join('');
  rmcard.innerHTML=
- '<div class="rmhd"><div class="rmrank">'+r.rank+'</div>'
- +'<div><div class="rmname">'+ed('name',r.name)+'</div><div class="rmmeta">'+ed('ml',r.ml)+' · vintage '+ed('v',r.v)+' · '+ed('cl',r.cl)+' clients</div></div>'
- +'<div class="rmpen"><div class="pv" style="color:'+r.pc+'">'+ed('pen',r.pen)+'%</div><div class="pl">of book in platform</div></div></div>'
- +'<div class="rmtag" style="background:'+r.tb+';color:'+r.tx+'">'+ed('tag',r.tag)+'</div>'
- +'<div class="rmtrends">'
- +'<div class="trd"><div class="tl"><span>Total book · ₹Cr</span><span class="up">Mar→Aug</span></div>'+seq('tot',r.tot)+'<div class="lb"><span>Mar</span><span>Jun</span><span>Aug</span></div></div>'
- +'<div class="trd"><div class="tl"><span>Platform AUM · ₹Cr</span><span class="up">'+ed('dplat',r.dplat)+' Cr</span></div>'+seq('plat',r.plat)+'<div class="lb"><span>Mar</span><span>Jun</span><span>Aug</span></div></div>'
- +'</div>'
- +'<div class="rmchips">'
- +'<div class="chipc"><div class="cv" style="color:var(--indigo)">'+ed('capt',r.capt)+'%</div><div class="cl">Capture of new money</div></div>'
- +'<div class="chipc"><div class="cv" style="color:var(--green)">'+ed('dplat2',r.dplat)+'</div><div class="cl">Δ Platform ₹Cr</div></div>'
- +'<div class="chipc"><div class="cv" style="color:var(--ink)">₹'+ed('avg',r.avg)+'</div><div class="cl">Avg book / client</div></div>'
- +'<div class="chipc"><div class="cv" style="color:var(--amber-d)">'+ed('foc',r.foc==='—'?'—':'₹'+r.foc)+'</div><div class="cl">Focused AUM ₹Cr</div></div>'
- +'</div>'
- +'<div class="rmprod"><div class="pl">Key products · platform ₹Cr &nbsp;·&nbsp; clients '+ed('g50',r.g50)+' above ₹50L / '+ed('l50',r.l50)+' below</div>'
- +'<div class="pr">'+pcell('Allocate','prod0',r.prod[0])+pcell('Yield Enh.','prod1',r.prod[1])+pcell('Navigate','prod2',r.prod[2])+pcell('Co-Pilot','prod3',r.prod[3])+'</div></div>'
- +'<div class="rmnext"><b>What this book needs next</b>'+ed('act',r.act)+'</div>';
+  '<div class="chd"><div class="rank2">'+(i+1)+'</div>'
+  +'<div><div class="rmn">'+r.rm+'</div><div class="rmmeta2">'+r.ml+' &middot; vintage '+(r.vintage||'&ndash;')+' &middot; '+r.cl_aug+' clients</div></div>'
+  +(F.t?'<span class="pill '+F.c+'">'+F.t+'</span>':'')
+  +'<div class="penbig"><div class="pv" style="color:'+penColor(pen)+'">'+(pen*100).toFixed(0)+'%</div><div class="pl">of book in platform</div></div></div>'
+  +'<div class="remark"><span class="star">&#9733;</span><div class="rtx" contenteditable data-rk="remark">'+r.remark+'</div></div>'
+  +'<div class="rgrid">'
+  +'<div class="sec"><h4>Book profile</h4>'
+   +'<div class="st"><span class="k">Clients</span><span class="val">'+r.cl_jun+' &#8594; '+r.cl_aug+'</span></div>'
+   +'<div class="st"><span class="k">New Jun&#8594;Aug</span><span class="val '+(r.new_ja>0?'pos':'mut')+'">'+(r.new_ja>0?'+'+r.new_ja:'0')+'</span></div>'
+   +'<div class="st"><span class="k">Above &#8377;50L</span><span class="val">'+r.g50+'</span></div>'
+   +'<div class="st"><span class="k">Below &#8377;50L</span><span class="val">'+r.l50+'</span></div></div>'
+  +'<div class="sec"><h4>Total AUM (&#8377;Cr)</h4>'
+   +'<div class="st"><span class="k">Mar 31</span><span class="val">'+cr(r.tot_mar)+'</span></div>'
+   +'<div class="st"><span class="k">Jun 30</span><span class="val">'+cr(r.tot_jun)+'</span></div>'
+   +'<div class="st"><span class="k">Jul/Aug</span><span class="val big">'+cr(r.tot_aug)+'</span></div>'
+   +'<div class="trend"><span class="mut" style="font-size:8.5px">Mar&#8594;Aug</span>'+arrow(dMar)+'<span class="a '+(dMar>=0?'pos':'neg')+'">'+(dMar>=0?'+':'')+dMar.toFixed(1)+'</span></div></div>'
+  +'<div class="sec"><h4>Platform penetration</h4>'
+   +'<div class="st"><span class="k">Platform Mar</span><span class="val">'+cr(r.p_mar)+'</span></div>'
+   +'<div class="st"><span class="k">Platform Jun</span><span class="val">'+cr(r.p_jun)+'</span></div>'
+   +'<div class="st"><span class="k">Platform Jul/Aug</span><span class="val big">'+cr(r.p_aug)+'</span></div>'
+   +'<div class="st"><span class="k">% of total AUM</span><span class="val" style="color:'+penColor(pen)+'">'+(pen*100).toFixed(1)+'%</span></div>'
+   +'<div class="st"><span class="k">Platform cl.</span><span class="val">'+r.p_cl+' / '+r.cl_aug+'</span></div>'
+   +'<div class="st"><span class="k">% cl. on platform</span><span class="val">'+(penc*100).toFixed(0)+'%</span></div>'
+   +'<div class="trend"><span class="mut" style="font-size:8.5px">Jun&#8594;Aug</span>'+arrow(dJun)+'<span class="a '+(dJun>=0?'pos':'neg')+'">'+(dJun>=0?'+':'')+dJun.toFixed(1)+'</span></div></div>'
+  +'<div class="sec"><h4>Product-wise platform</h4>'
+   +'<table class="ptab"><thead><tr><th class="l">Product</th><th>Jun</th><th>Jul/Aug</th><th>&#916;</th><th>%pl</th><th>Cl.</th></tr></thead><tbody>'+prows+'</tbody></table></div>'
+  +'<div class="sec"><h4>Focussed product</h4>'
+   +'<div class="st"><span class="k">Focus Mar</span><span class="val">'+cr(r.f_mar)+'</span></div>'
+   +'<div class="st"><span class="k">Focus Jul/Aug</span><span class="val big">'+cr(r.f_aug)+'</span></div>'
+   +'<div class="st"><span class="k">% of total AUM</span><span class="val">'+(r.tot_aug?(r.f_aug/r.tot_aug*100).toFixed(2)+'%':'&ndash;')+'</span></div>'
+   +'<div class="st"><span class="k">Focus clients</span><span class="val">'+(r.f_cl||0)+'</span></div>'
+   +'<div class="st"><span class="k">Focus + Plat. cl.</span><span class="val '+(r.cl_focplat>0?'pos':'mut')+'">'+r.cl_focplat+'</span></div></div>'
+  +'</div>'
+  +'<div class="act"><span class="lbl">Action</span><div class="inp" contenteditable data-rk="act">'+(r.act||'')+'</div></div>';
  [...rmdots.children].forEach((d,k)=>d.classList.toggle('on',k===i));
 }
 /* write edits back into the RM model */
 rmcard.addEventListener('focusout',e=>{const el=e.target;if(!el.dataset||!el.dataset.rk)return;
- const k=el.dataset.rk,r=RM[ri];let t=el.textContent.trim().replace(/^₹/,'');
- if(/^(tot|plat)[0-2]$/.test(k)){r[k.slice(0,4)][+k.slice(4)]=t;}
- else if(/^prod[0-3]$/.test(k)){r.prod[+k.slice(4)]=t;}
- else if(k==='dplat2'){r.dplat=t;}
- else{r[k]=t;}
- persist();});
+ RM[ri][el.dataset.rk]=el.innerHTML.trim();persist();});
 function advanceRM(){rmcard.classList.add('fade');setTimeout(()=>{ri=(ri+1)%RM.length;paintRM(ri);rmcard.classList.remove('fade');},300);}
-function rmLoop(on){if(on){if(rtimer)return;rtimer=setInterval(advanceRM,4200);}else{clearInterval(rtimer);rtimer=null;}}
+function rmLoop(on){if(on){if(rtimer)return;rtimer=setInterval(advanceRM,5200);}else{clearInterval(rtimer);rtimer=null;}}
 function stopRM(){clearInterval(rtimer);rtimer=null;}
 rmcard.addEventListener('focusin',stopRM);
 
@@ -616,4 +638,5 @@ document.getElementById('btnReset').onclick=()=>{
 paintRM(0);
 go(0);
 </script>
+
 </body></html>
