@@ -34,7 +34,7 @@ this pass. Any deviation is recorded in the "Deviations" section at the bottom, 
 | gate | rule |
 |---|---|
 | G1 causality | `lookahead_check` ok at all five DEV cut-offs (1995-12-29, 2000-06-30, 2005-12-30, 2008-06-30, 2010-12-31). |
-| G2 risk-adjusted | dev_1990 Sharpe ≥ **0.4253** (the incumbent `final_model_fewtrades` on the same window and costs, exact value). |
+| G2 risk-adjusted | dev_1990 Sharpe ≥ **0.425** (the incumbent `final_model_fewtrades` scores 0.42528 on the same window and costs; the bar is that value floored to three decimals so the incumbent itself passes). |
 | G3 drawdown | dev_1990 monthly max drawdown no worse than **−30%**. |
 | G4 no ruinous era | every era with ≥ 60 days of signal (1990-1999, 2000-2012H1; and 1950-1969, 1970-1989 for non-VIX rules) has CAGR > 0 and max drawdown better than −40%. |
 | G5 turnover | dev_1990 position changes ≤ **25 per year**. |

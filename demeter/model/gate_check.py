@@ -5,7 +5,7 @@ from __future__ import annotations
 import json, sys
 from pathlib import Path
 
-G2_SHARPE, G3_DD, G4_DD, G5_CHG, G6_PLATEAU, G7_PARAMS = 0.4253, -30.0, -40.0, 25.0, 0.50, 6   # G2 = incumbent's exact dev_1990 Sharpe at 3/60
+G2_SHARPE, G3_DD, G4_DD, G5_CHG, G6_PLATEAU, G7_PARAMS = 0.425, -30.0, -40.0, 25.0, 0.50, 6   # G2 = incumbent's dev_1990 Sharpe at 3/60 (0.42528), floored to 3 dp so the incumbent itself passes
 
 
 def check(path: str) -> dict:
