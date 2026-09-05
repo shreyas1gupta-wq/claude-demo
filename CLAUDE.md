@@ -71,10 +71,16 @@ returns — cross-country -0.21, market leads GDP 5:1; Fisher rejected at 1y, 12
 inflation-regime gap) and the ER-D1..D6 expected-return battery (valuation's horizon
 staircase +0.15->+0.38; the Bernstein-Arnott slippage wedge prices at -0.79 and resolves
 the GDP paradox; hurdle rule INVERTS at index level; pooled 5-factor equation 26.7%
-in-sample at 10y but OOS -7.4% at 5y / +7.0% at 10y — Goyal-Welch binds; single-country
-kitchen sinks explode OOS (-389%); the dp x inflation RANK GRID is the one nonlinearity
-that survives, ~12pp corner spread). EN-D1a onset-sectoral partial: null-inconclusive
-(one-way), placebo caught COVID contamination. Census **281**; docs/MODEL-FACTORY.md (the
+in-sample at 10y but OOS fails at BOTH horizons once purged/honest-benchmarked (ER-D4b correction box) — Goyal-Welch binds fully; single-country
+kitchen sinks explode OOS (-389%); the dp x inflation RANK GRID survives only as an
+expectations qualifier: +5.1pp real-time corner spread, no OOS forecast value — ER-D7). EN-D1a onset-sectoral partial: null-inconclusive
+(one-way), placebo caught COVID contamination. 2026-09-05 ULTRACODE AUDIT LEG: a 14-agent adversarial audit confirmed 8 findings
+(winsorization lookahead, missing purge, unregistered windows, benchmark mislabel,
+Stambaugh departure, within/between conflation); dated addendum + process note #8 +
+quant/stats/preprocess.py booked; follow-ups ER-D7/D4b/D1b/D1c ALL run: 10y 'survives'
+WITHDRAWN; growth-negative upgraded to a WITHIN-country timing fact (median -0.41);
+L9's inflation gap STRONGER within-country (18.2pp, top-quintile years -4.1%/yr real);
+only the 20y dp relation beats the persistent-regressor null. Census **308**; docs/MODEL-FACTORY.md (the
 ten-station operating workflow) + research/notes/ context notes (repression era, real-rate
 decades, capshare, regime sub-parts menu, DS1 briefing) all committed. Consumption of the
 ER arc: valuation/inflation as STATES for expectations, never point forecasts. Lesson 50

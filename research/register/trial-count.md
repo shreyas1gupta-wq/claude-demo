@@ -54,7 +54,8 @@ this census exists so that can never happen silently.
 | ER-D1 (25 + 4 India) + ER-D2 (2) + ER-D3 (2) + ER-D4 (6) | 39 | 39 |
 | ER-D5 same-period attribution (15 + 5 + 5) | 25 | 25 |
 | ER-D6 US+India linear/nonlinear (8 US + 2 grid/rank reads + 4 India) | 14 | 14 |
-| **RUNNING TOTAL (run cells)** | | **281** |
+| Audit follow-ups: ER-D7 (6) + ER-D4b (6) + ER-D1b (9) + ER-D1c (6) | 27 | 27 |
+| **RUNNING TOTAL (run cells)** | | **308** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
