@@ -49,7 +49,7 @@ it before any research or parameter work; nothing below overrides it.
   (survivorship stated — one-way uses only), CBOE VIX 1990-2026, IIMA monthly factors,
   gold 1833-2026, JST, commodities, climate (see ingest/vault/*/AUTHENTICATION.md).
 
-## Where work stands (2026-09-03)
+## Where work stands (2026-09-05)
 Atlas complete; Stage-1 machinery live (quant/regime.py, walk-forward, book costs,
 challenger CI, paper ledger); the phase file CLOSED at index resolution. Mirror legs 5-9
 done: fx + India VIX + Kilian + Känzig + ONI + AISMR vaulted (10 vaults); H53a and OL-D2a
@@ -66,3 +66,16 @@ backlog fully run — census 193, suite 125 (headline: the NIFTY premium accrues
 +24%/yr, calm-days only, stress is intraday; F3a-F6a all booked; T-CTRL1/T2/T3 graveyards);
 TRACK P scaffold landed (quant/pipeline: triple-barrier, meta-labels, vintage stamping).
 49 lessons. Blocked on the principal: OPEN_QUESTIONS batches 3+4 + the Priority-1 pulls.
+2026-09-05, principal-directed research sprint: GDP-D1/FISH-D1 (growth does not drive
+returns — cross-country -0.21, market leads GDP 5:1; Fisher rejected at 1y, 12pp
+inflation-regime gap) and the ER-D1..D6 expected-return battery (valuation's horizon
+staircase +0.15->+0.38; the Bernstein-Arnott slippage wedge prices at -0.79 and resolves
+the GDP paradox; hurdle rule INVERTS at index level; pooled 5-factor equation 26.7%
+in-sample at 10y but OOS -7.4% at 5y / +7.0% at 10y — Goyal-Welch binds; single-country
+kitchen sinks explode OOS (-389%); the dp x inflation RANK GRID is the one nonlinearity
+that survives, ~12pp corner spread). EN-D1a onset-sectoral partial: null-inconclusive
+(one-way), placebo caught COVID contamination. Census **281**; docs/MODEL-FACTORY.md (the
+ten-station operating workflow) + research/notes/ context notes (repression era, real-rate
+decades, capshare, regime sub-parts menu, DS1 briefing) all committed. Consumption of the
+ER arc: valuation/inflation as STATES for expectations, never point forecasts. Lesson 50
+for the ER arc + One Page refresh owed (in progress 09-05).
