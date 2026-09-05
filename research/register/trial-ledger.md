@@ -1757,3 +1757,31 @@ positive. Script: scripts/analyze_er_d1c.py. Census: 6.
 | ER-D4b | Purged, honest-benchmark correction rerun (registered windows verbatim) | Pooled, purged, train-only bounds: 5y (train<=1985, test 1990-2010, n=321) OOS R2 **+8.5%** vs expanding per-country mean / **-0.3%** vs frozen pooled; 10y (train<=1980, test 1990-2000, n=165) **-15.7%** vs per-country / -44.3% vs frozen; 10y block-bootstrap 90% band on R2 vs (a): **[-56.6%, +23.8%] — includes 0**. US kitchen-sink cells: 5y -73.4%, 10y +15.3% on n=11 (uninformative). **BAR VERDICT: the 10y restore test FAILS on both conditions** -> the registered correction box fires (see ER-D4 row). PRIOR MISS booked: the 5y cell was registered 85% stays-negative and printed +8.5% vs benchmark (a) — the two-benchmark design exposes why: early per-country expanding means average FEW completed windows (a noisy, easier benchmark), while vs the frozen pooled mean the same model prints -0.3%. Honest read: 5y forecast skill indistinguishable from zero, benchmark-dependent in sign | **correction box fired; 5y prior miss booked; census** |
 | ER-D1b | Within vs between attribution | THE TIMING QUESTION RESOLVES: growth-negative is **WITHIN-country** — own-country expanding-rank g5 -> 10y/20y rho **-0.20/-0.23**; per-country median corr(g5, fwd10) = **-0.41** (16 countries); ER-D5's same-20y cell within-demeaned **-0.28** (stronger than pooled -0.20). The two-sided registration lands NEGATIVE: within a single country's own history, high trailing growth is a bad time to buy — no longer attributable to the between-country wedge alone (between printed separately: mean-g5 vs mean-ret -0.36; mean-dp vs mean-ret +0.16). dp bar PARTIAL MISS: within-rank dp -> 10y +0.23 < pooled-level +0.29 (bar said strengthens); at 20y +0.47 > +0.38 it does. FISH-D1(iii) within-form: top own-country inflation quintile real return **-4.1%/yr** vs bottom **+14.2%/yr** -> **WITHIN gap 18.2pp** (pooled was 12.0pp, and the earlier sign-miss REVERSES within-country: high-inflation years are outright NEGATIVE against a country's own history — the pooled +2.9% was chronic-inflation-country dilution). Bar >=5pp: **PASS — L9's underwrite is STRONGER within-country** | **growth-negative upgraded to a within-country timing fact; L9 reinforced at 18.2pp; one dp partial miss booked** |
 | ER-D1c | Persistent-regressor null band (Stambaugh/BRW restored per CONTRACT §9:142) | 15 countries, median AR(1) phi 0.71, B=300 joint year-block null. Observed dp ladder vs 95% null band: 1y +0.14 [+0.02,+0.18] INSIDE; 3y +0.20 [-0.02,+0.25] INSIDE; 5y +0.23 [-0.07,+0.27] INSIDE; 10y +0.27 [-0.14,+0.30] INSIDE; **20y +0.36 [-0.19,+0.32] OUTSIDE — the only horizon that beats the null**. The ER-D1 demotion is now QUANTIFIED: the rising staircase through 10y is exactly what persistence + overlap manufactures under NO predictability (BRW 2008 vindicated on our own vault); only the 20-year relation is evidence against the null. AH-corrected US 1y dp slope: +2.97 -> **+1.63** (shrinks 45%, stays positive — prior confirmed) | **ladder demotion quantified: dp is a 20y (and expectations-band) instrument, nothing shorter; census +27 total = 308** |
+
+## Entry ER-D8 (2026-09-05) — PRE-REGISTERED before running: the market as the economy's
+forecaster. Principal directive: "predicting next 5y/1y gdp growth using current 5y 10y
+stock return" (the reverse arrow of GDP-D1(iii), which printed corr(eq_t, growth_t+1) =
++0.31 vs -0.06 for the forward direction — quoted as the parent print). Literature anchor:
+Fama (1981, 1990) — US stock returns lead production growth by ~1 year. JST R6, 1950-2020,
+same variable construction as the ER battery. No OOS/no-lookahead claims (correlational
+verification; overlap flagged; no p-value bars). Trailing returns are NOT dp-persistent so
+Stambaugh exposure is low — stated, not corrected.
+CELLS (14):
+- (a) POOLED 3x3 Spearman grid: trailing {1y, 5y, 10y} real equity return (through t) x
+  next {1y, 5y, 10y} real GDP/cap growth (t+1..t+h). 9 cells.
+- (b) WITHIN-COUNTRY diagonal: own-country expanding-percentile (min_obs=20) of the
+  trailing return, for trail1->next1, trail5->next5, trail10->next10. 3 cells.
+- (c) INDIA descriptive (short, no bar): NIFTY trailing-3y annual return vs PWT growth
+  next 1y and next 3y. 2 cells.
+BARS/PRIORS (verification): (i) trail1->next1 pooled >= +0.2 confirms market-leads-GDP at
+panel breadth (parent print +0.31); (ii) for EACH trailing horizon, predictive rho DECAYS
+as the forward horizon lengthens — the market is a 1-2 year business-cycle thermometer,
+not a decade forecaster; trail-any -> next-10y expected ~0 (|rho| < 0.15); (iii) within-
+country diagonal cells within 0.1 of their pooled counterparts (the lead is cyclical, not
+composition). Misses recorded as always. CONSUMPTION: context — sharpens the L3/L18
+business-cycle seat's "the market is the leading indicator" doctrine; no promotion.
+Script: scripts/analyze_er_d8.py. Census: 14.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| ER-D8 | Market -> future GDP growth, 3x3 grid + within-country + India (interpretation hand-appended AFTER the print) | Pooled grid (trailing return -> next growth): trail-1y: **+0.29 / +0.05 / +0.02** at next-1/5/10y; trail-5y: +0.18/+0.08/+0.06; trail-10y: +0.13/+0.06/-0.01. ALL THREE BARS PASS: (i) trail1->next1 +0.29 >= +0.2 (parent GDP-D1(iii) +0.31 corroborated at grid breadth); (ii) monotone DECAY across forward horizons in every row, all next-10y cells ~0 — the market is a 1-2 year business-cycle thermometer, not a decade forecaster; (iii) within-country diagonals +0.31/+0.08/+0.02 — within 0.03 of pooled: the lead is CYCLICAL anticipation, not country composition. Bonus read (in-grid): fresh returns beat stale ones as growth predictors (trail-1y +0.29 > trail-5y +0.18 > trail-10y +0.13 at next-1y) — the news is in the recent move. India descriptive: noise on n<=9, as registered. Fama (1981, 1990) reproduced at 15-country/70-year breadth | **all 3 bars pass — the L3/L18 doctrine sharpened: the market leads the economy by ~1 year and no further; census +14 = 322** |
