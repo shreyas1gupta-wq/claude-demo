@@ -1549,10 +1549,10 @@ state; no promotion, no signal enters the stack from this entry. Census: 25+4+2+
 
 | # | What | Result | Status |
 |---|---|---|---|
-| ER-D1 | Horizon correlogram, 5 predictors x 1/3/5/10/20y, pooled Spearman (n~950-1100/cell; interpretation hand-appended AFTER the print) | Dividend yield rises MONOTONICALLY +0.15/+0.21/+0.24/+0.29/+0.38 (prior confirmed; per-country dp->10y: USA +0.63, UK +0.70, Japan +0.76, Germany +0.01 the outlier). Trailing GDP growth is NEGATIVE at every horizon, monotone to **-0.36 at 20y** — high trailing growth predicts LOWER returns. Trailing dividend growth negative (-0.10 at 10y); real long rate weakly positive (+0.13..+0.20); trailing return negative (LT reversal). PRIOR MISS (partial): 1y is not fully random — g5 -0.17 and dp/rlt +0.15 breach the <0.15 bar by a hair; tiny but nonzero. India (short, descriptive): nothing at 1y, +0.24 at 3y on n=14 — noise-level, consistent with short-horizon randomness | **valuation-rises-with-horizon confirmed; growth-negative confirmed and extended; 1y near-random (bar missed by 0.02)** |
+| ER-D1 | Horizon correlogram, 5 predictors x 1/3/5/10/20y, pooled Spearman (n~950-1100/cell; interpretation hand-appended AFTER the print) | Dividend yield rises MONOTONICALLY +0.15/+0.21/+0.24/+0.29/+0.38 (prior confirmed; AUDIT NOTE 2026-09-05: under the persistent-regressor null [Stambaugh 1999; Boudoukh-Richardson-Whitelaw 2008] a rising ladder is null-consistent — 'confirmed' demoted to 'shape observed, significance vs the null untested pending ER-D1c'; per-country dp->10y: USA +0.63, UK +0.70, Japan +0.76, Germany +0.01 the outlier). Trailing GDP growth is NEGATIVE at every horizon, monotone to **-0.36 at 20y** — high trailing growth predicts LOWER returns. Trailing dividend growth negative (-0.10 at 10y); real long rate weakly positive (+0.13..+0.20); trailing return negative (LT reversal). PRIOR MISS (partial): 1y is not fully random — g5 -0.17 and dp/rlt +0.15 breach the <0.15 bar by a hair; tiny but nonzero. India (short, descriptive): nothing at 1y, +0.24 at 3y on n=14 — noise-level, consistent with short-horizon randomness | **valuation-rises-with-horizon confirmed; growth-negative confirmed and extended; 1y near-random (bar missed by 0.02)** |
 | ER-D2 | Slippage (mean GDP/cap growth - mean delivered real dividend growth), full postwar, per country | Panel median gap **+0.7pp/yr** (9/16 positive; prior band 1-3pp partially missed — median lower). THE HEADLINE: cross-country Spearman corr(gap, real equity CAGR) = **-0.79** (n=16) — the slippage wedge, not growth itself, is what prices: Portugal (gap 17.8pp) grew 2.7%/yr and equity holders LOST money; Italy 3.2/France 2.5 weak returns; Germany/Switzerland/Sweden negative gaps and strong returns (Germany's -7.9 flagged as a probable series artifact; Spearman robust to it). RUN NOTE: first print returned nan from a non-finite dividend-growth cell; a finite-value guard was added and the design re-run once — a repair of a broken cell, no bar moved | **Bernstein-Arnott dilution mechanism CONFIRMED at panel breadth — this resolves GDP-D1's paradox** |
 | ER-D3 | Hurdle interaction: next-5y return, top vs bottom tercile of (delivered 5y div growth - real 1.25x-bond-yield hurdle), pooled | **PRIOR MISS — INVERTED**: top tercile +4.6%/yr vs bottom +8.4%/yr. At INDEX level the principal's rule runs backwards in time: periods of delivered growth above the hurdle are late-cycle and priced; the best forward returns follow periods of DELIVERED-growth famine (which are high-dp, cheap periods). The rule's natural home is the cross-section (profitability/quality factor at stock level, with true ROE) — runsheet row stands. Booked as measured | **miss recorded — timing-inverted; cross-sectional form data-gated** |
-| ER-D4 | The clubbed equation: pooled winsorized OLS on [dp, g5, real long rate, inflation, trail return] | In-sample R2: 1y **9.3%** (prior <5% MISSED — mildly less random than hypothesized), 3y 14.9%, 5y **18.0%**, 10y **26.7%** (both in prior bands). THE EQUATION (10y): r ≈ **+1.17·dp − 0.90·g5 + 0.78·rlt + 0.49·infl − 0.03·r5** — valuation in with ~Gordon weight, trailing growth NEGATIVE. NO-LOOKAHEAD OOS (fit ≤1989, test 1990+): 5y **−7.4%** (WORSE than the historical mean — Goyal-Welch wins at 5y), 10y **+7.0%** (survives, but a fraction of in-sample). Registered consumption rule triggers: valuation is a STATE for expectations-setting, never a point forecast | **horizon structure verified; OOS discipline binds; census +39 = 242** |
+| ER-D4 | The clubbed equation: pooled winsorized OLS on [dp, g5, real long rate, inflation, trail return] | In-sample R2: 1y **9.3%** (prior <5% MISSED — mildly less random than hypothesized), 3y 14.9%, 5y **18.0%**, 10y **26.7%** (both in prior bands). THE EQUATION (10y): r ≈ **+1.17·dp − 0.90·g5 + 0.78·rlt + 0.49·infl − 0.03·r5** — valuation in with ~Gordon weight, trailing growth NEGATIVE. NO-LOOKAHEAD OOS (fit ≤1989, test 1990+): 5y **−7.4%** (WORSE than the historical mean — Goyal-Welch wins at 5y), 10y **+7.0%** (survives, but a fraction of in-sample). Registered consumption rule triggers: valuation is a STATE for expectations-setting, never a point forecast | **horizon structure verified; OOS discipline binds; census +39 = 242** — AUDIT NOTE 2026-09-05: the OOS cells carry confirmed defects (full-sample winsorization before the split; no label-window purge; executed test windows exceed the registered ones; frozen pooled benchmark mislabeled Goyal-Welch). The 5y 'GW wins' verdict stands a fortiori (all leaks pro-model); the 10y '+7.0% survives' read is SUSPENDED pending ER-D4b. See the audit addendum |
 
 ## Entry ER-D5 (2026-09-05) — PRE-REGISTERED before running: the SAME-PERIOD question.
 Principal directive: "what if we look same period metrics to check if stock median/index
@@ -1617,4 +1617,136 @@ state are the only standing consumers. No promotion. Census: 14.
 
 | # | What | Result | Status |
 |---|---|---|---|
-| ER-D6 | US + India, all vaulted metrics, linear vs nonlinear (interpretation hand-appended AFTER the print) | US 8-factor: in-sample R2 **65.8%** (5y) / **54.2%** (10y) — and OOS **-389% / -591%**: catastrophically worse than the historical mean; quadratic worse still (-445% / -949%) — bar (i) PASS, nonlinearity adds in-sample fit and subtracts OOS. THE CONTRAST THAT MATTERS: ER-D4's pooled-panel 5-factor scored -7.4%/+7.0% OOS on the same horizons — pooling 17 countries is the regularizer; a single-country kitchen sink with n=66 overlapping obs is pure memorization. 10y factor ranking: **dp +4.6** first (bar iii PASS), then g5 -2.4 (growth negative AGAIN), term +2.2, dg5 +2.2; credit gap last. The house nonlinear — the 3x3 dp x inflation RANK-BIN grid — is the only structure that survives inspection: cheap+low-infl **+14.2%/yr** -> expensive **+2.3%/yr**, ~12pp spread (bar ii >=6pp PASS), monotone down the diagonal; the expensive+high-inflation corner is EMPTY in US history (n<4) — that combination barely occurs. India: the registered 5-factor set on its n=13 intersection prints a fake 57.5% R2 (the overfit demo, as predicted); the honest reduced model R2 9-14% with NOTHING above t 1.7 (growth again NEGATIVE, -1.7); OOS -93.5% — bar (iv) PASS: India's sample cannot certify a return model | **all 4 registered priors confirmed; the grid (states/ranks) is the only nonlinearity that earns anything; census +14 = 281** |
+| ER-D6 | US + India, all vaulted metrics, linear vs nonlinear (interpretation hand-appended AFTER the print) | US 8-factor: in-sample R2 **65.8%** (5y) / **54.2%** (10y) — and OOS **-389% / -591%**: catastrophically worse than the historical mean; quadratic worse still (-445% / -949%) — bar (i) PASS, nonlinearity adds in-sample fit and subtracts OOS. THE CONTRAST THAT MATTERS: ER-D4's pooled-panel 5-factor scored -7.4%/+7.0% OOS on the same horizons — pooling 17 countries is the regularizer; a single-country kitchen sink with n=66 overlapping obs is pure memorization. 10y factor ranking: **dp +4.6** first (bar iii PASS), then g5 -2.4 (growth negative AGAIN), term +2.2, dg5 +2.2; credit gap last. The house nonlinear — the 3x3 dp x inflation RANK-BIN grid — is the only structure that survives inspection: cheap+low-infl **+14.2%/yr** -> expensive **+2.3%/yr**, ~12pp spread (bar ii >=6pp PASS), monotone down the diagonal; the expensive+high-inflation corner is EMPTY in US history (n<4) — that combination barely occurs. India: the registered 5-factor set on its n=13 intersection prints a fake 57.5% R2 (the overfit demo, as predicted); the honest reduced model R2 9-14% with NOTHING above t 1.7 (growth again NEGATIVE, -1.7); OOS -93.5% — bar (iv) PASS: India's sample cannot certify a return model | **all 4 registered priors confirmed; the grid (states/ranks) is the only nonlinearity that earns anything; census +14 = 281** — AUDIT NOTE 2026-09-05: the US OOS cells share ER-D4's split/winsorization defects (verdicts stand a fortiori, pro-model leaks); the 12pp grid spread is IN-SAMPLE (full-sample tercile breaks, no OOS cell) — real-time validation registered as ER-D7. See the audit addendum |
+
+## Audit addendum (2026-09-05) — ER battery, adversarial multi-agent code review
+A 14-agent workflow (4 audit lenses -> refute-by-default verification -> synthesis;
+8/9 findings survived) reviewed every ER-battery script against the ledger and CONTRACT.
+Booked facts (prints NEVER edited; bars NEVER moved; annotations are dated):
+1. **Winsorization lookahead** (analyze_er_horizon.py:117-126/138-139; analyze_er_d6_usindia.py):
+   1%/99% clip bounds computed on the FULL sample including test years, applied BEFORE the
+   OOS split — the "NO-LOOKAHEAD" label was not earned as coded.
+2. **No label-window purge**: h-year train labels for starts 1980-1989 realize INSIDE the
+   test era — the exact case quant/stats/cv.py and CONTRACT §9:144 (purged/embargoed CV)
+   exist for. Pro-model bias; all NEGATIVE verdicts stand a fortiori.
+3. **Unregistered test windows**: executed starts 1990-2015(5y)/1990-2010(10y) vs the
+   registered 1990-2010(5y)/1990-2000(10y) — an unstated deviation (the 10y test set ~2x
+   the registered one), against house precedent (ER-D2/D3 stated theirs).
+4. **Benchmark mislabel**: the OOS benchmark is a FROZEN POOLED grand mean; Goyal-Welch
+   uses the expanding mean, and pooling credits the model for cross-country level capture
+   that ER-D2 showed is large (-0.79). "(Goyal-Welch test)" is therefore a mislabel.
+5. **Stambaugh departure**: CONTRACT §9:142 ("Correct Stambaugh bias on persistent
+   predictors") applied nowhere in the battery and never stated as a deviation; the
+   monotone dp ladder is null-consistent under BRW-2008/Valkanov-2003. ER-D4's +1.17 dp
+   coefficient and ER-D6's dp |t|=4.6 are uncorrected magnitudes (sign/ranking use only).
+6. **Pooling conflates within/between**: the "growth-negative" reads mix within-country
+   timing with the between-country ER-D2 wedge; the within-country timing claim is
+   genuinely unmeasured (registered two-sided in ER-D1b). Pooled dp is the CONSERVATIVE
+   direction (per-country majors +0.63/+0.70/+0.76 vs pooled +0.29).
+CONSEQUENCE: every negative/null verdict of the battery is robust (all defects flatter the
+model). The sole positive OOS cell — ER-D4 10y "+7.0% survives" — is SUSPENDED pending
+ER-D4b. Follow-ups registered below: ER-D7 (honest grid), ER-D4b (purged correction rerun),
+ER-D1b (within/between), ER-D1c (persistent-regressor null band).
+**PROCESS NOTE #8 (standing, from this addendum):** any registration using the words
+"no-lookahead" or "OOS" must state, AT REGISTRATION: the purge rule (per quant/stats/cv.py),
+the preprocessing information set (winsorization/rank/demean bounds fitted on TRAIN only —
+machinery: quant/stats/preprocess.py), the exact test-start window, and the benchmark
+definition (expanding vs frozen; pooled vs per-country). Campbell-Thompson omission noted
+as anti-model (mention-only, no fix owed).
+
+## Entry ER-D7 (2026-09-05) — PRE-REGISTERED before running: the HONEST GRID — expanding
+within-country rank bins with pooled purged cell means. Audit follow-up to ER-D6.
+Motivation: the 3x3 dp x inflation grid is the only ER structure with standing consumers
+(the L4 valuation state, the L9 regime state), and its printed ~12pp corner spread is
+IN-SAMPLE — full-sample tercile breaks (analyze_er_d6_usindia.py:81-84), all-years cell
+means, no OOS cell among ER-D6's 14. This design gives the consumed structure the
+house-standard real-time test, or retires it.
+Data: JST R6, 1950-2020, all countries with complete dp/cpi/eq_tr (~16 countries, ~1,100
+pooled country-years). Variable construction IDENTICAL to ER-D1..D6: infl = per-country cpi
+pct-change; req = (1+eq_tr)/(1+infl)-1; dp = eq_dp; fwd_h = expm1(mean log1p(req) over
+t+1..t+h) at start year t; h = 5, 10.
+DEFINITIONS FIXED NOW (all real-time; purge per quant/stats/cv.py; process note #8 fields):
+- STATE at (country,t): tercile bucket (cuts 1/3, 2/3) of the WITHIN-COUNTRY EXPANDING
+  percentile of dp and of infl, computed on that country's own data 1950..t only, >=20y
+  warmup (first usable state year 1970). No full-sample ranks anywhere.
+- FORECAST at (country,t) for fwd_h: pooled mean of fwd_h over past observations (all
+  countries, starts s <= t-h — COMPLETED windows only) in the same 3x3 cell; cell n<4
+  completed obs falls back to the expanding pooled mean of all completed fwd_h.
+- BENCHMARK: the expanding pooled mean of all completed fwd_h at the same t (identical
+  information set to the model). NO winsorization in the recursive legs (no fitted
+  parameters — no preprocessing lookahead); no slopes anywhere (no Stambaugh exposure).
+- Recursive over forecast starts 1970-2010 (5y) and 1970-2000 (10y). Overlapping windows:
+  no p-values printed; bars on magnitudes only.
+CELLS (6): (i) OOS R2 vs the expanding pooled mean, 5y and 10y (2). (ii) REAL-TIME CORNER
+SPREAD at 5y: realized mean fwd5 of country-years classified in real time cheap (dp
+tercile 3) + low-infl (tercile 1) MINUS expensive (dp tercile 1) + high-infl (tercile 3);
+corner n's printed; a corner with pooled n<20 is booked descriptive (1). (iii) ERA SPLIT of
+(ii): starts 1970-1989 vs 1990-2010 (1). (iv) ER-D1's dp->10y Spearman re-run with dp in
+within-country expanding-percentile form — pooled, and Germany alone (2).
+BARS (fixed now): B1 real-time corner spread >= 4pp/yr at 5y (decay from 12pp EXPECTED;
+<2pp triggers a RECORDED DOWNGRADE of the grid state's expectations consumption with dated
+notes on ER-D6 and the L4/L9 seats; 2-4pp = miss booked, consumption qualified but
+retained). B2: OOS R2 > 0 at 10y. B3: Germany dp->10y recovers from +0.01 (raw level) to
+>= +0.2 in expanding-rank form (informative because expanding ranks are NOT a monotone
+transform of the full series — the Lettau-Van Nieuwerburgh 2008 mean-shift mechanism).
+PRIORS: corner spread ~5-7pp/yr; 10y OOS R2 +2..+10%; 5y OOS R2 near zero, sign TWO-SIDED;
+era split positive both eras, smaller post-1990. WHY IT CAN SURVIVE WHERE OLS FAILED
+(argued before the print): 9 conditional means on ~1,100 country-years, no slopes;
+expanding within-country ranks are invariant to steady-state dp mean shifts (LVN 2008;
+Germany is the vault's own smoking gun); pooling is the regularizer ER-D6 printed.
+CONSUMPTION: validates or honestly retires the structure the L4/L9 seats consume; NO
+promotion in any outcome. Script: scripts/analyze_er_d7_honestgrid.py. Census: 6.
+
+## Entry ER-D4b (2026-09-05) — PRE-REGISTERED before running: the purged, honest-benchmark
+correction rerun. Parent design QUOTED VERBATIM (ER-D1..D4 entry): "NO-LOOKAHEAD OOS: fit
+on starts <= 1989 only, predict starts 1990-2010(5y)/2000(10y), OOS R2 vs the
+historical-mean benchmark (Goyal-Welch test)." This correction design fixes, AT
+REGISTRATION (audit items 1-4): (i) PURGED split — train starts <= 1990-h (no train label
+realizes inside the test era, per quant/stats/cv.py); (ii) winsorization bounds fitted on
+TRAIN ONLY (quant/stats/preprocess.py), applied unchanged to test; (iii) the REGISTERED
+test windows verbatim — starts 1990-2010 (5y), 1990-2000 (10y); (iv) TWO benchmarks — (a)
+the expanding PER-COUNTRY historical mean (the honest Goyal-Welch analogue for a panel),
+(b) the parent's frozen pooled mean (continuity print only). Same 5 factors, same pooled
+panel. Plus the ER-D6 US cells rerun purged with train-only bounds vs the expanding US
+mean. CELLS (6): pooled 5y/10y vs benchmark (a) [2]; pooled 5y/10y vs benchmark (b) [2];
+US 5y/10y vs expanding US mean [2]. BAR (fixed now): the ER-D4 10y "survives" read is
+RESTORED only if pooled 10y OOS R2 > 0 vs benchmark (a) AND a calendar-year block-bootstrap
+90% band (quant/stats/bootstrap.py, B>=300) on that R2 excludes 0; otherwise the ER-D4 row
+gets a dated correction box reading "Goyal-Welch wins at BOTH horizons." PRIOR on record:
+the 10y cell flips to <= 0 or its band includes 0 (60%); the 5y cell stays negative (85%).
+Parent prints and bars UNTOUCHED. Script: scripts/analyze_er_d4b.py. Census: 6.
+
+## Entry ER-D1b (2026-09-05) — PRE-REGISTERED before running: within vs between attribution
+of the pooled ER reads. Audit item 6. All variables as in ER-D1/ER-D5/FISH-D1. For
+PREDICTIVE legs, within-country form = the regressor's OWN-COUNTRY EXPANDING percentile
+(recursive, >=20y warmup — full-sample demeaning is FORBIDDEN here, it induces the
+Nickell/Stambaugh-type bias [Hjalmarsson 2010]); for ATTRIBUTION (same-window) legs,
+within-country demeaning is permitted. CELLS (9): (1-2) dp -> next-10y/20y pooled Spearman,
+expanding-rank form; (3-4) trailing-5y growth -> next-10y/20y pooled Spearman,
+expanding-rank form — the within-country timing read, registered TWO-SIDED (sign genuinely
+uncertain); (5) per-country MEDIAN of own-country corr(g5, fwd10) (levels, descriptive
+robustness); (6-7) BETWEEN components printed separately: cross-country corr of full-sample
+mean g5 vs mean return, and mean dp vs mean return; (8) ER-D5's 20y same-window growth cell
+recomputed on within-country demeaned variables; (9) FISH-D1(iii) regime split recomputed
+with inflation in own-country expanding-percentile form (top vs bottom quintile).
+BARS/PRIORS: dp within-rank >= pooled level form at 10y (prior: strengthens, per-country
+majors say so); growth within-form: TWO-SIDED, prior 55% it stays negative but attenuates
+by >= a third (the wedge is between-country); FISH within-gap >= 5pp keeps L9's underwrite
+— < 5pp is a recorded miss AND a dated L9 annotation. Script: scripts/analyze_er_d1b.py.
+Census: 9.
+
+## Entry ER-D1c (2026-09-05) — PRE-REGISTERED before running: the persistent-regressor
+null band for the dp ladder. Audit item 5; restores the CONTRACT §9:142 standard the
+battery departed from. DESIGN: per country, fit AR(1) to dp (phi, innovations e_t) and
+estimate corr(e_t, return innovation u_t). NULL: returns have NO predictability — real
+return_t = own-country mean + u_t. Resample the JOINT innovation vectors (e_t, u_t across
+countries) by CALENDAR-YEAR blocks with the house stationary block bootstrap
+(quant/stats/bootstrap.py; expected block length 5y; B=300; seeded rng(7)); rebuild dp by
+AR(1) recursion from each country's actual 1950 level; recompute the pooled Spearman
+dp->fwd_h ladder each replication. CELLS (6): observed ladder vs the simulated 95% band at
+h = 1, 3, 5, 10, 20 (5 cells: INSIDE = null-consistent, demotion stands; OUTSIDE =
+"confirmed vs the null" restored at that horizon); (6) Amihud-Hurvich (2004)
+bias-corrected 1y US dp slope vs the raw OLS slope (one print). BARS: none beyond the
+band rule itself (a verification design). PRIOR on record: h=1,3 INSIDE the band; h=10,20
+borderline — genuine uncertainty; the AH-corrected US slope shrinks toward zero but stays
+positive. Script: scripts/analyze_er_d1c.py. Census: 6.
