@@ -52,7 +52,8 @@ this census exists so that can never happen silently.
 | EN-D1a (2 baskets x 2 horizons, onset-conditioned) | 4 | 4 |
 | GDP-D1 (3 cells) + FISH-D1 (3 cells) | 6 | 6 |
 | ER-D1 (25 + 4 India) + ER-D2 (2) + ER-D3 (2) + ER-D4 (6) | 39 | 39 |
-| **RUNNING TOTAL (run cells)** | | **242** |
+| ER-D5 same-period attribution (15 + 5 + 5) | 25 | 25 |
+| **RUNNING TOTAL (run cells)** | | **267** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

@@ -1553,3 +1553,33 @@ state; no promotion, no signal enters the stack from this entry. Census: 25+4+2+
 | ER-D2 | Slippage (mean GDP/cap growth - mean delivered real dividend growth), full postwar, per country | Panel median gap **+0.7pp/yr** (9/16 positive; prior band 1-3pp partially missed — median lower). THE HEADLINE: cross-country Spearman corr(gap, real equity CAGR) = **-0.79** (n=16) — the slippage wedge, not growth itself, is what prices: Portugal (gap 17.8pp) grew 2.7%/yr and equity holders LOST money; Italy 3.2/France 2.5 weak returns; Germany/Switzerland/Sweden negative gaps and strong returns (Germany's -7.9 flagged as a probable series artifact; Spearman robust to it). RUN NOTE: first print returned nan from a non-finite dividend-growth cell; a finite-value guard was added and the design re-run once — a repair of a broken cell, no bar moved | **Bernstein-Arnott dilution mechanism CONFIRMED at panel breadth — this resolves GDP-D1's paradox** |
 | ER-D3 | Hurdle interaction: next-5y return, top vs bottom tercile of (delivered 5y div growth - real 1.25x-bond-yield hurdle), pooled | **PRIOR MISS — INVERTED**: top tercile +4.6%/yr vs bottom +8.4%/yr. At INDEX level the principal's rule runs backwards in time: periods of delivered growth above the hurdle are late-cycle and priced; the best forward returns follow periods of DELIVERED-growth famine (which are high-dp, cheap periods). The rule's natural home is the cross-section (profitability/quality factor at stock level, with true ROE) — runsheet row stands. Booked as measured | **miss recorded — timing-inverted; cross-sectional form data-gated** |
 | ER-D4 | The clubbed equation: pooled winsorized OLS on [dp, g5, real long rate, inflation, trail return] | In-sample R2: 1y **9.3%** (prior <5% MISSED — mildly less random than hypothesized), 3y 14.9%, 5y **18.0%**, 10y **26.7%** (both in prior bands). THE EQUATION (10y): r ≈ **+1.17·dp − 0.90·g5 + 0.78·rlt + 0.49·infl − 0.03·r5** — valuation in with ~Gordon weight, trailing growth NEGATIVE. NO-LOOKAHEAD OOS (fit ≤1989, test 1990+): 5y **−7.4%** (WORSE than the historical mean — Goyal-Welch wins at 5y), 10y **+7.0%** (survives, but a fraction of in-sample). Registered consumption rule triggers: valuation is a STATE for expectations-setting, never a point forecast | **horizon structure verified; OOS discipline binds; census +39 = 242** |
+
+## Entry ER-D5 (2026-09-05) — PRE-REGISTERED before running: the SAME-PERIOD question.
+Principal directive: "what if we look same period metrics to check if stock median/index
+return explained by it." The contemporaneous complement to ER-D1..D4: not prediction —
+attribution. Same JST R6 panel, 1950-2020, same outlier rule (Spearman; winsorized OLS),
+windows of h = 1/3/5/10/20y measured over the SAME span (t+1..t+h) as the return.
+
+**Cells (25):**
+- (a) CORRELOGRAM (15): pooled Spearman of same-window real return CAGR vs same-window
+  (i) real GDP/cap growth, (ii) real dividend growth, (iii) inflation — at the 5 horizons.
+  PRIORS: same-window GDP growth stays WEAK at every horizon (< +0.3 even at 20y — the
+  slippage wedge, not measurement, is why); same-window DIVIDEND growth rises strongly
+  with horizon (>= +0.5 at 20y — delivered cash flows own long returns); inflation
+  negative at short horizons (FISH-D1), fading by 20y.
+- (b) DECOMPOSITION SHARES (5): log-return identity y ~ delivered real dividend growth +
+  revaluation (-Δlog dp / h) + income (mean log(1+dp)); covariance shares
+  s_i = cov(c_i, y)/var(y) at each horizon. PRIOR (Bogle/DMS): revaluation owns >= 70% of
+  return variance at 1y, declining monotonically, < 50% by 10y, < 40% at 20y; delivered
+  growth + income own the 20y window.
+- (c) MACRO-ONLY R2 (5): winsorized pooled OLS of same-window return on [same-window GDP
+  growth, inflation] ONLY (no market-derived variables — the "if you had perfect macro
+  foresight" test) at the 5 horizons. PRIOR: R2 < 10% at 1y; < 25% even at 20y — perfect
+  macro foresight would NOT have told you the market's return.
+CONSUMPTION: context/verification (the strongest form of the GDP-D1 lesson: even knowing
+the future macro, the short-run return is the multiple's, not the economy's). No
+promotion. Census: 25.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| ER-D5 | Same-period attribution (interpretation hand-appended AFTER the print) | (a) same-window GDP growth vs same-window return: +0.08/+0.17/+0.11/**0.00**/**-0.20** at 1/3/5/10/20y — bar (<+0.3 everywhere) PASS and sharper than the prior: at 20y the SAME-period relation turns negative (long high-growth eras dilute more — ER-D2's wedge compounding). Same-window DELIVERED dividend growth: +0.39/+0.50/+0.54/+0.55/**+0.61** — prior (>=+0.5 at 20y) PASS: delivered cash flows own long returns. Inflation: -0.25..-0.15..**-0.24** — PARTIAL MISS: it does NOT fade by 20y (consistent with FISH-D1's one-fifth-restored hedge). (b) variance shares: revaluation 55/54/46/40/**40%**, delivered growth 45/47/54/61/**62%**, income ~0% of VARIANCE (it sets the LEVEL, not the variation). PRIOR MISS at 1y: revaluation 55%, not >=70% — on ANNUAL country-year data delivered dividends are volatile enough to carry 45% even short-run; the 10y (<50% ✓) and 20y (=40%, at the boundary) cells land as registered. (c) MACRO-ONLY R2 with same-window GDP growth + inflation: 8.4/14.7/14.3/13.4/**18.8%** — bars (<10% at 1y, <25% at 20y) PASS: perfect macro foresight would explain less than a fifth of the market's return at every horizon | **all three sub-designs land; three honest partial misses booked; census +25 = 267** |
