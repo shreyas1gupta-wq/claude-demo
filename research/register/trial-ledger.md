@@ -1501,3 +1501,55 @@ Overlapping-window p-values are flagged inflated, never trusted.
 |---|---|---|---|
 | GDP-D1 | Growth vs the market, JST R6 1950-2020 (interpretation hand-appended AFTER the print) | (i) CROSS-COUNTRY corr(mean real GDP/cap growth, real eq CAGR) = **-0.21** (n=16) — BAR PASS, Ritter's paradox reproduced on our own vault: Japan grew fastest (3.6%/yr) with mid-pack equity returns; Switzerland/UK grew slowest with solid returns; Portugal grew 2.7%/yr and equity holders LOST money. (ii) same-year pooled corr **+0.09** (n=1120) — bottom of the prior band; even contemporaneously, annual growth barely co-moves with returns. (iii) forward corr(growth_t, eq_t+1) = **-0.06** (bar: abs < 0.1 PASS); reverse corr(eq_t, growth_t+1) = **+0.31** — the market leads GDP by 5x more than GDP leads the market. Growth stays [CONTEXT]; the reopening flag stays untriggered | **all 3 bars pass — "GDP does not drive equity returns" confirmed at panel breadth** |
 | FISH-D1 | Fisher equation vs the market, JST R6 1950-2020 | (i) 1y pooled slope of NOMINAL equity on inflation: beta = **-0.21** (se 0.16, n=1136) vs Fisher's +1 — 7.6 se's below; the Fama-Schwert result reproduced: stocks are NOT a 1-year inflation hedge, the sign is the WRONG WAY. (ii) 10y slope beta = **+0.21** (n=976 overlapping, se flagged) — direction of the prior confirmed (rises with horizon) but "toward 1" was generous: even at 10y the hedge is ~one-fifth restored. PARTIAL PRIOR MISS recorded. (iii) regime split: top-quintile inflation country-years (median 9.9%) real equity **+2.9%/yr** vs bottom-quintile (0.5%) **+14.9%/yr** — 12pp gap, bar (>=5pp) PASS, but PRIOR MISS on sign recorded: high-inflation real equity is LOW, not negative (the truly negative years are the ACCELERATION years inside the arc — the L9 state distinction, now sharpened by this print) | **Fisher rejected at 1y as registered; 12pp regime gap underwrites L9; two honest prior misses booked; census +6 = 203** |
+
+## Entry ER-D1..D4 (2026-09-05) — PRE-REGISTERED before running: the expected-return
+horizon battery. Principal directive (verbatim intent): regress GDP growth vs returns
+across major markets + India at 1/3/5/10/20y; adjust growth by a hurdle (bond yield x1.25
+as the WACC proxy; value-creation only above it); test share dilution vs returns; then club
+factors (max 10, simple equation) into the best no-lookahead prediction of 1/5/10/20y
+returns, outliers excluded; verify (not assume) the hypothesis "valuation/quality matter at
+5-10y, 1-3y is ~random."
+
+Data: JST R6 (17-18 economies, 1870-2020; postwar 1950-2020 primary, full-sample
+secondary where stated); India partial from NIFTY vault + PWT (short — stated). STATED
+LIMITS: aggregate ROE and CAPE are NOT in any vault — ROE is proxied by DELIVERED real
+dividend growth (D_t reconstructed as cumprod(1+eq_capgain) x eq_dp), CAPE by the
+dividend yield eq_dp (both are valuation/payout-anchored; Shiller ie_data + Damodaran
+ROE/issuance added to the RUNSHEET). Outlier rule fixed NOW: correlograms use SPEARMAN
+(rank, outlier-robust); OLS legs winsorize all variables at 1%/99%. Overlapping-window
+p-values are flagged, never trusted. All p-values descriptive.
+
+**ER-D1 — horizon correlogram (25 cells + 4 India):** pooled Spearman of predictor at t vs
+cumulative REAL equity return over next 1/3/5/10/20y. Predictors (5): dividend yield
+(eq_dp); trailing-5y real GDP/cap growth; trailing-5y real dividend growth; real long rate;
+trailing-5y real return. India (4 cells): trailing-3y return and PWT growth vs next 1/3y
+NIFTY real return (short sample, descriptive strength only).
+PRIORS: dp is the ONLY predictor reaching |rho| >= 0.3 at 10y/20y and rises monotonically
+with horizon; ALL predictors |rho| < 0.15 at 1y (the "random at 1-3y" hypothesis); growth
+predictors below dp at every horizon >= 5y (GDP-D1's lesson extends).
+**ER-D2 — dilution/slippage (2 cells):** per-country full-sample gap = mean real GDP/cap
+growth MINUS mean real dividend growth (the Bernstein-Arnott 2003 "two-percent dilution"
+construction on our vault); (i) the panel median gap (prior: positive, 1-3pp/yr); (ii)
+cross-country corr(gap, real equity CAGR) (prior: NEGATIVE — slippage eats returns).
+**ER-D3 — the hurdle interaction (2 cells):** value-creation proxy = trailing-5y real
+dividend growth minus the real hurdle (ltrate x1.25 minus inflation). Next-5y real return,
+top vs bottom tercile of the proxy, pooled. PRIOR: top beats bottom by >= 2pp/yr —
+delivered growth above the financing hurdle is good growth; the principal's rule
+directionally confirmed. STATED DEVIATION: true ROE unavailable; this is the runnable form.
+**ER-D4 — the clubbed equation (6 cells):** pooled OLS, real next-h return on 5 factors
+[dp, trail growth, real long rate, inflation, trail return], winsorized: (i) full-sample
+R2 at 5y and 10y with coefficients (the "simple equation"); (ii) full-sample R2 at 1y and
+3y (randomness check); (iii) NO-LOOKAHEAD OOS: fit on starts <= 1989 only, predict starts
+1990-2010(5y)/2000(10y), OOS R2 vs the historical-mean benchmark (Goyal-Welch test).
+PRIORS: in-sample R2 ~ <5% (1y), 5-12% (3y), 10-25% (5y), 20-40% (10y); OOS R2 POSITIVE
+but at most half of in-sample — if OOS <= 0 the Goyal-Welch critique wins and the
+consumption is "valuation states, never point forecasts."
+CONSUMPTION: context/verification for the L4/L9 seats and the policy-horizon valuation
+state; no promotion, no signal enters the stack from this entry. Census: 25+4+2+2+6 = 39.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| ER-D1 | Horizon correlogram, 5 predictors x 1/3/5/10/20y, pooled Spearman (n~950-1100/cell; interpretation hand-appended AFTER the print) | Dividend yield rises MONOTONICALLY +0.15/+0.21/+0.24/+0.29/+0.38 (prior confirmed; per-country dp->10y: USA +0.63, UK +0.70, Japan +0.76, Germany +0.01 the outlier). Trailing GDP growth is NEGATIVE at every horizon, monotone to **-0.36 at 20y** — high trailing growth predicts LOWER returns. Trailing dividend growth negative (-0.10 at 10y); real long rate weakly positive (+0.13..+0.20); trailing return negative (LT reversal). PRIOR MISS (partial): 1y is not fully random — g5 -0.17 and dp/rlt +0.15 breach the <0.15 bar by a hair; tiny but nonzero. India (short, descriptive): nothing at 1y, +0.24 at 3y on n=14 — noise-level, consistent with short-horizon randomness | **valuation-rises-with-horizon confirmed; growth-negative confirmed and extended; 1y near-random (bar missed by 0.02)** |
+| ER-D2 | Slippage (mean GDP/cap growth - mean delivered real dividend growth), full postwar, per country | Panel median gap **+0.7pp/yr** (9/16 positive; prior band 1-3pp partially missed — median lower). THE HEADLINE: cross-country Spearman corr(gap, real equity CAGR) = **-0.79** (n=16) — the slippage wedge, not growth itself, is what prices: Portugal (gap 17.8pp) grew 2.7%/yr and equity holders LOST money; Italy 3.2/France 2.5 weak returns; Germany/Switzerland/Sweden negative gaps and strong returns (Germany's -7.9 flagged as a probable series artifact; Spearman robust to it). RUN NOTE: first print returned nan from a non-finite dividend-growth cell; a finite-value guard was added and the design re-run once — a repair of a broken cell, no bar moved | **Bernstein-Arnott dilution mechanism CONFIRMED at panel breadth — this resolves GDP-D1's paradox** |
+| ER-D3 | Hurdle interaction: next-5y return, top vs bottom tercile of (delivered 5y div growth - real 1.25x-bond-yield hurdle), pooled | **PRIOR MISS — INVERTED**: top tercile +4.6%/yr vs bottom +8.4%/yr. At INDEX level the principal's rule runs backwards in time: periods of delivered growth above the hurdle are late-cycle and priced; the best forward returns follow periods of DELIVERED-growth famine (which are high-dp, cheap periods). The rule's natural home is the cross-section (profitability/quality factor at stock level, with true ROE) — runsheet row stands. Booked as measured | **miss recorded — timing-inverted; cross-sectional form data-gated** |
+| ER-D4 | The clubbed equation: pooled winsorized OLS on [dp, g5, real long rate, inflation, trail return] | In-sample R2: 1y **9.3%** (prior <5% MISSED — mildly less random than hypothesized), 3y 14.9%, 5y **18.0%**, 10y **26.7%** (both in prior bands). THE EQUATION (10y): r ≈ **+1.17·dp − 0.90·g5 + 0.78·rlt + 0.49·infl − 0.03·r5** — valuation in with ~Gordon weight, trailing growth NEGATIVE. NO-LOOKAHEAD OOS (fit ≤1989, test 1990+): 5y **−7.4%** (WORSE than the historical mean — Goyal-Welch wins at 5y), 10y **+7.0%** (survives, but a fraction of in-sample). Registered consumption rule triggers: valuation is a STATE for expectations-setting, never a point forecast | **horizon structure verified; OOS discipline binds; census +39 = 242** |

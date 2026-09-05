@@ -34,6 +34,7 @@ for exact URLs, formats, and pitfalls).
 | Exchange results calendars (announcement dates per holding) | NSE/BSE corporate announcements | ingest/vault/calendars/ | H58-D2 counting |
 | WSTS Blue Book (monthly billings 1976-) | wsts.org free download (blocked at this proxy; free in principle — see research/cycles/semis-candidate/DATA-PROBE.md) | ingest/vault/semis/ | H59-D1 (prior: fails) |
 | India credit/GDP (BIS total credit to private non-financial) + RBI/NHB house-price index | BIS stats + RBI DBIE (both blocked at this proxy; free) | ingest/vault/india_fincycle/ | India's FC1 cell (corr 5yΔcredit/GDP vs 5yΔlog real HPI — the 18th column of the Atlas 1.1 panel); context input to L12's India seat. Added 2026-09-03 on principal request (see research/notes/realrate-decades-and-fc1-breakdown.md) |
+| Shiller ie_data (US price/earnings/dividends/CAPE 1871-) + Damodaran aggregate ROE & net-issuance tables | econ.yale.edu + pages.stern.nyu.edu (both blocked at this proxy; free) | ingest/vault/shiller/ | ER battery upgrades: true CAPE horizons, ROE-adjusted growth (ER-D3 cross-sectional form), direct dilution measure. Added 2026-09-05 (ER-D1..D4 entry) |
 
 ## Principal inputs (not pulls — decisions; validator warns on every run until set)
 - `funding_rate` (config) — gates the leverage feature entirely.
