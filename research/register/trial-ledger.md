@@ -1583,3 +1583,38 @@ promotion. Census: 25.
 | # | What | Result | Status |
 |---|---|---|---|
 | ER-D5 | Same-period attribution (interpretation hand-appended AFTER the print) | (a) same-window GDP growth vs same-window return: +0.08/+0.17/+0.11/**0.00**/**-0.20** at 1/3/5/10/20y — bar (<+0.3 everywhere) PASS and sharper than the prior: at 20y the SAME-period relation turns negative (long high-growth eras dilute more — ER-D2's wedge compounding). Same-window DELIVERED dividend growth: +0.39/+0.50/+0.54/+0.55/**+0.61** — prior (>=+0.5 at 20y) PASS: delivered cash flows own long returns. Inflation: -0.25..-0.15..**-0.24** — PARTIAL MISS: it does NOT fade by 20y (consistent with FISH-D1's one-fifth-restored hedge). (b) variance shares: revaluation 55/54/46/40/**40%**, delivered growth 45/47/54/61/**62%**, income ~0% of VARIANCE (it sets the LEVEL, not the variation). PRIOR MISS at 1y: revaluation 55%, not >=70% — on ANNUAL country-year data delivered dividends are volatile enough to carry 45% even short-run; the 10y (<50% ✓) and 20y (=40%, at the boundary) cells land as registered. (c) MACRO-ONLY R2 with same-window GDP growth + inflation: 8.4/14.7/14.3/13.4/**18.8%** — bars (<10% at 1y, <25% at 20y) PASS: perfect macro foresight would explain less than a fifth of the market's return at every horizon | **all three sub-designs land; three honest partial misses booked; census +25 = 267** |
+
+## Entry ER-D6 (2026-09-05) — PRE-REGISTERED before running: US + India country models,
+all vaulted metrics, linear vs nonlinear. Principal directive: "just check us and india
+and all major metrics and combination linear nonlinear regression."
+
+US (JST R6 annual, 1950-2020; the deep sample): factors = dp, trailing-5y GDP/cap growth,
+trailing-5y real dividend growth, real long rate, inflation, trailing-5y return, TERM
+SPREAD (ltrate - stir), 5y Δ(tloans/gdp) — 8 factors, the vault's full major-metric set.
+Outcomes: next-5y and next-10y real return CAGR. Winsorize 1%/99%.
+India (annual, 1994-2025; IIMA market = MF+RF, excess outcome = MF; SHORT — stated):
+factors = trailing-3y and trailing-1y excess return, RF level, trailing-12m realized vol
+(NIFTY daily, so vol usable 2008+), PWT real GDP/cap growth (to 2019). Outcomes: next-1y
+and next-3y excess CAGR. India OOS split 2015+ is n~8: DESCRIPTIVE only, no bar.
+
+MODELS (fixed now): (L) linear OLS; (Q) quadratic — linear + squared terms of dp and
+inflation only (US) / trail3y and vol (India); (B) the house nonlinear: 3x3 RANK-BIN grid
+(dp tercile x inflation tercile for US at 5y) conditional means — grids/ranks per
+CONTRACT, no fitted trees/nets (no sklearn dependency; under 10 regime transitions the
+contract forbids fitted switching anyway).
+CELLS (14): US in-sample R2 for L and Q at 5y and 10y (4); US OOS (fit<=1989, test 1990+)
+for L and Q at 5y and 10y (4); US bin-grid spread read (1); US factor-ranking read by
+|t| at 10y (1); India in-sample L at 1y and 3y (2); India OOS descriptive (1); India
+factor-ranking read (1).
+BARS/PRIORS: (i) US: quadratic beats linear IN-SAMPLE by construction but does NOT beat
+it OOS at either horizon (the overfit prior; if Q wins OOS at both horizons that is a
+recorded miss and a genuine nonlinearity flag). (ii) US bin grid: cheap+low-inflation
+corner beats expensive+high-inflation corner by >= 6pp/yr at 5y, monotone-ish across the
+diagonal. (iii) US 10y factor ranking: dp first (largest |t|). (iv) India: in-sample 1y
+R2 < 15% and NOTHING stable OOS (prior: India's sample cannot certify a return model —
+the honest expected print). CONSUMPTION: context; the L4 valuation state and L9 regime
+state are the only standing consumers. No promotion. Census: 14.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| ER-D6 | US + India, all vaulted metrics, linear vs nonlinear (interpretation hand-appended AFTER the print) | US 8-factor: in-sample R2 **65.8%** (5y) / **54.2%** (10y) — and OOS **-389% / -591%**: catastrophically worse than the historical mean; quadratic worse still (-445% / -949%) — bar (i) PASS, nonlinearity adds in-sample fit and subtracts OOS. THE CONTRAST THAT MATTERS: ER-D4's pooled-panel 5-factor scored -7.4%/+7.0% OOS on the same horizons — pooling 17 countries is the regularizer; a single-country kitchen sink with n=66 overlapping obs is pure memorization. 10y factor ranking: **dp +4.6** first (bar iii PASS), then g5 -2.4 (growth negative AGAIN), term +2.2, dg5 +2.2; credit gap last. The house nonlinear — the 3x3 dp x inflation RANK-BIN grid — is the only structure that survives inspection: cheap+low-infl **+14.2%/yr** -> expensive **+2.3%/yr**, ~12pp spread (bar ii >=6pp PASS), monotone down the diagonal; the expensive+high-inflation corner is EMPTY in US history (n<4) — that combination barely occurs. India: the registered 5-factor set on its n=13 intersection prints a fake 57.5% R2 (the overfit demo, as predicted); the honest reduced model R2 9-14% with NOTHING above t 1.7 (growth again NEGATIVE, -1.7); OOS -93.5% — bar (iv) PASS: India's sample cannot certify a return model | **all 4 registered priors confirmed; the grid (states/ranks) is the only nonlinearity that earns anything; census +14 = 281** |
