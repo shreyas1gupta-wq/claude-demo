@@ -1461,3 +1461,43 @@ Definitions fixed NOW, before any number:
 | # | What | Result | Status |
 |---|---|---|---|
 | EN-D1a | Onset-conditioned sectoral contrast, survivor panel (interpretation hand-appended AFTER the print) | Rule found 3 in-panel onsets: 2014 SON, 2018 ASO, 2019 OND (the last is the 2018-19 event's label lapse re-triggering — the rule ran as written, no hand-picking). TREATED: NO onset reaches z <= -1 at either horizon (2014: +0.39/-0.38; 2018: -0.27/+0.39; 2019: +1.99/+0.34) -> **NULL**. PLACEBO: CLEAN for 2014 and 2018 (all abs z < 1) but **CONTAMINATED for 2019 OND** (+1.33 6m / +1.34 12m) — those windows are the COVID crash/recovery, which also owns treated's +1.99 (defensive staples in the crash), so the 2019 cells may not be read as sectoral, exactly as the control was designed to catch. PRIOR MISS recorded: the registration called 2015 treated z <= -1 plausible; measured -0.38 at 12m only. Mechanism read: the panel's rural-REVENUE large caps are urban-margin franchises, and the true rural casualties are dead names a survivor panel cannot hold — the bias the one-way declaration anticipated. Under that declaration this NULL is INCONCLUSIVE, not evidence against H55 | **null — inconclusive (one-way); H55 stays Tier-C candidate; full EN-D1 (PIT panel + realized deficits + food-CPI) remains the promotion test; census +4 = 197** |
+
+## Entry GDP-D1 + FISH-D1 (2026-09-05) — PRE-REGISTERED before running: growth vs the
+market, and the Fisher equation vs the market. Principal directive: "gdp impact on stock
+market or fisher equation vs market backtest it." Both are VERIFICATION designs on the JST
+R6 panel (17-18 economies, 1950-2020, postwar span fixed to avoid war/hyperinflation
+regimes; stated). Consumption is CONTEXT only: GDP keeps its [CONTEXT] tag in the
+sub-parts menu and the Fisher print underwrites the L9 inflation-regime state. No
+promotion path; nothing enters the stack.
+
+Definitions fixed NOW: real GDP growth = Δlog real GDP per capita (rgdppc); inflation =
+CPI pct change; nominal equity return = eq_tr; real equity = (1+eq_tr)/(1+infl)-1.
+Overlapping-window p-values are flagged inflated, never trusted.
+
+**GDP-D1 (3 cells):**
+- (i) CROSS-COUNTRY: corr across countries of full-sample (>=50y) real GDP/cap growth vs
+  real equity CAGR. PRIOR (Ritter 2005/DMS): ~zero or NEGATIVE. BAR: corr < +0.3 confirms
+  "growth is not the cross-country equity driver"; corr >= +0.5 is a recorded miss.
+- (ii) WITHIN, CONTEMPORANEOUS: pooled corr(same-year growth, real equity return).
+  PRIOR: modest positive (+0.1 to +0.3).
+- (iii) WITHIN, LEAD-LAG: pooled corr(growth_t, real equity_{t+1}) vs corr(real equity_t,
+  growth_{t+1}). PRIOR: prediction ~0 (|corr| < 0.1); the REVERSE larger (the market is
+  the leading indicator, not the lagging consumer). BAR: reverse > forward confirms the
+  growth-state [CONTEXT] tag; forward >= +0.15 pooled is a recorded miss AND a reopening
+  flag for the growth band.
+
+**FISH-D1 (3 cells):**
+- (i) 1Y FISHER SLOPE: pooled OLS slope of NOMINAL equity return on same-year inflation.
+  Fisher predicts beta = 1. PRIOR (Fama-Schwert 1977): beta BELOW ZERO at annual horizon.
+  BAR: beta significantly < 1 rejects the 1y Fisher hedge; beta >= +0.5 is a recorded miss.
+- (ii) 10Y FISHER SLOPE: slope of overlapping 10y nominal equity CAGR on 10y inflation.
+  PRIOR: beta rises toward 1 (partial long-horizon hedge restored).
+- (iii) REGIME SPLIT (the L9 tie): pooled real equity return in top-quintile inflation
+  country-years vs bottom-quintile. PRIOR: strongly negative in the top quintile (the
+  1970s mechanism); gap >= 5pp expected.
+- Census: 6 run cells (3 + 3).
+
+| # | What | Result | Status |
+|---|---|---|---|
+| GDP-D1 | Growth vs the market, JST R6 1950-2020 (interpretation hand-appended AFTER the print) | (i) CROSS-COUNTRY corr(mean real GDP/cap growth, real eq CAGR) = **-0.21** (n=16) — BAR PASS, Ritter's paradox reproduced on our own vault: Japan grew fastest (3.6%/yr) with mid-pack equity returns; Switzerland/UK grew slowest with solid returns; Portugal grew 2.7%/yr and equity holders LOST money. (ii) same-year pooled corr **+0.09** (n=1120) — bottom of the prior band; even contemporaneously, annual growth barely co-moves with returns. (iii) forward corr(growth_t, eq_t+1) = **-0.06** (bar: abs < 0.1 PASS); reverse corr(eq_t, growth_t+1) = **+0.31** — the market leads GDP by 5x more than GDP leads the market. Growth stays [CONTEXT]; the reopening flag stays untriggered | **all 3 bars pass — "GDP does not drive equity returns" confirmed at panel breadth** |
+| FISH-D1 | Fisher equation vs the market, JST R6 1950-2020 | (i) 1y pooled slope of NOMINAL equity on inflation: beta = **-0.21** (se 0.16, n=1136) vs Fisher's +1 — 7.6 se's below; the Fama-Schwert result reproduced: stocks are NOT a 1-year inflation hedge, the sign is the WRONG WAY. (ii) 10y slope beta = **+0.21** (n=976 overlapping, se flagged) — direction of the prior confirmed (rises with horizon) but "toward 1" was generous: even at 10y the hedge is ~one-fifth restored. PARTIAL PRIOR MISS recorded. (iii) regime split: top-quintile inflation country-years (median 9.9%) real equity **+2.9%/yr** vs bottom-quintile (0.5%) **+14.9%/yr** — 12pp gap, bar (>=5pp) PASS, but PRIOR MISS on sign recorded: high-inflation real equity is LOW, not negative (the truly negative years are the ACCELERATION years inside the arc — the L9 state distinction, now sharpened by this print) | **Fisher rejected at 1y as registered; 12pp regime gap underwrites L9; two honest prior misses booked; census +6 = 203** |

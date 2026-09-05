@@ -50,7 +50,8 @@ this census exists so that can never happen silently.
 | T2 (level + trend reads) | 2 | 2 |
 | T1b (4 conditionings) + T6-TOM (full + 2 eras + fingerprint) | 8 | 8 |
 | EN-D1a (2 baskets x 2 horizons, onset-conditioned) | 4 | 4 |
-| **RUNNING TOTAL (run cells)** | | **197** |
+| GDP-D1 (3 cells) + FISH-D1 (3 cells) | 6 | 6 |
+| **RUNNING TOTAL (run cells)** | | **203** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
