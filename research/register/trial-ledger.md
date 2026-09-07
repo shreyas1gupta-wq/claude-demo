@@ -2164,3 +2164,88 @@ Script: scripts/analyze_ci_battery.py. Census: 20.
 | # | What | Result | Status |
 |---|---|---|---|
 | CI-D1..D5 | The credit + inflation battery (interpretation hand-appended AFTER the print; i2's n counts complete equity rows, D2's n counts regime-years — stated) | **CI-D1 THE ACCELERATION TEST**: i1 monotone as registered — accel years **-0.4% mean / -1.4% median**, stable +8.7%, decel **+15.8%** (decel bar >=+10 PASS; accel bar <=-5% MISSED — flat-to-negative, not deeply negative); i2 the 2x2: **HIGH+rising -3.0% (median -4.0)** vs **HIGH+falling +4.4%** — the registered decomposition CONFIRMED: ER-D1b(9)'s -4.1%/yr top-quintile number is owned by the RISING half (falling-from-high years are positive); low+rising +6.8 vs low+falling +13.5 — direction splits BOTH levels by ~7pp; i3/i4 **PRIOR MISS, the refusal clause fires**: corr(dinfl, req) -0.20 vs corr(level, req) **-0.24** — in correlation form the LEVEL is not beaten by the change; the killer is the CONJUNCTION (high AND rising), not acceleration per se — L9 sharpened in bucket form only, recorded as measured; i5 next-1y after accel +2.1% mean / +0.1% median — muted recovery (no currency-crash-style rebound). **CI-D2 THE REGIME TABLE** (same-yr real means): HIGH+rising: gold **+9.6** > housing **+6.8** >> equity -3.0 > bills -2.8 > bonds **-5.6** — gold-best and equity-worst as registered; housing NEARLY UNIMPAIRED in the killer cell (the inflation-passthrough asset) and it beats equity there by 9.8pp (h5 extended), but the housing sub-priors partially missed: high+falling housing +4.3 vs equity +4.4 (tie, not a beat) and housing is HIGHER when rising (6.8 > 4.3) — housing hedges the acceleration, not the level; bills negative in both HIGH cells (repression confirmed); bonds' best cell is low+falling (+5.6), NOT high+falling (+0.4) — **MISS**: the carry-cohort's bond decade is the DESCENT INTO low, not the high+falling year itself. **CI-D3 CREDIT x INFLATION**: a clean DIVISION OF LABOR — the INFLATION axis owns returns (equity 3.3-3.4% in HIGH cells vs 5.4-5.9% low, near-identical across credit states: DB-D3's credit-return null extends CONDITIONALLY; the two-sided j1 lands flat-credit); the CREDIT axis owns crises (j2: boom 15.0-19.4% crisis-in-3y vs calm 5.3-6.5% — DB-D5 reproduced; inflation adds +4.4pp within boom, 1.4pp over the <=3pp bar — partial miss); j3 **MISS**: bonds worst in calm+HIGH (-2.5), not boom+HIGH (-0.5) — inflation owns bonds entirely; j4 housing: boom cells lower (3.7/5.4 vs 6.7/7.4) — the credit axis owns housing (DB-D7 h4 in bucket form), worst cell boom+HIGH +3.7%. **CI-D4 THE CRISIS EVENT STUDY** (88 crisis-years): equity t-1 -0.5 / **t0 -14.1** / t+1 +9.7 / t+2 +13.9 / t+3 +4.6 — t0 bar PASS, recovery arrives at t+1 already; k2 **MISS on sign**: housing NEVER prints a negative event-time mean (8.3 -> 4.6 -> 4.3 -> 3.8 -> 4.3) — the slow bust shows as a multi-year SLOWDOWN in the pooled record, not negative means (the L12 Big-5 severity is diluted by 88 pooled crises; stated); k3 crisis-yr equity from HIGH-inflation entry **-18.2%** vs -13.0% other entries — worse as registered. **CI-D5 INDIA** (nominal, RF proxy): l1 corr(dRF, mkt) -0.12 (leaned sign, weak); l2 rising-RF years +15.4% mean vs falling +20.8% (medians 14.9/12.1 — means only); l3 next-1y after tightening +19.1% — no hangover; descriptive strength only, n=31 | **the killer cell is the CONJUNCTION (high + rising): direction splits the level effect ~7pp at both levels but the level survives in corr form (refusal clause fired, recorded); asset ranking in the killer cell booked (gold > housing >> equity > bills > bonds); crises belong to credit, returns to inflation; crisis event-time table booked (t0 -14.1, recovery t+1, housing = slowdown-not-crash); 6 misses/partials recorded; census +20 = 442** |
+
+## Entry SEC-D1..D4 (2026-09-07) — PRE-REGISTERED before running: THE SECTOR BATTERY
+(India partial). Principal directive verbatim: "now lets check sectoral impact which
+sectors best which worst which unaffected, gdp, debt, credit, currency, inflation."
+DATA REALITY, stated first: the only vaulted sector-capable data is the NIFTY500 survivor
+panel (n500_adjclose_2012_2022.csv.gz, 487 tickers, daily adjcloses) — SURVIVORSHIP BIAS
+KNOWN AND STATED: one-way/RELATIVE reads only (all baskets carry the bias the same
+direction, but not equally — differential churn per sector is an unquantified residual,
+stated as a limit); equal-weight baskets, not cap-weighted (stated). The US/long-history
+sector leg (Ken French industry portfolios) is BLOCKED: the primary host is egress-dead
+and a GitHub mirror hunt (repo-scoped probes: Soderlind course repos, Rdatasets index)
+came up empty this session — SEC-D5 registered UNRUN below; runsheet row added. India CPI
+is NOT vaulted, so the inflation x sector map is NOT runnable here (goes with SEC-D5 /
+the CPI runsheet row); the runnable GDP-shock reads are the two event windows (E2, E4) —
+the annual growth x sector cell needs longer sector history (stated). Debt/credit at
+sector level = the E3 credit-crunch episode + the rate-state cells.
+SECTOR BASKETS, fixed NOW (EN-D1a precedent; names absent from the panel are dropped by
+the script filter; M&M, NESTLEIND, COFORGE absent from panel — stated):
+IT: TCS INFY WIPRO HCLTECH TECHM MPHASIS MINDTREE BSOFT CYIENT LTI |
+PHARMA: SUNPHARMA DRREDDY CIPLA LUPIN AUROPHARMA DIVISLAB ALKEM BIOCON GLENMARK
+TORNTPHARM IPCALAB | FMCG: HINDUNILVR ITC BRITANNIA DABUR MARICO GODREJCP COLPAL EMAMILTD
+TATACONSUM VBL | PVTBANK: HDFCBANK ICICIBANK KOTAKBANK AXISBANK INDUSINDBK FEDERALBNK CUB
+RBLBANK IDFCFIRSTB BANDHANBNK | PSUBANK: SBIN BANKBARODA PNB CANBK BANKINDIA UNIONBANK
+CENTRALBK IOB MAHABANK INDIANB | NBFC: BAJFINANCE CHOLAFIN SRTRANSFIN LICHSGFIN
+MUTHOOTFIN MANAPPURAM PNBHOUSING CANFINHOME CREDITACC | AUTO: MARUTI TATAMOTORS
+BAJAJ-AUTO HEROMOTOCO EICHERMOT ASHOKLEY TVSMOTOR ESCORTS APOLLOTYRE CEATLTD | METALS:
+TATASTEEL JSWSTEEL HINDALCO VEDL SAIL NMDC JINDALSTEL NATIONALUM HINDZINC COALINDIA MOIL
+| ENERGY: RELIANCE ONGC OIL GAIL IOC BPCL HINDPETRO PETRONET CASTROLIND IGL MGL (upstream
++ OMC mixed — crude sensitivities OPPOSITE within the basket, stated) | CAPGOODS: LT
+SIEMENS ABB BHEL BEL CUMMINSIND THERMAX KEC NCC ASHOKA ADANIPORTS CONCOR | REALTY: DLF
+GODREJPROP OBEROIRLTY PRESTIGE SOBHA BRIGADE PHOENIXLTD SUNTECK IBREALEST | CEMENT:
+ULTRACEMCO ACC AMBUJACEM SHREECEM RAMCOCEM JKCEMENT DALBHARAT BIRLACORPN INDIACEM |
+DURABLES: TITAN HAVELLS VOLTAS CROMPTON BLUESTARCO BATAINDIA PAGEIND RELAXO WHIRLPOOL
+AMBER BAJAJELEC | UTILITIES: NTPC POWERGRID TATAPOWER CESC TORNTPOWER NHPC SJVN
+ADANIPOWER JSWENERGY
+CONVENTIONS: daily basket return = equal-weight mean of member returns; panel mean = mean
+of all 487; REL = compounded (basket-minus-panel) daily series over the window (EN-D1a's
+rel_curve machinery); UNAFFECTED = |cum REL| < 3pp per episode (|annualized REL diff| <
+3pp for annual states). Episode windows fixed NOW (public-record dates): E1 TAPER
+2013-05-22..2013-09-03 (currency); E2 DEMONETIZATION 2016-11-09..2017-01-31 (growth/cash
+shock); E3 NBFC CRUNCH 2018-09-04..2019-02-07 (credit); E4 COVID CRASH
+2020-02-20..2020-03-23 + E4b RECOVERY 2020-03-24..2020-12-31 (growth/crisis); E5 INR+OIL
+SLIDE 2018-04-02..2018-10-09 (currency; overlaps E3 in Sep-Oct, stated); E6 EASING CYCLE
+2019-02-07..2019-12-31 (rates). Annual states: WEAK-INR year = calendar dlog(INR/USD) >=
++5% (fx vault); RATE state = sign of annual change in IIMA RF.
+CELLS (14):
+**SEC-D1 — episode tables (7):** cum REL per sector for E1/E2/E3/E4/E4b/E5/E6; best/
+worst/unaffected named per the 3pp rule. PRIORS: E1 best IT+PHARMA, worst REALTY/PSUBANK/
+CAPGOODS/NBFC, FMCG unaffected; E2 worst REALTY/NBFC/DURABLES/AUTO, IT+PHARMA unaffected-
+to-best; E3 worst NBFC+REALTY, PSUBANK negative, best IT/FMCG (flight to quality); E4
+worst NBFC/PSUBANK/REALTY/METALS, best PHARMA+FMCG; E4b led by METALS/AUTO/REALTY (the
+junk rally), PHARMA also STRONG (COVID demand — two-sided vs the junk-rally lag prior,
+stated); E5 best IT, worst NBFC/AUTO, ENERGY two-sided (mixed basket); E6 TWO-SIDED for
+NBFC/REALTY (cuts vs credit stress).
+**SEC-D2 — the currency-sector map (3):** (i) per-sector annualized REL in WEAK-INR years
+vs other years (the map); (ii) THE EXPORTER HEDGE BAR: (IT+PHARMA composite) REL
+difference weak-minus-other >= +5pp/yr; (iii) next-year reversal: rank-corr across
+sectors of weak-year REL vs next-calendar-year REL, averaged over weak years — prior:
+NEGATIVE (reversal), two-sided lean.
+**SEC-D3 — the rate-sector map (2):** (i) per-sector annualized REL in rising-RF vs
+falling-RF years; (ii) THE LEVERAGED-TRIO BAR: (NBFC+REALTY+PSUBANK composite) REL
+rising-minus-falling <= -3pp/yr; IT and FMCG |diff| < 3pp (rate-insensitive).
+**SEC-D4 — credit-crunch specificity (2):** (i) THE FUNDING-SHOCK ORDERING through E3:
+cum REL NBFC < PSUBANK < PVTBANK (a registered ordering bar on the E3 print); (ii) REALTY
+cum REL <= -8pp in E3 (credit transmission).
+CONSUMPTION: context for the India regime playbook (sector overlay), L14 (FII flows),
+L20 (RBI cycle), the CU/CI battery doctrine; no promotion; descriptive strength only
+(episodes n=7, years n=10). Script: scripts/analyze_sec_battery.py. Census: 14.
+
+## Entry SEC-D5 (2026-09-07) — REGISTERED, UNRUN (data-gated; counts 0 until run): US
+INDUSTRY x MACRO-STATE LONG-HISTORY BATTERY. Needs Ken French 12-industry monthly returns
+1926- (value-weight; primary mba.tuck.dartmouth.edu egress-blocked; mirror hunt failed
+2026-09-07 — principal-machine pull, runsheet row added). DESIGN, frozen now: JST-USA
+macro states (inflation 2x2 level x direction as CI-D1; credit boom as CI-D3; debt >=90%
+years as DB-D4; crisis years; broad-dollar terciles as CU-D7) x 12 industries; per-state
+industry REL (vs equal-weight industry mean) annualized; named reads: the inflation-2x2
+industry table, the crisis-year table, the debt-bucket table, the dollar-tercile table
+(4 cells + grading vs the SEC-D1..D4 India priors). PRIORS frozen with the design: energy
++ materials best in HIGH+rising inflation; durables/retail worst; utilities hurt by
+rising rates; banks worst in crisis years; staples least affected everywhere (the
+"unaffected" seat). Census: 0 now; 4 on the day it runs.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| SEC-D1..D4 | The sector battery, India partial (interpretation hand-appended AFTER the print) | **SEC-D1 episodes** (cum REL, pp): **E1 TAPER**: IT +47.5 / PHARMA +22.4 best, PSUBANK -35.4 / PVTBANK -22.8 worst (prior nailed except PVTBANK's severity — banks generally, not just PSU, absorb the FII-outflow leg); FMCG +15.2 (registered "unaffected" missed pleasantly — defensives WIN taper windows). **E2 DEMONET**: worst REALTY -8.1 / CEMENT -7.8 (the cash-transaction chain, as registered) but best METALS +13.2 / UTILITIES +12.2 — CONFOUND STATED: demonetization landed the same week as the Trump global-reflation rally; the worst column is the domestic signal, the best column is the global confound. **E3 NBFC CRUNCH — THE SURVIVORSHIP ARTIFACT, flagged**: NBFC basket printed **+8.4** (basket holds only 2021 survivors — BAJFINANCE/gold financiers; DHFL, IBULHSGFIN, RELCAPITAL are structurally ABSENT from a survivor panel); the honest reads are PSUBANK -7.5, METALS -10.2 (global H2-2018 selloff overlay), PVTBANK +10.0 / PHARMA +10.1 (flight-to-quality within financials, as registered in direction). **E4 COVID CRASH**: worst NBFC -20.8 / PVTBANK -18.7 (moratorium fear), best PHARMA +27.9 / FMCG +18.2 (as registered); PSUBANK +0.4 — PRIOR MISS: already so cheap it fell WITH the panel, not worse. **E4b RECOVERY**: **IT +27.5 led (WFH boom — not in the prior)**, METALS +16.8 second (junk-rally leg confirmed); worst PSUBANK -27.1 / ENERGY -22.4 / UTILITIES -21.1; PHARMA -2.2 (the two-sided landed on the lag side). **E5 INR+OIL**: IT +36.1 / PHARMA +31.8 vs REALTY -17.4 / PSUBANK -17.0 / NBFC -15.2 / AUTO -12.7 (as registered); ENERGY -6.5 (two-sided, OMC drag edge). **E6 EASING**: REALTY +22.2 / NBFC +21.0 best (the two-sided lands on cuts-win, survivor caveat on NBFC), PSUBANK -23.7 / IT -17.2 worst. **SEC-D2 currency map** (weak-INR years 2013/2015/2018, REL diff weak-minus-other, pp/yr): IT **+34.6**, PHARMA +29.3, **FMCG +22.2**, AUTO +7.9, PVTBANK +7.1 || REALTY **-27.5**, CEMENT -20.1, PSUBANK -19.8, **METALS -16.5**, NBFC -10.1; (ii) EXPORTER HEDGE BAR: +31.9pp/yr (bar >=5 — 6x through); METALS on the LOSER side despite USD pricing — weak-INR years are global-risk-off years, the commodity leg loses more than the FX leg gains; (iii) reversal mean **-0.03** (-0.08/-0.19/+0.18) — NO systematic next-year reversal: weak-year sector moves are repricing, not overshoot (two-sided lean missed). **SEC-D3 rate map**: LEVERAGED TRIO rising-minus-falling **-8.1pp/yr (bar <=-3 PASS)**; but the rate-insensitivity bar **FAILED**: IT +12.2 / FMCG +7.2 in rising years — because rising-RF years (2012-14, 2018) ARE the weak-INR years (the L20 defense mechanism): **India's sector space collapses to ONE AXIS — domestic-leverage (REALTY/PSUBANK/NBFC/CEMENT/METALS) vs exporter-defensive (IT/PHARMA/FMCG) — activated jointly by INR-stress = rate-rising = credit-stress**; the two maps are one map. **SEC-D4**: (i) ordering NBFC < PSUBANK < PVTBANK **FAIL** as printed (+8.4 / -7.5 / +10.0) — attribution: survivorship (the basket cannot contain the casualties; stated as interpretation, the FAIL stands); (ii) REALTY E3 -1.8pp vs bar <=-8 **MISS** (survivor developers + realty already deflated pre-crunch) | **the one-axis doctrine is the headline; exporter hedge 6x its bar; E3/NBFC reads carry the survivorship flag permanently; 2 bars failed + 4 partials recorded honestly; SEC-D5 (US long history) data-gated on the runsheet; census +14 = 456** |
