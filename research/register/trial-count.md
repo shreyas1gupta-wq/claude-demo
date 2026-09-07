@@ -82,7 +82,10 @@ this census exists so that can never happen silently.
 | OP-D4 composed book vs the 15/15 target (one-shot, 6 cells) | 6 | 6 |
 | OP-D5 stacked book under the principal's margin model (one-shot, 8 cells) | 8 | 8 |
 | OP-D6 full book + factor sleeve, incl. the s4 haircut rerun (one-shot, 8 cells) | 8 | 8 |
-| **RUNNING TOTAL (run cells)** | | **712** |
+| OP-D6b correction leg (E1 month-drop + E2 financing; a1 diagnostic + 4 re-runs) | 5 | 5 |
+| MR-D1 mean-reversion battery (m1, m2a/b, m3a/b, m4a/b, m5) | 8 | 8 |
+| OP-D7 relaxed-constraint grid (24 train + selection + validation + 8 final reads; MR axis dropped pre-run) | 34 | 34 |
+| **RUNNING TOTAL (run cells)** | | **759** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

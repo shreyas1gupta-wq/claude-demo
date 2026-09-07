@@ -2844,3 +2844,98 @@ Script: scripts/analyze_op_d6.py.
 | Design | What it is | Result (interpretation written AFTER the print) | Verdict |
 |---|---|---|---|
 | OP-D6 | The full multi-strategy book: OP-D5 + the vol-managed 50/50 WML+HML factor sleeve at 15% (core cut 80->65), one-shot vs the 15/15 bars | **s8 THE HEADLINE: OP-D6 STRICTLY DOMINATES OP-D5** — CAGR +10.74%/yr (TR ~+12.04) vs +10.08 AND maxDD **-10.47% vs -16.04%** (dCAGR +0.66pp, dDD +5.57pp). The factor sleeve is the program's first stacked component that improves BOTH sides at once: **s3** contribution +1.80%/yr at 15% weight (sleeve standalone +17.02%/yr, worst sleeve year only -2.0% in 2018, mean leverage 1.59x of cap 2.0) — low-corr long-short cuts book vol, which the vol-managed core then re-levers less painfully through drawdowns. **s2 PASSES WITH ROOM** (-10.47 vs <=15) — the registered 14-17 prior was WRONG on the good side (two-sided prior miss recorded: the sleeve's diversification effect on DD was underestimated). s6 PASS (worst year -2.0%; NOTE 2023 is a Q1 stub — worst FULL year -1.7%, 2015). s7 halves +6.16/+14.96 (the improvement is era-concentrated: 2017 +33.7% is the sleeve's big year). **s1 MISS** (+10.74/+12.04TR vs >=15) — TR lands just BELOW the registered 12.5-15 gross prior band; **s4 THE HONEST NUMBER: at the -30% factor-mean haircut CAGR +10.17 (TR ~+11.47), maxDD -10.69, worst year -2.2% — s1 MISSES at haircut exactly as the prior said, s2 still passes**. s5 MISS (peak margin+premium 22.3% vs <20% prior — the prior was wrong again, not the design; feasible under pledge; factor long-short gross adds up to 30% notional needing SLB, unmodeled and stated). CONSUMPTION: the 65/20/15 collar-stacked book is the NEW BASELINE at ~+11.5-12.0 TR / -10.5 DD; the remaining gap to 15/15 is now ~3.0-3.5pp of CAGR with **4.5pp of DD headroom to spend** — the registered paths unchanged (real option chains, PIT breadth, funding_rate) are all principal-gated pulls. Paper caveats verbatim: flat-sigma BS zero costs, price-only core, academic gross long-short factors, no 2008 in the VIX sample | **both risk bars now pass with room; the return bar confirmed alpha-gated (structure exhausted: two stacks in a row moved DD, not CAGR); 2 prior errors + 2 misses booked honestly; census +8 = 712** |
+
+## Entry OP-D6b (2026-09-08) — PRE-REGISTERED before running: CORRECTION LEG (principal
+directive: "check for errors"). Audit of the OP-D4/D5/D6 book scripts found TWO
+implementation errors vs their registered designs, confirmed by diagnostic before this
+registration (magnitude checks only — no book number recomputed yet):
+(E1) MONTH-DROP BUG: monthly sleeves (switcher, factor) mark returns at CALENDAR
+month-ends via `if me in daily_index` — 44 of 141 months (31%) fall on non-trading days
+and were silently ZEROED, not deferred. The registered designs said "marks at month-end,
+flat intra-month" — intent was every month. Fix: mark at the LAST TRADING DAY of each
+month. Direction: understates booked CAGRs.
+(E2) FREE-LEVERAGE OMISSION: the vol-managed core runs expo>1.0x on 57% of days (mean
+excess +0.28x) with no financing cost — ~0.95%/yr of core notional unmodeled. "Paper,
+zero costs" was declared, but leverage financing is not a trading cost — it is part of
+the return definition. Fix: subtract r=0.06 (the BS rate, declared as the paper funding
+rate pending the funding_rate config) x (expo-1)+ daily. Direction: overstates CAGR.
+(Audit also noted, run-note grade, no re-run: OP-D3's budget exclusion window is
+T-2..T+1, one day wider than the registered T-1..T+1 — conservative direction, fewer
+entries; stands as a declared deviation.)
+Originals get dated run notes; bars are NOT moved; the corrected prints are the new
+baselines. CELLS (5): a1 magnitude diagnostic (booked from the pre-registration check);
+a2 OP-D4 re-run with E1 fix (bars re-read); a3 OP-D5 re-run with E1 (bars re-read);
+a4 OP-D6 re-run with E1 (bars re-read); a5 OP-D6 re-run with E1+E2 — THE HONEST BASELINE
+for everything downstream (bars re-read). PRIOR: E1 adds roughly +0.3-0.8pp CAGR to
+D5/D6 (sleeve means positive); E2 subtracts ~0.4-0.7pp at 65-80% core weight; net for
+a5 vs the booked D6 print: -0.5 to +0.5pp, DD roughly unchanged. Census 5.
+Script: scripts/analyze_op_d6b.py.
+
+## Entry MR-D1 (2026-09-08) — PRE-REGISTERED before running: THE MEAN-REVERSION BATTERY
+(principal directive: "mean reversion opportunities and monthly bets"). NIFTY vault,
+2011-07..2023-03 unless stated; all signals from information available at the close of
+the signal day; expanding percentiles min_obs=252; VIX-pct = the house expanding pct.
+CELLS (8):
+m1 next-1d return after >=3 consecutive down days vs unconditional (daily MR existence);
+m2a next-5d return after bottom-decile trailing-5d return (expanding decile), CALM
+(VIX-pct<0.60); m2b same, STRESS (VIX-pct>=0.60);
+m3a next-week return after 2 consecutive down weeks; m3b after 3 (weekly MR);
+m4a next-month return after a <=-5% month; m4b same conditional on VIX-pct>=0.80
+(monthly bets — informational for the NEXT design, not wired into OP-D7);
+m5 THE OVERLAY ECONOMICS CELL: rule = after bottom-decile trailing-5d return AND
+VIX-pct>=0.60, add +0.30x book synthetic long exposure for 5 trading days (financed at
+r=0.06, margin 10% of add-on notional); report the rule's standalone contribution
+%/yr, its active-day mean excess return, and both era halves.
+INCLUSION RULE FROZEN NOW: the MR overlay enters the OP-D7 grid as an on/off axis ONLY
+if m5 active-day mean excess return > 0 AND the contribution is positive in BOTH era
+halves; otherwise the axis is dropped and its grid cells are not run.
+PRIOR (two-sided): daily/weekly MR in India is weak post-2010 (T-CTRL1 precedent);
+m2b/m4b (stress-conditioned) are the live candidates — post-spike buyer edge is booked
+doctrine (OP-D1 f1/f2). Expect m1 ~ 0, m2b positive but noisy, m5 a coin-flip on the
+both-halves condition. Census 8. Script: scripts/analyze_mr_d1.py.
+
+## Entry OP-D7 (2026-09-08) — PRE-REGISTERED before running: THE OPTIMIZED BOOK UNDER
+RELAXED CONSTRAINTS (principal directive: "add more strategies if needed relax some
+constraints optimize ... weekly sells ... synthetic futures using options for long
+entries"). Base = the OP-D6b a5 corrected book (E1+E2 fixes in ALL cells). RELAXATIONS,
+each named and frozen:
+R1 SYNTHETIC-FUTURES TOP-UP: core exposure cap raised 1.5x -> 2.0x; all exposure above
+1.0x is implemented as synthetic long futures (long ATM call + short ATM put),
+financing embedded at r=0.06 via put-call parity — subtracted as r x (expo-1)+ daily;
+margin 10% of synthetic notional (the short-put leg is directional — unhedged under the
+principal's model). The principal directed synthetics explicitly; r=0.06 is declared
+the paper funding rate pending the funding_rate config (validator WARN stands).
+R2 WEEKLY SELLS, POST-SPIKE ONLY: weekly condor sleeve — entry ONLY at VIX-pct>=0.80
+(the sole state with booked seller breach-edge, OP-D1 b2/d1; c04's exclusion of
+ALWAYS-ON weekly selling stands — this is a state-gated relaxation, not a reversal);
+next-Thursday expiry (>=3 td else following), short 1.0-sigma strikes, 2.5-sigma wings,
+units = 0.05 x book / maxloss, no rolls, sleeve day-stop -1% book, margin 2.5% notional
+(hedged). Computed once as a book-relative stream.
+R3 MR OVERLAY: per MR-D1's frozen inclusion rule (axis dropped if m5 fails).
+R4 WEIGHT RE-OPTIMIZATION with the house purge protocol: TRAIN 2011-07..2016-12,
+TEST 2017-02-01..2023-03-31 (21td purge, OP-D3b verbatim). Weight simplex
+(core/switcher/factor): {65/20/15, 55/20/25, 60/15/25, 70/10/20, 50/25/25, 60/20/20}.
+GRID = 6 weights x R1 {on,off} x R2 {on,off} = 24 train cells (x2 if R3 survives — the
+24 doubles to 48; the census row will state which). SELECTION (frozen): maximize train
+CAGR subject to train maxDD >= -15% AND train worst-year >= -10%; tie-break = smaller
+|maxDD|. VALIDATION (frozen): the selected config vs the corrected-D6 config (65/20/15,
+R1 off, R2 off) on TEST; ACCEPT iff test CAGR improves AND test maxDD >= max(baseline
+test maxDD, -15%); else THE BASELINE STANDS and OP-D7 books "no improvement" honestly.
+FINAL READS on the accepted config, full period (8): s1 CAGR>=15% TR; s2 maxDD<=15%;
+s3 peak margin (incl. synthetic 10% + weekly 2.5% legs; prior <30% now — the 20% prior
+missed twice); s4 the -30% factor-mean haircut, both bars re-read; s5 era halves;
+s6 worst year >=-10%; s7 dominance vs OP-D6b a5; s8 yearly table + attribution.
+All OP-D5 overlays verbatim throughout (ladder scales with expo — protection follows
+leverage). PRIOR (two-sided): R1 adds +0.8-1.5pp CAGR at +1-3pp DD cost (financed
+leverage into a vol-managed core is the one lever with real headroom — 4.5pp of DD room
+exists); R2 adds +0.2-0.5pp at little DD (rare state, small size); the 15/15 TR target
+is REACHABLE on s1 for the first time (call it 40-55%) but s4-at-haircut remains the
+honest read and likely lands 13-14.5; if s1 passes at haircut too, ER-D4b-grade
+suspicion applies. Census: 24 or 48 grid + selection + validation + 8 final = 34 or 58.
+Script: scripts/analyze_op_d7.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| OP-D6b | Correction leg: E1 month-drop (31% of monthly-sleeve months silently zeroed) + E2 free leverage (57% of days levered, ~0.95%/yr of core notional unfinanced), found by directed audit | a2 OP-D4+E1 +10.13/-22.75 (booked +9.86/-22.71, d+0.27pp); a3 OP-D5+E1 +10.32/-16.09 (booked +10.08); a4 OP-D6+E1 **+11.78/-11.40** (booked +10.74/-10.47 — the factor sleeve gained the most, +1.04pp: 31% of its months had been zeroed); **a5 OP-D6+E1+E2 = THE HONEST BASELINE: CAGR +11.13 (TR ~+12.43), maxDD -11.53, worst yr -2.3 (Q1-23 stub), peak margin 22.2% (incl. 10% on the levered synthetic fraction), eras +7.55/+14.41** — E2 costs -0.65pp, net vs the booked D6 print +0.39pp, inside the registered -0.5..+0.5 prior. Bars re-read: s1 MISS / s2 PASS / s6 PASS unchanged in direction everywhere. CORRECTION NOTE (2026-09-08, ER-D4b protocol): the OP-D4/D5/D6 headline numbers above are SUPERSEDED by a2/a3/a5 respectively; originals stay visible; no bar moved. All downstream comparisons now cite a5. Run-note grade, no re-run: OP-D3's budget window is T-2..T+1, one day wider than registered (conservative; declared deviation) | **both errors real and material (offsetting); corrected baseline +11.13/-11.53; census +5 = 717** |
+| MR-D1 | Mean-reversion battery: daily/weekly/monthly + the m5 overlay economics cell with a FROZEN inclusion rule for the OP-D7 grid | **MEAN REVERSION IN NIFTY IS DEAD AT EVERY FREQUENCY POST-2011.** m1 next-1d after >=3 down days -2.3bp vs +4.5bp unconditional (continuation, not reversal); m2a/m2b next-5d after bottom-decile 5d ret +0.05/+0.06% vs +0.23% unconditional — WORSE than baseline in both states; m3a/m3b weekly nulls (+0.20/+0.14 vs +0.21); **m4a/m4b THE MONTHLY-BETS ANSWER: after a <=-5% month the next month averages -0.24% (vs +0.97% unconditional), and -2.86% when VIX-pct>=0.80 (n=5)** — India monthly returns CONTINUE, they do not revert; the monthly bet that works is the momentum switcher already in the book. m5 overlay +0.11%/yr, active-day excess +3.0bp, halves -0.20/+0.40 -> INCLUSION RULE NOT MET, MR axis dropped from OP-D7 exactly as pre-declared. Consistent with the registered prior and T-CTRL1. CONSUMPTION: no MR sleeve enters any book; post-spike longs remain a 6-12m horizon trade (OP-D1 f1/f2), never a 5d one | **clean negative battery; the frozen gate fired correctly; census +8 = 725** |
+| OP-D7 | The optimized book under relaxed constraints: 24-cell purged grid (6 weight simplexes x synthetic top-up x post-spike weekly sleeve), frozen selection + validation | **VALIDATION REJECTED THE TRAIN WINNER — THE BASELINE STANDS.** Train selected 50/25/25 + weekly sleeve (+11.74 vs +7.55 baseline on train, every weekly-on cell beat its sibling by ~+2.3pp); on TEST it made +13.15/-9.60 vs baseline +13.35/-10.13 — the train edge did NOT carry, booked as NO IMPROVEMENT per the frozen rule. TWO DOCTRINE FINDINGS: (1) **synthetic-futures leverage at r=6% does not pay** — syn=Y is negative in ALL 12 train pairs (~-0.15pp each): the incremental calm-period equity premium over 6% financing is ~zero; the 4.5pp DD headroom cannot be spent on levered beta at Indian funding costs (funding_rate config now matters only if the principal's real rate is materially below 6%); (2) the post-spike weekly sleeve's edge is ERA-CONCENTRATED in 2011-16 (standalone +0.56%/yr full-period, +2.3pp train, ~flat test) — weekly selling stays excluded from the standing book. FINAL (= OP-D6b a5 verbatim): +11.13 (TR ~+12.43) / -11.53; s1 MISS, s2 PASS, s3 peak margin 22.2% PASS (<30%), s4 haircut +10.29 (TR ~+11.59) MISS / -11.86 PASS, s6 PASS, s7 identity with a5. The s1-reachable prior (40-55%) was WRONG — recorded: structure AND financed leverage are both now exhausted; the return gap to 15/15 TR is ~2.6pp and is ALPHA-GATED (real chains, PIT breadth, sub-6% funding — all principal-machine) | **optimization ran and honestly refused itself; two relaxations tested and rejected with doctrine; census +34 = 759** |
