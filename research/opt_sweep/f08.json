@@ -1,0 +1,25 @@
+{
+  "id": "f08",
+  "headline": "Full-sample MR effect looks small (-0.16sig, within 0.5sig bar) but hides a SIGN FLIP not decay: pre-2015 reversion +0.79sig vs post-2015 CONTINUATION -0.83sig, both exceed bar; n=15/36, thin.",
+  "cells": [
+    {
+      "name": "full_sample_effect_sigma (n=51 events: oversold z<=-2=27, overbought z>=+2=24; 2007-09-18..2026-04-13; mean_signed_fwd5=-0.4763% logret, uncond_fwd5_std=2.9422%)",
+      "value": -0.1619,
+      "bar": "two-sided (registered): |effect| < 0.5 sigma",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "pre_2015_effect_sigma (n=15 events: oversold=5, overbought=10; 2007-09-18..2014-12-31; mean_signed_fwd5=+2.9405% logret, uncond_fwd5_std=3.7280%)",
+      "value": 0.7888,
+      "bar": "two-sided (registered): |effect| < 0.5 sigma",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "post_2015_effect_sigma (n=36 events: oversold=22, overbought=14; 2015-01-02..2026-04-13; mean_signed_fwd5=-1.8999% logret, uncond_fwd5_std=2.3013%)",
+      "value": -0.8256,
+      "bar": "two-sided (registered): |effect| < 0.5 sigma",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "Signal: R5_t = trailing 5d cumulative log return; z_t expanding-standardized over R5[<=t], min_obs=252 (ddof=1, no lookahead; convention matches sibling families F01/F02's expanding-percentile min_obs=252). Event = z_t<=-2 (oversold) or >=+2 (overbought), registered thresholds. Eval: fwd5_t = cumulative log return over the 5 trading days strictly after t; signed_fwd5 = +fwd5 for oversold, -fwd5 for overbought (reversion is positive-signed). Effect_sigma = mean(signed_fwd5 over events in the subsample) / std(fwd5, all defined days in that subsample) -- a standardized effect size, not a t-stat; no significance test is registered, only the fixed |effect|<0.5sigma bar, so read all three values as descriptive-but-honest under a two-sided family (per ledger, verdict TWO-SIDED not PASS/MISS). Event counts are thin (n=15 pre-2015, n=36 post-2015) -- individual-cell estimates have wide, unreported CIs; events can cluster in time (volatility clustering => events are not i.i.d., a caveat on top of the small n). Split date 2015-01-01 declared before reading any number, per 'decayed post-2015' in the ledger line. Full-sample near-zero effect is an artifact of the pre/post sign cancelling, NOT evidence the raw MR signal is weak throughout -- the two subsamples individually exceed the bar in opposite directions (reversion pre-2015, momentum/continuation post-2015). NIFTY vault only (index-level; no survivorship issue), 2007-09..2026-04. No promotion; feeds the H60-VRP design brief only."
+}

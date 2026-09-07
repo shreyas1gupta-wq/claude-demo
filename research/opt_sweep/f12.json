@@ -1,0 +1,19 @@
+{
+ "id": "f12",
+ "headline": "Parkinson 21d QLIKE 1.6347 vs close-close 1.5200: -7.5% improvement vs >=5% bar -> MISS",
+ "cells": [
+  {
+   "name": "c1 Parkinson 21d QLIKE (1d-ahead, mean over eval days)",
+   "value": 1.634742,
+   "bar": "beats close-close 21d QLIKE by >= 5% (printed -7.55%)",
+   "verdict": "MISS"
+  },
+  {
+   "name": "c2 close-close 21d QLIKE (baseline, 1d-ahead, mean over eval days)",
+   "value": 1.520021,
+   "bar": "baseline (no independent bar)",
+   "verdict": "DESCRIPTIVE"
+  }
+ ],
+ "caveats": "NIFTY daily OHLC vault only; no lookahead (both forecasts at t use only obs <= t-1, csum-rolling mechanics identical to sibling F03); Parkinson variance from raw High/Low (pk=(1/(4 ln2))(ln(H/L))^2, non-annualized, same scale as a squared daily log return so QLIKE-comparable to r2 with no rescaling); burn-in 252, window 21d, common eval sample n=4297, 4 zero-r2 days dropped; mean QLIKE reported (ordering identical to registered sum, per F03/F04 convention). High/Low are raw (not dividend-adjusted) since the vault carries no adjusted range fields -- a known small mismatch vs the Adj-Close return target, immaterial at NIFTY-index dividend-adjustment magnitudes."
+}

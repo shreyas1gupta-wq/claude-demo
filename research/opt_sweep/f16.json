@@ -1,0 +1,25 @@
+{
+  "id": "f16",
+  "headline": "Monthly condor sim (41 entries, 2011-23): stop-2x MISSES its bar on both edges -- worst-month cut 46.0% (bar >=50) at 32.2% mean cost (bar <=30); the unbarred delta-band roll dominates it descriptively (35.5% cut, 9.6% cost).",
+  "cells": [
+    {
+      "name": "hold_baseline",
+      "value": "41 traded months of 136 blocks (VIXpct>=0.6): mean +0.557 %S/mo, worst -3.984 %S (2020-03-09 entry), hit rate 0.80, p5 -2.528 %S",
+      "bar": "baseline -- registered without a PASS/MISS bar (Entry OP-D2/F16)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "stop_2x_credit",
+      "value": "mean +0.378 %S/mo, worst -2.153 %S; worst-month cut 46.0% (bar >=50%), mean cost 32.2% (bar <=30%); 11/41 stops triggered",
+      "bar": "stop-2x cuts worst month >= 50% at <= 30% mean cost (vs hold)",
+      "verdict": "MISS"
+    },
+    {
+      "name": "delta_band_roll",
+      "value": "|delta|>=0.30 band, max 3 rolls (26/41 months rolled, 48 rolls): mean +0.504 %S/mo, worst -2.570 %S; worst-month cut 35.5% at 9.6% mean cost; p5 -1.044 %S (best left tail of the three)",
+      "bar": "registered without its own PASS/MISS bar",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "Paper sim, BS with VIX-flat vol (daily remark at that day's VIX), r=0.06, q=0, European, no smile/skew, no transaction costs or slippage; daily-close fills only, so the 2x stop exits BELOW the stop level on gap days (F15's gap math quantifies this). Condor = short 1.0-sigma strangle + long 2.5-sigma wings (F15 convention quoting this registration); tenor 21 trading days, T = trading days/252; P&L in % of entry spot. Entry gate VIXpct>=0.6 (expanding, min_obs=252) leaves 41 non-overlapping months in 2011-07..2023-04 -- one COVID month (2020-03) dominates every worst-month figure. The stop-2x MISS is narrow on both edges (46.0 vs 50; 32.2 vs 30) -- recorded as MISS, bar not moved. Delta-band roll's dominance (better tail at a third of the cost) is descriptive only, no registered bar; feeds the H60-VRP design brief, no promotion."
+}

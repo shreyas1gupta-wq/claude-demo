@@ -1,0 +1,25 @@
+{
+  "id": "f17",
+  "headline": "Weekly condor +1.89%/wk per margin (80% hit) but one full-wing wipe (Budget wk 2016-02-29) makes per-unit-margin compounding RUIN vs monthly +13.96%/yr geo; daily close-stop can't cap gap weeks.",
+  "cells": [
+    {
+      "name": "weekly_hold_per_margin",
+      "value": "+1.89%/wk (n=231/611 wks, hit 80%, worst -100%)",
+      "bar": "registered base print, no PASS bar (family two-sided)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "weekly_daily_stop_vs_hold",
+      "value": "worst -100%->-93.3% (+7% impr); mean cost 11%; 22/231 stops",
+      "bar": "two-sided (F16 stop-2x-credit convention; no registered bar)",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "weekly_vs_monthly_compounding",
+      "value": "weekly RUIN (terminal W=0) vs monthly +13.96%/yr geo",
+      "bar": "the compounding claim measured; two-sided",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "BS paper sim, VIX-flat vol, r=0.06, no bid-ask/txn costs/SPAN (margin proxy = max loss). Entry declared in script header: VIXpct>=0.6 (F16 threshold) OR storm(|ret|>=2%) within 5td; strikes 1.0/2.5-sigma at entry close; close-only marks, so the daily stop cannot see intraday gaps yet its stopped arm still compounds to -28.96%/yr. Arithmetic per-unit means favor weekly (+37.4 vs +21.3%/yr uncompounded): the weekly-vs-monthly compounding claim is SIZING-dependent, not frequency-dependent — one 2.5-sigma wing breach (2016-02-29 Budget week; next worst 2020-02-24 COVID -93%, 2016-02-08 -92%) wipes a full-margin weekly compounder while the monthly worst is -75.6%. Feeds F18 Kelly/ruin math. Sample 2011-07-26..2023-04-05 (VIX pct min_obs=252)."
+}

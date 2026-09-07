@@ -1,0 +1,25 @@
+{
+  "id": "f04",
+  "headline": "GARCH(1,1) MLE vs EWMA .94: a statistical tie (QLIKE gap -0.57%, GARCH trivially better) and BOTH lag the Mar-2020 onset by ~72-74 vol pts (fwd-5d RV 94 vs forecasts 21-22) — prior confirmed on all 3 cells.",
+  "cells": [
+    {
+      "name": "c1 1d-ahead QLIKE gap, GARCH(1,1) vs EWMA .94 (%; + = GARCH worse; means 1.496020 vs 1.504550, n=3799 common days 2010-10-11..2026-04-13)",
+      "value": -0.57,
+      "bar": "|gap| < 2% (registered statistical tie)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "c2 GARCH max Mar-2020 onset lag, vol pts (window 2020-02-15..2020-03-31; fwd-5d RV minus 1d-ahead forecast vol; peak 2020-03-09: RV5 94.4 vs forecast 22.4)",
+      "value": 72.1,
+      "bar": ">= 20 vol pts",
+      "verdict": "PASS"
+    },
+    {
+      "name": "c3 EWMA .94 max Mar-2020 onset lag, vol pts (same window/definition; peak 2020-03-09: RV5 94.4 vs forecast 20.8)",
+      "value": 73.6,
+      "bar": ">= 20 vol pts",
+      "verdict": "PASS"
+    }
+  ],
+  "caveats": "GARCH(1,1) normal-MLE, expanding window min_obs=750, annual January refits, params fixed between refits, no lookahead (each refit fits returns <= t-1; variance recursion at t uses returns < t); last fit alpha=0.0913 beta=0.9023 persistence=0.9936. EWMA recursion and QLIKE convention identical to sibling F03 (init = mean of first 63 squared returns; QLIKE = r2/f - ln(r2/f) - 1, mean over common eval days; 4 zero-r2 days dropped). Onset-lag realized side is FORWARD 5d RV (OP-D1 annualization), declared in the script header before running; the ~72 pt lag says neither filter is an onset detector — both price ~21 vol into the week that delivered 94. QLIKE tie means GARCH's MLE machinery buys nothing over the one-parameter EWMA for 1d-ahead NIFTY vol; the -0.57% edge is well inside the registered tie band, not a claim."
+}

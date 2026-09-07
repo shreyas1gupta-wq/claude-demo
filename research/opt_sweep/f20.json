@@ -1,0 +1,25 @@
+{
+ "id": "f20",
+ "headline": "L2-style stress-flag overlay (pct>=0.90,n=141): left-tail trim +46.6% (bar>=20%,PASS) at mean cost +9.7% (bar<=10%,PASS); beats VIX-pct-alone by +4.4pp trim/-2.4pp cost (two-sided).",
+ "cells": [
+  {
+   "name": "l2_style_left_tail_trim_pct",
+   "value": 46.63,
+   "bar": ">= 20% (bottom-decile monthly VRP loss shrinks vs no-overlay; pct>=0.90 primary, common sample n=141)",
+   "verdict": "PASS"
+  },
+  {
+   "name": "l2_style_mean_cost_pct",
+   "value": 9.68,
+   "bar": "<= 10% (mean monthly VRP capture given up vs no-overlay; pct>=0.90 primary, n=141)",
+   "verdict": "PASS"
+  },
+  {
+   "name": "l2_vs_vixpct_trim_edge_pp",
+   "value": 4.42,
+   "bar": "two-sided: L2-style overlay trim minus VIX-pct-alone overlay trim (same rule/threshold, same sample); no directional bar registered",
+   "verdict": "TWO-SIDED"
+  }
+ ],
+ "caveats": "L2-style composite = quant.ladder.fast_stress.fast_stress_composite(rv_pct, dd_pct, w_rv=0.5,w_dd=0.5 -- the module's own shipped default; no OP-D2 registry entry overrides these weights, so no confirm-leg (India-VIX rank) was folded in, which would double-count against the VIX-pct baseline being tested against). Inputs: realized_vol(21d, log returns) and drawdown_depth(simple returns) from quant/ladder/fast_stress.py, each expanding-percentiled (min_obs=252, quant.ladder.credit_cycle.expanding_percentile) then the composite itself re-percentiled the same way so both overlays threshold an own-history rank in [0,1] (apples to apples with the VIX-pct baseline). Stand-down grid {0.80,0.90,0.95} is the already-registered L2 de-risk grid (docs/cycles/02-fast-stress.md F2; config/ladder.yaml L2_fast_stress), not invented for this cell; primary=0.90 reported, full grid printed by the script. Monthly VRP capture built exactly on OP-D1/F05 conventions (VRP_t=VIX_t-RV21_fwd, 1 entry/calendar month=first common NIFTY/VIX trading day); left-tail defined as the bottom-decile (worst ~10%, by count) mean of monthly VRP prints, a distinct and more robust metric than F05's single-worst-month cell. Comparison sample restricted to months where BOTH percentiles are warmed up (VIX-pct warms up later, ~2011-07, 252 obs after the 2010-07 VIX start) so L2-style and VIX-pct-alone are scored on the identical n=141 months (2011-08..2023-04) against the identical no-overlay baseline -- L2-style's own full sample (n=154, from 2010-07) is not used for the head-to-head to keep it fair. India VIX vault bound 2010-07..2023-04 (2026 cheat-sheet); 2008, the worst seller year in the NIFTY record, is NOT in the VIX sample, so per OP-D1 convention every seller-favorable read here is an UPPER BOUND. Grid sensitivity is not stable at the tails: at pct>=0.80 both overlays PASS trim but MISS the <=10% cost bar (24.9%/28.1%); at pct>=0.95 VIX-pct's trim collapses to +0.00% (only 6 flagged months, small-sample artifact, the single worst print is not among them) while L2-style still trims +42.2% at cost +2.1% (7 flagged months) -- the primary=0.90 read is the mid-grid, best-powered point, but is not to be read as a search-and-pick result since the grid itself is pre-registered elsewhere, not chosen from this run. Single-index (NIFTY50 proxy for NIFTY750), single-VIX-construction, no options-chain confirmation (paper/index-level only, per CONTRACT). No promotion; feeds H60-VRP design brief only."
+}

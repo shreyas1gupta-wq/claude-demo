@@ -1,0 +1,25 @@
+{
+  "id": "f07",
+  "headline": "F07 MISS x2: index 12-1 momentum sign is NEGATIVE vs fwd returns (fwd1m -1.93%, fwd3m -6.02%, t<=-7.2), not the weak-positive-tilt prior; neg-mom also has higher fwd1m vol (-7.40pt, descriptive).",
+  "cells": [
+    {
+      "name": "mom-sign -> fwd1m(21d) ret spread (n_pos=3339, n_neg=941, mean_pos=0.66%, mean_neg=2.59%)",
+      "value": -1.928,
+      "bar": "prior: weak positive tilt (T3 cited); test = spread(pos-neg) > 0",
+      "verdict": "MISS"
+    },
+    {
+      "name": "mom-sign -> fwd3m(63d) ret spread (n_pos=3297, n_neg=941, mean_pos=2.25%, mean_neg=8.27%)",
+      "value": -6.021,
+      "bar": "prior: weak positive tilt (T3 cited); test = spread(pos-neg) > 0",
+      "verdict": "MISS"
+    },
+    {
+      "name": "mom-sign -> fwd1m(21d) realized-vol spread (n_pos=3339, n_neg=941, mean_pos=14.72pts, mean_neg=22.12pts)",
+      "value": -7.401,
+      "bar": "no directional prior registered for vol",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "NIFTY50 index-level (time-series) momentum only -- the survivor panel was not used, so this is not cross-sectional/stock momentum; F07's prior (T3-cited weak positive tilt) evidently referenced a different construction or universe. 12-1 momentum = Px[t-21]/Px[t-252]-1, min_obs=253, no lookahead; fwd 1m/3m ret and vol strictly forward of t. Sample n=4301 with momentum-sign defined (2008-09..2026-01 effective), pos=3360/neg=941 -- the neg-momentum bucket is dominated by the 2008 and 2020 crash troughs, so its strong fwd rebound (mean fwd1m +2.59%, fwd3m +8.27%) is a post-crash V-shaped-recovery effect, not evidence against momentum generically; both direction cells MISS honestly at high significance (|t|>=7), recorded per house rule (bars never moved). Cell 3 (vol) has no registered directional bar (family text carries a prior only for return, not vol) so it is reported DESCRIPTIVE; fwd3m vol spread (-5.57pts, same direction) was computed as unregistered context only, not a cell. All numbers printed by scripts/opt_sweep/f07.py from ingest/vault/index/nifty50_daily_2007_2026.csv."
+}

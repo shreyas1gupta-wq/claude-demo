@@ -1,0 +1,19 @@
+{
+  "id": "f21",
+  "headline": "F21 descriptive: bank-heavy beta_hi/lo=0.69 (0.95/1.36) vs smallcap-tercile beta_hi/lo=0.92 (0.67/0.73); bank beta CONTRACTS in stress here, against the stated prior of expansion.",
+  "cells": [
+    {
+      "name": "bank_heavy_beta_hi_vs_lo_vix",
+      "value": 0.6942,
+      "bar": "no numeric bar pre-registered for F21 (prior only: 'bank beta expands in stress'); reported descriptive (beta_hi/beta_lo, n_hi=145, n_lo=1500, HI=vix_pct>=0.90, LO=vix_pct<0.50)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "smallcap_tercile_beta_hi_vs_lo_vix",
+      "value": 0.9172,
+      "bar": "no numeric bar pre-registered for F21; reported descriptive comparison basket (beta_hi/beta_lo, n_hi=145, n_lo=1500, expanding-tercile classification shifted 1 day, no lookahead)",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "No numeric BAR was registered for F21 in the ledger (prose prior only: 'bank beta expands in stress'); both cells reported DESCRIPTIVE rather than PASS/MISS to avoid inventing a threshold post hoc. Bank-heavy basket = static name-based roster (ticker contains 'BANK', plus SBIN/INDUSINDBK); no sector-classification file is vaulted, so this is a name-based proxy, not an index-committee sector definition. Smallcap-tercile basket = bottom tercile by trailing (expanding, min_periods=252, shifted 1 day) rupee value-traded within the survivor panel -- a liquidity/size proxy, not free-float market-cap tercile (no market-cap data is vaulted). Panel is SURVIVORSHIP-BIASED (2021/22 roster, ~2012-2022 span per AUTHENTICATION.md); used one-way/descriptively only, consistent with the vault's stated permitted use. HI/LO VIX thresholds (>=90th, <50th expanding percentile) reuse grid points already registered elsewhere in this OP-D2 batch (F14, F16) rather than inventing new cutoffs. Betas are pooled OLS slopes of basket return on NIFTY return within each regime bucket (contemporaneous, not forward-looking); overlap sample runs across the NIFTY/VIX/panel intersection."
+}

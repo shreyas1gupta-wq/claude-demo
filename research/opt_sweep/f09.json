@@ -1,0 +1,19 @@
+{
+  "id": "f09",
+  "headline": "Breadth (%>200dMA) vs fwd21d NIFTY: no linear corr once overlap-corrected (r=-0.04, boot CI crosses 0, p=0.62); bottom-decile washout precedes +2.9pp fwd21d bounce vs baseline (boot p=0.002).",
+  "cells": [
+    {
+      "name": "corr_breadth_fwd21",
+      "value": -0.0359,
+      "bar": "two-sided (F09, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "washout_vs_baseline_fwd21_diff",
+      "value": 0.029,
+      "bar": "two-sided (F09, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "Survivor panel is SURVIVOR-BIASED (2021 roster, n500_adjclose_2012_2022.csv.gz) -- one-way use only, not a tradable universe. Breadth = fraction of names with Close_t>trailing-200d-MA_t among names with >=100 valid readings that day (n_valid_breadth_days=2094 of 2468 panel rows). Cell 1: naive Pearson corr(breadth_t, fwd21d_NIFTY_ret_t), n=2082, r=-0.0359, naive p=0.1013 -- but fwd21d windows overlap (up to 20 days shared), inflating naive significance; row-index stationary block bootstrap (mean_block=21, n=2000, quant.stats.bootstrap.stationary_bootstrap) gives 95% CI [-0.1855, 0.1077] and boot two-sided p=0.616 -- NOT distinguishable from zero once overlap-corrected. Cell 2: washout = breadth in bottom decile of its own expanding history (min_obs=252, quant.ladder.credit_cycle.expanding_percentile); n=1834 (n_washout=216, n_baseline=1618); mean fwd21d log-ret washout=+0.0352 vs baseline=+0.0062, diff=+0.0290; naive Welch t=8.43 p<0.0001; block-bootstrap (same protocol) 95% CI [0.0095, 0.0479], boot p=0.002 -- the bounce survives overlap-correction. Both cells reported per the registered two-sided bar (no PASS/MISS threshold was pre-specified for F09); read as descriptive/two-sided, not as a promoted signal (feeds H60-VRP design brief only, no promotion per OP-D2 scope)."
+}

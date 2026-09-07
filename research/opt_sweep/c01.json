@@ -1,0 +1,56 @@
+{
+ "id": "c01",
+ "headline": "Stack (VIXhi x spreadhi x aboveMA) mean VRP +8.43 (n=6) vs VIX-pct alone +5.58 (n=21): incr +2.85 at 71% n-shrink -> VIX_PCT_ALONE_CARRIES_IT",
+ "cells": [
+  {
+   "name": "unconditional monthly VRP capture",
+   "value": 2.955,
+   "bar": "none (descriptive baseline)",
+   "verdict": "DESCRIPTIVE",
+   "n": 141
+  },
+  {
+   "name": "VIX-pct HIGH (Q5) alone",
+   "value": 5.578,
+   "bar": "none (descriptive single filter)",
+   "verdict": "DESCRIPTIVE",
+   "n": 21
+  },
+  {
+   "name": "IV-HV spread HIGH (Q5) alone [F13 c5 leg, re-derived, bug-fixed aggregation]",
+   "value": 6.796,
+   "bar": "none (descriptive single filter)",
+   "verdict": "DESCRIPTIVE",
+   "n": 24
+  },
+  {
+   "name": "trend ABOVE 200dMA alone",
+   "value": 3.091,
+   "bar": "none (descriptive single filter)",
+   "verdict": "DESCRIPTIVE",
+   "n": 107
+  },
+  {
+   "name": "trend BELOW 200dMA alone",
+   "value": 2.53,
+   "bar": "none (descriptive single filter)",
+   "verdict": "DESCRIPTIVE",
+   "n": 34
+  },
+  {
+   "name": "best full 3-way stack (VIX-hi x spread-hi x aboveMA)",
+   "value": 8.431,
+   "bar": "none (descriptive stack)",
+   "verdict": "DESCRIPTIVE",
+   "n": 6
+  },
+  {
+   "name": "incremental lift: stack minus VIX-pct-alone",
+   "value": 2.853,
+   "bar": "none (descriptive comparison)",
+   "verdict": "VIX_PCT_ALONE_CARRIES_IT",
+   "n_shrink_pct": 71.4
+  }
+ ],
+ "caveats": "Monthly VRP entries n=141 (2011-08-01..2023-04-03), OP-D1/F05/F13 convention (first common NIFTY/VIX day per month needing 21 fwd NIFTY days), all three states (vix_pct, spread_pct, trend_above) required valid (min_obs=252/252/200 respectively) -> n is a strict subset of F05/F13's own n=142/154 monthly samples (fewer usable months here because trend needs MA200 warmup too). F13's known groupby('ym').first() row-frankenstein bug (combiner audit on f13) is NOT repeated: entries built via sort_values+drop_duplicates(keep='first'), verified row-wise correct. IV-HV spread state and VIX-pct state are mechanically correlated (spread = VIX - HV21_trail, so spread inherits VIX's own level) -- stacking them is not adding two independent signals, it is asking whether the SPREAD component nets out any residual signal beyond VIX alone. Trend (200d-MA) is registered elsewhere (F06) as a dead standalone signal (T-CTRL1, 0/10) and is used here only as a regime-conditioning corner per F06's own registered dispersion finding, never as a return-predictive claim. Single-index NIFTY50 + single India-VIX construction (index-level, no survivorship exposure). No PASS/MISS bar was pre-registered for this combiner cell (Entry OP-D2 combiners are booked descriptively, feed the H60-VRP design brief only, no promotion) -- the STACK_WORTH_IT/VIX_PCT_ALONE_CARRIES_IT verdict above is this script's own descriptive threshold (incremental lift >= 1.0 vol pt at n>=20), stated plainly, not a registered bar."
+}

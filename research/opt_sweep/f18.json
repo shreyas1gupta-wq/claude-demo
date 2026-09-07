@@ -1,0 +1,25 @@
+{
+  "id": "f18",
+  "headline": "Kelly on measured odds: F16 monthly f*=1.90 (+21.8%/yr), F17 weekly f*=0.35 (one -100% week caps it); the 10%-DD/1%yr constraint binds ~10x below Kelly: f=0.165 mo / 0.035 wk, growth +2.9/+1.3%/yr.",
+  "cells": [
+    {
+      "name": "full_kelly",
+      "value": "f* (fraction of book as margin/cycle): F16 mo hold 1.902 (+21.8%/yr, P(DD>10%)=41%/yr), stop2x 1.961 (+11.6%); F17 wk hold 0.347 (+7.2%, DD prob 89%/yr), stop 0.356 (+6.5%)",
+      "bar": "analytic on measured odds -- no PASS/MISS bar registered (Entry OP-D2/F18)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "half_kelly",
+      "value": "F16 mo hold f=0.951: +14.9%/yr at P(DD>10%)=41%/yr; stop2x f=0.980: +8.4%/yr (72%); F17 wk hold f=0.174: +5.2%/yr (65%); stop f=0.178: +4.7%/yr (65%) -- half-Kelly is nowhere near the DD budget",
+      "bar": "analytic on measured odds -- no PASS/MISS bar registered (Entry OP-D2/F18)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "dd_constrained_f",
+      "value": "max f with P(book maxDD>10%)<=1%/yr: F16 mo hold 0.165 (+2.9%/yr), stop2x 0.200 (+2.1%); F17 wk hold 0.035 (+1.3%), wk stop 0.040 (+1.3%) -- the DD constraint, not Kelly, sets the size (~f*/10)",
+      "bar": "P(book DD>10%) <= 1%/yr (the registered constraint defining the cell; sizing math, not a strategy PASS/MISS)",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "Distributions regenerated in-script by importing scripts/opt_sweep/f16.py and f17.py machinery verbatim (paper sims: BS VIX-flat vol, r=0.06, no smile, no txn costs/slippage, margin proxy = max wing width - credit; per-unit-margin returns; F16 41 monthly entries, F17 231 weekly, 2011-07..2023-04). DD probabilities via iid bootstrap (seed 42, 20000 one-year paths, n_cyc=round(entries/yr)); iid ignores vol clustering so real DD odds are worse -- the constrained f values are upper bounds. Small tails dominate: F16 worst -30.6% of margin (COVID), F17 one measured -100% week (Budget 2016-02-29) makes f=1 in-sample ruin (P(r<=-100%)=0.4% of weeks) and caps weekly Kelly at 0.35. F16 f*>1 means levered margin -- infeasible jointly with the book under the CONTRACT 1.5x gross cap. Feeds the H60-VRP design brief; no promotion."
+}

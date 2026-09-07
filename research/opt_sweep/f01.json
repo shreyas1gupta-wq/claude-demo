@@ -1,0 +1,11 @@
+{
+  "id": "f01",
+  "headline": "Prior MISS: no-lookahead 2-state HMM fwd-21d vol spread is 2.02x the VIX-pct median-split baseline (12.9 vs 6.4 vol pts) — the HMM adds material state info, via a rare (6%) sticky high state.",
+  "cells": [
+    {"name": "hmm_fwd21_vol_spread_volpts", "value": 12.91, "bar": "none (descriptive; high 27.48 n=177 vs low 14.57 n=2689)", "verdict": "DESCRIPTIVE"},
+    {"name": "baseline_vixpct_fwd21_vol_spread_volpts", "value": 6.39, "bar": "none (descriptive; high 19.36 n=1075 vs low 12.97 n=1791)", "verdict": "DESCRIPTIVE"},
+    {"name": "spread_ratio_hmm_over_baseline", "value": 2.02, "bar": "<= 1.15x baseline (registered prior: no material gain)", "verdict": "MISS"},
+    {"name": "state_agreement_rate", "value": 0.6825, "bar": "none (descriptive)", "verdict": "DESCRIPTIVE"}
+  ],
+  "caveats": "Common sample 2011-07-21..2023-04-05, n=2866 (VIX vault ends 2023-04; 2008 not in sample). No lookahead: HMM Baum-Welch refit quarterly on expanding window (min_obs=504, fit on data strictly before refit; 66 refits), state at t = filtered P(high|r<=t)>0.5; baseline = expanding VIX percentile (min_obs=252) median split. Partition sizes differ materially (HMM high 6.2% of days vs baseline 37.5%) — the HMM's larger spread partly reflects a rarer, more extreme state, not a like-for-like split; HMM-high catches only 45% of storm days vs 82% for VIX-pct, so it is NOT a substitute stress flag. Fwd-21d RV windows overlap (no t-stats quoted). Final-fit sigmas 12.9/38.1 ann vol pts, persistence 0.990/0.959. Feeds H60-VRP brief only; no promotion."
+}

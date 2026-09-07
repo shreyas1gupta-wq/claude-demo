@@ -1,0 +1,25 @@
+{
+  "id": "f19",
+  "headline": "Budget window |ret| elevated 0.95% vs 0.59%, p=0.0049 (PASS, confirms CW-D1v). Election is the tail: 2009-05-18 +17.7% (100th pctile, descriptive, n=3). RBI two-sided null, p=0.43.",
+  "cells": [
+    {
+      "name": "budget_window_mw_p_greater",
+      "value": 0.004885,
+      "bar": "one-sided MW, window|ret| (day -1,0,+1) > off-window, p<0.05 (matches CW-D1a/CW-D1v convention; prior: budget vol-crush cited)",
+      "verdict": "PASS"
+    },
+    {
+      "name": "election_max_abs_return_pct",
+      "value": 17.74,
+      "bar": "no pre-registered bar; n=3 events too small for a hypothesis test -- descriptive only, per prior 'elections = the tail'",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "rbi_window_mw_p_two_sided",
+      "value": 0.428838,
+      "bar": "two-sided MW, window|ret| (day -1,0,+1) vs off-window, p<0.05 (no directional prior stated for RBI in the ledger one-liner)",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "All 3 cells run from scripts/opt_sweep/f19.py (PYTHONPATH=/home/user/claude-demo), vault-only, no-lookahead (fixed public-record event lists, no fitted state). BUDGET: BUDGET_DAYS list quoted verbatim from scripts/analyze_nifty_daily.py (same list as CW-D1a/CW-D1v/F5a); 19/23 events matched to NIFTY vault trading days (2007-09..2026-04 span), 57 window days vs 4496 off-window days; result corroborates CW-D1a (return leg, p=0.0049 parent print) and is consistent with CW-D1v's independently-booked VIX-crush finding -- not a re-test of a graded idea, a same-family confirmation within F19's own scope. ELECTION: 3 Lok Sabha result days (2009-05-18, 2014-05-16, 2019-05-23); NIFTY vault covers all 3, India VIX vault (2010-2023) covers only the latter 2 (2009 pre-dates it, stated in the DATA CHEAT-SHEET) -- n=3 is far too small for any formal test, so this cell is DESCRIPTIVE ONLY by design, not a missed bar. 2009-05-18 (+17.74%, single-day return) sits at the 100th percentile of the full 2007-2026 |return| distribution -- the single most extreme day in the vaulted NIFTY series -- directly supporting the pre-registered prior that elections occupy the tail, not the center, of the event-day distribution. RBI: event list is a declared, non-vaulted public-record calendar of RBI MPC bi-monthly policy-outcome dates restricted to Oct-2016..Dec-2019 (20 dates) -- the stable, well-documented bi-monthly cadence sub-period; pre-MPC-era reviews (irregular cadence, harder to source reliably) and COVID-era off-cycle/emergency announcements (Mar/Apr/May-2020 and later ad hoc cuts) are excluded by design, a scope limitation stated up front rather than a bar moved after the print. Tagged [VERIFY: RBI MPC policy calendar] -- dates recalled from public record and NOT independently re-verified against a live RBI source in this sandbox (NSE/RBI egress is CONTRACT-blocked); if any date is off by a day the window shifts by one trading day, but the finding (no significant window elevation, p=0.43, window median|ret| actually slightly BELOW off-window) is unlikely to flip on a 1-day date error given the effect is far from the p<0.05 boundary. No promotion; this is a research-sweep print only, feeds the H60-VRP paper design per the OP-D2 header."
+}

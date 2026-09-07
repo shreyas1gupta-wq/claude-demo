@@ -1,0 +1,25 @@
+{
+  "id": "f14",
+  "headline": "VIX spike decay half-life MISSES the 15-40d bar: median 2 trading days (n=25 episodes, 2011-2023); days-to-reenter-<60th-pct median 29d (descriptive, unregistered).",
+  "cells": [
+    {
+      "name": "median_half_life_days",
+      "value": 2.0,
+      "bar": "prior/BAR: 15-40 trading days (sleeve-A holding window)",
+      "verdict": "MISS"
+    },
+    {
+      "name": "median_days_to_reentry_below_60th",
+      "value": 29.0,
+      "bar": "no pre-registered bar (companion descriptive stat)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "n_spike_episodes_usable",
+      "value": 25,
+      "bar": "sample-size context (all 25 episodes resolved, none right-censored)",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "Vault India VIX daily 2010-07..2023-04 only (India VIX 10-23 file); expanding percentile min_obs=252 (quant.ladder.credit_cycle.expanding_percentile), no-lookahead throughout. Spike episode = maximal run of consecutive days with expanding-percentile(VIX)>=90th; half-life = trading days from the episode peak until close first falls to peak-0.5*(peak-pre_spike_baseline), pre_spike_baseline = VIX close on the day immediately before the episode began. All 25 identified episodes had a valid pre-spike baseline and resolved before the series ended (no censoring). The registered bar (15-40 trading days) targeted decay to the PRE-SPIKE level; under that definition the sleeve-A prior misses badly (median 2d, driven by short single/two-day VIX spikes that snap back fast). The companion measure (days to re-enter below the 60th percentile, i.e. decay back into a 'calm' regime rather than to the pre-spike print) is much closer to the sleeve-A window (median 29d) but was not the bar cell and carries no pre-registered pass/fail threshold -- reported descriptive only, not a substitute pass. Single-market (India), single VIX-index construction; no cross-check against a second implied-vol series was available in the vault."
+}

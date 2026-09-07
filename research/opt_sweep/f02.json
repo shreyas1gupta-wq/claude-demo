@@ -1,0 +1,25 @@
+{
+  "id": "f02",
+  "headline": "3rd HMM state adds NO crash-onset separation (0/41 onsets at t-1; reaction at onset 2% vs 2-state's 22%) but widens fwd-vol separation ~1.43x vs both 2-state and VIX-pct: a tail-confirmation state.",
+  "cells": [
+    {
+      "name": "hmm3_fwdvol_spread_ratio_vs_vixpct",
+      "value": 1.425,
+      "bar": "two-sided (F01 materiality anchor 1.15x): 3-state high/low fwd-21d-vol ratio (2.774x) / VIX-pct Q5/Q1 ratio (1.947x), overlap 2011-2023 n=2866",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "crash_onset_separation_t-1",
+      "value": "0/41 onsets; lift 0.00x (2-state high also 0/41); onset-day K3 0.024 vs K2 0.220",
+      "bar": "two-sided: the 3rd state adds crash-onset separation or nothing",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "hmm3_vs_hmm2_fwdvol_spread",
+      "value": 1.434,
+      "bar": "two-sided: HMM3 high/low fwd-vol 2.593x / HMM2 1.809x, full stated sample n=3975; crash state 1.6% occupancy, crash-vs-mid gap +17.42 vol pts",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "Own numpy Gaussian-HMM EM (no hmmlearn in env), quarterly-expanding refits min_obs=504 warm-started, causal FILTERED argmax states (data<=t), states relabeled by sigma per refit. Result lands on the NOTHING side for onsets: neither K=3 nor K=2 is ever in its top state at t-1 before a storm-cluster onset (n=41, |ret|>=2% with none in prior 21d), and K=3 reacts SLOWER at onset than K=2 (2.4% vs 22.0% at t; 4.9% vs 24.4% by t+5) because its crash state engages only mid-cluster (all-storm-day t-1 capture 13.6%, lift 8.76x vs 4.78x for K=2). The 3rd state's value is tail concentration (fwd RV 35.6 vol pts on 62 days), not onset timing. c1 restricted to VIX vault overlap 2011-07..2023-04; crash-state fwd-vol means are small-n (61-62 days); onset n=41 small. Vault data only; all numbers printed by scripts/opt_sweep/f02.py."
+}

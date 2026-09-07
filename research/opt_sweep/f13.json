@@ -1,0 +1,37 @@
+{
+ "id": "f13",
+ "headline": "VIX-fwdRV corr peaks at 10d (5d +0.654,10d +0.666,21d +0.583,63d +0.365) vs 21d-peak prior->MISS; IV-HV spread top quintile best=True->PASS",
+ "cells": [
+  {
+   "name": "c1 corr(VIX_t, RV_fwd_5d), common sample",
+   "value": 0.6537,
+   "bar": "none (descriptive, horizon scan)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "c2 corr(VIX_t, RV_fwd_10d), common sample",
+   "value": 0.6665,
+   "bar": "none (descriptive, horizon scan)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "c3 corr(VIX_t, RV_fwd_21d), common sample",
+   "value": 0.5833,
+   "bar": "registered prior: peak corr at 21d (printed peak=10d)",
+   "verdict": "MISS"
+  },
+  {
+   "name": "c4 corr(VIX_t, RV_fwd_63d), common sample",
+   "value": 0.3653,
+   "bar": "none (descriptive, horizon scan)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "c5 top-quintile (Q5) mean monthly VRP capture, IV-HV(21d trail) spread pct bucket",
+   "value": 6.796,
+   "bar": "registered prior: Q5 (top quintile) is the best-performing quintile (printed best=Q5)",
+   "verdict": "PASS"
+  }
+ ],
+ "caveats": "NIFTY daily Adj-Close log returns + India VIX close, vault only. c1-c4: pure contemporaneous correlation VIX_t vs RV_fwd_h(t), common sample bound by the h=63 horizon (n=3114, 2010-07-23..2023-04-05) so the 4 horizons are compared on identical dates; no fitting/state so no lookahead exposure (fwd RV is an evaluation target only). c5: HV_21_trail(t) uses only r[t-21:t] (data <= t); IV-HV spread percentile is expanding, min_obs=252 (no lookahead); monthly entries = first common NIFTY/VIX day per calendar month needing 21 fwd NIFTY days, OP-D1/F05 convention exactly (n=142, 2011-07-01..2023-04-03); VRP_t = VIX_t - RV_fwd_21(t). Sample bounded by the India VIX vault window (2010-07..2023-04); survivorship/mirror caveats n/a (index-level VIX+NIFTY only, no panel used)."
+}

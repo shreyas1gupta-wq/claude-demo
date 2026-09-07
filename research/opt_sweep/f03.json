@@ -1,0 +1,43 @@
+{
+ "id": "f03",
+ "headline": "EWMA .94 QLIKE 1.5016 vs roll-21 1.5200: +1.2% improvement vs >=3% bar -> MISS; grid best ewma_0.94 (1.5016)",
+ "cells": [
+  {
+   "name": "ewma_0.90_qlike",
+   "value": 1.506709,
+   "bar": "grid read (no registered bar)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "ewma_0.94_qlike",
+   "value": 1.501643,
+   "bar": "beats roll_21 by >= 3% QLIKE (printed +1.21%)",
+   "verdict": "MISS"
+  },
+  {
+   "name": "ewma_0.97_qlike",
+   "value": 1.526107,
+   "bar": "grid read (no registered bar)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "roll_10_qlike",
+   "value": 1.572183,
+   "bar": "grid read (no registered bar)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "roll_21_qlike",
+   "value": 1.520021,
+   "bar": "grid read (no registered bar)",
+   "verdict": "DESCRIPTIVE"
+  },
+  {
+   "name": "roll_63_qlike",
+   "value": 1.574955,
+   "bar": "grid read (no registered bar)",
+   "verdict": "DESCRIPTIVE"
+  }
+ ],
+ "caveats": "NIFTY daily log returns, vault only; no lookahead (forecast t uses <= t-1); burn-in 252, common eval sample n=4297, 4 zero-r2 days dropped; mean QLIKE reported (ordering identical to registered sum)."
+}

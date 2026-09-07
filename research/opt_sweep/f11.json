@@ -1,0 +1,31 @@
+{
+  "id": "f11",
+  "headline": "Gaps >=1% show no significant intraday continuation (mean -0.16%/+0.16% up/down, ns); high-VIX gap days fade harder than low-VIX (diff -0.38%/-0.62%, p=0.07/0.08, underpowered).",
+  "cells": [
+    {
+      "name": "up_gap_full_sample_mean_intraday_pct",
+      "value": -0.1602,
+      "bar": "two-sided (F11, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "down_gap_full_sample_mean_intraday_pct",
+      "value": 0.1615,
+      "bar": "two-sided (F11, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "up_gap_by_vix_state_hi_minus_lo_intraday_pct",
+      "value": -0.376,
+      "bar": "two-sided (F11, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    },
+    {
+      "name": "down_gap_by_vix_state_hi_minus_lo_intraday_pct",
+      "value": -0.6216,
+      "bar": "two-sided (F11, OP-D2 ledger; no directional prior)",
+      "verdict": "TWO-SIDED"
+    }
+  ],
+  "caveats": "Gap_t=Open_t/Close_{t-1}-1, intraday_t=Close_t/Open_t-1, both on raw unadjusted NIFTY Open/Close (ingest/vault/index/nifty50_daily_2007_2026.csv) so both legs share one unadjusted series over a single day. Cells 1-2 (full sample, n=4553 usable days, 2007-09..2026-04): up-gap days n=152, mean intraday=-0.1602% (t=-1.50,p=0.135), continuation-rate=48.03% (binom p=0.685); down-gap days n=119, mean intraday=+0.1615% (t=1.07,p=0.289), continuation-rate=43.70% (binom p=0.199) -- neither direction shows a significant continuation OR reversal effect at conventional thresholds; point estimates lean fade (mean opposes the gap sign) but are not distinguishable from zero. Cells 3-4 (by VIX state) restricted to the India VIX vault's covered window (ingest/vault/vix/india_vix_daily_2010_2023.csv, 2010-07..2023-04); VIX state = expanding percentile of VIX close (min_obs=252, quant.ladder.credit_cycle.expanding_percentile, no lookahead), median-split (pctl>=0.5=HIGH, no magic number); joined window after the min_obs burn-in is 2011-07-21..2023-04-05, n=2866 days. Up-gaps: HIGH-VIX n=93 mean=-0.2921% (cont_rate 45.16%) vs LOW-VIX n=29 mean=+0.0839% (cont_rate 55.17%), diff=-0.376%, Welch t=-1.84 p=0.068. Down-gaps: HIGH-VIX n=76 mean=+0.0177% (cont_rate 48.68%) vs LOW-VIX n=21 mean=+0.6393% (cont_rate 28.57%), diff=-0.622%, Welch t=-1.81 p=0.076. Both VIX-state contrasts are marginal (p~0.07-0.08, not significant at 5%) and built on small per-state subsamples (as low as n=21) -- underpowered, directionally consistent with 'high-VIX gap days fade/don't-recover more than low-VIX gap days' but not a registered PASS/MISS bar (F11 is two-sided by design, no threshold to miss); all four cells marked TWO-SIDED. No promotion; feeds H60-VRP design brief only, per OP-D2 scope."
+}

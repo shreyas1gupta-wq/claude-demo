@@ -1,0 +1,25 @@
+{
+ "id": "f05",
+ "headline": "Vol-target sizing (target/EWMA,cap2x) of OP-D1 monthly VRP: worst-month +5.77% only (bar>=30%,MISS)-Mar-2020 entry predates the vol spike; mean cost -42.6% (a gain,PASS)->combined MISS.",
+ "cells": [
+  {
+   "name": "worst_month_improvement_pct",
+   "value": 5.77,
+   "bar": ">= 30% (worst month |loss| shrinks vs fixed 1x)",
+   "verdict": "MISS"
+  },
+  {
+   "name": "mean_cost_pct",
+   "value": -42.59,
+   "bar": "<= 20% (negative = a mean-P&L gain, not a cost)",
+   "verdict": "PASS"
+  },
+  {
+   "name": "combined_bar_worst_month_and_mean_cost",
+   "value": "MISS",
+   "bar": "worst-month improves >= 30% AT <= 20% mean cost (joint)",
+   "verdict": "MISS"
+  }
+ ],
+ "caveats": "Monthly VRP capture sampled at 1 entry/calendar month (first common NIFTY/VIX trading day), n=154 usable months 2010-07..2023-04 (VIX vault bound; final partial month dropped for lack of 21 fwd NIFTY days). Sizing signal = EWMA(lambda=0.94, OP-D2/F03 choice) realized vol of NIFTY log returns, init on 63 pre-VIX days; target = expanding mean of that signal since warm-up -- both no-lookahead (state at entry t uses data <= t only). Worst month is the Mar-2020 COVID entry (2020-03-02): trailing EWMA vol was still only ~19.8 pre-crash so size~0.94 (near 1x) -- vol targeting cannot anticipate a sudden-onset regime shift it has not yet seen, consistent with the GARCH/EWMA onset-lag finding on F04. Mean-cost bar is trivially satisfied because vol-targeting RAISED mean P&L (+4.21 vs +2.95 vol pts) by upsizing calm, high-VRP months (31/154 hit the 2x cap) -- but on several of the next-worst months (Aug-2015, Aug-2013) trailing vol was low pre-entry and then rose, so vol-targeting INCREASED size and made those losses worse than fixed, not better -- a real downside not captured by the single worst-month metric. Survivor-panel bias N/A (index-only). Combined pre-registered BAR requires both legs to pass jointly; it does not -> MISS."
+}

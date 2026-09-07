@@ -1,0 +1,15 @@
+{
+  "id": "f10",
+  "headline": "Candle graveyard (OP-D2/F10): 6/8 cells null as pre-registered; two surprises at |t|>2 -- doji_fwd5d (t=2.47) and 3down_fwd5d (t=3.02), not promoted signals.",
+  "cells": [
+    {"name": "doji_fwd1d_t",   "value": 0.138,  "bar": "PRIOR ALL NULL: |t|<=2 (n=406)", "verdict": "PASS"},
+    {"name": "doji_fwd5d_t",   "value": 2.471,  "bar": "PRIOR ALL NULL: |t|<=2 (n=406)", "verdict": "TWO-SIDED"},
+    {"name": "hammer_fwd1d_t", "value": -0.268, "bar": "PRIOR ALL NULL: |t|<=2 (n=131)", "verdict": "PASS"},
+    {"name": "hammer_fwd5d_t", "value": 0.671,  "bar": "PRIOR ALL NULL: |t|<=2 (n=131)", "verdict": "PASS"},
+    {"name": "engulf_fwd1d_t", "value": -0.097, "bar": "PRIOR ALL NULL: |t|<=2 (n=344)", "verdict": "PASS"},
+    {"name": "engulf_fwd5d_t", "value": -1.114, "bar": "PRIOR ALL NULL: |t|<=2 (n=344)", "verdict": "PASS"},
+    {"name": "3down_fwd1d_t",  "value": -0.335, "bar": "PRIOR ALL NULL: |t|<=2 (n=549)", "verdict": "PASS"},
+    {"name": "3down_fwd5d_t",  "value": 3.016,  "bar": "PRIOR ALL NULL: |t|<=2 (n=549)", "verdict": "TWO-SIDED"}
+  ],
+  "caveats": "Index-level (NIFTY50 daily, 2007-09..2026-04, n=4554 rows) only; patterns are fixed textbook OHLC-shape rules (no fitted parameters, no trend-conditioning for hammer/3down). Engulf combines bullish+bearish via sign-alignment to the textbook implied direction; doji has no directional prior so raw fwd return is used. fwd5d windows overlap (5 trading days), so daily observations are serially correlated and the plain one-sample t-test is not HAC/Newey-West-adjusted -- both TWO-SIDED surprises (doji_fwd5d, 3down_fwd5d) sit right at the |t|>2 threshold and should be read as flagged-for-follow-up, not confirmed effects; per the graveyard registration neither is promoted. All 8 registered cells ran (no MISS, all n>=30)."
+}

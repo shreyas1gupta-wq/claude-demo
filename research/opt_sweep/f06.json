@@ -1,0 +1,31 @@
+{
+  "id": "f06",
+  "headline": "F06: belowMA+hiVIX has widest fwd21d-ret dispersion (std 7.13 vs 4.0-6.2 others) and highest fwd vol (26.9pts) of 4 trend x VIX corners; prior PASS (n=247; belowMA_loVIX thin n=31).",
+  "cells": [
+    {
+      "name": "aboveMA_loVIX (n=929, mean_fwd21d_ret=0.615%, mean_fwd21d_vol=11.81pts)",
+      "value": 4.264,
+      "bar": "descriptive matrix corner, no directional prior registered for this corner",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "aboveMA_hiVIX (n=181, mean_fwd21d_ret=3.720%, mean_fwd21d_vol=17.97pts)",
+      "value": 4.011,
+      "bar": "descriptive matrix corner, no directional prior registered for this corner",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "belowMA_loVIX (n=31, mean_fwd21d_ret=-0.086%, mean_fwd21d_vol=14.17pts)",
+      "value": 6.219,
+      "bar": "descriptive matrix corner, no directional prior registered; n=31 near MIN_CELL_N=30, wide-CI",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "belowMA_hiVIX (n=247, mean_fwd21d_ret=3.308%, mean_fwd21d_vol=26.94pts)",
+      "value": 7.130,
+      "bar": "prior: belowMA+hiVIX has the widest fwd21d-return dispersion (std) among the 4 corners",
+      "verdict": "PASS"
+    }
+  ],
+  "caveats": "Merged NIFTY x India-VIX overlap sample n=2866, 2011-07-21..2023-04-05 (VIX vault ends 2023-04; MA200 min_obs=200 trailing, VIX expanding_percentile min_obs=252, both no-lookahead). Registered 4 cells are the trend(above/below 200dMA) x VIX-extreme-quintile(Q1,Q5) corners only; the full 2x5 quintile matrix is printed by the script for context but is not itself a registered cell. Dispersion = std of fwd 21d simple return within corner. belowMA_loVIX is thin (n=31, just above the stated MIN_CELL_N=30 floor) so its own stats are low-confidence descriptive; all other corners well-powered. No survivorship issue (index-level series only)."
+}

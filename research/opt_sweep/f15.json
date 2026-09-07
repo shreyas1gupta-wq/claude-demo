@@ -1,0 +1,31 @@
+{
+  "id": "f15",
+  "headline": "Structural: 7d 1-sigma condor = 2.0x theta/day + 2.1x gamma at 0.48x vega of 30d; stop-2x gapped only by >=3.1%(7d)/6.0%(30d) days at VIX18 -- rare (0.55%/0.00%/day midVIX), costs 2.9x vs 2x stop.",
+  "cells": [
+    {
+      "name": "greeks_7d_1sig_condor",
+      "value": "VIX 12/18/30: theta/day +0.054/+0.080/+0.133 %S; gamma -0.270/-0.180/-0.108; vega/pt ~ -0.062 %S (VIX-invariant); credit 0.27/0.41/0.68 %S",
+      "bar": "analytic -- registered without a PASS/MISS bar (Entry OP-D2/F15)",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "greeks_30d_1sig_condor",
+      "value": "VIX 12/18/30: theta/day +0.027/+0.039/+0.065 %S; gamma -0.130/-0.087/-0.052; vega/pt ~ -0.128 %S; credit 0.58/0.85/1.41 %S",
+      "bar": "analytic -- registered without a PASS/MISS bar",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "tenor_tradeoff_7v30",
+      "value": "7d carries 2.0x theta/day and 2.1x gamma at 0.48x vega of 30d (stable across VIX 12-30); theta-per-|vega| 7d 1.29 vs 30d 0.31 at VIX18 -- weekly = gamma-risk carry, monthly = vega-risk carry",
+      "bar": "analytic -- registered without a PASS/MISS bar",
+      "verdict": "DESCRIPTIVE"
+    },
+    {
+      "name": "stop_value_storm_matrix",
+      "value": "stop-2x gap threshold m*: 2.0/3.1/5.2% (7d @VIX 12/18/30) vs 3.9/6.0/10.2% (30d); measured P(gap)/day by bucket: 0.57/0.55/2.01% (7d), 0.00/0.00/0.25% (30d) while P(storm)=0.7/5.1/19.6%; when gapped (midVIX, 7d) mean 1d loss 2.9x credit vs 2x stop, maxloss ~8.6-9.0x credit; median VIX jump on storm days +0.62 pts moves m* by <0.1pp",
+      "bar": "analytic on the measured storm matrix (vault 2010-2023, 3114 days, 178 storms) -- no PASS/MISS bar",
+      "verdict": "DESCRIPTIVE"
+    }
+  ],
+  "caveats": "All analytic BS under flat sigma=VIX/100, r=0.06, q=0, S0=100 (values in % of spot; index points scale linearly); wings at 2.5 sigma quote the F16 registration; European, no smile/skew, no costs. Storm matrix limited to the India VIX overlap 2010-07..2023-04; VIX buckets <15/15-24/>=24 are midpoints of the registered 12/18/30. Vol-spike variant uses the MEDIAN VIX jump on storm days (+0.62 pts) -- tail spikes (e.g. Mar-2020) are far larger, so gap losses there exceed the 2.9x mid-bucket mean. 30d gap-through had 0 mid-bucket events, so its gapped-loss mean is unavailable (reported as such, not imputed). Structural math only; no data-mined claim and no promotion -- feeds the H60-VRP design brief."
+}

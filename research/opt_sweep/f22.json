@@ -1,0 +1,25 @@
+{
+ "id": "f22",
+ "headline": "INR mom (monthly proxy) x VRP: null both axes -- corr r=+0.01(p=0.92,n=154); weak/strong split diff=-0.61(p=0.55); stand-down overlay trims tail +79% but costs +53%, flags 89/154mo (two-sided).",
+ "cells": [
+  {
+   "name": "inr_mom_vrp_corr",
+   "value": 0.0083,
+   "bar": "two-sided (F22, OP-D2 ledger; no directional prior -- CU coupling cited as motivation only, its -0.69/-0.79 India-equity prior is a different outcome variable)",
+   "verdict": "TWO-SIDED"
+  },
+  {
+   "name": "weak_vs_strong_inr_vrp_diff",
+   "value": -0.612,
+   "bar": "two-sided (F22, OP-D2 ledger; no directional prior)",
+   "verdict": "TWO-SIDED"
+  },
+  {
+   "name": "inr_overlay_trim_cost",
+   "value": "trim=+79.03%, cost=+52.73% (flagged 89/154mo)",
+   "bar": "two-sided (F22, OP-D2 ledger; no directional prior)",
+   "verdict": "TWO-SIDED"
+  }
+ ],
+ "caveats": "DATA CONSTRAINT: the vaulted INR series (ingest/vault/fx/inr_usd_monthly_1973_2026.csv) is MONTHLY-ONLY -- no daily FX in the vault, so a literal 21-TRADING-DAY momentum (as registered) cannot be computed; the closest available proxy, used here and flagged descriptive rather than invented, is the month-over-month INR_per_USD change (consecutive vaulted prints are ~30 calendar days apart, ~21 trading days). This is a genuine construction gap versus the literal registered construct, not a substitution of invented data. NO LOOKAHEAD: mom_prior(M) = INR(M-1)/INR(M-2)-1 uses only INR prints dated strictly before month M; weak-INR flag = mom_prior>0 (a sign split, no invented percentile threshold -- F22 has no already-registered grid the way F20 cites the L2 de-risk grid). Monthly seller-proxy VRP built exactly on OP-D1/F05 conventions (VRP_t=VIX_t-RV21_fwd, 1 entry/calendar month = first common NIFTY/VIX trading day); no expanding-percentile transform used (unlike F13/F14/F20's VIX-pct/L2-pct baselines) so the sample is bounded only by India VIX vault coverage (2010-07..2023-04), n=154 months (2010-07..2023-04), not by an added percentile warm-up. Cell1: naive Pearson correlation, no overlap correction applied -- monthly, largely non-overlapping VRP entries (unlike F09's daily panel), so no block-bootstrap was judged necessary here (per F20's identical no-bootstrap precedent on the same monthly VRP series). Cell2: weak-INR (mom_prior>0, n=89) mean VRP=+2.692 vol pts vs strong/flat-INR (mom_prior<=0, n=65) mean VRP=+3.304; Welch t=-0.603, p=0.548 -- not distinguishable from zero. Cell3: stand-down-on-weak-INR overlay vs sell-always baseline, F20's tail_cost() metric (bottom-decile k=15, floor(10%) of 154) -- trims the left tail by 79% but at 52.7% mean-capture cost because the sign flag fires in 89/154 (58%) of months, far higher flag-rate than F20's stress-percentile overlays (7-24% of months at pct>=0.80-0.95) -- this is NOT a usable overlay (cost swamps benefit; a majority-of-months stand-down is not a selective de-risk), reported descriptively per the registered two-sided bar, not as a promoted design. India VIX vault bound 2010-07..2023-04 means 2008 (worst NIFTY seller year) is absent from every cell here, per OP-D1 convention every seller-favorable read is an upper bound. Single-index (NIFTY50 proxy for NIFTY750), single VIX construction, no options-chain confirmation (paper/index-level only, per CONTRACT). CU-D1..D7's India-coupling prior (-0.69/-0.79) is on INDEX EQUITY RETURNS around INR moves, a different outcome variable from option-seller VRP capture -- cited in the F22 registration as motivation for testing the axis, not as a numeric bar carried over to this family; no such transfer was assumed or tested. No promotion; feeds H60-VRP design brief only."
+}
