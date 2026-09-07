@@ -2815,3 +2815,32 @@ Script: scripts/analyze_op_d5.py. Census: 8.
 | # | What | Result | Status |
 |---|---|---|---|
 | OP-D5 | The stacked multi-strategy book under the principal's margin model (one-shot; RUN NOTE: s3's in-loop cost tracker printed garbage from a broken accumulator — the registered quantity recomputed cleanly in a standalone pass, book P&L unaffected) | **s8 THE HEADLINE: OP-D5 STRICTLY DOMINATES OP-D4** — CAGR +10.08%/yr (TR ~+11.4) vs +9.86 AND maxDD **-16.04% vs -22.71%** (+6.7pp of drawdown bought at zero net return cost). **2020 flipped from +8.3% to +22.8%** — the permanent put ladder monetized the crash no reactive rule can see (the F04 onset-lag answered structurally). **s3 CLEAN COLLAR ECONOMICS**: ladder gross premium 7.58%/yr of protected notional, roll recovery 5.97%, net carry 1.62%/yr; ladder net P&L -1.60%/yr of notional (2020 +4.3, 2011 +7.5, worst carry-years 2012 -8.5 gross of payoff); **s4** covered calls +1.05%/yr book — THE CALLS FINANCE THE PUTS almost exactly (net structure cost ~0.3-0.5%/yr for 6.7pp less drawdown). BARS: **s1 MISS** (+10.08/+11.38TR vs >=15 — the return gap persists, as the registered prior said: structure cannot create alpha); **s2 MISS BY 1.04pp** (-16.04 vs <=15 — the registered "passes or within 2pp" prior lands in its within-2pp branch; the bar is NOT retuned to pass, per discipline); s5 MISS (peak margin+premium 26.3% vs the <20% prior — still trivially feasible under pledge, the prior was wrong not the design); s6 PASS (worst year -6.4%, 2015); s7 halves +4.99/+14.78 (the 2017-23 half prints **+16.1% TR-adjusted at -16% DD** — the target ratio exists in the good era). CONSUMPTION: the collar-stacked book is the new risk-side baseline; the REMAINING gap to 15/15 is ~3.6pp of CAGR and 1.04pp of DD, and its registered candidates are unchanged: the M5 vol-managed momentum sleeve (new design, cost-gated) + real option chains (credits/skew replace flat sigma) + the VIX tail. Paper caveats verbatim | **risk gap substantially closed by structure (collar: calls pay for puts); return gap confirmed to need alpha, not engineering; 3 misses booked honestly incl. the near-miss s2; census +8 = 704** |
+
+## Entry OP-D6 (2026-09-08) — PRE-REGISTERED before running: THE FULL MULTI-STRATEGY
+BOOK — OP-D5 plus the FACTOR SLEEVE. Principal directive: "more improve add more
+strategies." The one validated, vault-runnable sleeve not yet stacked is the M/V-series
+factor composite: vol-managed 50/50 WML+HML (IIMA monthly 1993-2025; M5 booked WML
+vol-managed Sharpe 0.77->1.29 maxDD 83->29%; V3 booked the 50/50 combination Sharpe 0.86
+beating both legs; V2 corr(value,momentum) -0.37). WEIGHTS FROZEN BY RATIONALE: core
+65% (was 80 — the carve funds the higher-Sharpe sleeve), switcher 20%, FACTOR SLEEVE 15%
+(vol-managed to 15% target, EWMA(.94) on monthly factor returns, leverage cap 2x, marks
+monthly flat-intra-month like the switcher — stated). All OP-D5 overlays verbatim (put
+ladder on the core notional, covered calls, condor sleeve). The weekly condor sleeve
+stays EXCLUDED (c04's preference retained). STATED LIMITS: the factor sleeve is paper
+LONG-SHORT (India SLB/borrow constraints and costs unmodeled — the M-series standing
+25-35% haircut is reported as a sensitivity, not skipped); IIMA factor returns are
+academic-construction gross returns. One-shot vs the same 15/15 bars; no re-weighting
+after the print.
+CELLS (8): s1 CAGR >= 15% (TR +1.3pp on the equity core reported); s2 maxDD <= 15%;
+s3 factor-sleeve contribution %/yr + its worst year (descriptive); s4 THE HAIRCUT
+SENSITIVITY: the same book with factor means cut 30% — both bars re-read (the honest
+number); s5 peak margin/premium utilization (feasibility); s6 worst year >= -10%;
+s7 era halves; s8 dominance vs OP-D5 (+10.08/-16.04). PRIOR (two-sided, stated): CAGR
+lands 12.5-15 TR gross / ~11.5-14 at haircut; maxDD stays 14-17 (the sleeve is
+low-corr); s1 at FULL factor is a genuine coin-flip, s1 at haircut likely MISSES —
+if both pass at haircut, ER-D4b-grade suspicion applies. Census 8.
+Script: scripts/analyze_op_d6.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| OP-D6 | The full multi-strategy book: OP-D5 + the vol-managed 50/50 WML+HML factor sleeve at 15% (core cut 80->65), one-shot vs the 15/15 bars | **s8 THE HEADLINE: OP-D6 STRICTLY DOMINATES OP-D5** — CAGR +10.74%/yr (TR ~+12.04) vs +10.08 AND maxDD **-10.47% vs -16.04%** (dCAGR +0.66pp, dDD +5.57pp). The factor sleeve is the program's first stacked component that improves BOTH sides at once: **s3** contribution +1.80%/yr at 15% weight (sleeve standalone +17.02%/yr, worst sleeve year only -2.0% in 2018, mean leverage 1.59x of cap 2.0) — low-corr long-short cuts book vol, which the vol-managed core then re-levers less painfully through drawdowns. **s2 PASSES WITH ROOM** (-10.47 vs <=15) — the registered 14-17 prior was WRONG on the good side (two-sided prior miss recorded: the sleeve's diversification effect on DD was underestimated). s6 PASS (worst year -2.0%; NOTE 2023 is a Q1 stub — worst FULL year -1.7%, 2015). s7 halves +6.16/+14.96 (the improvement is era-concentrated: 2017 +33.7% is the sleeve's big year). **s1 MISS** (+10.74/+12.04TR vs >=15) — TR lands just BELOW the registered 12.5-15 gross prior band; **s4 THE HONEST NUMBER: at the -30% factor-mean haircut CAGR +10.17 (TR ~+11.47), maxDD -10.69, worst year -2.2% — s1 MISSES at haircut exactly as the prior said, s2 still passes**. s5 MISS (peak margin+premium 22.3% vs <20% prior — the prior was wrong again, not the design; feasible under pledge; factor long-short gross adds up to 30% notional needing SLB, unmodeled and stated). CONSUMPTION: the 65/20/15 collar-stacked book is the NEW BASELINE at ~+11.5-12.0 TR / -10.5 DD; the remaining gap to 15/15 is now ~3.0-3.5pp of CAGR with **4.5pp of DD headroom to spend** — the registered paths unchanged (real option chains, PIT breadth, funding_rate) are all principal-gated pulls. Paper caveats verbatim: flat-sigma BS zero costs, price-only core, academic gross long-short factors, no 2008 in the VIX sample | **both risk bars now pass with room; the return bar confirmed alpha-gated (structure exhausted: two stacks in a row moved DD, not CAGR); 2 prior errors + 2 misses booked honestly; census +8 = 712** |
