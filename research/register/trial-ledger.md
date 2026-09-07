@@ -2359,3 +2359,71 @@ scripts/analyze_sec_d7.py. Census: 22.
 | # | What | Result | Status |
 |---|---|---|---|
 | SEC-D7 | Stock-level leverage decomposition (interpretation hand-appended AFTER the print; import re-echo run note as SEC-D6) | **D7a BETA quintiles**: stress composite MONOTONE +9.8/+4.4/+2.6/-4.5/**-10.5** (Q5-Q1 -20.3pp, bar <=-10 PASS); E4b recovery FULLY inverts (-10.2 -> +16.2, stronger than the registered partial); weak-INR ladder monotone against high beta (+10.2 -> -8.9); rising-RF same with a Q3 wobble; full CAGR Q1 27.4 vs Q5 **23.1** — beta paid NOTHING for its stress cost (T4's parent read consistent). **VOL quintiles**: stress/recovery ladders as beta (Q5-Q1 -12.8 PASS; inversion holds) BUT full CAGR is MONOTONE UP **22.2 -> 32.6%/yr — PRIOR MISS, flagged as THE survivorship-concentrated cell**: volatile losers get deleted from a survivor panel, volatile winners remain — the a6 ladder is where the bias maximizes and is NOT evidence against low-vol (T4 one-way design governs); a9 broken monotonicity at Q5 (-0.3) and a10 non-monotone — 2 misses booked. **D7b DECLARED FL** (non-financials; b0 cemetery: 9/28 HIGH-FL declared names ABSENT vs 1/25 LOW-FL — 32% vs 4%): b1 full CAGR LOW 25.9 vs HIGH 21.7 = **+4.2pp/yr** (bar >=5 MISSED by 0.8 — and a LOWER BOUND, the cemetery uncounted); b2 stress spread HIGH-LOW **-23.9pp** (bar <=-10 PASS, 2.4x); b3 HIGH-FL negative in 3 of 4 stress windows (E5 +0.6 — the metals leg; partial miss) and its best window is **E4b +34.6**, not E6 (+10.5) — registered E6-best MISSED; b4 **THE STOCK-LEVEL CONVEXITY TEST FAILS AS REGISTERED**: recovery +34.6 > |stress -7.2| — surviving leveraged non-financials DID get the recovery payoff; b5 weak-INR HIGH -16.9 vs LOW **+21.6** (a 38.5pp state spread — the widest single print in the SEC series); b6 rising-RF HIGH -20.0 (as registered). **D7c DECLARED OL**: c1 full CAGR HIGH-OL **17.8** vs LOW-OL **28.3%/yr** (-10.5pp/yr — the two-sided lands hard: fixed-cost businesses were the decade's structural losers); c2 stress spread -22.6pp (registered "smaller than FL's -23.9" holds by 1.3pp — effectively EQUAL, the shared steel/auto/hotel members stated); c3 HIGH-OL recovery +4.8 — positive but FL bounced 7x harder (registered "OL bounce larger" MISSED); c4 **THE CONVEXITY CONTRAST INVERTED**: OL sum +1.1 (>=0 as registered) but FL sum **+27.4**, not <0 — the registered "FL = one-way tax" FAILS at stock level; c5 weak-INR +1.4 (sign miss). RECONCILIATION (interpretation): the sector print (leverage unpaid in recovery, +0.05) was carried by leveraged FINANCIALS (PSU banks -27.1 in E4b); the stock list here EXCLUDES financials by design — leveraged NON-financial survivors behave as CALL OPTIONS (torqued equity stubs: -24pp stress spread, +34.6 bounce), and the cemetery (9 dead names, most ~total losses) is the unexercised side of the same option. Unconditionally (dead included) the one-way-tax read likely survives; conditionally (survivors) leverage is a lottery that paid. LEVERAGE TAXONOMY BOOKED: leveraged financials = negative convexity; leveraged non-financials = binary call (cemetery or bounce); operating leverage = symmetric-mild but a -10.5pp/yr structural CAGR drag; zero-leverage + variable-cost (LOW-OL: 28.3%/yr AND +19.0 stress AND +31.0 weak-INR) = best in calm AND crisis in this panel — with its own composition flag (IT+FMCG-heavy) | **8 misses/partials + 1 registered-claim inversion booked; the cemetery census (32% vs 4%) is the loudest number; vol-CAGR cell survivorship-flagged permanently; census +22 = 488** |
+
+## Entry CM-D1..D6 (2026-09-07) — PRE-REGISTERED before running: THE COMMODITY BATTERY
+(oil, gold, silver, copper + the cross-section). Principal directive: "lets move to
+commodity now tell me everything... oil, gold silver copper and more." BOOKED PRINTS ARE
+CITED, NOT RE-RUN: CS1-4 (supercycle troughs 15-21y median 18y; breadth PASS +0.30/89%;
+capacity links FAIL both ways); KJ1 (no 3-4y commodity clock); GF1-3 (global factor
++0.28 pre-1990 -> +0.77 post; India loading +0.57; down-year breadth 69%); OL-D1a PASS
+(Kilian decomposition: demand-driven oil != supply-driven oil for equities); H53a + OL-D2a
+FAIL unconditionally (commodity->India links are OWNED by the global factor;
+conditional-only framings LOCKED); L8 golden constant (gold ~0 real drift, centuries);
+CI-D2 (gold-local +9.6%/yr real in HIGH+rising inflation years, the killer-cell winner);
+CU-D4/D5 (gold-local +8.2pp median crash-year spread; gold-INR +19.9%/yr in the 5 worst
+INR years); DB-D6 h6 / DB-D8 (gold +4.6% in >=90%-debt years; Japan-carry gold +6.3 beat
+everything); T2/T3 (Kilian trend-on-states; NIFTY/gold dual momentum). DATA: Jacks
+1850-2015 ANNUAL REAL indices (1900=100, US-CPI-deflated — 42 commodities incl Petroleum/
+Gold/Silver/Copper; authenticated A1-A5); IMF PCPS monthly 1980-2017 (wide, nominal);
+WTI monthly 1986-2026; JST USA (CPI regime, rgdpmad) and the JST panel broad dollar
+(CU-D7 construction, panel-mean dlog xrusd, strong >= +5% / weak <= -5%); INR fx vault.
+Conventions: real log changes on Jacks (already real — a real change IS the real hedge
+read); expanding percentiles min_obs=20; Spearman; overlap flagged; sample ends 2015/2017
+for Jacks/IMF — "today" reads are NOT available from the vault (stated).
+CELLS (15):
+**CM-D1 — the century table (2):** d1 real price CAGR 1900-2015 for Petroleum, Gold,
+Silver, Copper (PRIORS: oil the only clearly positive; gold ~0 [L8]; silver < gold;
+copper <= 0 — extraction tech deflates metals); d2 group medians (energy/metals/agri) —
+PRIOR: agri most negative (Prebisch-Singer), energy positive, metals ~0-negative.
+**CM-D2 — the inflation-hedge table (4):** US 2x2 regime (own-history CPI pct >= 0.8 x
+rising/falling, the CI-D1 construction on JST USA), mean SAME-YEAR REAL price change per
+cell for oil / gold / silver / copper (1 cell each). PRIORS: all four positive in
+HIGH+rising; OIL strongest (oil IS 1970s inflation); gold second; silver = high-beta gold;
+copper weakest (demand-cyclical offset). The commodity complement of CI-D2's asset table.
+**CM-D3 — dollar & growth states (3):** d1 strong-USD years (>= +5%) vs weak (<= -5%):
+median real change across the 4 commodities + all-42 median — PRIOR: negative in strong-
+USD years, positive in weak (the inverse-dollar law); d2 Dr. Copper PREDICTIVE:
+copper/gold ratio log change_t -> US real GDP/cap growth_{t+1} Spearman — PRIOR: +0.1..
++0.3 (weak); d3 Dr. Copper COINCIDENT (same-year) — PRIOR: stronger than d2 (copper reads
+the present, not the future).
+**CM-D4 — ratio structure (3):** d1 gold/silver ratio expanding percentile -> next-5y
+(silver minus gold) real return — PRIOR: mean reversion, rho >= +0.3 (high ratio = silver
+cheap -> silver outperforms); d2 oil/gold ratio percentile -> next-5y (oil minus gold) —
+TWO-SIDED (era-shifted market structure); d3 descriptive: the 2015 endpoint percentile of
+both ratios vs their own history (context only).
+**CM-D5 — cross-sectional momentum, spot-only (2):** IMF PCPS monthly 1980-2017,
+individual commodity columns (>=15 series with 12m history), 12-1 momentum, monthly
+rebalance, EW top tercile minus bottom tercile. STATED LIMIT: price indices = SPOT
+momentum (no futures roll/carry — the tradeable form needs futures data, runsheet-free
+note only). d1 annualized L/S mean return — PRIOR: positive +2..6%/yr (Miffre-Rallis);
+d2 worst rolling 12m of the L/S — PRIOR: <= -15% (momentum crashes exist here too).
+**CM-D6 — the oil->INR channel (1):** WTI annual change vs same-year INR depreciation,
+1987-2025 — PRIOR: positive +0.2..+0.4 (the import-bill channel; India imports ~85% of
+its crude). Complements the LOCKED H53a verdict (equity link dead; the FX link is the
+one being tested).
+CONSUMPTION: gold book (L8) + supercycle (L14) + Kilian (L25) context refresh; the
+inflation-hedge table feeds the CI-D2 asset ranking; no promotion. Script:
+scripts/analyze_cm_battery.py. Census: 15.
+
+## Entry CM-D2b (2026-09-07) — PRE-REGISTERED before running: the floating-era split of
+the CM-D2 gold cell. The CM-D2 print (booked below) shows gold at only +0.7%/yr in US
+HIGH+rising years — but 29 such years include the pre-1971 FIXED-gold-price era where the
+real gold price mechanically FALLS in inflation years. CELL (1): gold same-year real
+change in US HIGH+rising years, 1972-2015 only, vs the fixed-era (pre-1972) same cell.
+PRIOR: floating-era gold in HIGH+rising >= +5%/yr; fixed-era negative (the confound made
+visible). Script: same, param rerun. Census: 1.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CM-D1..D6 | The commodity battery (interpretation hand-appended AFTER the print) | **CM-D1 the century table** (real CAGR 1900-2015): Petroleum **+0.96%/yr** (the only clear positive, as registered), Gold +0.57 (a shade above the L8 ~0 prior — the 2011-13 endpoint; partial), Silver **-0.16** < gold (as registered), Copper **-0.52** (as registered — extraction tech deflates metals); groups: agri **-1.08%/yr median** (Prebisch-Singer confirmed), energy +0.40, metals -0.11. Commodities are NOT buy-and-hold assets; only energy carried a century premium. **CM-D2 the inflation-hedge 2x2** (same-yr REAL change, US regime): HIGH+rising: oil **+13.1** / copper +4.0 / silver +1.9 / gold +0.7 — all four positive (bar PASS), oil strongest (as registered) BUT **ordering MISS: gold printed WEAKEST** — resolved by CM-D2b (below): the 29 HIGH+rising years mix the fixed-gold era; HIGH+falling: **everything crashes** (oil -1.2, gold -6.2, silver -10.5, copper **-14.8**) — commodities are the MIRROR of CI-D2's financial assets: they pay when paper burns and burn when paper pays (disinflation is the commodity graveyard); low+falling oil -8.7. **CM-D3**: d1 the dollar law crisp — strong-USD years big4 **-5.0%** / all-42 median -4.0 vs weak-USD **+8.5 / +4.8** (as registered); d2 **Dr. Copper PREDICTIVE IS DEAD: +0.01** (prior +0.1..+0.3 MISS) — copper/gold forecasts nothing; d3 coincident +0.33 (as registered: copper reads the present, never the future). **CM-D4 ratios**: gold/silver pct -> next-5y silver-minus-gold rho **+0.14** (bar >=+0.3 MISS — only weak reversion; silver is NOT a reliable cheapness trade on the ratio); oil/gold +0.37 (two-sided lands: high oil/gold -> gold outperforms next 5y); 2015 endpoints: gold/silver pct 0.87 (silver historically cheap), oil/gold 0.38. **CM-D5 spot momentum**: +1.4%/yr, Sharpe-shape 0.12 (prior +2..6 **MISS** — spot-index momentum is ~nothing; the documented commodity-momentum premium lives in FUTURES carry/roll, which this vault cannot see — stated); worst 12m **-33.2%** (Oct-1991; crash bar pass). **CM-D6 oil->INR: SIGN MISS, the best print in the entry: -0.44** (registered +0.2..+0.4) — oil-UP years are INR-STRONG years: the global demand/risk factor (Kilian demand leg + Rey flows) swamps the import-bill channel; oil crashes are risk-off years that sink INR too. The LOCKED H53a doctrine ("the global factor owns commodity links") now extends to the FX channel | **5 misses booked honestly; the inflation 2x2 completes CI-D2's asset table from the commodity side; Dr. Copper predictive dead; import-bill intuition inverted by the global factor; census +15 = 503** |
+| CM-D2b | Floating-era split of the gold inflation cell | US HIGH+rising years: floating era (1973/74/77/78/79/80, n=6) gold real **+24.9%/yr** vs fixed era (n=23) **-5.6%/yr** — both registered signs PASS (bar >=+5 cleared 5x). The CM-D2 ordering miss is fully explained: post-1971, gold is the SECOND-strongest inflation-acceleration hedge after oil (+24.9 vs +13.1), and the pooled +0.7 was a regime mix. Standing caveat: n=6, all from ONE arc (the 1970s) — one episode, not a law | **the fixed-era confound made visible and booked; gold's hedge rank restored conditional on a floating regime; census +1 = 504** |
