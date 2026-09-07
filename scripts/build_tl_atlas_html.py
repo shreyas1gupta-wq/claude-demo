@@ -284,6 +284,45 @@ max consecutive down years (S&amp;P, 155y): <b>4</b> (1929–32); 34% of all yea
 </div></div>
 """
 
+d4 = D["d4"]
+def d4_rows():
+    out = ""
+    prev = None
+    for r in d4:
+        ratios = {k: (obs, g) for k, obs, g in r["t"]}
+        def cell(k):
+            obs, g = ratios[k]
+            if obs == 0: return f"<td>0</td>"
+            rx = f"{obs/g:,.0f}×" if g >= 0.005 else "≈10⁶×"
+            return f"<td><b>{obs}</b> <span style='color:var(--ink3)'>({rx})</span></td>"
+        wd, wv, wsig = r["worst"]
+        sep = " style='border-top:2px solid var(--line)'" if prev and prev != r["freq"] else ""
+        prev = r["freq"]
+        out += (f"<tr{sep}><td>{r['name']}</td><td>{r['freq']}</td><td>{r['n']:,}</td>"
+                f"<td>{100*r['sd']:.1f}%</td><td>{300*r['sd']:.1f}%</td><td>{600*r['sd']:.1f}%</td>"
+                + cell(2) + cell(3) + cell(4) + cell(6)
+                + f"<td class='dn'>{wv:+.1f}% ({wsig}σ, {wd[:7]})</td></tr>")
+    return out
+d4_html = f"""
+<h2>The sigma ledger at three speeds</h2>
+<p class="sub">The same ±σ accounting, weekly and monthly, for every series in the atlas. The σ columns are
+the actual move sizes — what a 1σ, 3σ or 6σ week or month means in percent for that market. Counts show
+observed events with the Gaussian-failure ratio beside them. * = smallcap proxies with their stated flags.</p>
+<div class="twrap" style="margin-top:14px"><table>
+<tr><th>series</th><th>freq</th><th>n</th><th>1σ =</th><th>3σ =</th><th>6σ =</th>
+<th>≥2σ</th><th>≥3σ</th><th>≥4σ</th><th>≥6σ</th><th>worst</th></tr>
+{d4_rows()}</table></div>
+<p class="cap">Three reads. <b>The points scale with the market:</b> a 6σ month is 36% on the NIFTY, 32% on the
+US market, and <b>57% on Indian smallcaps</b> — small never printed one, but that is what its "impossible" looks like.
+<b>6σ weeks exist only in the US ledgers</b> — and they are 2008, not 1987: the week of 2008-10-10 was −19.6%
+(−8.4σ) on the S&amp;P and −18.2% (−8.0σ) on the Dow, worse in σ terms than Black Monday's week (a booked prior
+miss — 1987 was one day, 2008 was a regime). The S&amp;P's worst <em>month</em> at 155y is Nov-1929 (−6.7σ).
+<b>And the failure ratios do not decay cleanly with aggregation</b> (a second booked miss): NIFTY's monthly 3σ
+ratio (6.6×) exceeds its daily (5.6×) because at n=224 months the count is owned by two episodes — tail ratios
+at low frequency measure episode clustering, not distribution shape; the kurtosis ladder above is the honest
+instrument for that question.</p>
+"""
+
 html = f"""<title>Return Distribution Atlas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,540;9..144,640&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -420,6 +459,7 @@ The longest full recoveries cluster around the 1910s inflation, the Depression, 
 the last of which never printed a −77% but took sixteen years of real losses to escape.</p>
 
 {d3_html}
+{d4_html}
 {d2_html}
 <div class="note"><b>Provenance & caveats.</b> S&amp;P: github.com/datasets/s-and-p-500 mirror of Shiller ie_data,
 vaulted 2026-09-07, 6/6 pre-stated anchors passed (sha256 in manifest); real columns end 2023-09 (CPI lag) — series
