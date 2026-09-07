@@ -2606,3 +2606,50 @@ table); census 6. Script: scripts/analyze_tl_d4.py.
 | # | What | Result | Status |
 |---|---|---|---|
 | TL-D4 | The sigma ledger at three speeds (interpretation hand-appended AFTER the print) | **WEEKLY** (W-FRI): NIFTY 1sigma=2.71%/6sigma=16.2%; 3sigma ratio **5.3x** (bar [2,6] PASS), 4sigma 98x < daily 121x (decay leg holds HERE); worst week -15.9% = -6.0sigma (2008-10-24), no 6sigma count (two-sided). India small* weekly: 3sigma 3.9x (PASS); worst -12.4% (2020-03-20). **S&P futures weekly: 3 weeks beyond 6sigma** (two-sided landed present); worst week **2008-10-10 -19.6% = -8.4sigma** — **PRIOR MISS: the 1987 week is NOT the worst week** (Black Monday was one day; October 2008 was a regime); DJIA weekly the same shape (2 beyond 6sigma; worst 2008-10-10 -18.2%/-8.0sigma). **MONTHLY**: NIFTY 1sigma=5.98%/6sigma=35.9%; 3sigma ratio **6.6x — bar [2,6] MISSED by 0.6**; no 6sigma month (lean confirmed; worst 2008-10 -26.4% = -4.6sigma). India small* monthly 1sigma=6.46%, worst -27.2% (2020-03). S&P futures monthly worst **1987-10 -20.4% (-4.8sigma)**; DJIA monthly worst 1987-10 -23.2% (-5.5sigma). Cited TL-D2 monthly series rendered with the x1 completion row: US market 6sigma months = 3 (6sigma = 31.9%); US small* 2 (6sigma = 42.0%); **India small monthly 1sigma = 9.49%, 6sigma = 56.9% — never printed, but that is the scale of its "impossible"**; S&P 155y worst month Nov-1929 **-6.7sigma**. **THE REGISTERED DECAY CLAIM FAILED**: NIFTY 3sigma ratios 5.6 -> 5.3 -> **6.6x** (monthly EXCEEDS daily) and SPX 4sigma 84 -> **110** -> 64x — at monthly n=224-497 the tail counts are owned by two episodes (2008, 2020), so ledger RATIOS at low frequency measure EPISODE CLUSTERING, not distribution shape; the kurtosis ladder (TL-D1 c5) remains the honest aggregation instrument — miss booked, instrument boundary learned | **the three-speed table is on the dashboard; 3 misses booked (1987-week, NIFTY-monthly band, the decay claim); 1sigma-in-percent "points" delivered for all 13 series-speeds; census +6 = 555** |
+
+## Entry OP-D1 (2026-09-07) — PRE-REGISTERED before running: THE OPTION-STATE BATTERY
+(the measured inputs for a multi-tenor buy/sell option portfolio). Principal directive:
+"mix weekly monthly and 6m 1y to get the best multi-strategy option buying-selling best
+portfolio think deep." Rather than advise, MEASURE: with India VIX daily (2010-07..
+2023-04, authenticated) and NIFTY daily OHLC, the variance-risk premium and every
+state-conditional quantity that decides buyer-vs-seller at each tenor is computable
+WITHOUT option chains (the chain pull upgrades this to strike-level; stated). H60-VRP is
+the frontier parent. Conventions: RV over h days = sqrt(252/h * sum of squared daily log
+returns), annualized, in vol points; implied = India VIX close (annualized vol points);
+VRP_t = VIX_t - RV_{t+1..t+21}; VIX-implied 1-sigma h-day move = VIX/100*sqrt(h/252);
+storm day = |ret| >= 2%; VIX percentiles = own-history expanding (min_obs 252d); overlap
+flagged everywhere; sample 2010-2023 (excludes 2008 — stated: the worst seller's year in
+the NIFTY record is NOT in the VIX sample, so all seller-friendly reads are UPPER bounds).
+CELLS (12):
+a1 mean VRP (prior: POSITIVE +2..+6 vol pts — sellers are paid on average);
+a2 VRP by VIX quintile (5 reads as one table cell) — prior: mean VRP HIGHEST in the top
+   quintile (fat premium post-spike), and the top quintile also holds the single WORST
+   VRP print (two-sided honesty);
+a3 the worst 21d VRP (prior: <= -25 pts, the Mar-2020 cell — what one bad month costs);
+b1 breach rate of the VIX-implied 1-sigma 21d move (prior: < 32% — implied overprices
+   on average, the seller's base edge);
+b2 breach rate FROM THE BOTTOM VIX QUINTILE (prior: HIGHER than b1 — the registered
+   complacency claim: calm implied underprices its own tail; if confirmed, "sell in calm"
+   is refuted by measurement, not opinion);
+c1 post-storm-day read: fraction of storm days where VIX_t still UNDERSTATES fwd 21d RV
+   vs the unconditional fraction (prior: higher — the early-storm BUYER's edge;
+   two-sided);
+d1 weekly: breach rate of the trailing-21d-vol-implied 1-sigma 5d move, calm vs storm
+   entry (prior: calm ~32%, storm-entry > calm);
+e1 overnight share of total daily variance, full sample (prior: 25-40%; the T1
+   overnight-drift/intraday-stress print cited) — the weekly-seller gap-risk input;
+f1 fwd 6m NIFTY return after VIX top-decile days vs unconditional (prior: higher mean —
+   the recovery asymmetry, CU-D7/CI-D4 cited);
+f2 fwd 12m same (prior: higher, stronger);
+f3 fwd 6m tail from BOTTOM-VIX-quintile days: P(return <= -10%) vs unconditional (prior:
+   NOT lower — calm does not reduce the 6m tail; the cheap-wing/hedge-buying state);
+g1 the mix test: correlation of the monthly seller proxy P&L (VRP sign/size) with the
+   post-spike 6m buyer proxy (fwd 6m return after top-decile entries overlapping that
+   month) — prior: NEGATIVE (the two sleeves hedge each other; the portfolio logic).
+CONSUMPTION: the H60-VRP design brief + the option-portfolio note; NO promotion — paper
+designs only until the option-chain pull + funding_rate land (CONTRACT). Script:
+scripts/analyze_op_d1.py. Census: 12.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OP-D1 | The option-state battery (interpretation hand-appended AFTER the print; 2008-not-in-sample caveat governs every seller-favorable read) | **a1 THE VRP IS REAL: +3.0 vol pts mean, +3.6 median, 82% of days positive** (prior band PASS) — Indian implied vol has systematically overpriced delivered vol, 2010-2023. **a2 AND IT IS STATE-PRICED**: mean VRP by VIX quintile +1.9/+2.2/+2.6/+3.7/**+5.9** — monotone, the top quintile pays 3x the bottom; the worst prints sit in EVERY quintile (-62..-64.5 — the crash traverses all states on its way up; two-sided honesty confirmed). **a3 the cost of one event: -64.5 pts** (2020-03-05: VIX 23.2 -> realized 87.8) = **21 months of mean premium in one window**. **b1/b2 THE HEADLINE — THE SELLER'S EDGE LIVES ONLY IN ELEVATED STATES**: VIX-implied 1-sigma 21d move breached 26% overall (< the 32% Gaussian-neutral, edge exists) BUT **32% from bottom-quintile VIX days (NO edge at all — calm implied exactly underprices its own tail) vs 17% from top-quintile days (a massive edge)**. "Sell premium in calm markets" is REFUTED BY MEASUREMENT; "sell after the spike" is confirmed. **c1 MISS (buyer side)**: on storm days VIX understates fwd RV only 15% vs 18% base — by the time the first storm day prints, implied has already caught up: post-storm VOL BUYING is NOT licensed. **d1 MISS (inverted, same shape as b2)**: weekly 1-sigma breach 36% from calm entries vs 30% from storm entries — the weekly seller's edge is ALSO post-storm, never calm-harvest. **e1**: overnight = only **20%** of daily variance (prior 25-40 missed low; T1 consistent — stress is intraday, which is stoppable, unlike gaps). **f1/f2 THE LONG-TENOR STATE IS DIRECTIONAL**: fwd 6m after VIX top-decile days **+18.2% vs +5.5%** unconditional; fwd 12m **+32.4% vs +12.0%** — the 6-12m post-spike instrument is a BULL structure (call spreads), not long-vol. **f3 MISS with a stated artifact**: calm-state 6m tail 3.8% < 7.3% base — but the sample's one calm-origin crash (COVID) RECOVERED inside 6m and 2008 is not in the VIX sample; the benign read does not travel. **g1 MISS, the most useful one: corr(seller proxy, post-spike buyer proxy) = +0.41, NOT negative** (n=24, flagged) — the monthly seller and the post-spike call buyer are THE SAME RECOVERY BET at different tenors; they do NOT diversify each other. The portfolio's true diversifiers are bought wings, the event sleeve, and CASH in the no-edge state | **the two-sided state law is measured (edge post-spike, none in calm, at both weekly and monthly tenor); 4 misses booked and each one reshaped the design; feeds the H60-VRP brief; paper-only until chain data + funding_rate (CONTRACT); census +12 = 567** |
