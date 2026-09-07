@@ -50,3 +50,27 @@ carries; (c) L12 private-credit boom turns (India household credit is in its boo
 INR debt book + gold-INR sleeve + Tier-C reduce-only + stress deployment) IS the
 India-regime strategy — this week's ~200 cells are its evidence base, not a call to
 change it.**
+
+## Addendum (2026-09-07): the leverage & safety map, principal-requested
+**House rule stands: the BOOKS run no leverage until funding_rate is set (CONTRACT);
+this maps where leverage is STRUCTURALLY survivable in India per the prints, and where
+it is a donation.**
+LEVERAGE-SURVIVABLE (positive carry, bounded drawdown, non-callable funding):
+(1) spread/arbitrage structures (cash-futures basis ~RF+1-2, market-neutral by
+construction) — leverage amplifies a spread, not a direction; capacity-limited;
+(2) INR fixed-income carry ladders funded below G-sec yield (the banks/PD trade) —
+positive spread + RBI-cycle timing (L10); duration risk bounded by laddering;
+(3) EPISODIC ONLY equity deployment into the registered entry state (weak-INR/outflow
+years: next-year +24-25%, panel hit-rate 79%) — pre-committed dry powder or short-tenor
+credit lines, sized to survive the state deepening, never standing leverage.
+LEVERAGE-FATAL in India's regime: standing leveraged long equity (vol drag + F6a whipsaw
++ T1b intraday stress); leveraged residential property (2-3% yield vs 8.5% funding =
+negative carry, pure price bet); leveraged anything through an L12 credit-boom turn
+(crisis odds 3x, housing -0.12).
+SAFETY STACK (what lets the compounding survive): gold-INR sleeve (the only hedge for the
+FX-equity cluster, +6-9pp crash premium); positive-real INR debt book; the drawdown
+governor + Tier-C reduce-only (which converts crashes into the entry state instead of the
+exit); calm-day close execution (T1b). THE HONEST ARITHMETIC: delivered-fundamentals
+~10-10.5% nominal + entry-state discipline + dilution-tax avoidance + whipsaw avoidance
+compounds a rupee ~5x in 12-14 years unlevered — the register's graveyards are the
+evidence that chasing more than that via standing leverage is how books die.
