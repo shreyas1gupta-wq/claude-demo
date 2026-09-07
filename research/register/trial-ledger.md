@@ -2469,3 +2469,42 @@ scripts/analyze_mg_battery.py. Census: 13.
 | # | What | Result | Status |
 |---|---|---|---|
 | MG-D1..D4 | The macro gap-closer (interpretation hand-appended AFTER the print) | **D1 YIELD CURVE**: d1 slope -> next-1y growth **+0.12** (in band, low end — the classic dilutes badly at panel breadth); d2 inverted years: negative-growth freq **21% vs 13%** (1.6x, near the ~2x prior) BUT mean growth only -0.3pp lower (bar >=1pp **MISS**) — inversion is a pooled RECESSION-ODDS signal, not a mean-growth signal; d3 slope -> next-1y equity **+0.06 — THE DOCTRINE TEST PASSES**: the curve predicts growth and growth does not price equities (GDP-D1 doctrine held where it could have broken); d4 bonds after inversion +2.5 vs +2.9% — **MISS**: no pooled duration edge from inversion (rate-control eras dilute the US intuition). **D2 TWIN DEFICITS**: d1 worst-CAD years -> next-1y depreciation **+2.5% vs -0.5%** (as registered) and d4 sign census **10/14 countries** (bar 60% pass); d2 the two-sided lands SUDDEN-STOP: next-1y equity after worst-CAD years **+4.1% vs +9.5%** — a -5.4pp state (the 2013 India CAD episode, CU-D7/SEC-D1, is the same physics); d3 corr(ca/gdp, same-yr equity) **+0.17 — SIGN MISS** (registered negative): external-strength years ARE good equity years — the "deficits are booms" intuition is wrong in this panel. **D3 THE RARE-DISASTER CENSUS** (full span, real TR): median worst equity drawdown **-78%**, median recovery **18 YEARS** (bars pass); the tail: France -98% (1977 trough, NEVER re-peaked in span), Germany -98% (1948, 37y), Portugal -98% (1984, >span), Japan -94% (1948, 24y), Italy -86%/37y; the USA — source of most investing folklore — had the SHALLOWEST major disaster (-52%, 1932, 7y recovery): US-based intuition is survivor-country intuition. HOUSING: median worst **-29%**, recovery **10y** — shallower AND faster than equities at the disaster scale (registered "not faster" **MISS**: the slow-asset doctrine holds for busts, not for century-scale disasters — housing never has a -78% real event; Belgium/Finland WWI-era -77/-73% are the war exceptions). **D4**: d1 pop growth -> next-10y equity **-0.17** — the dilution doctrine EXTENDS TO DEMOGRAPHICS (population growth buys no equity return; lean confirmed); d2 fiscal-balance pct -> equity -0.15 (at the bar exactly, levels-doctrine holds) but -> bonds **-0.24 — MISS**: fiscal SURPLUS percentile predicts WORSE bond returns — surpluses come in booms with rising rates, deficits precede disinflation/easing (busts) which pays duration; a state fact, not a signal | **the macro sweep is CLOSED: 4 misses booked (inversion mean-growth, inversion bonds, CA same-year sign, housing-recovery); the doctrine survived its yield-curve test; the disaster census is the risk chapter's anchor table; census +13 = 517** |
+
+## Entry TL-D1 (2026-09-07) — PRE-REGISTERED before running: THE RETURN-DISTRIBUTION
+ATLAS (tails, sigma events, volatility clustering, horizon distributions). Principal
+directive: daily returns, tail analysis both ends, 1/2/3/6-sigma points, volatility
+distribution and clustering, and D/W/M/Y/3y/5y/10y/20y distributions with graphs, for
+"Dow 100y+ and S&P 50y+". DATA CORRECTION, stated first: NO US daily index series is
+vaulted or free-reachable from this container (Dow daily probes dead; runsheet row added
+below). The runnable set: NEW VAULT us_index/sp500_shiller_monthly_1871.csv (Shiller
+mirror, monthly 1871-01..2026-08, 6/6 anchors passed; monthly prices are AVERAGES — 1m
+reads flagged, >=1y unaffected); NIFTY50 daily 2007-2026 (the true-daily specimen, our
+own market); CBOE VIX daily 1990-2026 (the vol distribution measured directly); JST USA
+annual 1872-2020 real TR (the 150y cross-check). US real total return from Shiller:
+(RealPrice_t + RealDividend_t/12)/RealPrice_{t-1}. Sigma = full-sample sd of the series
+in question (stated; a rolling-sigma variant is a different design). Descriptive entry
+with SHAPE BARS (demonstrations count; consumed looks):
+c1 DAILY SIGMA TABLE (NIFTY): counts beyond +-1/2/3/4/6 sigma vs Gaussian expectation —
+   BARS: |z|>=3 count >= 3x Gaussian; at least one event beyond 6 sigma in 4,700 days
+   (Gaussian expectation ~1e-5 events).
+c2 DAILY SHAPE (NIFTY): excess kurtosis >= 5; skew negative (two-sided lean).
+c3 CLUSTERING (NIFTY): autocorr(|r|) positive at EVERY lag 1..30; AR(1) phi of rolling
+   21d vol >= 0.95 (half-life >= ~13 trading days).
+c4 VIX DISTRIBUTION: median in [15,20]; right-skewed (mean > median); max > 80.
+c5 THE KURTOSIS LADDER (aggregational gaussianity): excess kurtosis monotone down from
+   daily -> weekly -> monthly -> annual; annual (JST US real) |excess kurtosis| <= 2.
+c6 US HORIZON TABLE (Shiller real TR, rolling windows M/1y/3y/5y/10y/20y + JST annual
+   cross-check): positive-fraction ladder MONOTONE RISING with horizon (prior ~60% 1m ->
+   ~95-100% 20y); worst 20y real CAGR in [-1.5%, +1.5%] (the classic near-zero floor);
+   overlap flagged everywhere.
+c7 NIFTY WEEKLY/MONTHLY shape reads (nominal; the same table one and two aggregation
+   steps up).
+c8 THE EVENT LISTS (descriptive): worst/best 10 days (NIFTY), worst/best months and
+   years (US real), deepest US real drawdowns with recovery years.
+CONSUMPTION: the risk chapter (with MG-D3's disaster census), L2 fast-stress context,
+and the published atlas artifact (preservation rule #5: artifact + committed copy).
+Script: scripts/analyze_tl_atlas.py. Census: 8.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| TL-D1 | The return-distribution atlas (interpretation hand-appended AFTER the print; RUN NOTES: VIX column-name fix pre-print; Shiller mirror's real columns end 2023-09 — completeness guard added after a -100% artifact appeared in a first print, series truncated, no bar touched) | **c1 THE SIGMA LEDGER** (NIFTY daily, n=4,553, sigma=1.30%): +-3sigma observed 69 vs Gaussian 12.3 (**5.6x**, bar >=3x PASS); +-4sigma 35 vs 0.29 (121x); **beyond 6sigma: 6 events** (4 down, 2 up) vs Gaussian ~1e-5 (**~700,000x**, bar >=1 PASS). **c2**: excess kurtosis **15.8** (bar >=5 PASS); skew **+0.06 — the negative lean MISSED**: at daily frequency the up-tail is as fat as the down-tail (best day +17.7% > |worst| 13.0%); the felt asymmetry is vol-timing, not skew. **c3 CLUSTERING**: autocorr(|r|) positive at all 30 lags (+0.28 lag-1, +0.18 lag-30) vs autocorr(r) lag-1 +0.04 — size echoes, sign does not; rolling-vol AR(1) phi **0.992 -> 82-trading-day half-life** (bar PASS); 21d vol regime range 7.8% -> 87.9% (6.1x median-to-max). **c4 VIX**: median 17.6 (in band), mean 19.4 > median (right skew PASS), max 82.7 on 2020-03-16 (>80 PASS). **c5 THE KURTOSIS LADDER**: NIFTY daily 15.8 -> weekly 4.6 -> monthly 4.3 -> US annual **0.2** (monotone within-market, annual bar PASS) — **PARTIAL**: US monthly over 152y prints **18.0** (the 1930s never aggregate away; averaging flag stated) — aggregational gaussianity holds within eras, not across a Depression. **c6 US HORIZON TABLE** (Shiller real TR 1871-2023, overlap flagged): 1y mean +8.6/sd 19.3/worst -58.1; 5y +7.2/7.8/-13.2; 10y +6.9/5.1/-5.9; 20y +6.6/**2.9**/**-0.2, 100% of 1,593 windows positive** — positive-fraction ladder 61->69->78->81->89->100% MONOTONE (PASS); worst 20y -0.2%/yr in the [-1.5,+1.5] band (PASS; JST annual cross-check +0.9%). **c7** NIFTY weekly sd 2.7%/worst -15.9%; monthly 6.0%/-26.4%. **c8 EVENTS**: all 20 extreme NIFTY days sit inside 2008 / the 2009 reopen / Mar-2020; worst US real years 2008 -39, 1917 -37, 1931 -36, 1974 -34; deepest US real drawdown **-77% (Jun-1932)**. NEW VAULT us_index/ (Shiller mirror, 6/6 anchors); Dow daily runsheet row added. ARTIFACT: docs/learn/artifacts/return-distribution-atlas.html (published 292e6690) | **2 bars missed honestly (daily skew; the ladder's US-monthly exception); the atlas is the risk chapter's second anchor with MG-D3; census +8 = 525** |

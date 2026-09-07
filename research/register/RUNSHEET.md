@@ -48,3 +48,4 @@ analysis (WORM); no design may be altered at data-landing — bars run as regist
 bar that proves wrong is a recorded miss, never a moved bar (M0/A6 precedent). Paid or
 login-gated sources are NOT substitutes for any row above (3.5's REJECT-FOR-DATA precedent
 governs).
+| Dow Jones Industrial Average DAILY 1896- (+ S&P 500 daily 1957-) | measuringworth.com / stooq.com (both blocked at this proxy; GitHub mirror hunt failed 2026-09-07; free) | ingest/vault/us_index/ | TL-D1's US-daily legs (sigma ledger, clustering, tail asymmetry on 100y+ US daily — currently NIFTY-only); Shiller monthly mirror vaulted 2026-09-07 covers monthly+ horizons. Added 2026-09-07 |

@@ -20,4 +20,8 @@ read must carry this flag; horizons >= 1y are materially unaffected.
 - A6: CPI Jan-1913 in [9.5, 10.2] (BLS series start-era level).
 
 ### PASS 2 — results (filled AFTER the pull; bars never moved)
-(pending)
+- A1 span 1871-01 .. 2026-08 (1,868 rows) — PASS (mirror is CURRENT, beyond the 2017 bar).
+- A2 Sep-1929 = 31.30 — PASS. A3 Jul-1932 = 5.01 — PASS. A4 Dec-1999 = 1428.68 — PASS.
+- A5 PE10 Dec-1999 = 44.20 — PASS. A6 CPI Jan-1913 = 9.80 — PASS.
+All six anchors passed on the first check; nothing re-tried. Vault AUTHENTICATED
+(sha256 in manifest.json, WORM).
