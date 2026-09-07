@@ -1928,3 +1928,31 @@ descent playbook); no promotion. Script: scripts/analyze_cu_battery.py. Census: 
 | # | What | Result | Status |
 |---|---|---|---|
 | CU-D1..D5 | The currency battery (interpretation hand-appended AFTER the print) | **CU-D1 PPP: (i) +0.94** (n=17) — the strongest cross-country relation in the register: long-run depreciation IS the inflation differential (bar >=+0.8 PASS). (ii) RER percentile -> next-5y RER change **-0.40** — REAL exchange rates mean-revert (bar <=-0.3 PASS): the tether that FAILED for dividends/GDP HOLDS for currencies. (iii) half-life **7.3y** vs the 3-7y prior band — boundary miss booked (Rogoff-puzzle-slow, annual pooled). **CU-D2 UIP: slope -0.06** vs the predicted +1 (floating years, n=352; 6 se's below) — the Fama-1984 forward-premium puzzle reproduced: rate differentials do NOT price 1y FX; carry historically paid; within-country median -0.18. **CU-D3: (i) same-year dep vs LOCAL real equity +0.02 — PRIOR MISS** (expected negative): at the panel level, local equities are currency-crash-neutral (real-asset pass-through nets out exporters/importers). (ii) RER -> next-5y local equity -0.18 (in band). (iii) RER -> next-5y **USD** return **-0.36** (in band, stronger as registered): buying cheap-currency markets pays the USD investor double — FX reversion stacks on equity. **CU-D4 crashes (dep >=15%, n=71): (i) local real equity in crash years +8.7% vs +8.5% others — PRIOR MISS**, equities self-hedge their currency at index level; (ii) gold-in-local-currency real: **+8.8% in crash years vs +2.7% others** — direction PASS, magnitude bar (>=15%) missed, ~6pp crash premium booked; (iii) next-3y after crash **+13.2%/yr vs +6.2%** — the two-sided cell resolves to RECOVERY: crash years are entry states, not exit states. **CU-D5 India: (i) same-year corr(INR dep, market) -0.69** (n=32) — India is the OPPOSITE of the panel's +0.02: INR weakness and equity weakness are one event (the Rey/FII global-flows channel, L22/L26 vindicated); (ii) gold-INR in the 5 worst INR years +13.4% vs +12.0% other years — the annual edge is mild because gold-INR pays in ALL years (secular INR depreciation + gold), the hedge value is at stress horizons (T-series Sharpe 1.19 stands) | **PPP/UIP doctrine landed; 3 misses booked; India's FX-equity coupling (-0.69) is the panel outlier and the design consequence; census +13 = 358** |
+
+## Entry CU-D6 (2026-09-07) — PRE-REGISTERED before running: the FX -> equity matrix in
+BOTH denominations. Principal directive: "currency impacts on stock market mostly in both
+local and global currency." Same data/conventions as CU-D1..D5 (JST R6 1950-2020, 17
+non-US; depreciation = Δlog xrusd, + = weaker; local return = real in local CPI; USD
+return = FX-converted, real in US CPI; India = IIMA nominal market 1994-2025 with USDINR,
+NOMINAL both legs — stated).
+CELLS (12):
+(a) SAME-YEAR, pooled: a1 corr(depreciation, USD real return) — PRIOR: -0.4..-0.6 (the
+mechanical pass-through, partially offset); a2 pass-through beta (OLS of USD real return
+on depreciation) — PRIOR: -0.6..-1.0, i.e. the local market does NOT rise enough in a
+depreciation year to shield the USD investor.
+(b) DEPRECIATION-REGIME BUCKETS (fixed: dep >= +10% weak-year / -5..+10% normal /
+<= -5% strong-year): mean SAME-YEAR local real and USD real (2 cells), mean NEXT-1y local
+and USD (2 cells). PRIORS: weak-years -> local ~flat, USD strongly negative; next-1y after
+weak-years positive in BOTH, USD stronger (reversion).
+(c) PREDICTIVE: trailing-5y depreciation -> next-5y c1 LOCAL real CAGR and c2 USD real
+CAGR, pooled Spearman. PRIOR: both POSITIVE (past weakness = cheap currency), USD larger
+(+0.15..+0.35) — the mirror of CU-D3(iii).
+(d) INDIA (descriptive, short): d1 same-year corr(INR dep, USD market return) — PRIOR:
+<= -0.75 (the -0.69 local coupling PLUS mechanical FX); d2 bucket means both denominations;
+d3 next-1y after weak-INR years, both denominations.
+CONSUMPTION: context for the gold/FX cluster and any future USD-share reporting of the
+books; no promotion. Script: scripts/analyze_cu_d6.py. Census: 12.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CU-D6 | FX -> equity in both denominations (interpretation hand-appended AFTER the print) | (a) same-year corr(dep, USD real ret) **-0.36** (prior -0.4..-0.6, near-miss by 0.04, booked); pass-through beta **-0.99** — FULL pass-through: the local market gives the USD investor ZERO same-year shield. (b) buckets: WEAK-currency years (dep>=10%, n=185): local real **+11.6%** vs USD **-3.2%**; normal: +8.3/+8.1; STRONG-currency years: local +7.0 vs USD **+21.4%**. NEXT-1y after weak years: **+13.8% local / +13.9% USD** vs 6.7/7.9 normal — reversion pays both denominations, as registered. Refinement of CU-D3(i): local real returns are actually HIGHER in weak-currency years — for the LOCAL investor, depreciation is mildly good (competitiveness + real-asset repricing); the damage is entirely the USD leg. (c) trail-5y depreciation -> next-5y: local **+0.22**, USD **+0.32** — both positive, USD larger, as registered (the mirror of CU-D3(iii)). (d) INDIA: same-year corr with USD return **-0.79** (prior <=-0.75 PASS); weak-INR years (dep>=5%, n=11): local **-12.6%** / USD **-20.6%** vs **+34.2%/+35.5%** in other years — a ~50pp regime split, the double-hit quantified; NEXT year after weak-INR: **+25.5% local / +23.7% USD** — the crash-year-as-entry-state result reproduced at India scale (2013->2014 pattern is systematic) | **matrix booked; the panel/India asymmetry is the doctrine: panel-wide FX weakness is a USD-leg problem only; in India it is everyone's problem the same year and historically the entry state the next; census +12 = 370** |
