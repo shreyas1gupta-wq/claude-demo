@@ -53,10 +53,7 @@ svg { width:100%; height:auto; display:block; }
 <p class="eyebrow">The Cycle Program · descriptive atlas · registered TL-D1</p>
 <h1>Return Distribution Atlas</h1>
 <p class="sub">Where index returns actually live: the daily tails, the sigma ledger, volatility and its clustering,
-and how the distribution changes from one day to twenty years. Series: <b>S&amp;P composite, real total return,
-1871–2023</b> (Shiller monthly-average mirror); <b>NIFTY 50 daily, 2007–2026</b> (the true-daily specimen);
-<b>VIX daily, 1990–2026</b>; <b>US annual real, 1872–2020</b> (JST cross-check). No US <em>daily</em> century series
-is freely reachable from this environment — the Dow daily pull is on the runsheet.</p>
+and how the distribution changes from one day to twenty years. Series: <b>S&amp;P monthly 1871–2026</b> (nominal to 2026-08; real total return to 2023); <b>US market + smallcap monthly 1926–2024</b> (CRSP/Fama-French); <b>NIFTY 50 daily 2007–2026</b>; <b>India market + smallcap monthly 1993–2025</b> (IIMA); <b>VIX daily 1990–2026</b>; JST US annual as cross-check. US <em>daily</em> (Dow 1896–) remains a principal-machine pull — on the runsheet.</p>
 
 <div class="heroband">
 <div class="stat"><div class="v">6</div><div class="k">daily moves beyond 6σ in 4,553 NIFTY days. A Gaussian market expects 0.00001 — the observed count is ~700,000× the model.</div></div>
@@ -159,6 +156,48 @@ the 1-month cells are smoothed; ≥ 1y horizons are unaffected.)</p>
 <p class="cap">Drawdown of the US real total-return index from its running peak. The deepest: −77% (June 1932).
 The longest full recoveries cluster around the 1910s inflation, the Depression, and 1966–1982 —
 the last of which never printed a −77% but took sixteen years of real losses to escape.</p>
+
+
+<h2>The S&amp;P at 155 years</h2>
+<p class="sub">Nominal monthly returns, 1871–2026 (1,867 months; Shiller monthly-average smoothing mutes these tails —
+and they are still enormous). The US market total-return series below (CRSP value-weight, true month-end, 1926–2024)
+is the maximal unsmoothed US series; Dow <em>daily</em> remains a principal-machine pull.</p>
+<div class="grid2" style="margin-top:16px">
+<div class="twrap"><table><tr><th>series</th><th>threshold</th><th>observed</th><th>Gaussian</th><th>ratio</th></tr>
+<tr><td>S&amp;P monthly 1871–2026</td><td>±2σ</td><td>73</td><td>84.95</td><td>1×</td></tr><tr><td></td><td>±3σ</td><td>25</td><td>5.04</td><td>5×</td></tr><tr><td></td><td>±4σ</td><td>9</td><td>0.12</td><td>76×</td></tr><tr><td></td><td>±6σ</td><td>4</td><td>0.00</td><td>≈10⁶×</td></tr><tr><td>US market 1926–2024</td><td>±2σ</td><td>52</td><td>53.74</td><td>1×</td></tr><tr><td></td><td>±3σ</td><td>16</td><td>3.19</td><td>5×</td></tr><tr><td></td><td>±4σ</td><td>9</td><td>0.07</td><td>120×</td></tr><tr><td></td><td>±6σ</td><td>3</td><td>0.00</td><td>≈10⁶×</td></tr></table>
+<p class="cap">Same law at every frequency and every era: honest to ±2σ, then failure by orders of magnitude.
+The S&amp;P has four 6σ months in 155 years (a Gaussian expects ~0.000004); the unsmoothed market has three in 99 years.
+S&amp;P monthly excess kurtosis 16.7 — and skew <b>+0.37</b>: the single most extreme month of American history is
+<em>up</em> (Aug-1932, +50.3%), not down. A booked lean-miss, same lesson as NIFTY's daily skew.</p></div>
+<div class="twrap"><table><tr><th colspan="2">Worst S&amp;P months</th><th colspan="2">Best S&amp;P months</th></tr>
+<tr><td>1929-11</td><td class='dn'>-26.5%</td><td>1932-08</td><td class='up'>+50.3%</td></tr><tr><td>1932-04</td><td class='dn'>-24.0%</td><td>1933-05</td><td class='up'>+28.7%</td></tr><tr><td>2008-10</td><td class='dn'>-20.4%</td><td>1938-07</td><td class='up'>+19.9%</td></tr><tr><td>2020-03</td><td class='dn'>-19.1%</td><td>1933-06</td><td class='up'>+17.1%</td></tr><tr><td>1931-12</td><td class='dn'>-18.8%</td><td>2009-04</td><td class='up'>+12.0%</td></tr></table>
+<p class="cap">Every extreme month sits inside four regimes: 1929–33, 1938, 2008, 2020. The best months live
+next door to the worst — Aug-1932 (+50%) follows Apr-1932 (−24%) by four months.</p></div>
+</div>
+
+<h2>Small versus large: two markets, opposite verdicts</h2>
+<div class="twrap"><table>
+<tr><th></th><th>US market (99y)</th><th>US small*</th><th>India market (32y)</th><th>India small*</th></tr>
+<tr><td>Mean return (nominal)</td><td>11.5%/yr</td><td><b>13.7%/yr</b></td><td>15.3%/yr</td><td class="dn"><b>12.4%/yr</b></td></tr>
+<tr><td>Monthly vol ratio vs market</td><td>1.00×</td><td>1.32×</td><td>1.00×</td><td>1.34×</td></tr>
+<tr><td>Worst month</td><td class="dn">−29.1%</td><td class="dn">−31.1%</td><td class="dn">−28.4%</td><td class="dn">−35.3%</td></tr>
+<tr><td>Deepest drawdown</td><td class="dn">−84% (1932-06)</td><td class="dn">−85% (1932-06)</td><td class="dn">−62% (2001-09)</td><td class="dn">−90% (2001-09)</td></tr>
+<tr><td>Monthly AR(1) (staleness)</td><td>+0.09</td><td>+0.15</td><td>+0.11</td><td>+0.17</td></tr>
+</table></div>
+<p class="cap">*US small = market + SMB (CRSP proxy, 1926–2024); India small = market + SMB (IIMA, 1993–2025).
+Proxy construction understates true bottom-decile extremes — stated.</p>
+<div class="twrap" style="margin-top:16px">
+<table><tr><th>horizon</th><th>US mkt mean</th><th>worst</th><th>%&gt;0</th><th>US small mean</th><th>worst</th><th>%&gt;0</th></tr><tr><td>1y</td><td>+12.2</td><td class='dn'>-65.8</td><td>75%</td><td>+14.9</td><td class='dn'>-61.9</td><td>72%</td></tr><tr><td>5y</td><td>+10.2</td><td class='dn'>-19.5</td><td>88%</td><td>+11.9</td><td class='dn'>-23.8</td><td>88%</td></tr><tr><td>10y</td><td>+10.5</td><td class='dn'>-5.4</td><td>95%</td><td>+12.1</td><td class='dn'>-3.4</td><td>98%</td></tr><tr><td>20y</td><td>+10.7</td><td class='dn'>+1.9</td><td>100%</td><td>+12.2</td><td class='dn'>+5.3</td><td>100%</td></tr></table>
+</div>
+<p class="cap"><b>The US verdict:</b> small paid — +1.5 to +2.7pp/yr at every horizon for 1.32× the volatility,
+and at 20 years its worst case (+5.3%/yr) beats the market's (+1.9%): the small premium compounds into a
+<em>higher</em> long-horizon floor. <b>The India verdict is the opposite:</b> over 32 years the smallcap tilt
+<em>lost</em> 2.9pp/yr against the market while carrying 1.34× the volatility, a deeper worst month, and a
+−90% drawdown (the 2001 bust). At the factor level, Indian smallcap beta has not been compensated —
+the smallcap money in India is stock <em>selection inside</em> the segment, never the segment itself.
+Daily survivor-tercile detail (2013–21, severe survivorship — a lower bound on damage): the small basket
+prints daily AR(1) of <b>+0.20</b> vs the NIFTY's 0.00 — the stale-price signature of illiquidity: measured
+smallcap volatility understates true risk, because part of every shock arrives the next day.</p>
 
 <div class="note"><b>Provenance & caveats.</b> S&amp;P: github.com/datasets/s-and-p-500 mirror of Shiller ie_data,
 vaulted 2026-09-07, 6/6 pre-stated anchors passed (sha256 in manifest); real columns end 2023-09 (CPI lag) — series

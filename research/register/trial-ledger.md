@@ -2508,3 +2508,44 @@ Script: scripts/analyze_tl_atlas.py. Census: 8.
 | # | What | Result | Status |
 |---|---|---|---|
 | TL-D1 | The return-distribution atlas (interpretation hand-appended AFTER the print; RUN NOTES: VIX column-name fix pre-print; Shiller mirror's real columns end 2023-09 — completeness guard added after a -100% artifact appeared in a first print, series truncated, no bar touched) | **c1 THE SIGMA LEDGER** (NIFTY daily, n=4,553, sigma=1.30%): +-3sigma observed 69 vs Gaussian 12.3 (**5.6x**, bar >=3x PASS); +-4sigma 35 vs 0.29 (121x); **beyond 6sigma: 6 events** (4 down, 2 up) vs Gaussian ~1e-5 (**~700,000x**, bar >=1 PASS). **c2**: excess kurtosis **15.8** (bar >=5 PASS); skew **+0.06 — the negative lean MISSED**: at daily frequency the up-tail is as fat as the down-tail (best day +17.7% > |worst| 13.0%); the felt asymmetry is vol-timing, not skew. **c3 CLUSTERING**: autocorr(|r|) positive at all 30 lags (+0.28 lag-1, +0.18 lag-30) vs autocorr(r) lag-1 +0.04 — size echoes, sign does not; rolling-vol AR(1) phi **0.992 -> 82-trading-day half-life** (bar PASS); 21d vol regime range 7.8% -> 87.9% (6.1x median-to-max). **c4 VIX**: median 17.6 (in band), mean 19.4 > median (right skew PASS), max 82.7 on 2020-03-16 (>80 PASS). **c5 THE KURTOSIS LADDER**: NIFTY daily 15.8 -> weekly 4.6 -> monthly 4.3 -> US annual **0.2** (monotone within-market, annual bar PASS) — **PARTIAL**: US monthly over 152y prints **18.0** (the 1930s never aggregate away; averaging flag stated) — aggregational gaussianity holds within eras, not across a Depression. **c6 US HORIZON TABLE** (Shiller real TR 1871-2023, overlap flagged): 1y mean +8.6/sd 19.3/worst -58.1; 5y +7.2/7.8/-13.2; 10y +6.9/5.1/-5.9; 20y +6.6/**2.9**/**-0.2, 100% of 1,593 windows positive** — positive-fraction ladder 61->69->78->81->89->100% MONOTONE (PASS); worst 20y -0.2%/yr in the [-1.5,+1.5] band (PASS; JST annual cross-check +0.9%). **c7** NIFTY weekly sd 2.7%/worst -15.9%; monthly 6.0%/-26.4%. **c8 EVENTS**: all 20 extreme NIFTY days sit inside 2008 / the 2009 reopen / Mar-2020; worst US real years 2008 -39, 1917 -37, 1931 -36, 1974 -34; deepest US real drawdown **-77% (Jun-1932)**. NEW VAULT us_index/ (Shiller mirror, 6/6 anchors); Dow daily runsheet row added. ARTIFACT: docs/learn/artifacts/return-distribution-atlas.html (published 292e6690) | **2 bars missed honestly (daily skew; the ladder's US-monthly exception); the atlas is the risk chapter's second anchor with MG-D3; census +8 = 525** |
+
+## Entry TL-D2 (2026-09-07) — PRE-REGISTERED before running: THE ATLAS EXTENSION — S&P at
+maximum span, the US market at 99y monthly, and SMALL vs LARGE on both markets. Principal
+directive verbatim: "i told u to do it for sp500 and dow jones max possible lets keep the
+current nifty but i want it for the mentioned and smallcaps and indian smallcaps if
+possible seperately." DATA REALITY restated: US DAILY (Dow 1896-/SPX 1957-) remains
+principal-machine (stooq re-probed dead 2026-09-07; runsheet row stands) — the maximum
+RUNNABLE spans are: S&P NOMINAL MONTHLY 1871-01..2026-08 (Shiller mirror, 1,867 months;
+monthly-AVERAGE smoothing flag — tails muted, stated); US MARKET monthly TOTAL return
+1926-07..2024-11 = (Mkt-RF + RF) from the vaulted FF3 (CRSP value-weight — broader than
+the Dow, THE maximal true-month-end US series; stated substitution); US SMALL proxy =
+market + SMB (the market is cap-weighted ~ the big side, so the SMB tilt approximates the
+small side — a stated proxy; true ME-decile portfolios are on the Ken French runsheet
+row); INDIA market monthly 1993-10..2025-12 = MF+RF (IIMA, nominal); INDIA SMALL monthly
+proxy = market + SMB (IIMA, same construction); INDIA SMALL DAILY proxy = bottom tercile
+of the survivor panel by PRIOR-YEAR median rupee value traded (n500_value_traded vault),
+equal weight, reformed each Dec-31, 2013-2021 — SURVIVORSHIP AT MAXIMUM SEVERITY, stated:
+smallcap deaths are exactly what a 2021-survivor panel deletes; every small-cap damage
+number here is a SEVERE lower bound. Sigma = full-sample sd per series.
+CELLS (12): s1 S&P 155y monthly sigma ledger + worst/best months — BARS: >=3sigma count
+>= 3x Gaussian; >=4sigma >= 10x; 6sigma presence TWO-SIDED (averaging mutes tails).
+s2 S&P monthly excess kurtosis >= 8; skew two-sided lean negative. s3 US market 99y
+(true month-end): sigma ledger + kurtosis (prior: kurtosis 7-12; worst month <= -25%;
+>= 2 months beyond 6sigma). s4 US SMALL vs MARKET: vol ratio >= 1.25x; kurtosis compare
+TWO-SIDED; worst drawdown deeper for small (prior: 1929-32 small <= -90% nominal).
+s5 monthly AR(1): small exceeds market by >= +0.05 (nonsynchronous-trading smoothing).
+s6 US horizon table small vs market (1/5/10/20y): small mean-CAGR premium >= +1.5pp/yr;
+small worst-20y TWO-SIDED. s7 India market monthly sigma/kurtosis (n=387, descriptive
+bars: kurtosis >= 3). s8 INDIA SMALL vs MARKET (IIMA proxy): vol ratio >= 1.15x; worst
+month deeper; AR(1) higher; full-period mean TWO-SIDED (the Indian smallcap premium is
+contested). s9 INDIA SMALL DAILY (survivor tercile) vs NIFTY50: kurtosis and sigma-ledger
+compare — TWO-SIDED (survivor cleansing may thin the measured tails); loud flag. s10 its
+clustering: |r| autocorr all-positive thru 30; vol half-life same order as NIFTY's 82d.
+s11 drawdown table small-vs-large both markets (descriptive). s12 the verdict read: does
+small pay for its tail (mean/vol/worst joint summary, descriptive synthesis).
+CONSUMPTION: the atlas artifact (same URL, extended), risk chapter, T4/low-vol context;
+no promotion. Script: scripts/analyze_tl_d2.py. Census: 12.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| TL-D2 | Atlas extension: S&P 155y, US market 99y, small vs large US+India (interpretation hand-appended AFTER the print) | **s1 S&P MONTHLY 1871-2026** (1,867 months, sigma 4.05%): >=3sigma 25 vs 5.0 (**5x**, bar PASS); >=4sigma 9 vs 0.12 (**76x**, bar >=10x PASS); **4 months beyond 6-sigma** (two-sided landed PRESENT despite averaging): worst Nov-1929 -26.5 / Apr-1932 -24.0 / Oct-2008 -20.4 / Mar-2020 -19.1; best **Aug-1932 +50.3**. **s2** ex.kurt 16.7 (bar >=8 PASS); skew **+0.37 — lean-miss booked**: the most extreme month of American history is UP (the NIFTY daily-skew lesson repeats at 155y). **s3 US MARKET 99y** (true month-end): kurtosis 7.4 (in band), worst month **Sep-1931 -29.1%** (bar PASS), 3 months beyond 6sigma (bar >=2 PASS). **s4** small/mkt vol ratio **1.32x** (bar >=1.25 PASS); small kurtosis 8.6 > 7.4 (two-sided, fatter); worst drawdown small 85% vs mkt 84% — **the <=-90% prior MISSED — proxy artifact stated** (mkt+SMB compresses true bottom-decile depth; the ME-decile file is the runsheet fix). **s5** AR(1) small +0.15 vs mkt +0.09 (bar >=+0.05 PASS — the staleness signature). **s6 US HORIZONS**: small premium +2.7/+1.7/+1.6/+1.5pp/yr at 1/5/10/20y (bar >=1.5 PASS at every horizon); at 20y small's WORST (+5.3%/yr) beats the market's (+1.9%) and 10y positive-fraction 98% vs 95% — the US small premium RAISES the long-horizon floor (two-sided landed pleasant). **s7 INDIA MARKET monthly** (n=386): kurtosis **2.1 — the >=3 bar MISSED** (monthly aggregation already tames India's tails; 2 months beyond 4sigma, none beyond 6). **s8 INDIA SMALL (IIMA proxy)**: vol ratio 1.34x (PASS), worst month -35.3 vs -28.4 (PASS), AR(1) +0.17 vs +0.11 (PASS), maxDD **-90% (2001-09) vs -62%** — and THE HEADLINE: full-period mean **12.4%/yr vs market 15.3%/yr — the two-sided lands NEGATIVE: -2.9pp/yr for 32 years**. Indian smallcap BETA is uncompensated at factor level: more vol, deeper crashes, LESS return. The smallcap money in India is selection inside the segment, never the segment. **s9 INDIA SMALL DAILY** (survivor tercile, flag at maximum): kurtosis 12.0 < NIFTY's 16.6 and sd 1.02% < 1.09% (two-sided landed on the CLEANSED side) but skew -1.57 vs -1.01 and **daily AR(1) +0.20 vs 0.00 — the stale-price illiquidity signature: measured smallcap vol understates true risk because shocks arrive over days**; CAGR prints (39.6%/yr) are survivor-absurd, flagged as printed. **s10** |r| autocorr all-positive thru 30 (PASS); vol half-life 42d vs NIFTY 82d — same order, PARTIAL (half). **s11/s12 THE VERDICT**: US small pays (+1.5-2.7pp/yr, higher 20y floor) for its 1.32x vol; India small charges you (-2.9pp/yr) for 1.34x vol and -90% drawdowns. ARTIFACT extended, same URL | **US-vs-India smallcap verdict is the headline (opposite signs); 3 misses/partials booked (S&P skew lean, small-DD proxy artifact, India monthly kurtosis bar); US daily stays runsheet-gated; census +12 = 537** |
