@@ -80,7 +80,8 @@ this census exists so that can never happen silently.
 | OP-D2 60-agent optimization sweep (73 research cells + 12 combiner looks; F13's cells REFUTED but counted — consumed looks) | 85 | 85 |
 | OP-D3 integrated backtest + improvement grid (5 + 27 grid + selection + OOS validation + 4 robustness) | 38 | 38 |
 | OP-D4 composed book vs the 15/15 target (one-shot, 6 cells) | 6 | 6 |
-| **RUNNING TOTAL (run cells)** | | **696** |
+| OP-D5 stacked book under the principal's margin model (one-shot, 8 cells) | 8 | 8 |
+| **RUNNING TOTAL (run cells)** | | **704** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

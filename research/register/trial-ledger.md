@@ -2785,3 +2785,33 @@ Script: scripts/analyze_op_d4.py.
 | # | What | Result | Status |
 |---|---|---|---|
 | OP-D4 | The composed book vs the 15/15 target (one-shot; interpretation hand-appended AFTER the print; no re-weighting after seeing it, as registered) | **B1 MISS**: CAGR **+9.86%/yr** price-only (**~+11.2% TR-adjusted**) vs the >=15% target. **B2 MISS**: maxDD **-22.71%** vs <=15% (the drawdown is COVID-shaped: EWMA vol-target was AT ITS 1.5x CAP entering late-Feb-2020 because realized vol was low — the F04 onset-lag lesson reproduced at book level; the stand-down halves exposure only after the VIX spike). B3 PASS (worst year -7.9%, 2015). **B4 MISS**: era halves +5.80% / +13.63% (the 2011-16 NIFTY grind drags; 2017-23 TR-adjusted ~+14.9% touches the target). B5 attribution: core +6.62, switcher +1.97, option overlay +1.07 %/yr. THE HONEST ACHIEVEMENT vs raw NIFTY (+10.03%, -38.4%): **same return, 40% less drawdown** — the machinery converts the index's ratio 0.26 to **0.43**, but the target demands 1.0. **B6 THE FRONTIER**: no composition of currently-validated components reaches 15/15 on 2011-2023; the measured neighborhood is ~10-11% TR at -15 to -23% DD. THE TWO REGISTERED PATHS TO CLOSE THE GAP: (i) leverage on the composed book (~1.4x would print ~15%/-32% — FAILS B2; leverage helps only applied to a ratio>1 sleeve, none of which exists in the register; and funding_rate is unset — gated); (ii) ADD validated alpha sleeves — the strongest booked candidate is **M5 vol-managed India momentum (Sharpe 0.77->1.29, maxDD 83%->29%)**, unpriced for costs/implementation and carrying the standing 25-35% forward haircut — a NEW composition including it must be its own registered design, not a post-hoc retry of this one. Paper caveats verbatim (zero costs, price-only core, no 2008 VIX, funding_rate unset) | **the 15/15 target is REFUSED by the current validated toolbox, booked as a measurement not a failure of nerve; 3 bars missed, 1 passed; the gap-closing candidates are named and gated; census +6 = 696** |
+
+## Entry OP-D5 (2026-09-08) — PRE-REGISTERED before running: THE STACKED MULTI-STRATEGY
+BOOK under the principal's margin model ("2.5% of notional margin if hedged else 10% if
+unhedged"). THE DESIGN LOGIC, stated before the print: OP-D4's miss decomposed into a
+RETURN gap (needs gated alpha) and a RISK gap (-22.7% COVID DD caused by the measured
+onset-lag — no reactive rule can fix it); this design attacks the RISK gap with an
+always-on structure and adds measured-VRP overlays that consume MARGIN not CAPITAL
+(hedged margin 2.5% of notional per the principal; long options = premium; pledge
+haircut 10% stated). One-shot vs the same 15/15 bars; no re-weighting after the print.
+COMPONENTS (frozen): (A) the OP-D4 core VERBATIM (80% vol-managed NIFTY + 20% dual-
+momentum switcher); (B) PERMANENT PUT LADDER: 91-day 5%-OTM puts on the core's live
+notional, rolled at 30 days remaining, BS-priced at India VIX (the always-on convexity;
+its carry cost is the price of the DD bar); (C) COVERED CALLS: when VIX-pct >= 0.60 at a
+monthly cycle, sell 1m 1-sigma-OTM calls on 50% of core notional (hedged by the core ->
+2.5% margin class), settle at expiry; (D) the OP-D3 condor sleeve verbatim.
+CELLS (8): s1 CAGR >= 15% (TR-adjusted +1.3pp reported); s2 maxDD <= 15% — THE bar this
+design exists for (prior: the ladder converts -22.7 to -12..-17, genuine uncertainty);
+s3 the put ladder's measured carry cost %/yr and its 2020 payoff (descriptive); s4 the
+covered-call contribution and its rally-year give-up (two-sided); s5 peak margin+premium
+utilization under the principal's model (feasibility read; prior < 20% of book);
+s6 worst year >= -10%; s7 era halves; s8 the dominance read vs OP-D4 (better DD at what
+return cost — the frontier). PRIOR on record: s2 PASSES or comes within 2pp; s1 likely
+still MISSES (the return gap needs M5-class sleeves, not structure); if BOTH pass it is
+a pleasant surprise to be treated with ER-D4b-grade suspicion. Paper caveats verbatim
+(flat-sigma BS, zero costs, no 2008, price-only core +1.3pp TR note, funding_rate unset).
+Script: scripts/analyze_op_d5.py. Census: 8.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OP-D5 | The stacked multi-strategy book under the principal's margin model (one-shot; RUN NOTE: s3's in-loop cost tracker printed garbage from a broken accumulator — the registered quantity recomputed cleanly in a standalone pass, book P&L unaffected) | **s8 THE HEADLINE: OP-D5 STRICTLY DOMINATES OP-D4** — CAGR +10.08%/yr (TR ~+11.4) vs +9.86 AND maxDD **-16.04% vs -22.71%** (+6.7pp of drawdown bought at zero net return cost). **2020 flipped from +8.3% to +22.8%** — the permanent put ladder monetized the crash no reactive rule can see (the F04 onset-lag answered structurally). **s3 CLEAN COLLAR ECONOMICS**: ladder gross premium 7.58%/yr of protected notional, roll recovery 5.97%, net carry 1.62%/yr; ladder net P&L -1.60%/yr of notional (2020 +4.3, 2011 +7.5, worst carry-years 2012 -8.5 gross of payoff); **s4** covered calls +1.05%/yr book — THE CALLS FINANCE THE PUTS almost exactly (net structure cost ~0.3-0.5%/yr for 6.7pp less drawdown). BARS: **s1 MISS** (+10.08/+11.38TR vs >=15 — the return gap persists, as the registered prior said: structure cannot create alpha); **s2 MISS BY 1.04pp** (-16.04 vs <=15 — the registered "passes or within 2pp" prior lands in its within-2pp branch; the bar is NOT retuned to pass, per discipline); s5 MISS (peak margin+premium 26.3% vs the <20% prior — still trivially feasible under pledge, the prior was wrong not the design); s6 PASS (worst year -6.4%, 2015); s7 halves +4.99/+14.78 (the 2017-23 half prints **+16.1% TR-adjusted at -16% DD** — the target ratio exists in the good era). CONSUMPTION: the collar-stacked book is the new risk-side baseline; the REMAINING gap to 15/15 is ~3.6pp of CAGR and 1.04pp of DD, and its registered candidates are unchanged: the M5 vol-managed momentum sleeve (new design, cost-gated) + real option chains (credits/skew replace flat sigma) + the VIX tail. Paper caveats verbatim | **risk gap substantially closed by structure (collar: calls pay for puts); return gap confirmed to need alpha, not engineering; 3 misses booked honestly incl. the near-miss s2; census +8 = 704** |
