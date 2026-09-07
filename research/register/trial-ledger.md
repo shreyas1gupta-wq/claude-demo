@@ -2095,3 +2095,72 @@ CONSUMPTION: context; no promotion. Script: scripts/analyze_db_d9.py. Census: 7.
 | # | What | Result | Status |
 |---|---|---|---|
 | DB-D9 | Equity-positivity checks + debt->currency + the borrower's spread (interpretation hand-appended AFTER the print; c3 f-string typo fixed pre-print, run note) | c1 debt pct -> next-5y depreciation pooled **+0.01** (two-sided prior lands ~0) BUT c2 the bucket tail bites: <60% +0.8 / 60-90% +1.9 / 90-120% +1.6 / **>=120% +3.7%/yr** — the extreme club leaks its currency ~3pp/yr faster. c3 borrower spread (housing - real long rate): **positive in EVERY bucket** (+5.5/+3.6/+3.1/+3.6) — prior "widest at >=120%" MISSED (widest at LOW debt); c4 equity - real long rate: +4.9/+5.4/+3.1/**+5.7% at >=120%** (widest at high debt, as registered, in the equity form). c5 THE ERA SPLIT SETTLES IT: debt pct -> next-5y equity **pre-1980 +0.19, post-1980 -0.05** — the high-debt equity positivity is a PRE-1980 phenomenon (war-recovery entry points + repression herding savers into equities); in the modern carry era debt tells you NOTHING about equities either way. c6 valuation control: the effect persists within dp terciles (cheap+high-debt +10.5% vs +6.8%) — so within the old era it was real, not just valuation; but c5 rules it out as a modern signal. PARTIAL MISS on "washes out" booked | **the myth dies both ways: high debt is neither a reason to avoid equities (81% positive 10y windows) nor a modern reason to buy them (-0.05 post-1980); the >=120% tail leaks FX at ~3.7%/yr; the leveraged-real-asset spread has been positive in every regime with the L12 credit-bust caveat; census +7 = 422** |
+
+## Entry CI-D1..D5 (2026-09-07) — PRE-REGISTERED before running: THE CREDIT + INFLATION
+BATTERY. Principal directive verbatim: "okay, lets move to credit, inflation impacts and
+stocks." Data: JST R6; CI-D1/D2 on 1950-2020 (war/hyperinflation regimes excluded,
+matching FISH-D1's stated span); CI-D3/D4 on the full 1870-2020 span (credit booms and
+crises are sparse; matching the DB battery's stated span). Conventions: real return =
+(1+nom)/(1+infl)-1; Dinfl_t = infl_t - infl_{t-1} (pp of annual CPI inflation);
+ACCELERATION = Dinfl >= +2pp, DECELERATION = Dinfl <= -2pp; HIGH inflation = own-country
+expanding percentile >= 0.8 (min_obs=20, the ER-D1b(9) construction); RISING = Dinfl > 0;
+CREDIT BOOM = own-country expanding rank of 5y d(tloans/gdp) >= 0.8 (the DB-D3 rank
+construction); gold-local real as CU-D4/DB-D6; Spearman throughout; overlapping windows
+flagged, p-values never trusted. NO OOS/no-lookahead claims anywhere in this battery, so
+PROCESS NOTE #8 fields are not triggered (stated). Parent prints quoted to avoid duplicate
+cells: FISH-D1 (1y Fisher beta -0.21; pooled regime gap 12.0pp with the sign-miss);
+ER-D1b(9) (within-country gap 18.2pp; top-own-quintile years -4.1%/yr real); DB-D1
+(private-credit percentile -> 5/10y equity -0.10/-0.14); DB-D3 (5y d(private) -> next-5y
+equity +0.01 pooled null); DB-D5 (crisis-in-3y 12-14% when private credit high vs ~4%);
+DB-D7 h4 (credit boom -> housing -0.12) and h5 (top-inflation years: housing +2.6% vs
+equities -2.2%).
+CELLS (20):
+**CI-D1 — inflation DYNAMICS (5): the direct test of the L9 claim "the killer is
+acceleration" (booked as INTERPRETATION in FISH-D1(iii) and never tested).**
+- i1 same-year real equity by Dinfl bucket (accel >=+2pp / stable / decel <=-2pp) — PRIOR:
+  acceleration years <= -5%/yr; deceleration years >= +10%/yr (the disinflation rally);
+  monotone across the three buckets.
+- i2 the 2x2 LEVEL (own pct >=0.8) x DIRECTION (rising/falling) same-year real equity —
+  PRIOR: high+rising is the killer cell (<= -8%/yr); high+falling POSITIVE. The registered
+  decomposition claim: ER-D1b(9)'s -4.1%/yr top-quintile number splits into a deeply
+  negative rising half and a positive falling half.
+- i3 pooled corr(Dinfl, same-year real equity) — PRIOR: <= -0.25.
+- i4 pooled corr(infl LEVEL, same-year real equity) — PRIOR: |i3| > |i4| (change beats
+  level; if the level wins, the L9 sharpening is REFUSED and recorded).
+- i5 next-1y real equity after acceleration years — PRIOR: positive (recovery), lean only
+  (the CU-D4 crash-recovery analogy).
+**CI-D2 — the cross-asset regime table (5):** same-year REAL returns of equity, bonds,
+bills, housing, gold-local (one read per asset) across i2's four cells — PRIORS: bonds
+best in high+falling (the DB-D2 carry cohort's decade); gold best in high+rising; equity
+worst in high+rising; housing beats equity in BOTH high cells (DB-D7 h5 quoted) but is
+lower when rising; bills negative in both high cells (repression).
+**CI-D3 — credit x inflation (4):** the 2x2 CREDIT BOOM x HIGH INFLATION, full span:
+- j1 next-5y real equity per cell — TWO-SIDED: boom+high-infl worst is the lean, but
+  DB-D3's pooled +0.01 (quoted) means any damage must be CONDITIONAL; a flat 2x2 extends
+  the null and the credit gap stays a crisis-odds variable only.
+- j2 crisis-in-3y rate per cell — PRIOR: owned by the credit axis (DB-D5 quoted);
+  the inflation axis adds <= 3pp within credit states.
+- j3 next-5y real BOND per cell — PRIOR: worst in boom+high-infl (duration + default).
+- j4 next-5y real HOUSING per cell — PRIOR: credit axis owns it (DB-D7 h4 quoted).
+**CI-D4 — the crisis event study (3), full span (crises sparse; stated):**
+- k1 real EQUITY event-time means t-1..t+3 around crisisJST=1 (t=0 crisis year) — PRIOR:
+  t0 <= -8%/yr; positive by t+2 (recovery).
+- k2 the same for real HOUSING — PRIOR: shallower at t0 but SLOWER — still negative at
+  t+2 (L12's slow bust; the equity/housing clock difference made event-time).
+- k3 crisis-year real equity split by inflation state at entry (own pct >=0.8 vs rest) —
+  PRIOR: worse from high-inflation entries.
+**CI-D5 — India partial (3):** STATED LIMITS: India CPI is NOT vaulted (runsheet row
+stands) so NOMINAL forms only; the IIMA RF (annualized from monthly) is the
+rate/inflation-expectation proxy; the India credit leg is data-gated (BIS runsheet row).
+- l1 same-year corr(dRF, nominal market return), 1994-2025 — PRIOR: negative (tightening
+  years hurt), two-sided stated.
+- l2 market nominal return, rising-RF vs falling-RF years (means + medians).
+- l3 next-1y market return after rising-RF years — TWO-SIDED (n~15 per side; descriptive
+  strength only).
+CONSUMPTION: the acceleration verdict enters L9 as a dated update box if i1/i2 confirm;
+context for the credit band (L1/L12) and DS1; no promotion, nothing enters the stack.
+Script: scripts/analyze_ci_battery.py. Census: 20.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CI-D1..D5 | The credit + inflation battery (interpretation hand-appended AFTER the print; i2's n counts complete equity rows, D2's n counts regime-years — stated) | **CI-D1 THE ACCELERATION TEST**: i1 monotone as registered — accel years **-0.4% mean / -1.4% median**, stable +8.7%, decel **+15.8%** (decel bar >=+10 PASS; accel bar <=-5% MISSED — flat-to-negative, not deeply negative); i2 the 2x2: **HIGH+rising -3.0% (median -4.0)** vs **HIGH+falling +4.4%** — the registered decomposition CONFIRMED: ER-D1b(9)'s -4.1%/yr top-quintile number is owned by the RISING half (falling-from-high years are positive); low+rising +6.8 vs low+falling +13.5 — direction splits BOTH levels by ~7pp; i3/i4 **PRIOR MISS, the refusal clause fires**: corr(dinfl, req) -0.20 vs corr(level, req) **-0.24** — in correlation form the LEVEL is not beaten by the change; the killer is the CONJUNCTION (high AND rising), not acceleration per se — L9 sharpened in bucket form only, recorded as measured; i5 next-1y after accel +2.1% mean / +0.1% median — muted recovery (no currency-crash-style rebound). **CI-D2 THE REGIME TABLE** (same-yr real means): HIGH+rising: gold **+9.6** > housing **+6.8** >> equity -3.0 > bills -2.8 > bonds **-5.6** — gold-best and equity-worst as registered; housing NEARLY UNIMPAIRED in the killer cell (the inflation-passthrough asset) and it beats equity there by 9.8pp (h5 extended), but the housing sub-priors partially missed: high+falling housing +4.3 vs equity +4.4 (tie, not a beat) and housing is HIGHER when rising (6.8 > 4.3) — housing hedges the acceleration, not the level; bills negative in both HIGH cells (repression confirmed); bonds' best cell is low+falling (+5.6), NOT high+falling (+0.4) — **MISS**: the carry-cohort's bond decade is the DESCENT INTO low, not the high+falling year itself. **CI-D3 CREDIT x INFLATION**: a clean DIVISION OF LABOR — the INFLATION axis owns returns (equity 3.3-3.4% in HIGH cells vs 5.4-5.9% low, near-identical across credit states: DB-D3's credit-return null extends CONDITIONALLY; the two-sided j1 lands flat-credit); the CREDIT axis owns crises (j2: boom 15.0-19.4% crisis-in-3y vs calm 5.3-6.5% — DB-D5 reproduced; inflation adds +4.4pp within boom, 1.4pp over the <=3pp bar — partial miss); j3 **MISS**: bonds worst in calm+HIGH (-2.5), not boom+HIGH (-0.5) — inflation owns bonds entirely; j4 housing: boom cells lower (3.7/5.4 vs 6.7/7.4) — the credit axis owns housing (DB-D7 h4 in bucket form), worst cell boom+HIGH +3.7%. **CI-D4 THE CRISIS EVENT STUDY** (88 crisis-years): equity t-1 -0.5 / **t0 -14.1** / t+1 +9.7 / t+2 +13.9 / t+3 +4.6 — t0 bar PASS, recovery arrives at t+1 already; k2 **MISS on sign**: housing NEVER prints a negative event-time mean (8.3 -> 4.6 -> 4.3 -> 3.8 -> 4.3) — the slow bust shows as a multi-year SLOWDOWN in the pooled record, not negative means (the L12 Big-5 severity is diluted by 88 pooled crises; stated); k3 crisis-yr equity from HIGH-inflation entry **-18.2%** vs -13.0% other entries — worse as registered. **CI-D5 INDIA** (nominal, RF proxy): l1 corr(dRF, mkt) -0.12 (leaned sign, weak); l2 rising-RF years +15.4% mean vs falling +20.8% (medians 14.9/12.1 — means only); l3 next-1y after tightening +19.1% — no hangover; descriptive strength only, n=31 | **the killer cell is the CONJUNCTION (high + rising): direction splits the level effect ~7pp at both levels but the level survives in corr form (refusal clause fired, recorded); asset ranking in the killer cell booked (gold > housing >> equity > bills > bonds); crises belong to credit, returns to inflation; crisis event-time table booked (t0 -14.1, recovery t+1, housing = slowdown-not-crash); 6 misses/partials recorded; census +20 = 442** |

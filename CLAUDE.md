@@ -85,3 +85,21 @@ ten-station operating workflow) + research/notes/ context notes (repression era,
 decades, capshare, regime sub-parts menu, DS1 briefing) all committed. Consumption of the
 ER arc: valuation/inflation as STATES for expectations, never point forecasts. Lesson 50
 for the ER arc + One Page refresh owed (in progress 09-05).
+2026-09-07, the macro battery sprint (principal-directed, ledger entries of record):
+ER-D8/D9 + GDP-D3/D4 (market leads GDP 1y and nothing further; slippage -0.79/-0.84,
+tether REJECTED — the wedge compounds; growth HUMP: floor + dilution penalty; only
+delivered dividend growth clears |0.6|); CU-D1..D7 currency battery (PPP +0.94 the
+strongest print in the register; RER half-life 7.3y; UIP dead; crash anatomy 71 episodes
+— local equities crash-immune, USD investors not; India coupling -0.69/-0.79, weak-INR
+years -15/-24, next year +24; US dollar-regime HUMP); DB-D1..D9 debt battery (high public
+debt kills BONDS not equities — US >=90%: eq 7/7 positive, bonds 1/7; three resolution
+regimes, the modern era CARRIES; fiscal dominance = repressed rates + r-g -1.3% + FX leak
++3.7%/yr at >=120%, NOT inflation; debt->growth monotone 2.0->0.7%, no cliff; housing
+mechanism test confirms the slippage doctrine; equity positivity is PRE-1980 only);
+CI-D1..D5 credit+inflation battery (the killer cell is HIGH+RISING inflation: -3.0% vs
++4.4% falling-from-high — the L9 arc made 2x2; asset ranking there gold +9.6 > housing
++6.8 >> equity -3.0 > bonds -5.6; crises belong to CREDIT (boom 15-19% vs calm 5-6%),
+returns to INFLATION; crisis event study: t0 -14.1%, recovery t+1, housing slows but
+never negative). india-regime-playbook.md + leverage/safety addendum committed. Census
+**442**; suite 127 green. Owed: Lessons 50-51 + One Page/Syllabus refresh (the whole
+sprint), then the principal-gated OPEN_QUESTIONS batches 3+4 + Priority-1 pulls.
