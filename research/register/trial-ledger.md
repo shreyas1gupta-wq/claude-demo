@@ -2026,3 +2026,48 @@ promotion. Script: scripts/analyze_db_battery.py. Census: 16.
 | # | What | Result | Status |
 |---|---|---|---|
 | DB-D1..D5 | The debt battery (interpretation hand-appended AFTER the print) | **DB-D1 levels**: public-debt percentile -> next-5y/10y equity **+0.16/+0.17** — misses the <=|0.15| bar by a hair, POSITIVE sign: high public debt has never been bad for subsequent equities in this record; private credit -0.10/-0.14 (in bar). **DB-D2 the >=100% club**: 295 country-years, 34 episodes listed. REGISTERED ASYMMETRY PARTIAL MISS: next-10y real bonds from >=100% starts median **+3.3% (70%>0)** — NOT negative as registered; equity +3.8% (81%>0); at >=130% bonds degrade to +1.3%/56% while equity holds +3.7%/84% (the DIRECTION of the asymmetry held, the bond sign did not). The resolution table explains the miss — THREE RESOLUTION REGIMES: (i) the 1940s cohort resolved violently or by repression (Germany 102->19 via reform-default; Japan 105->13 at 136%/yr inflation; Italy 110->32 at 61%; US/UK/Canada/Benelux ground it down at 4-5% inflation — the cohort where bonds died); (ii) pre-1914 episodes drifted under gold-standard deflation; (iii) **the post-1983 cohort does not resolve at all — it CARRIES** (Italy 101->126, Japan 105->231, Belgium round-trips) in disinflation, which is exactly where long bonds printed their best decade returns — hence the pooled positive bond median. DS1's "arc unresolved" now has its mechanism cohort. **DB-D3 acceleration**: d(private)->equity **+0.01 — PRIOR MISS** (the MSV hangover does NOT show at pooled 5y return level; the credit gap's power stays where the credit monograph seated it — CRISIS odds, not average returns); d(public)->equity +0.14 (post-bust recoveries, as registered). **DB-D4 US**: arc 31% (1870) -> 119% (1946) -> 33% (1974) -> 128% (2020); from US >=90% years: next-10y real equity median **+13.7% (7/7 positive)** vs real bonds median **-1.0% (1/7 positive)** — the repression asymmetry is crisp exactly in the US high-debt cohort. **DB-D5 twin peaks — PRIOR MISS**: the worst equity cell is LOW-public x HIGH-private (+3.9%), not twin-high (+6.2%); crisis-in-3y is ~12-14% whenever PRIVATE credit is high vs ~4% otherwise, regardless of public debt. Private credit is the crisis variable; public debt alone pairs with BETTER subsequent equity (+7.7%) | **doom-priors refuted: high public debt kills BONDS (US cohort 1/7 positive), not equities; private booms make crises, not low average returns; the modern era carries rather than resolves; census +16 = 400** |
+
+## Entry DB-D6/D7 (2026-09-07) — PRE-REGISTERED before running: fiscal dominance + the
+housing extension + top-carrier profiles. Principal directives: (i) "isn't it if debt/gdp
+is too high country will be forced not to raise interest... inflation higher as real bond
+yield would be negative" — the FISCAL-DOMINANCE fingerprint, testable; (ii) the honest
+debt->GDP cell (the prior battery tested debt->EQUITY only — stated); (iii) housing added
+to the debt/currency/growth batteries (the missed asset); (iv) top-carrier asset profiles.
+Data: JST R6 full span, conventions as DB-D1..D5; housing = housing_tr real; gold-local as
+CU-D4. STATED LIMITS: JST has headline CPI only (no food-CPI split), no company/sector
+data — those need principal pulls; profiles are index-level.
+**DB-D6 — fiscal dominance (7 cells):**
+f1 pooled corr(public-debt pct, same-year real bill rate) — PRIOR: NEGATIVE <= -0.15;
+f2 pooled corr(debt pct, next-5y mean real bill) — PRIOR: negative (repression persists);
+f3 within-country median corr(debt pct, real long rate) — PRIOR: negative;
+f4 REAL BILL RATE by debt bucket (<60 / 60-90 / 90-120 / >=120%) — PRIOR: monotone down,
+   >=120% bucket NEGATIVE (the principal's spiral-prevention threshold made visible);
+f5 INFLATION by the same buckets — TWO-SIDED (the 1940s cohort says up, the post-1983
+   carry cohort says down);
+f6 r-g (real bill minus real GDP/cap growth) by bucket — PRIOR: most negative at >=120%
+   (the carry condition that lets debt sit);
+f7 the honest debt->GDP cell: next-5y real GDP/cap growth by bucket — PRIOR: mild decline
+   at high debt, NO cliff (Reinhart-Rogoff 90% as corrected by Herndon-Ash-Pollin).
+**DB-D7 — housing everywhere (6 cells):**
+h1 debt buckets -> next-5y real housing return — two-sided, lean positive (repression
+   pushes savings into real assets; the 1950-80 panel's housing win);
+h2 currency-crash years (dep>=15%) -> same-year + next-1y housing local real — PRIOR:
+   resilient like equities (crash-neutral or better);
+h3 trailing-5y GDP growth -> next-5y housing, pooled — PRIOR: LESS NEGATIVE THAN EQUITIES
+   (>= -0.1 vs equity's -0.22): housing has NO dilution channel and no market pre-pricing,
+   so if the equity growth-negative is dilution/pricing (ER-D2), housing should escape it —
+   a MECHANISM TEST of the slippage doctrine;
+h4 5y d(private credit) -> next-5y housing — PRIOR: NEGATIVE and worse than equities
+   (housing is the financial-cycle bust asset, JST/L12);
+h5 own-country inflation quintiles -> same-year housing real — PRIOR: top-quintile housing
+   BEATS top-quintile equities (-4.1% booked): the better inflation-year real asset;
+h6 gold-local real in >=90% public-debt years vs others — PRIOR: positive premium.
+**DB-D8 — top-carrier profiles (2 cells, descriptive):** for UK 1918-1964, US 1945-1950,
+Belgium 1983-2003, Italy 1992-2020, Japan 1997-2020: within-episode real CAGRs of equity,
+bonds, bills, housing, gold-local + mean inflation + crisis years. CONSUMPTION: context
+(monograph 0.1, L9, L12, the gold book); no promotion.
+Script: scripts/analyze_db_d678.py. Census: 15.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| DB-D6/D7/D8 | Fiscal dominance + housing + profiles (interpretation hand-appended AFTER the print) | **D6**: f1/f2/f3 debt-pct vs real rates +0.03/+0.01/+0.14 — **correlation-form MISSES** (no smooth relation); but the BUCKET form carries the principal's threshold: f4 real bills 1.3 -> 1.1 -> 1.1 -> **0.5% at >=120%** (monotone down; the registered "negative at >=120%" missed — repressed, not negative); f5 inflation **4.2 -> 2.6% — the inflation leg of the hypothesis REJECTED in the pooled record**: high-debt eras were LOWER-inflation eras (the modern carry mode; the 1940s cohort is the exception, not the rule); f6 r-g most negative at >=120% (**-1.3%**) — the spiral-prevention is real and achieved by rates-below-GROWTH, with disinflation, not inflation; f7 debt->next-5y GDP/cap growth **2.0 / 1.2 / 1.0 / 0.7% — monotone decline, NO cliff at 90%** (HAP-corrected RR shape; maturity/aging confound stated). **D7 housing**: h1 positive in every debt bucket (6.9 -> 5.4); h2 currency-crash years +2.9% same-yr, +5.5% next — resilient as registered; **h3 THE MECHANISM TEST: growth -> next-5y HOUSING +0.09 vs EQUITY -0.09** — housing, which has no dilution and no market pre-pricing, does NOT show the growth-negative: the ER-D2 slippage/pricing explanation of the equity result is CONFIRMED by the asset that lacks the channel; h4 credit boom -> housing -0.12 (vs equities +0.01) — housing is the financial-cycle bust asset, as registered (L12); h5 top-own-inflation years: housing **+2.6% vs equities -2.2%** — the better inflation-year real asset; h6 gold-local +4.6% in >=90% debt years vs +2.7%. **D8 profiles** (real CAGR %/yr): UK 1918-64: eq 5.2 / bonds 0.7 / bills -0.2 / housing 4.3 / gold -0.2 / infl 2.9. USA 1945-50: eq 7.5 / bonds **-2.5** / bills **-4.1** / housing **+8.9** / gold -4.7 / infl 5.5. Belgium 1983-2003: eq 10.6 / bonds **+8.0** / housing 9.3 / infl 2.6. Italy 1992-2020: **bonds +6.7 BEAT equities +4.6** / housing 3.5 / gold 4.7. Japan 1997-2020: **gold +6.3 beat everything**; bonds 3.4 > housing 2.9 > eq 2.1; infl 0.2. THE EPISODE DOCTRINE: repression mode (US/UK 1940s) pays equities+housing and kills paper; carry mode (Belgium/Italy/Japan) pays BONDS and gold — the high-debt playbook is decided by the L9 inflation-regime state, not the debt level | **hypothesis verdict: repressed-rates and r<g CONFIRMED at >=120%, inflation leg REJECTED in the modern mode; debt->growth monotone decline booked (no cliff); housing mechanism test confirms the slippage doctrine; census +15 = 415** |
