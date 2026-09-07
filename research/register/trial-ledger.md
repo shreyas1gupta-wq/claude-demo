@@ -1956,3 +1956,32 @@ books; no promotion. Script: scripts/analyze_cu_d6.py. Census: 12.
 | # | What | Result | Status |
 |---|---|---|---|
 | CU-D6 | FX -> equity in both denominations (interpretation hand-appended AFTER the print) | (a) same-year corr(dep, USD real ret) **-0.36** (prior -0.4..-0.6, near-miss by 0.04, booked); pass-through beta **-0.99** — FULL pass-through: the local market gives the USD investor ZERO same-year shield. (b) buckets: WEAK-currency years (dep>=10%, n=185): local real **+11.6%** vs USD **-3.2%**; normal: +8.3/+8.1; STRONG-currency years: local +7.0 vs USD **+21.4%**. NEXT-1y after weak years: **+13.8% local / +13.9% USD** vs 6.7/7.9 normal — reversion pays both denominations, as registered. Refinement of CU-D3(i): local real returns are actually HIGHER in weak-currency years — for the LOCAL investor, depreciation is mildly good (competitiveness + real-asset repricing); the damage is entirely the USD leg. (c) trail-5y depreciation -> next-5y: local **+0.22**, USD **+0.32** — both positive, USD larger, as registered (the mirror of CU-D3(iii)). (d) INDIA: same-year corr with USD return **-0.79** (prior <=-0.75 PASS); weak-INR years (dep>=5%, n=11): local **-12.6%** / USD **-20.6%** vs **+34.2%/+35.5%** in other years — a ~50pp regime split, the double-hit quantified; NEXT year after weak-INR: **+25.5% local / +23.7% USD** — the crash-year-as-entry-state result reproduced at India scale (2013->2014 pattern is systematic) | **matrix booked; the panel/India asymmetry is the doctrine: panel-wide FX weakness is a USD-leg problem only; in India it is everyone's problem the same year and historically the entry state the next; census +12 = 370** |
+
+## Entry CU-D7 (2026-09-07) — PRE-REGISTERED before running: crash anatomy + India/US
+regime tables. Principal directive: detail the >=15% crash set, more data points, and the
+CU-D6 regime table separately for India and the US. Same conventions as CU-D1..D6. The US
+has no depreciation-vs-USD, so its registered regime variable is the BROAD DOLLAR: the
+equal-weight mean Δlog xrusd across the 17 panel currencies (positive = USD strong).
+CELLS (14):
+(a) CRASH ANATOMY, panel dep>=15% (6): a1 episode census — count by decade + median/max
+depreciation (descriptive); a2 crash-year LOCAL real: median + hit-rate (%>0) alongside
+the booked mean; a3 crash-year USD real: median + hit-rate; a4 next-1y medians both
+denominations; a5 next-3y CAGR medians both; a6 gold-in-local real median in crash years
+vs others. PRIORS: local median BELOW the +8.7% mean (skew from high-inflation years),
+hit-rate 50-60%; USD median -8..-15%, hit-rate < 40%; next-1y/3y medians positive both
+denominations; gold-local crash median positive.
+(b) INDIA regime table, buckets fixed NOW (weak dep>=8% / normal -2..8% / strong <=-2%),
+IIMA nominal market + USDINR 1994-2025 (5): b1-b2 same-year local and USD means per
+bucket; b3-b4 next-1y local and USD; b5 the INR >=15% crash-year list since 1973 with
+outcomes (descriptive; equity coverage only from 1994). PRIORS: weak bucket local negative
+and USD worse; next-1y after weak strongly positive (CU-D6 pattern at the sharper cut).
+(c) US dollar-regime table (3): c1 same-year corr(broad-dollar change, US real equity) —
+PRIOR: weakly positive, two-sided stated (risk-off strengthens USD and sinks stocks, but
+strong-USD eras were US-strong eras); c2 bucket means (strong >=+5% / normal / weak
+<=-5%) same-year US real equity; c3 next-1y US real equity per bucket. CONSUMPTION:
+context for the gold/FX cluster and L23 (dollar cycle); no promotion.
+Script: scripts/analyze_cu_d7.py. Census: 14.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CU-D7 | Crash anatomy + India/US regime tables (interpretation hand-appended AFTER the print) | (a1) 71 crashes: **32 of 71 in the 1980s** (the EMS/Volcker era); top crashers Spain 8, Portugal 7, Sweden 7, UK 7, Italy 6 — the European soft-currency club, NOT emerging markets; median dep 20%, max Portugal 1983 (39%). (a2) crash-yr LOCAL real: mean +8.7 / median **+8.7** / 67% positive — **PRIOR MISS (pleasant)**: no skew, the local-equity crash immunity is robust, not a mean artifact. (a3) crash-yr USD: median **-8.8%**, only 38% positive (in band). (a4) next-1y: LOCAL median **+18.3% (79% positive)**, USD median +12.0% (65%). (a5) next-3y CAGR medians: +10.5% local (83% pos) / +13.4% USD (79% pos). (a6) gold-local real in crash years: median **+8.2%** vs **-1.1%** in other years — a ~9pp MEDIAN spread, stronger than the mean print. (b) INDIA table (1994-2025, nominal): WEAK INR (dep>=8%, n=7): **-15.2% local / -24.4% USD**; normal (n=18): +17.3/+14.0; STRONG INR (n=7): **+53.7% local / +62.4% USD** — INR-strength years are the monster years (the inflow side of the same Rey coupling); next-1y after WEAK: **+24.4/+23.1**; after STRONG: only +7.3/+7.0 — chasing strength pays nothing. INR >=15% crashes since 1973: **1984 (16%), 1991 (35%), 2008 (21%)**. (c) US: same-year corr(broad dollar, US real equity) **-0.03 — PRIOR MISS** (registered weakly positive); the bucket table is a HUMP: USD-strong years +5.8%, normal **+11.3%**, USD-weak +6.4% — BOTH dollar extremes are below-normal for US equities; next-1y roughly flat (6.7/9.7/8.0) | **anatomy booked; 2 misses recorded; the crash playbook (below) enters the gold/Tier-C context; census +14 = 384** |
