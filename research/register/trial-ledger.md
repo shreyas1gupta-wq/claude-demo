@@ -2716,3 +2716,46 @@ Census: 73 research cells + combiner cells booked at completion. Workflow: opt-s
 | # | What | Result | Status |
 |---|---|---|---|
 | OP-D2 | The 60-agent optimization sweep — results (interpretation from the verified board; every family's full print in research/opt_sweep/fXX.json, scripts committed; each researcher adversarially verified by a paired refuter) | **THE DESIGN THAT SURVIVED** (SYNTHESIS.md, red-teamed): monthly symmetric condor (short 1.0-sigma, long 2.5-sigma wings, defined-risk mandatory), entry ONLY at India-VIX expanding-pct >= 0.60 (F16: in-state VRP capture +5.58 vs +2.96 unconditional, hit-rate 0.80, n=41/136 entries); sizing f_t = min(f_DD x s_t, **0.10 of book**) with s_t = EWMA(.94) vol-target capped 2x and f_DD = 0.150 (hold-arm conservative); management = **delta-band roll at |delta|>=0.30, max 3 rolls** (35.5% worst-month cut at 9.6% mean cost, 2.6x more cost-efficient than the stop-2x, which MISSED both its bars); capital split **80/20 monthly/weekly** (weekly preferably 0 — adds only +1.3%/yr); daily book-loss stop -2.22% (gap-budget -3.22%), halve at -5% sleeve DD, flat at -10%, re-entry only below the 60th pct (median wait 29td, never the 2-day VIX snapback); overlays kept: Budget T-1/T/T+1 exclusion (|ret| 0.95 vs 0.59%, p=0.0049, + the day-0 IV crush trade) and stress stand-down at pct >= 0.90. **THE COMPOUNDING VERDICT (F17): sizing-dependent, NOT frequency** — monthly compounds +13.96%/yr geometric (worst month -30.6% of margin) while weekly at full margin is IN-SAMPLE RUIN (the 2016-02-29 Budget week = -100% of margin); a <=20% earmark converts ruin into a bounded drawdown. **TAIL LAW CONFIRMED STRUCTURALLY**: no vol machinery sees crashes — EWMA and GARCH alike lagged the Mar-2020 onset by **72-74 vol points** (F04), so tail safety lives in the 0.10 cap + 2.5-sigma wings (max gapped loss 9.0x credit, F15 -> net premium at risk <= 1.11% of book), never in forecasts; s_t upsized INTO Aug-2013/Aug-2015 losses. **PASSES**: F06 trend-x-VIX dispersion, F16 roll-arm, F19 budget, F20 stress-composite (x2). **MISSES booked**: F01 HMM (45% storm capture vs VIX-pct's 82%, 0/41 crash onsets), F03 (EWMA tuning +1.21% vs >=3% bar), F05 (vol-target as tail protection), F07 momentum sign, F12 Parkinson (-7.5%, actively WORSE), F14, F16 stop-2x. **REFUTED (process)**: F13 IV-HV quintile gate — the paired verifier caught a groupby leak; dead until re-registered and re-run. **THE GRAVEYARD (c10)**: 10+ families buried — HMM (both), GARCH machinery, Parkinson, momentum/MR/breadth/gap direction overlays, candles (6/8 null, survivors unpromoted), INR overlay (null, 58% flag rate at +53% cost), bank-heavy hedge (beta CONTRACTS in stress — F21 prior falsified; smallcap-tercile hedge instead). UPPER-BOUND caveats stand: no 2008 in the VIX sample, post-2023-04 tail missing (2024 election + SEBI-curbs era break), flat-sigma BS, zero costs, funding_rate unset — **paper-only; H60-VRP registration deferred until the chain + VIX-tail pulls land** | **the sweep's verdict: simplicity won (one state variable, one structure, one management rule); the roll needs its own pre-registered bar before H60-VRP; 60 agents, 0 errors, every researcher refuter-checked, 1 process refutation caught; census: 73 research + 12 combiner looks = +85 -> 652** |
+
+## Entry OP-D3 (2026-09-08) — PRE-REGISTERED before running: THE INTEGRATED PAPER
+BACKTEST + THE HONEST IMPROVEMENT GRID. Principal directive: "backtest and improve."
+OP-D2's design was validated family-by-family; this runs it as ONE system with all rules
+interacting, then permits improvement ONLY through a pre-registered grid with train/test
+selection — the baseline STANDS unless a variant beats it out-of-sample (no bar-shopping,
+no post-hoc tuning). PROCESS NOTE #8 fields: purge = 21 trading days at the split
+boundary (no test entry before 1 purge window after 2016-12-31); preprocessing info set =
+expanding only (VIX pct min_obs=252, EWMA recursive); exact windows = train entries
+2011-07..2016-12, test entries 2017-02..2023-03; benchmark = the FROZEN baseline variant
+run on the same test window. Data: India VIX daily 2010-07..2023-04 + NIFTY daily; BS
+flat-sigma pricing at India VIX, r=0.06; zero costs (stated — paper best-case); margin =
+defined-risk max loss. SIM CONVENTIONS declared now: monthly sleeve only (weekly earmark
+0 per c04's preference); expiry = last Thursday of the target month (>=15 calendar days
+out at entry); enter on any flat day with VIX-pct >= threshold, outside Budget T-1..T+1
+(budget list: 2011-02-28, 2012-03-16, 2013-02-28, 2014-02-17, 2014-07-10, 2015-02-28,
+2016-02-29, 2017-02-01, 2018-02-01, 2019-02-01, 2019-07-05, 2020-02-01, 2021-02-01,
+2022-02-01, 2023-02-01) and not in stand-down; structure = short 1.0-sigma strangle +
+long WINGxsigma wings (sigma = VIX/100*sqrt(T)); size: max structural loss = f x book,
+f = min(0.150 x s_t, 0.10), s_t = min(15%/EWMA94-vol, 2.0); DAILY MANAGEMENT: (i) roll
+when |net structure delta| >= ROLL (re-strike at current spot, same expiry, max 3 rolls,
+4th trigger = close); (ii) stand-down close at VIX-pct >= 0.90; (iii) book day-loss stop
+-2.22% (close all); after any forced exit, re-arm only after VIX-pct prints < 0.60 once.
+Baseline = (WING 2.5, ENTRY 0.60, ROLL 0.30) — the OP-D2 spec verbatim, frozen.
+CELLS (38):
+**OP-D3a — the integrated baseline (5):** b1 book maxDD <= 10% (the design's structural
+claim — THE validation bar); b2 >= 70% of position-months positive; b3 sleeve
+contribution >= +1.0%/yr on book (paper); b4 worst calendar month >= -3.5% of book;
+b5 the yearly P&L table (descriptive; two-sided read on worst year).
+**OP-D3b — the improvement grid (29):** 27 variants = WING {2.0,2.5,3.0} x ENTRY
+{0.50,0.60,0.70} x ROLL {0.25,0.30,0.35}, each run on TRAIN only; selection cell:
+pick argmax of [geometric mean - 2x|worst train month|] subject to train maxDD <= 10%;
+validation cell: the ONE selected variant runs on TEST vs the frozen baseline on TEST —
+IMPROVEMENT IS ACCEPTED ONLY IF test geometric mean is higher AND test maxDD is not
+worse; otherwise the verdict "no improvement — baseline stands" is booked as the result.
+**OP-D3c — robustness (4):** era split of the final choice (2011-16 vs 2017-23 reads),
+ex-COVID (drop 2020-02..2020-06) read, r-sensitivity (r=0.05 vs 0.07) read.
+CONSUMPTION: the H60-VRP design brief v3; paper-only (funding_rate unset; no chains —
+flat-sigma stated); census 38 on completion. Script: scripts/analyze_op_d3.py.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| OP-D3 | The integrated paper backtest + the honest improvement grid (interpretation hand-appended AFTER the print; RUN NOTE: b2 first printed over all calendar months — recomputed over POSITION months per the registration, no bar moved) | **D3a THE INTEGRATED BASELINE** (all OP-D2 rules as one system, 2011-07..2023-03, zero-cost flat-sigma paper): book CAGR **+1.07%/yr**, maxDD **-2.93%**, worst month -1.41%, deployed 53/140 months (38%). BARS: b1 maxDD<=10% **PASS** (by 3.4x — the structural cap works as designed); b3 >=+1%/yr **PASS** (at the line); b4 worst month >=-3.5% **PASS**; **b2 MISS: 66% of position-months positive vs the 70% bar** (mean position-month +0.24%, median +0.28%); b5 yearly: 10 of 12 years positive, worst year 2020 **-2.0%**, best 2018 +3.0% — no losing year worse than -5% (two-sided read lands benign). **D3b THE IMPROVEMENT GRID — THE OOS GATE REFUSED IT**: train (2011-16) selected the aggressive corner (entry 0.50, wing 2.0, roll 0.25; obj +0.77) but on test (2017-23, 21td purge) it printed geo +2.17 with maxDD **-5.55% vs the baseline's -2.93%** — higher return, WORSE tail; the registered acceptance rule (better geo AND no-worse maxDD) fails -> **NO IMPROVEMENT, BASELINE STANDS** booked as the result. The grid's lesson mirrors ER-D4b/Goyal-Welch: train winners buy their edge with tail. **D3c ROBUSTNESS**: era-stable (2011-16 +1.16/-1.62 vs 2017-23 +1.01/-2.93); ex-COVID mean month +0.106 vs +0.090 incl (COVID is a small net NEGATIVE to the sleeve — the stand-down worked); r-insensitive (+1.10/+1.13 at r=0.05/0.07). CONSUMPTION READ: as a SLEEVE the design delivers ~+1.1%/yr on the whole book at a bounded -3% maxDD while using ~10% margin 38% of the time — a return-on-margin of ~+11%/yr in-state, consistent with F16; scaling beyond f_cap=0.10 is exactly what the ruin math forbids. Upper-bound caveats verbatim (no 2008, no chains/costs, post-2023 tail missing, funding_rate unset — paper-only) | **the design survived integration; "improve" was tried under a pre-registered protocol and honestly refused OOS; one bar missed (b2 66%); the H60-VRP brief v3 inherits this baseline verbatim; census +38 = 690** |

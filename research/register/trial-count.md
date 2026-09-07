@@ -78,7 +78,8 @@ this census exists so that can never happen silently.
 | TL-D4 three-speed sigma ledger (4 weekly + NIFTY monthly + completion row) | 6 | 6 |
 | OP-D1 option-state battery (3+2+1+1+1+3+1) | 12 | 12 |
 | OP-D2 60-agent optimization sweep (73 research cells + 12 combiner looks; F13's cells REFUTED but counted — consumed looks) | 85 | 85 |
-| **RUNNING TOTAL (run cells)** | | **652** |
+| OP-D3 integrated backtest + improvement grid (5 + 27 grid + selection + OOS validation + 4 robustness) | 38 | 38 |
+| **RUNNING TOTAL (run cells)** | | **690** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
