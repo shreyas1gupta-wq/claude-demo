@@ -25,3 +25,29 @@ read must carry this flag; horizons >= 1y are materially unaffected.
 - A5 PE10 Dec-1999 = 44.20 — PASS. A6 CPI Jan-1913 = 9.80 — PASS.
 All six anchors passed on the first check; nothing re-tried. Vault AUTHENTICATED
 (sha256 in manifest.json, WORM).
+
+## 2026-09-07 additions — US DAILY series (two-pass, anchors BEFORE values)
+
+### djia_daily_1980_2012.csv
+Source: Rdatasets mirror (vincentarelbundock/Rdatasets, csv/AER/DJIA8012.csv) of the AER
+R package's "Dow Jones Industrial Average (DJIA) index" daily series, ~1980-2012.
+
+### sp500_fut_adjusted_daily.csv + sp500_fut_multiple_daily.csv
+Source: robcarver17/pysystemtrade (master), data/futures/{adjusted_prices_csv,
+multiple_prices_csv}/SP500.csv — back-adjusted S&P 500 futures daily from 1982-09 and the
+unadjusted per-contract prices. RETURN CONVENTION declared NOW: futures daily return =
+diff(adjusted price) / lag(UNADJUSTED current-contract PRICE) — percentage returns taken
+directly on a back-adjusted level are biased early in the sample (additive splicing), so
+the diff/unadjusted construction is the only permitted form.
+
+### PASS 1 — anchors written BEFORE checking any value (2026-09-07)
+- B1 (DJIA): 1987-10-19 daily return <= -20% (Black Monday, published -22.6%).
+- B2 (DJIA): 2008-10-13 daily return >= +9% (published +11.1%).
+- B3 (DJIA): span covers 1981-01..2011-12; row count in [7900, 9000]; levels in 1980
+  near [750, 1100] and in 2011 near [10500, 13000].
+- B4 (SPX futures): 1987-10-19 return (declared construction) <= -15%.
+- B5 (SPX futures): 2020-03-16 return <= -7%; span reaches >= 2024-06.
+- B6 (SPX futures): unadjusted PRICE in mid-2024 within [4500, 6500].
+
+### PASS 2 — results (filled AFTER the pull; bars never moved)
+(pending)
