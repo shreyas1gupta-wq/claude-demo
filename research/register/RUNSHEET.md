@@ -37,6 +37,7 @@ for exact URLs, formats, and pitfalls).
 | Shiller ie_data (US price/earnings/dividends/CAPE 1871-) + Damodaran aggregate ROE & net-issuance tables | econ.yale.edu + pages.stern.nyu.edu (both blocked at this proxy; free) | ingest/vault/shiller/ | ER battery upgrades: true CAPE horizons, ROE-adjusted growth (ER-D3 cross-sectional form), direct dilution measure. Added 2026-09-05 (ER-D1..D4 entry) |
 | Ken French 12-industry portfolios, monthly VW 1926- (+ 48-industry secondary) | mba.tuck.dartmouth.edu data library (blocked at this proxy; GitHub mirror hunt failed 2026-09-07; free) | ingest/vault/ff_industries/ | SEC-D5 (US industry x inflation/credit/debt/dollar/crisis long-history battery — the frozen design in the ledger); the inflation x sector map India cannot supply. Added 2026-09-07 (SEC entry) |
 | India CPI monthly (MOSPI/RBI, 2012- new series + back-splice) | mospi.gov.in / RBI DBIE (blocked at this proxy; free) | ingest/vault/india_macro/ | India inflation x sector cells (SEC extension); real-return forms of every India partial (CU-D5, CI-D5, SEC-D2/D3 currently nominal-only). Added 2026-09-07 |
+| Dow Jones Industrial Average DAILY 1896- (+ S&P 500 daily 1957-) | measuringworth.com / stooq.com (both blocked at this proxy; GitHub mirror hunt failed 2026-09-07; free) | ingest/vault/us_index/ | TL-D1's US-daily legs (sigma ledger, clustering, tail asymmetry on 100y+ US daily — currently NIFTY-only); Shiller monthly mirror vaulted 2026-09-07 covers monthly+ horizons. Added 2026-09-07 |
 
 ## Principal inputs (not pulls — decisions; validator warns on every run until set)
 - `funding_rate` (config) — gates the leverage feature entirely.
@@ -48,4 +49,3 @@ analysis (WORM); no design may be altered at data-landing — bars run as regist
 bar that proves wrong is a recorded miss, never a moved bar (M0/A6 precedent). Paid or
 login-gated sources are NOT substitutes for any row above (3.5's REJECT-FOR-DATA precedent
 governs).
-| Dow Jones Industrial Average DAILY 1896- (+ S&P 500 daily 1957-) | measuringworth.com / stooq.com (both blocked at this proxy; GitHub mirror hunt failed 2026-09-07; free) | ingest/vault/us_index/ | TL-D1's US-daily legs (sigma ledger, clustering, tail asymmetry on 100y+ US daily — currently NIFTY-only); Shiller monthly mirror vaulted 2026-09-07 covers monthly+ horizons. Added 2026-09-07 |
