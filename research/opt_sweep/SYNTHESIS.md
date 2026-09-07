@@ -15,14 +15,14 @@ here is promoted — promotion requires H60-VRP's own pre-registration, which is
 | Family | Headline (printed) | Verdict |
 |---|---|---|
 | F01 HMM-2 regime | No-lookahead 2-state HMM fwd-21d vol spread 2.02x the VIX-pct baseline (12.9 vs 6.4 pts) — but the high state is rare (6.2% of days) and catches only 45% of storm days vs 82% for VIX-pct: NOT a substitute stress flag | MISS (on the ≤1.15x no-gain bar; info real, trigger unusable) |
-| F02 HMM-3 | 3rd state adds NO crash-onset separation (0/41 onsets at t-1; onset reaction 2.4% vs K2's 22.0%) but widens fwd-vol separation 1.43x — a post-hoc tail-confirmation state only | TWO-SIDED |
+| F02 HMM-3 | 3rd state adds NO crash-onset separation (0/41 onsets at t-1; onset reaction 2.4% vs K2's 22.0%) but widens fwd-vol separation 1.43x — a post-hoc tail-confirmation state only | TWO-SIDED x3 |
 | F03 EWMA grid | ewma_0.94 QLIKE 1.5016 vs roll-21 1.5200: +1.21% vs the ≥3% bar; still grid-best | MISS |
 | F04 GARCH vs EWMA | Statistical tie (QLIKE gap −0.57%, inside \|2%\| band); BOTH lag the Mar-2020 onset by 72.1/73.6 vol pts (RV5 94.4 vs forecasts 22.4/20.8) | PASS x3 (prior confirmed) |
-| F05 Vol-target sizing | Worst-month improvement +5.77% vs ≥30% bar (Mar-2020 entry predates the spike); mean "cost" −42.6% (a gain) | MISS (joint bar) |
+| F05 Vol-target sizing | Worst-month improvement +5.77% vs ≥30% bar (Mar-2020 entry predates the spike); mean "cost" −42.6% (a gain) | MISS x2 (worst-month + joint bar) / PASS (mean-cost leg) |
 | F06 Trend x VIX corners | belowMA+hiVIX has the widest fwd-21d dispersion (std 7.13 vs 4.0–6.2) and highest fwd vol (26.9 pts), n=247 | PASS |
 | F07 Index 12-1 momentum | Sign is NEGATIVE vs fwd returns (fwd1m −1.93%, fwd3m −6.02%, \|t\|≥7.18) — post-crash V-rebound artifact of 2008/2020 troughs | MISS x2 |
-| F08 5d z-score MR | Full-sample −0.16σ hides a SIGN FLIP: pre-2015 reversion +0.79σ vs post-2015 continuation −0.83σ (n=15/36, thin) | TWO-SIDED |
-| F09 Breadth washout | corr null once overlap-corrected (r=−0.04, boot p=0.62); bottom-decile bounce +2.9pp (boot p=0.002) but ~11 episodes, top-2 = 50% of days, permutation p=0.044 | TWO-SIDED |
+| F08 5d z-score MR | Full-sample −0.16σ hides a SIGN FLIP: pre-2015 reversion +0.79σ vs post-2015 continuation −0.83σ (n=15/36, thin) | TWO-SIDED x3 |
+| F09 Breadth washout | corr null once overlap-corrected (r=−0.04, boot p=0.62); bottom-decile bounce +2.9pp (boot p=0.002) but ~11 episodes, top-2 = 50% of days, permutation p=0.044 | TWO-SIDED x2 |
 | F10 Candle graveyard | 6/8 null as registered; doji_fwd5d t=2.47 (fails Bonferroni ~2.75) and 3down_fwd5d t=3.02 flagged, neither promoted | PASS x6 / TWO-SIDED x2 |
 | F11 Gap continuation | No significant intraday continuation on ≥1% gaps (−0.16/+0.16%, ns); hi-VIX fade differential p=0.07–0.08, underpowered and contemporaneous-labeled (down-gap leg nearly halves when lagged/actionable, −0.62→−0.30pp; up-gap leg holds at −0.33pp but was never significant — C07) | TWO-SIDED x4 |
 | F12 Parkinson estimator | Parkinson-21d QLIKE 1.6347 is 7.5% WORSE than close-close 1.5200 vs a ≥5%-better bar | MISS |
@@ -30,10 +30,10 @@ here is promoted — promotion requires H60-VRP's own pre-registration, which is
 | F14 VIX spike decay | Half-life to pre-spike level: median 2 trading days vs the 15–40d sleeve-A bar; days to re-enter <60th pct: median 29d (descriptive) | MISS |
 | F15 Structural greeks/stops | 7d 1σ condor = 2.0x theta/day + 2.1x gamma at 0.48x vega of 30d; stop-2x gap-through needs only 2.0–5.2% moves at 7d (vs 3.9–10.2% at 30d), P(gap)/day midVIX 0.55% vs 0.00%; gapped exits average 2.9x credit (max 8.6–9.0x) | DESCRIPTIVE (analytic) |
 | F16 Monthly condor sim | Stop-2x MISSES both edges (worst-month cut 46.0% vs ≥50; mean cost 32.2% vs ≤30); delta-band roll dominates descriptively: 35.5% cut at 9.6% cost, best p5 (−1.044 vs −2.528 %S) | MISS (stop-2x) |
-| F17 Weekly condor sim | +1.89%/wk per margin (80% hit) but ONE full-wing wipe (Budget wk 2016-02-29, −100%) makes per-unit-margin compounding RUIN vs monthly +13.96%/yr geo; daily close-stop buys only −100%→−93.3% | TWO-SIDED |
+| F17 Weekly condor sim | +1.89%/wk per margin (80% hit) but ONE full-wing wipe (Budget wk 2016-02-29, −100%) makes per-unit-margin compounding RUIN vs monthly +13.96%/yr geo; daily close-stop buys only −100%→−93.3% | TWO-SIDED x2 |
 | F18 Kelly / DD sizing | Full Kelly f* 1.90 mo / 0.35 wk infeasible; the 10%-DD/1%-yr constraint binds ~10x below Kelly: f=0.165 mo / 0.035 wk (+2.9 / +1.3%/yr) — all UPPER bounds (iid bootstrap) | DESCRIPTIVE (constraint math) |
 | F19 Event calendar | Budget window \|ret\| 0.95% vs 0.59% off-window, p=0.0049 (confirms the CW-D1a return leg; headline's CW-D1v attribution corrected in C08); election = the tail (2009-05-18 +17.74%, n=3 descriptive); RBI null (p=0.43) | PASS / DESCRIPTIVE / TWO-SIDED |
-| F20 L2 stress overlay | pct≥0.90: left-tail trim +46.6% (bar ≥20) at cost +9.7% (bar ≤10); beats VIX-pct-alone by +4.4pp — but the edge reduces to 1–2 flagged months (2020-03 caught by both; 2019-09 the only extra) | PASS x2 (effective n=1–2) |
+| F20 L2 stress overlay | pct≥0.90: left-tail trim +46.6% (bar ≥20) at cost +9.7% (bar ≤10); beats VIX-pct-alone by +4.4pp — but the edge reduces to 1–2 flagged months (2020-03 caught by both; 2019-09 the only extra) | PASS x2 / TWO-SIDED (the L2-vs-VIX-pct edge cell, no directional bar; effective n=1–2) |
 | F21 Stress betas | Bank-heavy beta CONTRACTS in stress (hi/lo 0.69: 0.95 vs 1.36) — AGAINST the expansion prior; smallcap-tercile stable (0.92) | DESCRIPTIVE (prior falsified) |
 | F22 INR overlay | Null both axes (corr r=+0.01 p=0.92; weak/strong diff −0.61 p=0.55); stand-down flags 89/154 months, +79% trim at +53% cost — "NOT a usable overlay" | TWO-SIDED x3 |
 
@@ -334,6 +334,14 @@ process note; the original wording is recoverable from git history).*
    defined; undefined risk banned" standard. Added as new row 12, cited to CONTRACT, and row 11
    relabeled "Contract-level gross" to make the two caps' independence explicit; old row 12
    (Tenor priority) renumbered to 13.
+
+8. **[FIXED — §1 verdict column, final-editor pass 2026-09-07] Verdict column made cell-exact
+   against the JSONs.** F05 read "MISS (joint bar)", hiding f05.json's registered PASS on the
+   mean-cost leg (−42.6% vs the ≤20% bar) — now "MISS x2 / PASS". F20 read "PASS x2", omitting
+   f20.json's third cell (the L2-vs-VIX-pct trim-edge comparison, registered two-sided with no
+   directional bar) — now "PASS x2 / TWO-SIDED". Multiplicities added where a family printed
+   several barred cells (F02/F08 → x3, F09/F17 → x2). Labeling exactness only; no headline
+   number changed and no verdict was reinterpreted.
 
 **Checked and confirmed clean (no change needed):** the §5 monthly worst −30.6% of margin dated
 2021-12-20 and the 2,142-day sleeve-worst separation (both are c04's bit-exact recomputation —
