@@ -1861,3 +1861,23 @@ Script: scripts/analyze_er_d9.py. Census: 10.
 | # | What | Result | Status |
 |---|---|---|---|
 | ER-D9 | Cross-country structure sweep + tether (interpretation hand-appended AFTER the print) | (a) n=16 dots: **a1 delivered real dividend growth +0.84 — the ONLY cell clearing the principal's 0.6 bar** (declared partly mechanical: the sanity anchor); a2 inflation -0.49 (in band); a3 real bond return **+0.48 — below the +0.5..+0.8 prior band, near-miss booked** (institutions factor real but moderate); a4 bills +0.40 (as registered); a5 volatility **-0.16 — MISS** (no meaningful cross-country risk-return line either way); a6 crisis count **+0.14 — SIGN MISS**; a7 debt/GDP -0.30 (in band); a8 housing +0.20 — below band, near-miss. (b) **THE TETHER IS REJECTED**: pooled corr(D/GDP percentile, next-10y ratio change) = **+0.15 (prior <= -0.3 — SIGN MISS)**; own-country negative in only **8/15 (prior >=12)**. Dividends and GDP do NOT share a mean-reverting ratio at the 10y scale — the slippage wedge is PERSISTENT/TRENDING, a structural country characteristic that COMPOUNDS rather than self-corrects. Honest read: this strengthens ER-D2's cross-sectional map (-0.79) while killing any "the wedge will close" argument — high-slippage countries stay high-slippage; there is no cointegration rescue for the growth-buyer. Five prior misses booked in one sweep — the register working | **one 0.6-clearer (the cash-flow engine); tether rejected; misses booked; census +10 = 335** |
+
+## Entry GDP-D4 (2026-09-07) — PRE-REGISTERED before running: the within-country growth ->
+future-return grid across window combinations. Principal directive: "do it for 5-5, 10-5,
+10-10, 20-20, 20-10y" (extending ER-D1b's trail-5y -> next-10y median -0.41). JST R6
+1950-2020, same conventions. For each combo (trailing real GDP/cap growth over k years ->
+real equity CAGR over next h years): (i) MEDIAN across countries of the own-country
+Spearman (>=25 usable starts required per country), (ii) pooled Spearman companion.
+Combos: (k,h) = (5,5), (10,5), (10,10), (20,10), (20,20). CELLS: 5 x 2 = 10.
+DECLARED CAVEAT: at (20,20) a 70y sample holds ~31 overlapping starts per country but
+fewer than TWO independent blocks — booked with that flag; no p-values anywhere.
+PRIORS (fixed now): all combos NEGATIVE; magnitude non-decreasing in the trailing window
+(20y-trailing most negative — long-run growth reputations are the most fully priced and
+most dilution-generating); medians in the -0.2..-0.55 range; pooled slightly less negative
+than medians at long k (the between-country dp dilution effect). Misses recorded as
+always. CONSUMPTION: context — sharpens the ER-arc growth doctrine; no promotion.
+Script: scripts/analyze_gdp_d4.py. Census: 10.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| GDP-D4 | Within-country growth->return window grid (interpretation hand-appended AFTER the print) | median own-country rho / pooled: **5-5: -0.32/-0.28; 10-5: -0.36/-0.31; 10-10: -0.36/-0.29; 20-10: -0.05/-0.05; 20-20: +0.12/-0.02** (all 16 countries per cell; 20-20 sign-only per the declared caveat). **PRIOR MISS booked**: the registration called 20y-trailing the most negative — instead the effect PEAKS at 5-10y trailing and VANISHES at 20y. Sharpened doctrine: the anti-growth signal is a MEDIUM-TERM CYCLE phenomenon — a strong 5-10 year growth RUN is what gets priced, diluted, and mean-reverted against; a country's 20-year growth CHARACTER carries no signal either way (consistent with GDP-D1(i)'s weak level effect and GDP-D3's hump: the permanent level doesn't price, the recent run does). With ER-D1b's 5y->10y median -0.41, the full within-country map: dangerous = fresh 5-10y booms; neutral = long-run growth identity | **grid booked; prior miss recorded; census +10 = 345** |

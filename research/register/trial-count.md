@@ -58,7 +58,8 @@ this census exists so that can never happen silently.
 | ER-D8 market->GDP grid (9 pooled + 3 within + 2 India) | 14 | 14 |
 | GDP-D3 growth-floor test (2 bucket splits + named cases) | 3 | 3 |
 | ER-D9 cross-country structure sweep + tether (8 + 2) | 10 | 10 |
-| **RUNNING TOTAL (run cells)** | | **335** |
+| GDP-D4 within-country window grid (5 combos x median+pooled) | 10 | 10 |
+| **RUNNING TOTAL (run cells)** | | **345** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
