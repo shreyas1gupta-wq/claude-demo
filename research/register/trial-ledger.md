@@ -2298,3 +2298,64 @@ SEC-D5's US graded rerun; no promotion. Script: scripts/analyze_sec_d6.py. Censu
 | # | What | Result | Status |
 |---|---|---|---|
 | SEC-D6 | The characteristic decomposition of crisis safety (interpretation hand-appended AFTER the print; RUN NOTE: the script imports analyze_sec_battery for its baskets/REL machinery, which re-echoes the booked SEC-D1..D4 prints verbatim — an echo, not new cells) | **c1 rank-corr(stress composite, axis)**: LEVERAGE **-0.75** (bar <=-0.6 PASS — the strongest, by 0.01); CYCLICALITY **-0.74** (registered band -0.4..-0.6 EXCEEDED — stronger than registered, pleasant partial miss; at n=14 leverage and cyclicality are a statistical TIE and heavily co-scored on financials — stated); EXPORT **+0.57** (a hair above the +0.3..+0.5 band; the registered ordering claim HOLDS: export is real but secondary); DURABILITY **-0.73** (n=9) — the inversion registered CONFIRMED: NON-durable/perishable demand (non-deferrable) is the SAFE side. **c2 contrasts** (stress composite, pp): FMCG-DURABLES **+7.5** (non-cyclicality effect, PASS); IT-FMCG **+11.0** (the two-sided lands: export adds on TOP of defensive); IT-METALS **+24.1** (bar >=15 PASS — global-priced+leveraged is NOT export-safe); FMCG-UTILITIES **+10.0** (the leverage penalty with cyclicality held at 0, PASS). **c3 recovery corrs**: CYCLICALITY +0.28 and DURABILITY +0.43 flip as leaned; EXPORT **+0.52 does NOT flip** (IT led E4b); **LEVERAGE +0.05 — flips to ZERO, not positive: leverage costs -0.75 in stress and pays NOTHING in recovery — NEGATIVE CONVEXITY, the sharpest new fact in the entry**. **c4 safest seats** (worst stress episode >= -5pp): **PHARMA +10.1, IT +7.5, FMCG +5.2, DURABLES +2.9** — DURABLES qualifying was NOT in the prior (pleasant miss: zero-leverage discretionary never got hit inside a stress window); NO leverage-2 sector qualifies (best of them UTILITIES -9.4) — as registered. Worst-episode tail: PSUBANK -35.4, PVTBANK -22.8, REALTY -21.2, NBFC -20.8. THE HYPOTHESIS VERDICT: the principal's FCF leg is the PRIMARY axis (via the leverage proxy); export is real but secondary and conditional on a clean balance sheet; the durability leg runs INVERTED (non-durable safer); the safest quadrant = zero leverage x non-deferrable demand, with export as the bonus | **crisis safety is bought by the BALANCE SHEET first, the demand curve second, the revenue currency third; leverage shows negative convexity (hurts in stress, unpaid in recovery); proxy-not-measured-FCF limit stands; census +10 = 466** |
+
+## Entry SEC-D7 (2026-09-07) — PRE-REGISTERED before running: STOCK-LEVEL LEVERAGE
+DECOMPOSITION. Principal directive verbatim: "check the high financial leverage and low
+financial leverage, high debt low debt, high operating leverage low operating leverage
+stocks impacts on all very detailed." No fundamentals are vaulted, so three legs, limits
+stated: (a) MEASURED beta/vol quintile sorts (Modigliani-Miller: equity beta scales with
+D/E, so a beta sort is a joint leverage x business-risk sort — stated; T4's India low-vol
+print is the unconditional parent, cited; these cells are the STATE-CONDITIONAL
+increment); (b) DECLARED financial-leverage name lists (public-knowledge provenance,
+EN-D1a precedent; NON-FINANCIALS only — banks/NBFC excluded, their leverage is the
+business); (c) DECLARED operating-leverage lists (fixed-cost businesses vs variable-cost).
+Panel/REL conventions as SEC-D1..D6 (equal weight; REL = compounded basket-minus-panel;
+stress composite = mean cum REL over E1/E3/E4/E5; survivorship one-way limits verbatim).
+THE CEMETERY CENSUS, known at registration: 9/28 declared HIGH-FL names are ABSENT from
+the survivor panel (JPASSOCIAT SUZLON RCOM RELINFRA RPOWER UNITECH HCC JETAIRWAYS GVKPIL
+— the decade's leverage casualties, most near-total equity losses) vs 1/25 LOW-FL
+(ABBOTINDIA, an index-membership absence, not a death) — so every HIGH-FL damage print is
+a LOWER BOUND on true damage; the absence-rate asymmetry is itself booked as b0.
+LISTS fixed NOW (present-in-panel members only):
+HIGH-FL (19): GMRINFRA ADANIPOWER ADANIENT DLF JSWENERGY TATAPOWER TATASTEEL JSWSTEEL
+JINDALSTEL VEDL BHARTIARTL IDEA TATAMOTORS SAIL ASHOKLEY LEMONTREE INDHOTEL ADANIGREEN
+IRB. LOW-FL/NET-CASH (24): TCS INFY WIPRO HCLTECH ITC HINDUNILVR COLPAL CASTROLIND
+PAGEIND PIDILITIND ASIANPAINT BERGEPAINT DABUR MARICO BAJAJ-AUTO HEROMOTOCO EICHERMOT
+DIVISLAB AKZOINDIA GILLETTE 3MINDIA HONAUT OFSS MPHASIS. HIGH-OL (17): INDHOTEL LEMONTREE
+EIHOTEL INDIGO PVR ULTRACEMCO ACC AMBUJACEM SHREECEM TATASTEEL JSWSTEEL SAIL JINDALSTEL
+TATAMOTORS ASHOKLEY BHEL MHRIL. LOW-OL (18): TCS INFY WIPRO HCLTECH TECHM MPHASIS
+HINDUNILVR ITC DABUR MARICO GODREJCP BRITANNIA PIDILITIND ASIANPAINT BERGEPAINT COLPAL
+EMAMILTD JYOTHYLAB. OVERLAP STATED: steel/auto/hotels sit in BOTH high lists (high on
+both axes in reality); the convexity-contrast cell (c4) is the discriminator.
+QUINTILE MACHINERY: per calendar year y in 2013-2021, per-stock beta (vs panel mean) and
+total vol computed on year y-1 daily returns (>=150 obs), quintiles formed at Dec 31 and
+HELD through year y (no lookahead); equal-weight quintile portfolios; Q5 = highest.
+Annual-state reads on quintiles use 2013-2021 only (2012 has no assignment — stated);
+weak-INR years within that span: 2013/2015/2018; rising-RF: 2013/2014/2018.
+CELLS (22):
+**D7a measured (10):** for BETA quintiles and VOL quintiles separately: a1/a6 full-period
+CAGR ladder (abs, %/yr) — PRIOR: Q5 does NOT out-earn Q1 (T4/low-vol, two-sided on exact
+ordering); a2/a7 stress-composite ladder — PRIOR: monotone negative, Q5-Q1 <= -10pp;
+a3/a8 E4b recovery ladder — PRIOR: partial inversion (Q5 bounces); a4/a9 weak-INR annual
+REL diff ladder — PRIOR: monotone against high quintiles; a5/a10 rising-RF diff ladder —
+PRIOR: same direction, weaker.
+**D7b declared FL (7):** b0 the cemetery census (booked from the registration counts);
+b1 full-period CAGR HIGH vs LOW — PRIOR: LOW wins by >= 5pp/yr (the twin-balance-sheet
+decade); b2 stress composite spread — BAR: HIGH-LOW <= -10pp; b3 per-episode REL table
+(both baskets, all 7 windows) — PRIOR: HIGH-FL negative in ALL four stress windows, E6
+easing its best window; b4 THE CONVEXITY TEST at stock level: HIGH-FL E4b recovery gain
+< |its stress-composite loss| (registered directly this time); b5 weak-INR annual diff —
+PRIOR: HIGH hit hardest (FX+funding); b6 rising-RF annual diff — PRIOR: negative for HIGH.
+**D7c declared OL (5):** c1 full-period CAGR HIGH-OL vs LOW-OL — TWO-SIDED; c2 stress
+composite spread — PRIOR: negative but SMALLER than the FL spread (b2); c3 recovery
+spread — PRIOR: HIGH-OL bounce POSITIVE and larger than FL's; c4 THE CONVEXITY CONTRAST
+(the entry's registered claim): (E4b gain + stress-composite loss) >= 0 for HIGH-OL while
+< 0 for HIGH-FL — OPERATING leverage is a symmetric two-way amplifier, FINANCIAL leverage
+an asymmetric one-way tax; c5 weak-INR diff — PRIOR: HIGH-OL negative, milder than FL.
+CONSUMPTION: the playbook leverage/safety addendum (stock-selection line) + Track P label
+features; no promotion; descriptive strength (10y, survivor panel). Script:
+scripts/analyze_sec_d7.py. Census: 22.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| SEC-D7 | Stock-level leverage decomposition (interpretation hand-appended AFTER the print; import re-echo run note as SEC-D6) | **D7a BETA quintiles**: stress composite MONOTONE +9.8/+4.4/+2.6/-4.5/**-10.5** (Q5-Q1 -20.3pp, bar <=-10 PASS); E4b recovery FULLY inverts (-10.2 -> +16.2, stronger than the registered partial); weak-INR ladder monotone against high beta (+10.2 -> -8.9); rising-RF same with a Q3 wobble; full CAGR Q1 27.4 vs Q5 **23.1** — beta paid NOTHING for its stress cost (T4's parent read consistent). **VOL quintiles**: stress/recovery ladders as beta (Q5-Q1 -12.8 PASS; inversion holds) BUT full CAGR is MONOTONE UP **22.2 -> 32.6%/yr — PRIOR MISS, flagged as THE survivorship-concentrated cell**: volatile losers get deleted from a survivor panel, volatile winners remain — the a6 ladder is where the bias maximizes and is NOT evidence against low-vol (T4 one-way design governs); a9 broken monotonicity at Q5 (-0.3) and a10 non-monotone — 2 misses booked. **D7b DECLARED FL** (non-financials; b0 cemetery: 9/28 HIGH-FL declared names ABSENT vs 1/25 LOW-FL — 32% vs 4%): b1 full CAGR LOW 25.9 vs HIGH 21.7 = **+4.2pp/yr** (bar >=5 MISSED by 0.8 — and a LOWER BOUND, the cemetery uncounted); b2 stress spread HIGH-LOW **-23.9pp** (bar <=-10 PASS, 2.4x); b3 HIGH-FL negative in 3 of 4 stress windows (E5 +0.6 — the metals leg; partial miss) and its best window is **E4b +34.6**, not E6 (+10.5) — registered E6-best MISSED; b4 **THE STOCK-LEVEL CONVEXITY TEST FAILS AS REGISTERED**: recovery +34.6 > |stress -7.2| — surviving leveraged non-financials DID get the recovery payoff; b5 weak-INR HIGH -16.9 vs LOW **+21.6** (a 38.5pp state spread — the widest single print in the SEC series); b6 rising-RF HIGH -20.0 (as registered). **D7c DECLARED OL**: c1 full CAGR HIGH-OL **17.8** vs LOW-OL **28.3%/yr** (-10.5pp/yr — the two-sided lands hard: fixed-cost businesses were the decade's structural losers); c2 stress spread -22.6pp (registered "smaller than FL's -23.9" holds by 1.3pp — effectively EQUAL, the shared steel/auto/hotel members stated); c3 HIGH-OL recovery +4.8 — positive but FL bounced 7x harder (registered "OL bounce larger" MISSED); c4 **THE CONVEXITY CONTRAST INVERTED**: OL sum +1.1 (>=0 as registered) but FL sum **+27.4**, not <0 — the registered "FL = one-way tax" FAILS at stock level; c5 weak-INR +1.4 (sign miss). RECONCILIATION (interpretation): the sector print (leverage unpaid in recovery, +0.05) was carried by leveraged FINANCIALS (PSU banks -27.1 in E4b); the stock list here EXCLUDES financials by design — leveraged NON-financial survivors behave as CALL OPTIONS (torqued equity stubs: -24pp stress spread, +34.6 bounce), and the cemetery (9 dead names, most ~total losses) is the unexercised side of the same option. Unconditionally (dead included) the one-way-tax read likely survives; conditionally (survivors) leverage is a lottery that paid. LEVERAGE TAXONOMY BOOKED: leveraged financials = negative convexity; leveraged non-financials = binary call (cemetery or bounce); operating leverage = symmetric-mild but a -10.5pp/yr structural CAGR drag; zero-leverage + variable-cost (LOW-OL: 28.3%/yr AND +19.0 stress AND +31.0 weak-INR) = best in calm AND crisis in this panel — with its own composition flag (IT+FMCG-heavy) | **8 misses/partials + 1 registered-claim inversion booked; the cemetery census (32% vs 4%) is the loudest number; vol-CAGR cell survivorship-flagged permanently; census +22 = 488** |

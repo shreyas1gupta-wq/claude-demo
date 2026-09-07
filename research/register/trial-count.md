@@ -68,7 +68,8 @@ this census exists so that can never happen silently.
 | CI-D1..D5 credit+inflation battery (5+5+4+3+3) | 20 | 20 |
 | SEC-D1..D4 sector battery India partial (7+3+2+2; SEC-D5 registered-unrun counts 0) | 14 | 14 |
 | SEC-D6 characteristic decomposition (4+4+1+1) | 10 | 10 |
-| **RUNNING TOTAL (run cells)** | | **466** |
+| SEC-D7 stock-level leverage decomposition (10+7+5) | 22 | 22 |
+| **RUNNING TOTAL (run cells)** | | **488** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
