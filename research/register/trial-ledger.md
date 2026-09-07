@@ -1985,3 +1985,44 @@ Script: scripts/analyze_cu_d7.py. Census: 14.
 | # | What | Result | Status |
 |---|---|---|---|
 | CU-D7 | Crash anatomy + India/US regime tables (interpretation hand-appended AFTER the print) | (a1) 71 crashes: **32 of 71 in the 1980s** (the EMS/Volcker era); top crashers Spain 8, Portugal 7, Sweden 7, UK 7, Italy 6 — the European soft-currency club, NOT emerging markets; median dep 20%, max Portugal 1983 (39%). (a2) crash-yr LOCAL real: mean +8.7 / median **+8.7** / 67% positive — **PRIOR MISS (pleasant)**: no skew, the local-equity crash immunity is robust, not a mean artifact. (a3) crash-yr USD: median **-8.8%**, only 38% positive (in band). (a4) next-1y: LOCAL median **+18.3% (79% positive)**, USD median +12.0% (65%). (a5) next-3y CAGR medians: +10.5% local (83% pos) / +13.4% USD (79% pos). (a6) gold-local real in crash years: median **+8.2%** vs **-1.1%** in other years — a ~9pp MEDIAN spread, stronger than the mean print. (b) INDIA table (1994-2025, nominal): WEAK INR (dep>=8%, n=7): **-15.2% local / -24.4% USD**; normal (n=18): +17.3/+14.0; STRONG INR (n=7): **+53.7% local / +62.4% USD** — INR-strength years are the monster years (the inflow side of the same Rey coupling); next-1y after WEAK: **+24.4/+23.1**; after STRONG: only +7.3/+7.0 — chasing strength pays nothing. INR >=15% crashes since 1973: **1984 (16%), 1991 (35%), 2008 (21%)**. (c) US: same-year corr(broad dollar, US real equity) **-0.03 — PRIOR MISS** (registered weakly positive); the bucket table is a HUMP: USD-strong years +5.8%, normal **+11.3%**, USD-weak +6.4% — BOTH dollar extremes are below-normal for US equities; next-1y roughly flat (6.7/9.7/8.0) | **anatomy booked; 2 misses recorded; the crash playbook (below) enters the gold/Tier-C context; census +14 = 384** |
+
+## Entry DB-D1..D5 (2026-09-07) — PRE-REGISTERED before running: THE DEBT BATTERY.
+Principal directive: "move to debt cycle... lessor data so we can study outliers and us
+and historical pattern." Data: JST R6 1870-2020 (debtgdp = public debt/GDP; tloans/gdp =
+private credit; crisisJST; eq_tr, bond_tr, cpi), full-span deliberately (the outliers ARE
+the pre-1950 wars); own-country expanding percentiles (min_obs=20) for level states;
+Spearman; overlap flagged, no p-values. Research anchors declared: Reinhart-Rogoff 90%
+threshold; Reinhart-Sbrancia repression; Mian-Sufi-Verner 2017 (credit growth -> lower
+future returns); our own credit monograph (gap->crisis AUROC — levels-not-directions
+already seated there).
+CELLS (16):
+**DB-D1 — levels (4):** public-debt percentile -> next-5y/10y real equity (2); private
+credit/GDP percentile -> next-5y/10y real equity (2). PRIOR: all |rho| <= 0.15 — debt
+LEVELS do not price equities (the levels-doctrine extended to debt).
+**DB-D2 — the outlier club (4):** d1 episode census, descriptive: all country-years with
+public debt/GDP >= 100%, grouped into episodes (entry year = first year >= 100% after >=5y
+below), listed with country/era; d2 from >=100% starts: next-10y REAL BOND CAGR vs REAL
+EQUITY CAGR (medians + hit-rates) — THE REGISTERED ASYMMETRY: bonds NEGATIVE median
+(repression/inflation is how debt resolves), equities positive median (the repression
+playbook); d3 the same at >=130% (deeper outliers, worse bonds); d4 resolution table:
+for each episode entry, debt at +10y/+20y and mean inflation next-10y (mechanical; the
+taxonomy is the hand-appended read).
+**DB-D3 — acceleration (4):** 5y Δ(public debt/GDP) -> next-5y real equity (prior: ~0 to
+mildly POSITIVE — public debt rises after busts, equities recover); 5y Δ(private
+credit/GDP) -> next-5y real equity (prior: NEGATIVE -0.1..-0.3 — the MSV credit-boom
+hangover); same Δprivate -> next-5y real BOND return (prior: positive-ish — busts bring
+disinflation); Δprivate own-country expanding-rank variant -> next-5y equity (prior:
+negative, similar).
+**DB-D4 — the US arc (2):** d1 the US public-debt peaks 1870-2020 named + levels
+(descriptive); d2 for each US year with debt >= 90%: next-10y real equity, real bond,
+inflation (the US high-debt playbook table).
+**DB-D5 — twin peaks (2):** 2x2 state (public debt percentile >= 0.8 x private credit
+percentile >= 0.8): next-5y real equity mean per cell (1); crisis frequency (crisisJST
+within next 3y) per cell (1). PRIOR: the twin-high cell is the worst for equities and the
+highest crisis rate (the fiscal-space + credit-boom interaction).
+CONSUMPTION: context for the L1 credit band, DS1/Tier-C, and the repression playbook; no
+promotion. Script: scripts/analyze_db_battery.py. Census: 16.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| DB-D1..D5 | The debt battery (interpretation hand-appended AFTER the print) | **DB-D1 levels**: public-debt percentile -> next-5y/10y equity **+0.16/+0.17** — misses the <=|0.15| bar by a hair, POSITIVE sign: high public debt has never been bad for subsequent equities in this record; private credit -0.10/-0.14 (in bar). **DB-D2 the >=100% club**: 295 country-years, 34 episodes listed. REGISTERED ASYMMETRY PARTIAL MISS: next-10y real bonds from >=100% starts median **+3.3% (70%>0)** — NOT negative as registered; equity +3.8% (81%>0); at >=130% bonds degrade to +1.3%/56% while equity holds +3.7%/84% (the DIRECTION of the asymmetry held, the bond sign did not). The resolution table explains the miss — THREE RESOLUTION REGIMES: (i) the 1940s cohort resolved violently or by repression (Germany 102->19 via reform-default; Japan 105->13 at 136%/yr inflation; Italy 110->32 at 61%; US/UK/Canada/Benelux ground it down at 4-5% inflation — the cohort where bonds died); (ii) pre-1914 episodes drifted under gold-standard deflation; (iii) **the post-1983 cohort does not resolve at all — it CARRIES** (Italy 101->126, Japan 105->231, Belgium round-trips) in disinflation, which is exactly where long bonds printed their best decade returns — hence the pooled positive bond median. DS1's "arc unresolved" now has its mechanism cohort. **DB-D3 acceleration**: d(private)->equity **+0.01 — PRIOR MISS** (the MSV hangover does NOT show at pooled 5y return level; the credit gap's power stays where the credit monograph seated it — CRISIS odds, not average returns); d(public)->equity +0.14 (post-bust recoveries, as registered). **DB-D4 US**: arc 31% (1870) -> 119% (1946) -> 33% (1974) -> 128% (2020); from US >=90% years: next-10y real equity median **+13.7% (7/7 positive)** vs real bonds median **-1.0% (1/7 positive)** — the repression asymmetry is crisp exactly in the US high-debt cohort. **DB-D5 twin peaks — PRIOR MISS**: the worst equity cell is LOW-public x HIGH-private (+3.9%), not twin-high (+6.2%); crisis-in-3y is ~12-14% whenever PRIVATE credit is high vs ~4% otherwise, regardless of public debt. Private credit is the crisis variable; public debt alone pairs with BETTER subsequent equity (+7.7%) | **doom-priors refuted: high public debt kills BONDS (US cohort 1/7 positive), not equities; private booms make crises, not low average returns; the modern era carries rather than resolves; census +16 = 400** |

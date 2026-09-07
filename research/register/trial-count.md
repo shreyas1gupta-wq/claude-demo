@@ -62,7 +62,8 @@ this census exists so that can never happen silently.
 | CU-D1..D5 currency battery (3+2+3+3+2) | 13 | 13 |
 | CU-D6 two-denomination FX-equity matrix (2+4+2+4) | 12 | 12 |
 | CU-D7 crash anatomy + India/US regime tables (6+5+3) | 14 | 14 |
-| **RUNNING TOTAL (run cells)** | | **384** |
+| DB-D1..D5 debt battery (4+4+4+2+2) | 16 | 16 |
+| **RUNNING TOTAL (run cells)** | | **400** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
