@@ -1785,3 +1785,39 @@ Script: scripts/analyze_er_d8.py. Census: 14.
 | # | What | Result | Status |
 |---|---|---|---|
 | ER-D8 | Market -> future GDP growth, 3x3 grid + within-country + India (interpretation hand-appended AFTER the print) | Pooled grid (trailing return -> next growth): trail-1y: **+0.29 / +0.05 / +0.02** at next-1/5/10y; trail-5y: +0.18/+0.08/+0.06; trail-10y: +0.13/+0.06/-0.01. ALL THREE BARS PASS: (i) trail1->next1 +0.29 >= +0.2 (parent GDP-D1(iii) +0.31 corroborated at grid breadth); (ii) monotone DECAY across forward horizons in every row, all next-10y cells ~0 — the market is a 1-2 year business-cycle thermometer, not a decade forecaster; (iii) within-country diagonals +0.31/+0.08/+0.02 — within 0.03 of pooled: the lead is CYCLICAL anticipation, not country composition. Bonus read (in-grid): fresh returns beat stale ones as growth predictors (trail-1y +0.29 > trail-5y +0.18 > trail-10y +0.13 at next-1y) — the news is in the recent move. India descriptive: noise on n<=9, as registered. Fama (1981, 1990) reproduced at 15-country/70-year breadth | **all 3 bars pass — the L3/L18 doctrine sharpened: the market leads the economy by ~1 year and no further; census +14 = 322** |
+
+## Entry GDP-D3 (2026-09-07) — PRE-REGISTERED before running: the growth-FLOOR test.
+Principal challenge (verbatim intent): "i do not think a long term no growth gdp can give
+good median stock high return; index are mostly largecap biased." The prior GDP prints
+measure VARIATION among growing economies (full-sample means 1.5-3.6%/yr — no long-term
+zero-growth country exists in the panel, stated as a support limit); this design tests the
+LEVEL floor inside the observed support: do near-zero-growth DECADES deliver bad returns?
+JST R6, country-decades 1950s-2010s, decade real GDP/cap growth (mean of annual Δlog
+rgdpmad) and decade real equity CAGR, as in the realrate-decades note conventions.
+CELLS (3): (i) median real equity return by growth bucket: <1%/yr, 1-3%, >3% (pooled
+country-decades, n per bucket printed); (ii) the same split EXCLUDING high-inflation
+decades (decade mean inflation >= 5%) — isolates the growth floor from the inflation
+confounder (the L9 state owns those losses per FISH/ER-D1b); (iii) named-case prints
+(descriptive): Japan 1990-2020 (the longest near-zero-growth stretch in the panel) and
+Switzerland full-sample (the low-growth/high-return counterexample) — decade growth and
+equity return per case.
+BARS/PRIORS (two-sided; verification): if the <1% bucket's median return is within 2pp of
+the 1-3% bucket (especially ex-high-inflation), the growth FLOOR is unsupported in-sample
+and the large-cap/global-revenue mechanism stands; if the <1% bucket is lower by >= 3pp in
+BOTH cells, the principal's floor intuition is CONFIRMED within support and the ER-arc
+reads get a dated qualifier. PRIOR on record: the raw <1% bucket looks bad (war/stagflation
+decades) but MOST of the gap vanishes ex-high-inflation (60%); Japan 1990-2020 prints poor
+(valuation unwind confounder, stated); Switzerland prints low-growth/high-return.
+MEDIAN-STOCK caveat registered: all panel indices are cap-weighted large-cap composites;
+the median-stock version of the floor question is DATA-GATED (needs micro panels beyond
+the survivor N500) and is NOT answered by this design. Census: 3.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| GDP-D3 | The growth-floor test (interpretation hand-appended AFTER the print) | (i) ALL country-decades 1950s-2010s: <1%/yr growth decades median real equity **+3.5%** (n=16); 1-3%: **+8.9%** (n=65); >3%: **+4.9%** (n=31). (ii) EX-HIGH-INFLATION: **+3.5% / +9.1% / +5.7%** — and the <1% bucket's n stays 16: the stagnation decades were NOT the high-inflation decades, so the inflation confounder does NOT explain the floor. **BAR: <1% bucket lower by >=3pp in BOTH cells (5.4pp and 5.6pp) — the PRINCIPAL'S FLOOR INTUITION IS CONFIRMED within support.** PRIOR MISS booked: the registration gave 60% that the gap mostly vanishes ex-inflation — it did not budge. THE FULL SHAPE IS A HUMP: the >3% bucket ALSO trails the middle by ~4pp — stagnation hurts through the earnings floor (the principal's channel), boom-growth hurts through dilution/pricing (ER-D1/D2's channel), and the 1-3% middle is the sweet spot. This RECONCILES the negative correlations (driven by the right side of the hump, where panel variation lives) with the floor. (iii) Named cases as registered: Japan 1990-2020 growth +0.8%/yr -> real equity **-0.1%/yr for 30 years** (valuation-unwind confounder stated); Switzerland 1950-2020 growth +1.5%/yr -> **+6.3%/yr** — the counterexample: the floor binds when the index's REVENUE is domestic; it does not when large-caps earn globally and slippage is negative (CH -2.8pp). Median-stock version remains DATA-GATED as registered | **floor confirmed within support; hump shape booked; prior miss recorded; ER-arc growth reads get the dated qualifier below; census +3 = 325** |
+
+**Dated qualifier (2026-09-07, per GDP-D3's bar) on the ER-arc growth reads:** "growth-
+negative" (ER-D1/D1b) describes the panel's observed support — economies growing ~1-4%/yr,
+where the dilution/priced-in channel dominates. It does NOT extend to the stagnation left
+tail: below ~1%/yr decade growth the earnings floor binds and returns are poor (GDP-D3).
+Both channels are real; the sweet spot is the middle.

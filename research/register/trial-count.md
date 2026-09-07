@@ -56,7 +56,8 @@ this census exists so that can never happen silently.
 | ER-D6 US+India linear/nonlinear (8 US + 2 grid/rank reads + 4 India) | 14 | 14 |
 | Audit follow-ups: ER-D7 (6) + ER-D4b (6) + ER-D1b (9) + ER-D1c (6) | 27 | 27 |
 | ER-D8 market->GDP grid (9 pooled + 3 within + 2 India) | 14 | 14 |
-| **RUNNING TOTAL (run cells)** | | **322** |
+| GDP-D3 growth-floor test (2 bucket splits + named cases) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **325** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
