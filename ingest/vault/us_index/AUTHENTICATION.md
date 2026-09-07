@@ -50,4 +50,17 @@ the diff/unadjusted construction is the only permitted form.
 - B6 (SPX futures): unadjusted PRICE in mid-2024 within [4500, 6500].
 
 ### PASS 2 — results (filled AFTER the pull; bars never moved)
-(pending)
+DAILY-STAMP CONVENTION added at authentication (data handling, not a bar change): the
+futures file is HOURLY in the modern era and the 23:00 stamp is a stale repeat on some
+stressed days (2020-03-16 verified) — daily price = the 20:00 row when present, else the
+last row of the day. DJIA is on a weekday grid: exact-zero returns (holidays, 3.5% of
+rows) are DROPPED, stated.
+- B1 DJIA 1987-10-19 = -22.61% — PASS (the published Black Monday value exactly).
+- B2 2008-10-13 = +11.08% — PASS. B3 span 1980-01..2012-12, 8,610 rows, 839 -> 12,218 — PASS.
+- B4 SPX futures 1987-10-19 = -28.61% — PASS (futures fell harder than cash, as documented).
+- B5 2020-03-16 = -8.8% under the declared convention — PASS; span leg **MISS as stated**:
+  the repo snapshot ends 2024-03-28, short of my >= 2024-06 anchor (a freshness guess,
+  recorded; bar not moved; file accepted at 1982-09..2024-03, 41.5y).
+- B6 unadjusted PRICE at sample end (2024-03) = 5,304 — within [4500, 6500]; evaluated at
+  sample end since mid-2024 does not exist (stated).
+Vault AUTHENTICATED; sha256 in manifest (WORM).

@@ -74,7 +74,8 @@ this census exists so that can never happen silently.
 | MG-D1..D4 macro gap-closer (4+4+3+2) | 13 | 13 |
 | TL-D1 return-distribution atlas (8 named reads, shape bars) | 8 | 8 |
 | TL-D2 atlas extension S&P/US-market/small-vs-large (12 named reads) | 12 | 12 |
-| **RUNNING TOTAL (run cells)** | | **537** |
+| TL-D3 US daily tails + atlas extras (12 named reads) | 12 | 12 |
+| **RUNNING TOTAL (run cells)** | | **549** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

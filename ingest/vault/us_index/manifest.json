@@ -1,4 +1,19 @@
 {
+ "djia_daily_1980_2012.csv": {
+  "bytes": 164632,
+  "sha256": "740b6977af28c86407d5535e57206c54ba9d12bfa7d99682742b191c46a640a7",
+  "vintage": "2026-09-07"
+ },
+ "sp500_fut_adjusted_daily.csv": {
+  "bytes": 1024193,
+  "sha256": "03b350fa2ca647d658977e3d772d02535a5396ee8652a1c80722516705cb7c7e",
+  "vintage": "2026-09-07"
+ },
+ "sp500_fut_multiple_daily.csv": {
+  "bytes": 2377012,
+  "sha256": "3373bd1e83a6d1297e7e56f543fe2df1397d9bfb67b276a7befbaa5c8b5aa670",
+  "vintage": "2026-09-07"
+ },
  "sp500_shiller_monthly_1871.csv": {
   "bytes": 123800,
   "sha256": "ed6a0faf1864d60161806b594b45a2642f6149f59b26b3d7b32c2ce38758dc6f",

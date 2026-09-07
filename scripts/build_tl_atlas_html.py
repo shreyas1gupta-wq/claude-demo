@@ -195,6 +195,95 @@ prints daily AR(1) of <b>+0.20</b> vs the NIFTY's 0.00 — the stale-price signa
 smallcap volatility understates true risk, because part of every shock arrives the next day.</p>
 """
 
+d3 = D["d3"]
+def led_rows(key, label):
+    t = d3[key]["table"]
+    return "".join(f"<tr><td>{label if i==0 else ''}</td><td>±{r['k']}σ</td><td>{r['lo']+r['hi']} ({r['lo']}dn/{r['hi']}up)</td>"
+                   f"<td>{r['gauss']:.2f}</td><td>" + (f"{(r['lo']+r['hi'])/r['gauss']:,.0f}×" if r['gauss']>=0.005 else "≈10⁶×") + "</td></tr>"
+                   for i, r in enumerate(t) if r['k'] >= 2)
+
+def season_svg():
+    rows = d3["season"]
+    mx = max(abs(v) for _, v, _ in rows) * 1.2
+    bw = W / 12
+    h = 170
+    mid = h / 2
+    out = f'<line x1="0" y1="{mid}" x2="{W}" y2="{mid}" stroke="var(--grid)"/>'
+    for i, (mn, v, hit) in enumerate(rows):
+        bh = abs(v) / mx * (h / 2 - 10)
+        y = mid - bh if v >= 0 else mid
+        col = "var(--s3)" if v >= 0 else "var(--s8)"
+        out += (f'<rect x="{i*bw+10:.0f}" y="{y:.1f}" width="{bw-20:.0f}" height="{max(bh,2):.1f}" rx="3" fill="{col}" data-tip="{mn}: mean {v:+.2f}%, {hit}% of years up (n≈155)"/>'
+                f'<text x="{i*bw+bw/2:.0f}" y="{h+16}" text-anchor="middle" class="tk">{mn}</text>')
+    return f'<svg viewBox="0 0 {W} {h+22}" role="img">{out}</svg>'
+
+def sig3_svg():
+    rows = {y: c for y, c in d3["sig3_yr"]}
+    y0, y1 = 1982, 2024
+    mx = max(rows.values()) * 1.15
+    n = y1 - y0 + 1
+    bw = W / n
+    h = 170
+    out = ""
+    for i, y in enumerate(range(y0, y1 + 1)):
+        c = rows.get(y, 0)
+        if c:
+            bh = c / mx * h
+            out += f'<rect x="{i*bw+1:.1f}" y="{h-bh:.1f}" width="{bw-2:.1f}" height="{bh:.1f}" rx="2" fill="var(--s1)" data-tip="{y}: {c} days beyond 3σ"/>'
+    out += "".join(f'<text x="{(y-y0)*bw+bw/2:.0f}" y="{h+16}" text-anchor="middle" class="tk">{y}</text>' for y in range(1985, 2025, 5))
+    return f'<svg viewBox="0 0 {W} {h+22}" role="img"><line x1="0" y1="{h}" x2="{W}" y2="{h}" stroke="var(--grid)"/>{out}</svg>'
+
+bm = d3["bm"]
+wk_rows = " ".join(f"<tr><td>{d}</td><td class=\'{'dn' if x<0 else 'up'}\'>{x:+.1f}%</td></tr>" for d, x in bm["week"])
+dec_rows_html = "".join(f"<tr><td>{d}</td><td class='{ 'dn' if n_<0 else '' }'>{n_:+.1f}</td><td class='{ 'dn' if (r_ or 0)<0 else '' }'>{('%+.1f' % r_) if r_ is not None else '—'}</td></tr>" for d, n_, r_ in d3["decades"])
+dd5_rows = "".join(f"<tr><td>{a}</td><td>{b}</td><td>{c}</td><td class='dn'>−{d}%</td></tr>" for a, b, c, d in d3["dd5"])
+st = d3["storm"]
+d3_html = f"""
+<h2>US daily at last: two ledgers with Black Monday in them</h2>
+<p class="sub">Landed this session: <b>Dow Jones daily 1980–2012</b> (8,307 trading days) and
+<b>S&amp;P 500 futures daily 1982–2024</b> (10,468 days). The pre-1980 Dow century remains one pull away
+on the principal machine — but these two carry the event that defines equity tail risk.</p>
+<div class="heroband">
+<div class="stat"><div class="v">−20.2σ</div><div class="k">Black Monday on the Dow (−22.6%, 19 Oct 1987). On S&amp;P futures: −28.6%, −23.9σ. Under a Gaussian, a once-per-10<sup>85</sup>-years event. It recovered in 675 days.</div></div>
+<div class="stat"><div class="v">14 / 18</div><div class="k">days beyond 6σ on the Dow / S&amp;P futures. US daily skew is −0.95: unlike India's, the American daily tail is asymmetric — 1987 lives on the down side.</div></div>
+<div class="stat"><div class="v">46.0</div><div class="k">S&amp;P futures daily excess kurtosis — the fattest tails of any series in this atlas, courtesy of one Monday.</div></div>
+<div class="stat"><div class="v">3.0×</div><div class="k">a ±2% day makes tomorrow 3× likelier to be one too (21.7% vs 7.3% base; NIFTY 3.2×, Dow 2.9×) — clustering as one number.</div></div>
+</div>
+<div class="grid2" style="margin-top:20px">
+<div class="twrap"><table><tr><th>series</th><th>threshold</th><th>observed</th><th>Gaussian</th><th>ratio</th></tr>
+{led_rows("djia","Dow 1980–2012")}{led_rows("spx","S&amp;P fut 1982–2024")}</table>
+<p class="cap">The identical failure law as NIFTY and the monthly ledgers: honest to ±2σ, 5× at 3σ,
+~90× at 4σ, a million-fold at 6σ. Worst Dow days: 1987-10-19 −22.6%, 1987-10-26 −8.0%, 2008-10-15 −7.9%.
+Vol half-lives 67d / 71d — the same ~3-month memory as India's 82d.</p></div>
+<div class="twrap"><table><tr><th colspan="2">The 1987 fortnight (Dow)</th></tr>{wk_rows}</table>
+<p class="cap">The anatomy of the worst day ever: it was <em>preceded</em> by −3.8/−2.4/−4.6% (the storm was
+already on), and followed within 48 hours by +10.1% — the second-biggest up-day of the whole 33-year sample.
+Same lesson as NIFTY 2009/2020: the rebound lives inside the crash.</p></div>
+</div>
+<div class="fig" style="margin-top:24px">{sig3_svg()}</div>
+<p class="cap">Days beyond 3σ per year, S&amp;P futures. Zero in most years; <b>34 in 2008</b>, 20 in 2020, 11 in 1987.
+Tail risk is not a constant hazard — it is a regime that arrives all at once, which is why the L2 stress band exists.</p>
+
+<h2>Seasonality, decades, streaks — the folklore audit</h2>
+<div class="legend"><span><span class="sw" style="background:var(--s3)"></span>positive month</span><span><span class="sw" style="background:var(--s8)"></span>negative month</span></div>
+<div class="fig">{season_svg()}</div>
+<p class="cap">Mean S&amp;P return by calendar month, 1871–2026. A registered bar FAILED here, honestly:
+the famous <b>September effect does not exist</b> in 155 years of this series (Sep +0.24%) — the only negative
+month is <b>October</b> (−0.34%, 50% hit rate), which is where the crashes actually happened (1929, 1987, 2008).
+January is the strongest (+1.49%, 66% up). Calendar folklore mostly fails audits — same verdict as the India
+calendar band (L33-35), where only turn-of-month survived.</p>
+<div class="grid2" style="margin-top:20px">
+<div class="twrap"><table><tr><th>decade</th><th>S&amp;P nominal %/yr</th><th>real TR %/yr</th></tr>{dec_rows_html}</table>
+<p class="cap">No decade repeats its predecessor. The two great destructions are inflationary (1910s −1.9%,
+1970s −1.4% real) not deflationary — the 1930s printed +2.1% real <em>with dividends</em>. Best: 1950s +16.7%.</p></div>
+<div>
+<div class="twrap"><table><tr><th>peak</th><th>trough</th><th>recovered</th><th>depth</th></tr>{dd5_rows}</table></div>
+<p class="cap">The five great US real-TR drawdowns. Median recovery of the five: ~7 years; the 1973 episode took
+<b>12 years</b> of real losses to escape. Streaks: max consecutive down days — Dow 8, S&amp;P 9, <b>NIFTY 10</b>;
+max consecutive down years (S&amp;P, 155y): <b>4</b> (1929–32); 34% of all years are down years.</p>
+</div></div>
+"""
+
 html = f"""<title>Return Distribution Atlas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,540;9..144,640&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
@@ -250,7 +339,7 @@ svg {{ width:100%; height:auto; display:block; }}
 <p class="eyebrow">The Cycle Program · descriptive atlas · registered TL-D1</p>
 <h1>Return Distribution Atlas</h1>
 <p class="sub">Where index returns actually live: the daily tails, the sigma ledger, volatility and its clustering,
-and how the distribution changes from one day to twenty years. Series: <b>S&amp;P monthly 1871–2026</b> (nominal to 2026-08; real total return to 2023); <b>US market + smallcap monthly 1926–2024</b> (CRSP/Fama-French); <b>NIFTY 50 daily 2007–2026</b>; <b>India market + smallcap monthly 1993–2025</b> (IIMA); <b>VIX daily 1990–2026</b>; JST US annual as cross-check. US <em>daily</em> (Dow 1896–) remains a principal-machine pull — on the runsheet.</p>
+and how the distribution changes from one day to twenty years. Series: <b>S&amp;P monthly 1871–2026</b> (nominal to 2026-08; real total return to 2023); <b>US market + smallcap monthly 1926–2024</b> (CRSP/Fama-French); <b>NIFTY 50 daily 2007–2026</b>; <b>India market + smallcap monthly 1993–2025</b> (IIMA); <b>VIX daily 1990–2026</b>; JST US annual as cross-check. US daily: <b>Dow 1980–2012</b> + <b>S&amp;P futures 1982–2024</b> (landed 2026-09-07, anchors incl. Black Monday exact); the pre-1980 Dow century remains a principal-machine pull.</p>
 
 <div class="heroband">
 <div class="stat"><div class="v">6</div><div class="k">daily moves beyond 6σ in 4,553 NIFTY days. A Gaussian market expects 0.00001 — the observed count is ~700,000× the model.</div></div>
@@ -330,6 +419,7 @@ the 1-month cells are smoothed; ≥ 1y horizons are unaffected.)</p>
 The longest full recoveries cluster around the 1910s inflation, the Depression, and 1966–1982 —
 the last of which never printed a −77% but took sixteen years of real losses to escape.</p>
 
+{d3_html}
 {d2_html}
 <div class="note"><b>Provenance & caveats.</b> S&amp;P: github.com/datasets/s-and-p-500 mirror of Shiller ie_data,
 vaulted 2026-09-07, 6/6 pre-stated anchors passed (sha256 in manifest); real columns end 2023-09 (CPI lag) — series
@@ -337,7 +427,7 @@ truncated there, run-noted. NIFTY 50 &amp; VIX: authenticated vaults. Monthly Sh
 1-month statistics are smoothed (vol understated); horizons ≥ 1y unaffected. All rolling-window distributions overlap —
 n is windows, not independent observations. Sigma thresholds use full-sample σ; a rolling-σ variant is a different,
 unrun design. Registered as TL-D1 (8 cells) in research/register/trial-ledger.md; census 525.
-Dow Jones daily (100y+) is not freely reachable from this environment — runsheet row added for the principal machine.</div>
+US daily vaulted 2026-09-07: DJIA 1980-2012 (Rdatasets/AER mirror) + SPX futures 1982-2024 (pysystemtrade; 20:00-else-last daily stamp, diff/unadjusted returns — declared conventions). Pre-1980 Dow daily: principal-machine runsheet row.</div>
 </main>
 <script>
 const tt = document.createElement('div'); tt.className='tt'; tt.hidden=true; document.body.appendChild(tt);
