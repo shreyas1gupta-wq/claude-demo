@@ -2653,3 +2653,62 @@ scripts/analyze_op_d1.py. Census: 12.
 | # | What | Result | Status |
 |---|---|---|---|
 | OP-D1 | The option-state battery (interpretation hand-appended AFTER the print; 2008-not-in-sample caveat governs every seller-favorable read) | **a1 THE VRP IS REAL: +3.0 vol pts mean, +3.6 median, 82% of days positive** (prior band PASS) — Indian implied vol has systematically overpriced delivered vol, 2010-2023. **a2 AND IT IS STATE-PRICED**: mean VRP by VIX quintile +1.9/+2.2/+2.6/+3.7/**+5.9** — monotone, the top quintile pays 3x the bottom; the worst prints sit in EVERY quintile (-62..-64.5 — the crash traverses all states on its way up; two-sided honesty confirmed). **a3 the cost of one event: -64.5 pts** (2020-03-05: VIX 23.2 -> realized 87.8) = **21 months of mean premium in one window**. **b1/b2 THE HEADLINE — THE SELLER'S EDGE LIVES ONLY IN ELEVATED STATES**: VIX-implied 1-sigma 21d move breached 26% overall (< the 32% Gaussian-neutral, edge exists) BUT **32% from bottom-quintile VIX days (NO edge at all — calm implied exactly underprices its own tail) vs 17% from top-quintile days (a massive edge)**. "Sell premium in calm markets" is REFUTED BY MEASUREMENT; "sell after the spike" is confirmed. **c1 MISS (buyer side)**: on storm days VIX understates fwd RV only 15% vs 18% base — by the time the first storm day prints, implied has already caught up: post-storm VOL BUYING is NOT licensed. **d1 MISS (inverted, same shape as b2)**: weekly 1-sigma breach 36% from calm entries vs 30% from storm entries — the weekly seller's edge is ALSO post-storm, never calm-harvest. **e1**: overnight = only **20%** of daily variance (prior 25-40 missed low; T1 consistent — stress is intraday, which is stoppable, unlike gaps). **f1/f2 THE LONG-TENOR STATE IS DIRECTIONAL**: fwd 6m after VIX top-decile days **+18.2% vs +5.5%** unconditional; fwd 12m **+32.4% vs +12.0%** — the 6-12m post-spike instrument is a BULL structure (call spreads), not long-vol. **f3 MISS with a stated artifact**: calm-state 6m tail 3.8% < 7.3% base — but the sample's one calm-origin crash (COVID) RECOVERED inside 6m and 2008 is not in the VIX sample; the benign read does not travel. **g1 MISS, the most useful one: corr(seller proxy, post-spike buyer proxy) = +0.41, NOT negative** (n=24, flagged) — the monthly seller and the post-spike call buyer are THE SAME RECOVERY BET at different tenors; they do NOT diversify each other. The portfolio's true diversifiers are bought wings, the event sleeve, and CASH in the no-edge state | **the two-sided state law is measured (edge post-spike, none in calm, at both weekly and monthly tenor); 4 misses booked and each one reshaped the design; feeds the H60-VRP brief; paper-only until chain data + funding_rate (CONTRACT); census +12 = 567** |
+
+## Entry OP-D2 (2026-09-07) — PRE-REGISTERED before running: THE OPTION-PORTFOLIO
+OPTIMIZATION SWEEP (60-agent workflow: 22 researchers + 22 paired adversarial verifiers +
+12 combiners + 4 synthesis, max 3 concurrent per house rule #6; agents read CONTRACT.md
+from disk; every family's bars below are registered BEFORE launch; agents run EXACTLY the
+registered cells; misses recorded, bars never moved). Principal directive: optimize
+sizing/risk with HMM, vol clustering, candles, technicals, MR/trend at multiple
+frequencies, gamma/theta, IV/RV/HV, daily management of weekly/monthly selling. Data:
+vaulted only (NIFTY daily OHLC 07-26, India VIX 10-23, survivor panel, INR fx). All
+no-lookahead constructions: expanding/rolling fits, state at t uses data <= t. Outputs:
+scripts/opt_sweep/<id>.py + research/opt_sweep/<id>.json per family. NO promotion; feeds
+the H60-VRP paper design only. FAMILIES (cells, prior/bar one-liners):
+F01 HMM 2-state daily (EM refit quarterly-expanding) vs VIX-pct baseline (4) — prior: no
+material gain over the simple state (fwd-vol spread ratio <= 1.15x baseline's).
+F02 3-state HMM, same protocol (3) — prior: the 3rd state adds crash-onset separation or
+nothing; two-sided.
+F03 EWMA lambda {0.90,.94,.97} vs rolling {10,21,63} 1d-ahead vol QLIKE (6) — prior:
+EWMA .94 beats rolling-21 by >= 3% QLIKE.
+F04 GARCH(1,1) MLE vs EWMA .94 (3) — prior: statistical tie (<2% QLIKE gap); both lag
+Mar-2020 by >= 20 vol pts at onset.
+F05 vol-target sizing of the OP-D1 monthly VRP capture (target/EWMA, cap 2x) vs fixed (3)
+— BAR: worst-month improves >= 30% at <= 20% mean cost.
+F06 200d-MA trend x VIX-quintile -> fwd 21d ret/vol matrix (4) — prior: belowMA+hiVIX has
+the widest fwd dispersion (structure-skew input); T-CTRL1 standalone-failure cited.
+F07 12-1 momentum sign -> fwd 1m/3m ret+vol (3) — prior: weak positive tilt (T3 cited).
+F08 daily MR: 5d z<= -2 / >= +2 -> fwd 5d (3) — prior: decayed post-2015; |effect| < 0.5
+sigma; two-sided.
+F09 panel-breadth washout (survivor panel %>200dMA proxy) -> fwd 21d index ret (2) —
+two-sided.
+F10 candles: doji/engulf/hammer/3-down on index OHLC -> fwd 1d/5d (8) — PRIOR: ALL NULL
+(graveyard registration; any |t|>2 cell is a recorded surprise, not a signal).
+F11 gaps: |overnight gap|>=1% direction -> intraday continuation + by VIX state (4) —
+two-sided.
+F12 Parkinson (OHLC) vs close-close 21d vol for 1d-ahead QLIKE (2) — prior: Parkinson
+better by >= 5%.
+F13 VIX vs fwd RV horizon match {5,10,21,63} + IV-HV spread pct -> VRP capture (5) —
+prior: 21d peak corr; top-quintile spread best capture.
+F14 VIX spike decay: half-life from >=90th pct; days to re-enter <60th (3) — prior:
+half-life 15-40 trading days (the sleeve-A holding window).
+F15 BS structural math (NO data mining): theta/gamma/vega for 1-sigma condors 7d vs 30d
+at VIX 12/18/30 + stop-value math under the measured storm matrix (4) — analytic.
+F16 THE MONTHLY PAPER SIM: daily-managed BS condor (entry VIXpct>=0.6, wings 2.5 sigma,
+VIX-flat vol) mgmt {hold, stop-2x-credit, delta-band roll} 2010-23 (3) — BAR: stop-2x
+cuts worst month >= 50% at <= 30% mean cost.
+F17 THE WEEKLY PAPER SIM: storm/hi-vol entry weekly condor, mgmt {hold, daily-stop} +
+per-unit-margin weekly-vs-monthly compounding compare (3) — the compounding claim
+measured; two-sided.
+F18 Kelly/ruin math on F16/F17 P&L distributions: full-Kelly, half-Kelly, DD-constrained
+f (P(book DD>10%)<=1%/yr) (3) — analytic on measured odds.
+F19 event calendar: |move| and VIX behavior around budget/election/RBI dates (declared
+public dates) (3) — prior: budget vol-crush (CW-D1v cited); elections = the tail.
+F20 L2-style stress flag x VRP capture vs VIX-pct alone (3) — prior: overlay trims left
+tail >= 20% with <= 10% mean cost; two-sided.
+F21 high-VIX beta stability of bank-heavy vs smallcap-tercile baskets (2) — hedge-
+instrument input; prior: bank beta expands in stress.
+F22 INR 21d momentum x VRP capture (the one-axis overlay at option frequency) (3) —
+two-sided (CU coupling cited).
+Census: 73 research cells + combiner cells booked at completion. Workflow: opt-sweep-60
+(3 concurrent, sonnet). CONSUMPTION: the H60-VRP design brief v2 + SYNTHESIS.md.
