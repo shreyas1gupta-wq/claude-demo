@@ -2249,3 +2249,52 @@ rising rates; banks worst in crisis years; staples least affected everywhere (th
 | # | What | Result | Status |
 |---|---|---|---|
 | SEC-D1..D4 | The sector battery, India partial (interpretation hand-appended AFTER the print) | **SEC-D1 episodes** (cum REL, pp): **E1 TAPER**: IT +47.5 / PHARMA +22.4 best, PSUBANK -35.4 / PVTBANK -22.8 worst (prior nailed except PVTBANK's severity — banks generally, not just PSU, absorb the FII-outflow leg); FMCG +15.2 (registered "unaffected" missed pleasantly — defensives WIN taper windows). **E2 DEMONET**: worst REALTY -8.1 / CEMENT -7.8 (the cash-transaction chain, as registered) but best METALS +13.2 / UTILITIES +12.2 — CONFOUND STATED: demonetization landed the same week as the Trump global-reflation rally; the worst column is the domestic signal, the best column is the global confound. **E3 NBFC CRUNCH — THE SURVIVORSHIP ARTIFACT, flagged**: NBFC basket printed **+8.4** (basket holds only 2021 survivors — BAJFINANCE/gold financiers; DHFL, IBULHSGFIN, RELCAPITAL are structurally ABSENT from a survivor panel); the honest reads are PSUBANK -7.5, METALS -10.2 (global H2-2018 selloff overlay), PVTBANK +10.0 / PHARMA +10.1 (flight-to-quality within financials, as registered in direction). **E4 COVID CRASH**: worst NBFC -20.8 / PVTBANK -18.7 (moratorium fear), best PHARMA +27.9 / FMCG +18.2 (as registered); PSUBANK +0.4 — PRIOR MISS: already so cheap it fell WITH the panel, not worse. **E4b RECOVERY**: **IT +27.5 led (WFH boom — not in the prior)**, METALS +16.8 second (junk-rally leg confirmed); worst PSUBANK -27.1 / ENERGY -22.4 / UTILITIES -21.1; PHARMA -2.2 (the two-sided landed on the lag side). **E5 INR+OIL**: IT +36.1 / PHARMA +31.8 vs REALTY -17.4 / PSUBANK -17.0 / NBFC -15.2 / AUTO -12.7 (as registered); ENERGY -6.5 (two-sided, OMC drag edge). **E6 EASING**: REALTY +22.2 / NBFC +21.0 best (the two-sided lands on cuts-win, survivor caveat on NBFC), PSUBANK -23.7 / IT -17.2 worst. **SEC-D2 currency map** (weak-INR years 2013/2015/2018, REL diff weak-minus-other, pp/yr): IT **+34.6**, PHARMA +29.3, **FMCG +22.2**, AUTO +7.9, PVTBANK +7.1 || REALTY **-27.5**, CEMENT -20.1, PSUBANK -19.8, **METALS -16.5**, NBFC -10.1; (ii) EXPORTER HEDGE BAR: +31.9pp/yr (bar >=5 — 6x through); METALS on the LOSER side despite USD pricing — weak-INR years are global-risk-off years, the commodity leg loses more than the FX leg gains; (iii) reversal mean **-0.03** (-0.08/-0.19/+0.18) — NO systematic next-year reversal: weak-year sector moves are repricing, not overshoot (two-sided lean missed). **SEC-D3 rate map**: LEVERAGED TRIO rising-minus-falling **-8.1pp/yr (bar <=-3 PASS)**; but the rate-insensitivity bar **FAILED**: IT +12.2 / FMCG +7.2 in rising years — because rising-RF years (2012-14, 2018) ARE the weak-INR years (the L20 defense mechanism): **India's sector space collapses to ONE AXIS — domestic-leverage (REALTY/PSUBANK/NBFC/CEMENT/METALS) vs exporter-defensive (IT/PHARMA/FMCG) — activated jointly by INR-stress = rate-rising = credit-stress**; the two maps are one map. **SEC-D4**: (i) ordering NBFC < PSUBANK < PVTBANK **FAIL** as printed (+8.4 / -7.5 / +10.0) — attribution: survivorship (the basket cannot contain the casualties; stated as interpretation, the FAIL stands); (ii) REALTY E3 -1.8pp vs bar <=-8 **MISS** (survivor developers + realty already deflated pre-crunch) | **the one-axis doctrine is the headline; exporter hedge 6x its bar; E3/NBFC reads carry the survivorship flag permanently; 2 bars failed + 4 partials recorded honestly; SEC-D5 (US long history) data-gated on the runsheet; census +14 = 456** |
+
+## Entry SEC-D6 (2026-09-07) — PRE-REGISTERED before running: THE CHARACTERISTIC
+DECOMPOSITION of crisis safety. Principal hypothesis verbatim: "pharma i.e. export
+oriented and pharma, fmcg i.e. durables / good free cash flow are safer in crisis.
+perishable/ non-durable, non-cyclical cyclical and other check all." NOTE ON TERMS,
+stated at registration: FMCG is the NON-durable (staples) basket; DURABLES is the
+deferrable-goods basket — the hypothesis is re-stated as four separable axes to test.
+Same panel/baskets/REL machinery as SEC-D1..D4 (survivorship and equal-weight limits
+carry over verbatim). NO fundamentals are vaulted for India: the FCF leg is proxied by
+sector-TYPICAL leverage scores declared here (a crude, stated proxy; the measured-FCF
+form is data-gated — Damodaran runsheet row covers the US side only).
+AXIS SCORES, fixed NOW (ordinal; from public sector knowledge, NOT from returns):
+- EXPORT: IT 2, PHARMA 2, METALS 1 (global-priced, not exporter-margin), all others 0.
+- CYCLICALITY (demand deferrability): FMCG/PHARMA/UTILITIES 0; IT/ENERGY 1; AUTO/
+  DURABLES/CAPGOODS/METALS/CEMENT/REALTY/PVTBANK/PSUBANK/NBFC 2 (financials scored
+  cyclical by construction).
+- LEVERAGE (balance-sheet, sector-typical; the FCF proxy INVERTED): IT/FMCG/PHARMA/
+  DURABLES 0; AUTO/CEMENT/ENERGY/CAPGOODS 1; METALS/REALTY/UTILITIES/PVTBANK/PSUBANK/
+  NBFC 2.
+- DURABILITY (product; GOODS sectors only, n=9 — services/financials/utilities/IT
+  excluded as not-scorable, stated): FMCG 0, PHARMA 0, ENERGY 0; METALS 1, CEMENT 1;
+  AUTO 2, DURABLES 2, CAPGOODS 2, REALTY 2.
+STRESS COMPOSITE = mean cum REL across the four stress episodes E1/E3/E4/E5 (E2 excluded
+as confounded per the SEC-D1 print; E4b/E6 are non-stress). n=14 sectors (9 for
+durability) — descriptive strength only, flagged.
+CELLS (10):
+c1 (4): Spearman rank-corr of the stress composite vs each axis score. PRIORS: LEVERAGE
+  the strongest, <= -0.6 (the principal's FCF intuition, carried by the balance-sheet
+  side); CYCLICALITY second, -0.4..-0.6; EXPORT positive but WEAKER (+0.3..+0.5 — FMCG
+  is domestic yet safe, so export cannot be the primary axis); DURABILITY NEGATIVE — the
+  hypothesis's durability leg INVERTED as registered: NON-durable (non-deferrable
+  demand) is the safe side, durable goods are the deferrable side.
+c2 (4): clean pairwise contrasts on the stress composite (pp): (i) FMCG - DURABLES > 0
+  (non-cyclicality effect, leverage held ~equal); (ii) IT - FMCG TWO-SIDED (export hedge
+  vs domestic defensive — both crisis-safe for different reasons); (iii) IT - METALS >=
+  +15 (global-priced + leveraged is NOT export-safe); (iv) FMCG - UTILITIES > 0 (the
+  leverage penalty with cyclicality held at 0).
+c3 (1): the same four axis rank-corrs on E4b RECOVERY — TWO-SIDED lean: signs flip
+  (stress axes become recovery fuel), imperfectly (the E4b IT-led print is known).
+c4 (1): THE SAFEST-SEAT TABLE: per-sector WORST single stress-episode cum REL; named
+  list of sectors whose worst episode >= -5pp. PRIOR: FMCG, PHARMA qualify; IT fails on
+  no episode but E6 is non-stress (two-sided whether IT qualifies); NO leverage-2 sector
+  qualifies.
+CONSUMPTION: the India playbook sector overlay (the "what buys safety" line) + frames
+SEC-D5's US graded rerun; no promotion. Script: scripts/analyze_sec_d6.py. Census: 10.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| SEC-D6 | The characteristic decomposition of crisis safety (interpretation hand-appended AFTER the print; RUN NOTE: the script imports analyze_sec_battery for its baskets/REL machinery, which re-echoes the booked SEC-D1..D4 prints verbatim — an echo, not new cells) | **c1 rank-corr(stress composite, axis)**: LEVERAGE **-0.75** (bar <=-0.6 PASS — the strongest, by 0.01); CYCLICALITY **-0.74** (registered band -0.4..-0.6 EXCEEDED — stronger than registered, pleasant partial miss; at n=14 leverage and cyclicality are a statistical TIE and heavily co-scored on financials — stated); EXPORT **+0.57** (a hair above the +0.3..+0.5 band; the registered ordering claim HOLDS: export is real but secondary); DURABILITY **-0.73** (n=9) — the inversion registered CONFIRMED: NON-durable/perishable demand (non-deferrable) is the SAFE side. **c2 contrasts** (stress composite, pp): FMCG-DURABLES **+7.5** (non-cyclicality effect, PASS); IT-FMCG **+11.0** (the two-sided lands: export adds on TOP of defensive); IT-METALS **+24.1** (bar >=15 PASS — global-priced+leveraged is NOT export-safe); FMCG-UTILITIES **+10.0** (the leverage penalty with cyclicality held at 0, PASS). **c3 recovery corrs**: CYCLICALITY +0.28 and DURABILITY +0.43 flip as leaned; EXPORT **+0.52 does NOT flip** (IT led E4b); **LEVERAGE +0.05 — flips to ZERO, not positive: leverage costs -0.75 in stress and pays NOTHING in recovery — NEGATIVE CONVEXITY, the sharpest new fact in the entry**. **c4 safest seats** (worst stress episode >= -5pp): **PHARMA +10.1, IT +7.5, FMCG +5.2, DURABLES +2.9** — DURABLES qualifying was NOT in the prior (pleasant miss: zero-leverage discretionary never got hit inside a stress window); NO leverage-2 sector qualifies (best of them UTILITIES -9.4) — as registered. Worst-episode tail: PSUBANK -35.4, PVTBANK -22.8, REALTY -21.2, NBFC -20.8. THE HYPOTHESIS VERDICT: the principal's FCF leg is the PRIMARY axis (via the leverage proxy); export is real but secondary and conditional on a clean balance sheet; the durability leg runs INVERTED (non-durable safer); the safest quadrant = zero leverage x non-deferrable demand, with export as the bonus | **crisis safety is bought by the BALANCE SHEET first, the demand curve second, the revenue currency third; leverage shows negative convexity (hurts in stress, unpaid in recovery); proxy-not-measured-FCF limit stands; census +10 = 466** |
