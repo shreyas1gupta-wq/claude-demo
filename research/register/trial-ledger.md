@@ -1821,3 +1821,43 @@ negative" (ER-D1/D1b) describes the panel's observed support — economies growi
 where the dilution/priced-in channel dominates. It does NOT extend to the stagnation left
 tail: below ~1%/yr decade growth the earnings floor binds and returns are poor (GDP-D3).
 Both channels are real; the sweet spot is the middle.
+
+## Entry ER-D9 (2026-09-07) — PRE-REGISTERED before running: the cross-country long-run
+structure sweep + the dividend-GDP tether. Principal directive: deep-dive slippage and
+"find other corrl which is logical and cointegrated and has >0.6 corrl." JST R6 1950-2020,
+full-sample per-country means (the ER-D2 dot construction), n~15-17 dots, Spearman.
+HONESTY DECLARED AT REGISTRATION: (1) with n~16 and 8 candidate cells, chance |rho|~0.5 is
+possible — only the mechanism-declared priors below count as confirmations, all cells enter
+the census; (2) MECHANICAL-SHARE CAVEAT: return contains delivered dividend growth
+positively and slippage contains it negatively, so corr(slippage, return) is PARTLY built
+in — the sweep decomposes it: cell (a1) prints corr(dgro, ret) and the between print
+corr(mean g, ret) = -0.36 (ER-D1b(6)) already isolates the growth leg; (3) formal
+cointegration tests are meaningless on 16 country-means — the registered "tether" cells
+are the honest substitute (does the D/GDP ratio mean-revert within countries?).
+CELLS (10):
+(a) cross-country corr(full-sample mean X, real equity CAGR), one cell each, priors fixed:
+  a1 delivered real dividend growth (prior: STRONGEST positive, >= +0.6; partly mechanical
+     — declared sanity anchor, not independent evidence);
+  a2 mean inflation (prior: -0.4..-0.7 — chronic inflation is chronic expropriation);
+  a3 real government bond return (prior: +0.5..+0.8 — the INSTITUTIONS common factor:
+     regimes that protected bondholders protected shareholders; the repression panel
+     showed both crushed together);
+  a4 real bill return (prior: positive, weaker than a3);
+  a5 equity return volatility, std of annual real returns (prior: NEGATIVE -0.3..-0.6 —
+     no cross-country reward for country risk, the DMS finding);
+  a6 crisisJST count (prior: negative, modest);
+  a7 mean debt/GDP (prior: weak, |rho| < 0.4);
+  a8 housing real return (prior: +0.3..+0.6 — shared institutional quality).
+(b) THE TETHER (cointegration-lite): b1 pooled corr(own-country expanding percentile of
+  log(D_real/GDP_real), next-10y change of that log ratio) — prior: <= -0.3 (the ratio
+  mean-reverts: dividends and GDP share a trend, so slippage is a bounded WEDGE, not a
+  random drift); b2 fraction of countries with negative own-country level->change relation
+  (prior: >= 12/15).
+BAR (the principal's threshold): cells reported against |rho| >= 0.6 explicitly; only
+a1/a3 are EXPECTED to clear it. CONSUMPTION: context — sharpens the ER-D2 read and the
+country-quality lens of the reserve/debt monographs; no promotion.
+Script: scripts/analyze_er_d9.py. Census: 10.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| ER-D9 | Cross-country structure sweep + tether (interpretation hand-appended AFTER the print) | (a) n=16 dots: **a1 delivered real dividend growth +0.84 — the ONLY cell clearing the principal's 0.6 bar** (declared partly mechanical: the sanity anchor); a2 inflation -0.49 (in band); a3 real bond return **+0.48 — below the +0.5..+0.8 prior band, near-miss booked** (institutions factor real but moderate); a4 bills +0.40 (as registered); a5 volatility **-0.16 — MISS** (no meaningful cross-country risk-return line either way); a6 crisis count **+0.14 — SIGN MISS**; a7 debt/GDP -0.30 (in band); a8 housing +0.20 — below band, near-miss. (b) **THE TETHER IS REJECTED**: pooled corr(D/GDP percentile, next-10y ratio change) = **+0.15 (prior <= -0.3 — SIGN MISS)**; own-country negative in only **8/15 (prior >=12)**. Dividends and GDP do NOT share a mean-reverting ratio at the 10y scale — the slippage wedge is PERSISTENT/TRENDING, a structural country characteristic that COMPOUNDS rather than self-corrects. Honest read: this strengthens ER-D2's cross-sectional map (-0.79) while killing any "the wedge will close" argument — high-slippage countries stay high-slippage; there is no cointegration rescue for the growth-buyer. Five prior misses booked in one sweep — the register working | **one 0.6-clearer (the cash-flow engine); tether rejected; misses booked; census +10 = 335** |
