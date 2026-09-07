@@ -2427,3 +2427,45 @@ visible). Script: same, param rerun. Census: 1.
 |---|---|---|---|
 | CM-D1..D6 | The commodity battery (interpretation hand-appended AFTER the print) | **CM-D1 the century table** (real CAGR 1900-2015): Petroleum **+0.96%/yr** (the only clear positive, as registered), Gold +0.57 (a shade above the L8 ~0 prior — the 2011-13 endpoint; partial), Silver **-0.16** < gold (as registered), Copper **-0.52** (as registered — extraction tech deflates metals); groups: agri **-1.08%/yr median** (Prebisch-Singer confirmed), energy +0.40, metals -0.11. Commodities are NOT buy-and-hold assets; only energy carried a century premium. **CM-D2 the inflation-hedge 2x2** (same-yr REAL change, US regime): HIGH+rising: oil **+13.1** / copper +4.0 / silver +1.9 / gold +0.7 — all four positive (bar PASS), oil strongest (as registered) BUT **ordering MISS: gold printed WEAKEST** — resolved by CM-D2b (below): the 29 HIGH+rising years mix the fixed-gold era; HIGH+falling: **everything crashes** (oil -1.2, gold -6.2, silver -10.5, copper **-14.8**) — commodities are the MIRROR of CI-D2's financial assets: they pay when paper burns and burn when paper pays (disinflation is the commodity graveyard); low+falling oil -8.7. **CM-D3**: d1 the dollar law crisp — strong-USD years big4 **-5.0%** / all-42 median -4.0 vs weak-USD **+8.5 / +4.8** (as registered); d2 **Dr. Copper PREDICTIVE IS DEAD: +0.01** (prior +0.1..+0.3 MISS) — copper/gold forecasts nothing; d3 coincident +0.33 (as registered: copper reads the present, never the future). **CM-D4 ratios**: gold/silver pct -> next-5y silver-minus-gold rho **+0.14** (bar >=+0.3 MISS — only weak reversion; silver is NOT a reliable cheapness trade on the ratio); oil/gold +0.37 (two-sided lands: high oil/gold -> gold outperforms next 5y); 2015 endpoints: gold/silver pct 0.87 (silver historically cheap), oil/gold 0.38. **CM-D5 spot momentum**: +1.4%/yr, Sharpe-shape 0.12 (prior +2..6 **MISS** — spot-index momentum is ~nothing; the documented commodity-momentum premium lives in FUTURES carry/roll, which this vault cannot see — stated); worst 12m **-33.2%** (Oct-1991; crash bar pass). **CM-D6 oil->INR: SIGN MISS, the best print in the entry: -0.44** (registered +0.2..+0.4) — oil-UP years are INR-STRONG years: the global demand/risk factor (Kilian demand leg + Rey flows) swamps the import-bill channel; oil crashes are risk-off years that sink INR too. The LOCKED H53a doctrine ("the global factor owns commodity links") now extends to the FX channel | **5 misses booked honestly; the inflation 2x2 completes CI-D2's asset table from the commodity side; Dr. Copper predictive dead; import-bill intuition inverted by the global factor; census +15 = 503** |
 | CM-D2b | Floating-era split of the gold inflation cell | US HIGH+rising years: floating era (1973/74/77/78/79/80, n=6) gold real **+24.9%/yr** vs fixed era (n=23) **-5.6%/yr** — both registered signs PASS (bar >=+5 cleared 5x). The CM-D2 ordering miss is fully explained: post-1971, gold is the SECOND-strongest inflation-acceleration hedge after oil (+24.9 vs +13.1), and the pooled +0.7 was a regime mix. Standing caveat: n=6, all from ONE arc (the 1970s) — one episode, not a law | **the fixed-era confound made visible and booked; gold's hedge rank restored conditional on a floating regime; census +1 = 504** |
+
+## Entry MG-D1..D4 (2026-09-07) — PRE-REGISTERED before running: THE MACRO GAP-CLOSER
+(yield curve, twin deficits, rare-disaster census, demographics/fiscal). Principal
+directive: "move to next i think macro and global everything is covered if anything left
+tell me." Gap audit against the register: the TERM SPREAD appears only as an ER-D6
+kitchen-sink factor (never its own battery); JST's ca, pop, revenue/expenditure columns
+are untested; no drawdown census exists. JST R6, 1950-2020 unless stated; conventions as
+the prior batteries (real returns, expanding percentiles min_obs=20, Spearman, overlap
+flagged); slope = ltrate - stir (pp); ca/gdp; fiscal balance = (revenue-expenditure)/gdp;
+pop growth = trailing-10y mean dlog pop. CELLS (13):
+**MG-D1 — the yield curve (4):** d1 pooled corr(slope_t, real GDP/cap growth_t+1) —
+PRIOR +0.1..+0.3 (the classic, diluted pooled); d2 INVERTED years (slope<0): next-1y
+growth and negative-growth frequency vs normal years — PRIOR: growth lower by >=1pp,
+recession freq ~2x; d3 slope -> next-1y REAL EQUITY — PRIOR: WEAK (+0.05..+0.15) — THE
+DOCTRINE TEST: the curve predicts growth and growth does not price equities (GDP-D1), so
+a strong d3 would be a doctrine anomaly; d4 inverted years -> next-1y real BOND — PRIOR:
+positive (inversion = tight money -> subsequent disinflation pays duration).
+**MG-D2 — twin deficits (4):** d1 worst-CAD state (ca/gdp own pct <= 0.2) -> next-1y
+depreciation vs USD (non-US) — PRIOR: positive, modest (deficits leak currency); d2 same
+state -> next-1y local real equity — TWO-SIDED (boom-in-progress vs sudden-stop); d3
+pooled corr(ca/gdp, SAME-year real equity) — PRIOR: -0.05..-0.2 (deficit years are boom
+years); d4 the sign census: fraction of countries whose own-history corr(d1 state,
+depreciation) is positive — PRIOR: >= 60%. India is NOT in JST — the 2013 CAD episode is
+cited from CU-D7/SEC-D1 prints, stated.
+**MG-D3 — the rare-disaster census (3), full span:** d1 per-country WORST real-equity
+drawdown (log real TR index, peak-to-trough) + recovery years (trough back to prior
+peak; ">span" if never) — descriptive table; d2 medians across countries — PRIOR: median
+worst drawdown >= 60%, median recovery >= 10y (Barro/DMS); d3 the same for HOUSING —
+PRIOR: shallower (median <= 40%) but recovery NOT faster than equities (the slow-asset
+doctrine, DB-D7/CI-D4).
+**MG-D4 — demographics-lite + fiscal (2):** d1 trailing-10y pop growth -> next-10y real
+equity, pooled — TWO-SIDED, lean negative (the dilution/growth doctrine extends to
+demographic growth; the M/O age-structure form is DATA-GATED — no age pyramids vaulted,
+stated); d2 fiscal-balance percentile -> next-5y real equity AND real bond — PRIOR: |rho|
+<= 0.15 both (the levels-don't-price doctrine; misses recorded if breached).
+CONSUMPTION: closes the macro sweep; L18 (business cycle) + L20 context; the disaster
+census feeds the risk chapter of the India playbook; no promotion. Script:
+scripts/analyze_mg_battery.py. Census: 13.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| MG-D1..D4 | The macro gap-closer (interpretation hand-appended AFTER the print) | **D1 YIELD CURVE**: d1 slope -> next-1y growth **+0.12** (in band, low end — the classic dilutes badly at panel breadth); d2 inverted years: negative-growth freq **21% vs 13%** (1.6x, near the ~2x prior) BUT mean growth only -0.3pp lower (bar >=1pp **MISS**) — inversion is a pooled RECESSION-ODDS signal, not a mean-growth signal; d3 slope -> next-1y equity **+0.06 — THE DOCTRINE TEST PASSES**: the curve predicts growth and growth does not price equities (GDP-D1 doctrine held where it could have broken); d4 bonds after inversion +2.5 vs +2.9% — **MISS**: no pooled duration edge from inversion (rate-control eras dilute the US intuition). **D2 TWIN DEFICITS**: d1 worst-CAD years -> next-1y depreciation **+2.5% vs -0.5%** (as registered) and d4 sign census **10/14 countries** (bar 60% pass); d2 the two-sided lands SUDDEN-STOP: next-1y equity after worst-CAD years **+4.1% vs +9.5%** — a -5.4pp state (the 2013 India CAD episode, CU-D7/SEC-D1, is the same physics); d3 corr(ca/gdp, same-yr equity) **+0.17 — SIGN MISS** (registered negative): external-strength years ARE good equity years — the "deficits are booms" intuition is wrong in this panel. **D3 THE RARE-DISASTER CENSUS** (full span, real TR): median worst equity drawdown **-78%**, median recovery **18 YEARS** (bars pass); the tail: France -98% (1977 trough, NEVER re-peaked in span), Germany -98% (1948, 37y), Portugal -98% (1984, >span), Japan -94% (1948, 24y), Italy -86%/37y; the USA — source of most investing folklore — had the SHALLOWEST major disaster (-52%, 1932, 7y recovery): US-based intuition is survivor-country intuition. HOUSING: median worst **-29%**, recovery **10y** — shallower AND faster than equities at the disaster scale (registered "not faster" **MISS**: the slow-asset doctrine holds for busts, not for century-scale disasters — housing never has a -78% real event; Belgium/Finland WWI-era -77/-73% are the war exceptions). **D4**: d1 pop growth -> next-10y equity **-0.17** — the dilution doctrine EXTENDS TO DEMOGRAPHICS (population growth buys no equity return; lean confirmed); d2 fiscal-balance pct -> equity -0.15 (at the bar exactly, levels-doctrine holds) but -> bonds **-0.24 — MISS**: fiscal SURPLUS percentile predicts WORSE bond returns — surpluses come in booms with rising rates, deficits precede disinflation/easing (busts) which pays duration; a state fact, not a signal | **the macro sweep is CLOSED: 4 misses booked (inversion mean-growth, inversion bonds, CA same-year sign, housing-recovery); the doctrine survived its yield-curve test; the disaster census is the risk chapter's anchor table; census +13 = 517** |

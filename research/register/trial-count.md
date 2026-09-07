@@ -71,7 +71,8 @@ this census exists so that can never happen silently.
 | SEC-D7 stock-level leverage decomposition (10+7+5) | 22 | 22 |
 | CM-D1..D6 commodity battery (2+4+3+3+2+1) | 15 | 15 |
 | CM-D2b floating-era gold split | 1 | 1 |
-| **RUNNING TOTAL (run cells)** | | **504** |
+| MG-D1..D4 macro gap-closer (4+4+3+2) | 13 | 13 |
+| **RUNNING TOTAL (run cells)** | | **517** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
