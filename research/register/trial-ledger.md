@@ -1881,3 +1881,50 @@ Script: scripts/analyze_gdp_d4.py. Census: 10.
 | # | What | Result | Status |
 |---|---|---|---|
 | GDP-D4 | Within-country growth->return window grid (interpretation hand-appended AFTER the print) | median own-country rho / pooled: **5-5: -0.32/-0.28; 10-5: -0.36/-0.31; 10-10: -0.36/-0.29; 20-10: -0.05/-0.05; 20-20: +0.12/-0.02** (all 16 countries per cell; 20-20 sign-only per the declared caveat). **PRIOR MISS booked**: the registration called 20y-trailing the most negative — instead the effect PEAKS at 5-10y trailing and VANISHES at 20y. Sharpened doctrine: the anti-growth signal is a MEDIUM-TERM CYCLE phenomenon — a strong 5-10 year growth RUN is what gets priced, diluted, and mean-reverted against; a country's 20-year growth CHARACTER carries no signal either way (consistent with GDP-D1(i)'s weak level effect and GDP-D3's hump: the permanent level doesn't price, the recent run does). With ER-D1b's 5y->10y median -0.41, the full within-country map: dangerous = fresh 5-10y booms; neutral = long-run growth identity | **grid booked; prior miss recorded; census +10 = 345** |
+
+## Entry CU-D1..D5 (2026-09-07) — PRE-REGISTERED before running: THE CURRENCY BATTERY.
+Principal directive: "lets now move from gdp to currency, show all max u can with data
+regression model research." Data: JST R6 (xrusd = local per USD, cpi, eq_tr, stir, peg
+flags; 1950-2020, USD cross-rates so USA excluded where FX is the variable), fx vault
+USDINR monthly 1973-2026, gold USD monthly (gold-INR = gold_usd x USDINR), IIMA market.
+Conventions fixed NOW: depreciation_t = Δlog xrusd (positive = local currency WEAKENS);
+inflation differential = local infl − US infl; REAL exchange rate RER_t (real value of
+local currency) = −(log xrusd + log cpi_us − log cpi_local), so HIGH RER percentile =
+locally EXPENSIVE currency; RER percentile = own-country expanding percentile (min_obs=20,
+usable 1970+); USD investor return = (1+eq_tr)x(xr_t-1... prior year xr / current) − 1,
+deflated by US CPI. Overlap flagged; no p-values; Spearman throughout.
+
+**CU-D1 — PPP: the currency's gravity (3 cells).** (i) cross-country corr(mean annual
+depreciation, mean inflation differential), full sample — PRIOR: >= +0.8 (the PPP anchor;
+the FX analog of ER-D9's a1 sanity cell). (ii) pooled corr(RER percentile, next-5y RER
+change) — PRIOR: <= −0.3 (REAL exchange rates DO mean-revert — the opposite of the
+rejected dividend/GDP tether; Rogoff 1996). (iii) implied half-life from the pooled AR(1)
+of demeaned log RER — PRIOR: 3-7 years (the PPP puzzle range).
+**CU-D2 — UIP/carry: does the interest differential price? (2 cells).** Pooled OLS slope
+of next-1y depreciation on (stir − stir_US): UIP predicts +1. (i) slope, floating years
+only (peg==0); (ii) within-country Spearman median. PRIOR (Fama 1984 forward-premium
+puzzle): slope well BELOW 1, plausibly <= 0.5 — high-rate currencies do not depreciate
+enough, carry historically paid; stated two-sided on the exact value.
+**CU-D3 — FX and equity returns (3 cells).** (i) same-year pooled corr(depreciation, local
+REAL equity return) — PRIOR: negative (−0.1..−0.35): depreciation years are stress years.
+(ii) RER percentile -> next-5y LOCAL real equity CAGR, pooled — PRIOR: negative (cheap
+currency -> competitiveness + reversion tailwind), −0.1..−0.3. (iii) RER percentile ->
+next-5y USD real return of that market — PRIOR: MORE negative than (ii) (FX reversion adds
+directly for the USD investor), −0.2..−0.4. [High percentile = expensive currency, so
+NEGATIVE rho = cheap-currency markets pay more.]
+**CU-D4 — currency crashes (3 cells).** Crash year = depreciation >= 15% (fixed threshold,
+~top decile). (i) local real equity return in crash years vs all other years (pooled
+means); (ii) GOLD in LOCAL currency, real, in crash years vs others (JST panel: gold_usd x
+xrusd deflated by local cpi) — PRIOR: strongly positive in crash years (>= +15% mean; the
+gold book's crash-hedge print); (iii) next-3y local real equity CAGR after a crash year —
+PRIOR: two-sided (recovery vs continued stress).
+**CU-D5 — India partial (2 cells, short sample, descriptive).** (i) same-year corr(USDINR
+annual depreciation, IIMA real... IIMA is nominal INR — use NOMINAL excess and state it)
+1994-2025; (ii) gold-INR return in the 5 worst INR years since 1994 vs its other-year
+mean. No bars (descriptive).
+CONSUMPTION: context for the FX/gold seats (L23 dollar cycle, the gold book, Tier-C
+descent playbook); no promotion. Script: scripts/analyze_cu_battery.py. Census: 13.
+
+| # | What | Result | Status |
+|---|---|---|---|
+| CU-D1..D5 | The currency battery (interpretation hand-appended AFTER the print) | **CU-D1 PPP: (i) +0.94** (n=17) — the strongest cross-country relation in the register: long-run depreciation IS the inflation differential (bar >=+0.8 PASS). (ii) RER percentile -> next-5y RER change **-0.40** — REAL exchange rates mean-revert (bar <=-0.3 PASS): the tether that FAILED for dividends/GDP HOLDS for currencies. (iii) half-life **7.3y** vs the 3-7y prior band — boundary miss booked (Rogoff-puzzle-slow, annual pooled). **CU-D2 UIP: slope -0.06** vs the predicted +1 (floating years, n=352; 6 se's below) — the Fama-1984 forward-premium puzzle reproduced: rate differentials do NOT price 1y FX; carry historically paid; within-country median -0.18. **CU-D3: (i) same-year dep vs LOCAL real equity +0.02 — PRIOR MISS** (expected negative): at the panel level, local equities are currency-crash-neutral (real-asset pass-through nets out exporters/importers). (ii) RER -> next-5y local equity -0.18 (in band). (iii) RER -> next-5y **USD** return **-0.36** (in band, stronger as registered): buying cheap-currency markets pays the USD investor double — FX reversion stacks on equity. **CU-D4 crashes (dep >=15%, n=71): (i) local real equity in crash years +8.7% vs +8.5% others — PRIOR MISS**, equities self-hedge their currency at index level; (ii) gold-in-local-currency real: **+8.8% in crash years vs +2.7% others** — direction PASS, magnitude bar (>=15%) missed, ~6pp crash premium booked; (iii) next-3y after crash **+13.2%/yr vs +6.2%** — the two-sided cell resolves to RECOVERY: crash years are entry states, not exit states. **CU-D5 India: (i) same-year corr(INR dep, market) -0.69** (n=32) — India is the OPPOSITE of the panel's +0.02: INR weakness and equity weakness are one event (the Rey/FII global-flows channel, L22/L26 vindicated); (ii) gold-INR in the 5 worst INR years +13.4% vs +12.0% other years — the annual edge is mild because gold-INR pays in ALL years (secular INR depreciation + gold), the hedge value is at stress horizons (T-series Sharpe 1.19 stands) | **PPP/UIP doctrine landed; 3 misses booked; India's FX-equity coupling (-0.69) is the panel outlier and the design consequence; census +13 = 358** |
