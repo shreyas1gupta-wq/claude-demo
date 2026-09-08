@@ -3105,3 +3105,63 @@ Census 5. Script: scripts/analyze_qg_d1.py.
 | Design | What it is | Result (interpretation written AFTER the print) | Verdict |
 |---|---|---|---|
 | QG-D1 | Payout vs subsequent aggregate real-E growth (Arnott-Asness 2003 re-run, Shiller 1871-2023, 6m lag, overlapping-months flagged) | **A-A REPLICATES ON THE SURFACE, AND q5 EXPOSES THE MECHANISM.** q1 rank-corr +0.17 (their era printed ~+0.39 [LIT]; direction PASS); q2 high payout -> +4.01%/yr next-10y real-E growth vs low +1.82 (+2.19pp); q3 stronger at 5y (+6.78 vs +1.45 — the mean-reversion horizon); q4 SURVIVES post-1950 (+4.96 vs +2.23 — unlike FUN-D2 e4's decay; noted). **q5 THE KILL: high-payout months are depressed-earnings months 78% of the time (vs 21% for low-payout) — payout spikes mechanically when E collapses because dividends are 2.7x smoother (FUN-D2 e7) — and WITHIN non-depressed months the gap INVERTS to -1.85pp.** So the celebrated "high payout predicts high growth" aggregate fact is substantially the depressed-earnings base effect (E mean-reverts, FUN-D2 e11 AR(1) -0.11) wearing a payout costume; the agency/empire-building interpretation [LIT A-A's own] is weakened at the aggregate (A-A's paper carries partial controls — noted, not adjudicated here). CONSUMPTION: aggregate payout is a REPACKAGED earnings-state variable, not an independent quality signal — do not spend cells on aggregate-payout timing; the firm-level payout/quality question is untouched by this print and stays with the India data legs | **A-A direction replicated, mechanism reattributed to the earnings state; census +5 = 1063** |
+
+## Entry QG-D2 (2026-09-08) — PRE-REGISTERED before running: THE ROE/GROWTH/QUALITY
+DECILE-AND-MATRIX BATTERY (principal: "rank basis roe top decile bottom and effect over
+long term ... growth roe cross matrix and other 20-30 cases and matrix/decile/
+segregation for factor ... alpha edge"). TWO AUTHENTICATED SOURCES, both newly vaulted
+with two-pass AUTH (anchors committed first; two anchor mis-specifications recorded):
+(A) firm_panel/data_ml (Coqueret-Guida, 1,207 US stocks, monthly 1998-11..2019-03;
+features cross-sectionally uniformized to (0,1] -> RANK sorts only; forward returns
+R1M/R12M raw; row t realizes in t+1 — declared; EQUAL-WEIGHT only; the panel is the
+book's filtered sample — a survivorship/selection tilt DECLARED on every print);
+(B) factors_us FF5/FF6 (1963-07..2020, ~2020 vintage) + Q5 (HXZ q-factors incl. R_ROE,
+R_EG, 1967-01..2019-12). CONVENTIONS FROZEN: deciles/quintiles by the panel's own
+uniformized ranks per date; ladder = one read-cell per named outcome; eras 1999-2008 /
+2009-2019; up/down market = sign of the panel EW month; annualization x12 on monthly
+means; no cost model (paper, declared).
+CELLS (30):
+ c1 Roe decile ladder, fwd-1m EW mean (D1..D10 + D10-D1);
+ c2 Roe D10 vs D1 compounded (CAGR, monthly rebal) + terminal wealth ratio;
+ c3 c1 by era halves; c4 D10/D1 vol, Sharpe, maxDD;
+ c5 Roce ladder (does the capital-employed lens differ from Roe);
+ c6 Eps_Basic_Gr (earnings growth) decile ladder — THE GROWTH QUESTION;
+ c7 Capex_Sales (investment intensity) ladder — the asset-growth analog (CGS/CMA prior:
+    negative);
+ c8 THE ROE x GROWTH 5x5 (Roe quintile x Eps_Basic_Gr quintile, fwd-1m EW mean) — the
+    principal's cross matrix; the "how much growth" read = the best column within each
+    Roe row;
+ c9 ROE x VALUATION 5x5 (Pb) — the profitable-value corner (Novy-Marx prior: cheap x
+    high-Roe best);
+ c10 ROE x MOMENTUM 5x5 (Mom_11M_Usd);
+ c11 ROE x SIZE 5x5 (Mkt_Cap_12M_Usd) — the small-x-quality prior (AFIMP);
+ c12 ROE x LEVERAGE 5x5 (Debtequity) — the SEC-D7 bridge at US firm level;
+ c13 ROE x LOW-VOL 5x5 (Vol1Y_Usd);
+ c14 quality composite ladder (mean rank of Roe, Ocf_Ta, inverse Debtequity — frozen);
+ c15 within-CHEAP half (Pb below median): Roe ladder (the Piotroski-style read);
+ c16 within-EXPENSIVE half: same (the Mohanram-style read);
+ c17 growth WITHIN high-Roe (top-3 Roe deciles): Eps_Basic_Gr terciles — does growth
+     ADD anything once quality is held;
+ c18 Roe rank persistence (rank autocorr at 12m) + decile migration;
+ c19 D10-D1 spread in up vs down panel months (defensiveness read);
+ c20 GFC window read: D10 vs D1 cumulative 2007-10..2009-03;
+ c21 fwd-12M horizon repeat of c1 (overlap FLAGGED);
+ c22 RMW cumulative: CAGR/Sharpe/maxDD 1963-2020 — profitability long-term;
+ c23 CMA same — the conservative-beats-aggressive growth answer;
+ c24 Q5 R_ROE same (1967-2019); c25 Q5 R_EG (expected growth) same;
+ c26 factor correlation matrix (MktRF/SMB/HML/RMW/CMA/UMD/R_ROE/R_EG);
+ c27 RMW by decade table; c28 RMW/CMA in down-market months vs up;
+ c29 50/50 HML+RMW blend vs each alone (Sharpe) — profitable value at factor level;
+ c30 post-2013 (publication era) RMW/CMA vs pre — the decay read.
+PRIOR (two-sided, from the dossiers): c1 positive but MODEST and NOT monotone at the
+top (profitability premium is real; EW + small tilt may fatten it); c6 FLAT-TO-NEGATIVE
+(LSV extrapolation); c7 NEGATIVE (CGS/CMA); c8 best cells in the HIGH-Roe row at LOW/MID
+growth; c9 cheap x profitable the best corner; c11 spread biggest in small quintiles;
+c19/c28 quality defensive; c25 R_EG positive and large per HXZ but its construction is
+contested [LIT] — if R_EG dominates everything, flag rather than consume; c30 decay
+expected. If GROWTH ladders print POSITIVE monotone, the LSV doctrine takes a hit and
+that gets booked. Census 30. Script: scripts/analyze_qg_d2.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| QG-D2 | The ROE/growth/quality decile-and-matrix battery: 21 firm-panel cells (data_ml, EW, 1999-2019, survivorship-tilt declared) + 9 factor cells (FF5/FF6/Q5, VW, 1963/1967-2020); 30 registered cells + 1 diagnostic run-note cell | **THE HEADLINE IS A METHODOLOGICAL KILL, BOOKED AS SUCH: c1 prior MISSED — the panel's ROE ladder printed INVERTED (D1 +29.7%/yr vs D10 +11.9, spread -17.8pp, both eras) while the SAME battery's value-weighted factor legs print profitability POSITIVE (RMW +2.8%/yr Sharpe 0.41; q R_ROE +6.3/0.75).** The run-note diagnostic resolves it: the inversion collapses to -1.3pp within the largest size quintile, and low-ROE names sit in the smallest quintile 33% of the time vs 7% for high-ROE — the "junk wins" print is an EW + smallest-cap + survivor-selection artifact (the low-ROE names that died are under-sampled; AUTH B5 declared the tilt). THE THIRD LIVE DEMONSTRATION (after the refuted low-vol core and the NSE backfill flag) that **construction dominates signal: EW survivor panels manufacture junk premia** — binding on every future India firm design (VW + delisted registry, non-negotiable). WHAT SURVIVES, cross-checked against the VW factor legs: **(1) the growth answer — DO NOT CHASE GROWTH**: EPS-growth ladder flat-to-inverted (c6), capex ladder ~flat (c7), growth WITHIN high-ROE flat (c17: terciles 11.6/9.7/10.4; c8 Q5-row best at LOW growth) — the LSV/CGS priors hold; growth adds nothing once quality is held; **(2) cheap-quality >> expensive-quality**: within the ROE-Q5 row, cheap 26.2%/yr vs expensive 9.3 (c9) and the 50/50 HML+RMW blend Sharpe 0.49 beats HML 0.32 and RMW 0.41 alone (c29) — Novy-Marx complementarity confirmed at factor level; **(3) quality is a DOWN-MARKET instrument**: RMW +9.3%/yr in down months vs -1.2 in up, CMA +12.1/-2.8 (c28); D10-D1 +17.7 in down panel months (c19) — joins SEC-D6/FUN-D3 doctrine (defensive during, never after); **(4) profitability is SLOW and sticky**: 12m rank-autocorr 0.69 (c18) — a quarterly signal, not a monthly one; **(5) post-publication decay is real**: CMA -2.5%/yr post-2013 (negative), RMW +1.1 vs +3.4 pre (c30); RMW decade table peaks in the 2000s (+8.5), prints -4.8 in the 2020s stub (c27). c25 R_EG (+10.0%/yr, Sharpe 1.49) FLAGGED per registration — contested construction, NOT consumed. c10/c13 momentum/vol within-rows contradict the VW literature -> artifact-suspect, not consumed. c20 GFC: D1 fell LESS than D10 (-30.8 vs -34.3) — survivor-selection tell, noted. c21 12m ladder same shape (overlap flagged) | **profitability real-but-modest, VW-only, defensive, decaying; growth confirmed not worth chasing; cheap-quality the combination; the EW-survivor artifact booked as doctrine; census +31 = 1094** |

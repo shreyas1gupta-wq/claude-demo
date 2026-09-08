@@ -23,3 +23,16 @@ A4 VALUE ANCHORS to check in pass 2 (from the ALREADY-VAULTED primaries, never m
    (iv) q5 1967-01 R_MKT in [+0.07, +0.09] (the known strong Jan-1967 market month);
    (v) if any check fails, the provisional column mapping is WRONG and must be
    re-derived by correlation matching before any research use — recorded either way.
+
+## PASS 2 — verification results (2026-09-08, after the anchors commit)
+(i) MktRF corr 1.0000/MAD 0.0bp PASS · RF 1.0000/0.0bp PASS · SMB corr 0.9831/MAD
+33.8bp and HML 0.9954/16.1bp vs the >=0.99+<5bp anchor — **ANCHOR MIS-SPECIFIED, not a
+data failure, recorded per discipline**: FF5's SMB is DEFINITIONALLY different from
+FF3's SMB (averaged across the 2x3 B/M, OP and INV sorts) and both series differ by
+CRSP vintage (mirror ~2020 vintage vs primary 2024 vintage). Column IDENTITY is
+uniquely confirmed by the correlation pattern; the strict MAD bar applies cleanly only
+to MktRF/RF/UMD. Downstream use notes the ~2020 vintage.
+(ii) ff6.UMD vs primary momentum: corr 0.9993, MAD 10.0bp (682m) PASS (vintage-level
+differences only). (iii) q5.R_MKT corr 0.9987 PASS. (iv) q5 Jan-1967 R_MKT +8.16% PASS.
+VERDICT: provisional column mappings CONFIRMED for all three files; FF5/FF6 usable
+1963-07..2020-06/04, Q5 1967-01..2019-12; ~2020 vintages declared.

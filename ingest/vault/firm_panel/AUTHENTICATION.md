@@ -20,3 +20,13 @@ B6 pass-2 value checks: (i) per-date stock count between 400 and 1,207 for all m
    (ii) monthly EW mean of R1M_Usd correlates >= 0.85 with the vaulted US market factor
    (fff Mkt-RF + RF) on the overlap — the panel must move with the US market;
    (iii) 2008-10 and 2008-11 EW R1M_Usd prints negative (GFC months).
+
+## PASS 2 — verification results (2026-09-08, after the anchors commit)
+(i) per-date stock count 552..1196 PASS. (ii) EW forward-1m (shifted one month) vs the
+vaulted US market: corr 0.884 (245m) PASS. (iii) the GFC anchor AS WRITTEN failed on
+its second month — **ANCHOR MIS-SPECIFIED (forward-return indexing), recorded**: R1M at
+row-date t realizes in t+1, so the crash rows are 2008-09-30 (= Oct-08, prints -0.204)
+and 2008-10-31 (= Nov-08, -0.075), both negative — the corrected read PASSES; the row
+dated 2008-11-30 carries the positive Dec-08 bounce (+0.069), consistent with the
+record. VERDICT: panel authenticated; forward-return convention (row t -> month t+1)
+is now the DECLARED convention for every downstream use.
