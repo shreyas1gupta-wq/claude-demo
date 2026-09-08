@@ -1,0 +1,60 @@
+{
+ "family_key": "f03_lagged_ivrv_gate",
+ "date": "2026-09-08",
+ "status": "EXPLORATORY -- NOT BOOKED (Strategy Sweep 2 agent-level cell; no trial-ledger entry written; F13 re-registration attempt only)",
+ "script": "/home/user/claude-demo/scripts/opt_sweep2/f03_lagged_ivrv_gate.py",
+ "windows": {
+  "full": "2011-07-01..2023-03-31",
+  "train": "2011-07-01..2016-12-31",
+  "test": "2017-02-01..2023-03-31 (21td purge from train end, OP-D3b/R4 convention)"
+ },
+ "cells_consumed": 18,
+ "cell_accounting": [
+  "3 baseline (VIX-pct>=0.60) standalone condor backtests: full/train/test",
+  "9 candidate (lagged IV-RV-spread-pct>=0.50/0.60/0.70) standalone condor backtests: 3 thresholds x {full,train,test}",
+  "6 frequency-matched control backtests (VIX-pct-ALONE, no IV-RV, at the same numeric thresholds 0.50/0.70; 0.60 reuses the baseline cell): 2 thresholds x {full,train,test}",
+  "total = 3+9+6 = 18",
+  "NOT counted (descriptive scans, same convention as f02_vrp_scaled_condor's reachability check): corr(VIX-pct, lagged spread-pct); per-threshold eligible-day overlap/Jaccard; the 5-point lookahead self-check assertion"
+ ],
+ "pre_registered_bar": "BAR 1 (registered before any number was computed): a threshold is ALIVE iff, on BOTH windows SEPARATELY (train 2011-07..2016-12 AND test 2017-02..2023-03, never the pooled full period alone): (a) standalone condor-sleeve geo (CAGR) beats the VIX-pct>=0.60 baseline in that same window, AND (b) maxDD is no more than 2.0pp worse (more negative) than baseline's maxDD in that window. Full-period numbers are reported but are descriptive only. BAR 2 (added mid-run, BEFORE looking at which threshold passed Bar 1 -- prompted by the mechanical observation that every ivrv-gated variant fires on 2-2.2x more eligible days than the pct>=0.60 baseline, and OP-D1 already booked VRP as positive at EVERY VIX quintile, so more-frequent selling should mechanically raise CAGR with zero timing skill): a threshold is GENUINELY ALIVE only if it ALSO beats a frequency-matched control -- the SAME state machine run on VIX-pct ALONE (no IV-RV) at the SAME numeric threshold -- on both windows. This isolates whether the IV-RV construction adds anything beyond simply lowering the existing entry threshold.",
+ "gate_construction": {
+  "spread": "India VIX close(t) minus trailing-21-trading-day realized vol (annualized vol points), the trailing vol computed on the FULL NIFTY daily log-return series position-indexed (F13's own method exactly -- this part was never F13's leak)",
+  "percentile": "quant.ladder.credit_cycle.expanding_percentile(spread, min_obs=252) -- expanding by construction, no lookahead",
+  "extra_lag": "gate(t) = spread_pct(t-1), an explicit additional one-day lag beyond the already-safe expanding percentile, applied because the family brief asked for it as extra safety margin on this specific construction's history",
+  "how_f13s_leak_is_avoided_here": "no groupby/.first() calendar aggregation anywhere in this script -- entries are decided inside the standing production daily state machine (analyze_op_d3.run()), verified bit-for-bit identical to OP-D3's own run() when fed the same gate column ('pct'), and a direct 5-point spot-check confirms gate(t) reproduces percentile(spread[:t]) truncated one day short"
+ },
+ "findings": [
+  {
+   "name": "Correlation / duplicate-exposure check",
+   "numbers": "corr(VIX-pct, lagged IV-RV-spread-pct) = +0.0847, n=2611; per-threshold overlap: thr=0.5: 29.7% of candidate-eligible days already inside the baseline pct>=0.60 set (Jaccard 0.215); thr=0.6: 33.5% of candidate-eligible days already inside the baseline pct>=0.60 set (Jaccard 0.222); thr=0.7: 40.0% of candidate-eligible days already inside the baseline pct>=0.60 set (Jaccard 0.229)",
+   "method": "Pearson correlation of the two percentile series on their common valid sample; Jaccard overlap of the two gates' eligible-day sets (excluding Budget no-entry days) at each threshold.",
+   "lookahead_risk": "none (descriptive scan of already-verified no-lookahead series)"
+  },
+  {
+   "name": "OOS-style verdict per threshold",
+   "numbers": "thr=0.5: train d_geo +0.308pp/d_maxDD -1.441pp (clears), test d_geo +3.501pp/d_maxDD -1.511pp (clears), full (descriptive) d_geo +2.141pp/d_maxDD -1.511pp -> ALIVE; thr=0.6: train d_geo +0.518pp/d_maxDD -1.719pp (clears), test d_geo +2.462pp/d_maxDD -1.511pp (clears), full (descriptive) d_geo +1.576pp/d_maxDD -1.511pp -> ALIVE; thr=0.7: train d_geo +0.385pp/d_maxDD -3.245pp (misses), test d_geo +1.363pp/d_maxDD -1.353pp (clears), full (descriptive) d_geo +0.935pp/d_maxDD -1.939pp -> DEAD",
+   "method": "standalone condor-sleeve backtests via run_gated(), baseline gate_col='pct' (bit-for-bit verified against OP-D3's own run()) vs candidate gate_col='gate' (lagged IV-RV spread percentile) at each threshold, compared window-by-window.",
+   "lookahead_risk": "none -- verified by construction (5-point spot check) and by reuse of the already-audited OP-D3 state machine unchanged except the gate column"
+  },
+  {
+   "name": "Frequency-matched control (Bar 2): does IV-RV beat 'just lower the VIX-pct threshold'?",
+   "numbers": "thr=0.5 vs pct-alone@0.5: train d_geo -0.400pp d_maxDD -0.234pp (fails Bar 2), test d_geo +2.644pp d_maxDD -1.443pp (fails Bar 2) -> CONFOUNDED (frequency effect only -- d_geo is often positive here, but d_maxDD is more negative than the -1.0pp allowance, i.e. the ivrv gate buys its extra return with strictly worse drawdown than an equally-frequent VIX-pct-alone control); thr=0.6 vs pct-alone@0.6: train d_geo +0.518pp d_maxDD -1.719pp (fails Bar 2), test d_geo +2.462pp d_maxDD -1.511pp (fails Bar 2) -> CONFOUNDED (frequency effect only -- d_geo is often positive here, but d_maxDD is more negative than the -1.0pp allowance, i.e. the ivrv gate buys its extra return with strictly worse drawdown than an equally-frequent VIX-pct-alone control); thr=0.7 vs pct-alone@0.7: train d_geo +0.629pp d_maxDD -3.327pp (fails Bar 2), test d_geo +0.925pp d_maxDD -3.426pp (fails Bar 2) -> CONFOUNDED (frequency effect only -- d_geo is often positive here, but d_maxDD is more negative than the -1.0pp allowance, i.e. the ivrv gate buys its extra return with strictly worse drawdown than an equally-frequent VIX-pct-alone control)",
+   "method": "same run_gated() state machine, gate_col='pct' (VIX-pct alone, the already-audited standing variable, NO IV-RV) run at the identical numeric thresholds 0.50/0.60/0.70 as a like-for-like control on trading frequency, since OP-D1 already booked VRP as positive at every VIX quintile (more entries should mechanically raise CAGR regardless of which gate variable is used).",
+   "lookahead_risk": "none (same verified no-lookahead machinery, VIX-pct column only)"
+  },
+  {
+   "name": "Entry-count context (thin-sample caveat)",
+   "numbers": "thr=0.5: full n=71 vs baseline n=33; train n=27 vs baseline 15; test n=43 vs baseline 18; thr=0.6: full n=67 vs baseline n=33; train n=25 vs baseline 15; test n=41 vs baseline 18; thr=0.7: full n=57 vs baseline n=33; train n=23 vs baseline 15; test n=33 vs baseline 18",
+   "method": "count of positions opened by run_gated() per window per gate.",
+   "lookahead_risk": "n/a (descriptive)"
+  }
+ ],
+ "verdict_promising": false,
+ "why": "F13's leak was specifically the groupby('.first()') calendar-aggregation step, not the underlying spread/percentile construction -- this re-registration removes that step entirely (daily state machine, no monthly groupby) and adds the family-requested extra one-day lag, verified leak-free by direct spot-check and by bit-for-bit reproduction of OP-D3's own run(). Bar 1 (beats the standing pct>=0.60 baseline on both train and test): threshold(s) [0.5, 0.6] clear it. But this is confounded: every ivrv threshold fires on 2-2.2x more eligible days than the baseline (Jaccard overlap only 0.22-0.23 -- the two gates pick substantially DIFFERENT days, not a subset relationship), and corr(VIX-pct, gate)=+0.085 is only weakly related, so the ivrv gate is functioning mostly as 'sell more often, on different days than VIX-pct would pick,' not as a refinement of the same signal. Bar 2 (must ALSO beat a frequency-matched VIX-pct-alone control at the identical threshold) tests whether that extra frequency is doing the work: threshold(s) NONE pass Bar 2. Since no threshold clears both bars, the apparent Bar-1 edge is a trading-frequency/exposure effect (consistent with OP-D1's already-booked positive VRP at every VIX quintile), not IV-RV-specific timing skill -- the family is DEAD again, this time on a clean, leak-free construction, and for a different, better-understood reason than F13's original process failure.",
+ "caveats": [
+  "India VIX vault ends 2023-04-05; 2008 GFC not in the VIX-conditioned sample; only one VIX-conditioned crisis episode (COVID 2020-02/03) in the whole window -- same C12 caveat as every VIX-pct-conditioned sibling in this sleeve.",
+  "Paper best-case: flat-sigma Black-Scholes at India VIX, r=0.06, zero transaction costs, no smile/skew, no bid-ask, margin proxy = max loss -- identical caveats to OP-D3/OP-D6b, inherited unchanged since this reuses their machinery verbatim.",
+  "Stand-down (pct>=0.90) and rearm hysteresis (pct<0.60) were left on the ORIGINAL VIX-pct in every variant -- only the entry-open test was swapped to the IV-RV gate. This is a narrow, honest test of the entry-timing variable specifically; it does NOT test an all-IV-RV state machine (that would be a materially larger, separately-registrable cell).",
+  "Price-only index note: standing book convention adds ~+1.3pp/yr TR vs price-only NIFTY 50 (not applied here -- these are standalone condor-sleeve numbers, matching the OP-D3 convention of the siblings this reuses)."
+ ]
+}

@@ -1,0 +1,139 @@
+{
+  "family": "f12_lowvol_core",
+  "cells_consumed": 5,
+  "panel_window_actual": [
+    "2012-01-02",
+    "2021-12-31"
+  ],
+  "signal_months_used": 100,
+  "signal_months_total": 120,
+  "min_alive_threshold": 30,
+  "vol_window_trading_days": 252,
+  "results": {
+    "low": {
+      "tag": "low",
+      "window": [
+        "2013-10-01",
+        "2021-12-31"
+      ],
+      "n_days": 2033,
+      "cagr": 0.2448,
+      "ann_vol": 0.1306,
+      "sharpe_desc": 1.874,
+      "beta_vs_nifty": 0.667,
+      "max_dd": -0.3357,
+      "max_dd_2020": -0.3357,
+      "nifty_cagr_same_window": 0.1471,
+      "nifty_ann_vol_same_window": 0.1701,
+      "nifty_max_dd_same_window": -0.3844,
+      "nifty_max_dd_2020_same_window": -0.3844,
+      "excess_cagr_vs_nifty": 0.0977,
+      "avg_basket_size": 141.0
+    },
+    "mid": {
+      "tag": "mid",
+      "window": [
+        "2013-10-01",
+        "2021-12-31"
+      ],
+      "n_days": 2033,
+      "cagr": 0.3056,
+      "ann_vol": 0.1736,
+      "sharpe_desc": 1.76,
+      "beta_vs_nifty": 0.85,
+      "max_dd": -0.3852,
+      "max_dd_2020": -0.3852,
+      "nifty_cagr_same_window": 0.1471,
+      "nifty_ann_vol_same_window": 0.1701,
+      "nifty_max_dd_same_window": -0.3844,
+      "nifty_max_dd_2020_same_window": -0.3844,
+      "excess_cagr_vs_nifty": 0.1585,
+      "avg_basket_size": 140.2
+    },
+    "high": {
+      "tag": "high",
+      "window": [
+        "2013-10-01",
+        "2021-12-31"
+      ],
+      "n_days": 2033,
+      "cagr": 0.3895,
+      "ann_vol": 0.2288,
+      "sharpe_desc": 1.702,
+      "beta_vs_nifty": 1.046,
+      "max_dd": -0.542,
+      "max_dd_2020": -0.542,
+      "nifty_cagr_same_window": 0.1471,
+      "nifty_ann_vol_same_window": 0.1701,
+      "nifty_max_dd_same_window": -0.3844,
+      "nifty_max_dd_2020_same_window": -0.3844,
+      "excess_cagr_vs_nifty": 0.2424,
+      "avg_basket_size": 140.6
+    },
+    "broad": {
+      "tag": "broad",
+      "window": [
+        "2013-10-01",
+        "2021-12-31"
+      ],
+      "n_days": 2033,
+      "cagr": 0.3139,
+      "ann_vol": 0.1739,
+      "sharpe_desc": 1.805,
+      "beta_vs_nifty": 0.854,
+      "max_dd": -0.4145,
+      "max_dd_2020": -0.4145,
+      "nifty_cagr_same_window": 0.1471,
+      "nifty_ann_vol_same_window": 0.1701,
+      "nifty_max_dd_same_window": -0.3844,
+      "nifty_max_dd_2020_same_window": -0.3844,
+      "excess_cagr_vs_nifty": 0.1667,
+      "avg_basket_size": 421.9
+    },
+    "low_liqfilt": {
+      "tag": "low_liqfilt",
+      "window": [
+        "2013-10-01",
+        "2021-12-31"
+      ],
+      "n_days": 2033,
+      "cagr": 0.2241,
+      "ann_vol": 0.1363,
+      "sharpe_desc": 1.644,
+      "beta_vs_nifty": 0.709,
+      "max_dd": -0.3337,
+      "max_dd_2020": -0.3337,
+      "nifty_cagr_same_window": 0.1471,
+      "nifty_ann_vol_same_window": 0.1701,
+      "nifty_max_dd_same_window": -0.3844,
+      "nifty_max_dd_2020_same_window": -0.3844,
+      "excess_cagr_vs_nifty": 0.077,
+      "avg_basket_size": 98.8
+    }
+  },
+  "low_vs_broad_decomposition": {
+    "low_cagr": 0.2448,
+    "broad_cagr": 0.3139,
+    "excess_low_minus_broad": -0.0691,
+    "beta_low_vs_broad": 0.724,
+    "window": [
+      "2013-10-01",
+      "2021-12-31"
+    ]
+  },
+  "prior_context": {
+    "T4_trial_ledger": "Low-vol QUINTILE vs EW-UNIVERSE (not NIFTY), 2012-2021: Sharpe 1.45 vs 1.34, CAPM beta 0.67, maxDD 24% vs 34% -- signature visible but alpha +2.65%/yr at NW t=1.88 < 2 bar; verdict INCONCLUSIVE per the declared one-way (PIT owed).",
+    "SEC-D7_finding": "In this SAME survivor panel, high-vol survivors' full-period CAGR is inflated (22.2 -> 32.6%/yr monotone UP by vol quintile) because vol LOSERS are disproportionately the delisted names (the HIGH-FL cemetery: 9/28 declared high-leverage names absent vs 1/25 low). This is the specific mechanism behind the 'biases AGAINST low-vol' one-way direction stated in trial-ledger T4 and in this task brief.",
+    "AUTHENTICATION_A1_MISS": "EW-487-panel vs NIFTY50 daily corr = 0.835 (bar was 0.85) -- the broad panel itself is NOT compositionally close to NIFTY (small/midcap tilt), so ANY vs-NIFTY comparison here conflates a composition effect with a vol-tilt effect; the low_vs_broad_decomposition block above isolates the two."
+  },
+  "caveats": [
+    "SURVIVORSHIP-BIASED PANEL, ONE-WAY USE ONLY. Direction of the bias is DISPUTED internally in this repo: the generic one-way convention says a positive result 'only suggests' (could be survivorship inflation) and a negative 'kills'; BUT this repo's own SEC-D7 finding shows survivorship in THIS panel specifically inflates HIGH-vol survivors (vol losers get delisted, vol winners remain) and therefore biases AGAINST the low-vol premium showing up here -- so a positive low-vol print in this panel is, if anything, MORE credible than the generic one-way convention would suggest, not less. Both readings are stated; PIT data is required to resolve which dominates.",
+    "Panel spans 2012-01-02..2021-12-31 (487 survivor-roster tickers), not the 2012-2022 filename's literal endpoint -- effective usable window is ~2013-01..2021-12 once the 252-day vol warm-up is applied (matches T4's stated 'effective 2013-2021').",
+    "Membership = index roster AS OF ~2021-22 construction, backfilled -- NOT point-in-time; MR1's PIT registration explicitly does not cover this panel.",
+    "A3 (AUTHENTICATION.md) miss: 379/487 tickers have >=2000 rows -- some names carry under a year of history and never enter any tercile (correctly excluded by the 252-day no-lookahead vol requirement, but it means recently-listed IPOs are structurally absent from year 1 of any basket, a conservative omission).",
+    "No transaction costs, no market-impact, no bid-ask modeled -- monthly full-panel rebalance turnover for a ~160-name equal-weight tercile basket would not be free; this is a paper-return test only, consistent with CONTRACT's 'research only' scope.",
+    "vs-NIFTY comparisons conflate two effects: the panel's own composition tilt (AUTHENTICATION A1: EW-487 vs NIFTY50 corr only 0.835, small/midcap-heavy) and the genuine within-panel vol tilt. The BROAD row (mode='broad') isolates the first; low_vs_broad_decomposition isolates the second. Do not read the LOW-vs-NIFTY excess CAGR alone as 'the low-vol premium' -- most of any vs-NIFTY excess CAGR across ALL five rows (including the untilted BROAD row) is composition, not vol-tilt.",
+    "2020 drawdown uses the running peak from the FULL history (not reset at 2020-01-01) so it correctly captures the pre-COVID Jan/Feb-2020 high as the drawdown reference.",
+    "Costs, index membership changes, and any real-world implementation friction are entirely unmodeled; this is a screening test, not a strategy backtest."
+  ]
+}

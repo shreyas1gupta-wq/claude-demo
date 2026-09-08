@@ -1,0 +1,148 @@
+{
+  "family": "f11_factor_rotation_timing",
+  "cells_consumed": 30,
+  "sample": {
+    "factor_common": [
+      "1993-10-31",
+      "2025-12-31"
+    ],
+    "n_months": 386,
+    "vix_coverage": [
+      "2010-07-31",
+      "2023-04-30"
+    ]
+  },
+  "baseline": {
+    "sharpe": 0.9712442146975199,
+    "cagr": 14.046307675361502,
+    "maxdd": -27.891271704104636,
+    "era1": 11.888241017492973,
+    "era2": 19.980511917066156,
+    "n": 385,
+    "start": "1993-11-30",
+    "end": "2025-12-31"
+  },
+  "context": {
+    "raw_wml_sharpe": 0.5476405454848974,
+    "raw_hml_sharpe": 0.4211249185005367,
+    "corr_wml_hml": -0.36774845806997464
+  },
+  "variant_a_sharpe_switch": {
+    "stats": {
+      "sharpe": 0.6149119320753572,
+      "cagr": 8.599268815956162,
+      "maxdd": -52.699228732773705,
+      "era1": 6.792466916565143,
+      "era2": 13.510790712092513,
+      "n": 385,
+      "start": "1993-11-30",
+      "end": "2025-12-31"
+    },
+    "sig": {
+      "n": 385,
+      "mean_diff_mo": -0.004024837138178676,
+      "ci95": [
+        -0.008171274074710185,
+        0.0002957930479173621
+      ],
+      "p_boot_le_0": 0.97
+    },
+    "n_valid_signal": 374,
+    "n_switches": 47,
+    "beats_baseline": false
+  },
+  "variant_b_vixgate": {
+    "window_stats": {
+      "sharpe": 1.257378058357171,
+      "cagr": 18.80179567080118,
+      "maxdd": -9.907336836913972,
+      "era1": 18.347502590773203,
+      "era2": 19.550577547636227,
+      "n": 154,
+      "start": "2010-07-31",
+      "end": "2023-04-30"
+    },
+    "window_baseline": {
+      "sharpe": 1.2053021252887315,
+      "cagr": 17.02719118754059,
+      "maxdd": -14.458298455432416,
+      "era1": 15.816797482011236,
+      "era2": 18.5384367073959,
+      "n": 154,
+      "start": "2010-07-31",
+      "end": "2023-04-30"
+    },
+    "full_sample_stats": {
+      "sharpe": 0.9926586960301318,
+      "cagr": 14.630683569675185,
+      "maxdd": -27.891271704104636,
+      "era1": 12.562878526523914,
+      "era2": 20.32024156152923,
+      "n": 385,
+      "start": "1993-11-30",
+      "end": "2025-12-31"
+    },
+    "sig_window": {
+      "n": 154,
+      "mean_diff_mo": 0.0013224257758692414,
+      "ci95": [
+        -0.002535897229532791,
+        0.006590660521720391
+      ],
+      "p_boot_le_0": 0.2955
+    },
+    "n_gated_months": 9,
+    "n_signal_months": 142,
+    "beats_baseline": false
+  },
+  "variant_c_momentum_tilt": {
+    "stats": {
+      "sharpe": 0.7367830788817601,
+      "cagr": 10.416236827642456,
+      "maxdd": -38.66777169233162,
+      "era1": 7.757006610889805,
+      "era2": 17.722830875525908,
+      "n": 385,
+      "start": "1993-11-30",
+      "end": "2025-12-31"
+    },
+    "sig": {
+      "n": 385,
+      "mean_diff_mo": -0.00266805251735163,
+      "ci95": [
+        -0.004954936389697731,
+        -0.0002374601254717528
+      ],
+      "p_boot_le_0": 0.9825
+    },
+    "n_valid_signal": 374,
+    "n_switches": 51,
+    "beats_baseline": false
+  },
+  "book_window_context": {
+    "baseline": {
+      "cagr_standalone": 17.153053198721647,
+      "n": 141
+    },
+    "a_sharpe_switch": {
+      "cagr_standalone": 12.542185584975662,
+      "n": 141
+    },
+    "b_vixgate": {
+      "cagr_standalone": 19.088741929412436,
+      "n": 141
+    },
+    "c_momentum_tilt": {
+      "cagr_standalone": 16.109664621951847,
+      "n": 141
+    }
+  },
+  "caveats": [
+    "Factor-only backtest: IIMA WML/HML monthly index returns, no transaction costs modeled for the act of switching between long-short factor books (real rotation would require unwinding one long-short leg and building the other monthly -- likely materially higher turnover cost than the standing book's static 50/50 blend, which never trades between legs, only rebalances the combined vol target).",
+    "Variant (b) VIX-gate is only ever active 2010-07..2023-04 (India VIX vault window); the full-sample number is a blend of gated and ungated (=baseline) months and should not be read as an independent full-history result -- the window-only comparison is the fair test.",
+    "mean_block=3 months for the stationary bootstrap is a stated assumption (monthly return series, short assumed memory), not derived from a measured tau_half for WML/HML -- a longer block would widen the CIs further.",
+    "Sample is dominated by a single-country, single-history run (no purged/embargoed CV, no cross-country replication) -- consistent with CONTRACT Tier-B treatment at best even if a variant had cleared the bar.",
+    "Book-window context (2011-07..2023-03) uses standalone sleeve CAGR, not a full run_book() re-run with financing/margin/overlays -- directional context only.",
+    "No live trade: this is exploratory per the orchestrator brief, not a booked ledger entry."
+  ]
+}

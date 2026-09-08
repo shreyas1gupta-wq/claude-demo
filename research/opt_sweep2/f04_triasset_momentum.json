@@ -1,0 +1,1320 @@
+{
+  "family": "f04_triasset_momentum",
+  "window": [
+    "2011-07-01",
+    "2023-03-31"
+  ],
+  "sanity_spx_usd_cagr": 7.73,
+  "standalone_switcher": {
+    "dual_12m": {
+      "cagr": 10.73214608526003,
+      "dd": -17.585360621756386,
+      "worst_yr": -12.3003581140938,
+      "worst_yr_year": 2022,
+      "era1": 11.558632564079009,
+      "era2": 10.023419021833169,
+      "holdings_pct": {
+        "nifty": 57.4,
+        "gold": 42.6
+      },
+      "yearly": {
+        "2012": 11.13,
+        "2013": 6.76,
+        "2014": 31.39,
+        "2015": -7.54,
+        "2016": 1.0,
+        "2017": 27.18,
+        "2018": -3.46,
+        "2019": 6.31,
+        "2020": 29.97,
+        "2021": 14.94,
+        "2022": -12.3,
+        "2023": 6.13
+      }
+    },
+    "dual_12_1skip": {
+      "cagr": 9.622574588074784,
+      "dd": -18.2231848587452,
+      "worst_yr": -9.91472918702293,
+      "worst_yr_year": 2019,
+      "era1": 10.047137512623582,
+      "era2": 9.262882818597994,
+      "holdings_pct": {
+        "nifty": 57.4,
+        "gold": 42.6
+      },
+      "yearly": {
+        "2012": 10.25,
+        "2013": 6.76,
+        "2014": 31.39,
+        "2015": -4.5,
+        "2016": -8.56,
+        "2017": 24.93,
+        "2018": 4.41,
+        "2019": -9.91,
+        "2020": 29.97,
+        "2021": 8.04,
+        "2022": 6.44,
+        "2023": -1.04
+      }
+    },
+    "tri_12m": {
+      "cagr": 10.620428242857294,
+      "dd": -24.84391791056516,
+      "worst_yr": -22.841725387482303,
+      "worst_yr_year": 2022,
+      "era1": 13.819404498165543,
+      "era2": 7.889424479358786,
+      "holdings_pct": {
+        "spx": 36.2,
+        "gold": 34.0,
+        "nifty": 29.8
+      },
+      "yearly": {
+        "2012": 7.69,
+        "2013": 45.86,
+        "2014": 12.15,
+        "2015": 4.16,
+        "2016": -6.95,
+        "2017": 23.78,
+        "2018": -0.69,
+        "2019": 9.01,
+        "2020": 22.87,
+        "2021": 19.12,
+        "2022": -22.84,
+        "2023": 6.13
+      }
+    },
+    "tri_12_1skip": {
+      "cagr": 10.09949060145865,
+      "dd": -15.569966882979557,
+      "worst_yr": -4.097888835122598,
+      "worst_yr_year": 2016,
+      "era1": 11.150295276125144,
+      "era2": 9.195248587029425,
+      "holdings_pct": {
+        "spx": 36.2,
+        "gold": 34.0,
+        "nifty": 29.8
+      },
+      "yearly": {
+        "2012": 6.28,
+        "2013": 39.97,
+        "2014": 12.28,
+        "2015": 5.27,
+        "2016": -4.1,
+        "2017": 19.18,
+        "2018": -1.64,
+        "2019": 4.6,
+        "2020": 16.84,
+        "2021": 16.53,
+        "2022": 4.79,
+        "2023": -1.04
+      }
+    }
+  },
+  "crisis_year_tables": {
+    "dual_12m": {
+      "2013": [
+        {
+          "month": "2013-01-31",
+          "asset": "nifty",
+          "switcher_ret": 2.2,
+          "nifty_ret": 2.2,
+          "gold_inr_ret": -1.53,
+          "spx_inr_ret": 4.27
+        },
+        {
+          "month": "2013-02-28",
+          "asset": "nifty",
+          "switcher_ret": -5.66,
+          "nifty_ret": -5.66,
+          "gold_inr_ret": -3.39,
+          "spx_inr_ret": 0.3
+        },
+        {
+          "month": "2013-03-31",
+          "asset": "nifty",
+          "switcher_ret": -0.18,
+          "nifty_ret": -0.18,
+          "gold_inr_ret": -1.03,
+          "spx_inr_ret": 4.91
+        },
+        {
+          "month": "2013-04-30",
+          "asset": "nifty",
+          "switcher_ret": 4.36,
+          "nifty_ret": 4.36,
+          "gold_inr_ret": -6.76,
+          "spx_inr_ret": 1.7
+        },
+        {
+          "month": "2013-05-31",
+          "asset": "nifty",
+          "switcher_ret": 0.94,
+          "nifty_ret": 0.94,
+          "gold_inr_ret": -3.82,
+          "spx_inr_ret": 3.55
+        },
+        {
+          "month": "2013-06-30",
+          "asset": "nifty",
+          "switcher_ret": -2.4,
+          "nifty_ret": -2.4,
+          "gold_inr_ret": 0.85,
+          "spx_inr_ret": 4.62
+        },
+        {
+          "month": "2013-07-31",
+          "asset": "nifty",
+          "switcher_ret": -1.72,
+          "nifty_ret": -1.72,
+          "gold_inr_ret": -1.99,
+          "spx_inr_ret": 7.56
+        },
+        {
+          "month": "2013-08-31",
+          "asset": "nifty",
+          "switcher_ret": -4.71,
+          "nifty_ret": -4.71,
+          "gold_inr_ret": 10.5,
+          "spx_inr_ret": 2.02
+        },
+        {
+          "month": "2013-09-30",
+          "asset": "nifty",
+          "switcher_ret": 4.82,
+          "nifty_ret": 4.82,
+          "gold_inr_ret": 1.11,
+          "spx_inr_ret": 4.41
+        },
+        {
+          "month": "2013-10-31",
+          "asset": "nifty",
+          "switcher_ret": 9.83,
+          "nifty_ret": 9.83,
+          "gold_inr_ret": -5.5,
+          "spx_inr_ret": 1.46
+        },
+        {
+          "month": "2013-11-30",
+          "asset": "nifty",
+          "switcher_ret": -1.95,
+          "nifty_ret": -1.95,
+          "gold_inr_ret": -1.68,
+          "spx_inr_ret": 4.31
+        },
+        {
+          "month": "2013-12-31",
+          "asset": "nifty",
+          "switcher_ret": 2.07,
+          "nifty_ret": 2.07,
+          "gold_inr_ret": -5.31,
+          "spx_inr_ret": 1.53
+        }
+      ],
+      "2020": [
+        {
+          "month": "2020-01-31",
+          "asset": "gold",
+          "switcher_ret": 5.73,
+          "nifty_ret": -1.7,
+          "gold_inr_ret": 5.73,
+          "spx_inr_ret": -0.05
+        },
+        {
+          "month": "2020-02-29",
+          "asset": "gold",
+          "switcher_ret": 2.67,
+          "nifty_ret": -6.36,
+          "gold_inr_ret": 2.67,
+          "spx_inr_ret": -7.71
+        },
+        {
+          "month": "2020-03-31",
+          "asset": "gold",
+          "switcher_ret": 3.89,
+          "nifty_ret": -23.25,
+          "gold_inr_ret": 3.89,
+          "spx_inr_ret": -9.5
+        },
+        {
+          "month": "2020-04-30",
+          "asset": "gold",
+          "switcher_ret": 8.01,
+          "nifty_ret": 14.68,
+          "gold_inr_ret": 8.01,
+          "spx_inr_ret": 14.91
+        },
+        {
+          "month": "2020-05-31",
+          "asset": "gold",
+          "switcher_ret": 1.28,
+          "nifty_ret": -2.84,
+          "gold_inr_ret": 1.28,
+          "spx_inr_ret": 4.26
+        },
+        {
+          "month": "2020-06-30",
+          "asset": "gold",
+          "switcher_ret": 1.0,
+          "nifty_ret": 7.53,
+          "gold_inr_ret": 1.0,
+          "spx_inr_ret": 2.38
+        },
+        {
+          "month": "2020-07-31",
+          "asset": "gold",
+          "switcher_ret": 5.54,
+          "nifty_ret": 7.49,
+          "gold_inr_ret": 5.54,
+          "spx_inr_ret": 4.9
+        },
+        {
+          "month": "2020-08-31",
+          "asset": "gold",
+          "switcher_ret": 6.09,
+          "nifty_ret": 2.84,
+          "gold_inr_ret": 6.09,
+          "spx_inr_ret": 6.35
+        },
+        {
+          "month": "2020-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.75,
+          "nifty_ret": -1.23,
+          "gold_inr_ret": -3.75,
+          "spx_inr_ret": -5.5
+        },
+        {
+          "month": "2020-10-31",
+          "asset": "gold",
+          "switcher_ret": -1.09,
+          "nifty_ret": 3.51,
+          "gold_inr_ret": -1.09,
+          "spx_inr_ret": -3.09
+        },
+        {
+          "month": "2020-11-30",
+          "asset": "gold",
+          "switcher_ret": -0.9,
+          "nifty_ret": 11.39,
+          "gold_inr_ret": -0.9,
+          "spx_inr_ret": 12.99
+        },
+        {
+          "month": "2020-12-31",
+          "asset": "gold",
+          "switcher_ret": -1.25,
+          "nifty_ret": 7.81,
+          "gold_inr_ret": -1.25,
+          "spx_inr_ret": 2.79
+        }
+      ],
+      "2022": [
+        {
+          "month": "2022-01-31",
+          "asset": "nifty",
+          "switcher_ret": -0.08,
+          "nifty_ret": -0.08,
+          "gold_inr_ret": 0.12,
+          "spx_inr_ret": -6.9
+        },
+        {
+          "month": "2022-02-28",
+          "asset": "nifty",
+          "switcher_ret": -3.15,
+          "nifty_ret": -3.15,
+          "gold_inr_ret": 2.97,
+          "spx_inr_ret": -2.2
+        },
+        {
+          "month": "2022-03-31",
+          "asset": "nifty",
+          "switcher_ret": 3.99,
+          "nifty_ret": 3.99,
+          "gold_inr_ret": 6.67,
+          "spx_inr_ret": 5.51
+        },
+        {
+          "month": "2022-04-30",
+          "asset": "nifty",
+          "switcher_ret": -2.07,
+          "nifty_ret": -2.07,
+          "gold_inr_ret": -0.59,
+          "spx_inr_ret": -8.86
+        },
+        {
+          "month": "2022-05-31",
+          "asset": "nifty",
+          "switcher_ret": -3.03,
+          "nifty_ret": -3.03,
+          "gold_inr_ret": -3.14,
+          "spx_inr_ret": 1.58
+        },
+        {
+          "month": "2022-06-30",
+          "asset": "nifty",
+          "switcher_ret": -4.85,
+          "nifty_ret": -4.85,
+          "gold_inr_ret": 0.38,
+          "spx_inr_ret": -7.39
+        },
+        {
+          "month": "2022-07-31",
+          "asset": "gold",
+          "switcher_ret": -3.85,
+          "nifty_ret": 8.73,
+          "gold_inr_ret": -3.85,
+          "spx_inr_ret": 11.18
+        },
+        {
+          "month": "2022-08-31",
+          "asset": "nifty",
+          "switcher_ret": 3.5,
+          "nifty_ret": 3.5,
+          "gold_inr_ret": 1.74,
+          "spx_inr_ret": -4.41
+        },
+        {
+          "month": "2022-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.88,
+          "nifty_ret": -3.74,
+          "gold_inr_ret": -3.88,
+          "spx_inr_ret": -8.57
+        },
+        {
+          "month": "2022-10-31",
+          "asset": "gold",
+          "switcher_ret": 1.52,
+          "nifty_ret": 5.37,
+          "gold_inr_ret": 1.52,
+          "spx_inr_ret": 10.68
+        },
+        {
+          "month": "2022-11-30",
+          "asset": "gold",
+          "switcher_ret": 2.9,
+          "nifty_ret": 4.14,
+          "gold_inr_ret": 2.9,
+          "spx_inr_ret": 4.36
+        },
+        {
+          "month": "2022-12-31",
+          "asset": "nifty",
+          "switcher_ret": -3.48,
+          "nifty_ret": -3.48,
+          "gold_inr_ret": 5.24,
+          "spx_inr_ret": -5.26
+        }
+      ]
+    },
+    "dual_12_1skip": {
+      "2013": [
+        {
+          "month": "2013-01-31",
+          "asset": "nifty",
+          "switcher_ret": 2.2,
+          "nifty_ret": 2.2,
+          "gold_inr_ret": -1.53,
+          "spx_inr_ret": 4.27
+        },
+        {
+          "month": "2013-02-28",
+          "asset": "nifty",
+          "switcher_ret": -5.66,
+          "nifty_ret": -5.66,
+          "gold_inr_ret": -3.39,
+          "spx_inr_ret": 0.3
+        },
+        {
+          "month": "2013-03-31",
+          "asset": "nifty",
+          "switcher_ret": -0.18,
+          "nifty_ret": -0.18,
+          "gold_inr_ret": -1.03,
+          "spx_inr_ret": 4.91
+        },
+        {
+          "month": "2013-04-30",
+          "asset": "nifty",
+          "switcher_ret": 4.36,
+          "nifty_ret": 4.36,
+          "gold_inr_ret": -6.76,
+          "spx_inr_ret": 1.7
+        },
+        {
+          "month": "2013-05-31",
+          "asset": "nifty",
+          "switcher_ret": 0.94,
+          "nifty_ret": 0.94,
+          "gold_inr_ret": -3.82,
+          "spx_inr_ret": 3.55
+        },
+        {
+          "month": "2013-06-30",
+          "asset": "nifty",
+          "switcher_ret": -2.4,
+          "nifty_ret": -2.4,
+          "gold_inr_ret": 0.85,
+          "spx_inr_ret": 4.62
+        },
+        {
+          "month": "2013-07-31",
+          "asset": "nifty",
+          "switcher_ret": -1.72,
+          "nifty_ret": -1.72,
+          "gold_inr_ret": -1.99,
+          "spx_inr_ret": 7.56
+        },
+        {
+          "month": "2013-08-31",
+          "asset": "nifty",
+          "switcher_ret": -4.71,
+          "nifty_ret": -4.71,
+          "gold_inr_ret": 10.5,
+          "spx_inr_ret": 2.02
+        },
+        {
+          "month": "2013-09-30",
+          "asset": "nifty",
+          "switcher_ret": 4.82,
+          "nifty_ret": 4.82,
+          "gold_inr_ret": 1.11,
+          "spx_inr_ret": 4.41
+        },
+        {
+          "month": "2013-10-31",
+          "asset": "nifty",
+          "switcher_ret": 9.83,
+          "nifty_ret": 9.83,
+          "gold_inr_ret": -5.5,
+          "spx_inr_ret": 1.46
+        },
+        {
+          "month": "2013-11-30",
+          "asset": "nifty",
+          "switcher_ret": -1.95,
+          "nifty_ret": -1.95,
+          "gold_inr_ret": -1.68,
+          "spx_inr_ret": 4.31
+        },
+        {
+          "month": "2013-12-31",
+          "asset": "nifty",
+          "switcher_ret": 2.07,
+          "nifty_ret": 2.07,
+          "gold_inr_ret": -5.31,
+          "spx_inr_ret": 1.53
+        }
+      ],
+      "2020": [
+        {
+          "month": "2020-01-31",
+          "asset": "gold",
+          "switcher_ret": 5.73,
+          "nifty_ret": -1.7,
+          "gold_inr_ret": 5.73,
+          "spx_inr_ret": -0.05
+        },
+        {
+          "month": "2020-02-29",
+          "asset": "gold",
+          "switcher_ret": 2.67,
+          "nifty_ret": -6.36,
+          "gold_inr_ret": 2.67,
+          "spx_inr_ret": -7.71
+        },
+        {
+          "month": "2020-03-31",
+          "asset": "gold",
+          "switcher_ret": 3.89,
+          "nifty_ret": -23.25,
+          "gold_inr_ret": 3.89,
+          "spx_inr_ret": -9.5
+        },
+        {
+          "month": "2020-04-30",
+          "asset": "gold",
+          "switcher_ret": 8.01,
+          "nifty_ret": 14.68,
+          "gold_inr_ret": 8.01,
+          "spx_inr_ret": 14.91
+        },
+        {
+          "month": "2020-05-31",
+          "asset": "gold",
+          "switcher_ret": 1.28,
+          "nifty_ret": -2.84,
+          "gold_inr_ret": 1.28,
+          "spx_inr_ret": 4.26
+        },
+        {
+          "month": "2020-06-30",
+          "asset": "gold",
+          "switcher_ret": 1.0,
+          "nifty_ret": 7.53,
+          "gold_inr_ret": 1.0,
+          "spx_inr_ret": 2.38
+        },
+        {
+          "month": "2020-07-31",
+          "asset": "gold",
+          "switcher_ret": 5.54,
+          "nifty_ret": 7.49,
+          "gold_inr_ret": 5.54,
+          "spx_inr_ret": 4.9
+        },
+        {
+          "month": "2020-08-31",
+          "asset": "gold",
+          "switcher_ret": 6.09,
+          "nifty_ret": 2.84,
+          "gold_inr_ret": 6.09,
+          "spx_inr_ret": 6.35
+        },
+        {
+          "month": "2020-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.75,
+          "nifty_ret": -1.23,
+          "gold_inr_ret": -3.75,
+          "spx_inr_ret": -5.5
+        },
+        {
+          "month": "2020-10-31",
+          "asset": "gold",
+          "switcher_ret": -1.09,
+          "nifty_ret": 3.51,
+          "gold_inr_ret": -1.09,
+          "spx_inr_ret": -3.09
+        },
+        {
+          "month": "2020-11-30",
+          "asset": "gold",
+          "switcher_ret": -0.9,
+          "nifty_ret": 11.39,
+          "gold_inr_ret": -0.9,
+          "spx_inr_ret": 12.99
+        },
+        {
+          "month": "2020-12-31",
+          "asset": "gold",
+          "switcher_ret": -1.25,
+          "nifty_ret": 7.81,
+          "gold_inr_ret": -1.25,
+          "spx_inr_ret": 2.79
+        }
+      ],
+      "2022": [
+        {
+          "month": "2022-01-31",
+          "asset": "nifty",
+          "switcher_ret": -0.08,
+          "nifty_ret": -0.08,
+          "gold_inr_ret": 0.12,
+          "spx_inr_ret": -6.9
+        },
+        {
+          "month": "2022-02-28",
+          "asset": "nifty",
+          "switcher_ret": -3.15,
+          "nifty_ret": -3.15,
+          "gold_inr_ret": 2.97,
+          "spx_inr_ret": -2.2
+        },
+        {
+          "month": "2022-03-31",
+          "asset": "nifty",
+          "switcher_ret": 3.99,
+          "nifty_ret": 3.99,
+          "gold_inr_ret": 6.67,
+          "spx_inr_ret": 5.51
+        },
+        {
+          "month": "2022-04-30",
+          "asset": "nifty",
+          "switcher_ret": -2.07,
+          "nifty_ret": -2.07,
+          "gold_inr_ret": -0.59,
+          "spx_inr_ret": -8.86
+        },
+        {
+          "month": "2022-05-31",
+          "asset": "nifty",
+          "switcher_ret": -3.03,
+          "nifty_ret": -3.03,
+          "gold_inr_ret": -3.14,
+          "spx_inr_ret": 1.58
+        },
+        {
+          "month": "2022-06-30",
+          "asset": "nifty",
+          "switcher_ret": -4.85,
+          "nifty_ret": -4.85,
+          "gold_inr_ret": 0.38,
+          "spx_inr_ret": -7.39
+        },
+        {
+          "month": "2022-07-31",
+          "asset": "nifty",
+          "switcher_ret": 8.73,
+          "nifty_ret": 8.73,
+          "gold_inr_ret": -3.85,
+          "spx_inr_ret": 11.18
+        },
+        {
+          "month": "2022-08-31",
+          "asset": "gold",
+          "switcher_ret": 1.74,
+          "nifty_ret": 3.5,
+          "gold_inr_ret": 1.74,
+          "spx_inr_ret": -4.41
+        },
+        {
+          "month": "2022-09-30",
+          "asset": "nifty",
+          "switcher_ret": -3.74,
+          "nifty_ret": -3.74,
+          "gold_inr_ret": -3.88,
+          "spx_inr_ret": -8.57
+        },
+        {
+          "month": "2022-10-31",
+          "asset": "gold",
+          "switcher_ret": 1.52,
+          "nifty_ret": 5.37,
+          "gold_inr_ret": 1.52,
+          "spx_inr_ret": 10.68
+        },
+        {
+          "month": "2022-11-30",
+          "asset": "gold",
+          "switcher_ret": 2.9,
+          "nifty_ret": 4.14,
+          "gold_inr_ret": 2.9,
+          "spx_inr_ret": 4.36
+        },
+        {
+          "month": "2022-12-31",
+          "asset": "gold",
+          "switcher_ret": 5.24,
+          "nifty_ret": -3.48,
+          "gold_inr_ret": 5.24,
+          "spx_inr_ret": -5.26
+        }
+      ]
+    },
+    "tri_12m": {
+      "2013": [
+        {
+          "month": "2013-01-31",
+          "asset": "nifty",
+          "switcher_ret": 2.2,
+          "nifty_ret": 2.2,
+          "gold_inr_ret": -1.53,
+          "spx_inr_ret": 4.27
+        },
+        {
+          "month": "2013-02-28",
+          "asset": "spx",
+          "switcher_ret": 0.3,
+          "nifty_ret": -5.66,
+          "gold_inr_ret": -3.39,
+          "spx_inr_ret": 0.3
+        },
+        {
+          "month": "2013-03-31",
+          "asset": "spx",
+          "switcher_ret": 4.91,
+          "nifty_ret": -0.18,
+          "gold_inr_ret": -1.03,
+          "spx_inr_ret": 4.91
+        },
+        {
+          "month": "2013-04-30",
+          "asset": "spx",
+          "switcher_ret": 1.7,
+          "nifty_ret": 4.36,
+          "gold_inr_ret": -6.76,
+          "spx_inr_ret": 1.7
+        },
+        {
+          "month": "2013-05-31",
+          "asset": "spx",
+          "switcher_ret": 3.55,
+          "nifty_ret": 0.94,
+          "gold_inr_ret": -3.82,
+          "spx_inr_ret": 3.55
+        },
+        {
+          "month": "2013-06-30",
+          "asset": "spx",
+          "switcher_ret": 4.62,
+          "nifty_ret": -2.4,
+          "gold_inr_ret": 0.85,
+          "spx_inr_ret": 4.62
+        },
+        {
+          "month": "2013-07-31",
+          "asset": "spx",
+          "switcher_ret": 7.56,
+          "nifty_ret": -1.72,
+          "gold_inr_ret": -1.99,
+          "spx_inr_ret": 7.56
+        },
+        {
+          "month": "2013-08-31",
+          "asset": "spx",
+          "switcher_ret": 2.02,
+          "nifty_ret": -4.71,
+          "gold_inr_ret": 10.5,
+          "spx_inr_ret": 2.02
+        },
+        {
+          "month": "2013-09-30",
+          "asset": "spx",
+          "switcher_ret": 4.41,
+          "nifty_ret": 4.82,
+          "gold_inr_ret": 1.11,
+          "spx_inr_ret": 4.41
+        },
+        {
+          "month": "2013-10-31",
+          "asset": "spx",
+          "switcher_ret": 1.46,
+          "nifty_ret": 9.83,
+          "gold_inr_ret": -5.5,
+          "spx_inr_ret": 1.46
+        },
+        {
+          "month": "2013-11-30",
+          "asset": "spx",
+          "switcher_ret": 4.31,
+          "nifty_ret": -1.95,
+          "gold_inr_ret": -1.68,
+          "spx_inr_ret": 4.31
+        },
+        {
+          "month": "2013-12-31",
+          "asset": "spx",
+          "switcher_ret": 1.53,
+          "nifty_ret": 2.07,
+          "gold_inr_ret": -5.31,
+          "spx_inr_ret": 1.53
+        }
+      ],
+      "2020": [
+        {
+          "month": "2020-01-31",
+          "asset": "spx",
+          "switcher_ret": -0.05,
+          "nifty_ret": -1.7,
+          "gold_inr_ret": 5.73,
+          "spx_inr_ret": -0.05
+        },
+        {
+          "month": "2020-02-29",
+          "asset": "gold",
+          "switcher_ret": 2.67,
+          "nifty_ret": -6.36,
+          "gold_inr_ret": 2.67,
+          "spx_inr_ret": -7.71
+        },
+        {
+          "month": "2020-03-31",
+          "asset": "gold",
+          "switcher_ret": 3.89,
+          "nifty_ret": -23.25,
+          "gold_inr_ret": 3.89,
+          "spx_inr_ret": -9.5
+        },
+        {
+          "month": "2020-04-30",
+          "asset": "gold",
+          "switcher_ret": 8.01,
+          "nifty_ret": 14.68,
+          "gold_inr_ret": 8.01,
+          "spx_inr_ret": 14.91
+        },
+        {
+          "month": "2020-05-31",
+          "asset": "gold",
+          "switcher_ret": 1.28,
+          "nifty_ret": -2.84,
+          "gold_inr_ret": 1.28,
+          "spx_inr_ret": 4.26
+        },
+        {
+          "month": "2020-06-30",
+          "asset": "gold",
+          "switcher_ret": 1.0,
+          "nifty_ret": 7.53,
+          "gold_inr_ret": 1.0,
+          "spx_inr_ret": 2.38
+        },
+        {
+          "month": "2020-07-31",
+          "asset": "gold",
+          "switcher_ret": 5.54,
+          "nifty_ret": 7.49,
+          "gold_inr_ret": 5.54,
+          "spx_inr_ret": 4.9
+        },
+        {
+          "month": "2020-08-31",
+          "asset": "gold",
+          "switcher_ret": 6.09,
+          "nifty_ret": 2.84,
+          "gold_inr_ret": 6.09,
+          "spx_inr_ret": 6.35
+        },
+        {
+          "month": "2020-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.75,
+          "nifty_ret": -1.23,
+          "gold_inr_ret": -3.75,
+          "spx_inr_ret": -5.5
+        },
+        {
+          "month": "2020-10-31",
+          "asset": "gold",
+          "switcher_ret": -1.09,
+          "nifty_ret": 3.51,
+          "gold_inr_ret": -1.09,
+          "spx_inr_ret": -3.09
+        },
+        {
+          "month": "2020-11-30",
+          "asset": "gold",
+          "switcher_ret": -0.9,
+          "nifty_ret": 11.39,
+          "gold_inr_ret": -0.9,
+          "spx_inr_ret": 12.99
+        },
+        {
+          "month": "2020-12-31",
+          "asset": "gold",
+          "switcher_ret": -1.25,
+          "nifty_ret": 7.81,
+          "gold_inr_ret": -1.25,
+          "spx_inr_ret": 2.79
+        }
+      ],
+      "2022": [
+        {
+          "month": "2022-01-31",
+          "asset": "spx",
+          "switcher_ret": -6.9,
+          "nifty_ret": -0.08,
+          "gold_inr_ret": 0.12,
+          "spx_inr_ret": -6.9
+        },
+        {
+          "month": "2022-02-28",
+          "asset": "nifty",
+          "switcher_ret": -3.15,
+          "nifty_ret": -3.15,
+          "gold_inr_ret": 2.97,
+          "spx_inr_ret": -2.2
+        },
+        {
+          "month": "2022-03-31",
+          "asset": "spx",
+          "switcher_ret": 5.51,
+          "nifty_ret": 3.99,
+          "gold_inr_ret": 6.67,
+          "spx_inr_ret": 5.51
+        },
+        {
+          "month": "2022-04-30",
+          "asset": "spx",
+          "switcher_ret": -8.86,
+          "nifty_ret": -2.07,
+          "gold_inr_ret": -0.59,
+          "spx_inr_ret": -8.86
+        },
+        {
+          "month": "2022-05-31",
+          "asset": "nifty",
+          "switcher_ret": -3.03,
+          "nifty_ret": -3.03,
+          "gold_inr_ret": -3.14,
+          "spx_inr_ret": 1.58
+        },
+        {
+          "month": "2022-06-30",
+          "asset": "nifty",
+          "switcher_ret": -4.85,
+          "nifty_ret": -4.85,
+          "gold_inr_ret": 0.38,
+          "spx_inr_ret": -7.39
+        },
+        {
+          "month": "2022-07-31",
+          "asset": "gold",
+          "switcher_ret": -3.85,
+          "nifty_ret": 8.73,
+          "gold_inr_ret": -3.85,
+          "spx_inr_ret": 11.18
+        },
+        {
+          "month": "2022-08-31",
+          "asset": "nifty",
+          "switcher_ret": 3.5,
+          "nifty_ret": 3.5,
+          "gold_inr_ret": 1.74,
+          "spx_inr_ret": -4.41
+        },
+        {
+          "month": "2022-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.88,
+          "nifty_ret": -3.74,
+          "gold_inr_ret": -3.88,
+          "spx_inr_ret": -8.57
+        },
+        {
+          "month": "2022-10-31",
+          "asset": "gold",
+          "switcher_ret": 1.52,
+          "nifty_ret": 5.37,
+          "gold_inr_ret": 1.52,
+          "spx_inr_ret": 10.68
+        },
+        {
+          "month": "2022-11-30",
+          "asset": "gold",
+          "switcher_ret": 2.9,
+          "nifty_ret": 4.14,
+          "gold_inr_ret": 2.9,
+          "spx_inr_ret": 4.36
+        },
+        {
+          "month": "2022-12-31",
+          "asset": "nifty",
+          "switcher_ret": -3.48,
+          "nifty_ret": -3.48,
+          "gold_inr_ret": 5.24,
+          "spx_inr_ret": -5.26
+        }
+      ]
+    },
+    "tri_12_1skip": {
+      "2013": [
+        {
+          "month": "2013-01-31",
+          "asset": "spx",
+          "switcher_ret": 4.27,
+          "nifty_ret": 2.2,
+          "gold_inr_ret": -1.53,
+          "spx_inr_ret": 4.27
+        },
+        {
+          "month": "2013-02-28",
+          "asset": "nifty",
+          "switcher_ret": -5.66,
+          "nifty_ret": -5.66,
+          "gold_inr_ret": -3.39,
+          "spx_inr_ret": 0.3
+        },
+        {
+          "month": "2013-03-31",
+          "asset": "spx",
+          "switcher_ret": 4.91,
+          "nifty_ret": -0.18,
+          "gold_inr_ret": -1.03,
+          "spx_inr_ret": 4.91
+        },
+        {
+          "month": "2013-04-30",
+          "asset": "spx",
+          "switcher_ret": 1.7,
+          "nifty_ret": 4.36,
+          "gold_inr_ret": -6.76,
+          "spx_inr_ret": 1.7
+        },
+        {
+          "month": "2013-05-31",
+          "asset": "spx",
+          "switcher_ret": 3.55,
+          "nifty_ret": 0.94,
+          "gold_inr_ret": -3.82,
+          "spx_inr_ret": 3.55
+        },
+        {
+          "month": "2013-06-30",
+          "asset": "spx",
+          "switcher_ret": 4.62,
+          "nifty_ret": -2.4,
+          "gold_inr_ret": 0.85,
+          "spx_inr_ret": 4.62
+        },
+        {
+          "month": "2013-07-31",
+          "asset": "spx",
+          "switcher_ret": 7.56,
+          "nifty_ret": -1.72,
+          "gold_inr_ret": -1.99,
+          "spx_inr_ret": 7.56
+        },
+        {
+          "month": "2013-08-31",
+          "asset": "spx",
+          "switcher_ret": 2.02,
+          "nifty_ret": -4.71,
+          "gold_inr_ret": 10.5,
+          "spx_inr_ret": 2.02
+        },
+        {
+          "month": "2013-09-30",
+          "asset": "spx",
+          "switcher_ret": 4.41,
+          "nifty_ret": 4.82,
+          "gold_inr_ret": 1.11,
+          "spx_inr_ret": 4.41
+        },
+        {
+          "month": "2013-10-31",
+          "asset": "spx",
+          "switcher_ret": 1.46,
+          "nifty_ret": 9.83,
+          "gold_inr_ret": -5.5,
+          "spx_inr_ret": 1.46
+        },
+        {
+          "month": "2013-11-30",
+          "asset": "spx",
+          "switcher_ret": 4.31,
+          "nifty_ret": -1.95,
+          "gold_inr_ret": -1.68,
+          "spx_inr_ret": 4.31
+        },
+        {
+          "month": "2013-12-31",
+          "asset": "spx",
+          "switcher_ret": 1.53,
+          "nifty_ret": 2.07,
+          "gold_inr_ret": -5.31,
+          "spx_inr_ret": 1.53
+        }
+      ],
+      "2020": [
+        {
+          "month": "2020-01-31",
+          "asset": "gold",
+          "switcher_ret": 5.73,
+          "nifty_ret": -1.7,
+          "gold_inr_ret": 5.73,
+          "spx_inr_ret": -0.05
+        },
+        {
+          "month": "2020-02-29",
+          "asset": "spx",
+          "switcher_ret": -7.71,
+          "nifty_ret": -6.36,
+          "gold_inr_ret": 2.67,
+          "spx_inr_ret": -7.71
+        },
+        {
+          "month": "2020-03-31",
+          "asset": "gold",
+          "switcher_ret": 3.89,
+          "nifty_ret": -23.25,
+          "gold_inr_ret": 3.89,
+          "spx_inr_ret": -9.5
+        },
+        {
+          "month": "2020-04-30",
+          "asset": "gold",
+          "switcher_ret": 8.01,
+          "nifty_ret": 14.68,
+          "gold_inr_ret": 8.01,
+          "spx_inr_ret": 14.91
+        },
+        {
+          "month": "2020-05-31",
+          "asset": "gold",
+          "switcher_ret": 1.28,
+          "nifty_ret": -2.84,
+          "gold_inr_ret": 1.28,
+          "spx_inr_ret": 4.26
+        },
+        {
+          "month": "2020-06-30",
+          "asset": "gold",
+          "switcher_ret": 1.0,
+          "nifty_ret": 7.53,
+          "gold_inr_ret": 1.0,
+          "spx_inr_ret": 2.38
+        },
+        {
+          "month": "2020-07-31",
+          "asset": "gold",
+          "switcher_ret": 5.54,
+          "nifty_ret": 7.49,
+          "gold_inr_ret": 5.54,
+          "spx_inr_ret": 4.9
+        },
+        {
+          "month": "2020-08-31",
+          "asset": "gold",
+          "switcher_ret": 6.09,
+          "nifty_ret": 2.84,
+          "gold_inr_ret": 6.09,
+          "spx_inr_ret": 6.35
+        },
+        {
+          "month": "2020-09-30",
+          "asset": "gold",
+          "switcher_ret": -3.75,
+          "nifty_ret": -1.23,
+          "gold_inr_ret": -3.75,
+          "spx_inr_ret": -5.5
+        },
+        {
+          "month": "2020-10-31",
+          "asset": "gold",
+          "switcher_ret": -1.09,
+          "nifty_ret": 3.51,
+          "gold_inr_ret": -1.09,
+          "spx_inr_ret": -3.09
+        },
+        {
+          "month": "2020-11-30",
+          "asset": "gold",
+          "switcher_ret": -0.9,
+          "nifty_ret": 11.39,
+          "gold_inr_ret": -0.9,
+          "spx_inr_ret": 12.99
+        },
+        {
+          "month": "2020-12-31",
+          "asset": "gold",
+          "switcher_ret": -1.25,
+          "nifty_ret": 7.81,
+          "gold_inr_ret": -1.25,
+          "spx_inr_ret": 2.79
+        }
+      ],
+      "2022": [
+        {
+          "month": "2022-01-31",
+          "asset": "nifty",
+          "switcher_ret": -0.08,
+          "nifty_ret": -0.08,
+          "gold_inr_ret": 0.12,
+          "spx_inr_ret": -6.9
+        },
+        {
+          "month": "2022-02-28",
+          "asset": "spx",
+          "switcher_ret": -2.2,
+          "nifty_ret": -3.15,
+          "gold_inr_ret": 2.97,
+          "spx_inr_ret": -2.2
+        },
+        {
+          "month": "2022-03-31",
+          "asset": "nifty",
+          "switcher_ret": 3.99,
+          "nifty_ret": 3.99,
+          "gold_inr_ret": 6.67,
+          "spx_inr_ret": 5.51
+        },
+        {
+          "month": "2022-04-30",
+          "asset": "spx",
+          "switcher_ret": -8.86,
+          "nifty_ret": -2.07,
+          "gold_inr_ret": -0.59,
+          "spx_inr_ret": -8.86
+        },
+        {
+          "month": "2022-05-31",
+          "asset": "spx",
+          "switcher_ret": 1.58,
+          "nifty_ret": -3.03,
+          "gold_inr_ret": -3.14,
+          "spx_inr_ret": 1.58
+        },
+        {
+          "month": "2022-06-30",
+          "asset": "nifty",
+          "switcher_ret": -4.85,
+          "nifty_ret": -4.85,
+          "gold_inr_ret": 0.38,
+          "spx_inr_ret": -7.39
+        },
+        {
+          "month": "2022-07-31",
+          "asset": "nifty",
+          "switcher_ret": 8.73,
+          "nifty_ret": 8.73,
+          "gold_inr_ret": -3.85,
+          "spx_inr_ret": 11.18
+        },
+        {
+          "month": "2022-08-31",
+          "asset": "gold",
+          "switcher_ret": 1.74,
+          "nifty_ret": 3.5,
+          "gold_inr_ret": 1.74,
+          "spx_inr_ret": -4.41
+        },
+        {
+          "month": "2022-09-30",
+          "asset": "nifty",
+          "switcher_ret": -3.74,
+          "nifty_ret": -3.74,
+          "gold_inr_ret": -3.88,
+          "spx_inr_ret": -8.57
+        },
+        {
+          "month": "2022-10-31",
+          "asset": "gold",
+          "switcher_ret": 1.52,
+          "nifty_ret": 5.37,
+          "gold_inr_ret": 1.52,
+          "spx_inr_ret": 10.68
+        },
+        {
+          "month": "2022-11-30",
+          "asset": "gold",
+          "switcher_ret": 2.9,
+          "nifty_ret": 4.14,
+          "gold_inr_ret": 2.9,
+          "spx_inr_ret": 4.36
+        },
+        {
+          "month": "2022-12-31",
+          "asset": "gold",
+          "switcher_ret": 5.24,
+          "nifty_ret": -3.48,
+          "gold_inr_ret": 5.24,
+          "spx_inr_ret": -5.26
+        }
+      ]
+    }
+  },
+  "book_substitution": {
+    "OP-D6b_a5_dual_12m": {
+      "cagr": 11.129727852097648,
+      "dd": -11.529642180831956,
+      "worst_yr": -2.2696281420907516
+    },
+    "OP-D6b_a5_tri_12m": {
+      "cagr": 11.109730284991537,
+      "dd": -9.798420418289066,
+      "worst_yr": -2.2696281420907516
+    },
+    "OP-D6b_a5_tri_12_1skip": {
+      "cagr": 11.013843464712881,
+      "dd": -9.71395828781889,
+      "worst_yr": -3.6344470356298064
+    }
+  },
+  "cells_consumed": 6
+}

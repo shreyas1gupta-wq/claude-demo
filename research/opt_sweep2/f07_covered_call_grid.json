@@ -1,0 +1,813 @@
+{
+  "family": "f07_covered_call_grid",
+  "date": "2026-09-08",
+  "status": "EXPLORATORY -- NOT BOOKED (opt_sweep2 agent-level sweep; no trial-ledger entry per task scope)",
+  "script": "/home/user/claude-demo/scripts/opt_sweep2/f07_covered_call_grid.py",
+  "window": [
+    "2011-07-01",
+    "2023-03-31"
+  ],
+  "standing_book_weights": {
+    "core": 0.65,
+    "switcher": 0.2,
+    "factor": 0.15,
+    "financing": true,
+    "syn_margin": true
+  },
+  "sanity_check": {
+    "engine_cagr": 11.13,
+    "engine_dd": -11.53,
+    "task_stated_cagr": 11.13,
+    "task_stated_dd": -11.53
+  },
+  "current_design_key": "sm1.0_nf0.5_pct60",
+  "current_design_repro": {
+    "cagr": 11.13,
+    "dd": -11.53
+  },
+  "grid": {
+    "sm0.8_nf0.3_always": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.3,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 0.723,
+      "cagr": 11.24029267344413,
+      "dd": -11.212660040482103,
+      "worst_yr": -1.9048335680436512,
+      "train_cagr": 25.534060493774536,
+      "train_dd": -11.212660040482103,
+      "test_cagr": 22.19857086166135,
+      "test_dd": -11.212660040482103
+    },
+    "sm0.8_nf0.3_pct50": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.3,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 0.547,
+      "cagr": 11.088652546902832,
+      "dd": -11.40663147034826,
+      "worst_yr": -2.138255876711881,
+      "train_cagr": 25.169020860096936,
+      "train_dd": -11.40663147034826,
+      "test_cagr": 21.885256262884823,
+      "test_dd": -11.40663147034826
+    },
+    "sm0.8_nf0.3_pct60": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.3,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.307,
+      "cagr": 10.907874055958988,
+      "dd": -11.642571670981127,
+      "worst_yr": -2.2696281420873765,
+      "train_cagr": 24.734575464317786,
+      "train_dd": -11.642571670981127,
+      "test_cagr": 21.512229416713936,
+      "test_dd": -11.642571670981127
+    },
+    "sm0.8_nf0.5_always": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.5,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.202,
+      "cagr": 11.626916732499426,
+      "dd": -10.555005595592581,
+      "worst_yr": -1.6611661754505347,
+      "train_cagr": 26.467328855599924,
+      "train_dd": -10.555005595592581,
+      "test_cagr": 22.99910824268665,
+      "test_dd": -10.555005595592581
+    },
+    "sm0.8_nf0.5_pct50": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.5,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 0.91,
+      "cagr": 11.375105407923392,
+      "dd": -10.880651726582125,
+      "worst_yr": -2.050674366463545,
+      "train_cagr": 25.859066498791083,
+      "train_dd": -10.880651726582125,
+      "test_cagr": 22.47743369119113,
+      "test_dd": -10.880651726582125
+    },
+    "sm0.8_nf0.5_pct60": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.5,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.508,
+      "cagr": 11.072972243657397,
+      "dd": -11.275528600507323,
+      "worst_yr": -2.2696281420894193,
+      "train_cagr": 25.13130627918587,
+      "train_dd": -11.275528600507323,
+      "test_cagr": 21.85287956406714,
+      "test_dd": -11.275528600507323
+    },
+    "sm0.8_nf0.7_always": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.7,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.678,
+      "cagr": 12.011086305819884,
+      "dd": -10.412603493487516,
+      "worst_yr": -1.4171217278264092,
+      "train_cagr": 27.398312870870555,
+      "train_dd": -10.412603493487516,
+      "test_cagr": 23.796989438100823,
+      "test_dd": -10.412603493487516
+    },
+    "sm0.8_nf0.7_pct50": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.7,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 1.27,
+      "cagr": 11.65987099667134,
+      "dd": -10.607475368249375,
+      "worst_yr": -1.9630928562152206,
+      "train_cagr": 26.547046826584307,
+      "train_dd": -10.607475368249375,
+      "test_cagr": 23.067456092745275,
+      "test_dd": -10.607475368249375
+    },
+    "sm0.8_nf0.7_pct60": {
+      "strike_mult": 0.8,
+      "notional_frac": 0.7,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.705,
+      "cagr": 11.235718710260167,
+      "dd": -10.907486544402378,
+      "worst_yr": -2.2696281420914732,
+      "train_cagr": 25.523041436434646,
+      "train_dd": -10.907486544402378,
+      "test_cagr": 22.18911475285379,
+      "test_dd": -10.907486544402378
+    },
+    "sm1.0_nf0.3_always": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.3,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 0.749,
+      "cagr": 11.246838465895559,
+      "dd": -11.489707760291934,
+      "worst_yr": -2.009350559515888,
+      "train_cagr": 25.549830746101687,
+      "train_dd": -11.489707760291934,
+      "test_cagr": 22.212104082613426,
+      "test_dd": -11.489707760291934
+    },
+    "sm1.0_nf0.3_pct50": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.3,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 0.609,
+      "cagr": 11.12669445284984,
+      "dd": -11.622371816999323,
+      "worst_yr": -2.1753585584456947,
+      "train_cagr": 25.260545127389133,
+      "train_dd": -11.622371816999323,
+      "test_cagr": 21.96382196444131,
+      "test_dd": -11.622371816999323
+    },
+    "sm1.0_nf0.3_pct60": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.3,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.36,
+      "cagr": 10.940927999051176,
+      "dd": -11.79468273268145,
+      "worst_yr": -2.269628142088176,
+      "train_cagr": 24.813950446645183,
+      "train_dd": -11.79468273268145,
+      "test_cagr": 21.580394446332463,
+      "test_dd": -11.79468273268145
+    },
+    "sm1.0_nf0.5_always": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.5,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.248,
+      "cagr": 11.64006686953114,
+      "dd": -11.019299679745487,
+      "worst_yr": -1.835593729045859,
+      "train_cagr": 26.49913647610731,
+      "train_dd": -11.019299679745487,
+      "test_cagr": 23.026379775075824,
+      "test_dd": -11.019299679745487
+    },
+    "sm1.0_nf0.5_pct50": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.5,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 1.014,
+      "cagr": 11.440126569538966,
+      "dd": -11.241588661809931,
+      "worst_yr": -2.1125121693532756,
+      "train_cagr": 26.01597894847152,
+      "train_dd": -11.241588661809931,
+      "test_cagr": 22.612037744792456,
+      "test_dd": -11.241588661809931
+    },
+    "sm1.0_nf0.5_pct60": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.5,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.598,
+      "cagr": 11.129727852097648,
+      "dd": -11.529642180831956,
+      "worst_yr": -2.2696281420907516,
+      "train_cagr": 25.267844653386717,
+      "train_dd": -11.529642180831956,
+      "test_cagr": 21.97008768611679,
+      "test_dd": -11.529642180831956
+    },
+    "sm1.0_nf0.7_always": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.7,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.746,
+      "cagr": 12.032666080134646,
+      "dd": -10.546719590468767,
+      "worst_yr": -1.661646058813826,
+      "train_cagr": 27.450716274604403,
+      "train_dd": -10.546719590468767,
+      "test_cagr": 23.84188015464417,
+      "test_dd": -10.546719590468767
+    },
+    "sm1.0_nf0.7_pct50": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.7,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 1.42,
+      "cagr": 11.753183503324438,
+      "dd": -10.859586268321408,
+      "worst_yr": -2.049665780260923,
+      "train_cagr": 26.772919191043144,
+      "train_dd": -10.859586268321408,
+      "test_cagr": 23.261084756054508,
+      "test_dd": -10.859586268321408
+    },
+    "sm1.0_nf0.7_pct60": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.7,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.836,
+      "cagr": 11.31752350687747,
+      "dd": -11.26407973029493,
+      "worst_yr": -2.2696281420932496,
+      "train_cagr": 25.720193627510323,
+      "train_dd": -11.26407973029493,
+      "test_cagr": 22.35828793406034,
+      "test_dd": -11.26407973029493
+    },
+    "sm1.2_nf0.3_always": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.3,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 0.711,
+      "cagr": 11.208229557614203,
+      "dd": -11.699747213216572,
+      "worst_yr": -2.0881087422733313,
+      "train_cagr": 25.45682861454037,
+      "train_dd": -11.699747213216572,
+      "test_cagr": 22.132291519894597,
+      "test_dd": -11.699747213216572
+    },
+    "sm1.2_nf0.3_pct50": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.3,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 0.554,
+      "cagr": 11.080157480734321,
+      "dd": -11.786673962214145,
+      "worst_yr": -2.2034825640658284,
+      "train_cagr": 25.148587606063046,
+      "train_dd": -11.786673962214145,
+      "test_cagr": 21.867715145185972,
+      "test_dd": -11.786673962214145
+    },
+    "sm1.2_nf0.3_pct60": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.3,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.39,
+      "cagr": 10.957773365616408,
+      "dd": -11.910210368921925,
+      "worst_yr": -2.2696281420868103,
+      "train_cagr": 24.85441284987413,
+      "train_dd": -11.910210368921925,
+      "test_cagr": 21.615140458526948,
+      "test_dd": -11.910210368921925
+    },
+    "sm1.2_nf0.5_always": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.5,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.186,
+      "cagr": 11.576823096268395,
+      "dd": -11.370742652855226,
+      "worst_yr": -1.9669804933727164,
+      "train_cagr": 26.346201054204688,
+      "train_dd": -11.370742652855226,
+      "test_cagr": 22.895247051568557,
+      "test_dd": -11.370742652855226
+    },
+    "sm1.2_nf0.5_pct50": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.5,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 0.924,
+      "cagr": 11.363219196585362,
+      "dd": -11.51617652260467,
+      "worst_yr": -2.159385512053602,
+      "train_cagr": 25.830393310712086,
+      "train_dd": -11.51617652260467,
+      "test_cagr": 22.45283485138461,
+      "test_dd": -11.51617652260467
+    },
+    "sm1.2_nf0.5_pct60": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.5,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.65,
+      "cagr": 11.158801072064684,
+      "dd": -11.722512502169414,
+      "worst_yr": -2.269628142088409,
+      "train_cagr": 25.33781747868977,
+      "train_dd": -11.722512502169414,
+      "test_cagr": 22.030148330871956,
+      "test_dd": -11.722512502169414
+    },
+    "sm1.2_nf0.7_always": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.7,
+      "gate": "always",
+      "n_cycles": 140,
+      "cc_own_ann_pct": 1.661,
+      "cagr": 11.945689260907177,
+      "dd": -11.040674431107956,
+      "worst_yr": -1.845759964021254,
+      "train_cagr": 27.239575436904985,
+      "train_dd": -11.040674431107956,
+      "test_cagr": 23.660995663888997,
+      "test_dd": -11.040674431107956
+    },
+    "sm1.2_nf0.7_pct50": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.7,
+      "gate": "pct50",
+      "n_cycles": 65,
+      "cc_own_ann_pct": 1.295,
+      "cagr": 11.646438686134331,
+      "dd": -11.245062527538863,
+      "worst_yr": -2.115288460041276,
+      "train_cagr": 26.514550188873432,
+      "train_dd": -11.245062527538863,
+      "test_cagr": 23.03959504452504,
+      "test_dd": -11.245062527538863
+    },
+    "sm1.2_nf0.7_pct60": {
+      "strike_mult": 1.2,
+      "notional_frac": 0.7,
+      "gate": "pct60",
+      "n_cycles": 55,
+      "cc_own_ann_pct": 0.909,
+      "cagr": 11.359630787873854,
+      "dd": -11.534552525746166,
+      "worst_yr": -2.2696281420900077,
+      "train_cagr": 25.82173765055964,
+      "train_dd": -11.534552525746166,
+      "test_cagr": 22.44540899637464,
+      "test_dd": -11.534552525746166
+    },
+    "never": {
+      "strike_mult": null,
+      "notional_frac": null,
+      "gate": "never",
+      "n_cycles": 0,
+      "cc_own_ann_pct": 0.0,
+      "cagr": 10.655867520989615,
+      "dd": -12.191266107977572,
+      "worst_yr": -2.269628142084368,
+      "train_cagr": 24.130295075827334,
+      "train_dd": -12.191266107977572,
+      "test_cagr": 20.99312152681727,
+      "test_dd": -12.191266107977572
+    }
+  },
+  "cells_consumed": 28,
+  "cell_accounting": [
+    "27 grid backtests: strike_mult in {0.8,1.0,1.2} x notional_frac in {0.3,0.5,0.7} x gate in {always,pct50,pct60}, each a full book-level (65/20/15, financing+syn_margin) run_book_cc simulation over 2011-07-01..2023-03-31",
+    "1 'never' (no covered calls at all) baseline book run",
+    "total = 27 + 1 = 28",
+    "NOT counted as separate cells: the initial run_book_orig sanity reproduction (reproduces an already-booked number, not a new configuration); era1/era2 (train/test) stats sliced from each already-computed equity curve via stats_of's d0/d1 args (no new simulation); the Pareto-frontier scan, R1/R2/R3 bar checks, and the two monotonicity scans (all post-hoc comparisons over the same 28 already-computed cells, no new backtest run)"
+  ],
+  "pre_registered_bars": {
+    "R1": "cell clears if book CAGR >= current+0.3pp at book maxDD no worse than current-1.0pp",
+    "R2": "train (2011-2016) best-cell selection, frozen, re-checked on test (2017-2023) vs current",
+    "R3": "every cell vs a 'never' (no calls) baseline -- does the family help at all"
+  },
+  "R1_frontier_clears": [
+    {
+      "key": "sm1.0_nf0.7_always",
+      "d_cagr": 0.903,
+      "d_dd": 0.983,
+      "cagr": 12.032666080134646,
+      "dd": -10.546719590468767
+    },
+    {
+      "key": "sm0.8_nf0.7_always",
+      "d_cagr": 0.881,
+      "d_dd": 1.117,
+      "cagr": 12.011086305819884,
+      "dd": -10.412603493487516
+    },
+    {
+      "key": "sm1.2_nf0.7_always",
+      "d_cagr": 0.816,
+      "d_dd": 0.489,
+      "cagr": 11.945689260907177,
+      "dd": -11.040674431107956
+    },
+    {
+      "key": "sm1.0_nf0.7_pct50",
+      "d_cagr": 0.623,
+      "d_dd": 0.67,
+      "cagr": 11.753183503324438,
+      "dd": -10.859586268321408
+    },
+    {
+      "key": "sm0.8_nf0.7_pct50",
+      "d_cagr": 0.53,
+      "d_dd": 0.922,
+      "cagr": 11.65987099667134,
+      "dd": -10.607475368249375
+    },
+    {
+      "key": "sm1.2_nf0.7_pct50",
+      "d_cagr": 0.517,
+      "d_dd": 0.285,
+      "cagr": 11.646438686134331,
+      "dd": -11.245062527538863
+    },
+    {
+      "key": "sm1.0_nf0.5_always",
+      "d_cagr": 0.51,
+      "d_dd": 0.51,
+      "cagr": 11.64006686953114,
+      "dd": -11.019299679745487
+    },
+    {
+      "key": "sm0.8_nf0.5_always",
+      "d_cagr": 0.497,
+      "d_dd": 0.975,
+      "cagr": 11.626916732499426,
+      "dd": -10.555005595592581
+    },
+    {
+      "key": "sm1.2_nf0.5_always",
+      "d_cagr": 0.447,
+      "d_dd": 0.159,
+      "cagr": 11.576823096268395,
+      "dd": -11.370742652855226
+    },
+    {
+      "key": "sm1.0_nf0.5_pct50",
+      "d_cagr": 0.31,
+      "d_dd": 0.288,
+      "cagr": 11.440126569538966,
+      "dd": -11.241588661809931
+    }
+  ],
+  "pareto_frontier_keys": [
+    "sm0.8_nf0.7_always",
+    "sm1.0_nf0.7_always"
+  ],
+  "current_design_on_frontier": false,
+  "R2_train_test": {
+    "best_on_train": "sm1.0_nf0.7_always",
+    "best_on_train_params": {
+      "strike_mult": 1.0,
+      "notional_frac": 0.7,
+      "gate": "always"
+    },
+    "best_train_cagr": 27.451,
+    "best_train_dd": -10.547,
+    "best_train_key_test_cagr": 23.842,
+    "current_test_cagr": 21.97,
+    "current_test_dd": -11.53,
+    "best_train_key_test_dd": -10.547,
+    "survives_out_of_sample": "True"
+  },
+  "R3_family_vs_never": {
+    "current_cagr": 11.13,
+    "never_cagr": 10.656,
+    "current_dd": -11.53,
+    "never_dd": -12.191,
+    "family_helps": "True"
+  },
+  "rally_year_giveup": {
+    "worst3": {
+      "2019": -1.08,
+      "2012": -0.87,
+      "2016": -0.54
+    },
+    "best3": {
+      "2022": 1.44,
+      "2011": 1.16,
+      "2015": 1.05
+    }
+  },
+  "gate_monotonicity": {
+    "cells": [
+      {
+        "sm": 0.8,
+        "nf": 0.3,
+        "cagr_seq_pct60_pct50_always": [
+          10.908,
+          11.089,
+          11.24
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.643,
+          -11.407,
+          -11.213
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 0.8,
+        "nf": 0.5,
+        "cagr_seq_pct60_pct50_always": [
+          11.073,
+          11.375,
+          11.627
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.276,
+          -10.881,
+          -10.555
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 0.8,
+        "nf": 0.7,
+        "cagr_seq_pct60_pct50_always": [
+          11.236,
+          11.66,
+          12.011
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -10.907,
+          -10.607,
+          -10.413
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.0,
+        "nf": 0.3,
+        "cagr_seq_pct60_pct50_always": [
+          10.941,
+          11.127,
+          11.247
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.795,
+          -11.622,
+          -11.49
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.0,
+        "nf": 0.5,
+        "cagr_seq_pct60_pct50_always": [
+          11.13,
+          11.44,
+          11.64
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.53,
+          -11.242,
+          -11.019
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.0,
+        "nf": 0.7,
+        "cagr_seq_pct60_pct50_always": [
+          11.318,
+          11.753,
+          12.033
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.264,
+          -10.86,
+          -10.547
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.2,
+        "nf": 0.3,
+        "cagr_seq_pct60_pct50_always": [
+          10.958,
+          11.08,
+          11.208
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.91,
+          -11.787,
+          -11.7
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.2,
+        "nf": 0.5,
+        "cagr_seq_pct60_pct50_always": [
+          11.159,
+          11.363,
+          11.577
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.723,
+          -11.516,
+          -11.371
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      },
+      {
+        "sm": 1.2,
+        "nf": 0.7,
+        "cagr_seq_pct60_pct50_always": [
+          11.36,
+          11.646,
+          11.946
+        ],
+        "dd_seq_pct60_pct50_always": [
+          -11.535,
+          -11.245,
+          -11.041
+        ],
+        "monotone_cagr": true,
+        "monotone_dd": true
+      }
+    ],
+    "all_9_sm_nf_combos_monotone": true,
+    "note": "for every (sm,nf) pair, CAGR and DD both improve monotonically pct60 -> pct50 -> always (more frequent selling = more premium, not noise from one lucky cell)"
+  },
+  "notional_frac_monotonicity": {
+    "cells": [
+      {
+        "sm": 0.8,
+        "gate": "always",
+        "cagr_seq_nf03_05_07": [
+          11.24,
+          11.627,
+          12.011
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 0.8,
+        "gate": "pct50",
+        "cagr_seq_nf03_05_07": [
+          11.089,
+          11.375,
+          11.66
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 0.8,
+        "gate": "pct60",
+        "cagr_seq_nf03_05_07": [
+          10.908,
+          11.073,
+          11.236
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.0,
+        "gate": "always",
+        "cagr_seq_nf03_05_07": [
+          11.247,
+          11.64,
+          12.033
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.0,
+        "gate": "pct50",
+        "cagr_seq_nf03_05_07": [
+          11.127,
+          11.44,
+          11.753
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.0,
+        "gate": "pct60",
+        "cagr_seq_nf03_05_07": [
+          10.941,
+          11.13,
+          11.318
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.2,
+        "gate": "always",
+        "cagr_seq_nf03_05_07": [
+          11.208,
+          11.577,
+          11.946
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.2,
+        "gate": "pct50",
+        "cagr_seq_nf03_05_07": [
+          11.08,
+          11.363,
+          11.646
+        ],
+        "monotone": true
+      },
+      {
+        "sm": 1.2,
+        "gate": "pct60",
+        "cagr_seq_nf03_05_07": [
+          10.958,
+          11.159,
+          11.36
+        ],
+        "monotone": true
+      }
+    ],
+    "all_9_sm_gate_combos_monotone": true,
+    "note": "for every (sm,gate) pair, CAGR rises monotonically 0.3 -> 0.5 -> 0.7; untested beyond 0.7 (task-specified grid ceiling)"
+  },
+  "contract_notional_cap_pct_of_book_by_frac": {
+    "0.3": 19.5,
+    "0.5": 32.5,
+    "0.7": 45.5
+  },
+  "proposed_design": {
+    "strike_mult": 1.0,
+    "notional_frac": 0.7,
+    "gate": "always",
+    "rationale": "Sells calls EVERY month rather than only when VIX-pct>=0.60. Survives Contract S5's 'why does it survive being known' test on mechanism (iii): the VRP is positive at EVERY VIX quintile, just smaller at low quintiles (OP-D1 booked: +1.9 to +5.9 vol pts monotone by quintile) -- gating on high-VIX-pct alone only lets the sleeve harvest the rich end of a premium that is priced favorably almost everywhere, and the ~2.5x more frequent low/mid-vol cycles missed under the gate (55 vs 140 cycles here) outweigh the richer-but-rarer high-vol cycles in total collected premium. This is NOT the same 'always-on' idea already killed in the graveyard: that refusal (SYNTHESIS 'always-on weekly option selling -- in-sample ruin') was about UNDEFINED-RISK naked premium selling; a covered call's risk is bounded by the long core position already held (a delta-1 hedge by construction), so there is no analogous ruin path.",
+    "expected_book_cagr_add_pp": 0.9,
+    "expected_book_dd_impact_pp": 0.98,
+    "call_notional_pct_of_book": 45.5,
+    "contract_notional_headroom_pct": 4.5,
+    "blocking_issues": [
+      "DEPARTS from the OP-D2/OP-D5 design brief's stated rationale ('sell calls only when VIX-pct>=0.60') -- Contract requires departures to be argued explicitly (done above), but this has not been principal-approved and carries no trial-ledger entry.",
+      "Call notional at nf=0.7 is 45.5% of book -- inside the Contract's <=50% options-notional ceiling IF covered calls are classified under that cap, but it is genuinely unclear whether a COVERED (delta-reducing) call should be counted the same as a naked directional option notional for that cap's purpose; this reads as a compliance question for the principal, not a self-evident pass.",
+      "Book-level margin proxy (0.025*1.1*book flat, +0.025*cc_units*S for the call leg) is the same flat approximation used everywhere in this book engine -- untested against a real margin desk at the higher nf=0.7 notional.",
+      "Per-year cc-only P&L decomposition (the 'rally give-up' table) was only computed for the CURRENT (pct60) design, not for the proposed always/nf0.7 design, for cell budget reasons -- before promotion this decomposition should be re-run on the proposed design."
+    ]
+  },
+  "gold_covered_calls_note": "NOT tested -- vault has commodities/gold_monthly_1833_2026.csv (spot/price only, monthly), no gold options chain or implied-vol series exists in any vaulted source; the switcher's gold months have no instrument to write calls against. Data-gated per CONTRACT's free-data-only rule and the task's own note; 0 cells consumed on this branch."
+}

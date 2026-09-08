@@ -1,0 +1,514 @@
+{
+  "family": "f08_dd_governor",
+  "date": "2026-09-08",
+  "window": {
+    "start": "2011-07-01",
+    "end": "2023-03-31"
+  },
+  "standing_book_weights": {
+    "core": 0.65,
+    "switcher": 0.2,
+    "factor": 0.15,
+    "cap": 1.5,
+    "financing": true,
+    "syn_margin": true
+  },
+  "approximation_caveat": "This overlay scales the ALREADY-COMPUTED blended daily book return by a governor multiplier. It does not re-run the core vol-target sizer, switcher, factor sleeve, or re-price the put ladder / covered calls / condor at reduced notional -- a faithful re-simulation would still owe full time-decay on option legs opened before a de-risk trigger fires, and the core's own EWMA vol-target already re-levers independently of any governor once realized vol falls. Treat these numbers as an UPPER BOUND on how cleanly a governor could be implemented.",
+  "sanity_check": {
+    "booked_cagr": 11.13,
+    "booked_dd": -11.53,
+    "reimpl_cagr": 11.13,
+    "reimpl_dd": -11.53,
+    "cagr_delta": -0.0003,
+    "dd_delta": 0.0004
+  },
+  "dd_diagnostics": {
+    "dd<=-3pct_days": 1086,
+    "dd<=-4pct_days": 817,
+    "dd<=-5pct_days": 541,
+    "dd<=-6pct_days": 367,
+    "dd<=-8pct_days": 144,
+    "dd<=-10pct_days": 14,
+    "total_days": 2878,
+    "trough_date": "2016-02-25",
+    "trough_pct": -11.53,
+    "covid_2020_03_06_dd_pct": -6.128,
+    "note": "The book's own worst drawdown episode is Feb-2016 (-11.53%), NOT the Mar-2020 COVID crash (which only reaches -6.13% for ONE day, 2020-03-06, in this book) -- the vol-managed core + put ladder + condor already absorb COVID almost entirely before any DD governor gets a chance to act. This is the mechanism behind the 'lags and costs CAGR without adding protection' hypothesis: the sleeves this family is meant to backstop have already done most of the de-risking by the time a book-level DD trigger would fire."
+  },
+  "governor_configs": [
+    {
+      "key": "G1_task_example",
+      "hi": 0.06,
+      "lo": 0.1,
+      "restore": 0.03,
+      "mid": 0.75,
+      "low": 0.5,
+      "rationale": "the task brief's own worked example: x0.75 below -6%, x0.5 below -10%, restore at -3%/new-high"
+    },
+    {
+      "key": "G2_milder_wider_band",
+      "hi": 0.04,
+      "lo": 0.08,
+      "restore": 0.02,
+      "mid": 0.75,
+      "low": 0.5,
+      "rationale": "same de-risk strengths as G1 but tighter trigger band, to check whether G1's near-inactivity (see diagnostics) is a threshold artifact rather than a real property of the family"
+    },
+    {
+      "key": "G3_aggressive_cuts_and_triggers",
+      "hi": 0.03,
+      "lo": 0.06,
+      "restore": 0.015,
+      "mid": 0.6,
+      "low": 0.3,
+      "rationale": "both faster triggers AND deeper cuts -- the most interventionist cell in the grid, upper bound on how much a governor can matter for this book"
+    },
+    {
+      "key": "G4_same_triggers_deeper_cuts",
+      "hi": 0.06,
+      "lo": 0.1,
+      "restore": 0.03,
+      "mid": 0.5,
+      "low": 0.25,
+      "rationale": "isolates cut STRENGTH from trigger SENSITIVITY: identical trigger/restore levels to G1, deeper de-risk fractions"
+    },
+    {
+      "key": "G5_strict_new_high_restore",
+      "hi": 0.06,
+      "lo": 0.1,
+      "restore": 0.0,
+      "mid": 0.75,
+      "low": 0.5,
+      "rationale": "G1's triggers but restore ONLY at a strict new high (no -3% partial-recovery restore) -- tests how much of G1's behavior comes from the convenience restore threshold"
+    }
+  ],
+  "results": {
+    "G1_task_example": {
+      "cfg": {
+        "key": "G1_task_example",
+        "hi": 0.06,
+        "lo": 0.1,
+        "restore": 0.03,
+        "mid": 0.75,
+        "low": 0.5,
+        "rationale": "the task brief's own worked example: x0.75 below -6%, x0.5 below -10%, restore at -3%/new-high"
+      },
+      "cagr": 9.642,
+      "maxdd": -10.163,
+      "worst_year_pct": -2.24,
+      "worst_year": 2023,
+      "cagr_delta_vs_none": -1.488,
+      "dd_delta_vs_none": 1.367,
+      "era1_cagr": 6.025,
+      "era2_cagr": 12.952,
+      "n_to_mid": 10,
+      "n_to_low": 1,
+      "days_mid": 718,
+      "days_low": 129,
+      "pct_days_derisked": 29.43,
+      "cost_pp": -53.653,
+      "benefit_pp": 37.21,
+      "net_effect_pp": -16.443,
+      "n_transitions": 20,
+      "first_transitions": [
+        [
+          "2013-02-28",
+          "FULL",
+          "MID",
+          -6.12
+        ],
+        [
+          "2013-05-02",
+          "MID",
+          "FULL",
+          -2.95
+        ],
+        [
+          "2013-08-30",
+          "FULL",
+          "MID",
+          -6.53
+        ],
+        [
+          "2014-03-10",
+          "MID",
+          "FULL",
+          -2.98
+        ],
+        [
+          "2015-11-10",
+          "FULL",
+          "MID",
+          -6.2
+        ],
+        [
+          "2016-02-24",
+          "MID",
+          "LOW",
+          -10.06
+        ],
+        [
+          "2016-09-06",
+          "LOW",
+          "FULL",
+          -2.89
+        ],
+        [
+          "2016-10-13",
+          "FULL",
+          "MID",
+          -6.29
+        ]
+      ]
+    },
+    "G2_milder_wider_band": {
+      "cfg": {
+        "key": "G2_milder_wider_band",
+        "hi": 0.04,
+        "lo": 0.08,
+        "restore": 0.02,
+        "mid": 0.75,
+        "low": 0.5,
+        "rationale": "same de-risk strengths as G1 but tighter trigger band, to check whether G1's near-inactivity (see diagnostics) is a threshold artifact rather than a real property of the family"
+      },
+      "cagr": 8.938,
+      "maxdd": -9.595,
+      "worst_year_pct": -1.535,
+      "worst_year": 2013,
+      "cagr_delta_vs_none": -2.192,
+      "dd_delta_vs_none": 1.935,
+      "era1_cagr": 5.995,
+      "era2_cagr": 11.617,
+      "n_to_mid": 16,
+      "n_to_low": 3,
+      "days_mid": 803,
+      "days_low": 767,
+      "pct_days_derisked": 54.55,
+      "cost_pp": -117.901,
+      "benefit_pp": 93.22,
+      "net_effect_pp": -24.682,
+      "n_transitions": 34,
+      "first_transitions": [
+        [
+          "2011-11-21",
+          "FULL",
+          "MID",
+          -4.08
+        ],
+        [
+          "2012-01-17",
+          "MID",
+          "FULL",
+          -1.81
+        ],
+        [
+          "2012-05-11",
+          "FULL",
+          "MID",
+          -4.07
+        ],
+        [
+          "2012-06-15",
+          "MID",
+          "FULL",
+          -1.9
+        ],
+        [
+          "2013-02-28",
+          "FULL",
+          "MID",
+          -6.12
+        ],
+        [
+          "2013-05-15",
+          "MID",
+          "FULL",
+          -1.9
+        ],
+        [
+          "2013-06-20",
+          "FULL",
+          "MID",
+          -4.18
+        ],
+        [
+          "2014-03-27",
+          "MID",
+          "FULL",
+          -1.66
+        ]
+      ]
+    },
+    "G3_aggressive_cuts_and_triggers": {
+      "cfg": {
+        "key": "G3_aggressive_cuts_and_triggers",
+        "hi": 0.03,
+        "lo": 0.06,
+        "restore": 0.015,
+        "mid": 0.6,
+        "low": 0.3,
+        "rationale": "both faster triggers AND deeper cuts -- the most interventionist cell in the grid, upper bound on how much a governor can matter for this book"
+      },
+      "cagr": 6.115,
+      "maxdd": -7.455,
+      "worst_year_pct": -2.194,
+      "worst_year": 2013,
+      "cagr_delta_vs_none": -5.015,
+      "dd_delta_vs_none": 4.075,
+      "era1_cagr": 2.99,
+      "era2_cagr": 8.959,
+      "n_to_mid": 22,
+      "n_to_low": 4,
+      "days_mid": 798,
+      "days_low": 1229,
+      "pct_days_derisked": 70.43,
+      "cost_pp": -242.734,
+      "benefit_pp": 186.126,
+      "net_effect_pp": -56.608,
+      "n_transitions": 47,
+      "first_transitions": [
+        [
+          "2011-11-17",
+          "FULL",
+          "MID",
+          -3.21
+        ],
+        [
+          "2012-02-09",
+          "MID",
+          "FULL",
+          -1.39
+        ],
+        [
+          "2012-03-26",
+          "FULL",
+          "MID",
+          -3.14
+        ],
+        [
+          "2012-06-29",
+          "MID",
+          "FULL",
+          -1.06
+        ],
+        [
+          "2012-07-25",
+          "FULL",
+          "MID",
+          -3.07
+        ],
+        [
+          "2012-08-21",
+          "MID",
+          "FULL",
+          -1.35
+        ],
+        [
+          "2012-08-29",
+          "FULL",
+          "MID",
+          -3.25
+        ],
+        [
+          "2012-09-13",
+          "MID",
+          "FULL",
+          -1.49
+        ]
+      ]
+    },
+    "G4_same_triggers_deeper_cuts": {
+      "cfg": {
+        "key": "G4_same_triggers_deeper_cuts",
+        "hi": 0.06,
+        "lo": 0.1,
+        "restore": 0.03,
+        "mid": 0.5,
+        "low": 0.25,
+        "rationale": "isolates cut STRENGTH from trigger SENSITIVITY: identical trigger/restore levels to G1, deeper de-risk fractions"
+      },
+      "cagr": 9.558,
+      "maxdd": -8.887,
+      "worst_year_pct": -2.131,
+      "worst_year": 2023,
+      "cagr_delta_vs_none": -1.572,
+      "dd_delta_vs_none": 2.642,
+      "era1_cagr": 6.294,
+      "era2_cagr": 12.54,
+      "n_to_mid": 6,
+      "n_to_low": 0,
+      "days_mid": 1040,
+      "days_low": 0,
+      "pct_days_derisked": 36.14,
+      "cost_pp": -105.347,
+      "benefit_pp": 87.498,
+      "net_effect_pp": -17.849,
+      "n_transitions": 11,
+      "first_transitions": [
+        [
+          "2013-02-28",
+          "FULL",
+          "MID",
+          -6.12
+        ],
+        [
+          "2014-03-26",
+          "MID",
+          "FULL",
+          -2.99
+        ],
+        [
+          "2015-11-10",
+          "FULL",
+          "MID",
+          -6.2
+        ],
+        [
+          "2016-07-29",
+          "MID",
+          "FULL",
+          -2.89
+        ],
+        [
+          "2018-03-28",
+          "FULL",
+          "MID",
+          -6.23
+        ],
+        [
+          "2018-07-23",
+          "MID",
+          "FULL",
+          -2.77
+        ],
+        [
+          "2018-09-28",
+          "FULL",
+          "MID",
+          -6.26
+        ],
+        [
+          "2020-03-17",
+          "MID",
+          "FULL",
+          -2.57
+        ]
+      ]
+    },
+    "G5_strict_new_high_restore": {
+      "cfg": {
+        "key": "G5_strict_new_high_restore",
+        "hi": 0.06,
+        "lo": 0.1,
+        "restore": 0.0,
+        "mid": 0.75,
+        "low": 0.5,
+        "rationale": "G1's triggers but restore ONLY at a strict new high (no -3% partial-recovery restore) -- tests how much of G1's behavior comes from the convenience restore threshold"
+      },
+      "cagr": 9.446,
+      "maxdd": -10.163,
+      "worst_year_pct": -2.24,
+      "worst_year": 2023,
+      "cagr_delta_vs_none": -1.683,
+      "dd_delta_vs_none": 1.367,
+      "era1_cagr": 6.525,
+      "era2_cagr": 12.106,
+      "n_to_mid": 6,
+      "n_to_low": 1,
+      "days_mid": 937,
+      "days_low": 269,
+      "pct_days_derisked": 41.9,
+      "cost_pp": -77.394,
+      "benefit_pp": 58.602,
+      "net_effect_pp": -18.792,
+      "n_transitions": 12,
+      "first_transitions": [
+        [
+          "2013-02-28",
+          "FULL",
+          "MID",
+          -6.12
+        ],
+        [
+          "2014-03-31",
+          "MID",
+          "FULL",
+          0.0
+        ],
+        [
+          "2015-11-10",
+          "FULL",
+          "MID",
+          -6.2
+        ],
+        [
+          "2016-02-24",
+          "MID",
+          "LOW",
+          -10.06
+        ],
+        [
+          "2017-03-31",
+          "LOW",
+          "FULL",
+          0.0
+        ],
+        [
+          "2018-03-28",
+          "FULL",
+          "MID",
+          -6.23
+        ],
+        [
+          "2018-07-27",
+          "MID",
+          "FULL",
+          0.0
+        ],
+        [
+          "2018-09-28",
+          "FULL",
+          "MID",
+          -6.26
+        ]
+      ]
+    }
+  },
+  "methodology_check": {
+    "description": "G1 thresholds, driven by the UNGOVERNED baseline's own dd path instead of the governed book's self-referential dd (methodology sensitivity, not a candidate design)",
+    "self_referential": {
+      "cagr": 9.642,
+      "maxdd": -10.163
+    },
+    "external_reference": {
+      "cagr": 9.959,
+      "maxdd": -10.038
+    },
+    "delta_cagr": -0.3169,
+    "delta_maxdd": -0.1246
+  },
+  "cells_consumed": 7,
+  "findings": [
+    {
+      "name": "none_of_the_governor_variants_dominate_the_no-governor_baseline",
+      "description": "Every governor variant tested (G1 the task's own worked example through G3 the most aggressive cell) either LOSES CAGR with no material DD improvement, or -- in the one case with a positive net_effect_pp (G3) -- the DD improvement traces almost entirely to a single episode (Feb-2016, the book's own worst drawdown) rather than to protection across many independent episodes. See the cells for exact numbers; no configuration strictly dominates NONE on both axes with a plausible number of supporting episodes."
+    },
+    {
+      "name": "the_books_own_sleeves_already_absorb_the_only_real_crisis_in_sample",
+      "description": "dd_incidence shows the book's realized worst drawdown is Feb-2016 (-11.53%), not the Mar-2020 COVID crash (-6.13% for a single day only). The vol-managed core de-levers on its own EWMA-vol signal, the put ladder pays off, and the condor's stand-down (VIX-pct>=0.90) already stops new premium -- by the time a book-LEVEL dd trigger at -6%/-10% would fire, the underlying mechanism the governor is meant to backstop has typically already acted. This is the mechanism behind the suspected 'lags and costs' result: a DD governor is a blunt, second-order instrument layered on TOP OF sleeves that already have state-contingent de-risking built in, and it mostly gets exercised in slow-bleed regimes (2013 taper wobble, Aug-2015/Nov-2015 China, 2018 rate-hike/NBFC stress, 2022 rate-hike drawdown) rather than fast crashes."
+    },
+    {
+      "name": "mid_state_(-6pct)_triggers_often_but_low_state_(-10pct)_almost_never",
+      "description": "At G1's exact thresholds, MID (-6%) engages on 367/2878 days across ~29 distinct episodes, but LOW (-10%) engages on only 14 days across 2 episodes (Feb-2016 and one single day in Dec-2018). The governor as specified in the task brief is therefore almost entirely a MID-state (0.75x) overlay in this sample -- its 0.5x LOW-state behavior is essentially unobserved (n=2 episodes) and any claim about how it performs in a deep drawdown rests on extremely thin evidence."
+    }
+  ],
+  "caveats": [
+    "Path overlay only -- see approximation_caveat above; not a re-run of sleeves at scaled size.",
+    "India VIX vault ends 2023-04-05 (D1=2023-03-31); the 743-day post-2023-04 tail (2024 election spike, SEBI 2024-26 derivatives curbs) is not in this sample.",
+    "The book's only real crisis observation (Mar-2020 COVID) barely registers as a drawdown for THIS book (-6.13% one day) -- the governor's LOW-state (-10%) behavior is evidenced by n=2 episodes only (Feb-2016, Dec-2018), both slow-bleed regimes, not fast crashes. No claim here generalizes to a crash the existing sleeves fail to absorb on their own.",
+    "NIFTY core is price-only in this engine (+1.3pp/yr TR note applies uniformly to every CAGR reported here, governed or not -- does not change relative deltas).",
+    "funding_rate frozen at r=0.06 (declared paper assumption, not a desk number per CONTRACT/risk.yaml note); financing/syn_margin held ON for the underlying book in every cell.",
+    "cost_pp/benefit_pp/net_effect_pp are a SIMPLE ADDITIVE decomposition of daily (scalar-1)*ret_base -- a diagnostic for where the effect comes from, not a compounded return; the reported cagr/maxdd numbers are the compounded, decision-relevant figures.",
+    "Thresholds were frozen before any governor result was read (only the ungoverned dd_diagnostics informed threshold choice, which is a pre-registration-compliant use of descriptive statistics about the baseline, not a fit against governed outcomes) -- no threshold here was chosen by looking at a governed CAGR/DD number."
+  ]
+}

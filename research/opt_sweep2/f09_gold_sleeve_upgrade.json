@@ -1,0 +1,143 @@
+{
+  "family": "f09_gold_sleeve_upgrade",
+  "window": [
+    "2011-07-01",
+    "2023-03-31"
+  ],
+  "baseline_switcher": {
+    "standalone": {
+      "cagr": 10.73214608526003,
+      "dd": -17.585360621756386,
+      "worst_yr": -12.3003581140938,
+      "worst_yr_year": 2022
+    },
+    "book_substitution": {
+      "cagr": 11.129727852097648,
+      "dd": -11.529642180831956,
+      "worst_yr": -2.2696281420907516,
+      "worst_yr_year": 2023,
+      "peak_margin": 22.195692713478277
+    },
+    "corr_vs_core": 0.4174259098106028,
+    "corr_vs_nifty": 0.3231005713628619,
+    "note": "sanity check vs booked OP-D6b a5 (11.13/-11.53/-2.27) and f04's dual_12m row \u2014 must reproduce"
+  },
+  "design_a_vol_managed_permanent": {
+    "cap1.5": {
+      "standalone": {
+        "cagr": 9.651137396670538,
+        "dd": -27.761016379922943,
+        "worst_yr": -19.126507228338284,
+        "worst_yr_year": 2013
+      },
+      "corr_vs_core": -0.280108782418866,
+      "corr_vs_nifty": -0.17330032639507897,
+      "corr_vs_switcher": 0.36078768070707357,
+      "ann_vol_target": 15.0,
+      "mean_lev": 1.3565509640905247
+    },
+    "cap2.0": {
+      "standalone": {
+        "cagr": 9.80602779819466,
+        "dd": -27.761016379922943,
+        "worst_yr": -19.126507228338284,
+        "worst_yr_year": 2013
+      },
+      "corr_vs_core": -0.28418027280806774,
+      "corr_vs_nifty": -0.17424794415216022,
+      "corr_vs_switcher": 0.3565323687251371,
+      "ann_vol_target": 15.0,
+      "mean_lev": 1.6971260275249047
+    },
+    "book_substitution_20pct_like_for_like": {
+      "cagr": 10.977478988313427,
+      "dd": -10.479719252699393,
+      "worst_yr": -5.22185369975513,
+      "worst_yr_year": 2013,
+      "peak_margin": 22.17400588417027
+    },
+    "book_substitution_10pct_freed_to_core_EXPLORATORY_ASSET_MIX": {
+      "cagr": 10.635035328968524,
+      "dd": -10.405202859494988,
+      "worst_yr": -4.066258236983977,
+      "worst_yr_year": 2013,
+      "peak_margin": 24.924064729045767
+    }
+  },
+  "design_b_trend_filter": {
+    "fallback_nifty": {
+      "standalone": {
+        "cagr": 9.64305804888177,
+        "dd": -26.727461490281655,
+        "worst_yr": -15.762509187335016,
+        "worst_yr_year": 2016
+      },
+      "corr_vs_core": 0.4852063947737981,
+      "corr_vs_nifty": 0.3907481375707237,
+      "corr_vs_switcher": 0.915938901888594,
+      "veto_months": 5,
+      "total_months": 141
+    },
+    "fallback_cash": {
+      "standalone": {
+        "cagr": 9.085837472171265,
+        "dd": -20.79255791662846,
+        "worst_yr": -16.041086473659373,
+        "worst_yr_year": 2022
+      },
+      "corr_vs_core": 0.4468843320244566,
+      "corr_vs_nifty": 0.35591851213221587,
+      "corr_vs_switcher": 0.9672926296932496,
+      "veto_months": 5,
+      "total_months": 141
+    },
+    "book_substitution_20pct": {
+      "fallback_nifty": {
+        "cagr": 10.896632306452458,
+        "dd": -13.738804066904287,
+        "worst_yr": -2.2696236803396497,
+        "worst_yr_year": 2023,
+        "peak_margin": 22.195692713478273
+      },
+      "fallback_cash": {
+        "cagr": 10.781849501751939,
+        "dd": -12.410406283592067,
+        "worst_yr": -2.269638595165213,
+        "worst_yr_year": 2023,
+        "peak_margin": 22.19569271347828
+      }
+    }
+  },
+  "design_c_split_holding": {
+    "60_40": {
+      "standalone": {
+        "cagr": 9.774313068726602,
+        "dd": -10.948038688081086,
+        "worst_yr": -4.92648806357886,
+        "worst_yr_year": 2015
+      },
+      "corr_vs_core": 0.638393434281483,
+      "corr_vs_nifty": 0.718372415234861,
+      "corr_vs_switcher": 0.7303565827978147
+    },
+    "70_30_sensitivity": {
+      "standalone": {
+        "cagr": 10.097367297158733,
+        "dd": -12.535160082438257,
+        "worst_yr": -5.560537884179039,
+        "worst_yr_year": 2015
+      },
+      "corr_vs_core": 0.6028328862846615,
+      "corr_vs_nifty": 0.6270788106125411,
+      "corr_vs_switcher": 0.872387676505495
+    },
+    "book_substitution_20pct_60_40": {
+      "cagr": 10.857614539424532,
+      "dd": -10.275193705636065,
+      "worst_yr": -3.0588018443121423,
+      "worst_yr_year": 2023,
+      "peak_margin": 22.315958488703703
+    }
+  },
+  "cells_consumed": 13
+}

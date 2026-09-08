@@ -1,0 +1,91 @@
+{
+  "family_key": "f10_tom_overlay",
+  "date": "2026-09-08",
+  "script": "scripts/opt_sweep2/f10_tom_overlay.py",
+  "ledger_precedent": {
+    "entry": "T6-TOM (research/register/trial-ledger.md)",
+    "ledger_design": "ToM window = last trading day of month + first 4 of the next (Lakonishok-Smidt); mean daily return in-window vs out, full sample + era split at BR6 (2007-2015-03 vs 2015-04-2026)",
+    "ledger_result": "Bar (i) PASS: full-sample ToM premium +7.2bp/day (p=0.025). Bar (ii) fingerprint ABSENT/booked-against: premium shrank +12.2bp/d pre-2015 -> +3.8bp/d (p=0.29) in the SIP era",
+    "consumption_cap_verbatim": "no trade from either print (calendar tilts live under L5's regime and CW's cost discipline); T6 feeds H61's motivation and the deployment-timing playbook only",
+    "reading_for_this_family": "TOM survived bar (i) (real full-sample premium), so this family runs the assigned overlay design per instructions. But the ledger's own CONSUMPTION CAP already forecloses trading on either T6 print -- flagged before running, not discovered after."
+  },
+  "design_tested": {
+    "window": "trading-day offsets -4..+2 around each month's LAST trading day (own construction, NOT the ledger's 0..+4 window -- built fresh per this sweep's brief)",
+    "addon_exposure": "+0.30x of book NAV, additive/incremental (book-relative extra_ret/extra_margin stream into the OP-D6b engine), not a core reweighting",
+    "calm_gate": "VIX-pct(t-1) < 0.60, expanding_percentile min_obs=252 (quant.ladder.credit_cycle), lagged one day -- house convention, same 0.60 cut already used by the book's condor entry/stand-down",
+    "financing": "6%/yr (R=0.06) charged on the 0.30x add-on notional on every active day",
+    "margin": "10% of add-on notional while active = 3.0% of book on active days, 0 otherwise",
+    "lookahead_control": "window is calendar-deterministic (known arbitrarily far ahead); the only conditioning signal (calm gate) uses sd_full.shift(1) -- percentile known through the prior close only, matching core_stream's own timing convention"
+  },
+  "cells": [
+    {
+      "id": "A1",
+      "description": "Raw replicate: mean daily NIFTY return in-window (-4..+2, own construction) vs out-of-window, book's own universe/period 2011-07..2023-03",
+      "numbers": "in-window +9.48bp/day (NW t=+3.05, n=987) vs out-of-window +1.90bp/day (t=+0.72, n=1891); diff +7.58bp/day",
+      "method": "Newey-West (5 lag) t-stat on the daily mean, house convention (no shared quant/stats primitive exists for this -- confirmed by inspection before writing)",
+      "lookahead_risk": "none -- window flag is calendar-deterministic"
+    },
+    {
+      "id": "A2",
+      "description": "Calm-gated replicate: same split restricted to VIX-pct(t-1)<0.60 days on both legs",
+      "numbers": "in-window (calm) +7.38bp/day (t=+2.36, n=685) vs out-of-window (calm) -0.08bp/day (t=-0.03, n=1315); diff +7.45bp/day",
+      "method": "same NW t-stat, gate lagged one day",
+      "lookahead_risk": "none"
+    },
+    {
+      "id": "B",
+      "description": "Baseline book recomputed here (65/20/15, financing+syn_margin ON) -- sanity check against OP-D6b a5",
+      "numbers": "CAGR +11.13%/yr, maxDD -11.53%, worst yr -2.3%, peak margin 22.2% -- EXACT MATCH to booked a5 (+11.13/-11.53/-2.3/22.2)",
+      "method": "run_book(0.65,0.20,0.15,financing=True,syn_margin=True) via the shared OP-D6b engine",
+      "lookahead_risk": "none (unmodified engine)"
+    },
+    {
+      "id": "C",
+      "description": "Book + frozen TOM add-on design (calm-gated, financed, margined) -- THE ASSIGNED DESIGN",
+      "numbers": "CAGR +12.01%/yr (delta +0.89pp vs baseline), maxDD -11.80% (delta -0.27pp, i.e. deeper), worst yr -3.4% (a partial-year stub, see caveats), peak margin 22.4% (delta +0.2pp)",
+      "method": "run_book(...) with extra_ret/extra_margin = 0.30*active*r - 0.30*active*R/252 (return), 0.10*0.30*active (margin), active = window_flag & calm_gate(t-1)",
+      "lookahead_risk": "none -- verified the financing line charges the add-on notional (0.30x), not the whole book; an initial draft bug charged financing on 1.0x notional and was caught/fixed before this result (see caveats)"
+    },
+    {
+      "id": "D",
+      "description": "Sensitivity: same add-on with the calm gate REMOVED (always-on in-window) -- diagnostic on how much of any edge is the gate vs the calendar effect alone",
+      "numbers": "CAGR +13.00%/yr (delta +1.87pp vs baseline, i.e. MORE than the gated design), maxDD -12.21% (delta -0.68pp), worst yr -3.4%, peak margin 23.0%",
+      "method": "same as C with active=window_flag only",
+      "lookahead_risk": "none"
+    },
+    {
+      "id": "E",
+      "description": "Era split (BR6=2015-04) of the add-on's own standalone in-window daily return, replicating the ledger's fingerprint check on THIS script's window definition",
+      "numbers": "pre-BR6 (2011-07..2015-03) +7.98bp/day (t=+1.40, n=315) vs post-BR6 (2015-04..2023-03) +10.18bp/day (t=+2.75, n=672) -- fingerprint is PRESENT (post > pre), the OPPOSITE of the ledger's own window (which shrank +12.2->+3.8bp/day)",
+      "method": "same NW t-stat, split at BR6",
+      "lookahead_risk": "none"
+    }
+  ],
+  "cells_consumed": 6,
+  "diagnostic_not_a_cell": {
+    "description": "Yearly compare, book+overlay(C) vs baseline(B), derived from already-computed cell C/B equity series (no new backtest run)",
+    "years_overlay_hurt": "2018 (+4.25% base -> +2.65% +TOM, -1.60pp) and 2020 (+21.22% -> +19.56%, -1.66pp) -- the NBFC-crisis year and the COVID year, i.e. exactly the two highest-stress full years in-sample",
+    "years_overlay_helped": "2012, 2013, 2014, 2016, 2017, 2019, 2021, 2022 all improved, several materially (2017 +33.10->+37.52, 2022 +3.02->+6.28)",
+    "worst_year_caveat": "the '-3.4% worst yr' figure for cell C is the PARTIAL 2023 stub (2023-01 to 2023-03-31 only, book sample end) not a full calendar year -- thin and not representative on its own"
+  },
+  "caveats": [
+    "PROCESS CAVEAT (self-caught during this run): the first draft of the financing term charged 6%/yr on the FULL notional on active days rather than the 0.30x add-on notional, which would have overcharged financing ~3.3x and produced a spuriously negative headline (CAGR delta -0.20pp instead of the corrected +0.89pp). Caught before reporting by re-reading the design brief ('financing at 6% on the add-on') against the code; fixed and rerun. Flagging explicitly per the adversarial-audit expectation in the assignment.",
+    "WINDOW-SPECIFICATION FRAGILITY: this script's -4..+2 window (assigned) gives the OPPOSITE era-fingerprint sign from the ledger's 0..+4 window on the same underlying NIFTY series/period family -- the SIP-era premium STRENGTHENS here (+7.98->+10.18bp/day) but SHRINKS/VANISHES there (+12.2->+3.8bp/day, p=0.29). Two adjacent, both-reasonable window boundaries flip the qualitative story. This is the CONTRACT SS5 'why does this survive being known' test failing: there is no structural argument that specifically predicts -4..+2 over 0..+4, so the apparent edge is plausibly a boundary-sensitive artifact rather than a robust calendar effect.",
+    "CALM-GATE DOES NOT DO WHAT IT'S SUPPOSED TO: removing the calm gate (cell D) INCREASES the CAGR add (+1.87pp vs +0.89pp) rather than degrading it, which is backwards for a filter meant to admit only the safe days. This suggests part of the raw edge comes from a handful of large positive surprises on non-calm in-window days (rebounds/relief rallies clustering near month-end), not from a clean 'harvest the calm days' mechanism -- weakens the calm-gate's rationale as specified.",
+    "DRAG CONCENTRATES IN THE WORST-DD YEARS: the overlay LOSES money relative to baseline in exactly the two highest-stress full years in-sample (2018 NBFC crisis, 2020 COVID), while gaining in calmer years. Against a CONTRACT that makes drawdown BINDING, an add-on that specifically underperforms in stress years -- even though the aggregate CAGR/DD numbers look acceptable -- is the wrong shape of exposure to add without a stronger structural argument.",
+    "UNINSURED EXPOSURE: the add-on is incremental to core notional and is NOT covered by the standing 91-day put ladder (which is sized off core_w*book, i.e. the core sleeve's own notional only) or the covered-call sleeve. It is naked additional beta for the ~24-34% of days it is active, sized outside the book's existing options risk budget.",
+    "THIN EFFECTIVE SAMPLE: ~141 month-turns in the 2011-07..2023-03 window: this is Tier-B territory (n<30 independent observations by month-turn, cross-country analogues not checked here), not Tier-A. NW t-stats (2.4-3.1 for the in-window premium) are real but this program has now run many related calendar/window cells (T6-TOM plus this family's own A/B/C/D/E) -- the deflated-Sharpe/multiple-testing correction was NOT applied here (out of scope for this script) and should discount confidence further before any adoption decision.",
+    "SAMPLE-END CAVEAT: India VIX vault ends 2023-04-05 vs book D1 2023-03-31 -- fully covered, no truncation issue for this family.",
+    "Reported CAGR is price-only NIFTY total-return proxy per house convention (+1.3pp TR note applies uniformly to baseline and overlay alike, so the DELTA figures above are TR-neutral)."
+  ],
+  "duplicate_exposure_check": "The add-on is pure incremental long-NIFTY beta layered on top of the existing 65% vol-managed core -- it does NOT duplicate the dual-momentum switcher, factor sleeve, or any option overlay, but it DOES duplicate the DIRECTION of core sleeve exposure (same underlying, same side) during its active window, just uninsured by the core's own put ladder. Worth stating plainly: this is 'more of the same beta, timed by calendar,' not a new return source.",
+  "verdict_promising": false,
+  "why": "Bar (i) of T6-TOM survived (real full-sample ToM premium) so the assigned design was run honestly, and the raw book-level number is a modest, non-trivial positive under the frozen design (CAGR +0.89pp vs baseline, maxDD only -0.27pp deeper, well inside the ~3.5pp DD headroom) -- on the numbers alone this looks like it narrows the ~2.6pp CAGR gap by about a third. But three independent things argue against adoption: (1) the ledger's own principal-set CONSUMPTION CAP already forecloses trading on either T6 print, for reasons (calendar tilts belong under L5's regime, cost discipline) that this family's own results reinforce rather than overturn; (2) the era-fingerprint sign FLIPS when the window boundary shifts by a few trading days (this script's -4..+2 strengthens post-2015, the ledger's 0..+4 shrinks post-2015) -- a textbook failure of the CONTRACT SS5 survival test, since no structural mechanism was offered that specifically predicts one boundary over the other; (3) the overlay's drag concentrates exactly in the two worst-DD years in-sample (2018, 2020) and it runs as naked, uninsured beta outside the existing options risk budget -- the wrong risk shape for a drawdown-binding mandate even when the aggregate numbers pencil out. Recommendation: do NOT add this to the standing book; treat this result as a second, independent data point supporting the desk's existing decision to keep T6-derived calendar effects out of live sizing, and record the window-sensitivity finding as a new caveat on H61/L5's calendar-tilt motivation (informational; this script does not and must not edit the trial ledger).",
+  "proposed_design": {
+    "rule": "IF adopted despite the recommendation above: +0.30x incremental NIFTY exposure on trading-day offsets -4..+2 around each month's last trading day, active only when VIX-pct(t-1, expanding percentile min_obs=252) < 0.60; financed at 6%/yr on the 0.30x notional while active; margined at 10% of the active notional (3.0% of book)",
+    "frozen_params": "add-on=0.30x, window=[-4,+2] trading days vs month-end (own construction, not tuned post-hoc), calm cut=0.60 (house convention, reused not invented), financing=6%/yr on add-on notional, margin=10% of add-on notional",
+    "expected_cagr_add_pp": 0.89,
+    "expected_dd_impact_pp": -0.27,
+    "confidence": "low -- window-specification fragility (era-fingerprint sign flip vs the ledger's own window), calm-gate not behaving as a risk filter (cell D beats cell C), drag concentrated in the two worst-DD years in-sample, and an explicit pre-existing principal consumption cap on this exact signal family all argue against treating this as a robust, adoptable edge despite the headline CAGR number"
+  }
+}

@@ -119,14 +119,19 @@ DF2 = pd.DataFrame({"S": S_, "vix": vx}).reindex(dates).ffill()
 
 
 def run_book(core_w, sw_w, fac_w, cap=1.5, financing=False, overlays=True,
-             fac_monthly=None, syn_margin=False, extra_ret=None, extra_margin=None):
+             fac_monthly=None, syn_margin=False, extra_ret=None, extra_margin=None,
+             fac_margin_rate=None):
     """The stacked book, daily loop (OP-D5 mechanics). extra_ret/extra_margin: optional
-    book-relative daily return / margin-fraction streams (weekly sleeve, MR overlay)."""
+    book-relative daily return / margin-fraction streams (weekly sleeve, MR overlay).
+    fac_margin_rate (SW2-A1): margin rate applied to the factor sleeve's GROSS notional
+    (fac_w x 2 x lagged monthly leverage x book) — the f15 audit found this line missing;
+    None (default) preserves reproduction of prints booked before 2026-09-08."""
     core_ret, expo = core_stream(cap, financing)
     sw_d = month_stream(SW_M)
     fac_d = month_stream(fac_monthly if fac_monthly is not None else fac_vm) \
         if fac_w > 0 else pd.Series(0.0, index=dates)
     exl = expo.shift(1)
+    flev_d = flev.reindex(dates, method="ffill") if fac_margin_rate else None
     book = 100.0
     eq_rows = []
     put = None
@@ -180,13 +185,20 @@ def run_book(core_w, sw_w, fac_w, cap=1.5, financing=False, overlays=True,
             m += 0.10 * max((0.0 if pd.isna(e_t) else float(e_t)) - 1, 0) * core_w * book
         if extra_margin is not None:
             m += extra_margin[t] * book
+        if fac_margin_rate:
+            fl = flev_d.get(t, np.nan)
+            m += fac_margin_rate * fac_w * 2 * (0.0 if pd.isna(fl) else float(fl)) * book
         peak_margin = max(peak_margin, m / book)
         eq_rows.append((t, book))
     return pd.Series(dict(eq_rows)), peak_margin
 
 
 def stats_of(eq, d0=D0, d1=D1):
-    yrs = (d1 - d0).days / 365.25
+    # 2026-09-08 machinery fix (SW-2/f07 verifier): d0/d1 previously set only the
+    # year-count while the equity ratio stayed full-period — now the curve is sliced.
+    # No booked print used non-default d0/d1 (OP-D7 used its own win_stats).
+    eq = eq.loc[d0:d1]
+    yrs = (eq.index[-1] - eq.index[0]).days / 365.25
     cagr = 100 * ((eq.iloc[-1] / eq.iloc[0]) ** (1 / yrs) - 1)
     dd = 100 * (eq / eq.cummax() - 1).min()
     yearly = eq.resample("YE").last().pct_change().dropna()

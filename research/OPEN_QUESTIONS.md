@@ -133,3 +133,15 @@ Recommendation recorded (desk view, not a decision): B3-1(b), B3-2(a), B3-3(a), 
   the current books. Decide whether a Stage-3+ scoping study is wanted at all, or whether
   the program's mandate stays cash + protective derivatives only. Desk recommendation:
   defer to Stage 3; revisit only after the full F2/HG1 land.
+- **B4-4 — Foreign-equity scope (from SW-2/f13, 2026-09-08)**: CONTRACT S1's universe
+  (NIFTY 750 + gold + debt) does not authorize foreign equity. Sweep-2's verified
+  survivor: a static 10% SPX-in-INR carve from the core (55/20/15+10) measured
+  +1.07pp CAGR / +1.55pp DD / +1.14pp worst-year in-sample, self-haircut to ~+0.3pp
+  CAGR net of a ~1%/yr feeder TER (secular USD-cycle sample 2011-23, INR 44->82;
+  stress corr flips to +0.82 in COVID — a DIVERSIFIER, not a crash hedge; 2022 the
+  live counterexample). MUTUALLY EXCLUSIVE with f04's tri-asset switcher (same
+  USD/INR bet) absent a combined USD-notional cap. Decide: (a) widen S1 to allow a
+  capped (<=10%) foreign-equity sleeve -> the desk registers the one-shot;
+  (b) keep S1 as-is -> both designs stay parked as design briefs. Desk
+  recommendation: (a), gated on feeder access continuity (AMFI 2022 freeze
+  precedent) and the LRS/feeder tax treatment on your side.

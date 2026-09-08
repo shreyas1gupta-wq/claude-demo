@@ -1,0 +1,170 @@
+{
+  "family": "f13_usd_crash_sleeve",
+  "date": "2026-09-08",
+  "data_span_used": "2011-07-31..2023-03-31 (141 months); book window 2011-07-01..2023-03-31",
+  "cells_consumed": 16,
+  "cell_list": [
+    "build SPX-in-INR monthly series + placement",
+    "standalone SPX-in-INR CAGR/DD/vol",
+    "full-sample monthly correlation vs NIFTY",
+    "correlation conditioned on VIX-pct>=0.90 (stress)",
+    "correlation conditioned on VIX-pct<0.60 (calm)",
+    "mean USD-sleeve return in NIFTY crash months (<=-5%) vs other months",
+    "worst-5 NIFTY months + USD-sleeve return in each (named-event check)",
+    "redundancy check: correlation vs gold-in-INR monthly returns",
+    "era window: 2013 taper (May-Sep 2013)",
+    "era window: 2018 INR/EM stress (Apr-Oct 2018)",
+    "era window: 2020 COVID (Feb-Apr 2020)",
+    "era window: 2022 Fed-hike/INR (Jan-Oct 2022)",
+    "baseline book OP-D6b a5 (0.65/0.20/0.15)",
+    "carved book 0.55/0.20/0.15 + 0.10 USD (PRIMARY design)",
+    "carved book sensitivity: 0.05 USD carve",
+    "carved book sensitivity: 0.15 USD carve"
+  ],
+  "sanity_check_2020_03_16_return_pct": -9.55,
+  "standalone_sleeve": {
+    "cagr_pct": 17.07,
+    "maxdd_pct": -20.01,
+    "ann_vol_pct": 15.11,
+    "corr_vs_nifty_full": 0.453,
+    "corr_vs_nifty_stress_vixpct_ge_090": 0.82,
+    "corr_vs_nifty_calm_vixpct_lt_060": 0.266,
+    "n_months_stress": 9,
+    "n_months_calm": 97,
+    "mean_ret_nifty_crash_months_pct": -1.74,
+    "n_nifty_crash_months": 10,
+    "mean_ret_other_months_pct": 1.65,
+    "corr_vs_gold_in_inr_monthly": 0.022,
+    "stress_months_list": [
+      "2011-09",
+      "2013-08",
+      "2014-04",
+      "2020-03",
+      "2020-04",
+      "2020-05",
+      "2020-06",
+      "2021-02",
+      "2022-02"
+    ],
+    "worst5_nifty_months": {
+      "2020-03": {
+        "nifty_pct": -23.25,
+        "usd_sleeve_pct": -9.46
+      },
+      "2011-11": {
+        "nifty_pct": -9.28,
+        "usd_sleeve_pct": 2.73
+      },
+      "2011-08": {
+        "nifty_pct": -8.77,
+        "usd_sleeve_pct": -3.44
+      },
+      "2016-02": {
+        "nifty_pct": -7.62,
+        "usd_sleeve_pct": 1.32
+      },
+      "2015-08": {
+        "nifty_pct": -6.58,
+        "usd_sleeve_pct": -3.48
+      }
+    }
+  },
+  "era_behavior": {
+    "2013 taper (May-Sep 2013)": {
+      "n_months": 5,
+      "usd_sleeve_cum_pct": 24.12,
+      "nifty_cum_pct": -3.29
+    },
+    "2018 INR/EM stress (Apr-Oct 2018)": {
+      "n_months": 7,
+      "usd_sleeve_cum_pct": 15.61,
+      "nifty_cum_pct": 2.7
+    },
+    "2020 COVID (Feb-Apr 2020)": {
+      "n_months": 3,
+      "usd_sleeve_cum_pct": -3.98,
+      "nifty_cum_pct": -17.57
+    },
+    "2022 Fed-hike/INR (Jan-Oct 2022)": {
+      "n_months": 10,
+      "usd_sleeve_cum_pct": -11.47,
+      "nifty_cum_pct": 3.79
+    }
+  },
+  "book_level": {
+    "baseline_0.65_0.20_0.15": {
+      "cagr_pct": 11.13,
+      "maxdd_pct": -11.53,
+      "worst_year_pct": -2.27,
+      "peak_margin_pct": 22.2
+    },
+    "carved_0.55_0.20_0.15_plus_0.10_usd": {
+      "cagr_pct": 12.2,
+      "maxdd_pct": -9.97,
+      "worst_year_pct": -1.13,
+      "peak_margin_pct": 19.54
+    },
+    "delta": {
+      "d_cagr_pp": 1.07,
+      "d_maxdd_pp": 1.55,
+      "d_worst_year_pp": 1.14
+    },
+    "sensitivity_0.05_usd": {
+      "cagr_pct": 11.67,
+      "maxdd_pct": -10.75,
+      "worst_year_pct": -1.7
+    },
+    "sensitivity_0.15_usd": {
+      "cagr_pct": 12.72,
+      "maxdd_pct": -9.28,
+      "worst_year_pct": -0.56
+    }
+  },
+  "yearly_baseline_pct": {
+    "2012": 14.39,
+    "2013": -0.06,
+    "2014": 22.64,
+    "2015": 0.96,
+    "2016": 3.6,
+    "2017": 33.1,
+    "2018": 4.25,
+    "2019": 7.36,
+    "2020": 21.22,
+    "2021": 27.31,
+    "2022": 3.02,
+    "2023": -2.27
+  },
+  "yearly_carved10_pct": {
+    "2012": 15.18,
+    "2013": 4.85,
+    "2014": 21.78,
+    "2015": 2.46,
+    "2016": 5.02,
+    "2017": 31.1,
+    "2018": 4.34,
+    "2019": 9.62,
+    "2020": 21.34,
+    "2021": 28.72,
+    "2022": 1.64,
+    "2023": -1.13
+  },
+  "verdict": "PROMISING BUT NOT A CLEAN HEDGE \u2014 genuine diversifier, unreliable crash-hedge",
+  "why": "Real diversification exists (calm-regime corr +0.27, zero redundancy with the existing gold-INR switcher at +0.02, and in the worst 5 NIFTY months of the sample the sleeve NEVER compounded the loss \u2014 twice it was outright positive, 2011-11 and 2016-02). But the mechanism is NOT a clean India-crisis hedge: conditioned on VIX-pct>=0.90 the correlation to NIFTY FLIPS to +0.82 (positive, n=9, 4 of 9 months one COVID episode) and the 2022 Fed-hiking window is a direct counterexample (USD sleeve -11.47% while NIFTY was flat/positive) \u2014 the sleeve tracks GLOBAL SPX risk more than India-specific stress, so it helps in India-idiosyncratic/EM-taper events (2013 taper: +24.1% vs NIFTY -3.3%, the cleanest confirmation of the CU-D7 mirror) and can hurt in globally-driven-but-India-resilient regimes (2022). The book-level in-sample dominance (CAGR +1.07pp AND maxDD +1.55pp AND worst-year +1.14pp, all simultaneously better) should NOT be read at face value: the standalone sleeve's +17.07%/yr CAGR is a secular USD-strength/SPX-bull-market artifact of this exact 2011-2023 window (INR depreciated ~45->82, a rare-magnitude multi-decade dollar cycle) and is very unlikely to repeat at that rate; the CAGR improvement should be haircut hard, the DD/worst-year improvement less so (it rests on genuine cross-asset decorrelation, not on the trend). SCOPE GATE: CONTRACT S1's asset universe is 'NIFTY 750 equities, gold, and a debt sleeve' \u2014 foreign (USD) equity exposure is not currently an authorized asset class; this design cannot be promoted without an explicit principal decision widening the mandate (OPEN_QUESTIONS candidate), independent of its statistical merit.",
+  "caveats": [
+    "Era concentration: the whole 2011-2023 sample is one secular USD-strength / INR-depreciation cycle (INR ~44->82/USD) plus a historic US equity bull market; the standalone sleeve's +17.07%/yr CAGR is an upper bound unlikely to persist, and the book-level CAGR delta (+1.07pp) is suspect for the same reason.",
+    "Stress correlation small-n: the VIX-pct>=0.90 bucket has only 9 months, 4 of which are one contiguous COVID episode (2020-03..06) \u2014 the +0.82 stress correlation is a COVID-dominated point estimate, not a robust regime statistic (same 'effective n' problem flagged for F20 in OP-D2).",
+    "2022 is a clean counterexample to the hedge thesis: Fed-hiking global stress hurt the USD sleeve (-11.47%) while NIFTY itself was resilient (+3.79%) \u2014 the mechanism is regime-dependent (helps in India-specific/EM-taper stress, can hurt in global-equity-bear-but-India-resilient stress).",
+    "FX data is MONTHLY ONLY in the vault (fx/inr_usd_monthly_1973_2026.csv) \u2014 there is no daily INR/USD series, so this entire analysis is monthly-resolution; it cannot speak to intraday/multi-day crash dynamics the way the option sleeves in OP-D2 can, and the monthly SPX return is built from the vault's declared diff(adjusted)/lag(unadjusted) futures convention, not a total-return SPX index (no dividends) \u2014 a small, structural understatement of true SPX total return.",
+    "India VIX sample ends 2023-04 (same constraint as the rest of the book); the 743-day post-2023-04 tail (2024 election spike, SEBI derivatives curbs) is untested here, consistent with OP-D2's C12 caveats.",
+    "CONTRACT SCOPE GATE (not a data or statistics caveat): CONTRACT.md S1's asset universe is NIFTY 750 + gold + debt; foreign equity is not currently authorized. This is a principal decision (OPEN_QUESTIONS candidate), not something this sweep can freeze on its own authority.",
+    "No implementation costs modeled: real access to SPX exposure from an Indian PMS book (LRS-routed funds, GIFT City structures, or INR-denominated US-index feeder funds) carries FX-conversion spread, a materially higher TER (~1%/yr for feeder funds vs <0.1% domestic index) than assumed here (zero), and periodic SEBI/AMFI industry-wide caps on fresh overseas-fund subscriptions have intermittently frozen new inflows to US-linked funds (a 2022 precedent) \u2014 an access-continuity risk for a 'permanent' always-on sleeve that this backtest does not price in. [UNVERIFIED for this book's actual execution vehicle \u2014 flagged, not backtested.]",
+    "No redundancy with the existing 20% NIFTY-vs-gold-INR switcher (corr +0.02) \u2014 this is a genuinely distinct exposure, not double-counted currency risk."
+  ],
+  "proposed_design": {
+    "rule": "Carve 10pp from the core vol-managed sleeve (0.65->0.55) into a permanent, unhedged, unlevered allocation to SPX exposure marked in INR (S&P 500 futures-equivalent return x INR/USD), rebalanced monthly at each sleeve's existing month-end mark; no timing signal, no FX hedge, no leverage \u2014 a structural reallocation of existing capital, not incremental gross.",
+    "frozen_params": "usd_w=0.10 (carved 1:1 from core_w: 0.65->0.55); sw_w=0.20 and fac_w=0.15 unchanged; monthly cadence (house convention, and the only cadence the vault's FX data supports); FX unhedged by construction (hedging it would remove the exact mechanism being tested); size fixed at 10% per this family's brief, not tuned against backtest Sharpe \u2014 5%/15% sensitivity checks show smooth, monotonic CAGR/DD response rather than a fitted interior optimum.",
+    "expected_cagr_add_pp": 0.3,
+    "expected_dd_impact_pp": 1.0,
+    "confidence": "low-medium: DD/worst-year direction is grounded in a real, low, sometimes-negative calm-regime correlation and zero redundancy with the existing gold sleeve, so directionally credible; the measured CAGR add is a secular-trend artifact and heavily haircut here; the stress-regime correlation is small-n and the 2022 window is a live counterexample, so 'crash hedge' framing should not be oversold \u2014 call it a diversifier with a scope gate (CONTRACT S1 does not currently authorize foreign equity) still open."
+  }
+}

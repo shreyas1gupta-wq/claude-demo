@@ -1,0 +1,113 @@
+{
+  "family": "f15_cash_yield_audit",
+  "date": "2026-09-08",
+  "window": {
+    "start": "2011-07-01",
+    "end": "2023-03-31"
+  },
+  "standing_book_weights": {
+    "core": 0.65,
+    "switcher": 0.2,
+    "factor": 0.15,
+    "cap": 1.5,
+    "financing": true,
+    "syn_margin": true
+  },
+  "booked_reference": {
+    "cagr": 11.13,
+    "tr_cagr": 12.43,
+    "maxdd": -11.53,
+    "peak_margin_pct": 22.2,
+    "worst_year_pct": -2.3,
+    "source": "OP-D6b a5 (task brief 'THE STANDING BOOK')"
+  },
+  "sanity_check": {
+    "reimpl_cagr": 11.1297,
+    "reimpl_maxdd": -11.5296,
+    "reimpl_peak_margin_pct": 22.196,
+    "note": "matches the booked OP-D6b a5 numbers to within engine rounding -- confirms we are starting from the SAME run before applying the cash-yield correction."
+  },
+  "idle_cash_diagnostics": {
+    "pct_trading_days_expo_lt_1": 44.13,
+    "pct_trading_days_expo_gt_1": 55.84,
+    "pct_trading_days_stress_half_active(pct>=0.90)": 7.57,
+    "avg_expo": 1.0387,
+    "median_expo": 1.0455,
+    "avg_idle_fraction_of_book_pct": 7.515,
+    "avg_idle_fraction_of_core_allocation_pct": 11.561,
+    "avg_idle_fraction_era1_2011_2016_pct": 8.065,
+    "avg_idle_fraction_era2_2017_2023_pct": 7.039,
+    "avg_idle_fraction_covid_window_pct": 46.87,
+    "max_idle_fraction_of_book_pct": 58.701,
+    "max_idle_date": "2020-03-26",
+    "note": "expo<1 (idle core cash) occurs on 44.1% of trading days and expo>1 (financed leverage, already handled by the E2 fix) on 55.8% -- core is levered MORE often than it is under-deployed (avg/median expo both >1.0), but the idle-cash tail is concentrated exactly where it matters most: the deep vol spikes (COVID) that also drive the book's drawdown, not spread evenly across calm periods."
+  },
+  "cash_yield_correction": {
+    "repo_6pct": {
+      "credit_rate_annual_pct": 6.0,
+      "corrected_cagr_pct": 11.6194,
+      "corrected_tr_cagr_pct": 12.9194,
+      "corrected_maxdd_pct": -11.2817,
+      "corrected_worst_year_pct": -2.27,
+      "corrected_worst_year": 2023,
+      "corrected_peak_margin_pct": 22.168,
+      "corrected_era1_cagr_pct": 8.0568,
+      "corrected_era2_cagr_pct": 14.8821,
+      "cagr_add_vs_uncorrected_pp": 0.4897,
+      "maxdd_change_vs_uncorrected_pp": 0.248
+    },
+    "liquid_fund_4pct": {
+      "credit_rate_annual_pct": 4.0,
+      "corrected_cagr_pct": 11.456,
+      "corrected_tr_cagr_pct": 12.756,
+      "corrected_maxdd_pct": -11.3644,
+      "corrected_worst_year_pct": -2.27,
+      "corrected_worst_year": 2023,
+      "corrected_peak_margin_pct": 22.178,
+      "corrected_era1_cagr_pct": 7.8879,
+      "corrected_era2_cagr_pct": 14.7236,
+      "cagr_add_vs_uncorrected_pp": 0.3262,
+      "maxdd_change_vs_uncorrected_pp": 0.1652
+    }
+  },
+  "capital_use_check": {
+    "description": "Directly-invested NOTIONAL (not margin) from core+switcher+factor gross legs, as a fraction of book, at each date -- core up to 1.5x, switcher always 1x, factor gross = 2*flev*fac_w (long+short legs, flev cap 2.0x).",
+    "max_total_directed_notional_pct_of_book": 177.5,
+    "mean_total_directed_notional_pct_of_book": 134.17,
+    "max_factor_gross_notional_pct_of_book": 60.0,
+    "mean_factor_gross_notional_pct_of_book": 46.653,
+    "max_core_notional_pct_of_book": 97.5,
+    "run_book_factor_margin_line": "ZERO -- run_book()'s own peak_margin calc (the `m` series) sums condor-approx + covered-call + put-ladder + syn_margin (core leverage) only. The factor sleeve (long-short, up to flev=2x both legs) contributes NO margin term at all today.",
+    "missing_factor_margin_upper_bound_hedged_2.5pct_pp_of_book": 1.5,
+    "missing_factor_margin_upper_bound_unhedged_10pct_pp_of_book": 6.0,
+    "peak_margin_incl_factor_line_hedged_upper_bound_pct": 23.7,
+    "peak_margin_incl_factor_line_unhedged_upper_bound_pct": 28.2,
+    "booked_peak_margin_pct": 22.2,
+    "verdict": "NO >100% capital-use conflict found. core_w+sw_w+fac_w sum to exactly 100% book-capital by construction (no double earmarking); the factor sleeve's OWN internal leverage (up to 2x, gross legs up to ~60% of book at the historical flev ceiling) raises NOTIONAL exposure, not capital committed -- its dedicated 15% earmark is 4-10x larger than the margin that notional would actually need under EITHER margin-model rate (hedged 2.5%: <=1.5pp of book; unhedged 10%: <=6pp of book), so it is self-collateralizing within its own earmark with slack to spare. Even adding this previously-uncosted factor-margin line on top of run_book's reported 22.2% peak margin (as an UPPER BOUND -- the two peaks may not coincide on the same day) reaches at most ~28pp, still far under the 100% of book that would signal an actual capital shortfall, and does not touch the CONTRACT gross-leverage (1.5x) or options-notional (50%/75%) caps, which are separate hard limits this audit does not re-derive.",
+    "caveat": "This is a bound, not a full margin re-simulation: run_book prices the factor sleeve purely as a return stream (book*fac_w*fac_vm) with no explicit long/short position objects, so there is no path-exact `m` series to add a factor-margin line into inside the engine itself -- the two peak-margin figures above are additive upper bounds (worst factor-margin day + worst existing-margin day), not a re-run with a genuinely combined daily margin series."
+  },
+  "cells_consumed": 5,
+  "findings": [
+    {
+      "name": "idle_core_cash_is_a_persistent_minority_state_concentrated_in_stress",
+      "description": "expo<1 (core under-deployed vs its 15% vol target) on 44.1% of trading days over 2011-07-01..2023-03-31 (expo>1, financed leverage, is actually more common at 55.8% -- avg/median expo both sit above 1.0); the AVERAGE idle fraction across ALL days is 7.51% of total book (equivalently 11.56% of the core's own 65% earmark) sitting at literally zero yield in the uncorrected engine, and it is far from evenly spread -- the COVID window alone averages 46.9% of book idle. core_stream() only ever SUBTRACTS a financing cost (E2, expo>1 leg); it never CREDITS anything on the expo<1 leg -- a one-sided accounting gap, not a modeling choice."
+    },
+    {
+      "name": "the_fix_is_small_but_real_and_asymmetrically_helpful_in_stress",
+      "description": "Crediting idle cash at 6%/yr adds +0.490pp CAGR (11.13->11.62); at 4%/yr adds +0.326pp. Both are small next to the 2.6pp CAGR gap to the 15% TR target, but note the idle fraction peaks in exactly the periods that matter for drawdown: the COVID window (2020-02..2020-06) averages 46.87% of book idle (core de-levers hard on the vol spike), so crediting a yield there also nudges maxDD (+0.248pp at 6%) -- the correction is not pure upside, it also very slightly cushions the trough."
+    },
+    {
+      "name": "no_capital_use_conflict_from_the_factor_sleeve_but_its_margin_line_is_missing",
+      "description": "core (up to 1.5x) + switcher (1x) + factor (up to 2x both legs, gross notional peaking at 60.0% of book) never implies >100% of book CAPITAL committed, because the three sleeve weights are dedicated earmarks summing to exactly 100% and the factor sleeve's 15% earmark comfortably over-collateralizes its own margin need under either margin-model rate. Separately, however, run_book()'s peak-margin accounting (the reported 22.2%) has NO margin line at all for the factor sleeve today -- adding one (upper-bound, additive) moves peak margin to at most ~28.2% (unhedged) -- still nowhere near a capital shortfall, but the 22.2% figure quoted in the standing-book description understates true peak margin usage by this amount and should carry that caveat if peak-margin heat is ever binding elsewhere."
+    }
+  ],
+  "caveats": [
+    "Idle-cash fraction and the cash-yield correction use expo AS COMPUTED by core_stream() (EWMA lambda=0.94, 15% target, cap 1.5x, stress-halving at pct>=0.90) lagged by one day -- identical to what run_book() itself uses to size the core position (exl = expo.shift(1)); no new signal or lookahead introduced.",
+    "6%/4% are declared paper assumptions (repo-ish / net-liquid-fund), not desk numbers -- risk.yaml's funding_rate is still null pending principal confirmation; if the true repo rate differs materially, rescale the cagr_add linearly (it is by construction ~linear in rate for the sizes involved here).",
+    "The correction assumes the idle cash is ACTUALLY available to invest in a liquid instrument with same-day-ish liquidity (no settlement lag, no separate account friction) -- operationally this requires an active sweep, not a design change to the strategy itself.",
+    "The factor-sleeve capital-use check is a bound, not a re-simulation (see capital_use_check.caveat): run_book has no explicit long/short position objects for the factor sleeve to price a genuine combined daily margin series.",
+    "Price-only NIFTY core: the standard +1.3pp/yr TR note applies uniformly and is already carried through in corrected_tr_cagr_pct above; it does not interact with this correction.",
+    "India VIX vault ends 2023-04-05 (sample end for this whole engine); this audit inherits that boundary and makes no claim about the idle-cash mechanics in the post-2023-04 tail (election spike, SEBI 2024-26 derivatives curbs).",
+    "This is an ACCOUNTING fix, not a new alpha claim -- it does not change any signal, weight, or overlay rule in the standing book; it only credits capital that the current engine silently drops."
+  ]
+}

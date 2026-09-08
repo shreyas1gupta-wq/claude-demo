@@ -85,7 +85,9 @@ this census exists so that can never happen silently.
 | OP-D6b correction leg (E1 month-drop + E2 financing; a1 diagnostic + 4 re-runs) | 5 | 5 |
 | MR-D1 mean-reversion battery (m1, m2a/b, m3a/b, m4a/b, m5) | 8 | 8 |
 | OP-D7 relaxed-constraint grid (24 train + selection + validation + 8 final reads; MR axis dropped pre-run) | 34 | 34 |
-| **RUNNING TOTAL (run cells)** | | **759** |
+| SW-2 strategy sweep 2 (15 families, self-reported exploratory cells + 5 verifier reruns at 2 each; synthesizer tally) | 251 | 251 |
+| SW2-A1 idle-cash accounting correction (c1 repro+acceptance, c2 6% footnote, c3 margin bounds) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **1013** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

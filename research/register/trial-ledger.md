@@ -2956,3 +2956,32 @@ cell. ALL exploratory cells enter the census at completion (OP-D2 precedent); no
 number is a booked result; any surviving design gets its OWN one-shot registration
 (bars + prior frozen) before running against the corrected baseline (OP-D6b a5,
 +11.13/-11.53, TR ~+12.43). Census: exploratory cell count booked on return.
+
+## Entry SW2-A1 (2026-09-08) — PRE-REGISTERED before running: THE IDLE-CASH ACCOUNTING
+CORRECTION (SW-2 rank-1 consumption; f15 audit + Fable-synthesizer spec, adopted
+verbatim). Not a strategy — an accounting gap symmetric to E2: core_stream charges
+financing on expo>1 (E2 fix) but credits NOTHING on the idle core fraction when expo<1
+(44.1% of days; avg 7.5% of book idle, 46.9% in the COVID window). FROZEN: credit rate
+4.0%/yr (conservative net-liquid-fund, deliberately BELOW the 6% financing rate so the
+credit leg can never outrank the cost leg; when the principal sets funding_rate,
+re-book by linear rescale, never re-tune); credit base = CORE_W x (1-expo.shift(1))+ —
+the engine's own one-day-lagged deployment series, zero new signal; day-count R/252;
+applied via run_book's extra_ret hook (process note #6). Weights/caps unchanged.
+CELLS (3): c1 baseline repro + credited-4% run — ACCEPTANCE: bit-for-bit vs f15's
+liquid_fund_4pct cell (corrected CAGR 11.456, maxDD -11.3644); on acceptance ADOPTED
+as the corrected baseline all future designs compare against; c2 the 6%-repo footnote
+read; c3 peak-margin re-read INCLUDING the missing factor-sleeve margin line (f15
+capital-use check: run_book's m-series carries ZERO margin for the long-short factor
+sleeve, gross up to 60% of book) — both treatments printed (hedged 2.5% / unhedged 10%
+on gross), declared as bounds pending a principal convention. MACHINERY (no cells):
+stats_of(eq, d0, d1) in analyze_op_d6b.py silently ignored d0/d1 on the equity slice
+(the f07 verifier's find) — fixed to slice; NO booked print used non-default args
+(OP-D7 train/test used its own correctly-slicing win_stats), so no booked number is
+affected — but the trap is real and a shared sliced-stats helper is owed to
+quant/stats/ on the next machinery leg. Census 3.
+Script: scripts/analyze_sw2_a1.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| SW-2 | Strategy sweep 2: 15 Sonnet research agents (waves of <=5) x 15 families + 5 adversarial refuters + 1 Fable synthesizer; 21 agents, 0 errors; artifacts in research/opt_sweep2/ + scripts/opt_sweep2/ | **12 OF 15 FAMILIES HONESTLY DEAD; THE AUDIT LAYER EARNED ITS KEEP** (3 of 5 self-judged-promising families REFUTED by verifiers on flaws invisible to their own authors). Dead with mechanisms named: f01 overnight core (spectacular gross +26.3/-5.5 but cost-breakeven only 2-4bp one-way — a cost mirage; also 4.3x worse on zero-warning shocks); f02 VRP-quintile condor sizing (vacuous — reduces to a naive cap raise breaching the 10%-DD invariant); f03 lagged IV-RV gate (clean re-registration of the dead F13: DEAD AGAIN — a trade-more-often frequency confound, loses to frequency-matched VIX-pct controls); f05 factor extensions (SMB doubles maxDD; keep 50/50); f06 put-ladder frontier (REFUTED: protection axis silently measured Feb-2016, not 2020); f07 covered-call grid (REFUTED: its OOS bar was computationally vacuous — the agent inherited the stats_of d0/d1 no-op trap; TRUE test edge only +0.55pp with flat-worse DD); f08 DD governor (buys headroom the book does not need); f09 gold upgrades (flat/negative); f10 TOM overlay (era fingerprint flips under window shift; principal's no-trade cap stands); f11 factor rotation timing (destroys the -0.37 diversification benefit); f12 low-vol core (REFUTED twice: survivor panel positive-claim + undisclosed 2013-16 concentration); f14 faster stand-downs (rarer AND worse DD; do not re-try with tweaked thresholds). SURVIVORS: f15 idle-cash accounting gap (-> SW2-A1, adopted); f13 static 10% SPX-in-INR carve (+1.07pp CAGR/+1.55pp DD in-sample, self-haircut ~+0.3pp net of feeder TER; CONTRACT S1 scope-gated -> OPEN_QUESTIONS B4-4); f04 tri-asset 12-1 switcher (verified clean but ADDS NO CAGR: -0.12pp for +1.82pp DD — parked as stored DD budget, MUTUALLY EXCLUSIVE with f13). SYNTHESIS: the remaining ~2pp of the CAGR gap CANNOT be closed from inside the sleeve set on vault data — it is data-gated (real option chains, PIT panel, daily INR, post-2023 VIX — all Priority-1 pulls) and decision-gated (B4-4, batches 3+4) | **the vault's degrees of freedom are exhausted at index resolution; 251 exploratory cells booked; census +251 = 1010** |
+| SW2-A1 | The idle-cash accounting correction (SW-2 rank-1): credit 4%/yr on the core's lagged idle fraction via extra_ret; one-shot, acceptance = bit-for-bit vs f15 | **c1 ACCEPTED: CAGR +11.456 (TR ~+12.76), maxDD -11.3644 — bit-for-bit vs f15's cell; ADOPTED AS THE CORRECTED BASELINE** (dCAGR +0.33pp, dDD +0.17pp vs a5; worst yr -2.3 Q1-23 stub; eras +7.89/+14.72). c2 footnote @6% repo: +11.62 (TR ~+12.92)/-11.28 (+0.49pp) — linear rescale when funding_rate lands. c3 peak-margin re-read WITH the previously-missing factor-sleeve margin line: 23.7% (hedged 2.5% on gross) to 28.2% (unhedged 10%) vs 22.2% ex-factor — bounds declared pending a principal SLB-margin convention; all inside the 30% feasibility prior. MACHINERY booked: stats_of d0/d1 slicing fixed (no booked print affected — verified); run_book gains fac_margin_rate (default None preserves pre-2026-09-08 reproduction); a shared sliced-stats helper owed to quant/stats/ | **baseline now +11.46 TR ~+12.76 / -11.36; census +3 = 1013** |

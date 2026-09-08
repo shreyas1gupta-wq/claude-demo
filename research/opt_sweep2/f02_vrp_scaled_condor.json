@@ -1,0 +1,89 @@
+{
+  "family_key": "f02_vrp_scaled_condor",
+  "date": "2026-09-08",
+  "status": "EXPLORATORY -- NOT BOOKED (agent-level sweep, feeds a possible future H60-VRP-adjacent registration; no trial-ledger entry written by this agent per task scope)",
+  "script": "/home/user/claude-demo/scripts/opt_sweep2/f02_vrp_scaled_condor.py",
+  "window": "2011-07-01..2023-03-31 (standing sleeve window, unchanged)",
+  "cells_consumed": 15,
+  "cell_accounting": [
+    "5 standalone condor backtests (BASE, TASKEX, VRPQ3, VRPQ4ANC, TASKEX_NOCAP)",
+    "2 more standalone backtests (FLATUP_Q4MATCH control, DOWNQ4 C11-compliant variant)",
+    "2 conditional means (Q4 entries mean/worst cycle return, Q5 entries mean/worst cycle return, on the BASE run)",
+    "6 book-level integrations (BASE, TASKEX, VRPQ3, VRPQ4ANC, FLATUP_Q4MATCH, DOWNQ4 each substituted into the standing OP-D6b honest-baseline book)",
+    "total = 5+2+2+6 = 15 (the maxDD-trough-date diagnostic reused cached book equity curves -- no new cell)"
+  ],
+  "pre_registered_bars": {
+    "R1_standalone": "condor-sleeve-standalone CAGR improves by >= +1.0pp/yr vs the uniform-multiplier BASE, without standalone maxDD worsening by more than 2.0pp",
+    "R2_book_level": "book-level CAGR improves by >= +0.3pp/yr at book-level maxDD impact no worse than +1.0pp (i.e. a genuine dent in the 2.6pp gap to the 15% CAGR target without eating the 3.5pp DD headroom)",
+    "R3_process": "not a pass/fail bar -- report whether all 5 nominal VIX quintiles are actually reachable given the entry gate is fixed at >=0.60 (per the family assignment); if not, report the true reachable set rather than silently averaging over it"
+  },
+  "design_note_on_quintile_definition": "Fixed cutpoints 0.20/0.40/0.60/0.80 on the SAME expanding VIX percentile ('pct', min_obs=252, no lookahead) already used for the standing entry gate. The quintile a position enters in is read at the entry-day close and FROZEN for the position's life -- identical convention to how s_t/f is already frozen at entry in the standing sizing formula (OP-D2 SYNTHESIS C02). No lookahead introduced: this is the same signal-time information the entry gate itself already uses.",
+  "findings": [
+    {
+      "name": "R3 reachability -- the 5-quintile framing is degenerate given the standing entry gate",
+      "numbers": "entry-eligible days (pct>=0.60, not a no-entry Budget day) span ONLY quintile indices {3,4} (Q4=[0.60,0.80), Q5=[0.80,1.00]) across the full 2011-07..2023-03 window -- pct range on eligible days [0.600, 1.000]. Q1/Q2/Q3 multipliers (the task's example x0.5/x0.75/x1.0) are DEAD CODE: they never fire because the entry gate (fixed at >=0.60, unchanged per the task) structurally excludes them.",
+      "method": "scanned df3['pct'] on all days in [D0,D1] satisfying the entry gate (pct>=entry_th=0.60 and not a Budget no-entry day), took quintile_idx() of each, reported the observed set.",
+      "lookahead_risk": "none -- this is a descriptive scan of the entry gate's own domain, not a fitted parameter"
+    },
+    {
+      "name": "Within the 2 reachable buckets, Q4 dominates Q5 9-to-1 -- the economically interesting bucket is nearly invisible",
+      "numbers": "BASE run (uniform mult=1.0), 33 total condor entries over 12 years: Q4 n=30 (91%), mean cycle return +0.416%, worst cycle -1.749%, mean realized f 0.0995; Q5 n=3 (9%), mean cycle return +0.041%, worst cycle -0.371%, mean realized f 0.0906.",
+      "method": "logged (entry date, entry quintile, realized f, cycle P&L) for every position opened/closed in the BASE run and grouped by quintile -- 2 conditional means (Q4, Q5).",
+      "lookahead_risk": "none (descriptive breakdown of an already-run, no-lookahead backtest)"
+    },
+    {
+      "name": "VRPQ4ANC (the honest 'minimal departure' design -- keep Q4 at its existing size, only upsize the rare Q5 bucket by its OP-D1-measured VRP premium 5.9/3.7=1.595x) changes NOTHING detectable",
+      "numbers": "standalone: d_geo -0.007pp, d_maxDD -0.000pp vs BASE. Book-level: d_CAGR -0.008pp, d_maxDD -0.000pp vs BASE. Both at noise level.",
+      "method": "run_scaled with mults=[.,.,.,1.0,1.595] (Q0-2 never reached so their value is moot), cap_scales=True; substituted into the standing OP-D6b book (0.65/0.20/0.15, financing=True, syn_margin=True) in place of OP_RET.",
+      "lookahead_risk": "none for the backtest mechanics; the 1.595 multiplier itself is calibrated from OP-D1's FULL-SAMPLE VRP-by-quintile print (a2, printed/booked in the trial ledger) -- same in-sample-parameter-selection convention already used for every other frozen constant in this design (entry threshold 0.60, wing 2.5, roll 0.30 are all similarly full-sample-derived), not a live look-ahead signal"
+    },
+    {
+      "name": "Any design that raises the Q4 multiplier above 1.0 is INDISTINGUISHABLE from a flat, non-VRP, non-quintile-conditioned cap raise -- the 'VRP quintile scaling' idea contributes zero incremental value",
+      "numbers": "FLATUP_Q4MATCH (a naive uniform 1.423x scale applied to ALL 5 quintiles, carrying zero VRP information) reproduces VRPQ3 (Q4=1.423, Q5=2.269, sourced from OP-D1's measured quintile means) BIT-FOR-BIT: standalone geo +1.399%/yr both, maxDD -3.854% both, book CAGR +11.492%/yr both, book maxDD -11.261% both (to 3 decimal places in the script's own output). The entire 'improvement' traces to the Q4 multiplier alone; differentiating Q5 from Q4 (VRPQ3's whole premise) adds exactly the ~0 already shown by VRPQ4ANC.",
+      "method": "ran FLATUP_Q4MATCH as a control (mults=[1.423]*5, cap_scales=True) alongside VRPQ3 (mults=[0.731,0.846,1.0,1.423,2.269], cap_scales=True) and compared standalone + book-level stats.",
+      "lookahead_risk": "none -- both are frozen-constant backtests"
+    },
+    {
+      "name": "Every design that beats the R1/R2 bars does so by raising the effective margin cap above the existing C11 structural invariant (f_cap=0.10) -- a real risk-limit breach, not a free lunch",
+      "numbers": "TASKEX/VRPQ3/FLATUP_Q4MATCH all use cap_scales=True, i.e. f = min(0.150*s_t, 0.10*mult) with mult=1.25-1.423 in the dominant Q4 bucket -- raising the worst-single-cycle-loss ceiling from 10% of book to 12.5-14.2% of book. OP-D2 SYNTHESIS's risk-limit table (rows 1,4,7) states f_cap=0.10 exists SPECIFICALLY so 'a full-margin wipe alone must not breach the 10% DD ceiling' and the sleeve DD governor is 'P(maxDD>10%) <= 1%/yr.' None of these designs re-derives that budget for the new, higher cap -- they simply exceed it.",
+      "method": "compared each design's implied worst-single-cycle-loss ceiling (10%*mult at the dominant reachable bucket) against the C11 f_cap=0.10 invariant stated in research/opt_sweep/SYNTHESIS.md S7 row 1.",
+      "lookahead_risk": "n/a (a risk-limit-compliance check, not a backtest statistic)"
+    },
+    {
+      "name": "The ONLY C11-compliant quintile-differentiated design tested (downsize the dominant Q4 bucket, leave Q5 at its existing cap) makes the book WORSE, not better",
+      "numbers": "DOWNQ4 (mults=[.,.,.,0.75,1.0], cap_scales=True, i.e. no bucket ever exceeds the existing 0.10 cap): standalone geo -0.268pp, maxDD +0.727pp (i.e. less negative -- lower risk, as expected from shrinking the sleeve) vs BASE. Book-level: CAGR -0.298pp (worse) AND maxDD -0.344pp (ALSO worse, i.e. de-risking the condor sleeve did not help the book's drawdown in-sample either) vs BASE.",
+      "method": "run_scaled with mults=[1,1,1,0.75,1.0], cap_scales=True (never exceeds the 0.10 cap since Q5 stays at 1.0x=0.10 and Q4 is only shrunk); substituted into the standing book.",
+      "lookahead_risk": "none"
+    },
+    {
+      "name": "The book-level maxDD 'improvement' seen in the cap-breaching designs is a single-date coincidence, not a structural diversification property",
+      "numbers": "Book maxDD trough date is IDENTICAL for BASE and VRPQ3: 2016-02-25 in both cases (only the magnitude differs, -11.530% vs -11.261%). The condor sleeve's own worst month in both runs is 2020-02-29 (COVID), a DIFFERENT date entirely from the book's own drawdown trough. This means upsizing the condor sleeve happened to add a bigger favorable offset on the SAME already-existing worst-drawdown date (2016-02-25, near a Budget window) -- it did not shift, avoid, or better-handle any crisis episode. n=1 in-sample event; not generalizable.",
+      "method": "located argmin(eq/eq.cummax()) for the BASE and VRPQ3 book equity curves and compared to the condor sleeve's own worst month.",
+      "lookahead_risk": "n/a (post-hoc diagnostic on already-computed equity curves)"
+    },
+    {
+      "name": "Realized entry-level sizing is NOT always pinned to the 0.10 cap, contra a literal read of OP-D2 SYNTHESIS's band-median table",
+      "numbers": "mean realized f across actual historical entries: Q4 0.0995, Q5 0.0906 (both HERE below 0.10, not pinned at it) -- SYNTHESIS S3's 'pct 0.60/0.80/0.95 -> all capped 0.10' table used specific band medians; the true entry-by-entry distribution has some entries with raw pre-cap f < 0.10 (visible especially in Q5, where higher realized vol at entry shrinks s_t). This is why the TASKEX_NOCAP control (multiplier applied only to the ALREADY-capped f) still moved the needle (+0.269pp standalone geo) rather than being a true no-op as originally hypothesized in this script's docstring.",
+      "method": "averaged the realized (pre-multiplier) f value logged at every BASE-run entry, split by quintile.",
+      "lookahead_risk": "none (descriptive)"
+    }
+  ],
+  "verdict_promising": false,
+  "why_dead": "The family as specified (VRP-scaled condor sizing by expanding VIX quintile, entry gate fixed >=0.60) cannot be meaningfully tested on its own terms: the entry gate already restricts the sleeve to the top 2 of 5 nominal quintiles, and within that restricted population the economically interesting bucket (Q5, true top-of-VRP-curve) fires only 3 times in 12 years (9% of entries) versus Q4's 30 (91%). Any design that differentiates Q4 from Q5 while respecting the existing C11 sizing cap (f_cap=0.10) is indistinguishable from doing nothing (VRPQ4ANC: -0.008pp book CAGR, noise). Any design that clears the pre-registered improvement bars does so ONLY by raising the Q4 multiplier -- and a naive flat (non-quintile, non-VRP) cap raise (FLATUP_Q4MATCH) reproduces the 'VRP-scaled' design's numbers bit-for-bit, proving the improvement carries zero VRP-quintile information content. That flat cap raise itself breaches the existing C11 structural invariant (f_cap=0.10, sized so a full-margin wipe cannot exceed 10% book DD) without re-deriving the DD budget for the new ceiling -- out of scope for this cell budget and not something this family's framing licenses on its own. The one variant that stays within the existing risk limits (DOWNQ4) makes the book measurably worse on both CAGR and maxDD. Net: this is a clean kill of the quintile-conditioning HYPOTHESIS specifically (not of condor sizing generally) -- OP-D1's VRP monotonicity is real and unconditional, but it does not survive being intersected with the sleeve's own, already-gated entry population.",
+  "caveats": [
+    "Sample: India VIX vault 2010-07-23..2023-04-05; 2008 GFC not in sample; only one VIX-conditioned crisis episode (COVID, 2020-02/03) in the whole window -- every number above is calibrated on a crisis-light sample (same caveat OP-D2 SYNTHESIS C12 already states for the whole condor sleeve).",
+    "Paper best-case: flat-sigma Black-Scholes at India VIX, r=0.06, zero transaction costs, no smile/skew, no bid-ask, margin proxy = max loss (not SPAN+exposure) -- identical caveats to OP-D3/OP-D6b, inherited verbatim since this reuses their machinery unchanged.",
+    "Book-level margin proxy (0.025*1.1*book flat) used by run_book does NOT itself scale with the condor sleeve's unit sizing -- the peak-margin numbers reported for the scaled-up designs (22.2-22.3%) understate what a real margin desk would charge for a genuinely larger position; this is an existing approximation in the OP-D6b book engine, not something this script fixed.",
+    "Price-only index note: standing book convention adds ~+1.3pp/yr for TRI vs price-only NIFTY 50 (carried through in the 'TR~' figures above, unchanged from OP-D6b).",
+    "The VRP-ratio multipliers (VRPQ3, VRPQ4ANC) are sourced from OP-D1's FULL-SAMPLE quintile means -- an in-sample parameter-selection convention shared with every other frozen constant in this sleeve (entry threshold, wing width, roll threshold), not a distinct new form of lookahead, but worth naming as a caveat class of its own.",
+    "n=33 total condor entries and n=3 Q5 entries over the whole 12-year window -- any Q5-specific finding (mean/worst cycle return) is on effective n=3 and should not be over-read.",
+    "This agent did not write a trial-ledger entry (out of scope: 'Do NOT... touch... the trial ledger' per task hard rules) -- these bars are this agent's own working pre-registration, not a program-level registered design; promotion would need a proper ledger entry if the principal wants to pursue any variant further."
+  ],
+  "expected_book_level_add_if_forced_through_anyway": {
+    "best_clearing_design": "VRPQ3 (equivalently FLATUP_Q4MATCH, since they are numerically identical)",
+    "book_cagr_add_pp": 0.36,
+    "book_maxdd_impact_pp": 0.27,
+    "impact_sign": "improvement (less negative maxDD), but attributable to a single 2016-02-25 date coincidence per the diagnostic above -- NOT recommended as a structural read",
+    "blocking_issue": "requires raising the C11 f_cap invariant (0.10 -> ~0.1423 in the dominant bucket) without a re-derived DD budget -- a risk-limit breach, not merely a caveat"
+  }
+}
