@@ -3232,3 +3232,36 @@ a one-off OLS diagnostic — statsmodels/numpy lstsq with NW errors, stated).
 | Design | What it is | Result (interpretation written AFTER the print) | Verdict |
 |---|---|---|---|
 | QG-D5 | R_EG spanning test: q expected-growth factor regressed on FF6 (MktRF/SMB/HML/RMW/CMA/UMD), 1967-2019, NW6 errors | **THE ALPHA IS NOT SPANNED — WHICH MAKES THE CONSTRUCTION CRITIQUE LOAD-BEARING.** Spanning alpha +8.34%/yr (t=10.9), R2 0.46; loadings RMW +0.23, CMA +0.20, UMD +0.13, SMB -0.14 — R_EG tilts toward profitability/conservative-investment/momentum big-cap, but 85% of its +9.77%/yr mean SURVIVES those controls in-sample. Per the registered prior: an in-sample alpha does NOT lift the flag — the vaulted series ends 2019-12, i.e. AT publication, so every month of this alpha was available to the authors when they specified the expected-growth forecasting model (predictors: Tobin's q, cash flow, dROE — fitted weights). A t=10.9 factor with Sharpe 1.49 and maxDD -12% over 52 years would be the best documented strategy in the literature; prior plausibility + specification-search risk say the burden of proof is OOS. FLAG STANDS: consumption requires (i) post-2019 live data, (ii) reconstruction of the signal from raw inputs under a purged protocol (firm-fundamentals-gated), (iii) an independent replication. Booked as the sharpest known example of the model-fitted-signal class | **flag retained with the mechanism quantified; census +2 = 1130** |
+
+## Entry QG-D6 (2026-09-08) — REGISTERED-UNRUN (counts 0 until run): THE INDIA EXPECTED-
+GROWTH REPLICATION, NIFTY 500 UNIVERSE, TRAILING ~10Y (principal: "run this [q-EG] basis
+last 10y nifty 200/500 stock estimates top and bottom decile"). DATA-GATED on the
+as-filed quarterly fundamentals pull (runsheet row live: NSE/BSE filings or XBRL,
+delisted-name registry merged, 30-45d reporting-lag stamps) — the EG signal CANNOT be
+built from the price-only survivor panel, and a price-proxy substitute is explicitly
+FORBIDDEN by this registration (that would be the construction sin the R_EG flag names).
+DESIGN FROZEN NOW, so the run is one-shot with zero post-data choices:
+UNIVERSE: NIFTY 500 constituents AS OF EACH FORMATION DATE (point-in-time membership;
+NIFTY 200 reported as a sub-read), monthly formations, target window 2016-01..latest.
+SIGNAL (the HXZ q5 recipe, stated in full so nothing is fit to OUR sample twice):
+expected 1y growth of investment-to-assets, forecast from THREE predictors only —
+log Tobin's q (mcap + total debt - cash, over total assets), cash flow/assets
+(CFO/TA), and dROE (4-quarter change) — with forecast weights estimated on an
+EXPANDING trailing window (min 36 months) via cross-sectional Fama-MacBeth, PURGED:
+each formation uses only filings known 45+ days prior. NO India-specific predictor
+additions, NO weight tuning against returns (the weights fit INVESTMENT GROWTH, never
+returns — this is the one construction feature that keeps the design honest).
+CELLS (10): n1 top vs bottom DECILE fwd-12m (EW and VW both); n2 the full decile
+ladder VW; n3 the spanning test vs IIMA MF/SMB/HML/WML (does any premium survive the
+factors we hold); n4 era halves; n5 fwd-36m top/bottom; n6 NIFTY-200-only sub-read;
+n7 predictor-attribution (which of q/CFO/dROE carries the forecast); n8 the realized-
+growth check (does the signal actually FORECAST investment growth in India — if not,
+the factor premise dies before the return question); n9 turnover/cost read at decile
+rebalancing; n10 the US-flag adjudication read: India OOS is the first genuinely
+post-publication test of the EG construction available to this desk — a positive n1/n3
+here is REAL evidence the US flag should soften; a null is evidence the US alpha was
+specification search. PRIOR (two-sided, stated now): n8 likely PASSES (the inputs
+plausibly forecast investment anywhere); n1 VW likely +2 to +6%/yr, WELL below the US
++10 (haircut for specification-search inflation + India costs); n3 likely shows heavy
+WML/quality overlap; if India prints Sharpe > 1 the ER-D4b-grade suspicion applies to
+OUR pipeline, not celebration. Census 0 until run (10 on the day).
