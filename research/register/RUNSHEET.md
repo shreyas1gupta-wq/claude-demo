@@ -49,3 +49,9 @@ analysis (WORM); no design may be altered at data-landing — bars run as regist
 bar that proves wrong is a recorded miss, never a moved bar (M0/A6 precedent). Paid or
 login-gated sources are NOT substitutes for any row above (3.5's REJECT-FOR-DATA precedent
 governs).
+| India IIP monthly (MOSPI, 2012->) | ingest/vault/india_macro/ | FUN-D4 (India GDP-cycle phases -> sector/asset conditioning; replaces FUN-D3's market proxies) | principal-machine |
+| India PMI mfg+services (S&P Global, monthly) | ingest/vault/india_macro/ | FUN-D4 co-input (phase nowcast; publication-lag stamped) | principal-machine |
+| GST collections monthly (2017->) + RBI OBICUS capacity utilization + RBI consumer confidence | ingest/vault/india_macro/ | FUN-D5 (India nowcast composite; vintage stamping per Track P) | principal-machine |
+| RBI sectoral bank-credit deployment (monthly) | ingest/vault/india_macro/ | FUN-D6 (credit-by-sector x sector returns — the credit-cycle arc at sector level) | principal-machine |
+| NSE sectoral TR indices daily (IT/Pharma/FMCG/Bank/Auto/Metal/Realty/Energy, 2005->) | ingest/vault/index_sector/ | FUN-D3 FULL (survivorship-free sector rotation; retires the one-way panel for this use) + SEC-D5 India analog | principal-machine |
+| India aggregate EPS/PE for NIFTY (NSE monthly reports or Damodaran) | ingest/vault/india_fundamentals/ | FUN-D7 (India earnings cycle — the FUN-D2 analog; census, price-vs-earnings lead/lag, trend conditioning) | principal-machine |

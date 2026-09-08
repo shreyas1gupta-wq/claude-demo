@@ -2985,3 +2985,70 @@ Script: scripts/analyze_sw2_a1.py.
 |---|---|---|---|
 | SW-2 | Strategy sweep 2: 15 Sonnet research agents (waves of <=5) x 15 families + 5 adversarial refuters + 1 Fable synthesizer; 21 agents, 0 errors; artifacts in research/opt_sweep2/ + scripts/opt_sweep2/ | **12 OF 15 FAMILIES HONESTLY DEAD; THE AUDIT LAYER EARNED ITS KEEP** (3 of 5 self-judged-promising families REFUTED by verifiers on flaws invisible to their own authors). Dead with mechanisms named: f01 overnight core (spectacular gross +26.3/-5.5 but cost-breakeven only 2-4bp one-way — a cost mirage; also 4.3x worse on zero-warning shocks); f02 VRP-quintile condor sizing (vacuous — reduces to a naive cap raise breaching the 10%-DD invariant); f03 lagged IV-RV gate (clean re-registration of the dead F13: DEAD AGAIN — a trade-more-often frequency confound, loses to frequency-matched VIX-pct controls); f05 factor extensions (SMB doubles maxDD; keep 50/50); f06 put-ladder frontier (REFUTED: protection axis silently measured Feb-2016, not 2020); f07 covered-call grid (REFUTED: its OOS bar was computationally vacuous — the agent inherited the stats_of d0/d1 no-op trap; TRUE test edge only +0.55pp with flat-worse DD); f08 DD governor (buys headroom the book does not need); f09 gold upgrades (flat/negative); f10 TOM overlay (era fingerprint flips under window shift; principal's no-trade cap stands); f11 factor rotation timing (destroys the -0.37 diversification benefit); f12 low-vol core (REFUTED twice: survivor panel positive-claim + undisclosed 2013-16 concentration); f14 faster stand-downs (rarer AND worse DD; do not re-try with tweaked thresholds). SURVIVORS: f15 idle-cash accounting gap (-> SW2-A1, adopted); f13 static 10% SPX-in-INR carve (+1.07pp CAGR/+1.55pp DD in-sample, self-haircut ~+0.3pp net of feeder TER; CONTRACT S1 scope-gated -> OPEN_QUESTIONS B4-4); f04 tri-asset 12-1 switcher (verified clean but ADDS NO CAGR: -0.12pp for +1.82pp DD — parked as stored DD budget, MUTUALLY EXCLUSIVE with f13). SYNTHESIS: the remaining ~2pp of the CAGR gap CANNOT be closed from inside the sleeve set on vault data — it is data-gated (real option chains, PIT panel, daily INR, post-2023 VIX — all Priority-1 pulls) and decision-gated (B4-4, batches 3+4) | **the vault's degrees of freedom are exhausted at index resolution; 251 exploratory cells booked; census +251 = 1010** |
 | SW2-A1 | The idle-cash accounting correction (SW-2 rank-1): credit 4%/yr on the core's lagged idle fraction via extra_ret; one-shot, acceptance = bit-for-bit vs f15 | **c1 ACCEPTED: CAGR +11.456 (TR ~+12.76), maxDD -11.3644 — bit-for-bit vs f15's cell; ADOPTED AS THE CORRECTED BASELINE** (dCAGR +0.33pp, dDD +0.17pp vs a5; worst yr -2.3 Q1-23 stub; eras +7.89/+14.72). c2 footnote @6% repo: +11.62 (TR ~+12.92)/-11.28 (+0.49pp) — linear rescale when funding_rate lands. c3 peak-margin re-read WITH the previously-missing factor-sleeve margin line: 23.7% (hedged 2.5% on gross) to 28.2% (unhedged 10%) vs 22.2% ex-factor — bounds declared pending a principal SLB-margin convention; all inside the 30% feasibility prior. MACHINERY booked: stats_of d0/d1 slicing fixed (no booked print affected — verified); run_book gains fac_margin_rate (default None preserves pre-2026-09-08 reproduction); a shared sliced-stats helper owed to quant/stats/ | **baseline now +11.46 TR ~+12.76 / -11.36; census +3 = 1013** |
+
+## Entry FUN-D1 (2026-09-08) — PRE-REGISTERED before running: GLOBAL BUSINESS-CYCLE
+PHASE ATLAS (fundamentals track opener; principal: "start with business cycle ...
+global research then indian specific"). JST r4, 18 economies, 1870-2020. PHASE
+DEFINITION FROZEN: g = dlog(rgdppc); country EXPANDING median of g (min 10 obs) as
+trend; quadrants: RECOVERY (below trend, rising) / EXPANSION (above, rising) /
+SLOWDOWN (above, falling) / CONTRACTION (below, falling). Conditioning is REAL-TIME
+HONEST: phase in year t conditions returns in year t+1 (annual publication lag);
+contemporaneous reads are descriptive only. Real returns = (1+nominal_tr)/(1+dCPI)-1.
+CELLS (10): p1 phase frequencies + transition stickiness (vs BC3's 77%); p2-p4 NEXT-YEAR
+real equity/bond/housing returns by phase (pooled medians + share of countries agreeing);
+p5 same for bills; p6 contemporaneous equity by phase (descriptive contrast); p7 the
+ER-doctrine check: does EXPANSION underperform RECOVERY next-year (within-country
+growth-negative timing fact, ER-D1b median -0.41 — prior says the naive rotation story
+INVERTS); p8 crisisJST interaction (contraction WITH crisis vs without); p9 inflation
+split (phase x high/low inflation, the L9/CI arc joined to phases); p10 post-1950 era
+split. PRIOR (two-sided): recovery > expansion for next-year equity; bonds best in
+contraction; if expansion is the BEST equity phase the growth-negative doctrine takes a
+hit and that gets booked. Census 10. Script: scripts/analyze_fun_d1.py.
+
+## Entry FUN-D2 (2026-09-08) — PRE-REGISTERED before running: THE EARNINGS CYCLE
+(fundamentals layer 2, US 1871-2023). Shiller monthly, guard Real Price > 0; REAL
+EARNINGS with a DECLARED 6-MONTH AVAILABILITY LAG on all conditioning (earnings for
+month t are usable at t+6; descriptive census cells exempt and marked). CELLS (12):
+e1 earnings-recession census: real-earnings peak-to-trough declines >=10% — count,
+median/worst depth, median duration, recovery time; e2 price-vs-earnings lead/lag at
+earnings troughs (does price bottom first, and by how many months); e3 same at peaks;
+e4 next-12m real price return conditioned on earnings ABOVE vs BELOW their trailing-10y
+real trend (lagged); e5 the interaction: that split WITHIN cheap/rich PE10 halves
+(expanding median split); e6 next-12m return by earnings direction (rising/falling 12m,
+lagged); e7 dividend smoothness: sd(d log real D)/sd(d log real E) + payout behavior in
+earnings recessions; e8 depth link: earnings-recession depth vs same-window price
+drawdown (rank corr); e9 the 2 deepest earnings recessions narrated from data (1921,
+2008 expected — dates from data); e10 post-1950 split of e4; e11 earnings growth
+persistence (AR(1) of annual real E growth); e12 the valuation bridge: PE10 at earnings
+trough vs peak (median). PRIOR (two-sided): price leads earnings at troughs by 3-9m;
+BELOW-trend earnings -> HIGHER next-12m returns (mean reversion + the ER staircase);
+dividends 3-5x smoother; if ABOVE-trend earnings predict higher returns, the
+growth-negative doctrine loses a leg and that gets booked. Census 12.
+Script: scripts/analyze_fun_d2.py.
+
+## Entry FUN-D3 (2026-09-08) — PRE-REGISTERED before running: INDIA SECTOR x CYCLE
+LAYER (one-way; survivor panel 2012-2021, SEC-battery baskets reused verbatim from
+scripts/analyze_sec_battery.py). India's GDP-cycle conditioning is DATA-GATED (IIP/PMI/
+GST are runsheet pulls) — this partial uses MARKET-CYCLE proxies, declared as such:
+state = NIFTY above/below its 12m MA x India-VIX expanding-pct >=/< 0.60 (both lagged
+1 day) -> 4 states: CALM-UP / STRESSED-UP / CALM-DOWN / RISK-OFF. Sector reads are
+RELATIVE to the equal-weight all-basket market (survivorship partially nets out in
+relative reads; still one-way: negatives kill, positives only suggest, stated on every
+line). CELLS (10): s1 state frequencies/durations; s2-s5 sector relative next-21d
+returns by the 4 states (defensives FMCG/PHARMA/IT vs cyclicals METALS/AUTO/CAPGOODS/
+REALTY vs financials PVTBANK/PSUBANK/NBFC — 3 group reads + full table read per state,
+counted as 4); s6 the SEC-D6 consistency check: does the crisis-safety ordering
+(balance sheet > demand > revenue-currency) reproduce in RISK-OFF; s7 transition trade
+read: relative returns in the 3 months AFTER a RISK-OFF -> CALM-UP flip (early-cycle
+cyclicality, n will be small — stated); s8 banks split: PVT vs PSU by state; s9 IT's
+USD-hedge behavior in RISK-OFF (CU-D7 coupling check at sector level); s10 stability:
+era halves 2012-16/2017-21. PRIOR (one-way, two-sided where testable): defensives
+outperform in RISK-OFF (SEC-D6 says yes), cyclicals in CALM-UP recoveries; PSU banks
+worst in RISK-OFF; IT positive-relative in RISK-OFF via USD revenue. Census 10.
+Script: scripts/analyze_fun_d3.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| FUN-D1 | Global business-cycle phase atlas (JST, 17 countries, 1881-2016; frozen growth-quadrant phases; real-time honest: phase t conditions returns t+1) | **THE ROTATION STORY INVERTS — the registered growth-negative prior CONFIRMED at phase level.** Next-yr real equity: RECOVERY +8.4% > CONTRACTION +7.1% > EXPANSION +5.0% > SLOWDOWN +2.5% (recovery beats expansion in 13/16 countries; post-1950 starker: CONT +12.0 / RECO +10.8 vs EXPA +5.7 / SLOW +1.2). The contrast cell p6 nails the mechanism: SAME-year equity is best in EXPANSION (+8.6) and worst in CONTRACTION (+2.1) — returns are CONCURRENT with the phase but by the time a phase is identifiable you are being paid for the NEXT one; chasing the identified phase is the losing side. p8: contraction WITH a JST crisis -> +13.8% next yr vs +6.9 without — the crisis year is the entry, not the exit (the post-spike doctrine at annual/global scale). p9 INFLATION DOMINATES PHASES: high-inflation roughly halves next-yr equity in EVERY quadrant (e.g. SLOW +1.3 vs +8.9) — the L9/CI arc holds inside the business cycle too. Bonds best in the below-trend phases (RECO +3.8/CONT +3.4 vs +1.6 both above-trend) — prior partial (recovery ties contraction). Housing is the pro-cyclical laggard (best in SLOWDOWN +8.0/EXPANSION +7.4). RUN NOTE: quadrant persistence is 28%/yr — NOT comparable to BC3's 77% (2-state definition); definitions differ, both stand | **phase-conditioned asset table booked; the cycle is PRICED — buy the identified trough, never the identified boom; census +10 = 1023** |
+| FUN-D2 | The earnings cycle (US, Shiller 1871-2023; real-E>0 guard run-noted; 6m availability lag on all conditioning) | **e1 THE CENSUS: 16 real-earnings recessions in 152y (~1/decade), median depth -34%, worst -92% (2007-09), median 25m peak->trough + 34m recovery; the 1916-21 episode took 407m (34 YEARS) to recover real E.** e2/e3 THE ASYMMETRY: price bottoms ~10m BEFORE the earnings trough (price first in 75% of episodes) but does NOT reliably lead peaks (38%) — markets anticipate recoveries, not recessions. e4/e6 growth-negative in fundamentals: BELOW-trend earnings -> +5.4% next-12m vs +3.2% above; FALLING earnings -> +5.6% vs +2.9% rising. e5 the effect LIVES IN THE CHEAP HALF (below-trend+cheap PE10 +8.8% vs above-trend+cheap +5.5%; rich half compressed 2.0-2.7%) — depressed earnings + cheap multiple is the combination. **e10 HONEST DECAY: post-1950 the above/below gap vanishes (+5.2 vs +5.6)** — the earnings-level signal is pre-1950-concentrated; consistent with ER-D4b/Goyal-Welch. Mechanism cell e11: annual real-E growth AR(1) = -0.11 (anti-persistent — earnings mean-revert, prices know it). e7 dividends 2.7x smoother than earnings; in E-recessions dividends fall only 16% as much (median). e8 depth couples to price DD (rank-corr +0.70, median price DD -24%). e12 PE10 at E-troughs 16.8 vs peaks 19.5 — troughs are cheap even on CAPE | **earnings cycle mapped 1871-2023; anticipation asymmetry + smoothing + post-1950 signal decay booked; census +12 = 1035** |
+| FUN-D3 | India sector x market-cycle layer (ONE-WAY survivor panel 2012-2021; declared market proxies NIFTY-vs-12mMA x VIX-pct, NOT GDP phases) | **THE TEXTBOOK SECTOR ROTATION FAILS AS A FORWARD TRADE IN INDIA — my registered prior MISSED and is booked as such.** In RISK-OFF states the DEFENSIVES lag forward (fwd-21d rel: DEF -1.76, PHARMA worst -2.07, IT -1.86) while cyclicals/financials lead (+0.57/+0.69, NBFC best +1.73) — CONSISTENT IN BOTH HALVES (s10: 2012-16 DEF -2.1 vs CYC +0.6; 2017-21 -0.75 vs +0.46). RESOLUTION vs SEC-D6 (no contradiction): SEC-D6 measured drawdowns DURING crisis episodes (defensives protect on the way down); FUN-D3 measures returns AFTER a stress state is identifiable — the rebound window, where beaten-down cyclicals recover. This is FUN-D1's inversion reproduced at sector level: by the time the state is visible, the defensive trade is done. ONE-WAY KILLS (negatives kill): 'buy defensives once risk-off is identified' DEAD; 'IT as forward USD-hedge at 21d' DEAD (s9 -1.86). s8 PSU banks are chronic: worst basket in CALM-UP (-3.67) and CALM-DOWN (-6.00), flat in RISK-OFF — underperformance is a state-independent fact 2012-21 (one-way). s7 flip-day read n=13, too small, prints kept descriptive. s1 CALM-UP 64% of days, states run short (2-8d median) | **rotation-by-identified-state killed one-way at sector level; defensives are DURING-crisis instruments, not after-crisis trades; census +10 = 1045** |

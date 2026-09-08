@@ -87,7 +87,10 @@ this census exists so that can never happen silently.
 | OP-D7 relaxed-constraint grid (24 train + selection + validation + 8 final reads; MR axis dropped pre-run) | 34 | 34 |
 | SW-2 strategy sweep 2 (15 families, self-reported exploratory cells + 5 verifier reruns at 2 each; synthesizer tally) | 251 | 251 |
 | SW2-A1 idle-cash accounting correction (c1 repro+acceptance, c2 6% footnote, c3 margin bounds) | 3 | 3 |
-| **RUNNING TOTAL (run cells)** | | **1013** |
+| FUN-D1 global phase atlas (p1-p10) | 10 | 10 |
+| FUN-D2 earnings cycle (e1-e12) | 12 | 12 |
+| FUN-D3 India sector x market-cycle, one-way (s1-s10) | 10 | 10 |
+| **RUNNING TOTAL (run cells)** | | **1045** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
