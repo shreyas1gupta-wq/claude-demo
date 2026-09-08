@@ -1,0 +1,17 @@
+{
+ "ff5_monthly_1963_2020.csv": {
+  "bytes": 51958,
+  "sha256": "45fee5b77f5f232cb306f3aa5a59e82c339435f637e8de261f3e9c1f335e6de4",
+  "vintage": "2026-09-08"
+ },
+ "ff6_monthly_1963_2020.csv": {
+  "bytes": 59340,
+  "sha256": "e741360f4b2620feab18ed58dadb6a74744a7e9d24d864f004c6bfca67076bae",
+  "vintage": "2026-09-08"
+ },
+ "q5_monthly_1967_2019.csv": {
+  "bytes": 55059,
+  "sha256": "9b163606c5ef949e87893398fde100fbc1e95731cd3efa391655ef16b62b547c",
+  "vintage": "2026-09-08"
+ }
+}
