@@ -92,6 +92,23 @@ def heat(mat, rows="ROE", cols="axis", flag=False):
             f'<tbody>{cells}</tbody></table>')
 
 
+def hor_table(block, labels):
+    hs = [12, 36, 60, 120]
+    head = "".join(f"<th>{l}</th>" for l in labels) + "<th>spread</th>"
+    rows = ""
+    for h in hs:
+        r = block[str(h)] if str(h) in block else block[h]
+        vals = [r[str(k)] if str(k) in r else r[k] for k in range(1, len(labels) + 1)]
+        sp = vals[-1] - vals[0]
+        cells = "".join(f"<td>{v:.1f}</td>" for v in vals)
+        rows += f"<tr><td>{h // 12}y</td>{cells}<td><b>{sp:+.1f}</b></td></tr>"
+    return (f'<table class="plain"><thead><tr><th>fwd</th>{head}</tr></thead><tbody>{rows}</tbody></table>')
+
+
+d3 = J["qg_d3"]
+d3_all = hor_table(d3["all"], [f"D{i}" for i in range(1, 11)])
+d3_big = hor_table(d3["big"], [f"Q{i}" for i in range(1, 6)])
+
 c1 = {int(k): v for k, v in J["c1"].items()}
 c6 = {int(k): v for k, v in J["c6"].items()}
 big_row = {1: 7.4, 2: 12.0, 3: 7.9, 4: 7.9, 5: 6.2}  # booked diagnostic: ROE quintiles within largest size quintile
@@ -239,6 +256,24 @@ Value-weighted confirmation: CMA (conservative-minus-aggressive investment) +3.0
 <dt>Correlations</dt><dd>RMW&ndash;HML +0.07 &middot; RMW&ndash;Mkt &minus;0.21 &middot; RMW&ndash;UMD +0.10</dd>
 </dl>
 <p class="note">Down-month behavior is the real product: quality and conservatism pay when the market falls and cost a little when it rallies &mdash; the same during-crisis doctrine as SEC-D6/FUN-D3. Post-publication decay is visible (CMA negative since 2013).</p></div>
+</div>
+</section>
+
+<section class="panel">
+<h2>ROE &times; horizon: fwd 1y / 3y / 5y / 10y (median annualized %/yr) <span class="flag good">QG-D3</span></h2>
+<p class="sub">Buy-and-hold compounding, overlapping monthly formations (flagged; ~10 independent 10y windows).
+Medians collapse the mean-based junk inversion to a mild &minus;2 to &minus;4pp &mdash; the QG-D2 &ldquo;junk edge&rdquo; is skew from a few
+equal-weight moonshots. The large-cap leg is the honest one, and it shows the FADE: <b>Q2 is the best column at every
+horizon</b> &mdash; today&rsquo;s top-quintile ROE fades toward the mean while you hold it at a quality-premium price.</p>
+<div class="grid2">
+<div class="tblwrap"><h2 style="font-size:14px">All-panel deciles <span class="flag bad">EW TILT</span></h2>
+{d3_all}</div>
+<div class="tblwrap"><h2 style="font-size:14px">Largest-cap quintile only <span class="flag good">HONEST LEG</span></h2>
+{d3_big}
+<p class="note">Q5&minus;Q1 spread: +1.4pp (1y) &rarr; 0.0 (3y) &rarr; &minus;1.5 (5y) &rarr; &minus;2.1 (10y).
+Attrition check: the panel has NO delisting truncation at any horizon (100% full coverage) &mdash; every absolute
+level here is an upper bound, and junk legs are doubly flattered. Consumption: sort for high-but-not-extreme
+profitability with persistence, never top-decile-at-any-price.</p></div>
 </div>
 </section>
 
