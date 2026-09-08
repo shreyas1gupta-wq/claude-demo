@@ -109,6 +109,20 @@ d3 = J["qg_d3"]
 d3_all = hor_table(d3["all"], [f"D{i}" for i in range(1, 11)])
 d3_big = hor_table(d3["big"], [f"Q{i}" for i in range(1, 6)])
 
+d4 = J["qg_d4"]
+d4_gbig = hor_table(d4["g_big"], [f"Q{i}" for i in range(1, 6)])
+crn = []
+for key, nm in [("roe_gr", "ROE &times; growth"), ("gr_vol", "growth &times; vol"), ("roe_vol", "ROE &times; vol")]:
+    cells = []
+    for h in [12, 36, 60, 120]:
+        a = np.array(d4[key][str(h)] if str(h) in d4[key] else d4[key][h])
+        cells.append(f"<td>{a[0,0]:.1f}/{a[0,4]:.1f}/{a[4,0]:.1f}/<b>{a[4,4]:.1f}</b></td>")
+    crn.append(f"<tr><td>{nm}</td>{''.join(cells)}</tr>")
+d4_corners = "".join(crn)
+d4_hm_roegr = heat(d4["roe_gr"]["60"] if "60" in d4["roe_gr"] else d4["roe_gr"][60], rows="ROE", cols="growth")
+d4_hm_grvol = heat(d4["gr_vol"]["60"] if "60" in d4["gr_vol"] else d4["gr_vol"][60], rows="GR", cols="vol")
+d4_hm_roevol = heat(d4["roe_vol"]["60"] if "60" in d4["roe_vol"] else d4["roe_vol"][60], rows="ROE", cols="vol")
+
 c1 = {int(k): v for k, v in J["c1"].items()}
 c6 = {int(k): v for k, v in J["c6"].items()}
 big_row = {1: 7.4, 2: 12.0, 3: 7.9, 4: 7.9, 5: 6.2}  # booked diagnostic: ROE quintiles within largest size quintile
@@ -274,6 +288,28 @@ horizon</b> &mdash; today&rsquo;s top-quintile ROE fades toward the mean while y
 Attrition check: the panel has NO delisting truncation at any horizon (100% full coverage) &mdash; every absolute
 level here is an upper bound, and junk legs are doubly flattered. Consumption: sort for high-but-not-extreme
 profitability with persistence, never top-decile-at-any-price.</p></div>
+</div>
+</section>
+
+<section class="panel">
+<h2>Growth &amp; the cross-matrices by horizon (median annualized %/yr) <span class="flag good">QG-D4</span></h2>
+<p class="sub">Growth never pays at any horizon (large-cap Q5&minus;Q1: &minus;2.8 / +0.3 / &minus;2.3 / &minus;2.0 pp at 1/3/5/10y).
+Across all three matrices the extremes lose and <b>compound each other&rsquo;s losing</b>: the champion cell everywhere is
+moderate-high ROE (Q2) &times; low vol &times; modest growth; the worst long-horizon cells are glamour-quality
+(ROE Q5 &times; growth Q5: <b>2.9%/yr at 10y</b>) and volatile &ldquo;quality&rdquo; (ROE Q5 &times; vol Q5: 2.4%/yr at 10y,
+negative in large caps at 5y). Large-cap 60m corner checks kill the scattered all-panel high-vol cells (no-delisting flattery).</p>
+<div class="grid2">
+<div class="tblwrap"><h2 style="font-size:14px">Growth quintiles, large-cap only</h2>{d4_gbig}</div>
+<div class="tblwrap"><h2 style="font-size:14px">Corner tour by horizon (all-panel)</h2>
+<table class="plain"><thead><tr><th>corners Q1&times;Q1 / Q1&times;Q5 / Q5&times;Q1 / Q5&times;Q5</th><th>1y</th><th>3y</th><th>5y</th><th>10y</th></tr></thead><tbody>
+{d4_corners}
+</tbody></table>
+<p class="note">Large-cap 60m corners &mdash; ROE&times;GR: 6.4/6.0/3.4/2.1 &middot; GR&times;VOL: 5.7/5.7/6.1/<b>&minus;1.8</b> &middot; ROE&times;VOL: 6.9/4.8/6.4/<b>&minus;0.7</b>.</p></div>
+</div>
+<div class="grid3" style="margin-top:14px">
+<div><h2 style="font-size:14px">ROE &times; growth, 5y horizon</h2>{d4_hm_roegr}</div>
+<div><h2 style="font-size:14px">Growth &times; vol, 5y</h2>{d4_hm_grvol}</div>
+<div><h2 style="font-size:14px">ROE &times; vol, 5y</h2>{d4_hm_roevol}</div>
 </div>
 </section>
 

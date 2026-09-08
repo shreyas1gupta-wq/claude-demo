@@ -3190,3 +3190,27 @@ Script: scripts/analyze_qg_d3.py.
 | Design | What it is | Result (interpretation written AFTER the print) | Verdict |
 |---|---|---|---|
 | QG-D3 | ROE x horizon ladder: median annualized fwd 12/36/60/120m, all-panel deciles + large-cap-only quintiles, buy-and-hold, overlap flagged | **THE MEDIANS SOFTEN THE ARTIFACT AND REVEAL THE FADE.** All-panel D10-D1 by horizon: -2.3 / -2.8 / -3.9 / -3.2 pp/yr — the mean-based -17.8pp inversion (QG-D2 c1) collapses to a mild median inversion, confirming the junk "edge" is SKEW (a few EW moonshots drive the mean; the typical junk stock earns nothing special). **LARGE-CAP (the honest leg): Q5-Q1 = +1.4pp at 12m, 0.0 at 36m, -1.5 at 60m, -2.1 at 120m — and Q2 is the BEST column at EVERY horizon (10.4/7.8/7.2/5.5%/yr).** The shape is a textbook FADE signature: buying today's TOP-quintile ROE means holding through mean reversion (12m rank persistence 0.69 decays over 5-10y) at a quality-premium entry price; moderately-high ROE (Q2) — high enough to be quality, not so high as to be priced-for-perfection and fade-exposed — wins the compounding race. Joins the McKinsey fade doctrine + the quality-at-any-price trap (dossier D) with a real print. h9 ATTRITION SURPRISE: full coverage 100%/100% at every horizon — **the panel contains NO delisting truncation at all** (the book's selection filter removed death entirely); absolute levels are upper bounds everywhere; junk legs doubly flattered. PRIOR grading: all-panel persistence ✓ (branch 1); large-cap long-horizon: the prior's "quality edges ahead by 60-120m" branch MISSED — the data took the fade branch instead, booked. CONSUMPTION: for the future stock book, the ROE sort target is HIGH-BUT-NOT-EXTREME current profitability with persistence screens, never the top decile bought at any price; horizon does not rescue peak-ROE buying | **the Q2 hump + fade signature booked; top-decile-ROE-at-any-price rejected across all horizons; census +10 = 1104** |
+
+## Entry QG-D4 (2026-09-08) — PRE-REGISTERED before running: GROWTH x HORIZON + THE
+THREE CROSS-MATRICES x HORIZON (principal: "same for growth and growthxroe vs
+growthxvolatility and roexvolatility 1 3 5 10y"). QG-D3 method verbatim (buy-and-hold
+compound fwd 12/36/60/120m, >=75% coverage, MEDIAN annualized, overlapping formations
+flagged, no-delisting upper-bound caveat carried). Axes: Eps_Basic_Gr (growth), Roe,
+Vol1Y_Usd quintiles/deciles; large-cap = size Q5.
+CELLS (24): g1-g4 growth decile ladder, ALL-PANEL, 4 horizons; g5-g8 growth quintile
+ladder, LARGE-CAP ONLY, 4 horizons; m1-m4 ROExGROWTH 5x5 (all-panel) at 12/36/60/120m
+(one read per horizon); m5-m8 GROWTHxVOL 5x5 same; m9-m12 ROExVOL 5x5 same; k1-k3
+large-cap corner checks at 60m (the 4 corners of each matrix family, one read per
+family — the honest-leg spot check); s1 summary: corner/edge spreads by horizon across
+the three families. PRIOR (two-sided): growth inversion STRENGTHENS with horizon (LSV
+extrapolation-reversal — glamour disappoints over years); ROExGROWTH: high-ROE/low-mid-
+growth corner improves vs high-ROE/high-growth as horizon lengthens (fade + reversal
+compound); GROWTHxVOL: the high-growth/high-vol LOTTERY corner is the worst cell at 60-
+120m; ROExVOL: the 1m high-vol tilt (QG-D2 flagged artifact) should FADE with horizon —
+if high-vol columns still win at 120m, that is the no-delisting flattery again and gets
+flagged, not consumed; low-vol x high-ROE expected the strong large-cap corner at 60m.
+Census 24. Script: scripts/analyze_qg_d4.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| QG-D4 | Growth x horizon + ROExGROWTH / GROWTHxVOL / ROExVOL 5x5 at 12/36/60/120m (QG-D3 method verbatim; large-cap corner checks at 60m) | **THE MODERATION PRINCIPLE, PRINTED ACROSS EVERY MATRIX.** Growth never pays at any horizon (all-panel D10-D1: -2.9/-1.3/-2.5/-2.0; large-cap Q5-Q1: -2.8/+0.3/-2.3/-2.0 — prior ✓, LSV holds to 10y). ROExGROWTH: the best cell at EVERY horizon is ROE Q2 x growth Q2-Q3 (12.2 -> 7.8%/yr) and the worst long-horizon cell is the GLAMOUR-QUALITY corner (ROE Q5 x growth Q5: 6.5 at 1y -> **2.9%/yr at 10y**, the single worst corner) — fade + extrapolation compound exactly as registered. GROWTHxVOL: the lottery corner (high-growth x high-vol) is worst at 120m (3.3) and NEGATIVE in the large-cap 60m check (-1.8%/yr) — prior ✓. ROExVOL: **volatile "quality" is the trap** — ROE Q5 x vol Q5 is the worst cell at every horizon >=36m (3.1/2.9/2.4) and NEGATIVE in large caps at 60m (-0.7); the champion cell across horizons is ROE Q2 x LOW vol (13.0/11.7/8.9 at 12/36/120m). FLAG per registration: scattered all-panel high-vol cells still shine at 60m (e.g. lowgrowth x highvol 10.6) but the large-cap corner checks contradict them — the no-delisting flattery named in the prior; NOT consumed. SYNTHESIS (QG-D3+D4): every EXTREME corner underperforms and extremes COMPOUND each other's underperformance; the compounding cell is moderate-high profitability x low vol x modest growth — fade, extrapolation-reversal, and the lottery effect are one phenomenon at three axes. Consumption for the stock book: sort = Q2-ish ROE + persistence + low-vol + growth-indifferent; exclusion = any double-extreme (esp. high-ROE+high-growth and anything x top-vol) | **glamour-quality and lottery corners rejected at all horizons; the moderation cell named; census +24 = 1128** |
