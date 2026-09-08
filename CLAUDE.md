@@ -103,3 +103,31 @@ returns to INFLATION; crisis event study: t0 -14.1%, recovery t+1, housing slows
 never negative). india-regime-playbook.md + leverage/safety addendum committed. Census
 **442**; suite 127 green. Owed: Lessons 50-51 + One Page/Syllabus refresh (the whole
 sprint), then the principal-gated OPEN_QUESTIONS batches 3+4 + Priority-1 pulls.
+2026-09-08, the option-program + fundamentals arc (this status supersedes the census
+figures above; census now 1,130): THE STANDING BOOK is the corrected 65/20/15
+collar-stacked book at +11.46 CAGR (TR ~+12.76) / -11.36 maxDD (SW2-A1 baseline; OP-D3
+condor engine + put ladder + covered calls; margin model hedged 2.5%/unhedged 10%).
+Two optimization grids (OP-D3b, OP-D7) and sweep 2 (21 agents, adversarially verified)
+all REFUSED their train winners OOS — return gap to 15/15 is alpha/data-gated (real
+chains, PIT breadth, sub-6% funding), risk side beaten with room. Corrections booked:
+E1 month-drop, E2 free leverage, idle-cash credit, stats_of slicing, factor-margin
+line. MR dead at all frequencies; synthetic-futures leverage at 6% dead; weekly sells
+dead OOS. TRACK FUN OPENED: the phase inversion at three scales (recovery/contraction
+beat expansion/slowdown next-year; earnings-cycle census 1871-2023, price leads E-troughs
+10m; India defensives lag once risk-off is identifiable); FUN-D8 monetary seasons
+(falling rates +8.0 vs +3.3; slope RANKS returns — flagged upgrade pending India
+verification; avoid-state = hiking-into-slowdown -5.2%/yr). QG TRACK: two new vaults
+(factors_us FF5/FF6/Q5 ~2020 vintage; firm_panel data_ml 1,207 US stocks 1999-2019,
+no-delisting caveat); QG-D1..D5 booked — payout is a repackaged earnings-state variable;
+the EW-survivor junk artifact caught (inversion collapses in large caps); growth never
+pays at any horizon; the MODERATION PRINCIPLE (champion cell = moderate ROE x low vol;
+glamour-quality 2.9%/yr at 10y); R_EG flag quantified (unspanned +8.3%/yr alpha, t=10.9,
+100% in-sample — not consumed). QG-D6 (India q-EG, NIFTY 500 PIT) REGISTERED-UNRUN,
+frozen; the India as-filed fundamentals HANDOFF PROMPT is out to the principal's other
+Claude (research/register/handoff-prompt-india-fundamentals.md; landing kit in
+ingest/receive_india_fundamentals.py) — six QG designs unblock on arrival. Dashboards:
+quality-growth-factor-atlas + return-distribution-atlas (docs/learn/artifacts/, rows
+50-53). Docs: STRATEGY-HANDOFF.md (give to any new Claude), docs/fundamentals/01+02.
+Still principal-gated: OPEN_QUESTIONS batches 3+4 + B4-4 (foreign-equity scope),
+funding_rate, Priority-1 pulls. Artifact-watch subscriptions REFUSED this session —
+comments on dashboards do not wake it; ask in-session for changes.
