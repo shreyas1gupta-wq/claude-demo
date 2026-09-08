@@ -119,9 +119,20 @@ for key, nm in [("roe_gr", "ROE &times; growth"), ("gr_vol", "growth &times; vol
         cells.append(f"<td>{a[0,0]:.1f}/{a[0,4]:.1f}/{a[4,0]:.1f}/<b>{a[4,4]:.1f}</b></td>")
     crn.append(f"<tr><td>{nm}</td>{''.join(cells)}</tr>")
 d4_corners = "".join(crn)
-d4_hm_roegr = heat(d4["roe_gr"]["60"] if "60" in d4["roe_gr"] else d4["roe_gr"][60], rows="ROE", cols="growth")
-d4_hm_grvol = heat(d4["gr_vol"]["60"] if "60" in d4["gr_vol"] else d4["gr_vol"][60], rows="GR", cols="vol")
-d4_hm_roevol = heat(d4["roe_vol"]["60"] if "60" in d4["roe_vol"] else d4["roe_vol"][60], rows="ROE", cols="vol")
+def mat_at(fam, h):
+    blk = d4[fam]
+    return blk[str(h)] if str(h) in blk else blk[h]
+
+
+hz_blocks = []
+for h in [12, 36, 60, 120]:
+    hz_blocks.append(f"""<h2 style="font-size:15px;margin-top:14px">fwd {h // 12}y</h2>
+<div class="grid3">
+<div><h2 style="font-size:13.5px">ROE &times; growth</h2>{heat(mat_at("roe_gr", h), rows="ROE", cols="growth")}</div>
+<div><h2 style="font-size:13.5px">Growth &times; vol</h2>{heat(mat_at("gr_vol", h), rows="GR", cols="vol")}</div>
+<div><h2 style="font-size:13.5px">ROE &times; vol</h2>{heat(mat_at("roe_vol", h), rows="ROE", cols="vol")}</div>
+</div>""")
+d4_all_horizons = "".join(hz_blocks)
 
 c1 = {int(k): v for k, v in J["c1"].items()}
 c6 = {int(k): v for k, v in J["c6"].items()}
@@ -306,11 +317,11 @@ negative in large caps at 5y). Large-cap 60m corner checks kill the scattered al
 </tbody></table>
 <p class="note">Large-cap 60m corners &mdash; ROE&times;GR: 6.4/6.0/3.4/2.1 &middot; GR&times;VOL: 5.7/5.7/6.1/<b>&minus;1.8</b> &middot; ROE&times;VOL: 6.9/4.8/6.4/<b>&minus;0.7</b>.</p></div>
 </div>
-<div class="grid3" style="margin-top:14px">
-<div><h2 style="font-size:14px">ROE &times; growth, 5y horizon</h2>{d4_hm_roegr}</div>
-<div><h2 style="font-size:14px">Growth &times; vol, 5y</h2>{d4_hm_grvol}</div>
-<div><h2 style="font-size:14px">ROE &times; vol, 5y</h2>{d4_hm_roevol}</div>
-</div>
+{d4_all_horizons}
+<p class="note">Reading the ROE &times; vol family across horizons answers the &ldquo;is high-vol/low-ROE better?&rdquo; question:
+the 1-month MEAN table&rsquo;s 37.3 cell collapses to ~11%/yr in medians at 1y/3y, is never the champion cell
+(ROE&nbsp;Q2 &times; low-vol is: 13.0 / 11.7), and in large caps at 5y the low-ROE&times;high-vol corner prints 4.8 vs 6.9
+for low-vol &mdash; the glow is skew + smallest-cap survivor tilt, not an edge.</p>
 </section>
 
 <section class="panel">
