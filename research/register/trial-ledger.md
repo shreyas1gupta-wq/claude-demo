@@ -3080,3 +3080,28 @@ Script: scripts/analyze_fun_d8.py.
 | Design | What it is | Result (interpretation written AFTER the print) | Verdict |
 |---|---|---|---|
 | FUN-D8 | Regime-identification battery (JST, 17 countries, 1870-2016; rate direction, curve slope, credit acceleration, investment share, real-rate level, phase x rate seasons; year-t states -> t+1 real returns) | **THE MONETARY LAYER RANKS RETURNS AT ANNUAL SCALE.** m1 falling short rates -> next-yr equity +8.0% vs rising +3.3% (bonds +3.0 vs +1.7) — prior PASS. **m2 FLAGGED NEW (per registration, not yet consumed): curve slope ranks next-yr equity MONOTONICALLY (flat/inverted +3.0 / mid +6.4 / steep +8.1) on top of the booked recession-odds channel (P(next-yr contraction) 42/34/28% by tercile)** — the MG doctrine ("slope = recession odds ONLY") needs an upgrade vote after an India/monthly verification leg. m3 PRIOR MISS booked: the Borio boom-x-above-trend corner is NOT the worst next-year cell (+5.3 vs calm-x-above +3.8; corner spread calm-slump-minus-boom-boom only +2.3pp) — at the t+1 horizon credit acceleration is pro-cyclical FUEL; the boom's damage arrives at the 2-5y crisis horizon (L12/Schularick-Taylor), NOT in next-year returns — horizon separation booked as doctrine. m4 investment share ~null (+5.8 vs +6.6, growth-negative direction). m7 REAL-RATE terciles: equity LO +3.6 / HI +8.3, bonds -0.2 / +6.7 — LOW real rates predict LOW real returns everywhere (the repression-era doctrine as a conditioning state); housing prior MISS (flat 5.7/7.3/7.0 — housing shrugs at real rates, DB-D7 mechanism note stands). **m5/m8 THE SEASONS TABLE (the actionable print): post-1950 the ONLY negative cell is SLOWDOWN x HIKING (-5.2%/yr, n=113); best cells CONTRACTION x CUTTING +13.7 and RECOVERY x HIKING +11.4** — hiking into a slowdown is the one identified state that has historically paid to avoid; both inputs are real-time observable. Both eras agree on the ordering | **monetary regime layer live; one flagged upgrade (slope), two honest prior misses (Borio timing, housing); the avoid-state named; census +13 = 1058** |
+
+## Entry QG-D1 (2026-09-08) — PRE-REGISTERED before running: PAYOUT vs SUBSEQUENT
+EARNINGS GROWTH (the growth/quality track opener; principal: "move to growth, roic,
+roe, roce and earning quality"). The one firm-fundamentals-adjacent test the vault can
+fund: the Arnott-Asness (2003, FAJ) aggregate test on Shiller 1871-2023. The
+sustainable-growth identity g = ROE x (1 - payout) predicts LOW payout -> HIGH
+subsequent growth; Arnott-Asness famously found the OPPOSITE on the S&P (high payout ->
+HIGHER subsequent 10y growth) — mean-reversion of earnings + agency/empire-building
+override the identity at the aggregate. Conventions: payout = D/E (Shiller nominal,
+same units), 6-month availability lag (FUN-D2 convention); real-E>0 and real-D>0
+guards (booked run notes); subsequent growth = annualized log real-E growth; monthly
+overlapping observations FLAGGED (effective n is far smaller — no significance claims,
+direction and magnitude only). CELLS (5): q1 Spearman rank-corr payout vs next-10y
+real-E growth (full sample); q2 top-half vs bottom-half payout (expanding median
+split) -> next-10y growth medians; q3 same at 5y; q4 q2 repeated post-1950; q5 the
+mechanism read: payout level vs the CURRENT position of real E relative to its 10y
+trend (is high payout just depressed-earnings state in disguise? — joins FUN-D2 e4).
+PRIOR (two-sided): replicate A-A positive (high payout -> higher growth, corr ~+0.2 to
++0.4 in their sample era); if the identity side wins instead (negative corr), that is
+the bookable surprise; q4 may decay post-1950 like FUN-D2 e10 — either way booked.
+Census 5. Script: scripts/analyze_qg_d1.py.
+
+| Design | What it is | Result (interpretation written AFTER the print) | Verdict |
+|---|---|---|---|
+| QG-D1 | Payout vs subsequent aggregate real-E growth (Arnott-Asness 2003 re-run, Shiller 1871-2023, 6m lag, overlapping-months flagged) | **A-A REPLICATES ON THE SURFACE, AND q5 EXPOSES THE MECHANISM.** q1 rank-corr +0.17 (their era printed ~+0.39 [LIT]; direction PASS); q2 high payout -> +4.01%/yr next-10y real-E growth vs low +1.82 (+2.19pp); q3 stronger at 5y (+6.78 vs +1.45 — the mean-reversion horizon); q4 SURVIVES post-1950 (+4.96 vs +2.23 — unlike FUN-D2 e4's decay; noted). **q5 THE KILL: high-payout months are depressed-earnings months 78% of the time (vs 21% for low-payout) — payout spikes mechanically when E collapses because dividends are 2.7x smoother (FUN-D2 e7) — and WITHIN non-depressed months the gap INVERTS to -1.85pp.** So the celebrated "high payout predicts high growth" aggregate fact is substantially the depressed-earnings base effect (E mean-reverts, FUN-D2 e11 AR(1) -0.11) wearing a payout costume; the agency/empire-building interpretation [LIT A-A's own] is weakened at the aggregate (A-A's paper carries partial controls — noted, not adjudicated here). CONSUMPTION: aggregate payout is a REPACKAGED earnings-state variable, not an independent quality signal — do not spend cells on aggregate-payout timing; the firm-level payout/quality question is untouched by this print and stays with the India data legs | **A-A direction replicated, mechanism reattributed to the earnings state; census +5 = 1063** |

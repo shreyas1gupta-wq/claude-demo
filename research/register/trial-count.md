@@ -91,7 +91,8 @@ this census exists so that can never happen silently.
 | FUN-D2 earnings cycle (e1-e12) | 12 | 12 |
 | FUN-D3 India sector x market-cycle, one-way (s1-s10) | 10 | 10 |
 | FUN-D8 regime-identification battery (m1-m5, m7, m8) | 13 | 13 |
-| **RUNNING TOTAL (run cells)** | | **1058** |
+| QG-D1 payout vs subsequent aggregate earnings growth (q1-q5) | 5 | 5 |
+| **RUNNING TOTAL (run cells)** | | **1063** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
