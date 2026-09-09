@@ -131,3 +131,12 @@ quality-growth-factor-atlas + return-distribution-atlas (docs/learn/artifacts/, 
 Still principal-gated: OPEN_QUESTIONS batches 3+4 + B4-4 (foreign-equity scope),
 funding_rate, Priority-1 pulls. Artifact-watch subscriptions REFUSED this session —
 comments on dashboards do not wake it; ask in-session for changes.
+2026-09-09: FUN-D9a + FUN-D10 booked (census **1,140**; suite 125 green): the FUN-D8 m2
+slope-ranks-returns flag HARDENS (US monthly medians flat 13.8/13.4/13.3 — the registered
+FLAT branch taken; the recession-odds channel survives, 26/28/14) and repo-direction
+conditioning of the India factor sleeve is REFUSED as a design family (RMW prior missed —
+better in FALLING; market split reverses post-1990; era-fragile). The One Page + Syllabus
+artifacts refreshed to the construction era (rows 50-53, census 1,140, the standing book,
+the batteries, the India handoff queue, batches 3+4) — the owed preservation items cleared.
+Still waiting on the principal: the India fundamentals drop (QG-D6 + five frozen designs),
+OPEN_QUESTIONS batches 3+4 (incl. B4-4), funding_rate/ADV, Priority-1 pulls.
