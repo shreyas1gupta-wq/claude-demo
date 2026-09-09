@@ -96,7 +96,9 @@ this census exists so that can never happen silently.
 | QG-D3 ROE x horizon ladder (h1-h10) | 10 | 10 |
 | QG-D4 growth x horizon + three 5x5 matrices x 4 horizons + corner checks (g1-g8, m1-m12, k1-k3, s1) | 24 | 24 |
 | QG-D5 R_EG spanning test (e1 alpha, e2 loadings) | 2 | 2 |
-| **RUNNING TOTAL (run cells)** | | **1130** |
+| FUN-D9a slope-ranks-returns US monthly verification (v1-v3) | 3 | 3 |
+| FUN-D10 monetary regime x factor returns (f1-f7) | 7 | 7 |
+| **RUNNING TOTAL (run cells)** | | **1140** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

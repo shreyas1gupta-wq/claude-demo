@@ -3265,3 +3265,71 @@ plausibly forecast investment anywhere); n1 VW likely +2 to +6%/yr, WELL below t
 +10 (haircut for specification-search inflation + India costs); n3 likely shows heavy
 WML/quality overlap; if India prints Sharpe > 1 the ER-D4b-grade suspicion applies to
 OUR pipeline, not celebration. Census 0 until run (10 on the day).
+
+## Entry FUN-D9a (2026-09-09) — PRE-REGISTERED before running: THE SLOPE-RANKS-RETURNS
+VERIFICATION, US MONTHLY LEG (the FUN-D8 m2 flag said the curve-slope return-ranking is
+NEW vs the booked recession-odds-only doctrine and needs frequency/market verification
+before consumption; India leg stays data-gated — this is the monthly-frequency half).
+Data: Shiller Long Interest Rate (10y proxy) monthly 1871-2023 + FF RF (1m bill,
+annualized x12) 1926-2020; US market TR = Mkt-RF + RF. Slope = GS10 - RF_ann, expanding
+terciles (min 120m, lagged 1m). Fwd 12m market TR compounded (overlapping FLAGGED).
+CELLS (3): v1 slope terciles -> next-12m US market TR (full overlap 1927-2019);
+v2 same post-1963 (the FF5/JST-comparable era); v3 P(next-12m negative) by tercile (the
+recession-odds analog without an NBER series). PRIOR (two-sided): monotone LO<MID<HI
+replicating the JST annual print at monthly frequency; if FLAT, the annual finding is
+panel/frequency-specific and the m2 flag HARDENS (no consumption path without India).
+Census 3.
+
+## Entry FUN-D10 (2026-09-09) — PRE-REGISTERED before running: MONETARY REGIME x FACTOR
+RETURNS, US 1927/1963-2020 (the factor-level extension of FUN-D8 m1 and the
+Jensen-Johnson/Conover line — the pre-verification for ever conditioning OUR WML/HML
+sleeve on RBI repo direction). Regime = sign of the 12m change in the short rate
+(RF annualized), lagged 1 month — real-time honest by construction. CELLS (7):
+f1-f6 mean annualized return in RISING vs FALLING regimes for MktRF, SMB, HML, RMW,
+CMA, UMD (FF6, 1963-2020; MktRF also read 1927- from FF3); f7 the post-1990 era repeat
+of the RMW/CMA/Mkt reads. PRIOR (two-sided): Mkt materially higher in falling regimes
+(FUN-D8 m1 analog); RMW/CMA relatively BETTER in rising/restrictive regimes (the
+defensive-in-tightening story, Conover [LIT]); UMD unclear; if factor returns show NO
+regime split, conditioning the India sleeve on repo direction dies before it is born —
+booked either way. Census 7.
+
+## Entry FUN-D9a RESULT (2026-09-09, interpretation written after the print) — THE m2
+FLAG HARDENS. Runner: scripts/analyze_fun_d9a_d10.py (print-only; overlapping fwd
+windows flagged at registration). Prints: v1 full 1937-2019 — LO +11.7% (med +13.8) |
+MID +11.4% (med +13.4) | HI +13.5% (med +13.3); v2 post-1963 — LO +10.3% (med +14.2) |
+MID +11.4% (med +14.0) | HI +13.7% (med +13.3); v3 P(next-12m negative) — LO 26% |
+MID 28% | HI 14%. GRADE vs the registered prior: the MEANS show a mild HI-best tilt
+(driven by the left tail, see v3) but the MEDIANS are FLAT-to-inverted (13.8/13.4/13.3
+full; 14.2/14.0/13.3 post-1963) — the JST annual return-RANKING does NOT replicate at
+US monthly frequency. Per the registration's own branch: "if FLAT, the annual finding
+is panel/frequency-specific and the m2 flag HARDENS (no consumption path without
+India)." Taken. The FUN-D8 m2 slope-ranks-returns read stays FLAGGED, now with a failed
+frequency verification attached; consumption is fully India-data-gated. What DOES
+survive: v3 ranks cleanly (26/28/14 — a steep slope halves the odds of a negative
+next-12m), which is the recession-odds channel and is consistent with, not additive to,
+the booked MG doctrine (slope as a STATE for downside odds, never a return forecast).
+No parameter, book, or lesson consumes v1/v2. Census 3 (running total 1130 -> 1133).
+
+## Entry FUN-D10 RESULT (2026-09-09, interpretation written after the print) —
+REPO-DIRECTION CONDITIONING OF THE INDIA FACTOR SLEEVE DIES BEFORE REGISTRATION.
+Runner: scripts/analyze_fun_d9a_d10.py. Prints (1963-2020, %/yr, RISING | FALLING |
+gap=F-R): MktRF +5.20 | +7.67 | +2.47; SMB +2.04 | +4.97 | +2.93; HML +5.27 | +1.43 |
+-3.84; RMW +1.67 | +4.12 | +2.45; CMA +3.74 | +3.33 | -0.41; UMD +7.75 | +8.12 |
++0.38. MktRF 1927-2024: +5.22 | +13.35. f7 post-1990: MktRF R+12.1/F+3.0 (REVERSED),
+RMW R+2.6/F+5.3, CMA R+2.9/F+2.4. GRADE vs the registered prior (two-sided, graded
+verbatim): (a) "Mkt materially higher in falling regimes" — HIT on the full 1927-2024
+read (+8.1pp gap) and the 1963-2020 read (+2.5pp), but REVERSED post-1990 (R+12.1 vs
+F+3.0): the market-level split is era-fragile, exactly the FUN-D8 f4-style
+regime-instability signature. (b) "RMW/CMA relatively BETTER in rising/restrictive
+regimes (Conover [LIT])" — MISSED: RMW is better in FALLING regimes in both eras
+(+4.12 vs +1.67; post-1990 F+5.3 vs R+2.6); CMA is ~flat everywhere (-0.41 gap). The
+defensive-in-tightening story does not survive this construction. (c) The one factor
+that PREFERS rising regimes is HML (-3.84 gap, value likes tightening) — unregistered
+direction, recorded as a surprise, not consumed. (d) UMD shows no split (+0.38).
+VERDICT: factor-level monetary-regime splits exist in-sample but flip sign across eras
+at the market level and contradict the literature prior at the factor level —
+conditioning the India WML/HML/quality sleeve on RBI repo direction is REFUSED as a
+design family (the registered kill branch, taken on era-fragility rather than strict
+no-split). FUN-D8 m1's market-level "falling rates better" doctrine survives only as a
+long-sample average with a known post-1990 reversal attached — STATE, not signal.
+Census 7 (running total 1133 -> 1140).
