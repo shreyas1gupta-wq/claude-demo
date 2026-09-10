@@ -1,0 +1,23 @@
+{
+  "lens": "dissipation_reentry",
+  "name": "dissipation_reentry",
+  "file": "signals/dissipation_reentry.py",
+  "built": true,
+  "gates_all_pass": true,
+  "gates": {"G1_causality": true, "G2_dev1990_sharpe": true, "G3_dev1990_maxdd": true, "G4_no_ruinous_era": true, "G5_changes_per_year": true, "G6_plateau": true, "G7_param_budget": true},
+  "dev_1990": {"cagr_pct": 7.859, "sharpe": 0.4469, "max_dd_pct": -12.351, "changes_per_year": 3.865, "pct_days_cash": 51.57, "worst_month_pct": -11.429},
+  "dev_1950": {"applicable": true, "cagr_pct": 9.187, "sharpe": 0.445, "max_dd_pct": -25.397, "changes_per_year": 3.605},
+  "stress": {"1987_crash": -0.971, "1998_ltcm": -1.864, "2000_02_bear": 2.819, "2007_09_gfc": -0.584, "2009_recovery": 0.545},
+  "spurious_reentry": {
+    "2000_02_bear": {"n_entries_to_2x_plus": 2, "share_fwd10_negative": 0.5, "dates": ["2001-10-29", "2002-08-28"], "mean_fwd10_excess_pct": 0.622, "isolated_burst_compound_pct": -1.7},
+    "2007_09_gfc": {"n_entries_to_2x_plus": 2, "share_fwd10_negative": 0.5, "dates": ["2008-12-19", "2009-01-09"], "mean_fwd10_excess_pct": -0.046, "isolated_burst_compound_pct": -0.4}
+  },
+  "n_iterations": 864,
+  "n_tunable_params": 6,
+  "design_note": "dev_results/dissipation_reentry_DESIGN_NOTE.md",
+  "headline": "At 3 bp / 60 bp the implied-vol DIVERGENCE re-entry (VIX >= 30 and >= 25% below its 30-session max while RSI(2) < 20; 3x for 10 sessions with a 10% burst stop) fires 7 times in 1990-2012H1 -- 2 entries in 2000-02 (burst P&L -1.7%, fwd10 mean +0.62%, 50% negative) and 2 in 2007-09 (-0.4%, fwd10 -0.05%, 50% negative) against the pass-1 trap's 26/14 at 77-79% negative -- and lifts a flat-1x realised-vol gate (cash when RV21 > 15%) from dev_1990 Sharpe 0.389 to 0.447 (CAGR 7.86%, maxDD -12.4%, 3.9 changes/yr, 52% cash, plateau 79%), passing all seven gates; but the model survives the two bears through the vol-level gate's 94% cash share rather than through the re-entry, misses the 2009 recovery entirely (+0.5% vs SPY +67%), and cannot catch the 1998, 2002 or 2009 lows because VIX peaked on the low day in each.",
+  "biggest_weakness": "The crash protection is a realised-vol LEVEL gate at 15% with a one-sided knife-edge: at rv_exit 0.17-0.20 the flat-1x default re-enters the 2000-02 bear in its quieter stretches and dev_1990 Sharpe collapses to 0.19-0.30 (G6 passes only because the other five parameters are flat). The inference note rules this ingredient out for the 2020 regime (RV21<15% gates earn ~0% in Mar/Apr-2020), and it costs every recovery (2009 +0.5%, up-capture 52%, avg leverage 0.50, CAGR below buy-and-hold). The lens mechanism itself is statistically thin -- seven bursts, four winners -- and is intrinsically dangerous in a crash where VIX makes higher highs on lower price lows for >30 sessions (Oct-2008..Mar-2009): at vix_fall 0.20 it fired four times for -69% compound; vix_fall >= 0.25 plus the stop make it non-ruinous in DEV, not safe by construction.",
+  "bugs_in_shared_code": "none",
+  "retired_files": [],
+  "returned_by_agent": "2026-09-04 workflow wf_f93dd7c3-999 (verbatim structured return, saved to disk by the coordinator on 2026-09-10)"
+}

@@ -66,4 +66,10 @@ ruinous in 1990-2012 / 1950-2012 AND the edge survives at 6 bp / 90 bp (or the c
 3. **The 1950–2012 and 1990–2012 eras** are reported for every candidate, gate-passer or not.
 
 ## Deviations
-(none yet)
+1. **2026-09-04, session-usage limit.** The six-designer workflow lost five agents to the account's usage cap after 64
+   minutes (`dissipation_reentry` returned; `crash_exit_dual` and `volmanaged` had banked a final harness JSON, a signal
+   file and a design note but died before returning; `sticky_tier` had only a reference script; `vix_vrp` and
+   `composite_dual_engine` never started). Re-launched 2026-09-10 with two agents at a time: a finisher completes the
+   two banked notes from the banked artifacts WITHOUT re-tuning (crash_exit_dual stays a gate failure at its frozen
+   point; volmanaged's frozen point passes all gates), and the three unstarted lenses run fresh. No out-of-sample file
+   was created or read between the two launches (`results/` unchanged since commit 9ec0bb3; `OOS_LOOK_LOG.md` absent).
