@@ -3681,3 +3681,41 @@ cumulatively at 36m if it is real mean reversion; h11 the India post-bear damage
 narrows annualized but stays negative — if still <= -4pp/yr over 3y the playbook
 rule extends to a 3-year statement; h12 T1-T3 wider than the 12m +16.05pp;
 h13 modest positive. Census 13 on the day.
+
+## Entry H36-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_h36.py + es_sc_matrices/h36.json) — AT THREE YEARS THE NOISE WASHES
+OUT AND THE MAP CHANGES: LOW-VOL EMERGES, VALUE COMPOUNDS, AND BOTH INDIA RULES
+EXTEND TO 3-YEAR FACTS. Prints and grades:
+h1 d3(Eps) median D10-D1 fades to **-0.84pp** (from -3.03 at 1m; large-cap -0.72) —
+the reversal-artifact fade prior HIT; dead at every horizon, now with the full decay
+curve booked. h2 corners: all-panel increment -0.52 (still <=0 ✓); the avoid corner
+is a 3y statement — expensive+deteriorating +6.58 vs cheap-alone +10.91 all-panel,
+and in LARGE caps +3.86 vs +8.09 (a 4.2pp/yr gap sustained 3 years); large-cap
+increment +1.26 noted (below any gate, recorded not consumed). h3 the 36m edge map:
+value positive at EVERY size (+8.55 small .. +5.18 large); Mom/Roe/Gr/d3 spreads all
+SHRANK vs 12m (prior HIT, >=4 of 5 bins) — and **Vol FLIPPED SIGN in mid/large caps
+(+3.29/+4.58/+2.41 at szQ3-5)**: low-vol wins at 3y once the junk bounce dies,
+exactly the QG-D4 champion-cell (ROE Q2 x low vol 11.7%/yr at 36m) mechanism showing
+up in an independent construction. h4 szQ5 value ladder +8.15 -> +1.69 (6.5pp/yr at
+3y); corners LV-LG +3.57pp/yr (~+11pp cumulative — widens vs 12m ✓); SV-SG +4.15.
+h5 the 60m large-cap value row: cheap-exp **+4.83pp/yr at five years** — persists ✓.
+h6 US SMB momentum shrinks to +2.55 (era caveat stands); h7 mild continuation
+persists (HI +3.73 vs LO +1.63) — no 3y reversion in the US; h8 US post-bear
++6.27 vs +1.32 ann over 36m (gap +4.95pp/yr) — the US rebound COMPOUNDS ✓.
+h9 India momentum spread **-4.09** at 36m (after-strong-years -2.90) — chasing
+India smallcap strength is NEGATIVE over 3y (the froth signature, worse than the
+registered "nothing"). h10 THE CANDIDATE HIT: India winter terciles -> next-36m ann
+**LO +8.01 / MID +2.22 / HI -3.27** (n=46/68/68 overlapping) — monotone at 3y
+(~+26pp cumulative from the LO state); the winter rebound is a 3-YEAR shape, still
+IIMA-only and Tier-C-capped. h11 India post-bear next-36m **-5.93 vs -0.58** ann
+(gap -5.34pp/yr, ~-16pp cumulative, n=90) — the registered extension branch TAKEN:
+the post-bear smallcap rule is a THREE-YEAR fact, not a one-year timing quirk
+(playbook updated). h12 V_t terciles -> next-36m S-L ann T1 +31.94 / T3 +15.20
+(T1-T3 +16.75pp/YR — the spread's power GROWS with horizon, matching corr -0.69 ✓).
+h13 G_t at 36m NON-monotone (T2 highest; T3 n=23) — the growth-gap conditioner is
+short-horizon only; booked as noise at 3y. RECHECK BASELINE (quoted, census 0):
+QG-D3 36m (Q2-ROE hump 7.8%/yr, top-decile fade), QG-D4 36m matrices (champion
+moderate-ROE x low-vol; glamour-/volatile-quality worst), ER-D1c (3y index-level
+valuation timing is NULL-CONSISTENT — no 3y CAPE clock is ever built), CU-D4iii
+(next-3y after a currency crash +13.2 vs +6.2 — the booked 3y entry state).
+Census 13 (1189 -> **1202**).

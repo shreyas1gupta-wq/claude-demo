@@ -206,6 +206,24 @@ The small-vs-large valuation spread orders next-12m relative return (SC-D1); Ind
 year loses another −12.31% to largecaps (SC-D3) while the segment itself charges −2.9pp/yr for 32 years (TL-D2).</div>
 </div>
 
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · 10 Sep 2026 — the 3-year re-read (H36-D1, 13 cells; census 1,202)</h2>
+<p class="sub">The principal asked for the 3y layer; the whole arc was re-run at 36m forward and the map
+changes: <b>the junk noise washes out and the compounding signals emerge.</b> (1) The revision proxy's
+negative ladder fades to −0.84pp median at 3y — dead at every horizon, decay curve booked. (2) The avoid
+corner is a 3y fact: expensive+deteriorating earns +3.9%/yr vs +8.1 for cheap in large caps, sustained
+three years. (3) <b>Low-vol flips positive at 3y in mid/large caps</b> (+3.3/+4.6/+2.4 spreads) — the
+moderation-principle mechanism appearing in an independent construction. (4) Large-cap value compounds:
++6.5pp/yr at 3y, <b>+4.83pp/yr still there at FIVE years</b>; the size valuation-spread's power GROWS with
+horizon (T1−T3 = +16.75pp/YR at 36m). (5) <b>Both India rules extend to 3-year facts</b>: post-bear
+smallcap damage runs −5.9%/yr for three years (~−16pp cumulative), and the winter rebound is monotone at
+3y (LO +8.0 / MID +2.2 / HI −3.3 ann) while chasing smallcap strength is −4.1. (6) The growth-gap
+conditioner does NOT survive to 3y (non-monotone) — short-horizon only. Recheck of the standing register:
+QG-D3/D4 already carry the 36m quality map (Q2-ROE hump, champion moderate-ROE × low-vol); ER-D1c says 3y
+index-level valuation timing is null-consistent (no 3y CAPE clock, ever); CU-D4iii is the booked 3y entry
+state (+13.2 vs +6.2%/yr after currency crashes).</p>
+</section>
+
 <section class="panel">
 <h2>1 · Earnings revisions <span class="flag bad">PROXY KILLED · DATA-REJECT STANDS</span></h2>
 <p class="sub">Three constructs the literature says never to conflate: revision <b>LEVEL</b> (positive drift —

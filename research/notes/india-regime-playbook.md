@@ -89,3 +89,10 @@ Same-day update (SC-D3a): the survivor-panel cross-check HARDENS the post-bear r
 rebound (non-monotone fallback terciles) — the i2 watch now rests on the IIMA print
 alone; and the panel proved BLIND to the 2018-19 unwind (trough -1.01pp vs the true
 episode), the measured case for the handoff's delisted_registry.
+3y extension (H36-D1, same day): the post-bear rule is a THREE-YEAR fact — next-36m
+SMB after a down market year runs -5.93%/yr vs -0.58 (gap -5.34pp/yr, ~-16pp
+cumulative). The winter rebound is monotone at 3y (LO +8.01 / MID +2.22 / HI -3.27
+ann) — still IIMA-only, still a Tier-C watch; and CHASING smallcap strength is
+negative over 3y (momentum spread -4.09). The 3y smallcap posture in one line:
+enter only from winters, never from strength, and never within 3y of a bear year
+without the winter state.

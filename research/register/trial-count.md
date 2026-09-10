@@ -106,7 +106,8 @@ this census exists so that can never happen silently.
 | ES-D2 revision-proxy interaction matrices (m1-m8) | 8 | 8 |
 | SC-D4 size-conditional edge map (s1-s12) | 12 | 12 |
 | SC-D5 size x value / size x momentum quadrants (j1-j6) | 6 | 6 |
-| **RUNNING TOTAL (run cells)** | | **1189** |
+| H36-D1 the 3-year horizon battery (h1-h13) | 13 | 13 |
+| **RUNNING TOTAL (run cells)** | | **1202** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
