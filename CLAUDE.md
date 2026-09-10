@@ -164,4 +164,23 @@ all junk-swamped on this EW construction (measurement limit booked; factor evide
 VW); SC-D5 the re-interrogation branch fired (large-growth +6.07 is the worst corner, small
 rows inflated) and the value-growth gap is SIZE-STABLE (~+5-6pp at 12m both halves).
 THE EDGE MAP dashboard published (row 55, edge-map.html): every edge ranked
-consumed/flag/graveyard/gated + all new matrices.
+consumed/flag/graveyard/gated + all new matrices. Row 56 = the Earnings & Size Alpha
+Brief (the three-metric synthesis + the 3y update box). H36-D1 booked (census 1,202):
+at 3y the junk noise washes out — low-vol flips positive in mid/large caps, szQ5 value
++6.5pp/yr at 3y / +4.83 at 5y, V_t terciles +16.75pp/yr at 36m, the India post-bear
+rule extends to a 3-YEAR fact (-5.93/yr; playbook updated) and the winter rebound is
+monotone at 3y (LO +8.01/HI -3.27); growth-gap conditioner dies at 3y.
+2026-09-10 (evening), the VAL arc (principal-directed: valuation as edge +
+complementarity; census **1,231**; 3 Sonnet dossiers in research/notes/val-dossiers/):
+VAL-D1 measure ladder — COMPOSITE ~ Pb lead the szQ5 column (+8.97/+8.80 at 12m);
+FCF/EV priors missed; the Div_Yld split (-4.6 panel / +5.10 large) is the payout
+confound live. VAL-D2/D3 — the WCS/trap side fired on the no-delisting artifact
+(every filter negative; traps cannot spring where deaths were deleted — booked as
+artifact, program moves to India PIT + pledge marker); the robust fact is VSC: the
+value spread survives WITHIN every companion family (+12.5-14.8). VAL-D4 (VW,
+clean): HML+UMD Sharpe **0.70** (corr -0.21) — the pairing doctrine = value x
+momentum x moderate quality; CMA is value in drag (corr +0.68, no blend gain); the
+blend does NOT truncate the tail (-37.4 vs -35.1 worst-12m — sizing owns the tail).
+VAL-D5: CAPE terciles price the FLOOR — cheap p10 -2.00 vs expensive -4.92
+(+2.92pp/yr >= the +2.00 bar; ER-D1c null-band caveat quoted, no timing claim).
+Valuation Edge Atlas published (row 57).
