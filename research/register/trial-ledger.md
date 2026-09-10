@@ -4630,3 +4630,53 @@ still PASSES (WML -4.1sigma worst month, the fattest tail — CR1b) — momentum
 "crowded" by the US skew signature but still owns the fattest single-month loss.
 Published as docs/learn/artifacts/india-factor-zoo.html (row 61; scripts/build_india_
 factor_zoo.py). Zero cells; zero census impact.
+
+## Entry SYNTHESIS-LH1 (2026-09-10) — LOW-HERD ALPHA CANDIDATES, BEYOND THE FACTOR ZOO
+(principal: "more apart from these common factors which can deliver alpha in indian
+markets and lessor crowded but works good and can continue to work good in future").
+NOT A TRIAL — a cross-arc synthesis citing ONLY numbers already printed in this
+ledger; zero new cells; zero census impact. Reframes the question from "which
+cross-sectional factor" to "which execution/timing/governance edge, and WHY should it
+resist arbitrage" (the CONTRACT §5 durability test applied explicitly to each row).
+CONFIRMED, real India data: (1) the overnight/intraday session split (T1) — overnight
++24.0%/yr (t=+10.5) vs intraday -12.6%/yr (t=-2.9), STRONGER post-2019 (+41.7pp gap) —
+durable because it is not a tradeable arbitrage (STT kills the two-leg trade), only an
+execution-timing fact nobody can compete away; T1b adds where the real risk lives: in
+stress the overnight drift goes null (+9.2%/yr, t=0.66) while intraday craters
+(-66.3%/yr, t=-3.3) — a structural fact about India's crisis mechanics. (2) the
+currency-crash entry state (CU-D4iii) — next-3y after an INR crash +13.2%/yr vs +6.2%
+others — durable because it requires holding through the crash itself, a behavioral/
+career-risk barrier; CU-D5 adds that India's FX-equity coupling (-0.69) is the
+opposite of the global panel's neutral +0.02, a structural India-specific fact most
+imported EM templates get backwards. (3) promoter share pledging (eq-dossiers/a
+S5a) — durable because the edge is in DOING THE DATA WORK (reading shareholding-
+pattern filings), not information asymmetry. (4) the earnings-cycle phase inversion
+(FUN-D1/D2/D3) — price leads earnings troughs ~10 months, India defensives LAG once
+risk-off is identifiable — durable as long as consensus-estimate revision stays
+slower than price discovery. (5) the 3-year smallcap contrarian pair (SC-D3, H36-D1)
+— avoid 12m after a bear year (-12.31% cost) + the 3y winter rebound after 3 down
+years (+8.01%/yr at 36m) — durable because it requires knowing the US playbook does
+NOT transfer plus a multi-year contrarian hold most funds cannot stomach: patience
+itself is the moat. (6) the high+rising-inflation asset ranking (CI-D1/D2, gold >
+housing >> equity > bonds) — a tactical allocation overlay, not stock selection,
+durable because few desks regime-condition on inflation ACCELERATION vs LEVEL
+explicitly. HONESTY CHECK, one flagged as fading not durable: the turn-of-month
+premium (T6-TOM) is real full-sample (+7.2bp/day, p=0.025) but SHRANK across the
+SIP-era break (+12.2bp/day pre-2015 -> +3.8bp/day post-2015, p=0.29, no longer
+significant) and its hypothesized SIP-flow mechanism was REFUSED — listed as a
+caution (already decaying), not a candidate. REGISTERED CANDIDATES, data-gated:
+H61-FLOWMULT (Inelastic Markets Hypothesis on India's SIP+FPI flow structure — flows
+move prices ~5x and PERSIST, the highest-quality low-herd frame this desk's own
+manager sweep found); H60-VRP (options-chain VRP conditioned on the SEBI 2024-26
+retail-curbs regime break, BR4 — new because the microstructure itself is new); RC1
+(index reconstitution mechanics — decayed in the US, but India's rising passive share
+may still leave the window open, and CLOSING, unlike everything else on this list);
+the India promoter-pledge+accrual composite quantified (needs the fundamentals
+handoff); the R_EG unspanned-alpha flag's India adjudication (QG-D6). EXPLICITLY
+FLAGGED AS NO LONGER LOW-HERD: VRP/option-selling (the standing book's condor engine,
+the budget-day IV crush) is real but arguably the most crowded strategy in Indian
+markets today — the SEBI 2024-26 curbs exist specifically because weekly-options
+selling became a mass retail phenomenon, and this desk's own OP-D3b/OP-D7 grids
+"honestly refused their own train winners OOS," itself evidence of live crowding.
+Folded into the India Factor Zoo as a new Update section (v2, same URL). Zero cells;
+zero census impact.

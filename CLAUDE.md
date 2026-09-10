@@ -312,3 +312,19 @@ liquid-tercile momentum; the winter rebound (downgraded to a watch, survivor-pan
 non-monotone); low-vol (inconclusive, t=1.88); post-bear re-entry (INVERTS the US rebound,
 Tier-C avoid); the raw size premium itself (UNCOMPENSATED at -2.9pp/yr, TL-D2's headline). India
 Factor Zoo published (row 61, india-factor-zoo.html).
+Immediate follow-up: "more... lessor crowded but works good and can continue to work good in
+future." SYNTHESIS-LH1 booked (zero new cells) -- reframes the question as execution/timing/
+governance edges, each graded on WHY it should resist arbitrage. CONFIRMED and durable: the
+overnight/intraday split (T1, +24.0%/yr vs -12.6%/yr -- not a tradeable arbitrage, an execution
+fact); the currency-crash entry state (CU-D4iii, next-3y +13.2% vs +6.2%, requires holding through
+the crash); promoter share pledging (durable because the edge is DOING THE DATA WORK, not
+information asymmetry); the earnings-cycle phase inversion (FUN-D1/D2/D3, price leads earnings
+troughs ~10 months); the 3y smallcap contrarian pair (avoid 12m post-bear + the 3y winter rebound
+-- patience itself is the moat); the high+rising-inflation asset ranking as a tactical overlay.
+FLAGGED AS FADING, not durable: the turn-of-month premium (T6-TOM) shrank across the SIP-era
+break and its hypothesized mechanism was refused. REGISTERED, data-gated: H61-FLOWMULT, H60-VRP,
+RC1 (reconstitution, a CLOSING window unlike everything else here), the India promoter-pledge+
+accrual composite, the R_EG flag's India adjudication. EXPLICITLY FLAGGED AS NO LONGER LOW-HERD:
+VRP/option-selling -- arguably the most crowded strategy in Indian markets today, which is why
+SEBI imposed the 2024-26 retail-derivatives curbs, and why this desk's own optimization grids
+refused their own train winners OOS. Folded into the India Factor Zoo (v2, same URL).
