@@ -3787,3 +3787,77 @@ exceeds expensive-tercile p10 by >= 2pp/yr (valuation prices the downside band e
 where it cannot forecast the mean). If the floor gap < 2pp/yr, valuation loses even
 its band role at the index level and stays ONLY an expectations qualifier
 (ER-D7's corner). Census 3 on the day.
+
+## Entry VAL-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_val.py + es_sc_matrices/val.json) — P/B LEADS THE LADDER; THE
+COMPOSITE TIES IT; THE "MODERN MEASURES" PRIORS MISSED ON THIS PANEL. Spreads
+(cheap-minus-expensive, EW ann; 1m/12m/36m/szQ5-12m): Pb +16.08/+14.58/+8.37/**+8.80**;
+Pe +4.12/+3.53/+2.70/+3.07; Ev_Ebitda +3.13/+3.24/+1.80/+4.94; Fcf_Yld
++0.59/-0.44/+1.47/+3.77; Div_Yld -4.09/-4.55/+0.42/**+5.10**; Bb_Yld
+-2.59/-3.63/-1.18/+0.91; COMPOSITE +8.80/+8.60/+6.30/**+8.97**. v8 ladder (szQ5
+12m): COMPOSITE ~ Pb > Div_Yld > Ev_Ebitda > Fcf_Yld > Pe > Bb_Yld. GRADE: the
+FCF-yield and Ev>=Pb priors MISSED; the composite>=best-single claim lands as a TIE
+(+8.97 vs +8.80 — no material composite premium once Pb is in it); the Div_Yld
+SPLIT is the teaching print — negative at panel (-4.6: in small caps high yield =
+distress/no-growth, the QG-D1 payout-state confound live) but +5.10 in large caps
+(where yield means discipline). CAVEAT: Pb's panel dominance partly rides the junk
+bounce (Pb Q1 = beaten-down); the szQ5 column is the honest rank and there Pb still
+leads. CONSUMPTION: the desk's cross-sectional value instrument stays Pb-led with
+an Ev/FCF composite as robustness, never Bb_Yld; measure choice re-derives on India
+PIT data. Census 8 (1202 -> 1210).
+
+## Entry VAL-D2 + VAL-D3 RESULT (2026-09-10, booked together — the same mechanism
+owns both) — THE FROZEN RULES FIRED, AND WHAT THEY CAUGHT IS THE PANEL, NOT THE
+DOCTRINE: WITHIN-CHEAP CONDITIONING IS UNMEASURABLE ON A NO-DELISTING PANEL.
+VAL-D2 prints (WCS/VSC/szQ5-WCS -> rule verdict): Roe -15.43/+13.38/-9.13;
+Mom -15.89/+12.88/-8.20; Vol(low) -21.36/+13.44/-8.87; lowDebt -3.14/+14.82/-8.44;
+lowTurn -7.19/+14.57/-9.13; Gr -9.45/+12.46/-6.66; Bb_Yld -5.10/+14.38/-1.88 — ALL
+"SUBSUMING/ANTAGONISTIC" by rule; d3 -1.33/+14.34 REDUNDANT. VAL-D3 prints
+(good-minus-bad among Pb Q1, 12m/36m): lowDebt -1.80/-1.77; risingEPS -2.69/-0.97;
+lowVol **-17.79**/-4.31; highROE -11.64/-4.17; lowTurn -4.99/+1.55 — every trap
+filter NEGATIVE at 12m. INTERPRETATION (the honest one): within the cheap bucket of
+an EW panel with NO deaths, the deep-distress corner mechanically outperforms —
+its casualties were deleted, so "traps" cannot spring and every filter that removes
+distress removes the survivor bounce instead. This is SC-D3a a3's lesson at stock
+level: the WCS/trap side of the complementarity program is UNMEASURABLE here, and
+the rule verdicts are booked as ARTIFACT-DRIVEN, not as doctrine (the szQ5 WCS
+agreeing in sign extends the caveat into large caps on this panel — its selection
+filter applies there too). WHAT SURVIVES CLEANLY: the VSC column — the VALUE SPREAD
+IS +12.5 to +14.8 WITHIN EVERY companion quintile family, the single most robust
+cross-sectional fact on this panel (value is not subsumed by quality, momentum,
+vol, leverage, turnover, growth, payout, or revisions). CONSUMPTION: (i) VSC
+robustness -> one edge-list line; (ii) the within-cheap complementarity and
+trap-filter questions MOVE to the India PIT panel (delisted_registry + the P5
+promoter-pledge marker are exactly what this panel lacks) — a design brief, to be
+registered on arrival; (iii) QG-D2 c9 stands unchanged (it is a VSC-type fact,
+consistent with today's print). Census 13 (1210 -> 1223).
+
+## Entry VAL-D4 RESULT (2026-09-10, interpretation after the print) — VALUE+MOMENTUM
+IS THE COMPLEMENT (VW, ARTIFACT-FREE); CMA IS VALUE IN DRAG; THE BLEND'S TAIL IS NOT
+TRUNCATED. Prints (FF6 VW 1963-2020): b1 corr(HML, x): UMD **-0.21**, RMW +0.07,
+CMA **+0.68**, SMB -0.04, Mkt -0.22. b2 50/50 HML+UMD Sharpe **0.70** vs HML 0.32 /
+UMD 0.54 (+5.52%/yr) — the AMP prior HIT decisively; with QG-D2's booked HML+RMW
+0.49, the value book's complements are MOMENTUM first, PROFITABILITY second.
+b3 HML+CMA 0.41 vs CMA alone 0.46 — no gain, corr +0.68: CMA is largely value
+repackaged (REDUNDANT, as registered). b4 HML+SMB 0.40 — diversification crumbs.
+b5 PRIOR MISSED: worst-12m HML alone -35.1% vs blend **-37.4%** — the blend does
+NOT truncate the tail (the momentum-crash and value-winter events are its own
+tails); complementarity is a SHARPE fact, not a crash-protection fact — sizing and
+the drawdown governor still own the tail. CONSUMPTION: the future India stock
+book's factor pairing doctrine = value x momentum x moderate-quality, with tail
+risk handled by the risk ladder, never by the blend itself. Census 5 (1223 -> 1228).
+
+## Entry VAL-D5 RESULT (2026-09-10, interpretation after the print) — VALUATION
+PRICES THE FLOOR: THE p10 GAP CLEARS ITS BAR. Prints (CAPE expanding terciles ->
+next-5y REAL TR ann, 1901-2018 windows, overlapping FLAGGED): CHEAP p10 **-2.00** /
+p50 +8.88 / p90 +20.97 (n=557); MID -2.45/+7.50/+16.62; EXPENSIVE p10 **-4.92** /
+p50 +5.10 / p90 +13.97 (n=627). Floor gap +2.92pp/yr >= the +2.00 bar — PASS. The
+whole distribution shifts, not just the mean: cheap starts raise the floor, the
+median AND the ceiling. CAVEATS, stated: the ER-D1c persistent-regressor demotion
+is quoted and NOT overturned — a quantile shift under overlapping windows inherits
+the same null-band concern (a quantile-level null test is a legitimate future
+design, not run here); therefore consumption stays exactly where the doctrine
+already sits: valuation as a STATE that widens/narrows the expected BAND (floor
+included) for expectations and risk budgets — never a timing signal. This print
+gives the band role its first registered numeric content. Census 3 (1228 ->
+**1231**).

@@ -107,7 +107,12 @@ this census exists so that can never happen silently.
 | SC-D4 size-conditional edge map (s1-s12) | 12 | 12 |
 | SC-D5 size x value / size x momentum quadrants (j1-j6) | 6 | 6 |
 | H36-D1 the 3-year horizon battery (h1-h13) | 13 | 13 |
-| **RUNNING TOTAL (run cells)** | | **1202** |
+| VAL-D1 valuation-measure ladder (v1-v8) | 8 | 8 |
+| VAL-D2 complementarity matrix (8 companions) | 8 | 8 |
+| VAL-D3 value-trap anatomy (5 markers) | 5 | 5 |
+| VAL-D4 factor-level blends (b1-b5) | 5 | 5 |
+| VAL-D5 the CAPE floor test (d1-d3) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **1231** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

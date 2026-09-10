@@ -1,0 +1,168 @@
+{
+ "val_d1": {
+  "Pb": [
+   16.08,
+   14.58,
+   8.37,
+   8.8
+  ],
+  "Pe": [
+   4.12,
+   3.53,
+   2.7,
+   3.07
+  ],
+  "Ev_Ebitda": [
+   3.13,
+   3.24,
+   1.8,
+   4.94
+  ],
+  "Fcf_Yld": [
+   0.59,
+   -0.44,
+   1.47,
+   3.77
+  ],
+  "Div_Yld": [
+   -4.09,
+   -4.55,
+   0.42,
+   5.1
+  ],
+  "Bb_Yld": [
+   -2.59,
+   -3.63,
+   -1.18,
+   0.91
+  ],
+  "COMPOSITE": [
+   8.8,
+   8.6,
+   6.3,
+   8.97
+  ]
+ },
+ "val_d2": {
+  "Roe": {
+   "wcs": -15.43,
+   "vsc": 13.38,
+   "szQ5_wcs": -9.13,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Mom_11M_Usd": {
+   "wcs": -15.89,
+   "vsc": 12.88,
+   "szQ5_wcs": -8.2,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Vol1Y_Usd": {
+   "wcs": -21.36,
+   "vsc": 13.44,
+   "szQ5_wcs": -8.87,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Debtequity": {
+   "wcs": -3.14,
+   "vsc": 14.82,
+   "szQ5_wcs": -8.44,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Share_Turn_12M": {
+   "wcs": -7.19,
+   "vsc": 14.57,
+   "szQ5_wcs": -9.13,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Eps_Basic_Gr": {
+   "wcs": -9.45,
+   "vsc": 12.46,
+   "szQ5_wcs": -6.66,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "Bb_Yld": {
+   "wcs": -5.1,
+   "vsc": 14.38,
+   "szQ5_wcs": -1.88,
+   "verdict": "SUBSUMING/ANTAGONISTIC"
+  },
+  "d3": {
+   "wcs": -1.33,
+   "vsc": 14.34,
+   "szQ5_wcs": -1.29,
+   "verdict": "REDUNDANT"
+  }
+ },
+ "val_d3": {
+  "Debtequity": [
+   -1.8,
+   -1.77
+  ],
+  "d12e": [
+   -2.69,
+   -0.97
+  ],
+  "Vol1Y_Usd": [
+   -17.79,
+   -4.31
+  ],
+  "Roe": [
+   -11.64,
+   -4.17
+  ],
+  "Share_Turn_12M": [
+   -4.99,
+   1.55
+  ]
+ },
+ "val_d4": {
+  "corr": {
+   "UMD": -0.21,
+   "RMW": 0.07,
+   "CMA": 0.68,
+   "SMB": -0.04,
+   "MktRF": -0.22
+  },
+  "blends": {
+   "UMD": [
+    0.32,
+    0.54,
+    0.7
+   ],
+   "CMA": [
+    0.32,
+    0.46,
+    0.41
+   ],
+   "SMB": [
+    0.32,
+    0.24,
+    0.4
+   ]
+  },
+  "worst12": [
+   -35.1,
+   -37.4
+  ]
+ },
+ "val_d5": {
+  "CHEAP": [
+   -2.0,
+   8.88,
+   20.97,
+   557
+  ],
+  "MID": [
+   -2.45,
+   7.5,
+   16.62,
+   226
+  ],
+  "EXPENSIVE": [
+   -4.92,
+   5.1,
+   13.97,
+   627
+  ]
+ }
+}
