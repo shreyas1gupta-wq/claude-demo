@@ -4315,3 +4315,55 @@ conditional leverage-add rule, not just the funding-rate gate); (iv) silver/gold
 stays UNCONSUMED (non-monotone, thin annual sample); (v) the smallcap/nifty ratio's
 own trend/level carries no NEW timing signal beyond what SC-D2/D3/TL-D2 already
 established — corroboration, not addition. Census 9 (1288 -> **1297**).
+
+## Entry EQ-D1 (2026-09-10) — PRE-REGISTERED before running: THE EARNINGS-QUALITY /
+ACCRUAL-DIVERGENCE BATTERY (principal directive: earnings quality + accounting red
+flags). DATA HONESTY FIRST: firm_panel's fields (Ni, Ocf, Ta, Op_Margin, Debtequity,
+etc.) are ALREADY cross-sectionally uniformized to (0,1] per date (the QG-D2
+provenance caveat) — they are RANKS, not dollar values, so a literal Sloan TATA =
+(Ni-Ocf)/Ta in dollar terms is NOT constructible here. Every cell below uses a
+RANK-DIVERGENCE PROXY (the SAME methodological move already accepted for d3(Eps) in
+ES-D1/ES-D2: a difference of per-date-uniformized ranks, not a literal accounting
+ratio) and is labeled as such throughout — never presented as the textbook formula.
+A DISTINCT ONE-WAY ARGUMENT from VAL-D2/D3, stated now: Sloan's accrual anomaly
+predicts high-accrual (earnings-without-cash) firms UNDERPERFORM via a SUBSEQUENT
+unwind (restatement, guidance cut, occasionally fraud discovery or distress) — the
+worst realizations of THAT mechanism are exactly the delistings this no-delisting
+EW panel deletes, so the bias here WEAKENS (understates), never inverts, the
+anomaly (opposite direction from the trap-filter cells, which the bias inverted
+outright). A negative print, even a modest one, is therefore admissible strong
+evidence; a null/positive print is ambiguous (real absence OR a masked real effect)
+and is graded as inconclusive, not as a clean miss. CONSTRUCTION: TATA_proxy(t) =
+Ni_rank(t) - Ocf_rank(t) (HIGH = earnings rank exceeds cash-flow rank = high-
+accrual/low-quality); margin_decline(t) = Op_Margin(t-12) - Op_Margin(t) [GMI-style,
+positive = margin worsened]; leverage_increase(t) = Debtequity(t) - Debtequity(t-12)
+[LVGI-style]; cash_conversion_proxy(t) = Ocf_Margin(t) - Net_Margin(t) [an
+independent field-pairing, the mirror framing of TATA_proxy — a robustness check,
+not a second independent finding if it merely mirrors e1]. DATA-GAP STATED NOW:
+DSRI (needs receivables), AQI (needs a PP&E/intangibles breakdown) and SGAI (needs
+SG&A) are NOT buildable from this panel's 99 fields — the reduced composite below
+is missing 3 of Beneish's 8 components; the India handoff (P1) has the SAME gap
+(no receivables/PP&E-breakdown/SG&A fields) — flagged as a permanent data ask if
+ever wanted. CELLS (8): e1 TATA_proxy deciles -> fwd-1m/12m/36m EW ann D10-D1,
+panel + large half; e2 margin_decline deciles -> fwd-12m D10-D1; e3
+leverage_increase deciles -> fwd-12m D10-D1; e4 cash_conversion_proxy deciles ->
+fwd-12m D10-D1 (mirror-check of e1); e5 THE COMPOSITE (rank-mean of TATA_proxy,
+margin_decline, leverage_increase) -> fwd-1m/12m/36m D10-D1, panel + large half;
+e6 THE VALUE-TRAP CROSS — among CHEAP stocks (Pb Q1-2, VAL-D3 convention), composite
+top-half vs bottom-half -> fwd-12m/36m EW ann (this cell is explicitly FLAGGED as
+subject to the SAME within-cheap-conditioning artifact that inverted VAL-D2/D3 —
+graded under THAT one-way rule, not e1-e5's); e7 era split of e1 (1999-2009 vs
+2010-2019); e8 large-cap-only (szQ5) repeat of e1 at fwd-12m. PRIORS (two-sided,
+graded against the STATED bias direction): e1 negative, plausibly SMALLER than the
+textbook ~10%/yr Sloan spread given the dampening bias — any negative print is a
+HIT; e2/e3 negative [Beneish LIT]; e4 mirrors e1 (positive) as a consistency check;
+e5 composite more negative than any single component [Beneish LIT: composites add
+power]; e6 the KEY test — if it inverts, that is a THIRD sighting of the within-
+cheap artifact (SC-D3a's a3, VAL-D2/D3), not a trap-filter failure — graded as
+such; e7 fades in the calmer recent era [McLean-Pontiff-style decay, established
+pattern this session]; e8 much weaker/null (the anomaly is historically small-cap-
+concentrated [LIT]). India: EVERY cell here is a proxy stand-in for the real design,
+which runs on the handoff's actual dollar-value fields (P1: total_assets,
+total_equity, total_debt, cash_and_equivalents, revenue, net_income, cfo) the day
+it authenticates — a TRUE Sloan TATA, cash-conversion ratio, and reduced-Beneish
+score, all superior to anything computable here. Census 8 on the day.
