@@ -328,3 +328,34 @@ accrual composite, the R_EG flag's India adjudication. EXPLICITLY FLAGGED AS NO 
 VRP/option-selling -- arguably the most crowded strategy in Indian markets today, which is why
 SEBI imposed the 2024-26 retail-derivatives curbs, and why this desk's own optimization grids
 refused their own train winners OOS. Folded into the India Factor Zoo (v2, same URL).
+Immediate follow-up: "basis all these analysis... current environment and positions to take...
+expected next 1y/3y returns... sectoral bet hedge or other." SNAPSHOT-1 booked (descriptive, no
+bar/prior, census 0) -- a genuinely NEW read of the LATEST date in each vault series (not a
+synthesis of history), each construction quoted verbatim from its booked parent design; desk-
+verified (NIFTY drawdown, FX dlog independently re-derived by hand). READING: NIFTY as-of
+2026-04-13 (~5mo stale) is -9.44% drawdown (MID tercile), +2.19% trailing-12m (UP year, the
+post-bear-avoid rule inactive), stage S4 (below/falling 200d MA) -- TECH-D2's own S4 finding is
+VALUATION-CONDITIONED and no India valuation percentile exists anywhere in the vault, named as
+the single biggest open question. Gold (2026-07) is +21.95% trailing-12m but -11.2% off its
+2026-05 peak -- stretched and correcting. NIFTY/gold ratio: FALLING, LOW percentile (RATIO-D1:
+historically favors NIFTY over gold forward, though active rotation already found to lose to a
+static blend). WML (IIMA, 2025-12) ran hot (+8.27% trailing-3m) -- a caution against chasing it
+per TECH-D3's inversion finding. SMB rolling-5y is POSITIVE (+3.2%/yr annualized), in tension
+with TL-D2's -2.9pp/yr 32y base rate and sitting inside the already-flagged 2023-24 froth window.
+RF is FALLING (historically the better regime, FUN-D8). FX (2026-08): INR is in a weak-INR year
+(+8.61% dep, above the 5% threshold, below the 15% crash one) -- CU-D6(d)'s own India read: such
+years average -12.6%/-20.6% (local/USD) vs +34.2%/+35.5% other years, with the YEAR AFTER
+averaging +25.5%/+23.7%. CBOE VIX (2026-08-31, freshest series) sits in the LOW tercile -- calm,
+global not India-specific. GAPS NAMED: India VIX stale since 2023-04, copper/gold stale since
+2017-06, no live debt/credit/inflation nowcast (JST-based, structural context only), and critically
+NO India valuation percentile exists in the vault at all. CONSUMPTION, Tier-C throughout: hold
+standing-book weights (no index-level entry or avoid gate fires); do not add fresh momentum beta
+(WML ran hot); hold gold as the strategic hedge, don't chase it after the run; no tactical
+equity-gold rotation (already-refused); smallcap neutral-to-underweight (no active trigger either
+way); the weak-INR state argues against newly adding unhedged USD exposure right now (B4-4 stays
+the principal's decision); no sector call (SECTOR-GATE stays fully gated). NO POINT FORECAST
+GIVEN for 1y/3y, per the ER-arc doctrine (the pooled-equation OOS failure + the -389% kitchen-sink
+explosion are exactly why) -- only state-conditional historical distributions, each named. Published
+as docs/learn/artifacts/positioning-note.html (row 62), explicitly marked PERISHABLE (built from
+vault snapshots ~2-9 months stale; the single highest-leverage fix is the still-unpulled NSE
+index-valuation history, SC-D1's runsheet row).

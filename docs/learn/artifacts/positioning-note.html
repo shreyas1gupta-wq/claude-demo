@@ -1,0 +1,148 @@
+<title>Positioning Note</title>
+<style>
+:root {
+  --bg:#f6f5f1; --panel:#fdfdfb; --ink:#212528; --ink2:#5a5f63; --mut:#8a8f93;
+  --line:#e2e0d8; --s1:#2a78d6; --heat:42,120,214;
+  --bad:#b3352b; --badbg:#f9e9e7; --good:#1f7a4d; --goodbg:#e7f3ec;
+  --amber:#9a6a00; --amberbg:#f6eed7; --gate:#5b6b8c; --gatebg:#e9edf4;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+} }
+:root[data-theme="dark"] {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+}
+body { background:var(--bg); color:var(--ink); font:15px/1.55 "Source Sans 3",system-ui,sans-serif;
+  margin:0; padding:28px 20px 60px; }
+.wrap { max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:26px; }
+h1 { font:700 30px/1.15 "Archivo",system-ui,sans-serif; letter-spacing:-.3px; margin:0; text-wrap:balance; }
+h2 { font:650 19px/1.2 "Archivo",system-ui,sans-serif; margin:0 0 4px; }
+h3 { font:600 15px/1.25 "Archivo",system-ui,sans-serif; margin:14px 0 4px; }
+.sub { color:var(--ink2); max-width:82ch; margin:6px 0 0; }
+.prov { display:flex; gap:14px; flex-wrap:wrap; font:12px "IBM Plex Mono",monospace; color:var(--mut); }
+.badge { padding:1px 8px; border:1px solid var(--line); border-radius:10px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:18px 20px; }
+.verdicts { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:12px; }
+.v { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; }
+.v b { font-family:"Archivo"; font-size:15.5px; }
+.v .num { font:600 21px/1.25 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; margin:4px 0; }
+.tblwrap { overflow-x:auto; }
+table.plain { border-collapse:collapse; font-size:13.5px; width:100%; min-width:560px; }
+.plain th, .plain td { padding:6px 10px; border-bottom:1px solid var(--line); text-align:right; vertical-align:top; }
+.plain th:first-child, .plain td:first-child { text-align:left; }
+.plain td.pos { color:var(--good); font-weight:600; } .plain td.neg { color:var(--bad); font-weight:600; }
+.plain td.mut { color:var(--mut); }
+.flag { display:inline-block; font:600 11px "Archivo"; letter-spacing:.4px; padding:2px 8px; border-radius:9px; margin-left:6px; vertical-align:2px; }
+.flag.bad { color:var(--bad); background:var(--badbg); } .flag.good { color:var(--good); background:var(--goodbg); }
+.flag.gate { color:var(--gate); background:var(--gatebg); } .flag.amber { color:var(--amber); background:var(--amberbg); }
+.warn { background:var(--amberbg); color:var(--amber); border-radius:8px; padding:12px 16px; margin:12px 0 0; font-size:13.5px; max-width:104ch; }
+.stale { background:var(--badbg); color:var(--bad); border-radius:8px; padding:14px 18px; font-size:14px; font-weight:600; }
+.note { font-size:13px; color:var(--mut); max-width:100ch; }
+ul.q { margin:8px 0 0; padding-left:20px; } ul.q li { margin:6px 0; max-width:92ch; }
+td, th { font-variant-numeric:tabular-nums; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<div class="wrap">
+<header>
+<h1>Positioning Note</h1>
+<div class="stale">⚠ PERISHABLE — built from vault snapshots dated 2026-04 (NIFTY), 2026-07 (gold),
+2025-12 (IIMA factors), 2026-08 (FX/CBOE VIX). Re-run scripts/analyze_snapshot1.py and this builder
+once fresher pulls land — do not read this page as evergreen the way the other atlases are.</div>
+<p class="sub">What the current state of every already-booked conditional relationship says about
+positioning, translated from SNAPSHOT-1's readout. No new forecast is invented here — the ER-arc
+doctrine holds: valuation and macro state are consumed as STATES that widen or narrow the expected
+band, never as a point forecast. Where the desk has no current reading (India valuation, India VIX,
+copper/gold, live inflation-acceleration state), that gap is named, not filled by assumption.</p>
+<div class="prov"><span class="badge">DESK = ledger print, entry ID cited per row</span>
+<span class="badge">state read: SNAPSHOT-1</span>
+<span class="badge">conditional distributions quoted: TECH-D1-D4 · RATIO-D1 · SC-D3 · TL-D2 · CU-D4/D6 · FUN-D8 · H36-D1</span></div>
+</header>
+
+<div class="verdicts">
+<div class="v"><b>The single biggest open question</b><div class="num">no valuation read</div>
+No India CAPE/P-E percentile exists in the vault at all — the one number that would resolve whether
+NIFTY's current downtrend (S4) is the historically bullish "cheap S4" or the dead "expensive S4."</div>
+<div class="v"><b>Current NIFTY state</b><div class="num">-9.4% DD, S4, up-year</div>
+Mid-tercile drawdown, below-and-falling 200d MA, but trailing-12m return still positive — a mixed,
+non-extreme state; no entry-state or avoid-state gate is firing at the index level right now.</div>
+<div class="v"><b>India is in a weak-INR year</b><div class="num">+8.6% dep (12m)</div>
+Above the 5% threshold; CU-D6(d)'s own India read: such years average −12.6% local, but the year
+AFTER has averaged +25.5% local — a real historical pattern, not a guarantee for this specific year.</div>
+</div>
+
+<section class="panel">
+<h2>1 · The state board (as of the vault's latest dates, named per row)</h2>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Series</th><th>As-of</th><th>Reading</th><th>What it's historically conditioned</th></tr></thead><tbody>
+<tr><td>NIFTY drawdown</td><td class="mut">2026-04-13</td><td class="mut">−9.44% (MID tercile)</td><td>TECH-D1: DEEP tercile +33.66% next-12m; MID is not that state</td></tr>
+<tr><td>NIFTY trailing-12m</td><td class="mut">2026-04-13</td><td class="pos">+2.19% (UP year)</td><td>SC-D3's post-bear-avoid rule is NOT live</td></tr>
+<tr><td>NIFTY stage</td><td class="mut">2026-04-13</td><td class="amber">S4 (below &amp; falling 200d MA)</td><td>TECH-D2: S4-cheap +14.65% vs S4-expensive +0.27% — valuation-conditioned, unresolved here</td></tr>
+<tr><td>Gold trailing-12m</td><td class="mut">2026-07</td><td class="pos">+21.95%, but −11.2% off its 2026-05 peak</td><td>a stretched, currently-correcting uptrend, not a fresh one</td></tr>
+<tr><td>NIFTY/gold ratio</td><td class="mut">2026-04</td><td class="mut">FALLING, 0.32 percentile (LOW)</td><td>RATIO-D1: FALLING state → +5.54%/yr NIFTY-over-gold mean-reversion read</td></tr>
+<tr><td>WML trailing-3m</td><td class="mut">2025-12</td><td class="amber">+8.27% (hot)</td><td>TECH-D3: chasing strength has averaged WEAKER continuation (+12.5) than chasing weakness (+23.5)</td></tr>
+<tr><td>SMB rolling-5y</td><td class="mut">2025-12</td><td class="amber">+0.27%/mo (~+3.2%/yr)</td><td>in tension with TL-D2's -2.9pp/yr 32y base rate; sits inside the already-flagged "2023-24 froth" window</td></tr>
+<tr><td>RF (rates) 12m-change</td><td class="mut">2025-12</td><td class="pos">FALLING</td><td>FUN-D8: falling-rate years +8.0%/yr vs +3.3 rising (US pattern, India-verification caveat quoted)</td></tr>
+<tr><td>INR/USD trailing-12m</td><td class="mut">2026-08</td><td class="amber">+8.61% dep (weak-INR year, &lt;15% crash)</td><td>CU-D6(d): weak-INR yrs -12.6%/-20.6% (local/USD) vs +34.2/+35.5 other yrs; NEXT yr +25.5%/+23.7%</td></tr>
+<tr><td>CBOE VIX (global proxy)</td><td class="mut">2026-08-31</td><td class="mut">14.92, 0.32 percentile (LOW)</td><td>calm regime; NOT the post-bear+top-vol crash state TECH-D3 warns about (global proxy only)</td></tr>
+</tbody></table></div>
+<p class="note">Gaps named, not filled: no India-VIX read (stale since 2023-04) so the crash-state gate
+can't be read on India's own vol; no copper/gold trend (IMF PCPS stale since 2017-06); no live
+debt/credit/inflation regime read (JST-based batteries are structural context, not a nowcast); no
+India CAPE/valuation percentile at all. Source: trial-ledger entry SNAPSHOT-1.</p>
+</section>
+
+<section class="panel">
+<h2>2 · Reading the state board into positions — Tier-C, reduce-only, no directional index call</h2>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Sleeve</th><th>Read</th><th>Stance</th></tr></thead><tbody>
+<tr><td>Core equity (NIFTY)</td><td>mid-drawdown, S4, up-year, no valuation read — no entry-state or avoid-state gate fires either way</td><td><span class="flag gate">HOLD standing-book weights — no state argues a directional tilt</span></td></tr>
+<tr><td>Momentum sleeve (WML)</td><td>trailing-3m +8.27% — running hot, and chasing strength has historically been the WEAKER continuation state</td><td><span class="flag amber">do not add fresh momentum beta on top of the standing sleeve</span></td></tr>
+<tr><td>Gold</td><td>+22% trailing-12m but −11.2% off its own May peak — stretched and correcting, not fresh</td><td><span class="flag amber">hold the strategic/hedge allocation; don't chase it higher on recency</span></td></tr>
+<tr><td>Equity vs gold rotation</td><td>the ratio's own mean-reversion mechanics favor NIFTY over gold forward — but RATIO-D1 already found ACTIVE rotation loses to a static blend</td><td><span class="flag gate">no tactical rotation — the static blend is still the better construction</span></td></tr>
+<tr><td>Small-cap</td><td>not a post-bear year (avoid rule inactive) but 5y SMB sits inside the already-flagged froth window against a -2.9pp/yr 32y base rate</td><td><span class="flag amber">neutral-to-underweight — no overweight case, no active avoid-trigger either</span></td></tr>
+<tr><td>USD / foreign-equity sleeve (B4-4)</td><td>currently a weak-INR year — historically the USD leg takes roughly double the local-currency damage in such years</td><td><span class="flag gate">not the historical moment to newly ADD unhedged USD exposure; still a decision the principal owns</span></td></tr>
+<tr><td>Sector</td><td>SECTOR-GATE stays fully gated (no NSE sectoral data) — no active pick possible</td><td><span class="flag gate">no sector call; IF a risk-off state becomes identifiable later, the booked warning is: defensives have historically LAGGED the rebound, cyclicals/financials LED it — don't reflexively rotate defensive</span></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="panel">
+<h2>3 · 1y / 3y — scenario ranges, not a point forecast</h2>
+<p class="warn"><b>Why no single number:</b> the ER arc's own adversarial audit withdrew a 10-year
+"pooled equation survives" headline after honest OOS testing, and single-country kitchen-sink
+forecasts exploded OOS (-389%). Producing a point "expected return" here would repeat exactly the
+mistake that arc exists to warn against. What follows are conditional historical distributions tied
+to CURRENTLY ACTIVE states only — read as a band, not a mean.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Active state</th><th>Historical conditional distribution</th><th>Source</th></tr></thead><tbody>
+<tr><td>Weak-INR year (currently active, +8.61% dep)</td><td>the year itself: -12.6% local / -20.6% USD average (n=11, India); the year AFTER: +25.5% local / +23.7% USD</td><td>CU-D6(d)</td></tr>
+<tr><td>Falling-rate regime (currently active)</td><td>+8.0%/yr vs +3.3%/yr in rising-rate years (US pattern; India verification pending)</td><td>FUN-D8</td></tr>
+<tr><td>3-year horizon, value/quality tilt (structural, not state-dependent)</td><td>szQ5 value +6.5pp/yr at 3y (US panel, rehearsal only); low-vol flips positive once the junk-bounce artifact dies at 3y</td><td>H36-D1</td></tr>
+<tr><td>IF drawdown deepens to the DEEP tercile (not currently active — MID today)</td><td>+33.66% next-12m / +21.54%/yr at 36m — the strongest entry-state read this desk has booked</td><td>TECH-D1</td></tr>
+</tbody></table></div>
+<p class="note">Read these as independent, sometimes-conflicting historical tendencies attached to
+states that are ACTUALLY live today (rows 1-2) or would need a state change to activate (row 4) —
+not as inputs to be summed into a single number. The single highest-leverage data pull to sharpen
+this entire page is the NSE index-valuation history (SC-D1's still-unpulled runsheet row): it would
+resolve the S4-cheap-vs-expensive question, which is the largest unresolved input to any 1y view.</p>
+</section>
+
+<section class="panel">
+<h2>4 · What would change this read</h2>
+<ul class="q">
+<li>An India valuation-percentile pull (NSE index P/E-P/B history) — resolves cheap-S4 vs expensive-S4, the single biggest gap.</li>
+<li>A refreshed India-VIX series — lets the TECH-D3 crash-state gate be read on India's own vol, not the global CBOE proxy.</li>
+<li>Whether the weak-INR year deepens toward the 15% CU-D4 crash threshold — would flip to the stronger +13.2%/yr next-3y entry-state read.</li>
+<li>Any India inflation series (CPI is not vaulted) — the CI-D1 killer cell (high + RISING inflation) cannot currently be tested live for India at all.</li>
+</ul>
+<p class="note">Sources of record: trial-ledger entry SNAPSHOT-1 (descriptive, zero census impact) +
+every conditional distribution cited above (already booked, entry IDs given per row). Regenerates
+via scripts/build_positioning_note.py from scripts/analyze_snapshot1.py's print, never from memory —
+re-run both when fresher vault pulls land.</p>
+</section>
+</div>
