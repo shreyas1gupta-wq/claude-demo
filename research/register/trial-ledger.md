@@ -3523,3 +3523,29 @@ i2) but any pro-smallcap reading is one-way-capped at "consistent, not evidence"
 a3 trough SL cumulative <= -25pp with NO recovery inside 12m. If a1 prints POSITIVE
 the inversion does NOT harden and the IIMA-vs-panel disagreement becomes its own
 open question (booked, not resolved here). Census 3 on the day.
+
+## Entry SC-D3a RESULT (2026-09-10, interpretation after the print) — a1 HARDENS THE
+INVERSION DIRECTIONALLY; a2/a3 EXPOSE THE PANEL'S BLINDNESS, WHICH IS ITS OWN LESSON.
+Runner: scripts/analyze_sc_d3a.py (+ the registered a2 fallback, inline). Panel SL
+context: 113 months 2012-08..2021-12, mean +17.16%/yr — the survivor flattering at
+full strength; context only, never evidence. Prints: **a1** next-12m SL after
+NIFTY-down-12m **+13.85pp (n=20)** vs after up **+18.69pp (n=81)** — gap **-4.85pp**,
+NEGATIVE as the prior required, on a panel biased the other way — ADMISSIBLE under the
+one-way rule: the i3 inversion HARDENS directionally (milder than IIMA's -12.11
+because the down-states here are 2015-16/2019/COVID-2020, and the 2020 state feeds
+straight into the 2020-21 smallcap boom the panel over-credits). **a2** expanding
+terciles INFEASIBLE at this length (usable n=6, all LO — data-insufficient, booked as
+such); the registered fallback (full-sample terciles, FLAGGED, n=66) prints LO +10.50 /
+MID +5.64 / HI +17.63 — NON-monotone: the panel does NOT corroborate the IIMA i2
+winter rebound (prior MISSED on this panel; and any pro-smallcap shape here is
+one-way non-evidence regardless). The i2 watch now rests on the IIMA print ALONE.
+**a3** the 2018-19 unwind: cumulative SL 2018-01 to trough (2018-07) **-1.01pp**,
++4.69pp in the following 12m — the <= -25pp prior MISSED SPECTACULARLY, and the miss
+IS the finding: a 2021-survivor panel cannot see the categorization-reform unwind
+because it deleted the casualties (the ledger predicted this class of failure at TL
+time: "smallcap deaths are exactly what a 2021-survivor panel deletes"). a3 is
+non-evidence for smallcap health and a measured demonstration that the handoff's
+delisted_registry (P3) is as load-bearing as the fundamentals file. VERDICT: the
+post-bear rule stands (playbook line unchanged); the winter-rebound watch is
+downgraded to IIMA-only support; no further smallcap design runs on this panel —
+every remaining India ES/SC question is PIT-data-gated. Census 3 (1160 -> **1163**).

@@ -102,7 +102,8 @@ this census exists so that can never happen silently.
 | SC-D1 size valuation/growth spread timing (v1-v5) | 5 | 5 |
 | SC-D2 US SMB time-series predictability (t1-t4) | 4 | 4 |
 | SC-D3 India SMB analog (i1-i4) | 4 | 4 |
-| **RUNNING TOTAL (run cells)** | | **1160** |
+| SC-D3a survivor-panel cross-check, one-way (a1-a3) | 3 | 3 |
+| **RUNNING TOTAL (run cells)** | | **1163** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

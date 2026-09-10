@@ -84,3 +84,8 @@ this is a Tier-C reduce-only line, consistent with the standing doctrine (TL-D2:
 India smallcap beta is uncompensated; selection inside the segment, never the segment).
 The one India timing shape on record is SC-D3 i2's multi-year winter rebound (trailing
 36m LO tercile -> +10.32%/12m): a WATCH, not a tilt, pending PIT smallcap data.
+Same-day update (SC-D3a): the survivor-panel cross-check HARDENS the post-bear rule
+(gap -4.85pp on a panel biased the other way) but does NOT corroborate the winter
+rebound (non-monotone fallback terciles) — the i2 watch now rests on the IIMA print
+alone; and the panel proved BLIND to the 2018-19 unwind (trough -1.01pp vs the true
+episode), the measured case for the handoff's delisted_registry.
