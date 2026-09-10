@@ -195,3 +195,23 @@ val-dossiers committed (a measures/methods, b complementarity, c India practice,
 d horse-races/combinations — d reconciles the missed FCF/EV priors as construction
 mismatch vs Loughran-Wellman's actual claim and ties the trap-filter artifact to
 the BGLN retained-earnings mechanism).
+2026-09-10 (night), TRACK TECH (principal-directed: technicals; census **1,270**;
+2 Sonnet dossiers in research/notes/tech-dossiers/ + Sonnet runner, desk-verified):
+TECH-D1 ATH battery — don't fear the high (Shiller ATH months +9.46 vs +8.29;
+P(neg) 28 vs 32); the entry state again (NIFTY deep-drawdown tercile +33.66 next-12m,
++21.54/yr at 36m); index 52w-proximity ranks INVERSELY; breakout events nothing
+(n=15). TECH-D2 stages — quadrants rank VOL exactly (S2 13.7% vs S4 26.3%); the
+"buy stage 2" folk claim INVERTS for equity indices (S4 +32.2 next-12m NIFTY) and
+holds for GOLD (S2 +11.3 vs S4 +0.55 — trend asset); THE KEEPER: S4-cheap +14.65 vs
+S4-expensive +0.27 (Shiller) — downtrends are entries only from cheap; T-CTRL1/T2
+untouched (states, never rules). TECH-D3 momentum condition map — post-bear UMD
+-9.30 vs +10.64; high-VIX -9.73; THE GATE FIRED BOTH MARKETS (crash state = post-bear
++ top-vol: US -22.48 n=44, India -27.46 n=15) -> the momentum stand-down monitor is
+REGISTRABLE (Tier-C, wired when the India sleeve exists); India's dominant conditioner
+is the vol state (low +20.0 / high -7.2); own-factor momentum fails (US) / inverts
+(India — never chase WML strength); stock-level lookbacks unanswerable on the EW panel
+(artifact), index answer stands (TS1: 3m NIFTY / 12m gold); vol-scaling mitigates,
+doesn't flip. TECH-D4 valuation clustering — P(stay) 0.97/0.98 monthly, spells
+37-43m mean; de-rating exits -7.21% next-12m vs cheap-exits +16.51. Playbook Track
+TECH addendum + Technical States Atlas published (row 58). Sector RS stays gated on
+the NSE sectoral TR pull (design brief in tech-dossier a).

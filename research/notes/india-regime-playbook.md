@@ -96,3 +96,22 @@ ann) — still IIMA-only, still a Tier-C watch; and CHASING smallcap strength is
 negative over 3y (momentum spread -4.09). The 3y smallcap posture in one line:
 enter only from winters, never from strength, and never within 3y of a bear year
 without the winter state.
+
+## Addendum (2026-09-10, Track TECH consumption lines)
+STAGE x VALUATION (TECH-D2 s5, Shiller 1881-2023): an index DOWNTREND is an entry
+state ONLY from cheap valuations (S4-cheap +14.7% next-12m real) and dead money from
+expensive ones (S4-expensive +0.3%) — the falling knife is the expensive one. Stage
+quadrants are consumed as a VOL state (S4 = 26% vol regime vs S2 = 14%, NIFTY),
+never a return rule (T-CTRL1/T2 stand). Gold is the opposite animal: stage-2 works
+(+11.3 vs S4 +0.6) — trend-persistence, TS1-consistent.
+MOMENTUM STAND-DOWN MONITOR (TECH-D3, gate FIRED both markets): in the post-bear +
+top-vol-tercile state, momentum prints -22.5%/yr (US, n=44) and -27.5%/yr (India,
+n=15) vs +8.6/+15.1 baselines. REGISTRABLE as a Tier-C reduce-only monitor for the
+future India factor sleeve (challengers.yaml lane, validator-gated, wired when the
+sleeve exists). Corollaries: India momentum's dominant conditioner is the VOL state
+(low-vol +20.0 vs high-vol -7.2 %/yr); do not chase WML strength (own-factor
+momentum inverted, +12.5 vs +23.5 after weak years); vol-scaling mitigates but does
+not immunize.
+DE-RATING TRANSITIONS (TECH-D4 c4): the first year after exiting an EXPENSIVE
+valuation regime averages -7.2% real — a fresh de-rating is not yet an entry; the
+exit from CHEAP (+16.5%) is the rally that keeps going.

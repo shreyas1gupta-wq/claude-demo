@@ -113,7 +113,11 @@ this census exists so that can never happen silently.
 | VAL-D4 factor-level blends (b1-b5) | 5 | 5 |
 | VAL-D5 the CAPE floor test (d1-d3) | 3 | 3 |
 | VAL-D6 measure x size x horizon atlas + mixes (x1-x14) | 14 | 14 |
-| **RUNNING TOTAL (run cells)** | | **1245** |
+| TECH-D1 ATH & drawdown states (a1-a6) | 6 | 6 |
+| TECH-D2 stage quadrants as states (s1-s5) | 5 | 5 |
+| TECH-D3 momentum condition map (m1-m10) | 10 | 10 |
+| TECH-D4 valuation-regime persistence (c1-c4) | 4 | 4 |
+| **RUNNING TOTAL (run cells)** | | **1270** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

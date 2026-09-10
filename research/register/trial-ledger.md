@@ -4006,3 +4006,91 @@ state — the clustering answer); the de-rating transitions carry the damage
 (post-expensive-exit months print below unconditional because exits happen BY
 price falling); if spells are short/noisy the "state" framing itself weakens.
 Census 4 on the day.
+
+## Entry TECH-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_tech.py + es_sc_matrices/tech.json; Sonnet agent, desk-verified —
+TECH-D3 m1 reproduced to the cent; the runner's two ambiguity resolutions are
+ACCEPTED and recorded: s1 vol = FORWARD 21d realized; m9 read as panel + szQ5
+D10-D1) — ATHs ARE NOT TO BE FEARED, AND THE ENTRY STATE KEEPS WINNING. Prints:
+a1 NIFTY drawdown terciles -> fwd-12m: LOW +9.16 / MID +14.41 / HIGH **+33.66**
+(n=211, mostly 2008-09+COVID — stated); a2 Shiller new-ATH months +9.46% next-12m
+vs +8.29 others, P(neg) 28.1 vs 31.7 — the don't-fear-the-high prior HIT (ATH
+months slightly BETTER than average); a3 52w-high proximity: LOW +21.53 / MID
++13.63 / HIGH +10.00 — at INDEX level proximity ranks INVERSELY (this is NOT the
+George-Hwang cross-sectional effect [LIT], which remains untested here); a4 gold
+ATH months +3.80 vs +3.78 — nothing; a5 breakouts after >=24m bases: +9.34 vs
++8.57 unconditional (n=15) — the folk breakout edge does NOT show at index level;
+a6 the 3y read: HIGH-drawdown entry +21.54%/yr ann over 36m vs LOW +10.42.
+GRADE: both registered priors HIT (ATH-zone not below average; deep drawdown best
+forward) — with the nuance that a3's proximity ladder makes the buy-at-close
+doctrine caveat UNNECESSARY (ATH months are fine in absolute terms) while
+re-confirming that drawdown states are where the entry premium lives (F2/CU-D4
+doctrine, third asset class). CONSUMPTION: none new — the entry-state doctrine
+gains two more prints. Census 6 (1245 -> 1251).
+
+## Entry TECH-D2 RESULT (2026-09-10, interpretation after the print) — THE STAGE
+FRAME SURVIVES AS A RISK STATE AND DIES AS A RETURN RULE FOR EQUITIES — AND GOLD IS
+THE EXACT OPPOSITE; THE s5 CORNER IS THE ARC'S KEEPER. Prints: s1 NIFTY fwd-1m ann /
+fwd-21d vol: S1 +21.3/18.2 | S2 +6.8/**13.7** | S3 +27.9/18.6 | S4 +18.4/**26.3** —
+the VOL prior HIT exactly (S2 calmest, S4 wildest); the RETURN folk claim INVERTED
+(S2 lowest forward mean). s2 NIFTY fwd-12m: S4 **+32.2** / S3 +26.4 / S1 +11.0 /
+S2 +9.2 — stage-4 clusters at bottoms; the index mean-reverts (one market, strong
+recoveries — stated). s3 Shiller: S3 +13.6 / S4 +10.6 / S2 +7.9 / S1 +2.6 (milder,
+same direction). s4 GOLD INVERTS THE INVERSION: S2 **+11.3** / S3 +5.3 / S1 +1.9 /
+S4 **+0.55** — gold is the trending asset (TS1's 12m-slow doctrine re-confirmed by
+an independent construction); equities at index level are rebound assets. s5 the
+technical x valuation corners (Shiller): S4-CHEAP **+14.65** / S2-CHEAP +10.91 /
+S2-EXPENSIVE +6.22 / S4-EXPENSIVE **+0.27** (n=110) — the falling knife is ONLY the
+expensive one: a downtrend is an entry state when cheap and dead money when
+expensive. GRADE: vol prior HIT; S2-highest-mean folk claim REFUTED for equities,
+CONFIRMED for gold; s5 prior HIT (S4-expensive worst). CONSUMPTION (Tier-C state
+reads, no rule): (i) stage quadrants enter the regime notes as a VOL state (S4 =
+26% vol regime); (ii) the s5 corner read joins the playbook — index downtrends are
+entries only from cheap valuation states; (iii) gold sleeve trend-persistence
+re-confirmed. T-CTRL1/T2 stand untouched — nothing here is a trading rule.
+Census 5 (1251 -> 1256).
+
+## Entry TECH-D3 RESULT (2026-09-10, interpretation after the print; m1 desk-
+verified to the cent) — THE MOMENTUM CONDITION MAP PRINTS CLEAN, AND THE STAND-DOWN
+GATE **FIRES IN BOTH MARKETS**. Prints: m1 US UMD post-bear **-9.30**%/yr vs +10.64
+other; m2 by VIX tercile: LOW +6.68 / MID +10.04 / HIGH **-9.73**; m3 factor
+momentum FAILED (+6.89 after UMD-positive years vs +8.43 after negative — single-
+factor own-momentum adds nothing; Ehsani-Linnainmaa is CROSS-factor [LIT], not
+this); m4 the US crash state (post-bear AND top-VIX) **-22.48%/yr (n=44)** vs
++8.55 — worst months 1932-08 (-52.6), 1932-07 (-45.7), 2009-04 (-34.3), all
+post-bear as [DM LIT] says; m5 India WML post-bear +9.81 vs +14.49 (degraded but
+POSITIVE — India momentum more robust post-bear than US); m6 India by vol tercile:
+LOW **+20.02** / MID +2.37 / HIGH **-7.21** — the vol state is India's dominant
+momentum conditioner (27pp LOW-to-HIGH; tercile n's 188/24/42 reflect the
+expanding-history classification of India's secularly-declining vol — caveat
+stated); m7 India factor momentum INVERTED (+12.50 after positive years vs +23.45
+after negative — WML rebounds after its own bad years; chasing WML strength is the
+mistake); m8 the India crash state **-27.46%/yr (n=15)** vs +15.06 — worst months
+2001-11, 2009-05, 2000-04. THE REGISTERED GATE: both markets print the crash state
+>= 10pp/yr below baseline (US -31pp, India -42.5pp) -> **the momentum stand-down
+monitor (post-bear + top-vol tercile, Tier-C reduce-only) is now REGISTRABLE for
+the India factor sleeve** — spec in the dossier's design brief; config wiring
+happens when the sleeve exists (challengers.yaml lane, validator-gated). m9
+lookbacks: the panel artifact owns both (11M -17.6/-21.1 panel, -11.4/-11.2 szQ5;
+5M less negative everywhere) — the registered 11M>=5M prior is UNGRADEABLE as
+levels are non-evidence (SC-D4 quoted); the honest read: the reversal artifact
+punishes LONGER formation harder, so even the relative comparison is contaminated —
+the lookback question stays answered ONLY at index level (TS1: 3m India equity,
+12m gold) and goes to India PIT at stock level. m10 vol-scaling MITIGATES but does
+not flip (-15.9 vs -17.6 panel 1m; -9.0 vs -11.2 szQ5 12m) — the flip branch not
+reached. Census 10 (1256 -> 1266).
+
+## Entry TECH-D4 RESULT (2026-09-10, interpretation after the print) — VALUATION
+CLUSTERS IN YEARS-LONG SPELLS, AND THE DAMAGE LIVES IN THE DE-RATING TRANSITIONS.
+Prints: c1 monthly P(stay): CHEAP 0.97 / MID 0.87 / EXPENSIVE 0.98 (prior >0.95
+HIT for the extremes; MID is a corridor, not a state); c2 spells: EXPENSIVE median
+16.5m mean 42.9m, CHEAP median 7m mean 37.1m — the means carry multi-year regimes;
+c3 P(same tercile 12m later): 0.84 / 0.36 / 0.85; c4 the transition returns:
+first 12m after flipping OUT of expensive **-7.21%** vs unconditional +8.57 vs out
+of cheap **+16.51** (n=15 each, overlap flagged) — de-rating exits happen BY
+falling and keep falling ~a year; re-rating exits keep rising. GRADE: both priors
+HIT. CONSUMPTION: the clustering answer for the principal — valuation is a slow,
+years-long state (which is WHY it cannot be a clock and CAN be a band/floor
+instrument, VAL-D5/ER-D1c consistent); the transition asymmetry is a context line
+for the regime notes (a fresh de-rating is not yet an entry; the cheap-exit rally
+is real). Census 4 (1266 -> **1270**).

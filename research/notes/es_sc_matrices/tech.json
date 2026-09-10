@@ -1,0 +1,405 @@
+{
+ "tech_d1": {
+  "a1": {
+   "LOW": {
+    "mean_pct": 9.16,
+    "n": 2148
+   },
+   "MID": {
+    "mean_pct": 14.41,
+    "n": 1193
+   },
+   "HIGH": {
+    "mean_pct": 33.66,
+    "n": 211
+   }
+  },
+  "a2": {
+   "ATH": {
+    "mean_pct": 9.46,
+    "p_negative_pct": 28.08,
+    "n": 438
+   },
+   "OTHER": {
+    "mean_pct": 8.29,
+    "p_negative_pct": 31.7,
+    "n": 1379
+   }
+  },
+  "a3": {
+   "LOW": {
+    "mean_pct": 21.53,
+    "n": 672
+   },
+   "MID": {
+    "mean_pct": 13.63,
+    "n": 1298
+   },
+   "HIGH": {
+    "mean_pct": 10.0,
+    "n": 1331
+   }
+  },
+  "a4": {
+   "ATH": {
+    "mean_pct": 3.8,
+    "n": 1053
+   },
+   "OTHER": {
+    "mean_pct": 3.78,
+    "n": 1258
+   }
+  },
+  "a5": {
+   "BREAKOUT": {
+    "mean_pct": 9.34,
+    "n": 15
+   },
+   "UNCONDITIONAL": {
+    "mean_pct": 8.57,
+    "n": 1817
+   }
+  },
+  "a6": {
+   "LOW": {
+    "mean_pct": 10.42,
+    "n": 1821
+   },
+   "MID": {
+    "mean_pct": 14.66,
+    "n": 1063
+   },
+   "HIGH": {
+    "mean_pct": 21.54,
+    "n": 164
+   }
+  }
+ },
+ "tech_d2": {
+  "s1": {
+   "S1": {
+    "fwd1m_ann_mean_pct": 21.26,
+    "realized_vol_pct": 18.21,
+    "n": 459
+   },
+   "S2": {
+    "fwd1m_ann_mean_pct": 6.83,
+    "realized_vol_pct": 13.67,
+    "n": 2849
+   },
+   "S3": {
+    "fwd1m_ann_mean_pct": 27.86,
+    "realized_vol_pct": 18.63,
+    "n": 344
+   },
+   "S4": {
+    "fwd1m_ann_mean_pct": 18.43,
+    "realized_vol_pct": 26.28,
+    "n": 660
+   }
+  },
+  "s2": {
+   "S1": {
+    "mean_pct": 10.97,
+    "n": 447
+   },
+   "S2": {
+    "mean_pct": 9.19,
+    "n": 2682
+   },
+   "S3": {
+    "mean_pct": 26.36,
+    "n": 300
+   },
+   "S4": {
+    "mean_pct": 32.18,
+    "n": 652
+   }
+  },
+  "s3": {
+   "S1": {
+    "mean_pct": 2.58,
+    "n": 108
+   },
+   "S2": {
+    "mean_pct": 7.85,
+    "n": 1124
+   },
+   "S3": {
+    "mean_pct": 13.62,
+    "n": 94
+   },
+   "S4": {
+    "mean_pct": 10.61,
+    "n": 480
+   }
+  },
+  "s4": {
+   "S1": {
+    "mean_pct": 1.88,
+    "n": 79
+   },
+   "S2": {
+    "mean_pct": 11.29,
+    "n": 669
+   },
+   "S3": {
+    "mean_pct": 5.26,
+    "n": 44
+   },
+   "S4": {
+    "mean_pct": 0.55,
+    "n": 1508
+   }
+  },
+  "s5": {
+   "S2-cheap": {
+    "mean_pct": 10.91,
+    "n": 269
+   },
+   "S2-expensive": {
+    "mean_pct": 6.22,
+    "n": 503
+   },
+   "S4-cheap": {
+    "mean_pct": 14.65,
+    "n": 216
+   },
+   "S4-expensive": {
+    "mean_pct": 0.27,
+    "n": 110
+   }
+  }
+ },
+ "tech_d3": {
+  "m1": {
+   "POST_BEAR": {
+    "mean_pct": -9.3,
+    "n": 191
+   },
+   "OTHER": {
+    "mean_pct": 10.64,
+    "n": 984
+   }
+  },
+  "m2": {
+   "LOW": {
+    "mean_pct": 6.68,
+    "n": 113
+   },
+   "MID": {
+    "mean_pct": 10.04,
+    "n": 85
+   },
+   "HIGH": {
+    "mean_pct": -9.73,
+    "n": 101
+   }
+  },
+  "m3": {
+   "POS": {
+    "mean_pct": 6.89,
+    "n": 904
+   },
+   "NEG": {
+    "mean_pct": 8.43,
+    "n": 248
+   }
+  },
+  "m4": {
+   "CRASH_STATE": {
+    "mean_pct": -22.48,
+    "n": 44
+   },
+   "OTHER": {
+    "mean_pct": 8.55,
+    "n": 1132
+   },
+   "worst3": [
+    {
+     "date": "1932-08-31",
+     "umd_pct": -52.61,
+     "post_bear": true,
+     "vix_tercile": null
+    },
+    {
+     "date": "1932-07-31",
+     "umd_pct": -45.74,
+     "post_bear": true,
+     "vix_tercile": null
+    },
+    {
+     "date": "2009-04-30",
+     "umd_pct": -34.34,
+     "post_bear": true,
+     "vix_tercile": "HIGH"
+    }
+   ]
+  },
+  "m5": {
+   "POST_BEAR": {
+    "mean_pct": 9.81,
+    "n": 94
+   },
+   "OTHER": {
+    "mean_pct": 14.49,
+    "n": 291
+   }
+  },
+  "m6": {
+   "LOW": {
+    "mean_pct": 20.02,
+    "n": 188
+   },
+   "MID": {
+    "mean_pct": 2.37,
+    "n": 24
+   },
+   "HIGH": {
+    "mean_pct": -7.21,
+    "n": 42
+   }
+  },
+  "m7": {
+   "POS": {
+    "mean_pct": 12.5,
+    "n": 292
+   },
+   "NEG": {
+    "mean_pct": 23.45,
+    "n": 58
+   }
+  },
+  "m8": {
+   "CRASH_STATE": {
+    "mean_pct": -27.46,
+    "n": 15
+   },
+   "OTHER": {
+    "mean_pct": 15.06,
+    "n": 371
+   },
+   "worst3": [
+    {
+     "date": "2001-11-30",
+     "wml_pct": -27.61,
+     "post_bear": true,
+     "vol_tercile": null
+    },
+    {
+     "date": "2009-05-31",
+     "wml_pct": -25.0,
+     "post_bear": true,
+     "vol_tercile": "HIGH"
+    },
+    {
+     "date": "2000-04-30",
+     "wml_pct": -21.12,
+     "post_bear": false,
+     "vol_tercile": null
+    }
+   ]
+  },
+  "m9": {
+   "Mom_11M_Usd": {
+    "panel_fwd1m": -17.62,
+    "panel_fwd12m": -21.13,
+    "szQ5_fwd1m": -11.35,
+    "szQ5_fwd12m": -11.17
+   },
+   "Mom_5M_Usd": {
+    "panel_fwd1m": -12.62,
+    "panel_fwd12m": -15.71,
+    "szQ5_fwd1m": -9.09,
+    "szQ5_fwd12m": -8.47
+   }
+  },
+  "m10": {
+   "Mom_Sharp_11M_Usd": {
+    "panel_fwd1m": -15.92,
+    "panel_fwd12m": -16.12,
+    "szQ5_fwd1m": -10.26,
+    "szQ5_fwd12m": -9.04
+   },
+   "Mom_11M_Usd": {
+    "panel_fwd1m": -17.62,
+    "panel_fwd12m": -21.13,
+    "szQ5_fwd1m": -11.35,
+    "szQ5_fwd12m": -11.17
+   }
+  }
+ },
+ "tech_d4": {
+  "c1": {
+   "matrix": {
+    "CHEAP": {
+     "CHEAP": 0.97,
+     "MID": 0.03,
+     "EXPENSIVE": 0.0
+    },
+    "MID": {
+     "CHEAP": 0.07,
+     "MID": 0.87,
+     "EXPENSIVE": 0.07
+    },
+    "EXPENSIVE": {
+     "CHEAP": 0.0,
+     "MID": 0.02,
+     "EXPENSIVE": 0.98
+    }
+   },
+   "p_stay": {
+    "CHEAP": 0.97,
+    "MID": 0.87,
+    "EXPENSIVE": 0.98
+   }
+  },
+  "c2": {
+   "CHEAP": {
+    "median": 7.0,
+    "mean": 37.13,
+    "n_spells": 15
+   },
+   "MID": {
+    "median": 5.5,
+    "mean": 7.53,
+    "n_spells": 30
+   },
+   "EXPENSIVE": {
+    "median": 16.5,
+    "mean": 42.94,
+    "n_spells": 16
+   }
+  },
+  "c3": {
+   "CHEAP": {
+    "p_same": 0.84,
+    "n": 557
+   },
+   "MID": {
+    "p_same": 0.36,
+    "n": 226
+   },
+   "EXPENSIVE": {
+    "p_same": 0.85,
+    "n": 675
+   }
+  },
+  "c4": {
+   "OUT_OF_EXPENSIVE": {
+    "mean_pct": -7.21,
+    "n": 15,
+    "overlap_flag": true
+   },
+   "OUT_OF_CHEAP": {
+    "mean_pct": 16.51,
+    "n": 15,
+    "overlap_flag": true
+   },
+   "UNCONDITIONAL": {
+    "mean_pct": 8.57,
+    "n": 1817
+   }
+  }
+ }
+}

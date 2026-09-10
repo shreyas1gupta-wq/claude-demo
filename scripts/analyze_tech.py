@@ -24,7 +24,7 @@ px = nifty["Adj Close"]
 sh = pd.read_csv(f"{V}/us_index/sp500_shiller_monthly_1871.csv", parse_dates=["Date"]).set_index("Date")
 sh = sh[(sh["Real Price"] > 0) & (sh["Real Dividend"] > 0)]
 rtr = ((sh["Real Price"] + sh["Real Dividend"] / 12) / sh["Real Price"].shift(1)).dropna()  # real TR monthly
-tri = (1 + rtr).cumprod()  # real TR index (VAL-D5 construction)
+tri = rtr.cumprod()  # real TR index; rtr is already a gross monthly factor (VAL-D5 construction)
 cape = sh.PE10.replace(0, np.nan).reindex(tri.index)
 
 gold = pd.read_csv(f"{V}/commodities/gold_monthly_1833_2026.csv")
@@ -33,9 +33,10 @@ gold = gold.set_index("Date")["Price"]
 gret = gold.pct_change()
 
 
-def fwd_compound(ret, n):
-    """Compound `ret` over the n periods AFTER the index date (rolling+shift(-n))."""
-    return (1 + ret).rolling(n).apply(np.prod, raw=True).shift(-n) - 1
+def fwd_compound_gross(gross, n):
+    """Compound a GROSS return factor (e.g. rtr, or 1+pct_change) over the n periods
+    AFTER the index date (rolling+shift(-n)), returning a net return."""
+    return gross.rolling(n).apply(np.prod, raw=True).shift(-n) - 1
 
 
 def exp_tercile(s, minn):
@@ -58,8 +59,8 @@ def pos_gap_ge(flag, full_index, k):
 fwd12_nifty = px.shift(-252) / px - 1
 fwd36_nifty = px.shift(-756) / px - 1
 fwd36_nifty_ann = (1 + fwd36_nifty) ** (1 / 3) - 1
-fwd12_real = fwd_compound(rtr, 12)
-gold_fwd12 = fwd_compound(gret, 12)
+fwd12_real = fwd_compound_gross(rtr, 12)  # rtr is already a gross monthly TR factor
+gold_fwd12 = fwd_compound_gross(1 + gret, 12)  # gret is a net monthly return
 
 print("=" * 100)
 print("TECH-D1 — the ATH & drawdown-state battery")
@@ -249,6 +250,7 @@ p.columns = [c.strip() for c in p.columns]
 c0 = p.columns[0]
 p = p[pd.to_numeric(p[c0], errors="coerce").notna()].copy()
 p["ym"] = p[c0].astype(int)
+p = p[p.ym >= 100000].copy()  # drop the trailing annual-summary rows (4-digit years)
 p.index = pd.to_datetime(p.ym, format="%Y%m") + pd.offsets.MonthEnd(0)
 for c in ["Mkt-RF", "SMB", "HML", "RF"]:
     p[c] = p[c].astype(float) / 100
@@ -278,6 +280,7 @@ wml = iima["WML"]
 trail24_us = (1 + mkt_us).rolling(24).apply(np.prod, raw=True) - 1
 post_bear_us = (trail24_us < 0).shift(1)  # lagged 1m
 dm1 = pd.DataFrame({"umd": umd, "s": post_bear_us}).dropna()
+dm1["s"] = dm1["s"].astype(bool)
 m1 = {
     "POST_BEAR": {"mean_pct": round(dm1.umd[dm1.s].mean() * 1200, 2), "n": int(dm1.s.sum())},
     "OTHER": {"mean_pct": round(dm1.umd[~dm1.s].mean() * 1200, 2), "n": int((~dm1.s).sum())},
@@ -319,7 +322,7 @@ OUT["tech_d3"]["m3"] = m3
 top_vix = ter_vix == "HIGH"
 crash_us = (post_bear_us.reindex(top_vix.index).fillna(False)) & (top_vix.fillna(False))
 dm4 = pd.DataFrame({"umd": umd, "crash": crash_us}).dropna(subset=["umd"])
-dm4["crash"] = dm4["crash"].fillna(False)
+dm4["crash"] = dm4["crash"].fillna(False).astype(bool)
 m4 = {
     "CRASH_STATE": {"mean_pct": round(dm4.umd[dm4.crash].mean() * 1200, 2), "n": int(dm4.crash.sum())},
     "OTHER": {"mean_pct": round(dm4.umd[~dm4.crash].mean() * 1200, 2), "n": int((~dm4.crash).sum())},
@@ -344,6 +347,7 @@ OUT["tech_d3"]["m4"] = m4
 trail24_in = (1 + mkt_in).rolling(24).apply(np.prod, raw=True) - 1
 post_bear_in = (trail24_in < 0).shift(1)
 dm5 = pd.DataFrame({"wml": wml, "s": post_bear_in}).dropna()
+dm5["s"] = dm5["s"].astype(bool)
 m5 = {
     "POST_BEAR": {"mean_pct": round(dm5.wml[dm5.s].mean() * 1200, 2), "n": int(dm5.s.sum())},
     "OTHER": {"mean_pct": round(dm5.wml[~dm5.s].mean() * 1200, 2), "n": int((~dm5.s).sum())},
@@ -385,7 +389,7 @@ OUT["tech_d3"]["m7"] = m7
 top_vol_in = ter_vol_in == "HIGH"
 crash_in = (post_bear_in.reindex(top_vol_in.index).fillna(False)) & (top_vol_in.fillna(False))
 dm8 = pd.DataFrame({"wml": wml, "crash": crash_in}).dropna(subset=["wml"])
-dm8["crash"] = dm8["crash"].fillna(False)
+dm8["crash"] = dm8["crash"].fillna(False).astype(bool)
 m8 = {
     "CRASH_STATE": {"mean_pct": round(dm8.wml[dm8.crash].mean() * 1200, 2), "n": int(dm8.crash.sum())},
     "OTHER": {"mean_pct": round(dm8.wml[~dm8.crash].mean() * 1200, 2), "n": int((~dm8.crash).sum())},
@@ -459,11 +463,11 @@ t_now = valid_c
 t_next = valid_c.shift(-1)
 dc1 = pd.DataFrame({"now": t_now, "next": t_next}).dropna()
 mat = pd.crosstab(dc1.now, dc1.next, normalize="index").reindex(index=LABELS, columns=LABELS).fillna(0.0)
-c1 = {r: {cq: round(mat.loc[r, cq], 4) for cq in LABELS} for r in LABELS}
+c1 = {r: {cq: round(mat.loc[r, cq], 2) for cq in LABELS} for r in LABELS}
 print("c1 — CAPE tercile monthly transition matrix (row-normalized; rows=now, cols=next month):")
 for r in LABELS:
-    print(f"  {r:>9} -> " + " | ".join(f"{cq} {c1[r][cq]:.4f}" for cq in LABELS))
-print("  P(stay) diagonal: " + " | ".join(f"{lab} {c1[lab][lab]:.4f}" for lab in LABELS))
+    print(f"  {r:>9} -> " + " | ".join(f"{cq} {c1[r][cq]:.2f}" for cq in LABELS))
+print("  P(stay) diagonal: " + " | ".join(f"{lab} {c1[lab][lab]:.2f}" for lab in LABELS))
 OUT.setdefault("tech_d4", {})["c1"] = {"matrix": c1, "p_stay": {lab: c1[lab][lab] for lab in LABELS}}
 
 # ---------------- c2: spell lengths ----------------
@@ -485,8 +489,8 @@ c3 = {}
 print("\nc3 — P(same CAPE tercile 12 months later):")
 for lab in LABELS:
     sub = dc3[dc3.now == lab]
-    c3[lab] = {"p_same": round((sub.fut == lab).mean(), 4), "n": int(len(sub))}
-    print(f"  {lab:>9}: P(same) {c3[lab]['p_same']:.4f} (n={c3[lab]['n']})")
+    c3[lab] = {"p_same": round((sub.fut == lab).mean(), 2), "n": int(len(sub))}
+    print(f"  {lab:>9}: P(same) {c3[lab]['p_same']:.2f} (n={c3[lab]['n']})")
 OUT["tech_d4"]["c3"] = c3
 
 # ---------------- c4: fwd-12m real TR after flip out of expensive vs out of cheap vs unconditional ----------------
