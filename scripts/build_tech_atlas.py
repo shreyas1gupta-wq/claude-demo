@@ -68,9 +68,10 @@ td, th {{ font-variant-numeric:tabular-nums; }}
 <p class="sub">Track TECH: all-time highs and drawdown states, Weinstein-style stage quadrants
 (as STATES — the desk's own graveyard of MA trading rules is quoted, not contradicted), the momentum
 condition map on 98 years of US and 32 years of India factor data, and the persistence anatomy of
-market valuation regimes, plus MOM-D1's stock-level lookback anatomy across regimes. Every number is a
-booked ledger print (TECH-D1..D4 + MOM-D1, 43 cells, census 1,288; registrations committed before the
-run; the runner's prints desk-verified). Sector RS is data-gated
+market valuation regimes, MOM-D1's stock-level lookback anatomy, and RATIO-D1's index/commodity ratio
+regimes + the leverage-timing read. Every number is a booked ledger print (TECH-D1..D4 + MOM-D1 +
+RATIO-D1, 52 cells, census 1,297; registrations committed before the run; the runner's prints
+desk-verified). Sector RS is data-gated
 on the NSE sectoral TR pull; leverage and index-ratio verdicts are quoted from booked entries.</p>
 <div class="prov"><span class="badge">DESK = ledger print</span>
 <span class="badge">quoted: TS1 · T-CTRL1 · T2 · T3 · F2 · CU-D4 · VAL-D5 · SC-D4</span>
@@ -196,22 +197,62 @@ never be a clock (states last years) and CAN be a band/floor instrument (VAL-D5'
 ER-D1c's null stands).</p>
 </section>
 
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · 10 Sep 2026 — RATIO-D1: commodity/index ratios + the leverage-timing read (9 cells; census 1,297)</h2>
+<p class="sub">The principal asked directly: does sector RS have edge, when is leverage safer, does vol
+clustering help, and what do copper/gold, silver/gold, NIFTY/gold and smallcap/NIFTY show. Vol-clustering-
+reduces-risk is QUOTED, not re-run — F2 (percentile de-risking cut COVID DD 37%→26%), F3a (vol-managed
+NIFTY cuts maxDD 55%→22%), TS1 (3m trend the only DD-control pass), TL-D2 s10 (|r| autocorrelation
+positive through 30 lags) already establish the mechanism; RATIO-D1 only asks whether it extends to
+leverage-ADD timing and to the ratio series themselves.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Ratio / read</th><th>Print</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>Copper/gold trend → next-12m US market</td><td class="pos">RISING +15.11% vs FALLING +10.55%</td><td>real global growth read [LIT confirmed]</td></tr>
+<tr><td>Copper/gold trend → next-12m NIFTY</td><td>+10.62% vs +10.54%</td><td class="neg">flat — NO India-specific edge</td></tr>
+<tr><td>Silver/gold terciles → next-3y gold/silver</td><td>non-monotone (thin annual n=79)</td><td class="neg">unconsumed</td></tr>
+<tr><td>NIFTY/gold trend → next-12m relative return</td><td>RISING +3.23% vs FALLING <b>+5.54%</b></td><td class="pos">mean-REVERTS (fade extension)</td></tr>
+<tr><td>NIFTY/gold percentile → next-12m relative return</td><td>MID +27.4% vs HIGH <b>−6.8%</b></td><td class="pos">agrees with the trend cut</td></tr>
+<tr><td>Smallcap/NIFTY ratio trend/level → next-12m SMB</td><td>flat; HIGH tercile never occurs</td><td class="neg">no new signal — corroborates TL-D2's −2.9%/yr</td></tr>
+</tbody></table></div>
+<h3>The leverage-timing read — the folk intuition fails</h3>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>State (vol × drawdown)</th><th>Fwd 126d max-DD</th><th>n</th></tr></thead><tbody>
+<tr><td class="pos">HIvol × LOWdd (post-spike, near highs)</td><td class="pos"><b>6.31%</b> — safest</td><td>121</td></tr>
+<tr><td>LOvol × HIGHdd</td><td>6.43%</td><td>56</td></tr>
+<tr><td>...</td><td>...</td><td>...</td></tr>
+<tr><td class="neg">LOvol × LOWdd (the calm, complacent grind-up)</td><td class="neg"><b>10.70%</b> — worst, and the MODAL state</td><td>1,431</td></tr>
+</tbody></table></div>
+<p class="note">The registered "calm uptrend is safest" prior FAILS outright: the safest forward state is
+a recent vol spike near highs (a V-recovery signature); the most dangerous is the ordinary calm-and-
+near-highs grind — the largest, most common market state — heading into its own future drawdown. <b>No
+leverage-timing rule is registered from this</b>; the negative finding is load-bearing, arguing for
+caution about ANY state-conditional leverage-add rule beyond the standing no-leverage-until-funding_rate
+gate. Stop-loss states (F2, TS1) do not transfer to leverage-add timing. Ratio-level vol clustering is
+confirmed (|Δlog| autocorrelation +0.10 to +0.17 at every lag, ~6-month half-life) — grounding the
+premise, even though the naive ranking it might suggest inverts in practice.</p>
+</section>
+
 <section class="panel">
 <h2>5 · Quoted &amp; gated — the rest of the technical menu</h2>
 <ul class="q">
-<li><b>Sector RS / rotation — GATED:</b> needs the Priority-1 NSE sectoral TR pull; the design brief is in
-research/notes/tech-dossiers/a (industry momentum per Moskowitz-Grinblatt [LIT], with FUN-D3's booked
-warning: buying defensives once risk-off is identifiable is the measured mistake in India).</li>
-<li><b>Index ratios:</b> equity/gold rotation lost to the static 50/50 blend (T3, both lookbacks);
-small/large ratio conditioning is booked in the SC series (winter rebound a watch; never chase).</li>
-<li><b>Leverage:</b> stock-level leverage is booked (QG-D2 c12; DB battery at the macro level);
-margin-debt-as-timing has the weakest evidence in the canon [LIT] and no free India series — not pursued.</li>
+<li><b>Sector RS / rotation — GATED (formal note, SECTOR-GATE):</b> no sector tag exists anywhere in the
+vault (US firm panel, India survivor panel alike); needs the Priority-1 NSE sectoral TR pull; the design
+brief is in research/notes/tech-dossiers/a (industry momentum per Moskowitz-Grinblatt [LIT], with
+FUN-D3's booked warning: buying defensives once risk-off is identifiable is the measured mistake in
+India). One pull unblocks this + FUN-D3 FULL + SEC-D5 together.</li>
+<li><b>Index ratios:</b> equity/gold ACTIVE rotation lost to the static 50/50 blend (T3, both lookbacks) —
+but the NIFTY/gold ratio's LEVEL is a real 12m mean-reverting rebalance-bias state (RATIO-D1, above);
+small/large ratio conditioning is booked in the SC series (winter rebound a watch; never chase) and adds
+nothing further at the ratio level (RATIO-D1 r6/r7).</li>
+<li><b>Leverage:</b> stock-level leverage is booked (QG-D2 c12; DB battery at the macro level); the
+leverage-TIMING question is now answered and negative (RATIO-D1 r8, above) — margin-debt-as-timing
+separately has the weakest evidence in the canon [LIT] and no free India series.</li>
 <li><b>MA trading rules:</b> dead and staying dead (T-CTRL1: 0/10 net; T2: trend-on-states adds nothing) —
 everything on this page is a STATE read consistent with those kills.</li>
 </ul>
-<p class="note">Sources of record: trial-ledger entries TECH-D1..D4 + MOM-D1 (registrations committed
-before-run; results desk-verified) · es_sc_matrices/tech.json · tech-dossiers a/b ·
-india-regime-playbook.md (the 2026-09-10 Track TECH + MOM-D1 addenda). Regenerates via
+<p class="note">Sources of record: trial-ledger entries TECH-D1..D4 + MOM-D1 + SECTOR-GATE + RATIO-D1
+(registrations committed before-run; results desk-verified) · es_sc_matrices/tech.json · tech-dossiers
+a/b · india-regime-playbook.md (the 2026-09-10 Track TECH + MOM-D1 + RATIO-D1 addenda). Regenerates via
 scripts/build_tech_atlas.py, never from memory.</p>
 </section>
 </div>

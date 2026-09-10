@@ -4242,3 +4242,76 @@ max-DD than high-vol + high-drawdown — if the ranking is monotone in vol alone
 (drawdown adds nothing), leverage-timing reduces to a pure vol-state rule; r9
 clustering present (half-life weeks-to-months), grounding r8's premise. Census 9
 on the day.
+
+## Entry RATIO-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_ratio_d1.py; desk-verified independently on two cells — r1 RISING
+15.1085 vs script 15.11, r8 HIvol-x-LOWdd 6.3055 vs 6.31 — one date-alignment bug
+found and fixed before verification: the IMF copper series uses month-START dates,
+gold uses month-END, so the raw ratio was all-NaN until re-indexed) — THE LEVERAGE-
+TIMING READ INVERTS THE FOLK INTUITION; COPPER/GOLD WORKS AS A GLOBAL READ, NOT AN
+INDIA ONE; BOTH INDEX RATIOS TREND AND MEAN-REVERT AT DIFFERENT CUTS, AS WARNED.
+r1 copper/gold 12m-MA-slope -> next-12m US market: RISING **+15.11%** (n=224) vs
+FALLING +10.55% (n=212) — the "Dr. Copper" growth-read prior HITS on US data
+[LIT confirmed]. r2 the same state -> NIFTY: RISING +10.62% vs FALLING +10.54%
+(n=47/71) — flat; global industrial-demand sentiment does not carry an India-
+specific edge on this short 1980-2017/2007-2026 overlap — MISS, recorded honestly,
+not forced.
+r3 silver/gold annual (1915-2026, n=79 obs): LOW(silver dear) -> gold +20.93%/yr,
+silver +17.78%/yr (n=16); MID -> +4.82/+4.38 (n=29); HIGH(silver cheap) -> gold
++8.40%/yr, **silver +11.40%/yr** (n=34) — NON-monotone, no clean mean-reversion:
+the ratio's own extremes do NOT cleanly predict the next 3 years for either metal;
+the LOW-tercile cluster is dominated by the 1970s-80s monetary-metals bull (stated,
+not detrended) — booked as a MISS on the two-sided mean-reversion prior; the
+annual/n=79 sample is thin for tercile work, flagged.
+r4 NIFTY/gold 12m-MA-slope -> next-12m relative return: RISING +3.23% (n=118) vs
+FALLING **+5.54%** (n=81) — mild REVERSION, not continuation (prior partially
+missed: the trend cut shows the ratio fading, not extending). r5 the SAME ratio by
+expanding percentile: MID +27.42% (n=13, thin) vs HIGH **-6.81%** (n=79); LOW
+n=0 (the ratio only entered its own historical LOW tercile in the final 4 months
+of the sample — no forward window remains, a data-boundary artifact, not a null
+result). r4 and r5 AGREE in direction (both show high/rising NIFTY-vs-gold states
+giving BACK relative return next year) even though built differently — the
+NIFTY/gold ratio is a genuine mean-reverting valuation-style state at the 12m
+horizon, complementing the desk's already-booked equity/gold entry-state doctrine.
+r6 smallcap/nifty proxy-ratio trend -> next-12m SMB: RISING -2.08% vs FALLING
+-2.24% (n=157/203) — no differentiation, consistent with SC-D2's already-booked
+era-fragility (the ratio's OWN trend carries no timing signal, corroborating
+rather than contradicting). r7 the same ratio by expanding percentile: LOW +5.13%
+(n=178) vs MID -4.94% (n=75); HIGH never occurs (0 observations across the full
+sample) — because the proxy ratio has a PERSISTENT SECULAR DOWNTREND (it keeps
+making new lows against its own history), an independent corroboration, by
+construction, of TL-D2's booked -2.9%/yr India smallcap underperformance: the
+ratio structurally cannot revisit its own past highs under an expanding cut.
+r8 THE LEVERAGE-TIMING READ (9 corners, fwd-126d max-DD, ranked smallest first):
+**HIvol x LOWdd 6.31%** (n=121) < LOvol x HIGHdd 6.43% (n=56) < HIvol x MIDdd
+6.69% (n=109) < MIDvol x HIGHdd 9.03% (n=82) = LOvol x MIDdd 9.03% (n=666) <
+HIvol x HIGHdd 9.18% (n=77) < MIDvol x LOWdd 10.42% (n=414) < MIDvol x MIDdd
+10.60% (n=470) < **LOvol x LOWdd 10.70%** (n=1431, the WORST cell). GRADE: the
+registered prior (calm-uptrend safest, monotone in vol) FAILS OUTRIGHT — the
+SAFEST forward state is HIGH vol + LOW drawdown (post-spike, near-highs — a
+V-shaped-recovery signature) and the MOST DANGEROUS is LOW vol + LOW drawdown
+(the complacent grind-up, largest n=1431, i.e. the MODAL market state) heading
+into its own future drawdown. This is the F2a "2008 shadow" mechanism from the
+other direction: calm-and-near-highs is when the NEXT drawdown is least
+anticipated and (on this sample) least well-flagged by the vol/DD state pair
+itself — the state variables that work for STOP-LOSS timing (F2, TS1) do not
+double as LEVERAGE-ADD timing; a low reading on both is not "safe," it is
+unremarkable and precedes the average forthcoming drawdown, not the smallest one.
+r9 vol-clustering in the ratio: |Δlog(NIFTY/gold)| autocorrelation +0.122 (1m) /
++0.170 (3m) / +0.105 (6m) / +0.102 (12m) — positive at every lag, confirming
+clustering; rolling-6m smoothed autocorr(1) = +0.911, informal half-life ~6
+months — the ratio's own volatility is a persistent, laddered state, grounding
+r8's premise (though r8's own ranking still inverts the naive reading).
+CONSUMPTION: (i) copper/gold enters the GLOBAL regime notes as a US/global growth
+read, explicitly NOT an India-specific signal (r2 flat); (ii) the NIFTY/gold ratio
+joins the equity/gold rebalance toolkit as a 12m mean-reverting state (r4+r5 agree:
+fade extension, do not chase a rising ratio) — Tier-C, consistent with T3's prior
+kill of ACTIVE equity/gold rotation (this is a rebalance-bias read, not a trading
+rule); (iii) the leverage-timing read REFUSES the intuitive "calm and near-highs
+is safe" framing — no leverage-timing rule is registered from this print; the
+finding is negative and load-bearing (consistent with CONTRACT's no-leverage-
+until-funding_rate stance — this result argues for caution about ANY state-
+conditional leverage-add rule, not just the funding-rate gate); (iv) silver/gold
+stays UNCONSUMED (non-monotone, thin annual sample); (v) the smallcap/nifty ratio's
+own trend/level carries no NEW timing signal beyond what SC-D2/D3/TL-D2 already
+established — corroboration, not addition. Census 9 (1288 -> **1297**).

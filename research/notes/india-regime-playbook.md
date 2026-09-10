@@ -131,3 +131,24 @@ momentum is an up-market phenomenon (Cooper-Gutierrez-Hameed): stock-level cut b
 NIFTY market state gives 6-2 down -7.51 / up +20.99. The US side of this design stays
 non-evidence — every lookback window inverts on the EW no-delisting panel, a third
 independent construction hitting the same artifact (SC-D4, TECH-D3 m9, now this).
+
+## Addendum (2026-09-10, RATIO-D1: leverage timing and the ratio menu)
+THE LEVERAGE-TIMING READ REFUSES THE FOLK INTUITION: on NIFTY, the safest forward
+126-trading-day max-drawdown state is HIGH vol + LOW drawdown (post-spike, near
+highs: 6.31%), not the calm-and-near-highs state (LOW vol + LOW drawdown, the
+MODAL market condition, is actually the WORST: 10.70%, n=1431). Consumption: no
+leverage-timing rule is registered from this — the negative finding is load-
+bearing (it argues for caution about ANY state-conditional leverage-add rule, on
+top of the standing no-leverage-until-funding_rate gate). Stop-loss timing states
+(F2, TS1) do not transfer to leverage-add timing.
+NIFTY/gold ratio: a 12m mean-reverting state (both the trend cut and the
+percentile cut agree — a rising/high ratio gives back relative return next year).
+Consumption: fade extension in the equity/gold rebalance, Tier-C, complementing
+(not replacing) T3's kill of active rotation. Copper/gold is a real global
+growth read (RISING states +15.11%/yr US market vs FALLING +10.55%) but carries
+NO India-specific edge (NIFTY split flat, +10.62 vs +10.54) — kept as a global
+context line only. Silver/gold and the smallcap/nifty ratio's own level/trend
+add nothing new (silver/gold non-monotone on a thin annual sample; the
+smallcap/nifty ratio's persistent downtrend independently corroborates TL-D2's
+booked -2.9%/yr India smallcap underperformance rather than adding a new signal).
+Sector RS remains fully data-gated (no sector tags anywhere in the vault).

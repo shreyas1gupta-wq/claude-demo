@@ -215,3 +215,27 @@ doesn't flip. TECH-D4 valuation clustering — P(stay) 0.97/0.98 monthly, spells
 37-43m mean; de-rating exits -7.21% next-12m vs cheap-exits +16.51. Playbook Track
 TECH addendum + Technical States Atlas published (row 58). Sector RS stays gated on
 the NSE sectoral TR pull (design brief in tech-dossier a).
+Same session, principal follow-up on lookbacks (regime-conditioned 3-6m vs 6-12m STOCK momentum):
+MOM-D1 booked (census **1,288**; one bug found+fixed pre-verification, window_sum() closed over the
+wrong array, caught because India printed all-NaN; desk-verified). US: every lookback window (3-1
+through 12-7) inverts on the EW no-delisting panel — a third independent confirmation of the same
+artifact (SC-D4, TECH-D3 m9); ungradeable. INDIA: 6-2 (6-month formation, 1-month skip) is the
+outright peak in both the full panel (+15.59%/yr) and the liquid top-ADV tercile (+5.87), and the
+ONLY window staying positive across every India-VIX tercile while 12-7 flips negative under vol
+stress (+27.6 -> -9.7) — a registrable "shorten toward 6-2 in rising vol" refinement; 3-1 flips
+negative in liquid names (reversal, not momentum); a third confirmation (stock-level now) that India
+momentum is up-market-only. Atlas updated (v2, same URL).
+Then the principal asked sector RS/leverage-timing/vol-clustering/copper-gold/silver-gold/nifty-gold/
+smallcap-nifty: SECTOR-GATE formal note booked (fully data-gated, zero cells) + RATIO-D1 booked
+(census **1,297**; one date-alignment bug found+fixed, IMF copper month-start vs gold month-end,
+caught pre-verification; desk-verified). Vol-clustering-reduces-risk QUOTED (F2/F3a/TS1/TL-D2 s10),
+not re-run. Copper/gold: real US/global growth read (RISING +15.11%/yr vs FALLING +10.55) but ZERO
+India-specific edge (NIFTY split flat). NIFTY/gold ratio: a genuine 12m mean-reverting rebalance
+state (trend AND percentile cuts agree — fade extension). Silver/gold and the smallcap/nifty ratio's
+own level add nothing new (thin/non-monotone; the ratio's persistent downtrend independently
+corroborates TL-D2's -2.9%/yr). THE LEVERAGE-TIMING READ INVERTS THE FOLK INTUITION: safest fwd-126d
+NIFTY state is HIvol+LOWdd (6.31% maxDD, a post-spike recovery signature); the WORST and most common
+state is the calm LOvol+LOWdd grind-up (10.70%, n=1,431) — no leverage-timing rule registered; the
+negative finding stands alongside the no-leverage-until-funding_rate gate. Atlas updated again (v3,
+same URL, now TECH-D1..D4+MOM-D1+RATIO-D1, 52 cells). RUNSHEET's NSE-sectoral-TR row now named as the
+one pull that unblocks FUN-D3 FULL + SEC-D5 + the sector-RS design together.
