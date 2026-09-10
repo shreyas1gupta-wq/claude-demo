@@ -119,7 +119,8 @@ this census exists so that can never happen silently.
 | TECH-D4 valuation-regime persistence (c1-c4) | 4 | 4 |
 | MOM-D1 stock-level lookback anatomy across regimes (L1-L6) | 18 | 18 |
 | RATIO-D1 index/commodity ratio regimes + leverage-timing read (r1-r9) | 9 | 9 |
-| **RUNNING TOTAL (run cells)** | | **1297** |
+| EQ-D1 earnings-quality / accrual-divergence battery (e1-e8) | 8 | 8 |
+| **RUNNING TOTAL (run cells)** | | **1305** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

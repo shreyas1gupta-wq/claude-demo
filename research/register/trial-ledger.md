@@ -4367,3 +4367,61 @@ which runs on the handoff's actual dollar-value fields (P1: total_assets,
 total_equity, total_debt, cash_and_equivalents, revenue, net_income, cfo) the day
 it authenticates — a TRUE Sloan TATA, cash-conversion ratio, and reduced-Beneish
 score, all superior to anything computable here. Census 8 on the day.
+
+## Entry EQ-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_eq_d1.py; desk-verified independently on two cells: e1 panel 12m
+-11.8808 vs script -11.88, e5 large-cap composite 12m +2.6774 vs +2.68) — THE
+ACCRUAL-DIVERGENCE PROXY SURVIVES ITS OWN ADMISSIBILITY BAR; THE COMPOSITE DILUTES
+RATHER THAN STRENGTHENS IT — A CLEAN, HONEST MISS OF THE BENEISH-COMPOSITE PRIOR.
+e1 TATA_proxy D10-D1: panel 1m **-10.62** / 12m **-11.88** / 36m -4.43; large-cap
+1m -0.69 / 12m -4.76 / 36m -1.45 — NEGATIVE at every horizon, both cuts. GRADE: HIT
+under the registered admissibility bar (any negative print counts as strong
+evidence, since the stated bias direction WEAKENS rather than inverts this
+anomaly) — and the print is materially smaller than the textbook ~10%/yr Sloan
+decile spread only at the 36m panel/large-cap horizons, matching the prior's
+"plausibly smaller" branch exactly. e2 margin_decline D10-D1 fwd-12m: **+5.27**
+(prior said negative — MISS); e3 leverage_increase D10-D1 fwd-12m: **+2.22** (prior
+said negative — MISS). Both Beneish-style components run the WRONG way on this
+panel: rising leverage and margin deterioration each PRECEDE outperformance here,
+not underperformance — plausibly a mean-reversion/turnaround signature (margin-
+compressed, more-levered firms rebounding) rather than the fraud-adjacent reading
+Beneish intends, OR a construction artifact of using rank-differences instead of
+levels (a firm moving from a low-margin decile toward the median registers the
+same "decline" sign as one falling further from an already-high base — the two
+are conflated in a pure rank-difference; recorded as a construction caveat for the
+India re-run). e4 cash_conversion_proxy D10-D1 fwd-12m: **+7.77** — the mirror-check
+of e1 HITS (good cash conversion outperforms, same direction as e1's story).
+e5 THE COMPOSITE (mean rank of tata+margin_decline+lev_increase): panel 1m -2.78 /
+12m -3.40 / 36m -2.49 — WEAKER than e1 ALONE at every horizon (12m: -3.40 vs
+-11.88); large-cap composite **FLIPS POSITIVE** (1m +1.09 / 12m +2.68 / 36m -0.20).
+GRADE: the Beneish "composites add power" prior MISSES outright — here the
+composite DILUTES the signal, because two of its three ingredients (e2, e3) point
+the wrong way on this panel; forcing them together with e1 cancels rather than
+compounds. This is booked as the arc's central lesson: a composite is only as
+good as its worst-signed ingredient, and BLINDLY porting a textbook multi-factor
+score onto a new panel without checking each component's OWN sign first is exactly
+the mistake this print catches. e6 THE VALUE-TRAP CROSS: among cheap stocks,
+low-redflag minus high-redflag half: 12m **-1.32** (inverted — the "bad" half did
+BETTER), 36m +1.20 (flips back, small, noise-level). GRADE: as pre-registered, the
+12m inversion is graded under the WITHIN-CHEAP artifact rule (SC-D3a a3, VAL-D2/D3)
+— a THIRD sighting, not a trap-filter failure; the 36m flip-to-near-zero is
+recorded as inconclusive rather than a fourth data point either way. e7 era split:
+1999-2009 **-15.95**, 2010-2019 **-6.99** — fades by more than half, matching the
+registered post-publication-decay prior [HIT]. e8 large-cap-only fwd-12m: -4.76
+(identical to e1's large-cap row, as expected — a construction sanity check, not
+independent evidence). CONSUMPTION: (i) the raw TATA_proxy (earnings-rank minus
+cash-flow-rank divergence) is the one component worth carrying forward as an
+avoid-list input — cheap, robust, negative at every horizon and both cuts; (ii) the
+margin-decline and leverage-increase RANK-DIFFERENCE constructions are NOT carried
+forward as red-flag inputs in their current form — they run backwards on this
+panel, and the construction caveat (rank-differences conflating "declining from
+high" with "declining toward median") is flagged for the India re-run, where TRUE
+dollar-value fields let margin/leverage changes be measured properly; (iii) DO NOT
+composite red-flag scores mechanically — check each ingredient's own sign on the
+target data first; (iv) the trap-filter question (e6) stays where VAL-D2/D3 left
+it: unmeasurable on a no-delisting panel, PIT-gated to the India handoff (P5
+promoter-pledge + P3 delisted_registry give the real test). India: the TRUE
+Sloan TATA, true cash-conversion ratio, and a properly-signed reduced-Beneish
+score (verifying each component's sign on Indian data before compositing — the
+lesson from e2/e3/e5) are all registrable the day the handoff authenticates.
+Census 8 (1297 -> **1305**).
