@@ -3333,3 +3333,88 @@ design family (the registered kill branch, taken on era-fragility rather than st
 no-split). FUN-D8 m1's market-level "falling rates better" doctrine survives only as a
 long-sample average with a known post-1990 reversal attached — STATE, not signal.
 Census 7 (running total 1133 -> 1140).
+
+## Entry ES-D1 (2026-09-10) — PRE-REGISTERED before running: THE REVISION-PROXY
+(FUNDAMENTAL MOMENTUM) BATTERY, US FIRM PANEL. Principal directive of 2026-09-10 opens
+the earnings-revision/surprise arc. STANDING CONSTRAINT: Atlas 3.5's DATA-REJECT on
+India analyst consensus is UNCHANGED — no free PIT consensus exists; everything here is
+a FUNDAMENTAL proxy (reported-EPS rank migration), stated as such, never sold as
+analyst revisions. Data: firm_panel (data_ml, 1,207 US stocks 1999-2019; features
+cross-sectionally uniformized to (0,1] so only RANK constructions are admissible;
+EW-only; NO delistings — the QG-D2 junk-artifact caveat BINDS: every headline carries
+its large-cap sub-read). Signal: dK(Eps) = Eps rank at t minus Eps rank at t-K per
+stock (K = 3, 12 months) — rank migration in reported EPS. Forward returns via the
+R{h}M_Usd columns (row t realizes t+1..t+h; the GFC-anchor forward convention of the
+vault AUTH applies). CELLS (7): e1 decile ladder of d3(Eps) -> fwd-1m EW ann. mean,
+D10-D1 spread; e2 same for d12(Eps); e3 large-cap control — top size quintile
+(Mkt_Cap_12M_Usd q5), quintile spread Q5-Q1 for BOTH signals; e4 horizon profile:
+d3 D10-D1 at fwd 1m/3m/12m (drift-vs-fade shape); e5 momentum-overlap control —
+within Mom_11M_Usd quintiles, the residual d3(Eps) Q5-Q1 spread (does fundamental
+momentum add beyond price momentum — Novy-Marx [LIT] says partially); e6 era split
+of e1: 1999-2009 vs 2010-2019 (post-publication decay read, McLean-Pontiff [LIT]);
+e7 vol interaction — d3(Eps) Q5-Q1 within low-vol vs high-vol halves (Vol1Y_Usd;
+is the spread junk-concentrated?). PRIOR (two-sided, stated now): e1 positive
++2-6%/yr EW (panel small-tilt inflated); e4 fades by 12m (drift shape); e3 large-cap
+spread MATERIALLY smaller (QG-D2 precedent) — if e3 ~0 the effect is a small/junk
+artifact; e5 within-momentum increment is the CONSUMPTION GATE: only >= +2%/yr
+residual spread AND a surviving e3 opens any India design conversation; e6 second
+half weaker. If e1 itself is ~0 or negative, fundamental momentum dies on this panel
+and the arc's India leg reduces to the PEAD event-study data ask (RUNSHEET row).
+Census 7 on the day it runs.
+
+## Entry SC-D1 (2026-09-10) — PRE-REGISTERED before running: SMALL-vs-LARGE
+VALUATION/GROWTH SPREAD AS A TIMING SIGNAL, US FIRM PANEL 1999-2019. The principal's
+"smallcap vs largecap valuation and growth comparison to predictability" — the direct
+test. TL-D2 booked the LEVELS (US small pays +1.5-2.7pp/yr; India small charges
+-2.9pp/yr); this is the TIMING layer. Construction (all ranks, per the vault's
+uniformization): size quintiles by Mkt_Cap_12M_Usd each month; SL_{t+h} = EW mean fwd
+return of Q1 (small) minus Q5 (large) at horizon h; valuation spread V_t = median Pb
+rank of Q1 minus median Pb rank of Q5 (LOW = small cheap vs large); growth gap
+G_t = median Eps_Basic_Gr rank of Q1 minus Q5. IN-SAMPLE DESCRIPTIVE, flagged: 240
+months, terciles cut on the FULL sample — no real-time claim is available at this
+length and none will be made; the print is a first-gate existence test. CELLS (5):
+v1 V_t full-sample terciles -> next-12m SL (monotonicity + spread, overlapping
+FLAGGED); v2 G_t terciles -> next-12m SL; v3 correlation profile corr(V_t, SL_{t+h})
+and corr(G_t, SL_{t+h}) at h = 1, 12, 36m; v4 the corner read — cheap-small+
+favorable-growth-gap months vs expensive-small+unfavorable months, next-12m SL gap;
+v5 Pe-based repeat of v1 (robustness to the valuation measure). PRIOR (two-sided):
+value-spread timing has multi-year-horizon support in the literature [Asness et al,
+Cohen-Polk-Vuolteenaho, LIT] but factor timing is notoriously weak; expect v1
+monotone-correct with a modest spread (+2-6pp next-12m T1-T3) and v3 rising with
+horizon; G_t is the desk's own question — no strong prior, booked either way. KILL
+BRANCH: if v1 AND v5 show no monotone relation even IN-SAMPLE, size-rotation timing
+dies at the first gate and no India version is ever built (the NSE index-P/E
+runsheet ask is then dropped). Census 5 on the day.
+
+## Entry SC-D2 (2026-09-10) — PRE-REGISTERED before running: SMB TIME-SERIES
+PREDICTABILITY, US FF MONTHLY 1926-2024. What, if anything, in SMB's own history
+predicts SMB. Collision guard: CW2 (April seasonal) and FUN-D10 f2 (rate-regime
+split +2.04 R / +4.97 F) are BOOKED — neither is re-run; this entry is the
+time-series-of-SMB complement. Data: fff_monthly_us (SMB, Mkt-RF, RF 1926-2024).
+CELLS (4): t1 SMB 12m momentum — sign of trailing-12m SMB sum -> next-12m SMB
+(mean spread positive-minus-negative + hit rate); t2 multi-year reversal —
+trailing-36m SMB terciles (expanding cut, min 120m, lagged) -> next-12m SMB;
+t3 market-state rebound — next-12m SMB after DOWN market years (trailing-12m
+Mkt-RF+RF < 0) vs after up years (the post-bear small-rebound claim); t4 era split
+of t1: 1927-1980 / 1981-2000 / 2001-2024 (Banz publication 1981 [LIT]). PRIOR
+(two-sided): factor momentum literature [Ehsani-Linnainmaa, LIT] says t1 mildly
+positive; long-horizon reversal weak; t3 positive (small is high-beta into
+recoveries); t4 attenuating. If ALL cells are ~null, the desk books "US size
+rotation has no time-series handle" and the SC arc's consumption reduces to
+SC-D1's valuation-spread channel only. Census 4 on the day.
+
+## Entry SC-D3 (2026-09-10) — PRE-REGISTERED before running: INDIA SMB ANALOG,
+IIMA MONTHLY 1993-2025. The India half of SC-D2, on the IIMA SMB factor (the same
+series that carried TL-D2 s8's -2.9pp/yr verdict — quoted, not re-derived). CELLS
+(4): i1 = t1 analog (India SMB 12m momentum -> next 12m); i2 = t2 analog (36m
+expanding-tercile reversal); i3 = t3 analog (next-12m SMB after down vs up market
+years, MF+RF market proxy; where MF is NA the market leg shortens — stated in the
+print); i4 the regime map — rolling 5y SMB mean, dating the Indian smallcap
+regimes (descriptive; the 2018 unwind and the 2023-24 froth should be visible —
+if they are NOT, the IIMA factor's smallcap construction is re-interrogated before
+any consumption). PRIOR (two-sided): i1 plausibly STRONGER than the US print
+(retail flow persistence [LIT]); i3 positive but 2018-19 is the known
+counterexample; TL-D2 doctrine caps ALL consumption here at Tier-C
+monitor/reduce-only — a strong i1 print does NOT create a smallcap tilt, it
+creates a registered monitor pending PIT smallcap data (the India fundamentals
+handoff). Census 4 on the day.
