@@ -3719,3 +3719,71 @@ moderate-ROE x low-vol; glamour-/volatile-quality worst), ER-D1c (3y index-level
 valuation timing is NULL-CONSISTENT — no 3y CAPE clock is ever built), CU-D4iii
 (next-3y after a currency crash +13.2 vs +6.2 — the booked 3y entry state).
 Census 13 (1189 -> **1202**).
+
+## Entry VAL-D1 (2026-09-10) — PRE-REGISTERED before running: THE VALUATION-MEASURE
+LADDER (the VAL arc opens; principal: "valuations as edge... methods"). Which
+valuation MEASURE carries the cross-sectional edge, head-to-head, same universe, same
+conventions (firm_panel; dec() n=5 per date; EW; fwd 1m x1200 / 12m x100 / 36m QG-D3
+compounding; EW-survivor caveat binds; large-cap szQ5 sub-reads carry the honest
+weight). Measures (cheap side stated): Pb LOW, Pe LOW, Ev_Ebitda LOW, Fcf_Yld HIGH,
+Div_Yld HIGH, Bb_Yld HIGH. CELLS (8): v1-v6 one per measure — the cheap-minus-
+expensive spread at 1m/12m/36m + the szQ5 12m read; v7 the COMPOSITE (equal rank-mean
+of Pb, Ev_Ebitda, Fcf_Yld, signs aligned) — same profile; v8 the ladder verdict —
+rank measures by szQ5 12m spread (the implementable column). PRIOR (two-sided):
+FCF yield strongest recent-decade claim [LIT] and Ev/EBITDA >= Pb (Loughran-Wellman
+[LIT]); Div_Yld weakest (the QG-D1 payout-state confound — quoted); composite >= best
+single is the classic claim, tested not assumed; if Pb wins outright the
+intangibles-era decay story is overstated on this panel. Census 8 on the day.
+
+## Entry VAL-D2 (2026-09-10) — PRE-REGISTERED before running: THE COMPLEMENTARITY
+MATRIX — which metrics ADD to value, which repackage it, which fight it. FROZEN
+NUMERIC RULES (thresholds inherit the ES-D2 gate scale of 2.00%/yr — precedent, not
+a new magic number): for companion X with its good side stated, (i) WCS =
+within-cheap spread — among Pb Q1-Q2 names, X's good-minus-bad quintile spread,
+fwd-12m EW ann; (ii) VSC = value-survival check — the mean Pb Q1-Q5 spread WITHIN X
+quintiles, fwd-12m. VERDICTS: COMPLEMENTARY if WCS >= +2.00 AND VSC >= +2.00 (and
+the szQ5 WCS sign agrees — else demoted to PANEL-ONLY); REDUNDANT if |WCS| < 2.00
+AND VSC >= +2.00; SUBSUMING/ANTAGONISTIC if VSC < +2.00 OR WCS <= -2.00. Companions
+(good side): Roe HIGH, Mom_11M HIGH, Vol1Y LOW, Debtequity LOW, Share_Turn_12M LOW
+(neglect story — two-sided), Eps_Basic_Gr HIGH, Bb_Yld HIGH, d3(Eps) HIGH (the
+ES-D2 corner read re-expressed under these rules for the one table). CELLS (8), one
+per companion. PRIOR: momentum + quality + low-vol + Bb_Yld COMPLEMENTARY [AMP,
+Novy-Marx, H36 h3, shareholder-yield LIT + the booked QG-D2 c9 cheap-quality print];
+low-leverage COMPLEMENTARY (trap logic); growth REDUNDANT-to-ANTAGONISTIC (the
+extrapolation error IS the harvest); d3 NOT complementary (ES-D2 booked — this cell
+formalizes it); turnover genuinely two-sided. Census 8 on the day.
+
+## Entry VAL-D3 (2026-09-10) — PRE-REGISTERED before running: VALUE-TRAP ANATOMY.
+Among CHEAP names (Pb Q1, per date), split by each trap marker and print the
+good-half minus bad-half fwd-12m and fwd-36m EW ann difference. Markers (bad side):
+Debtequity HIGH, d12(Eps) FALLING (Eps rank at t minus t-12 below median),
+Vol1Y HIGH, Roe LOW, Share_Turn_12M HIGH. CELLS (5), one per marker; the verdict is
+the RANKING by 12m difference with the 36m persistence check. PRIOR: leverage and
+falling-EPS the two biggest trap markers [Piotroski/distress LIT]; low-ROE third;
+if NO marker clears +2.00 at 12m, "cheap is cheap" and trap-filtering is
+narrative on this panel — booked either way. Census 5 on the day.
+
+## Entry VAL-D4 (2026-09-10) — PRE-REGISTERED before running: FACTOR-LEVEL VALUE
+COMPLEMENTARITY (factors_us FF6 monthly 1963-2020, VW — the construction free of the
+panel's EW junk). CELLS (5): b1 the correlation row — corr(HML, x) monthly for
+UMD/RMW/CMA/SMB/MktRF; b2 50/50 HML+UMD blend — ann mean, vol, Sharpe vs each alone
+(monthly rebal); b3 50/50 HML+CMA (the redundancy test — CMA-as-value-in-drag);
+b4 50/50 HML+SMB; b5 the crash read — worst 12m of HML alone vs HML+UMD (does the
+blend truncate the value winter). The booked HML+RMW blend (QG-D2: 0.49 vs
+0.32/0.41) is QUOTED, not re-run. PRIOR: corr(HML,UMD) negative [AMP LIT] and the
+blend Sharpe beats both; corr(HML,CMA) strongly positive (>= +0.5) making b3 ~no
+improvement (REDUNDANT); SMB adds nothing; the blend's worst-12m materially
+shallower than HML's own. Census 5 on the day.
+
+## Entry VAL-D5 (2026-09-10) — PRE-REGISTERED before running: DOES VALUATION PRICE
+THE FLOOR? The distributional read the ER battery never printed. Shiller monthly
+1881-2023: CAPE (PE10) expanding terciles (min 240m, lagged 1m); next-5y REAL total
+return (Real Price + Real Dividend, annualized, overlapping FLAGGED). CELLS (3):
+d1/d2/d3 = the CHEAP / MID / EXPENSIVE tercile's next-5y distribution — p10 / p50 /
+p90. PRIOR (two-sided, written against our own ER-D1c demotion which is QUOTED):
+the MEDIAN gap is expected to be null-consistent (no new timing claim will be made
+regardless); the registered question is the p10 FLOOR — prior: cheap-tercile p10
+exceeds expensive-tercile p10 by >= 2pp/yr (valuation prices the downside band even
+where it cannot forecast the mean). If the floor gap < 2pp/yr, valuation loses even
+its band role at the index level and stays ONLY an expectations qualifier
+(ER-D7's corner). Census 3 on the day.
