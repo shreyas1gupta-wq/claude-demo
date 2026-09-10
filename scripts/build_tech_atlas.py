@@ -68,8 +68,9 @@ td, th {{ font-variant-numeric:tabular-nums; }}
 <p class="sub">Track TECH: all-time highs and drawdown states, Weinstein-style stage quadrants
 (as STATES — the desk's own graveyard of MA trading rules is quoted, not contradicted), the momentum
 condition map on 98 years of US and 32 years of India factor data, and the persistence anatomy of
-market valuation regimes. Every number is a booked ledger print (TECH-D1..D4, 25 cells, census 1,270;
-registrations committed before the run; the runner's prints desk-verified). Sector RS is data-gated
+market valuation regimes, plus MOM-D1's stock-level lookback anatomy across regimes. Every number is a
+booked ledger print (TECH-D1..D4 + MOM-D1, 43 cells, census 1,288; registrations committed before the
+run; the runner's prints desk-verified). Sector RS is data-gated
 on the NSE sectoral TR pull; leverage and index-ratio verdicts are quoted from booked entries.</p>
 <div class="prov"><span class="badge">DESK = ledger print</span>
 <span class="badge">quoted: TS1 · T-CTRL1 · T2 · T3 · F2 · CU-D4 · VAL-D5 · SC-D4</span>
@@ -125,6 +126,39 @@ mean-revert at index level. (3) GOLD is the opposite animal — stage 2 works (+
 </tbody></table></div>
 </section>
 
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · 10 Sep 2026 — MOM-D1: the stock-level lookback anatomy (18 cells; census 1,288)</h2>
+<p class="sub">TECH-D3's m9 could only read the panel's pre-baked momentum columns and found the artifact
+made the question ungradeable. MOM-D1 rebuilds the lookback windows from raw formation returns — five
+windows (3-1, 6-1, 6-2, 12-2, 12-7 [Novy-Marx intermediate, LIT]) crossed with market-state and
+volatility regimes, on BOTH markets, with the one-way rule sharpened: a bias that DEPRESSES momentum
+spreads makes a POSITIVE print admissible evidence, so India's survivor panel — despite the same
+no-delisting flattery — can answer this cleanly where the US panel cannot.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Window</th><th>US panel</th><th>US large</th><th>India full</th><th>India top-ADV</th></tr></thead><tbody>
+<tr><td>3-1 (no skip)</td><td class="neg">−11.00</td><td class="neg">−7.40</td><td class="pos">+9.65</td><td class="neg">−1.41</td></tr>
+<tr><td>6-1 (no skip)</td><td class="neg">−14.41 (worst)</td><td class="neg">−13.71 (worst)</td><td class="pos">+14.70</td><td class="pos">+5.59</td></tr>
+<tr><td><b>6-2 (skip-month)</b></td><td class="neg">−13.60</td><td class="neg">−9.54</td><td class="pos"><b>+15.59 — peak</b></td><td class="pos"><b>+5.87 — peak</b></td></tr>
+<tr><td>12-2</td><td class="neg">−19.02 (worst)</td><td class="neg">−12.82</td><td class="pos">+14.38</td><td class="pos">+5.51</td></tr>
+<tr><td>12-7 (Novy-Marx)</td><td class="neg">−12.61</td><td class="neg">−5.68</td><td class="pos">+10.74</td><td class="pos">+5.20</td></tr>
+</tbody></table></div>
+<p class="note"><b>US: the artifact closes the question a third time</b> (SC-D4, TECH-D3 m9, now this
+independent construction) — every window inverts on the EW no-delisting panel; ungradeable as ordering
+evidence. One mechanistic note survives regardless of sign: the no-skip 6-1 window is the WORST in
+both cuts — the skip-month convention [LIT] is corroborated even inside the artifact. <b>India: a
+clean, admissible verdict</b> — 6-2 (six-month formation, one-month skip) is the outright peak in BOTH
+the full universe and the liquid top-ADV tercile, and the ONLY window that stays positive across every
+India-VIX tercile (LO +26.60 / MID +9.87 / HI +5.68) while 12-7 FLIPS NEGATIVE under vol stress
+(LO +27.57 / MID +7.09 / HI <b>−9.74</b>). The 3-1 window flips negative in liquid names too — short-term
+reversal, not momentum [Jegadeesh 1990]. By NIFTY market state, 6-2 prints −7.51 (down) vs
+<b>+20.99</b> (up) — a third independent confirmation of Cooper-Gutierrez-Hameed's up-market-only
+momentum, now at the individual-stock level.</p>
+<div class="warn"><b>Consumption:</b> the India momentum sleeve defaults to 6-2 formation; in rising
+India-VIX, SHORTEN toward 6-2 rather than lengthening (a refinement alongside the TECH-D3 stand-down
+monitor, not a replacement for it) — the 12-month window is the one that breaks under stress, the
+6-month one degrades but survives; never use a no-skip short window in liquid names.</div>
+</section>
+
 <section class="panel">
 <h2>3 · The momentum condition map (TECH-D3) <span class="flag good">STAND-DOWN GATE FIRED — MONITOR REGISTRABLE</span></h2>
 <div class="tblwrap"><table class="plain">
@@ -175,9 +209,9 @@ margin-debt-as-timing has the weakest evidence in the canon [LIT] and no free In
 <li><b>MA trading rules:</b> dead and staying dead (T-CTRL1: 0/10 net; T2: trend-on-states adds nothing) —
 everything on this page is a STATE read consistent with those kills.</li>
 </ul>
-<p class="note">Sources of record: trial-ledger entries TECH-D1..D4 (registrations committed at
-be-fore-run commits; results desk-verified) · es_sc_matrices/tech.json · tech-dossiers a/b ·
-india-regime-playbook.md (the 2026-09-10 Track TECH addendum). Regenerates via
+<p class="note">Sources of record: trial-ledger entries TECH-D1..D4 + MOM-D1 (registrations committed
+before-run; results desk-verified) · es_sc_matrices/tech.json · tech-dossiers a/b ·
+india-regime-playbook.md (the 2026-09-10 Track TECH + MOM-D1 addenda). Regenerates via
 scripts/build_tech_atlas.py, never from memory.</p>
 </section>
 </div>

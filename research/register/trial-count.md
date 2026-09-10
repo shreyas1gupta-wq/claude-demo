@@ -117,7 +117,8 @@ this census exists so that can never happen silently.
 | TECH-D2 stage quadrants as states (s1-s5) | 5 | 5 |
 | TECH-D3 momentum condition map (m1-m10) | 10 | 10 |
 | TECH-D4 valuation-regime persistence (c1-c4) | 4 | 4 |
-| **RUNNING TOTAL (run cells)** | | **1270** |
+| MOM-D1 stock-level lookback anatomy across regimes (L1-L6) | 18 | 18 |
+| **RUNNING TOTAL (run cells)** | | **1288** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

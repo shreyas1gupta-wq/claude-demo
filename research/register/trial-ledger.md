@@ -4130,3 +4130,61 @@ despite the bias (IIMA WML +14-15%/yr factor precedent) with the 6-month window
 relatively stronger [India-lore, LIT LOW CONF]; if India prints negative everywhere
 the read is non-evidence and the question is fully PIT-gated. Runner: Sonnet on
 this frozen spec, desk-verified before booking. Census 18 on the day.
+
+## Entry MOM-D1 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_mom_d1.py — built from RAW formation returns, not the panel's
+Mom_* columns, per the frozen spec; desk-verified independently on two cells:
+US 3-1 panel -10.9954 vs script -11.00, India 6-2 up-state +20.9905 vs +20.99;
+one implementation bug found and fixed pre-verification — window_sum() closed
+over the wrong array on first pass, caught because the India ladder printed all-
+NaN, corrected before any number was read) — THE ARTIFACT CLOSES THE US QUESTION
+AGAIN; INDIA'S SURVIVOR PANEL GIVES A CLEAN, ADMISSIBLE, ACTIONABLE ANSWER: 6-2
+FORMATION, SHORTEN INTO VOLATILITY. Prints: L1a-e US ladder D10-D1 (panel | large,
+%/yr): 3-1 -11.00|-7.40; 6-1 -14.41|-13.71; 6-2 -13.60|-9.54; 12-2 -19.02|-12.82;
+12-7 -12.61|-5.68 — ALL NEGATIVE, both cuts, every window: non-evidence per the
+one-way rule (SC-D4/TECH-D3 m9 confirmed a third time, independent construction).
+L2a by market state: 6-2 down -7.68/up -19.66; 12-7 down -11.20/up -14.10; diff
+(12-7-6-2) down -3.52 / up +5.56 — the registered "long degrades more when down"
+prior HITS at the down-state cut only and REVERSES at the up-state cut. L2b by
+VIX tercile: 6-2 LO -9.61/MID +1.16/HI -37.68; 12-7 LO -6.97/MID -6.94/HI -26.66 —
+HI-vol amplifies BOTH (the crash mechanism visible even inside the artifact,
+[DM LIT] pattern), but here it is the SHORTER window (6-2) that degrades MORE in
+the vol cut, opposite the market-state cut's direction. L2c the stress-diff
+verdict: MIXED, not clean — which lookback "degrades more" under stress depends
+on which regime variable is used; no single mechanism confirmation survives both
+cuts on this artifact-inverted data. L3a era halves: 6-2 -14.57 (99-09) / -12.50
+(10-19); 12-7 -16.44 (99-09) / -8.52 (10-19) — the 12-7 distortion shrinks sharply
+in the calmer decade. L3b the skip-month note: 6-1 (no skip) is the WORST window
+in BOTH cuts (-14.41 panel / -13.71 large) — worse than its skip-month sibling 6-2
+in both — a mechanistic corroboration of the skip-month convention [LIT] that
+survives even though the overall sign is artifact (this is a construction
+comparison, not a momentum-exists claim). US VERDICT: ungradeable as ordering
+evidence (TECH-D3 m9's ruling extended); the index-level answer (TS1: 3m NIFTY,
+12m gold) is what stands.
+INDIA (admissible — a positive spread survives a bias that depresses it): L4a-e
+ladder (full | top-ADV, %/yr): 3-1 +9.65|**-1.41**; 6-1 +14.70|+5.59; **6-2
++15.59|+5.87 — THE PEAK, BOTH CUTS**; 12-2 +14.38|+5.51; 12-7 +10.74|+5.20. The
+top-ADV tercile is flat across 6-1..12-7 (+5.2 to +5.9) but 3-1 flips NEGATIVE
+there (-1.41) — short-term reversal, not momentum, in the liquid names [Jegadeesh
+1990 LIT], exactly the literature's warning against a no-skip short window. L5a by
+NIFTY market state: 6-2 down -7.51/up **+20.99**; 12-7 down -16.70/up +17.20 — a
+THIRD independent confirmation (after TECH-D3 m5, m8) of Cooper-Gutierrez-Hameed
+[LIT]: India momentum is an up-market phenomenon, now shown at the individual-
+stock cross-section rather than the factor series. L5b by India-VIX tercile
+(2010-2021, flagged short span): 6-2 LO +26.60/MID +9.87/HI **+5.68** (weakens,
+stays positive); 12-7 LO +27.57/MID +7.09/HI **-9.74** (FLIPS NEGATIVE) — the
+actionable asymmetry: the LONGER window is the one that breaks under vol stress,
+the SHORTER one degrades but survives. GRADE: the registered India prior (positive
+despite the bias, 6-month window relatively stronger) HITS cleanly and specifically
+— 6-2 is not just "relatively stronger", it is the outright peak in both
+constructions and the only window still positive across every VIX tercile.
+CONSUMPTION: (i) the India momentum sleeve design defaults to 6-month formation
+with a 1-month skip (6-2), never a no-skip short window in liquid names; (ii) a
+vol-conditioned SHORTEN rule is now registrable alongside the TECH-D3 stand-down
+monitor — in rising India-VIX, shift weight AWAY from the 12-month lookback
+toward 6-2, rather than standing down entirely (a refinement to Tier-C, not yet a
+promoted rule); (iii) never chase pure 1-month-lagged short-term strength in
+India's most liquid names — that pocket is reversal, matching the desk's booked
+1m reversal work; (iv) this triangulates TECH-D3's factor-level India finding with
+an independent stock-level construction — doctrine strengthens, not double-counted.
+Census 18 (1270 -> **1288**).

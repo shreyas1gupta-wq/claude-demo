@@ -115,3 +115,19 @@ not immunize.
 DE-RATING TRANSITIONS (TECH-D4 c4): the first year after exiting an EXPENSIVE
 valuation regime averages -7.2% real — a fresh de-rating is not yet an entry; the
 exit from CHEAP (+16.5%) is the rally that keeps going.
+
+## Addendum (2026-09-10, MOM-D1: the stock-level lookback anatomy)
+THE INDIA MOMENTUM LOOKBACK VERDICT: 6-month formation with a 1-month skip (6-2) is
+the peak window on the survivor panel, in BOTH the full universe (+15.59%/yr D5-D1)
+and the top-ADV liquid tercile (+5.87%/yr) — and the ONLY window that stays positive
+across every India-VIX tercile (LO +26.60 / MID +9.87 / HI +5.68), while the 12-month
+window (12-7) FLIPS NEGATIVE in the high-vol tercile (-9.74). Consumption: default
+the India momentum sleeve to 6-2 formation; in rising India-VIX, shorten toward 6-2
+rather than lengthening — a refinement alongside the TECH-D3 stand-down monitor, not
+a replacement for it. Never use a no-skip short window (3-1) in liquid names — it
+flips negative there (-1.41), i.e. short-term reversal territory, not momentum.
+Third independent confirmation (after TECH-D3 m5/m8, at the factor level) that India
+momentum is an up-market phenomenon (Cooper-Gutierrez-Hameed): stock-level cut by
+NIFTY market state gives 6-2 down -7.51 / up +20.99. The US side of this design stays
+non-evidence — every lookback window inverts on the EW no-delisting panel, a third
+independent construction hitting the same artifact (SC-D4, TECH-D3 m9, now this).
