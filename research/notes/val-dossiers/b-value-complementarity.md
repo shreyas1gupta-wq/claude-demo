@@ -1,12 +1,12 @@
 # What Combines With Value, and What Does Not — the Complementarity Literature
 
-*Literature dossier, Track VAL, 2026-09-10. No web fetches this session — written from
-training knowledge per instruction. Every literature claim carries **[LIT]**; where the
-magnitude is recalled with less confidence than the citation itself, **[LIT, LOW
-CONFIDENCE]**. Desk numbers are quoted verbatim from `research/register/trial-ledger.md`
-(entries V0–V4, 2026-09-01, and TL-D2, 2026-09-07) and marked **[DESK, <entry>]** — not
-re-derived here. Per CONTRACT §4/§9, every non-India citation is a cross-country prior,
-Tier B at best for this program until purged-CV India tests exist.*
+*Literature dossier, Track VAL, 2026-09-10. No web fetches — written from training
+knowledge per instruction. Every literature claim carries **[LIT]**; where the magnitude
+is recalled with less confidence than the citation itself, **[LIT, LOW CONFIDENCE]**.
+Desk numbers are quoted verbatim from `research/register/trial-ledger.md` (entries
+V0–V4, 2026-09-01; TL-D2, 2026-09-07), marked **[DESK, <entry>]** — not re-derived here.
+Per CONTRACT §4/§9, every non-India citation is a cross-country prior, Tier B at best
+until purged-CV India tests exist.*
 
 ---
 
@@ -114,20 +114,16 @@ absorbs much of what a standalone value factor used to explain.
 
 ## 3. Value + low-vol, + investment/CMA, + carry — three overlaps of varying honesty
 
-**Value + low-vol/QMJ.** The desk's own value-deep dossier already documents the
-mechanism directly rather than importing it untested: **Frazzini & Pedersen (2014)
-Betting Against Beta** [LIT] supplies the institutional-constraint story (leverage-averse
-investors overpay for high-beta/glamour names, flattening the security market line), and
-India's own dedicated test — **Agarwalla, Jacob, Varma & Vasudevan (2014)**, "Betting
-Against Beta in the Indian Market" [LIT] — finds India's BAB premium **dominates size,
-value and momentum but is largely explained once a profitability/quality factor is
-added**: India's low-beta effect looks like a quality effect in beta's clothing. The
-practical implication for this dossier's table: value+low-vol is not so much a clean,
-additive pairing as a case where low-vol and quality substantially **share** a survival
-mechanism (leverage-constrained institutions avoiding — or being unable to lever into —
-junk), so stacking all three (value, quality, low-vol) as if fully independent risks
-double- or triple-counting one underlying institutional-constraint story rather than
-three orthogonal edges.
+**Value + low-vol/QMJ.** The desk's own value-deep dossier already documents this
+mechanism directly: **Frazzini & Pedersen (2014) Betting Against Beta** [LIT] supplies
+the institutional-constraint story (leverage-averse investors overpay for high-beta/
+glamour names), and India's own dedicated test — **Agarwalla, Jacob, Varma & Vasudevan
+(2014)** [LIT] — finds India's BAB premium **dominates size, value and momentum but is
+largely explained once profitability/quality is added**: low-beta looks like quality in
+beta's clothing. Practical read: value+low-vol is less a clean additive pairing than a
+case where low-vol and quality **share** a survival mechanism (leverage-constrained
+institutions avoiding junk), so stacking value, quality and low-vol as fully independent
+risks double- or triple-counting one institutional-constraint story.
 
 **Value + investment/asset growth — is CMA just value in drag?** Two lineages converge on
 the same fact from different angles. **Titman, Wei & Xie (2004), "Capital Investments
@@ -172,25 +168,23 @@ framing for the gold/debt legs later, where it would be genuinely new informatio
 
 ## 4. What does NOT combine
 
-**Value + small — the junk confound the desk has already booked.** Combining a value
-tilt with a raw small-cap tilt looks, on paper, like stacking two independently
-documented premia. **Asness, Frazzini, Israel, Moskowitz & Pedersen (2018), "Size
-Matters, If You Control Your Junk," *Journal of Financial Economics* 129(3)** [LIT] show
-why this is not simply additive: the raw size premium's instability across decades is
-substantially explained by small-cap portfolios' heavier average tilt toward junk — low
-profitability, high leverage, high distress risk — relative to large-cap portfolios; once
-quality/junk exposure is held constant, a **quality-controlled** size premium is large
-and stable, but the **raw, unconditioned** size tilt is not [LIT]. This desk's own India
-evidence lands on the same conclusion from a completely different construction: **the US
-small segment pays +1.5–2.7pp/yr across horizons (1.32x market vol) while the Indian
-smallcap segment, at the factor level, is priced NEGATIVE at −2.9pp/yr over 32 years
-(1.34x vol, −90% vs −62% max drawdown)** [DESK, TL-D2] — "the smallcap money in India is
-selection inside the segment, never the segment" [DESK, TL-D2]. Layering a naive value
-screen on top of a naive small-cap universe does not diversify two premia; it **doubles
-down on the same junk/distress tilt** the size literature already shows is what makes
-raw small-cap unreliable, and on the desk's own India print, actively negative — a
-combination that is not merely non-additive but actively antagonistic unless a genuine
-quality filter is interposed between the two.
+**Value + small — the junk confound already booked.** Combining value with a raw
+small-cap tilt looks, on paper, like stacking two independently documented premia.
+**Asness, Frazzini, Israel, Moskowitz & Pedersen (2018), "Size Matters, If You Control
+Your Junk," *Journal of Financial Economics* 129(3)** [LIT] show why it is not simply
+additive: the raw size premium's instability is substantially explained by small-cap
+portfolios' heavier tilt toward junk — low profitability, high leverage, high distress
+risk — relative to large-cap; once junk exposure is held constant, a **quality-
+controlled** size premium is large and stable, but the **raw, unconditioned** tilt is
+not [LIT]. The desk's own India evidence lands on the same conclusion from a completely
+different construction: **the US small segment pays +1.5–2.7pp/yr across horizons
+(1.32x market vol) while the Indian smallcap segment, at the factor level, is priced
+NEGATIVE at −2.9pp/yr over 32 years (1.34x vol, −90% vs −62% max drawdown)** [DESK,
+TL-D2] — "the smallcap money in India is selection inside the segment, never the
+segment" [DESK, TL-D2]. Layering a naive value screen on a naive small-cap universe does
+not diversify two premia; it **doubles down on the same junk/distress tilt** the
+literature shows makes raw small-cap unreliable — antagonistic, not merely non-additive,
+unless a genuine quality filter sits between the two.
 
 **Value + dispersion.** Analyst-forecast dispersion — cross-sectional disagreement among
 analysts' earnings estimates — is a documented predictor in its own right: **Diether,
@@ -291,19 +285,17 @@ better evidenced than any single univariate filter used alone.
 The desk already carries its own extended treatment of this debate (`research/dossiers/
 02-value-quality-lowvol.md` §1/§4; `research/cycles/value-deep/partA-theory-psychology.md`
 §A.4/§A.9), so this dossier does not re-derive it: **Cohen, Polk & Vuolteenaho (2003)**
-[LIT] show the value spread's own percentile forecasts the value factor's forward return,
-the direct evidentiary basis for a spread-conditioned sleeve weight; the countervailing
+[LIT] show the value spread's own percentile forecasts the value factor's forward
+return, the evidentiary basis for a spread-conditioned sleeve weight; the countervailing
 camp — **Asness, Ilmanen, Israel & Moskowitz's "contrarian factor timing is deceptively
-difficult"** line and Arnott-Beck-Kalesnik-West's "smart beta gone horribly wrong" —
-[LIT] warn that valuation-spread timing looks compelling mostly because of one or two
-large episodes, that the effective number of independent timing "calls" is tiny once
-autocorrelation is accounted for, and that a factor's own re-rating (not a repeatable
-premium) can dominate its trailing return in either direction. Both camps agree on the
-spread's descriptive predictive power; they disagree on how much of it is safely
-exploitable net of estimation risk and re-rating risk — which is precisely why the
-desk's own design treats the spread as a **quantile-based sleeve-weight conditioner
-within a frozen range**, never a standalone timing trade, and requires Stambaugh-bias
-correction before trusting any in-sample India regression of the same form.
+difficult"** and Arnott-Beck-Kalesnik-West's "smart beta gone horribly wrong" [LIT] —
+warn that spread timing looks compelling mostly because of one or two large episodes,
+that independent timing "calls" are few once autocorrelation is accounted for, and that
+a factor's own re-rating (not a repeatable premium) can dominate its trailing return
+either way. Both camps agree on the spread's descriptive power; they disagree on how
+much is safely exploitable net of estimation and re-rating risk — why the desk's own
+design treats the spread as a **quantile-based sleeve-weight conditioner within a
+frozen range**, never a standalone trade, requiring Stambaugh-correction first.
 
 ---
 
@@ -312,16 +304,14 @@ correction before trusting any in-sample India regression of the same form.
 **India value+momentum.** **Agarwalla, Jacob & Varma (2013/2017), "Size, Value, and
 Momentum in Indian Equities," *Vikalpa* 42(4)** [LIT] report HML averaging **15.3%/yr**
 over Jan 1994–Dec 2014 against an 11.5%/yr market premium and 21.9%/yr momentum. The
-desk's own vaulted mirror of a related India factor series prints materially different
-sub-period levels — **full-period HML +8.6%/yr (Sharpe vs RF only 0.09); the 2015–2019
-"growth mania" window +0.8%/yr (Sharpe −0.39); post-2020 +18.8%/yr (Sharpe 0.82)** [DESK,
-V1] — a genuine, honestly-flagged discrepancy against the published AJV figure rather
-than a reconciled number, consistent with the desk's own standing [VERIFY] on this
-mirror's construction. What both sources agree on: **the value-momentum negative
-correlation itself replicates cleanly in India (−0.37) [DESK, V2], and the 50/50 blend
-beats both legs (Sharpe 0.86 vs. 0.42/0.55) [DESK, V3]** — AMP's core complementarity
-claim is the most robustly confirmed India fact in this whole dossier, more robust than
-either factor's own standalone level.
+desk's own vaulted mirror prints materially different sub-period levels — **full-period
+HML +8.6%/yr (Sharpe 0.09); the 2015–2019 "growth mania" window +0.8%/yr (Sharpe −0.39);
+post-2020 +18.8%/yr (Sharpe 0.82)** [DESK, V1] — an honestly-flagged discrepancy against
+the published AJV figure, consistent with the desk's standing [VERIFY] on this mirror.
+What both sources agree on: **the value-momentum negative correlation replicates
+cleanly in India (−0.37) [DESK, V2], and the 50/50 blend beats both legs (Sharpe 0.86
+vs. 0.42/0.55) [DESK, V3]** — AMP's core complementarity claim is the most robustly
+confirmed India fact here, more robust than either factor's own standalone level.
 
 **India value+quality.** **Agarwalla, Jacob, Varma & Vasudevan (2014)** [LIT] find
 India's BAB (low-beta) premium dominates size, value and momentum in raw form but is
@@ -372,11 +362,11 @@ factor.
 
 | Candidate | Mechanism | Magnitude | Data needed |
 |---|---|---|---|
-| Value + momentum rank-tiebreak | AMP negative correlation; momentum as an admission filter avoiding "cheap and falling" | Combined Sharpe ≈2x either leg at ρ≈−0.5 [LIT+hedge]; desk's own 50/50 India Sharpe 0.86 vs. 0.42/0.55 legs [DESK, V3] | Already vault-available (India HML/WML mirror); needs purged-CV on the desk's own PIT panel once fundamentals arrive |
-| Quality-conditioned value (Piotroski-style, distress-anchored) | Distress is empirically uncompensated (CHS/Dichev); F-Score screens the cheap universe for genuine vs. trap cheapness | +7.5%/−8.3% F-Score extremes, 23%/yr long-short pre-cost, 1976–96 US [LIT]; India replication fragmented, no pinned magnitude | PIT ROA/CFO/leverage/issuance/margin/turnover series — the handoff's P1 (fundamentals_quarterly.csv) |
-| India-specific pledge-acceleration trap screen | Governance/ownership-concentration risk, not a priced distress factor — genuinely avoidable | Directional only; no India-specific bp figure found [LIT, LOW CONFIDENCE] | `shareholding_pledge.csv` (handoff P5) — already PIT by construction, no restatement lag needed |
-| Cash-flow-based profitability over accrual-inclusive earnings | Ball-Gerakos-Linnainmaa-Nikolaev: cash-based operating profitability subsumes the accrual anomaly and outperforms gross profitability alone | [LIT, LOW CONFIDENCE on exact incremental spread]; not sized for India | CFO + revenue + COGS at filing-date granularity — P1 of the handoff |
-| Price-only value composite (majority dividend yield/NSI/sales-price) | Avoids CMA/HML redundancy (§3) and the restatement bias (CONTRACT Known Prior #7) simultaneously, since price-only signals are PIT by construction | N/A — a construction choice, not a premium claim | Bhavcopy + corporate-action filings only; fully available today without waiting on the fundamentals handoff |
+| Value + momentum rank-tiebreak | AMP negative correlation; momentum as an admission filter avoiding "cheap and falling" | Combined Sharpe ≈2x either leg at ρ≈−0.5 [LIT+hedge]; desk 50/50 India Sharpe 0.86 vs. 0.42/0.55 legs [DESK, V3] | Vault-available now (India HML/WML mirror); needs purged-CV once fundamentals arrive |
+| Quality-conditioned value (Piotroski-style, distress-anchored) | Distress empirically uncompensated (CHS/Dichev); F-Score screens the cheap universe for genuine vs. trap cheapness | +7.5%/−8.3% F-Score extremes, 23%/yr long-short pre-cost, 1976–96 US [LIT]; India replication fragmented | PIT ROA/CFO/leverage/issuance series — handoff P1 |
+| India pledge-acceleration trap screen | Governance/ownership-concentration risk, not a priced distress factor — genuinely avoidable | Directional only; no India bp figure found [LIT, LOW CONFIDENCE] | `shareholding_pledge.csv` (handoff P5) — PIT by construction |
+| Cash-flow-based profitability over accrual-inclusive earnings | Ball-Gerakos-Linnainmaa-Nikolaev: cash-based operating profitability subsumes accruals, outperforms gross profitability alone | [LIT, LOW CONFIDENCE on incremental spread]; not sized for India | CFO/revenue/COGS at filing-date granularity — handoff P1 |
+| Price-only value composite (majority dividend yield/NSI/sales-price) | Avoids CMA/HML redundancy (§3) and restatement bias (Known Prior #7) at once — PIT by construction | N/A — a construction choice, not a premium claim | Bhavcopy + corporate-action filings only; available today |
 
 **Summary table — companion metric vs. value, per the literature reviewed above.**
 
