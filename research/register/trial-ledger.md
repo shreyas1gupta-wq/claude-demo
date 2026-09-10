@@ -4188,3 +4188,57 @@ India's most liquid names — that pocket is reversal, matching the desk's booke
 1m reversal work; (iv) this triangulates TECH-D3's factor-level India finding with
 an independent stock-level construction — doctrine strengthens, not double-counted.
 Census 18 (1270 -> **1288**).
+
+## Entry SECTOR-GATE (2026-09-10) — NOT A TRIAL, A FORMAL GATE NOTE (principal asked
+"does sector RS have any edge/alpha"). No sector/industry tag exists anywhere in the
+vaulted data: not in firm_panel (US, no GICS-equivalent column), not in the India
+survivor panel (ticker-level only), and no NSE sectoral TR index has been pulled
+(RUNSHEET Priority-3 row, principal-machine gated). Moskowitz-Grinblatt (1999)
+industry momentum [LIT] and the practitioner RS-rotation literature are dossiered
+(tech-dossiers/a) with the registrable India design already specced there. Zero
+cells run; zero census impact. STATUS: fully gated, unchanged since Track TECH.
+
+## Entry RATIO-D1 (2026-09-10) — PRE-REGISTERED before running: INDEX & COMMODITY
+RATIO REGIMES + THE LEVERAGE-TIMING READ (principal: copper/gold, silver/gold,
+nifty/gold, smallcap/nifty ratios; when leverage is safer; vol clustering and
+risk). VOL-CLUSTERING-REDUCES-RISK IS NOT RE-RUN — it is QUOTED: F2 (percentile
+de-risking cut COVID DD 37%->26%), F3a (vol-managed NIFTY cuts maxDD 55%->22% at
+-4.9pp/yr, Cederburg-erased in-sample-only), TS1 (3m NIFTY trend the only DD-
+control pass), TL-D2 s10 (|r| autocorrelation positive thru 30 lags, vol half-life
+NIFTY 82d / smallcap 42d) — the mechanism (autocorrelated |returns|) is what makes
+any vol-targeting/de-risking rule work at all; nothing here re-derives that.
+DATA: copper + gold monthly, IMF PCPS 1980-2017 (Copper) x gold_monthly_1833_2026
+(Gold) — overlap 1980-2017; silver+gold ANNUAL 1915-2026 (debt/gold_silver_1915,
+authenticated); NIFTY daily 2007-2026; IIMA SMB+MF+RF monthly 1993-2025 (small-
+proxy index return = MF+RF+SMB, the standard small-minus-big reconstruction,
+flagged as an approximation). CELLS (9): r1 copper/gold 12m-MA-slope state
+(rising/falling, lagged 1m) -> next-12m US market TR (FF Mkt-RF+RF) — the "Dr.
+Copper" growth-risk-appetite read [LIT]; r2 same state -> next-12m NIFTY TR
+(shorter overlap, n stated); r3 silver/gold annual ratio, expanding terciles (min
+30y, lagged) -> next-3y gold real-terms return AND next-3y silver return (does a
+dear/cheap silver-vs-gold ratio mean-revert); r4 NIFTY/gold ratio (monthly) 12m-MA-
+slope state -> next-12m NIFTY-minus-gold relative return (continuation or reversion
+— directly actionable for the desk's equity/gold rebalance); r5 NIFTY/gold ratio
+expanding percentile (CAPE-style tercile cut, min 120m, lagged) -> next-12m
+relative return (a valuation-style mean-reversion read on the SAME ratio, cross-
+checking r4's trend read); r6 smallcap/nifty proxy ratio (cumulative small-proxy
+index / cumulative NIFTY-equivalent from MF+RF) 12m-MA-slope state -> next-12m SMB
+(a LEVEL-based complement to SC-D3's return-based i1 momentum cut); r7 same ratio,
+expanding percentile -> next-12m SMB (complementing SC-D3 i2's 36m tercile with a
+different construction); r8 THE LEVERAGE-TIMING READ — NIFTY state = (trailing-12m
+realized-vol tercile) x (drawdown-from-ATH tercile, both expanding/lagged as in
+TECH-D1/D2) -> forward 126-trading-day (6m) max-drawdown by cell, all 9 corners
+printed, ranked; r9 vol-clustering IN THE RATIO — autocorrelation of |monthly
+Δlog(NIFTY/gold ratio)| at lags 1/3/6/12, plus the half-life (does the ratio
+itself cluster, i.e. would a vol-targeted equity/gold tilt have a footing).
+PRIORS (two-sided): r1/r2 copper/gold rising -> better forward growth-sensitive
+returns [LIT, macro-lore hedge]; r3 the ratio mean-reverts at the extremes (both
+sides); r4 the ratio TRENDS (continuation, matching the desk's general "states
+persist" doctrine) while r5 the SAME ratio mean-reverts at percentile extremes —
+both can be true at different horizons/mechanisms and are reported as printed, not
+forced to agree; r6/r7 analogous to r4/r5 for the size ratio; r8 THE KEY QUESTION:
+low-vol + low-drawdown (the "calm uptrend" cell) has materially SMALLER forward
+max-DD than high-vol + high-drawdown — if the ranking is monotone in vol alone
+(drawdown adds nothing), leverage-timing reduces to a pure vol-state rule; r9
+clustering present (half-life weeks-to-months), grounding r8's premise. Census 9
+on the day.
