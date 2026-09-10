@@ -3600,3 +3600,51 @@ the LARGE half: prior large-value modestly > large-growth at 12m. If small-growt
 does NOT print worst, the panel's selection tilt is re-interrogated before any
 consumption. NO consumption from j-cells beyond edge-list context lines — the
 tradeable versions are India PIT designs. Census 6 on the day.
+
+## Entry ES-D2 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_es_d2.py + research/notes/es_sc_matrices/es_d2.json; run by a Sonnet
+agent on the frozen spec, desk spot-verified) — THE VALUE+CATALYST GATE FAILED: THERE
+IS NO RESCUE FOR FUNDAMENTAL MOMENTUM ON THIS PANEL. m7 corner reads (EW ann):
+cheap+improving +17.91 vs cheap-alone +19.47 at 1m — increment **-1.57** against the
+>= +2.00 gate; 12m -2.35; m8 large-cap increment +0.18 at 1m / -1.24 at 12m. The
+improving corner does WORSE than cheap alone. Matrix anatomy confirms the artifact
+diagnosis: m1's cheap column peaks at d3 Q3 (+35.86 — NO-CHANGE names, not improvers);
+m3's levels live in the smallest-size column (+26 to +35); m5's in the wildest-vol
+column (+20 to +38). Grade: the ES-D1 kill is FINAL for this dataset — no interaction
+(value, momentum, size, quality, vol) turns EPS rank-migration into a positive signal;
+no value+catalyst flag is registered. The expensive+deteriorating corner IS avoided
+ground (+11.30/+10.35 vs panel ~+15-19; large-cap +5.99/+6.36) — one avoid-list line,
+consistent with the moderation principle, not a new signal. Census 8 (1163 -> 1171).
+
+## Entry SC-D4 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_sc_d4.py + sc_d4.json; Sonnet agent, desk spot-verified szQ5 Pb +9.95
+independently) — ON THIS PANEL, ONLY VALUE SURVIVES THE CAP SPECTRUM; EVERYTHING ELSE
+IS SWAMPED BY THE JUNK BOUNCE. Fwd-1m spreads by size Q1(small)..Q5(large):
+Pb +18.61/+4.79/+10.84/+4.76/**+9.95** — positive at EVERY size, both horizons
+(12m szQ5 +8.80); Mom -24.52/../**-9.07** (losers win everywhere — the EW monthly
+reversal artifact, NOT a momentum verdict); Vol -43.96/../**-2.95** (high-vol wins —
+the junk bounce, fading toward large); Roe -29.47/../-4.72; Gr -12.21/../-5.97;
+d3 ~0/-1 large. GRADE vs prior: "momentum and low-vol survive large-cap" MISSED — on
+THIS construction (EW, survivor, monthly, arithmetic means) nothing but value
+survives anywhere; the finding is a MEASUREMENT LIMIT, booked as such: this panel is
+a value-and-nothing-else instrument, and the desk's momentum/low-vol/quality evidence
+remains the VW factor prints (QG-D2: UMD, RMW; the moderation principle's median
+construction). The one implementable-side data point this design yields: the value
+spread in the LARGEST quintile, +9.95%/yr at 1m / +8.80% at 12m, monotone-ish
+(j1 szQ5 row: +16.30 cheap -> +4.65 expensive). Consumption: one edge-list line
+("large-cap value spread survives every construction this desk has thrown at it");
+everything else defers to factor-level evidence. Census 12 (1171 -> 1183).
+
+## Entry SC-D5 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_sc_d5.py + sc_d5.json; Sonnet agent) — THE RE-INTERROGATION BRANCH
+FIRES: SMALL-GROWTH IS *NOT* THE WORST CORNER HERE (LARGE-GROWTH IS), AND THAT IS THE
+PANEL'S TILT SPEAKING; THE VALUE-GROWTH GAP IS SIZE-STABLE. j6 four corners at 12m
+(EW): small-value +21.02 | small-growth +15.76 | large-value +12.04 | large-growth
+**+6.07** (worst). Registered branch taken: on a no-delisting EW panel the small rows
+are level-inflated (j4 small-losers cell +46.47 is the tell) — the FF small-growth
+lottery corner is invisible BECAUSE its casualties were deleted; declared at
+registration, confirmed by print. The honest large-half read: value beats growth by
++5.97pp at 12m in LARGE caps (vs +5.26 small) — the value-growth gap is SIZE-STABLE
+(~+5-6pp) on this panel, and the szQ5 value ladder is near-monotone (+16.30 ->
++4.65 at 1m). Consumption: context lines for the edge map only; the tradeable
+versions are the India PIT designs (as registered). Census 6 (1183 -> **1189**).

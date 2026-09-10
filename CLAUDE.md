@@ -156,3 +156,12 @@ the only India timing shape is the 36m winter rebound (+10.32, a watch); IIMA re
 passed its sanity gate (2018 peak, 2023-24 froth visible; mean -2.82%/yr matches TL-D2).
 Lesson 54 published (row 54). Model note: principal directed (09-10) all subagents run on
 Sonnet/Opus, never the session default — Fable weekly limit exhausted.
+Same day, the edge-map leg (3 Sonnet runners on frozen specs, desk-verified; census
+**1,189**): ES-D2 the value+catalyst gate FAILED (-1.57 vs +2.00; cheap+improving LOSES to
+cheap-alone) — the ES-D1 kill is final, no interaction rescues EPS rank-migration; SC-D4
+only VALUE survives every size quintile (szQ5 +9.95/1m, +8.80/12m) — Mom/Vol/Roe/Gr spreads
+all junk-swamped on this EW construction (measurement limit booked; factor evidence stays
+VW); SC-D5 the re-interrogation branch fired (large-growth +6.07 is the worst corner, small
+rows inflated) and the value-growth gap is SIZE-STABLE (~+5-6pp at 12m both halves).
+THE EDGE MAP dashboard published (row 55, edge-map.html): every edge ranked
+consumed/flag/graveyard/gated + all new matrices.
