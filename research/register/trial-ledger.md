@@ -4539,3 +4539,49 @@ manipulation, not to time returns (the DGLS distinction, eq-dossiers/a §2, alre
 explains EQ-D1's e2/e3 misses). Full table (every flag, entry ID, exact print, tier)
 built as docs/learn/artifacts/red-flag-horizon-map.html (scripts/build_rf_horizon_
 atlas.py), row 60. Zero cells; zero census impact.
+
+## Entry EQ-DOSSIER-B (2026-09-10) — LITERATURE DOSSIER, NOT A TRIAL: additional
+red-flag/manipulation frameworks beyond Beneish/DGLS (principal: "any other red flag
+list or manipulation etc"). eq-dossiers/b-shenanigans-scores-and-market-signals.md.
+Zero cells; zero census impact; no desk numbers computed — a literature-and-data-gap
+extension of eq-dossiers/a, organized into three KINDS of evidence not previously
+distinguished on this desk: (i) RATIO-BASED SCORES — Altman Z-Score/Z''(EM variant)
+[LIT] and Ohlson O-Score [LIT], both distress/bankruptcy predictors (a different
+target than manipulation, same distinction dossier a §2 already drew for Beneish vs
+DGLS's return claim); Montier's C-Score [LIT, LOW CONFIDENCE on publication], a
+practitioner's independent 6-flag checklist that corroborates the SAME mechanisms
+EQ-D1 already found evidence for (cash/earnings divergence, asset growth) and adds one
+genuinely new ingredient not yet in this program's vocabulary — Days Sales of
+Inventory (inventory building faster than sales). (ii) A TECHNIQUE CHECKLIST, not a
+formula — Schilit's Financial Shenanigans (7 categories: premature/bogus revenue,
+one-time gains, expense-shifting either direction, liability under-recording, big-bath
+special charges) [LIT] — the practitioner canon Beneish/Montier's ratios only PARTIALLY
+quantify; round-tripping, reserve-smoothing and big-bath timing specifically require
+footnote-level reading no aggregate financial field (this desk's or the India handoff's)
+can substitute for — stated as the honest boundary of every ratio-based score covered
+across both dossiers. (iii) MARKET/BEHAVIORAL SIGNALS using no accounting ratio at all
+— abnormal insider selling [LIT, Seyhun], short interest as an early fraud detector
+[LIT, Dechow-Lawrence-Ryans 2016, LOW CONFIDENCE], auditor fee anomalies [LIT,
+Frankel-Johnson-Nelson 2002, LOW CONFIDENCE], options-grant-timing/backdating [LIT,
+Lie 2005], and earnings-call textual/vocal deception cues [LIT, Larcker-Zakolyukina
+2012 + Hobson-Mayew-Venkatachalam, LOW CONFIDENCE] — all require data sources entirely
+outside the P1-P6 handoff schema (insider transactions, short interest, audit fees,
+ESOP grant terms, call transcripts), flagged as genuine future data asks, not
+approximable from what is already specified. Also newly recorded: Benford's Law digit-
+distribution forensic testing [LIT, Nigrini] as a DISTRIBUTIONAL (not ratio-based) test
+kind, with an open, unresolved feasibility question — **[VERIFY: whether a pooled
+cross-sectional Benford test across P1's ~8 numeric fields is a meaningfully different,
+weaker claim than the literature's intended per-company/many-line-item use, or not
+worth registering at all]** — recorded as explicitly declined-to-size, not silently
+omitted. INDIA BUILDABILITY MAP EXTENDED (dossier b §6 summary table, all frameworks
+from both dossiers in one place): of roughly a dozen major frameworks, only THREE are
+fully buildable from the current P1-P6 schema (Sloan/Hribar-Collins accruals, total
+asset growth, cash conversion) plus promoter pledging (P5, governance-not-ratio) —
+Altman Z/O-Score and Montier's C-Score are each only PARTIALLY buildable (2-of-5, and
+2-of-6 respectively) for the SAME reason dossier a found for Beneish (4-of-8): P1's
+aggregation is too coarse (no receivables, inventory, current-asset/liability split,
+gross PP&E/depreciation detail) for any established score to run in full — an
+independent corroboration, from three unrelated frameworks, of the same schema
+ceiling, not a new complaint. CONSUMPTION: none promoted (literature-and-gap dossier
+only); folds into the Earnings Quality Atlas as a new section (build_eq_atlas.py).
+Zero cells; zero census impact.

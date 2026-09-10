@@ -282,3 +282,19 @@ pre-1980-only regime (+0.19 pre / -0.05 post). A fourth class, governance/mechan
 (promoter pledge, RPTs, Beneish/DGLS raw), carries no desk-quantified horizon at all and is read as
 an always-on avoid-list gate, never a timed signal. Red Flag Horizon Map published (row 60,
 red-flag-horizon-map.html) — the full table, every flag against its entry ID and exact print.
+Same day, principal asked for more ("any other red flag list or manipulation etc"):
+eq-dossiers/b booked (EQ-DOSSIER-B, literature only, zero cells) — Altman Z/Z''(EM) and Ohlson
+O-Score (bankruptcy-risk scores, a different target than manipulation, same distinction as
+Beneish-vs-DGLS), Montier's C-Score (a practitioner checklist that independently corroborates
+EQ-D1's own mechanisms and adds one new ingredient, Days Sales of Inventory), Schilit's 7
+Financial Shenanigans (a technique checklist, not a formula — the honest boundary every ratio
+score on this page shares: round-tripping/reserve-smoothing/big-bath timing need footnote text
+no aggregate field replaces), Benford's Law (a distributional test, feasibility on P1's ~8
+fields left an open [VERIFY], not silently dropped), and five market/behavioral signals
+(insider selling, short interest, auditor fees, options-grant timing, earnings-call
+linguistics) that use no accounting ratio at all and need data sources entirely outside
+P1-P6. THE CEILING, independently corroborated a fourth time: Altman/Ohlson/Montier are each
+only partially buildable from the India handoff schema for the SAME missing-granularity
+reason Beneish was capped at 4-of-8 (no receivables/inventory/current-asset-liability
+split/gross PP&E detail) — three unrelated frameworks hitting one schema limitation, not
+three new complaints. Earnings Quality Atlas updated again (v3, same URL).
