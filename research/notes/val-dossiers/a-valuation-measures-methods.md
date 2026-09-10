@@ -48,36 +48,33 @@ construction choice dossiers 02/c already made and this dossier does not revisit
 **P/E and its cyclical adjustment (CAPE).** Trailing or forward P/E is the most quoted multiple
 and the cleanest to compute wherever quarterly EPS exists; Shiller's cyclically-adjusted P/E
 (Campbell & Shiller 1988, *J. Finance*, "Stock Prices, Earnings, and Expected Dividends") smooths
-a decade of real earnings specifically to damp margin-cycle noise before dividing into price
-[LIT, high confidence on the construction — a standard, widely-verified citation]. At the index
-level, CAPE and its close cousin dp (dividend-price) are the desk's own already-tested instrument
-via the ER arc, which used dp directly rather than reconstructing true Shiller CAPE (the raw
-Shiller `ie_data` pull remains an owed RUNSHEET row, "ER battery upgrades: true CAPE horizons,"
-still blocked at this proxy). Section 5 below is entirely about what that testing found; this
-section's scope is construction only — P/E's chief weakness is denominator noise (one lumpy
-quarter swings the ratio sharply), exactly what CAPE exists to damp.
+a decade of real earnings to damp margin-cycle noise before dividing into price [LIT, high
+confidence — a standard, widely-verified citation]. At the index level, CAPE and its close cousin
+dp (dividend-price) are the desk's own already-tested instrument via the ER arc, which used dp
+directly rather than reconstructing true CAPE (the raw Shiller `ie_data` pull is still an owed,
+blocked RUNSHEET row). Section 5 is entirely about what that testing found; here the scope is
+construction only — P/E's chief weakness is denominator noise (one lumpy quarter swings the ratio
+sharply), exactly what CAPE exists to damp.
 
 **EV/EBITDA — the practitioner favorite.** **Loughran & Wellman** (2011, *Journal of Financial
 and Quantitative Analysis*, "New Evidence on the Relation between the Enterprise Multiple and
 Average Stock Returns") show the enterprise multiple predicts US cross-sectional returns robustly
-across size and book-to-market groups, with the low-multiple decile outperforming the high-
-multiple decile by an economically large annual spread [LIT, LOW-MEDIUM CONFIDENCE on the exact
-spread; the direction and cross-subgroup robustness I hold with more confidence than any specific
-number]. Their central claim is that the enterprise multiple carries information beyond a
-re-parameterization of B/M or E/P, chiefly because it is capital-structure-neutral where E/P is
-not — a highly levered, cheap-P/E stock can be an expensive-EV/EBITDA stock. This is also the
-multiple most exposed to India's data-cadence staircase (§6).
+across size and book-to-market groups, with the low-multiple decile outperforming the high by an
+economically large annual spread [LIT, LOW-MEDIUM CONFIDENCE on the exact spread; direction and
+cross-subgroup robustness held with more confidence than any number]. Their claim is that the
+enterprise multiple carries information beyond a re-parameterization of B/M or E/P, chiefly
+because it is capital-structure-neutral where E/P is not — a highly levered cheap-P/E stock can be
+an expensive-EV/EBITDA stock. Also the multiple most exposed to India's data-cadence staircase (§6).
 
-**FCF yield — the recent-decade winner claim.** Practitioner sources (the O'Shaughnessy/"What
-Works on Wall Street" tradition and multiple factor-house year-in-review notes) report FCF-yield
-screens outperforming book-value screens through roughly the same 2007–2020 window B/M struggled
-in [LIT, LOW CONFIDENCE — a repeated asset-manager claim, not a single peer-reviewed magnitude I
-can attach a number to]. The academic base is thinner than B/M's: FCF yield is closer to a hybrid
-of E/P and CF/P — cash-based, so it sidesteps some of the accrual-quality problem Sloan (1996)
-identifies (already anchored in `docs/fundamentals/02-growth-roic-quality.md`) — than an
-independently validated factor, and "FCF" is not a standardized line item; a screen's own capex
-and working-capital conventions can move the ranking meaningfully, exactly the researcher-
-degrees-of-freedom risk §2 flags.
+**FCF yield — the recent-decade winner claim.** Practitioner sources (O'Shaughnessy/"What Works on
+Wall Street," several factor-house year-in-reviews) report FCF-yield screens outperforming
+book-value screens through roughly the same 2007–2020 window B/M struggled in [LIT, LOW
+CONFIDENCE — a repeated asset-manager claim, no single peer-reviewed magnitude attached]. The
+academic base is thinner than B/M's: FCF yield is a hybrid of E/P and CF/P — cash-based, so it
+sidesteps some of the accrual-quality problem Sloan (1996) identifies (already booked in
+`docs/fundamentals/02`) — rather than an independently validated factor, and "FCF" is not a
+standardized line item; a screen's own capex/working-capital conventions can move the ranking
+meaningfully, the researcher-degrees-of-freedom risk §2 flags.
 
 **Dividend yield — and its payout-state confound.** This desk has booked the mechanism directly.
 **QG-D1** (`research/register/trial-ledger.md`, 2026-09-08) re-ran Arnott & Asness (2003, *FAJ*)
