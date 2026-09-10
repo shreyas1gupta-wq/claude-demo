@@ -158,6 +158,29 @@ every conditional distribution cited above (already booked, entry IDs given per 
 via scripts/build_positioning_note.py from scripts/analyze_snapshot1.py's print, never from memory —
 re-run both when fresher vault pulls land.</p>
 </section>
+
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · 10 Sep 2026 — the top-level holding: equity (large/mid/small) · gold · debt · REIT</h2>
+<p class="sub">Principal asked for a final top-level allocation. Not to be confused with the STANDING
+BOOK's 65/20/15 (that is the internal structure of the EQUITY sleeve itself — core/put-ladder-and-
+covered-calls/factor-sleeve — a coincidentally similar number, different question). This is the
+portfolio-wide split across asset classes.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Sleeve</th><th>Weight</th><th>Grounding</th></tr></thead><tbody>
+<tr><td><b>Equity — large-cap</b></td><td class="pos"><b>50%</b></td><td><span class="flag good">DESK-GROUNDED</span> the standing book's own home (WML+HML sleeve, collar-stacked core) — every real India factor edge this program found (§1-2 above) lives here</td></tr>
+<tr><td><b>Equity — mid-cap</b></td><td class="mut"><b>10%</b></td><td><span class="flag gate">UNTESTED INTERPOLATION</span> — this program has never run a mid-cap-specific design (only small-vs-everything-else, via SMB); sized as a reasoned midpoint, not a booked finding</td></tr>
+<tr><td><b>Equity — small-cap</b></td><td class="neg"><b>5%</b></td><td><span class="flag good">DESK-GROUNDED, DELIBERATELY UNDERWEIGHT</span> TL-D2's -2.9pp/yr UNCOMPENSATED 32y base rate, -90% max drawdowns, and the current 5y-SMB reading sitting inside the already-flagged "froth" window; not zero, because the value-spread timer (SC-D1) and post-3y-bear rebound (H36-D1) are real, occasional, tactical add-backs — never a structural overweight</td></tr>
+<tr><td><b>Gold</b></td><td class="amber"><b>15%</b></td><td><span class="flag good">DESK-GROUNDED</span> CI-D2 (gold best-performing asset in the high+rising-inflation killer cell), the CU battery (gold-INR's secular carry, hedge value concentrated at stress horizons, T-series Sharpe 1.19); HOLD not ADD right now — SNAPSHOT-1 finds gold stretched (+22% trailing-12m, -11% off its May peak)</td></tr>
+<tr><td><b>Debt / bonds</b></td><td class="mut"><b>18%</b></td><td><span class="flag gate">GENERAL PRINCIPLE, NOT DESK-SIZED</span> the ballast/liability-matching leg; this program has never run a bond-duration-specific design — the one live read is directional: RF is currently FALLING (SNAPSHOT-1), a mild tailwind for holding duration rather than staying ultra-short</td></tr>
+<tr><td><b>REIT</b></td><td class="mut"><b>2%</b></td><td><span class="flag bad">NOT DESK-RESEARCHED AT ALL</span> zero vaulted REIT data, zero ledger entries; if held, size it as a small real-asset/income satellite on general principles only — this is the honest gap, not a considered call</td></tr>
+</tbody></table></div>
+<div class="warn"><b>Read this table as a construction, not a forecast:</b> the large/small split and
+gold's role are the two legs with real, multi-entry desk evidence behind them; mid-cap, bond sizing,
+and REIT are reasoned defaults this program has not tested and should not be mistaken for the same
+quality of evidence as the equity and gold rows. The single change most likely to move this table is
+still the same one named throughout this page: an India valuation read, which would let the equity
+weight itself be conditioned on whether NIFTY is cheap or expensive right now, rather than held flat.</div>
+</section>
 </div>
 """
 OUT.write_text(html)

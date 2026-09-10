@@ -359,3 +359,18 @@ explosion are exactly why) -- only state-conditional historical distributions, e
 as docs/learn/artifacts/positioning-note.html (row 62), explicitly marked PERISHABLE (built from
 vault snapshots ~2-9 months stale; the single highest-leverage fix is the still-unpulled NSE
 index-valuation history, SC-D1's runsheet row).
+Immediate follow-up: "final ideally best holding of reit, bond, gold, equity large mid small."
+Addendum to SNAPSHOT-1 booked (zero new cells) -- a top-level allocation, each row explicitly
+tagged desk-grounded vs untested-default rather than one undifferentiated number: equity large
+50% (DESK-GROUNDED -- every real India factor edge this session found lives here), mid 10%
+(UNTESTED interpolation -- no mid-cap-specific design ever run), small 5% (DESK-GROUNDED,
+DELIBERATELY UNDERWEIGHT -- TL-D2's -2.9pp/yr uncompensated base rate, current 5y-SMB inside
+the flagged froth window, not zero because SC-D1/H36-D1 give real occasional tactical add-backs);
+gold 15% (DESK-GROUNDED -- CI-D2 + the CU battery's secular carry + Sharpe 1.19 hedge value,
+HOLD not ADD given the current stretched state); debt/bonds 18% (GENERAL PRINCIPLE, not
+desk-sized -- no bond-duration design ever run; RF currently falling is a mild duration
+tailwind); REIT 2% (NOT DESK-RESEARCHED AT ALL -- zero vaulted data, zero ledger entries,
+named as the honest gap). Explicitly disambiguated from the standing book's own internal
+65/20/15 structure (a coincidentally similar number, a different question -- that one is
+WITHIN the equity sleeve, this one is the portfolio-wide split). Folded into the Positioning
+Note (v2, same URL).
