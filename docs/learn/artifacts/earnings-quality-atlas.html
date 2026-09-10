@@ -1,0 +1,165 @@
+<title>Earnings Quality Atlas</title>
+<style>
+:root {
+  --bg:#f6f5f1; --panel:#fdfdfb; --ink:#212528; --ink2:#5a5f63; --mut:#8a8f93;
+  --line:#e2e0d8; --s1:#2a78d6; --heat:42,120,214;
+  --bad:#b3352b; --badbg:#f9e9e7; --good:#1f7a4d; --goodbg:#e7f3ec;
+  --amber:#9a6a00; --amberbg:#f6eed7; --gate:#5b6b8c; --gatebg:#e9edf4;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+} }
+:root[data-theme="dark"] {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+}
+body { background:var(--bg); color:var(--ink); font:15px/1.55 "Source Sans 3",system-ui,sans-serif;
+  margin:0; padding:28px 20px 60px; }
+.wrap { max-width:1060px; margin:0 auto; display:flex; flex-direction:column; gap:26px; }
+h1 { font:700 30px/1.15 "Archivo",system-ui,sans-serif; letter-spacing:-.3px; margin:0; text-wrap:balance; }
+h2 { font:650 19px/1.2 "Archivo",system-ui,sans-serif; margin:0 0 4px; }
+h3 { font:600 15px/1.25 "Archivo",system-ui,sans-serif; margin:14px 0 4px; }
+.sub { color:var(--ink2); max-width:78ch; margin:6px 0 0; }
+.prov { display:flex; gap:14px; flex-wrap:wrap; font:12px "IBM Plex Mono",monospace; color:var(--mut); }
+.badge { padding:1px 8px; border:1px solid var(--line); border-radius:10px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:18px 20px; }
+.verdicts { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:12px; }
+.v { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; }
+.v b { font-family:"Archivo"; font-size:15.5px; }
+.v .num { font:600 23px/1.25 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; margin:4px 0; }
+.tblwrap { overflow-x:auto; }
+table.plain { border-collapse:collapse; font-size:13.5px; width:100%; min-width:520px; }
+.plain th, .plain td { padding:6px 10px; border-bottom:1px solid var(--line); text-align:right; vertical-align:top; }
+.plain th:first-child, .plain td:first-child { text-align:left; }
+.plain td.pos { color:var(--good); font-weight:600; } .plain td.neg { color:var(--bad); font-weight:600; }
+.plain td.mut { color:var(--mut); }
+.flag { display:inline-block; font:600 11px "Archivo"; letter-spacing:.4px; padding:2px 8px; border-radius:9px; margin-left:6px; vertical-align:2px; }
+.flag.bad { color:var(--bad); background:var(--badbg); } .flag.good { color:var(--good); background:var(--goodbg); }
+.warn { background:var(--amberbg); color:var(--amber); border-radius:8px; padding:12px 16px; margin:12px 0 0; font-size:13.5px; max-width:100ch; }
+.note { font-size:13px; color:var(--mut); max-width:96ch; }
+.st { display:inline-block; font:600 11px "Archivo"; padding:2px 8px; border-radius:9px; }
+.st.yes { color:var(--good); background:var(--goodbg); } .st.no { color:var(--bad); background:var(--badbg); }
+ul.q { margin:8px 0 0; padding-left:20px; } ul.q li { margin:6px 0; max-width:86ch; }
+td, th { font-variant-numeric:tabular-nums; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<div class="wrap">
+<header>
+<h1>Earnings Quality Atlas</h1>
+<p class="sub">Earnings quality and accounting red flags: the accrual-divergence proxy, why the Beneish-
+style composite backfired, the value-trap cross's third confirmation of the survivor-panel artifact, and
+exactly what the India fundamentals handoff can and cannot build. Every desk number is a booked ledger
+print (EQ-D1, 8 cells, census 1,305). US firm panel = EW, survivor-tilted, fields already
+cross-sectionally uniformized to (0,1] — every construction here is an explicit RANK-DIVERGENCE PROXY,
+never the textbook dollar-value formula.</p>
+<div class="prov"><span class="badge">DESK = ledger print EQ-D1</span>
+<span class="badge">quoted: VAL-D2/D3 · SC-D3a (the within-cheap artifact)</span>
+<span class="badge">India: gated on the fundamentals handoff</span></div>
+</header>
+
+<div class="verdicts">
+<div class="v"><b>The accrual proxy survives its own bar</b><div class="num">−11.9%/yr</div>
+High-earnings/low-cash-flow names underperform at every horizon and both cuts (panel 12m); the bias here
+weakens rather than inverts the effect, so a negative print is admissible strong evidence.</div>
+<div class="v"><b>The composite backfired</b><div class="num">−11.9 → +2.7</div>
+Combining the accrual proxy with margin-decline and leverage-increase FLIPS the large-cap signal
+positive — two mis-signed ingredients diluted the one that worked.</div>
+<div class="v"><b>Trap-filtering: a third sighting</b><div class="num">artifact, not answer</div>
+The value-trap cross inverted exactly like VAL-D2/D3 and SC-D3a — unmeasurable on a no-delisting panel;
+the real test waits on India's delisted registry.</div>
+</div>
+
+<section class="panel">
+<h2>1 · The accrual-divergence battery (EQ-D1)</h2>
+<p class="sub">TATA_proxy = earnings-rank minus cash-flow-rank (per date) — a stock whose reported earnings
+rank far exceeds its cash-flow rank, the Sloan (1996) mechanism, built as a rank-divergence since this
+panel's fields are pre-uniformized. D10−D1, EW ann.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Cut</th><th>fwd-1m %/yr</th><th>fwd-12m %</th><th>fwd-36m %/yr</th></tr></thead><tbody>
+<tr><td>Full panel</td><td class="neg">−10.62</td><td class="neg">−11.88</td><td class="neg">−4.43</td></tr>
+<tr><td>Large-cap (szQ5)</td><td class="neg">−0.69</td><td class="neg">−4.76</td><td class="neg">−1.45</td></tr>
+<tr><td>Era: 1999-2009</td><td class="mut">—</td><td class="neg">−15.95</td><td class="mut">—</td></tr>
+<tr><td>Era: 2010-2019</td><td class="mut">—</td><td class="neg">−6.99</td><td class="mut">—</td></tr>
+</tbody></table></div>
+<p class="note">Negative at every horizon and both cuts — admissible under the registered bar (the
+no-delisting bias here <i>weakens</i>, never inverts, the accrual anomaly, opposite the trap-filter
+cells' bias direction). The effect fades by more than half from the 2000s to the 2010s, matching the
+post-publication decay pattern seen across this program's other anomalies. Cash-conversion (the mirror
+construction, Ocf-margin-rank minus Net-margin-rank) confirms the same story from the other side:
++7.77%/yr at 12m — good cash conversion outperforms.</p>
+</section>
+
+<section class="panel">
+<h2>2 · Why the composite backfired <span class="flag bad">CHECK EACH INGREDIENT'S SIGN FIRST</span></h2>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Component (D10−D1, fwd-12m)</th><th>Print</th><th>Registered prior</th><th>Grade</th></tr></thead><tbody>
+<tr><td>TATA_proxy (earnings vs cash-flow rank)</td><td class="neg">−11.88</td><td>negative</td><td><span class="st yes">HIT</span></td></tr>
+<tr><td>Margin decline (GMI-style)</td><td class="pos">+5.27</td><td>negative</td><td><span class="st no">MISS</span></td></tr>
+<tr><td>Leverage increase (LVGI-style)</td><td class="pos">+2.22</td><td>negative</td><td><span class="st no">MISS</span></td></tr>
+<tr><td><b>Composite (equal-weight of all three)</b></td><td class="pos"><b>+2.68 (large-cap)</b></td><td>more negative than any single part</td><td><span class="st no">MISS</span></td></tr>
+</tbody></table></div>
+<div class="warn"><b>The lesson:</b> two of three Beneish-style ingredients ran backwards on this panel —
+plausibly a mean-reversion signature (margin-compressed, more-levered firms rebounding) rather than the
+fraud-adjacent reading the textbook formula intends, or a rank-difference construction artifact that
+conflates "declining from a high base" with "declining further from an already-low one." Averaging them
+with the one ingredient that DID work didn't average out the noise — it diluted the signal. A composite
+red-flag score is only as good as its worst-signed component; the fix is to verify each one's own sign
+on the target data before combining, never port a textbook multi-factor score blind. This is the single
+most transferable lesson for the India rebuild.</div>
+</section>
+
+<section class="panel">
+<h2>3 · The value-trap cross — a third sighting of the same artifact</h2>
+<p class="sub">Among cheap stocks (P/B Q1-2), splitting by the composite red-flag score:</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Low-redflag minus high-redflag half, among cheap names</th><th>fwd-12m</th><th>fwd-36m</th></tr></thead><tbody>
+<tr><td>EQ-D1 e6 (this arc)</td><td class="neg">−1.32 (inverted)</td><td>+1.20 (noise)</td></tr>
+</tbody></table></div>
+<p class="note">The "good" (low-redflag) half of cheap stocks did WORSE at 12m — inverted, exactly like
+VAL-D2's within-cheap conditioning and VAL-D3's trap filters, and SC-D3a's blindness to the 2018-19
+smallcap unwind. Same mechanism each time: a no-delisting panel deletes the failures a trap filter exists
+to avoid, so filtering removes the survivor bounce instead of the trap. Graded as a third artifact
+sighting, not a fourth trap-filter failure — the real test needs deaths in the data.</p>
+</section>
+
+<section class="panel">
+<h2>4 · What's buildable on the India handoff — and what isn't</h2>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Red-flag component</th><th>Buildable from P1-P6?</th><th>Fields used / missing</th></tr></thead><tbody>
+<tr><td>TATA (true Sloan accruals)</td><td><span class="st yes">YES — as dollar values, not proxy ranks</span></td><td>total_assets, net_income, cfo (P1)</td></tr>
+<tr><td>Cash conversion (CFO/NI)</td><td><span class="st yes">YES</span></td><td>net_income, cfo (P1)</td></tr>
+<tr><td>LVGI (leverage change)</td><td><span class="st yes">YES</span></td><td>total_debt, total_equity (P1)</td></tr>
+<tr><td>GMI (margin change)</td><td><span class="st yes">partial</span></td><td>revenue, net_income (P1) — true gross margin needs COGS, not in P1</td></tr>
+<tr><td>Promoter-pledge trap marker</td><td><span class="st yes">YES — India's best marker</span></td><td>promoter_pct, promoter_pledged_pct (P5) — mandatory SEBI disclosure, genuinely point-in-time</td></tr>
+<tr><td>Trap-filter test with real deaths</td><td><span class="st yes">YES</span></td><td>delisted_registry (P3) — the field this US panel lacks entirely</td></tr>
+<tr><td>DSRI (receivables index)</td><td><span class="st no">NO</span></td><td>needs a receivables line — not in P1</td></tr>
+<tr><td>AQI (asset quality index)</td><td><span class="st no">NO</span></td><td>needs a PP&amp;E/intangibles breakdown — not in P1</td></tr>
+<tr><td>SGAI (SG&amp;A index)</td><td><span class="st no">NO</span></td><td>needs an SG&amp;A line — not in P1</td></tr>
+</tbody></table></div>
+<p class="note">Three of Beneish's eight components are permanently unbuildable from either this panel or
+the incoming handoff — a reduced 5-of-8 score is the ceiling until a richer field set is ever sourced.
+Everything else is an upgrade from proxy-rank to true dollar-value construction, with each component's
+sign checked individually before any composite is built (the section 2 lesson).</p>
+</section>
+
+<section class="panel">
+<h2>5 · Edge candidates &amp; the India queue</h2>
+<ul class="q">
+<li><b>Carry forward now:</b> the TATA_proxy avoid-list line (high earnings-vs-cash divergence, avoid) —
+cheap, robust, negative everywhere tested.</li>
+<li><b>Do not carry forward:</b> margin-decline and leverage-increase as red-flag inputs in their current
+rank-difference form; the mechanically-combined composite in any form.</li>
+<li><b>India-registrable on arrival:</b> true Sloan TATA + cash-conversion + a properly-signed reduced
+Beneish (5 of 8 components) + the promoter-pledge trap filter, tested WITH real deaths in the data via
+the delisted registry — the first honest trap-filter test this program will have run.</li>
+</ul>
+<p class="note">Sources of record: trial-ledger entry EQ-D1 (registration committed before the run;
+results desk-verified) · research/notes/eq-dossiers/ · research/register/handoff-prompt-india-
+fundamentals.md (P1-P6 schema). Regenerates via scripts/build_eq_atlas.py, never from memory.</p>
+</section>
+</div>

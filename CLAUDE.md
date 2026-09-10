@@ -239,3 +239,18 @@ state is the calm LOvol+LOWdd grind-up (10.70%, n=1,431) — no leverage-timing 
 negative finding stands alongside the no-leverage-until-funding_rate gate. Atlas updated again (v3,
 same URL, now TECH-D1..D4+MOM-D1+RATIO-D1, 52 cells). RUNSHEET's NSE-sectoral-TR row now named as the
 one pull that unblocks FUN-D3 FULL + SEC-D5 + the sector-RS design together.
+Then the principal moved to earnings quality/accounting red flags + a deeper sector-RS pass (2 Sonnet
+dossiers in research/notes/eq-dossiers/ + tech-dossiers/c; EQ-D1 booked, census **1,305**, desk-
+verified independently on two cells). The panel's fields are pre-uniformized ranks, so every
+construction is an explicit RANK-DIVERGENCE PROXY (Ni_rank minus Ocf_rank for TATA, etc.), never the
+textbook formula; the one-way argument is DISTINCT from VAL-D2/D3 (the accrual anomaly's worst outcomes
+are exactly what a no-delisting panel deletes, so the bias WEAKENS not inverts it — a negative print is
+admissible). TATA_proxy is negative at every horizon/cut (panel 12m -11.88, large -4.76) — HIT. Both
+Beneish-style components (margin-decline, leverage-increase) run BACKWARDS (+5.27/+2.22 at 12m) — MISS
+— and the mechanically-combined composite DILUTES rather than strengthens the signal (large-cap flips
+to +2.68) — the arc's central lesson: verify each ingredient's sign before compositing, never port a
+textbook score blind. The value-trap cross inverted again — a THIRD sighting of the within-cheap
+artifact (VAL-D2/D3, SC-D3a), still PIT-gated. Earnings Quality Atlas published (row 59) with the full
+India buildable/not-buildable field map (3 of 8 Beneish components permanently unbuildable from either
+panel). The sector-RS dossier (tech-dossiers/c) and the earnings-quality dossier (eq-dossiers/a) were
+still finishing as this status was written — their conclusions land in a same-day follow-up commit.
