@@ -183,4 +183,15 @@ momentum x moderate quality; CMA is value in drag (corr +0.68, no blend gain); t
 blend does NOT truncate the tail (-37.4 vs -35.1 worst-12m — sizing owns the tail).
 VAL-D5: CAPE terciles price the FLOOR — cheap p10 -2.00 vs expensive -4.92
 (+2.92pp/yr >= the +2.00 bar; ER-D1c null-band caveat quoted, no timing claim).
-Valuation Edge Atlas published (row 57).
+Valuation Edge Atlas published (row 57). VAL-D6 extension booked same evening
+(census **1,245**; Sonnet runner, desk-verified): the measure x size x horizon
+atlas — P/B owns both halves; the pure-valuation composite VAL3 (Pb+EV+FCF) beats
+Pb in LARGE caps at every horizon (+8.76/+7.80/+5.88); every yield measure INVERTS
+in small caps (the bounce pays distress); CQ/VM stock-level mixes MISSED (rank-mix
+fails where the momentum ingredient is artifact-broken) — pairing stays at SLEEVE
+level; Ebit_Bv weak-hybrid; P/S NOT constructible on the uniformized panel —
+India-gated (P1 revenue+shares + P4 prices = PIT P/S). Atlas v2 same URL. FOUR
+val-dossiers committed (a measures/methods, b complementarity, c India practice,
+d horse-races/combinations — d reconciles the missed FCF/EV priors as construction
+mismatch vs Loughran-Wellman's actual claim and ties the trap-filter artifact to
+the BGLN retained-earnings mechanism).
