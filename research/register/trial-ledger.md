@@ -4499,3 +4499,43 @@ regime break (not a restatement) for every accrual/growth/margin measure spannin
 any India accrual-family design must pre-register an explicit transition dummy or a
 post-transition-only sample, not merely note the risk qualitatively. Zero cells; zero
 census impact — literature and data-gap enrichment only, folded into the atlas.
+
+## Entry SYNTHESIS-RF1 (2026-09-10) — THE RED-FLAG HORIZON MAP (principal: "give me
+red flag lists and in which time frame it will work... 1m fwd may not need much...
+but 12m/3y/5y may need... basis fwd looking horizon"). NOT A TRIAL — a cross-arc
+synthesis citing ONLY numbers already printed in this ledger (process note #6
+discipline applied to the orchestrator itself); zero new cells; zero census impact.
+Draws on EQ-D1, QG-D3/QG-D4, VAL-D1/VAL-D5, H36-D1, SC-D3, TECH-D2/TECH-D3/TECH-D4,
+DB-D1/DB-D3/DB-D5/DB-D6/DB-D9, CI-D1/CI-D3/CI-D4, MOM-D1, RATIO-D1, and eq-dossiers/a
+(all already booked above). THE ORGANIZING FINDING: red flags on this desk sort into
+three distinct horizon behaviors, not one universal "wait N months" rule —
+(i) DECAYING flags, strongest immediately and fading — EQ-D1's TATA_proxy (accrual/
+cash-flow divergence) panel -11.88%/yr at 12m fades to -4.43%/yr at 36m (large-cap
+-4.76 -> -1.45); SC-D3's India post-bear smallcap avoid -12.31% at 12m fades to
+-5.93%/yr at 36m (H36-D1 h11) — same sign, roughly half the per-year damage by 3y;
+ES-D1's fundamental-momentum proxy -3.03pp at 1m fades to -0.84pp at 3y (H36-D1 h1);
+(ii) GROWING flags, invisible or wrong-signed short and only real over years — QG-D3's
+large-cap peak-ROE-at-any-price is +1.4pp (WRONG SIGN) at 12m, 0.0 at 36m, -1.5 at
+60m, -2.1 at 120m; QG-D4's glamour-quality corner (ROE Q5 x growth Q5) is +6.5%/yr at
+12m and only reads as the WORST corner in the matrix by +2.9%/yr at 120m; QG-D4's
+volatile-quality trap is invisible at 12m (the QG-D2 no-delisting flattery) and only
+turns negative in large caps at 60m (-0.7); the mirror-image protective spreads GROW
+the same way — VAL-D1's szQ5 value spread +8.80 at 12m compounds to +6.5pp/yr at 3y
+and +4.83pp/yr at 5y (H36-D1 h4/h5, VAL-D5 quoted), and low-vol only emerges as
+protective once the junk-bounce artifact dies (H36-D1 h3: Vol FLIPS SIGN positive in
+mid/large caps at 36m); (iii) REGIME/PROBABILITY flags, where NO fixed forward horizon
+is the right frame at all — DB-D1's sovereign public-debt LEVEL shows ~zero, POSITIVE-
+signed correlation to equities even at 5-10y (+0.16/+0.17) and only ever hurts BONDS
+(US >=90%-debt cohort: next-10y real bonds -1.0%, 1/7 positive, DB-D9); DB-D5/DB-D3/
+CI-D3 show credit BOOMS do not lower average 5y equity returns (null, +0.01) but raise
+crisis probability on a 3-YEAR clock instead (15-19% vs 5-6% calm) — a probability
+flag, not a magnitude-at-a-horizon flag; DB-D9 c5's debt-equity positivity is a
+PRE-1980-only regime fact (+0.19 pre / -0.05 post), resolved only across decades.
+A fourth class — GOVERNANCE/MECHANISM-ONLY flags (promoter pledge, RPTs, auditor
+changes, restatement history, off-balance-sheet items; eq-dossiers/a §4-5) — carries
+NO desk-quantified horizon at all and is better read as an always-on avoid-list gate
+than a timed signal; Beneish/DGLS components are literature-validated to CLASSIFY
+manipulation, not to time returns (the DGLS distinction, eq-dossiers/a §2, already
+explains EQ-D1's e2/e3 misses). Full table (every flag, entry ID, exact print, tier)
+built as docs/learn/artifacts/red-flag-horizon-map.html (scripts/build_rf_horizon_
+atlas.py), row 60. Zero cells; zero census impact.

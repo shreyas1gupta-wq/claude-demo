@@ -267,3 +267,18 @@ EQ-D1's composite backfired; also flags an unresolved [VERIFY: Beneish 1999 cuto
 confirms promoter share pledging (P5) as India's cleanest, genuinely point-in-time red flag (named
 examples explicitly [CASE-STUDY LORE] only). Earnings Quality Atlas updated (v2, same URL). Ledger
 addenda booked under SECTOR-GATE and EQ-D1 (zero census impact — 1,305 stands). Leg 28 closed.
+Principal follow-up same day: "red flag lists... which time frame it will work" (1m vs 12m/3y/5y).
+SYNTHESIS-RF1 booked (zero new cells; every number quoted from an already-printed ledger entry):
+red flags sort into three horizon behaviors, not one rule. DECAYING (peak at 12m, fading by 3y,
+same sign) — accrual/TATA_proxy -11.88%->-4.43%/yr, India post-bear smallcap -12.31%->-5.93%/yr.
+GROWING (flat or wrong-signed at 12m, only real by 3-10y) — large-cap peak-ROE-at-any-price
++1.4pp(12m, wrong sign)->-2.1pp(120m); the glamour-quality corner (ROE Q5 x growth Q5) 6.5%/yr(12m)
+->2.9%/yr(120m, worst corner); the mirror protective spreads (szQ5 value, low-vol) grow the same
+way. REGIME/PROBABILITY (no fixed horizon is the right frame) — sovereign debt LEVEL never hurts
+equities even at 5-10y (DB-D1 +0.16/+0.17, positive-signed) and only ever hits BONDS (US >=90%
+cohort: -1.0%/yr, 1/7 positive); credit BOOMS don't lower 5y equity returns (null) but raise crisis
+odds on a 3-YEAR clock instead (15-19% vs 5-6% calm); the "debt helps equities" read is a dead,
+pre-1980-only regime (+0.19 pre / -0.05 post). A fourth class, governance/mechanism-only flags
+(promoter pledge, RPTs, Beneish/DGLS raw), carries no desk-quantified horizon at all and is read as
+an always-on avoid-list gate, never a timed signal. Red Flag Horizon Map published (row 60,
+red-flag-horizon-map.html) — the full table, every flag against its entry ID and exact print.
