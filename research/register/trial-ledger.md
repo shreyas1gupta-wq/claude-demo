@@ -3861,3 +3861,32 @@ already sits: valuation as a STATE that widens/narrows the expected BAND (floor
 included) for expectations and risk budgets — never a timing signal. This print
 gives the band role its first registered numeric content. Census 3 (1228 ->
 **1231**).
+
+## Entry VAL-D6 (2026-09-10) — PRE-REGISTERED before running: THE EXTENDED MEASURE x
+SIZE x HORIZON ATLAS (principal: "P/S and mixing stuffs and largecap vs smallcap
+which works"). DATA HONESTY FIRST, recorded now: TRUE P/S is NOT constructible on
+the US firm panel — its fields are cross-sectionally uniformized ranks, so
+mcap/sales cannot be rebuilt (rank of ratio != ratio of ranks); Sales_Ps is
+sales-PER-SHARE rank, not a valuation multiple, and is EXCLUDED as a measure. P/S
+joins the India design set (P1 revenue + shares_outstanding + price = PIT P/S).
+Conventions inherited verbatim (dec(), EW, 1m x1200 / 12m x100 / QG-D3 36m
+compounding). SIZE HALVES: small = szQ1-2, large = szQ4-5 (dec of Mkt_Cap_12M).
+CELLS (14): x1-x7 the measure ladder BY SIZE HALF at 1m/12m/36m for Pb, Pe,
+Ev_Ebitda, Fcf_Yld, Div_Yld, Bb_Yld, and NEW Ebit_Bv (EBIT/book — FLAGGED at
+registration as a value-quality HYBRID, not a pure multiple: if it tops the ladder
+it does so by mixing in profitability, and it is graded as a MIX, not a measure);
+x8-x13 the MIXES, same profile: VAL2 = Pb+Pe rank-mean; VAL3 = Pb+Ev_Ebitda+
+Fcf_Yld (the VAL-D1 composite, now sized/horizoned); VAL4 = VAL3+Div_Yld;
+CQ = Pb+Roe rank-mean (cheap-quality); VM = Pb+Mom_11M rank-mean (value-momentum);
+VLV = Pb+lowVol rank-mean; x14 the verdict table — per size half, the best measure
+and best mix at each horizon. PRIORS (two-sided): every pure measure prints larger
+in SMALL (the junk bounce inflates the cheap side) — the LARGE half is the verdict
+column as established; in LARGE at 12m/36m the MIXES beat pure Pb (the factor-level
+0.70/0.49 precedent says CQ and VM should top the table — the KEY registered
+question; note the VAL-D2 caveat: mix spreads on this panel are measured
+across-the-board sorts, NOT within-cheap conditioning, so they are NOT subject to
+yesterday's within-cheap artifact in the same way, but the no-delisting flattery
+still applies to levels); Ebit_Bv strong-but-hybrid (the mixing lesson made
+explicit); Div_Yld's large-cap strength (VAL-D1 +5.10) persists at 36m. Runner: a
+Sonnet agent on this frozen spec, desk-verified before booking. Census 14 on the
+day.
