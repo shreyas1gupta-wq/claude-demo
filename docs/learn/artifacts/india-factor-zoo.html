@@ -1,0 +1,154 @@
+<title>India Factor Zoo</title>
+<style>
+:root {
+  --bg:#f6f5f1; --panel:#fdfdfb; --ink:#212528; --ink2:#5a5f63; --mut:#8a8f93;
+  --line:#e2e0d8; --s1:#2a78d6; --heat:42,120,214;
+  --bad:#b3352b; --badbg:#f9e9e7; --good:#1f7a4d; --goodbg:#e7f3ec;
+  --amber:#9a6a00; --amberbg:#f6eed7; --gate:#5b6b8c; --gatebg:#e9edf4;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+} }
+:root[data-theme="dark"] {
+  --bg:#15181c; --panel:#1d2126; --ink:#e8eaec; --ink2:#aab0b5; --mut:#7d838a;
+  --line:#30353b; --s1:#3987e5; --heat:57,135,229;
+  --bad:#e0736a; --badbg:#3a2422; --good:#5fbe8e; --goodbg:#1e3328;
+  --amber:#d9a83c; --amberbg:#32290f; --gate:#8fa2c4; --gatebg:#20262f;
+}
+body { background:var(--bg); color:var(--ink); font:15px/1.55 "Source Sans 3",system-ui,sans-serif;
+  margin:0; padding:28px 20px 60px; }
+.wrap { max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:26px; }
+h1 { font:700 30px/1.15 "Archivo",system-ui,sans-serif; letter-spacing:-.3px; margin:0; text-wrap:balance; }
+h2 { font:650 19px/1.2 "Archivo",system-ui,sans-serif; margin:0 0 4px; }
+h3 { font:600 15px/1.25 "Archivo",system-ui,sans-serif; margin:14px 0 4px; }
+.sub { color:var(--ink2); max-width:82ch; margin:6px 0 0; }
+.prov { display:flex; gap:14px; flex-wrap:wrap; font:12px "IBM Plex Mono",monospace; color:var(--mut); }
+.badge { padding:1px 8px; border:1px solid var(--line); border-radius:10px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:18px 20px; }
+.verdicts { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:12px; }
+.v { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; }
+.v b { font-family:"Archivo"; font-size:15.5px; }
+.v .num { font:600 21px/1.25 "IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; margin:4px 0; }
+.tblwrap { overflow-x:auto; }
+table.plain { border-collapse:collapse; font-size:13.5px; width:100%; min-width:560px; }
+.plain th, .plain td { padding:6px 10px; border-bottom:1px solid var(--line); text-align:right; vertical-align:top; }
+.plain th:first-child, .plain td:first-child { text-align:left; }
+.plain td.pos { color:var(--good); font-weight:600; } .plain td.neg { color:var(--bad); font-weight:600; }
+.plain td.mut { color:var(--mut); }
+.flag { display:inline-block; font:600 11px "Archivo"; letter-spacing:.4px; padding:2px 8px; border-radius:9px; margin-left:6px; vertical-align:2px; }
+.flag.bad { color:var(--bad); background:var(--badbg); } .flag.good { color:var(--good); background:var(--goodbg); }
+.flag.gate { color:var(--gate); background:var(--gatebg); } .flag.amber { color:var(--amber); background:var(--amberbg); }
+.warn { background:var(--amberbg); color:var(--amber); border-radius:8px; padding:12px 16px; margin:12px 0 0; font-size:13.5px; max-width:104ch; }
+.note { font-size:13px; color:var(--mut); max-width:100ch; }
+.rank { display:inline-block; font:700 13px "IBM Plex Mono",monospace; width:22px; text-align:center; color:var(--mut); }
+ul.q { margin:8px 0 0; padding-left:20px; } ul.q li { margin:6px 0; max-width:92ch; }
+td, th { font-variant-numeric:tabular-nums; }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<div class="wrap">
+<header>
+<h1>India Factor Zoo</h1>
+<p class="sub">Every factor with REAL India evidence — IIMA monthly factors (1993-2025), the NIFTY
+index, and the NIFTY500 survivor panel (2012-2021, one-way caveat stated) — ranked best to worst,
+split large-cap/market-level vs small-cap. The much larger QG/VAL/ES/EQ literature this desk has run
+lives on the US firm panel and is explicitly labeled below as a REHEARSAL for India, never presented
+as India evidence: real India versions of value/quality/growth/accrual factors are frozen, registered,
+and waiting on the India fundamentals handoff.</p>
+<div class="prov"><span class="badge">DESK = ledger print, entry ID cited per row</span>
+<span class="badge">real India data: V0-V4 · OP-D5/D6 · CR1a/b · SC-D1/D2/D3/D3a · TL-D2 · MOM-D1 · T4 · TECH-D1-D4 · RATIO-D1</span>
+<span class="badge">US-only rehearsal: QG-D1-D6 · VAL-D1-D6 · ES-D1/D2 · SC-D4/D5 · EQ-D1</span></div>
+</header>
+
+<div class="verdicts">
+<div class="v"><b>The one real India factor blend that works</b><div class="num">+17.0%/yr</div>
+Vol-managed 50/50 WML+HML (IIMA data) — standalone, part of the standing book's factor sleeve;
+worst year only −2.0% (2018), best +33.7% (2017).</div>
+<div class="v"><b>Size doesn't pay in India</b><div class="num">−2.9pp/yr</div>
+32 years, IIMA smallcap proxy: more volatility (1.34x), far worse drawdowns (−90% vs −62%), LESS
+return than the market. The raw size premium is uncompensated — the US small-cap premium inverts here.</div>
+<div class="v"><b>Momentum is a switch, not a constant</b><div class="num">+15.1 → −27.5%/yr</div>
+Works up-market only; the post-bear+top-vol crash state flips it hard negative — and chasing WML
+strength itself inverts (never buy the recent winner leg on strength alone).</div>
+</div>
+
+<section class="panel">
+<h2>1 · Large-cap / market-level — real India data</h2>
+<p class="sub">IIMA's factors are market-wide series (not computed per cap-bucket), and NIFTY/index-level
+technical reads are inherently large-cap. Ranked by how robust the edge is, best first.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Rank</th><th>Factor / read</th><th>Print</th><th>Verdict</th><th>Source</th></tr></thead><tbody>
+<tr><td><span class="rank">1</span></td><td>Value × Momentum blend (vol-managed 50/50 WML+HML)</td><td class="pos">+17.02%/yr standalone</td><td><span class="flag good">CONSUMED — standing book</span></td><td>OP-D5/D6</td></tr>
+<tr><td><span class="rank">2</span></td><td>Momentum (WML), conditioned on state</td><td class="pos">+15.06%/yr baseline</td><td><span class="flag amber">up-market-only; STAND-DOWN gate at post-bear+top-vol</span></td><td>TECH-D3</td></tr>
+<tr><td><span class="rank">3</span></td><td>Value (HML) alone</td><td class="pos">+8.6%/yr full-period</td><td><span class="flag amber">low Sharpe (0.09, high India RF); real winters (2015-19 Sh −0.39)</span></td><td>V0-V4</td></tr>
+<tr><td><span class="rank">4</span></td><td>Leverage/vol-clustering state (calm-uptrend forward risk)</td><td class="neg">10.70% maxDD — the WORST state, not the safest</td><td><span class="flag bad">folk intuition INVERTS; no leverage-timing rule registered</span></td><td>RATIO-D1</td></tr>
+<tr><td><span class="rank">5</span></td><td>NIFTY drawdown-tercile entry state</td><td class="pos">+33.66% next-12m (deep tercile)</td><td><span class="flag good">a real entry-state, not a "factor" per se</span></td><td>TECH-D1</td></tr>
+<tr><td><span class="rank">6</span></td><td>Stage quadrants (price/MA trend state)</td><td class="mut">S4 (downtrend) +32.2% next-12m NIFTY</td><td><span class="flag amber">equity INDICES rebound from downtrends — folk "buy stage 2" fails here</span></td><td>TECH-D2</td></tr>
+</tbody></table></div>
+<p class="note">Own-factor momentum INVERTS at the state level too: India WML after a WEAK month averages
++23.5%/yr vs only +12.5% after a strong one (TECH-D3) — never chase recent WML strength.</p>
+</section>
+
+<section class="panel">
+<h2>2 · Small-cap — real India data</h2>
+<p class="sub">Everything here uses either the IIMA SMB series directly or the NIFTY500 survivor panel
+(2012-2021, no-delisting bias stated, one-way admissibility rules applied per print).</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Rank</th><th>Factor / read</th><th>Print</th><th>Verdict</th><th>Source</th></tr></thead><tbody>
+<tr><td><span class="rank">1</span></td><td>Small-vs-large valuation SPREAD as a rotation timer</td><td class="pos">+16.05pp T1-T3 next-12m (corr −0.69 at 36m)</td><td><span class="flag good">the one real small-cap TIMING edge — in-sample, flagged</span></td><td>SC-D1</td></tr>
+<tr><td><span class="rank">2</span></td><td>Stock-level momentum, liquid/top-ADV tercile</td><td class="pos">+5.87%/yr peak (6-2 lookback)</td><td><span class="flag good">same 6-2 peak as the full panel, smaller magnitude</span></td><td>MOM-D1</td></tr>
+<tr><td><span class="rank">3</span></td><td>"Winter rebound" (small-cap, after 3 straight down years)</td><td class="pos">+10.32% next-12m / +8.01%/yr at 3y (LO trailing-36m tercile)</td><td><span class="flag amber">WATCH only — the survivor-panel cross-check came back non-monotone; IIMA-only support</span></td><td>SC-D3 i2 / H36-D1 h10</td></tr>
+<tr><td><span class="rank">4</span></td><td>Low-volatility quintile (broad universe)</td><td class="mut">Sharpe 1.45 vs 1.34; alpha +2.65%/yr, t=1.88</td><td><span class="flag gate">INCONCLUSIVE — fails significance by a hair; one-way biases FAVOR this being real; PIT test owed</span></td><td>T4</td></tr>
+<tr><td><span class="rank">5</span></td><td>Post-bear re-entry (buy smallcap the year after a bear year)</td><td class="neg">−12.31% vs −0.20% next-12m (gap −12.11pp)</td><td><span class="flag bad">the US rebound trade INVERTS in India — avoid for 12m, Tier-C</span></td><td>SC-D3 i3</td></tr>
+<tr><td><span class="rank">6</span></td><td>The raw size premium itself (small vs large, unconditional)</td><td class="neg">−2.9pp/yr over 32 years</td><td><span class="flag bad">UNCOMPENSATED — more vol (1.34x), −90% max drawdown vs −62%, LESS return</span></td><td>TL-D2 s8</td></tr>
+</tbody></table></div>
+<p class="note">Read #1 and #6 together: the LEVEL of India's small-cap premium is negative and
+uncompensated, but the SPREAD between cheap-small and expensive-small still orders relative returns
+in-sample — the edge, if any, is in WHEN and WHICH small-caps, never in holding the segment itself.</p>
+</section>
+
+<section class="panel">
+<h2>3 · India-specific factor behavior (not return premia, but real India moments)</h2>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Read</th><th>Print</th><th>Note</th></tr></thead><tbody>
+<tr><td>WML skewness ordering (crowded-momentum import)</td><td class="neg">WML +0.05, SMB +0.04, HML +0.60 — FAIL</td><td>the US negative-momentum-skew story does not import to India's factor library</td><td></td></tr>
+<tr><td>Worst-month concentration (synchronized-exit tail)</td><td class="pos">WML worst −4.1σ vs SMB −2.9σ / HML −3.4σ — PASS</td><td>momentum still owns the fattest single-month tail</td><td></td></tr>
+</tbody></table></div>
+</section>
+
+<section class="panel" style="border-left:3px solid var(--gate)">
+<h2>4 · NOT yet real India data — US-panel rehearsal only, India-gated</h2>
+<p class="sub">The largest body of work this desk has done on quality, growth, valuation measures beyond
+HML, and accrual/earnings-quality red flags all ran on the US firm_panel (data_ml, 1,207 stocks,
+1999-2019, EW, no-delisting) as an explicit REHEARSAL — never presented as India evidence. Real India
+versions are registered and frozen, unblocking the day the fundamentals handoff lands.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Factor family</th><th>US-panel finding (rehearsal only)</th><th>India status</th></tr></thead><tbody>
+<tr><td>Quality/profitability (ROE)</td><td>moderate ROE × low vol is the champion cell; peak-ROE-at-any-price fades to −2.1pp/yr by 10y</td><td class="mut">QG-D6 registered-unrun, frozen</td></tr>
+<tr><td>Growth</td><td>never pays at any horizon; glamour-quality (high ROE × high growth) is the worst 10y corner</td><td class="mut">India-gated, five more frozen QG designs</td></tr>
+<tr><td>Valuation measure ladder (P/B, P/E, EV/EBITDA, FCF yield, div yield, composites)</td><td>P/B-led composite; every yield measure INVERTS in small caps; P/S not constructible even in the US</td><td class="mut">India P1 revenue+shares + P4 prices = PIT P/S, registrable on arrival</td></tr>
+<tr><td>Accrual / earnings-quality red flags</td><td>accrual divergence −11.9%/yr at 12m; Beneish-style composite backfires</td><td class="mut">true TATA + reduced Beneish + promoter-pledge trap filter registrable on arrival</td></tr>
+<tr><td>Low-vol / BAB as a formal factor</td><td class="mut">n/a — no US-panel equivalent run this way</td><td class="neg">ABSENT from the India factor library entirely (IIMA has SMB/HML/WML/MF only); T4 above is the only partial read</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="panel">
+<h2>5 · Consumption</h2>
+<ul class="q">
+<li><b>What's actually in the book today:</b> the vol-managed WML+HML sleeve (standing book, +1.80%/yr
+contribution at 15% weight) — the only India factor construction that has cleared a promotion bar.</li>
+<li><b>What's a monitor, not a trade:</b> the momentum stand-down gate (Tier-C), the small-vs-large
+valuation spread (in-sample, no PIT data yet), the winter rebound (IIMA-only support).</li>
+<li><b>What's an avoid-list line:</b> post-bear smallcap re-entry (12m minimum); the raw size premium
+itself is not a buy-and-hold factor in India at all.</li>
+<li><b>What's genuinely unknown:</b> quality, growth, the full valuation ladder, and every accrual/
+earnings-quality red flag, at the India stock level — all frozen pending the fundamentals handoff.</li>
+</ul>
+<p class="note">Sources of record: trial-ledger entries V0-V4, OP-D5/D6, CR1a/b, SC-D1/D2/D3/D3a,
+TL-D2, MOM-D1, T4, TECH-D1-D4, RATIO-D1 (real India data); QG-D1-D6, VAL-D1-D6, ES-D1/D2, SC-D4/D5,
+EQ-D1 (US-panel rehearsal, explicitly labeled). Zero new cells — pure cross-arc synthesis (ledger
+entry SYNTHESIS-FZ1). Regenerates via scripts/build_india_factor_zoo.py, never from memory.</p>
+</section>
+</div>

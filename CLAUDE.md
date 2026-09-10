@@ -298,3 +298,17 @@ only partially buildable from the India handoff schema for the SAME missing-gran
 reason Beneish was capped at 4-of-8 (no receivables/inventory/current-asset-liability
 split/gross PP&E detail) — three unrelated frameworks hitting one schema limitation, not
 three new complaints. Earnings Quality Atlas updated again (v3, same URL).
+Same day, principal asked for the factor zoo sorted large-cap vs small-cap, India-specific.
+SYNTHESIS-FZ1 booked (zero new cells; every number quoted from an already-printed entry) — first,
+a data-honesty statement: the desk's largest factor body (QG/VAL/ES/SC/EQ) ran on the US firm_panel
+as a REHEARSAL, never India evidence; presenting those size-quintile splits as India large/small
+would have been a labeling error. REAL India evidence is narrower (IIMA SMB/HML/WML/MF/RF, NIFTY,
+the NIFTY500 survivor panel). LARGE-CAP best-to-worst: the vol-managed WML+HML blend (+17.02%/yr,
+the only India factor construction actually IN the standing book); momentum (a SWITCH, not a
+constant -- +15.06 baseline, -27.46 crash state, own-strength-chasing inverts); value alone
+(+8.6%/yr, low Sharpe 0.09, real winters); leverage-timing (folk intuition inverts). SMALL-CAP
+best-to-worst: the value-spread rotation TIMER (+16.05pp T1-T3, the one real timing edge);
+liquid-tercile momentum; the winter rebound (downgraded to a watch, survivor-panel cross-check
+non-monotone); low-vol (inconclusive, t=1.88); post-bear re-entry (INVERTS the US rebound,
+Tier-C avoid); the raw size premium itself (UNCOMPENSATED at -2.9pp/yr, TL-D2's headline). India
+Factor Zoo published (row 61, india-factor-zoo.html).

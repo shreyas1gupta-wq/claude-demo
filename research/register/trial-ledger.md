@@ -4585,3 +4585,48 @@ independent corroboration, from three unrelated frameworks, of the same schema
 ceiling, not a new complaint. CONSUMPTION: none promoted (literature-and-gap dossier
 only); folds into the Earnings Quality Atlas as a new section (build_eq_atlas.py).
 Zero cells; zero census impact.
+
+## Entry SYNTHESIS-FZ1 (2026-09-10) — THE INDIA FACTOR ZOO, LARGE-CAP VS SMALL-CAP
+(principal: "factor zoo which all work in indian markets sorted best largecap vs
+smallcap seperately"). NOT A TRIAL — a cross-arc synthesis citing ONLY numbers already
+printed in this ledger; zero new cells; zero census impact. FIRST, A DATA-HONESTY
+STATEMENT the synthesis itself required: this desk's largest body of factor work
+(QG-D1-D6, VAL-D1-D6, ES-D1/D2, SC-D4/D5, EQ-D1) ran on the US firm_panel (data_ml,
+1999-2019) as an explicit REHEARSAL for India, never India evidence — presenting those
+size-quintile splits as "India large-cap vs small-cap" would have been a data-labeling
+error the synthesis exists specifically to avoid. REAL India evidence is narrower:
+IIMA monthly factors (SMB/HML/WML/MF/RF, 1993-2025), NIFTY index-level reads, and the
+NIFTY500 survivor panel (2012-2021, one-way). LARGE-CAP/MARKET-LEVEL, best to worst:
+(1) the vol-managed 50/50 WML+HML blend, +17.02%/yr standalone, the ONLY India factor
+construction actually in the standing book (OP-D5/D6, +1.80%/yr contribution at 15%
+weight); (2) momentum (WML), +15.06%/yr baseline but a SWITCH not a constant — the
+post-bear+top-vol crash state flips it to -27.46%/yr (TECH-D3), and chasing recent WML
+strength itself inverts (+23.5%/yr after WEAK vs +12.5% after strong); (3) value (HML)
+alone, +8.6%/yr full-period but Sharspe only 0.09 (India RF is high) with real winters
+(2015-19 growth mania, Sh -0.39) (V0-V4); (4) the leverage/vol-clustering read
+(RATIO-D1) — the calm-uptrend state is the WORST forward-drawdown state, not the
+safest, folk intuition inverted; (5) NIFTY entry-states (drawdown terciles, stage
+quadrants) — real states, not classic factors. SMALL-CAP, best to worst: (1) the
+small-vs-large VALUATION SPREAD as a rotation timer, +16.05pp T1-T3 next-12m, corr
+-0.69 at 36m (SC-D1) — the one real small-cap TIMING edge, in-sample, flagged; (2)
+stock-level momentum in the liquid/top-ADV tercile, +5.87%/yr peak at the same 6-2
+lookback as the full panel (MOM-D1); (3) the "winter rebound" after THREE straight
+down years, +10.32% next-12m / +8.01%/yr at 3y (SC-D3 i2, H36-D1 h10) — downgraded to
+a WATCH since the survivor-panel cross-check (SC-D3a a2) came back non-monotone; (4)
+low-volatility (T4) — INCONCLUSIVE, Sharpe 1.45 vs 1.34 but alpha t=1.88 fails
+significance by a hair, and the one-way bias here FAVORS the anomaly being real, so a
+near-miss is not a kill; (5) post-bear re-entry — INVERTS the US rebound trade,
+-12.31% vs -0.20% next-12m (SC-D3 i3), Tier-C avoid-list for 12m; (6) the raw size
+premium itself, UNCOMPENSATED at -2.9pp/yr over 32 years with worse drawdowns (-90% vs
+-62%) and higher vol (1.34x) for LESS return (TL-D2 s8) — the single loudest small-cap
+finding: holding the segment does not pay, only timing/selecting within it might.
+READ TOGETHER (#1 and #6 above): the LEVEL of India's small-cap premium is negative,
+but the SPREAD between cheap-small and expensive-small still orders relative returns
+in-sample — any edge is in WHEN and WHICH small-caps, never in the segment itself.
+Also newly on record: WML's skewness-ordering import from the US crowded-momentum
+literature FAILS on India's own factor library (WML +0.05 skew, the mildest of the
+three, not the most negative — CR1a), while the worst-single-month concentration test
+still PASSES (WML -4.1sigma worst month, the fattest tail — CR1b) — momentum is not
+"crowded" by the US skew signature but still owns the fattest single-month loss.
+Published as docs/learn/artifacts/india-factor-zoo.html (row 61; scripts/build_india_
+factor_zoo.py). Zero cells; zero census impact.
