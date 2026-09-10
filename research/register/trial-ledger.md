@@ -3890,3 +3890,38 @@ still applies to levels); Ebit_Bv strong-but-hybrid (the mixing lesson made
 explicit); Div_Yld's large-cap strength (VAL-D1 +5.10) persists at 36m. Runner: a
 Sonnet agent on this frozen spec, desk-verified before booking. Census 14 on the
 day.
+
+## Entry VAL-D6 RESULT (2026-09-10, interpretation after the print; runner
+scripts/analyze_val_d6.py + es_sc_matrices/val_d6.json; Sonnet agent on the frozen
+spec, desk-verified: large Pb 12m +7.30 reproduced independently to the cent) —
+P/B OWNS BOTH HALVES; THE PURE-VALUATION COMPOSITE BEATS IT IN LARGE CAPS; SIGNAL-
+MIXING FAILS WHERE ITS INGREDIENT IS BROKEN. Measures (small 1m/12m/36m | large):
+Pb +16.56/+14.83/+7.69 | **+7.15/+7.30/+5.39**; Pe +2.4/+2.5/+1.1 | +3.7/+3.5/+3.0;
+Ev_Ebitda -1.9/-0.6/-0.2 | +3.1/+3.7/+1.7; Fcf_Yld -2.6/-3.1/+0.4 | +2.8/+2.9/+3.1;
+Div_Yld **-10.9/-11.6/-2.6 | +3.4/+3.9/+3.5**; Bb_Yld -3.6/-5.3/-1.9 | +4.1/+1.6/
++1.2; Ebit_Bv **-22.1/-19.5/-5.6 | +0.3/+0.8/-0.9**. Mixes: VAL2 +6.0/+5.1/+3.3 |
++7.6/+7.2/+5.2; **VAL3 +3.0/+4.1/+3.5 | +8.76/+7.80/+5.88 — the LARGE-half winner
+at every horizon, beating pure Pb (+7.15/+7.30/+5.39)**; VAL4 (adds Div_Yld)
+slightly worse than VAL3 in large; CQ -3.9/-6.4/-0.3 | +4.5/+3.0/+2.9;
+VM -5.1/-8.2/-1.7 | **-1.2/-0.5/+1.5**; VLV -15.1/-12.7/-1.0 | +2.1/+2.6/**+5.6**.
+GRADES vs the frozen priors: (i) "every pure measure larger in small" PARTIAL MISS —
+only Pb inflates in small; every YIELD measure INVERTS there (Div_Yld -11.6,
+Ebit_Bv -19.5: in small caps the high-yield/high-profitability side is the
+NON-distressed side, and the no-delisting bounce pays distress) — the small half
+inflates the low-price side specifically, not "value" generally. (ii) THE KEY
+QUESTION SPLIT: the pure-valuation mix (VAL3) DOES beat Pb in large at every horizon
+(the composite premium exists where sector/measure noise can be averaged) — but CQ
+and VM do NOT top the table (MISS): stock-level rank-blending of momentum/quality
+into value FAILS on this panel because its momentum leg is artifact-inverted (SC-D4
+booked -9pp large) — a broken ingredient breaks the mix. The factor-level pairing
+doctrine (HML+UMD 0.70, VW) is NOT contradicted; the lesson is LEVEL-SPECIFIC:
+blend at the SLEEVE level (factor portfolios), do not rank-mix signals at the stock
+level until the India PIT panel can measure the ingredients cleanly. (iii) Ebit_Bv
+"strong-but-hybrid" MISSED — it is WEAK-hybrid (its quality leg is fade-flat in
+large, QG-D3, and artifact-punished in small). (iv) Div_Yld's large-cap persistence
+at 36m ✓ (+3.5). (v) VLV at 36m large (+5.6 ~ VAL3's +5.9) — the low-vol 3y
+emergence (H36 h3) shows up inside a mix too; noted, not consumed (same panel
+caveats). CONSUMPTION: the desk's cross-sectional valuation instrument = the
+pure-valuation composite (Pb + Ev_Ebitda + Fcf_Yld ranks) in large caps, Pb alone
+acceptable; signal-mixing deferred to sleeve level; P/S + margin-adjusted P/S +
+within-industry forms all India-gated as registered. Census 14 (1231 -> **1245**).

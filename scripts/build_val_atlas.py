@@ -7,6 +7,7 @@ from pathlib import Path
 
 R = Path("/home/user/claude-demo")
 J = json.loads((R / "research/notes/es_sc_matrices/val.json").read_text())
+D6 = json.loads((R / "research/notes/es_sc_matrices/val_d6.json").read_text())
 OUT = R / "docs/learn/artifacts/valuation-edge-atlas.html"
 
 d1, d2, d3, d4, d5 = J["val_d1"], J["val_d2"], J["val_d3"], J["val_d4"], J["val_d5"]
@@ -49,6 +50,24 @@ for x, (sh_h, sh_x, sh_b) in d4["blends"].items():
            else '<span class="st bad">REDUNDANT</span>' if x == "CMA" else '<span class="st gate">CRUMBS</span>')
     blend_rows += (f'<tr><td>50/50 HML + {x}</td><td>{sh_h:+.2f}</td><td>{sh_x:+.2f}</td>'
                    f'<td class="pos"><b>{sh_b:+.2f}</b></td><td>{tag}</td></tr>')
+
+def half_rows(block, order, names):
+    rows = ""
+    for k in order:
+        v = block[k]
+        s, l = v["small"], v["large"]
+        rows += (f'<tr><td>{names.get(k, k)}</td>'
+                 + "".join(f'<td class="{cls(x)}">{x:+.2f}</td>' for x in s)
+                 + "".join(f'<td class="{cls(x)}">{x:+.2f}</td>' for x in l) + "</tr>")
+    return rows
+
+
+D6M_NAMES = {"Pb": "P/B", "Pe": "P/E", "Ev_Ebitda": "EV/EBITDA", "Fcf_Yld": "FCF yield",
+             "Div_Yld": "Dividend yield", "Bb_Yld": "Buyback yield", "Ebit_Bv": "EBIT/book (hybrid — flagged)"}
+D6X_NAMES = {"VAL2": "VAL2 · P/B+P/E", "VAL3": "VAL3 · P/B+EV+FCF", "VAL4": "VAL4 · +Div yield",
+             "CQ": "Cheap-quality (P/B+ROE)", "VM": "Value-momentum (P/B+Mom)", "VLV": "Value-low-vol"}
+d6_meas = half_rows(D6["measures"], ["Pb", "Pe", "Ev_Ebitda", "Fcf_Yld", "Div_Yld", "Bb_Yld", "Ebit_Bv"], D6M_NAMES)
+d6_mix = half_rows(D6["mixes"], ["VAL2", "VAL3", "VAL4", "CQ", "VM", "VLV"], D6X_NAMES)
 
 floor_rows = "".join(
     f'<tr><td>{lab}</td><td class="{cls(d5[lab][0], 0.1)}">{d5[lab][0]:+.2f}</td>'
@@ -114,7 +133,7 @@ td, th {{ font-variant-numeric:tabular-nums; }}
 cross-section, which companion metrics are complementary vs redundant vs artifact, what filters value
 traps (and why this panel cannot say), the factor-level pairing doctrine on value-weighted data, and
 whether valuation prices the downside floor at the index level. Every number is a booked ledger print
-(VAL-D1..D5, 29 cells, census 1,231; quoted entries named). US firm panel = EW, survivor-tilted, no
+(VAL-D1..D6, 43 cells, census 1,245; quoted entries named). US firm panel = EW, survivor-tilted, no
 delistings — large-cap columns carry the honest weight.</p>
 <div class="prov"><span class="badge">DESK = ledger print</span><span class="badge">quoted: ER-D1c · QG-D2 c9 · SC-D1/D4 · H36 · CU-D1/D4</span>
 <span class="badge">India designs: gated on the fundamentals handoff + NSE valuations</span></div>
@@ -167,6 +186,29 @@ column: momentum and profitability DO complement value.</div>
 traps cannot spring on a panel with no deaths. Booked as the measured demonstration that trap-filter
 research REQUIRES delisting data; the India design (value + pledge + leverage filters on PIT data with
 the delisted registry) is the real test.</p>
+</section>
+
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · VAL-D6 — the measure × size × horizon atlas, plus the mixes (14 cells; census 1,245)</h2>
+<p class="sub">Every measure and six mix constructions, re-ranked WITHIN the small half (size Q1-2) and
+the large half (Q4-5) at 1m / 12m / 3y. P/S is recorded as NOT constructible on this panel (uniformized
+ranks — it joins the India design set, where PIT P/S is buildable from the handoff). Columns:
+small 1m · 12m · 36m | large 1m · 12m · 36m (%/yr, EW, cheap-minus-expensive or mix Q5−Q1).</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Measure</th><th>S 1m</th><th>S 12m</th><th>S 36m</th><th>L 1m</th><th>L 12m</th><th>L 36m</th></tr></thead>
+<tbody>{d6_meas}</tbody></table></div>
+<div class="tblwrap" style="margin-top:10px"><table class="plain">
+<thead><tr><th>Mix</th><th>S 1m</th><th>S 12m</th><th>S 36m</th><th>L 1m</th><th>L 12m</th><th>L 36m</th></tr></thead>
+<tbody>{d6_mix}</tbody></table></div>
+<p class="note"><b>The which-works-where verdict:</b> P/B owns both halves among single measures; in the
+LARGE half the pure-valuation composite VAL3 (P/B+EV+FCF) beats P/B at every horizon (+8.76/+7.80/+5.88
+vs +7.15/+7.30/+5.39) — the composite premium exists where measure noise can be averaged. In the SMALL
+half every yield measure INVERTS (Div yield −11.6, EBIT/book −19.5 at 12m): the no-delisting bounce pays
+distress, so small-cap "value" here is only the low-price side. And the registered key question split:
+CQ and VM mixes do NOT beat P/B in large — stock-level rank-mixing fails when an ingredient (this
+panel's momentum leg) is artifact-broken. The pairing lesson is level-specific: <b>blend at the sleeve
+level (factor portfolios, where HML+UMD prints 0.70), never rank-mix signals at the stock level</b> —
+until the India PIT panel can measure the ingredients cleanly. EBIT/book graded weak-hybrid as flagged.</p>
 </section>
 
 <section class="panel">

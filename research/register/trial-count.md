@@ -112,7 +112,8 @@ this census exists so that can never happen silently.
 | VAL-D3 value-trap anatomy (5 markers) | 5 | 5 |
 | VAL-D4 factor-level blends (b1-b5) | 5 | 5 |
 | VAL-D5 the CAPE floor test (d1-d3) | 3 | 3 |
-| **RUNNING TOTAL (run cells)** | | **1231** |
+| VAL-D6 measure x size x horizon atlas + mixes (x1-x14) | 14 | 14 |
+| **RUNNING TOTAL (run cells)** | | **1245** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
