@@ -74,3 +74,13 @@ exit); calm-day close execution (T1b). THE HONEST ARITHMETIC: delivered-fundamen
 ~10-10.5% nominal + entry-state discipline + dilution-tax avoidance + whipsaw avoidance
 compounds a rupee ~5x in 12-14 years unlevered — the register's graveyards are the
 evidence that chasing more than that via standing leverage is how books die.
+
+## Addendum (2026-09-10, SC-D3 consumption line)
+POST-BEAR SMALLCAP RULE: after a DOWN market year, Indian smallcaps LAG largecaps by a
+further -12.31%/12m on average (SC-D3 i3, IIMA 1993-2025, n=93 overlapping months) —
+the US post-bear small rebound (+5.15pp, SC-D2 t3) transfers to India with the WRONG
+SIGN. Consumption: do not add smallcap risk for at least 12 months after a bear year;
+this is a Tier-C reduce-only line, consistent with the standing doctrine (TL-D2:
+India smallcap beta is uncompensated; selection inside the segment, never the segment).
+The one India timing shape on record is SC-D3 i2's multi-year winter rebound (trailing
+36m LO tercile -> +10.32%/12m): a WATCH, not a tilt, pending PIT smallcap data.

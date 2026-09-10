@@ -3418,3 +3418,83 @@ counterexample; TL-D2 doctrine caps ALL consumption here at Tier-C
 monitor/reduce-only — a strong i1 print does NOT create a smallcap tilt, it
 creates a registered monitor pending PIT smallcap data (the India fundamentals
 handoff). Census 4 on the day.
+
+## Entry ES-D1 RESULT (2026-09-10, interpretation written after the print) — THE PRIOR
+MISSED: EPS RANK-MIGRATION IS *NEGATIVE* ON THIS PANEL. Runner: scripts/analyze_es_sc.py.
+Prints: e1 d3(Eps) D10-D1 **-3.03%/yr** (prior said +2-6); e2 d12 **-6.47**; e3
+large-cap d3 +1.27 (non-monotone noise) / d12 -2.17 — no large-cap effect either
+direction; e4 the negative spread is FLAT across horizons (-3.03/-2.83/-2.98 ann. at
+1/3/12m) — a LEVEL effect, not decaying drift; e5 within-momentum increments
++4.1/+4.9 in the two LOW-momentum quintiles but negative in high — mean +0.42, the
++2.00 consumption gate FAILED; e6 more negative 1999-2009 (-4.16) than 2010-19
+(-1.72); e7 junk-concentrated (HIvol -3.47 vs LOvol -0.19). GRADE: the registered
+kill branch is taken — fundamental momentum does NOT exist as a positive premium on
+this panel; what the ladder actually shows is the EW-survivor REVERSAL artifact
+(QG-D2's machinery: EPS-rank collapses mark beaten-down names whose no-delisting EW
+returns rebound). The one mechanism-consistent pocket — fundamental improvement pays
++4-5%/yr ONLY where price momentum has not yet moved (e5 low-mom bins), the
+Novy-Marx nuance [LIT] — is recorded as an observation, NOT consumed (it is inside
+a failed gate on a survivor panel). CONSUMPTION: none. The India leg of this arc
+reduces to the PEAD event-study route: the India fundamentals handoff P1 already
+carries filing_date, so a PIT India PEAD design becomes REGISTRABLE the day the
+vault authenticates (announcement-date granularity = daily; intraday timestamps
+noted as a nice-to-have on the runsheet). Census 7 (1140 -> 1147).
+
+## Entry SC-D1 RESULT (2026-09-10, interpretation after the print) — THE VALUATION
+SPREAD RANKS SIZE ROTATION IN-SAMPLE; THE GROWTH GAP RUNS THE OTHER WAY. Prints:
+v1 Pb-spread terciles -> next-12m small-minus-large: T1 (small cheap) **+28.78** /
+T2 +13.06 / T3 +12.73 — monotone-correct, T1-T3 +16.05pp; v5 Pe repeat +16.81pp
+(robust to the measure); v3 corr(V_t, SL) **-0.26 / -0.50 / -0.69** at 1/12/36m —
+rising with horizon exactly as the value-spread literature says [LIT]; v2 growth-gap
+terciles T1 +14.03 / T3 +23.39 (T1-T3 -9.36pp) and v3 corr(G_t, SL) +0.01/+0.08/+0.22:
+small-growing-FASTER-than-large precedes small outperformance — the growth gap is a
+(weak) POSITIVE conditioner, not the value-style contrarian one; v4 corners
++34.07 (n=12) vs +11.47 (n=38). GRADE vs prior: v1/v5/v3 HIT (monotone, spread well
+above the +2-6pp guess); G_t booked as printed (no prior). HONEST LIMITS, as
+registered: in-sample terciles on 240 overlapping months — the 2000-2005 small-cheap
+episode plausibly carries much of the spread (~2 independent 36m observations); the
+EW-survivor panel inflates the LEVEL of SL everywhere (every tercile positive) so
+ONLY the spread is evidence; no real-time claim. CONSUMPTION: the first gate PASSES
+-> the India small-vs-large valuation-spread series stays a live runsheet ask
+(NSE index P/E-P/B history; methodology-change caveat to be checked at pull), and
+any tradeable claim waits for that PIT data. Census 5 (1147 -> 1152).
+
+## Entry SC-D2 RESULT (2026-09-10, interpretation after the print) — SMB MOMENTUM IS
+A PRE-1981 FACT; THE POST-BEAR SMALL REBOUND IS REAL (IN THE US). Prints: t1 12m
+momentum spread +4.49%/12m (62% vs 47% hit) — but t4: **+7.96 in 1927-1980, -0.37 in
+1981-2000, -0.68 in 2001-2024** — the entire effect predates Banz's 1981 publication
+[LIT]; t2 trailing-36m terciles LO -0.30 / MID +0.95 / HI +6.41 — CONTINUATION, not
+the weak reversal the prior guessed (two-sided, booked as printed; given t4, the
+long-sample continuation plausibly lives in the same pre-1981 era — stated as
+interpretation, not computed); t3 after down-market years next-12m SMB +6.18 vs
++1.03 after up years (gap +5.15, n=271 overlapping) — the post-bear small rebound
+prior HIT. GRADE: t1/t2 land in the era-fragility pattern FUN-D10 just booked at
+the factor level — a third instance of "conditioning information that dies around
+1980-1990"; t3 is the one robust-looking handle and matches the high-beta-recovery
+mechanism. CONSUMPTION: none direct (US factor); t3's mechanism feeds the SC-D3
+India read, where it INVERTED — see below. Census 4 (1152 -> 1156).
+
+## Entry SC-D3 RESULT (2026-09-10, interpretation after the print) — THE POST-BEAR
+SMALL REBOUND **INVERTS** IN INDIA; MULTI-YEAR REVERSAL, NOT MOMENTUM; THE IIMA
+REGIME MAP PASSES ITS SANITY GATE. Prints: i1 12m momentum spread +3.99 but BOTH
+sides <= 0 (-0.10 after up years, -4.09 after down) — India "SMB momentum" is only
+the avoidance of smallcap after bad smallcap years; i2 trailing-36m terciles
+**LO +10.32 / MID -0.51 / HI -2.50** — multi-year REVERSAL, the OPPOSITE of the US
+print: three bad smallcap years precede a rebound, three good ones precede nothing;
+i3 after DOWN market years next-12m SMB **-12.31** vs -0.20 after up years (gap
+-12.11, n=93) — the US post-bear small rebound prior MISSED and INVERTED: after an
+Indian bear year smallcaps keep LOSING to largecaps for another year; i4 the
+rolling-5y map dates the regimes correctly (min -20.4 at 1999-11; max +9.9 at
+2018-07 — the categorization-reform unwind peak; -4.0 at 2021-12; +8.6 at 2024-12 —
+the froth SEBI intervened on; +3.3 latest) and the full-period mean -2.82%/yr
+matches the TL-D2 s8 verdict on an independent construction. GRADE: i3 is the
+headline — a doctrine-grade India-vs-US inversion, consistent with TL-D2
+(uncompensated smallcap beta), T1b (stress keeps hitting risk assets after the
+event) and FUN-D3 (the risk-off identifiability lag): in India, DOWN-CAP ROTATION
+AFTER A BEAR YEAR IS THE MEASURED MISTAKE; the rebound trade that works in the US
+transfers with the WRONG SIGN. i2's reversal offers the only India timing shape —
+at 36m horizon, after multi-year smallcap winters — and per the registration all
+consumption is capped at Tier-C monitor/reduce-only pending PIT smallcap data.
+CONSUMPTION: one line into the india-regime-playbook (post-bear year: do not add
+smallcap risk for at least the next 12m; the i2 winter-rebound is a watch, not a
+tilt). Census 4 (1156 -> **1160**).
