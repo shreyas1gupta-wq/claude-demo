@@ -182,161 +182,123 @@ information** — Piotroski's architecture, not a new one.
 
 ## 4. Governance-adjacent red flags
 
-Four commonly cited "red flag" items have real academic footprints, but — stated
-honestly — the return-prediction evidence for most is thin relative to the depth of the
-accrual and fraud-detection literatures above.
+Four commonly cited "red flag" items have real academic footprints, but the
+return-prediction evidence for most is thin relative to the accrual and
+fraud-detection literatures above.
 
 **Auditor changes / qualified opinions.** Going-concern opinions and sudden
-auditor-client separations are widely used as red flags in practitioner due diligence.
-The academic evidence connects auditor changes and qualified/going-concern opinions
-reasonably well to elevated **distress and delisting risk** [LIT, LOW CONFIDENCE], but
-direct evidence that an auditor change alone predicts abnormal *stock returns* (rather
-than simply being a symptom that co-occurs with an already-observable deterioration in
-fundamentals) is **[LIT, LOW CONFIDENCE]** at best — this is closer to a risk-avoidance
-screen than a documented alpha source.
+auditor-client separations are widely used in practitioner due diligence. The evidence
+connects them reasonably well to elevated **distress and delisting risk** [LIT, LOW
+CONFIDENCE], but direct evidence an auditor change alone predicts abnormal *stock
+returns* — rather than co-occurring with already-observable fundamental deterioration —
+is **[LIT, LOW CONFIDENCE]** at best: a risk-avoidance screen, not a documented alpha
+source.
 
-**Related-party transactions (RPTs).** The most relevant academic anchor is emerging-
-market-specific: **Johnson, La Porta, Lopez-de-Silanes & Shleifer (2000), "Tunneling,"
-*American Economic Review* 90(2)** [LIT] formalize the mechanism by which controlling
-shareholders in concentrated-ownership systems extract value from minority shareholders
-via related-party transactions (transfer pricing, asset sales at non-market terms,
-intercorporate loans) — directly relevant to India's promoter-controlled corporate
-structure (§5 below). Follow-on work (Cheung, Rau & Stouraitis and related Asia-focused
-studies) [LIT, LOW CONFIDENCE on exact citations and magnitudes] finds RPT-heavy firms
-in concentrated-ownership markets show **lower valuations and, in some samples, weaker
-subsequent stock performance** around RPT announcements — but sample sizes are small,
-disclosure quality varies enormously by jurisdiction and era, and this is one of the
-thinner-evidenced items in this section: treat RPT intensity as a **plausible-mechanism,
-low-confidence-magnitude** red flag, strongest as a qualitative screen rather than a
-sized quantitative factor.
+**Related-party transactions (RPTs).** **Johnson, La Porta, Lopez-de-Silanes & Shleifer
+(2000), "Tunneling," *American Economic Review* 90(2)** [LIT] formalize how controlling
+shareholders in concentrated-ownership systems extract value via RPTs (transfer
+pricing, non-market asset sales, intercorporate loans) — directly relevant to India's
+promoter-controlled structure (§5). Follow-on Asia-focused work (Cheung, Rau &
+Stouraitis and related studies) [LIT, LOW CONFIDENCE on citations/magnitudes] finds
+RPT-heavy firms show **lower valuations and, in some samples, weaker subsequent
+performance** around RPT announcements — small samples, disclosure quality varies by
+jurisdiction: treat RPT intensity as a **plausible-mechanism, low-confidence-magnitude**
+red flag, a qualitative screen rather than a sized factor.
 
-**Off-balance-sheet financing.** DGLS (§2) already builds this directly into the
-F-Score as a distinct component, which is itself the best evidence this channel adds
-information beyond the accrual/ratio-based indices — the fact that a dedicated
-model-building team judged it necessary to add a component the eight Beneish ratios
-cannot see is evidence in its own right that off-balance-sheet activity is a genuinely
-separate manipulation channel [LIT]. Standalone (outside the DGLS composite) academic
-evidence that off-balance-sheet financing intensity predicts returns on its own is
-thin [LIT, LOW CONFIDENCE] — most of the literature studies it as a component of a
-composite misstatement-probability score, not as an independent univariate signal.
+**Off-balance-sheet financing.** DGLS (§2) builds this into the F-Score as a distinct
+component — a team judging it necessary to add what the eight Beneish ratios cannot see
+is itself evidence this is a genuinely separate manipulation channel [LIT]. Standalone
+evidence that off-balance-sheet intensity predicts returns on its own is thin [LIT, LOW
+CONFIDENCE] — studied mostly as a composite component, not an independent signal.
 
-**Restatement history.** The best-evidenced claim in this section, but it is an *event-
-study* claim, not an ex-ante predictive one: academic work on restatement announcements
-(Palmrose, Richardson & Scholz and related literature) [LIT, LOW CONFIDENCE on exact
-citations] documents significant **negative announcement-period abnormal returns**
-around restatement disclosures — figures in the high-single-digit percent range for the
-announcement window are commonly cited [LIT, LOW CONFIDENCE on the exact percentage].
-That is evidence the market is surprised and penalizes restaters *at the moment of
-disclosure* — useful for understanding the mechanism, but it does not by itself
-establish that a firm's *prior* restatement history (a lagged, known-at-the-time
-variable) predicts *future* abnormal returns going forward; the ex-ante predictive
-version of this claim is considerably less developed than the event-study version.
-Practical read for all four items in this section: they are legitimate
-**risk-avoidance / due-diligence screens** with real mechanism support, but none of
-them approaches the accrual anomaly's or Beneish/DGLS's depth of *return-prediction*
-evidence — size them, if at all, as risk filters (Tier-C, reduce-only per CONTRACT §4),
-never as standalone return sources.
+**Restatement history.** The best-evidenced item here, but an *event-study* claim, not
+an ex-ante one: restatement-announcement work (Palmrose, Richardson & Scholz and
+related literature) [LIT, LOW CONFIDENCE on citations] documents significant
+**negative announcement-period abnormal returns**, high-single-digit percent ranges
+commonly cited [LIT, LOW CONFIDENCE on the exact number]. That shows the market is
+surprised and penalizes restaters *at disclosure* — it does not establish that a firm's
+*prior* restatement history predicts *future* returns; the ex-ante version is far less
+developed than the event-study version. All four items: legitimate
+**risk-avoidance / due-diligence screens**, none approaching the accrual or
+Beneish/DGLS depth of *return-prediction* evidence — size them, if at all, as Tier-C
+reduce-only filters (CONTRACT §4), never standalone return sources.
 
 ---
 
 ## 5. India specifics
 
 **(a) Promoter share pledging — India's most distinctive, most measurable governance red
-flag.** Promoter share pledging is genuinely unusual at India's scale: concentrated
+flag.** Promoter pledging is genuinely unusual at India's scale: concentrated
 family/promoter control blocks are pledged as collateral against personal or
 group-company borrowing far more commonly, and at far higher aggregate levels, than in
-US or most developed-market ownership structures, where control blocks are rarely
-leveraged this way. It is also, structurally, an unusually clean data object for this
-program: it is a **mandatory SEBI disclosure** under the shareholding-pattern and
-takeover-code framework, filed quarterly by regulatory requirement rather than
-voluntarily, which makes it — unlike almost every accounting line item in this dossier —
-**genuinely point-in-time by construction**, filed on a fixed regulatory calendar
-independent of any restatement risk.
+developed-market ownership structures, where control blocks are rarely leveraged this
+way. It is also an unusually clean data object for this program: a **mandatory SEBI
+disclosure** under the shareholding-pattern/takeover-code framework, filed quarterly by
+regulatory requirement rather than voluntarily — unlike almost every other item in this
+dossier, **genuinely point-in-time by construction**, on a fixed regulatory calendar
+independent of restatement risk.
 
-**The mechanism** is a reflexive spiral, and it is worth being precise about it because
-the mechanism, not any single company's story, is what the desk should trust: a
-promoter pledges shares as collateral for a loan; if the stock price falls far enough,
-the lender issues a margin call; if the promoter cannot post additional collateral, the
-lender invokes the pledge and sells the pledged shares in the open market to recover the
-loan; that forced sale itself pushes the price down further, which can trigger the next
-tranche's margin call — a mechanically self-reinforcing decline **independent of, and
-sometimes disconnected from, the underlying business's operating performance**. This is
-why pledging functions as a governance/liquidity-structure red flag rather than a
-fundamentals-quality one: a company can have perfectly clean accrual accounting and
-still suffer a pledge-driven price collapse, and conversely a company with a heavily
-pledged promoter holding can trade normally for years if the price never approaches the
-margin-call threshold.
+**The mechanism** is a reflexive spiral, and it is the mechanism, not any single
+company's story, that the desk should trust: a promoter pledges shares as loan
+collateral; if the price falls far enough, the lender issues a margin call; if the
+promoter cannot post more collateral, the lender invokes the pledge and sells the
+shares in the open market, pushing the price down further and potentially triggering
+the next tranche's call — a self-reinforcing decline **independent of the underlying
+business's operating performance**. This is a governance/liquidity-structure red flag,
+not a fundamentals-quality one: a company can have clean accrual accounting and still
+suffer a pledge-driven collapse, and a heavily pledged holding can trade normally for
+years if price never approaches the margin-call threshold.
 
-Several 2023–2025 India-focused academic papers examine pledging's association with
-crash risk and financial performance and find pledging **positively associated with
-future stock-price crash risk and negatively associated with subsequent operating/
-financial performance** [LIT, LOW CONFIDENCE on exact magnitudes and on which specific
-papers this dossier is recalling with full accuracy] — directionally consistent with
-the mechanism above, though this is a young and still-consolidating literature relative
-to the decades-deep US accrual and fraud-detection work in §1–§2.
+Several 2023–2025 India-focused papers examine pledging's association with crash risk
+and find it **positively associated with future crash risk and negatively associated
+with subsequent financial performance** [LIT, LOW CONFIDENCE on exact magnitudes and
+specific papers] — directionally consistent with the mechanism, though a young
+literature relative to the decades-deep US work in §1–§2.
 
-**Case examples — explicitly [CASE-STUDY LORE, not a statistical claim].** The kind of
-stories widely reported in Indian financial media around **Zee Entertainment / Essel
-Group**, **DHFL**, **Yes Bank**, various **Anil Ambani (Reliance ADAG) group companies**,
-and **Café Coffee Day** are commonly invoked as illustrations of the pledge-mechanism
-spiral described above — heavily pledged promoter holdings, price declines, margin
-calls, and downstream stress at the listed entity or its lenders. This dossier does
-**not** assert any specific fact about any of these companies as verified — the details,
-sequencing, and causal attribution in each case are contested, litigated, or still
-under investigation in some instances, and several of these situations involve distinct
-additional mechanisms beyond pledging alone (DHFL and Yes Bank in particular are
-discussed in `f-india-quality-data.md` primarily through an asset-liability-mismatch and
-balance-sheet lens, not a pledge lens — the two dossiers are describing different facets
-of overlapping situations, not duplicating each other). These names are cited here
-**solely as widely-reported illustrations of the pledge-margin-call mechanism** in the
-Indian market context, in the same spirit that a textbook cites Enron to illustrate
-off-balance-sheet manipulation without re-litigating Enron's specific accounting.
-Nothing in this paragraph should be read, quoted, or relied upon as a confirmed factual
-claim about any named company; the design implication rests entirely on the *mechanism*,
-which is verifiable independent of any single case's specifics.
+**Case examples — explicitly [CASE-STUDY LORE, not a statistical claim].** Stories
+widely reported in Indian financial media around **Zee Entertainment/Essel Group**,
+**DHFL**, **Yes Bank**, various **Anil Ambani (Reliance ADAG) group companies**, and
+**Café Coffee Day** are commonly invoked to illustrate the pledge-margin-call spiral
+above. This dossier asserts **no specific fact** about any of these companies as
+verified — details and causal attribution are contested or litigated in some instances,
+and several involve additional mechanisms beyond pledging (DHFL/Yes Bank appear in
+`f-india-quality-data.md` mainly through an ALM/balance-sheet lens, not a pledge lens —
+the two dossiers describe different facets of overlapping situations, not duplicate
+ground). These names are cited **solely as widely-reported illustrations of the
+mechanism**, the way a textbook cites Enron for off-balance-sheet manipulation without
+re-litigating Enron's accounting. Nothing here should be read as a confirmed factual
+claim about any named company; the design implication rests entirely on the mechanism.
 
-**(b) Indian-specific accrual / related-party issues.** Beyond the general RPT
-literature in §4, several structural patterns recur specifically in Indian mid-cap
-governance-failure narratives, again described here at the **mechanism level only**,
-without asserting specific unverified allegations about any named company:
-**promoter-entity loans** (the listed company extends loans or advances to promoter-
-controlled unlisted entities, which may or may not be disclosed with full transparency
-and may or may not be genuinely recoverable — a channel for value extraction that
-inflates reported assets without corresponding economic substance); **corporate
-guarantees to group companies** (the listed entity guarantees debt raised by an
-affiliate, creating an off-balance-sheet contingent liability structurally similar to
-the DGLS off-balance-sheet component in §2 — India's related-party-guarantee disclosure
-requirements under Companies Act §186 and SEBI LODR are the relevant regulatory hooks,
-though disclosure quality and enforcement have historically varied); and
-**working-capital-loop concerns** (revenue and receivables that round-trip between a
-listed entity and related unlisted counterparties, inflating both the top line and
-working-capital accruals simultaneously — the Indian-market instantiation of exactly the
-DSRI/AQI-style accrual manipulation Beneish's model targets, common in several
-well-known mid-cap fraud narratives of the past decade). These are mechanism
-descriptions drawn from the general corporate-governance and forensic-accounting
-literature applied to India's ownership structure, not claims about any specific
-company's conduct.
+**(b) Indian-specific accrual / related-party issues.** Beyond §4's general RPT
+literature, structural patterns recur in Indian mid-cap governance-failure narratives,
+described at the **mechanism level only**, with no unverified allegation against any
+named company: **promoter-entity loans** (the listed company advances loans to
+promoter-controlled unlisted entities, opaquely disclosed and of uncertain
+recoverability — inflating assets without economic substance); **corporate guarantees
+to group companies** (an off-balance-sheet contingent liability structurally like the
+DGLS component in §2; Companies Act §186 and SEBI LODR are the relevant disclosure
+hooks, enforcement historically uneven); and **working-capital-loop concerns** (revenue
+and receivables round-tripping with related unlisted counterparties, inflating both
+top line and accruals — India's instantiation of the DSRI/AQI-style manipulation
+Beneish targets, common in mid-cap fraud narratives of the past decade). These are
+mechanism descriptions from the general governance/forensic literature, not claims
+about any specific company.
 
 **(c) The Ind-AS transition and accrual-measure comparability.** India's mandatory
-transition from Indian GAAP to Ind-AS (India's converged IFRS standard) was phased in
-starting **FY2016–17** for the largest listed companies, extending to smaller listed
-entities over the following one to two years. This is a material comparability break
-for **every** accrual-based measure in this dossier: Ind-AS introduced fair-value
-measurement for several asset classes, an expected-credit-loss impairment model for
-financial assets and receivables (directly affecting the receivables base that DSRI-type
-measures would use, were receivables available — see (d)), revised revenue-recognition
-rules (Ind-AS 115, aligned with IFRS 15, phased in a further year or two after the
-initial Ind-AS transition and changing the timing of revenue recognition for
-multi-element and long-duration contracts), and first-time-adoption reconciliation
-entries that can themselves show up as one-off accrual spikes unrelated to any ongoing
-manipulation or deterioration. **Any accrual, growth, or margin-index measure computed
-across the FY2016–17 boundary is comparing two different accounting regimes, not a
-consistent time series** — this is a direct, testable analogue of CONTRACT Known Prior
-#7 (restated fundamentals bias backtests upward): here the risk is not restatement
-per se but a **structural regime break**, and any design using accrual-family measures
-spanning this boundary must either include an explicit Ind-AS transition dummy/regime
-split or restrict itself to a post-transition sample. This should be pre-registered
-explicitly, not discovered as an artifact after the fact.
+transition from Indian GAAP to Ind-AS (converged IFRS) phased in starting **FY2016–17**
+for the largest listed companies, extending to smaller entities over the following
+one to two years — a material comparability break for **every** accrual-based measure
+here: fair-value measurement for several asset classes, an expected-credit-loss
+impairment model for financial assets/receivables (affecting the receivables base
+DSRI-type measures would use, were receivables available — (d) below), revised
+revenue-recognition rules (Ind-AS 115/IFRS 115, phased in a year or two later, changing
+recognition timing for multi-element contracts), and first-time-adoption reconciliation
+entries that can themselves look like one-off accrual spikes. **Any accrual, growth, or
+margin measure spanning the FY2016–17 boundary compares two accounting regimes, not one
+consistent series** — a testable analogue of CONTRACT Known Prior #7 (restated
+fundamentals bias backtests upward), here a structural regime break rather than a
+restatement: any accrual-family design must include an explicit transition dummy/regime
+split, or restrict to a post-transition sample, pre-registered explicitly.
 
 **(d) What the incoming handoff can and cannot construct — the data-gap map.** Mapping
 the handoff schema (`handoff-prompt-india-fundamentals.md`, P1 fields: `isin, ticker,
@@ -416,16 +378,13 @@ promoter_pledged_pct_of_promoter_holding`) against every component discussed abo
 | Desk-original 4-input composite (TATA + LVGI + SGI + EBIT-margin-proxy) | Beneish-inspired manipulation-pressure proxy, explicitly NOT the published M-Score (§5d gap list) | Not sizeable from any published number — this is a new construct, not a replication | 12m | P1 fields only | Composite does not separate P3's actual delistings-for-cause from ordinary business failure |
 | Cash conversion (CFO/NI) as an unconditional screen | Same mechanism as accruals, ratio form (§3) | Weak as a standalone return predictor; better evidenced as a distress/reversal predictor [LIT, LOW CONFIDENCE] | 12m | P1 (`cfo`, `net_income`) | No incremental return signal once the Hribar-Collins accrual measure above is already in the design (near-duplicate, per §3) |
 
-**What is NOT buildable even after the handoff lands** (fields outside P1–P6, per the
-gap list in §5d): the full Beneish M-Score (blocked on DSRI, AQI, SGAI, DEPI — needs
-receivables, a CA/PP&E/securities breakdown, SG&A, and depreciation, none in P1); true
-CFO/EBITDA (needs a D&A line); the RSST accrual-reliability decomposition (needs a
-working-capital/non-current-operating/financial sub-split of the balance sheet); Xie's
-modified-Jones discretionary-accruals model (needs receivables and gross PP&E); the DGLS
-F-Score's off-balance-sheet component (needs lease/securitization/SPE disclosure) and its
-nonfinancial-measure component (needs headcount/unit data); auditor opinion, audit-
-qualification and restatement-history flags (need filing-text/audit-report fields not
-specified anywhere in the handoff); and related-party-transaction values (need
-footnote-level disclosure data outside P1–P6's scope). Any of these that this desk later
-judges essential is a **new handoff-schema ask**, not something to approximate from P1–P6
-by construction choice.
+**What is NOT buildable even after the handoff lands** (full list and reasons in §5d;
+summarized): the full Beneish M-Score (blocked on DSRI/AQI/SGAI/DEPI — receivables,
+CA/PP&E/securities breakdown, SG&A, depreciation, none in P1); true CFO/EBITDA (no D&A
+line); the RSST accrual-reliability decomposition (no WC/NCO/FIN sub-split); Xie's
+modified-Jones discretionary-accruals model (no receivables/gross PP&E); DGLS's
+off-balance-sheet and nonfinancial-measure components (no lease/SPE or headcount/unit
+data); auditor-opinion, qualification, and restatement-history flags (no filing-text
+field in the schema); and related-party-transaction values (footnote-level, out of
+scope). Any of these judged essential later is a **new handoff-schema ask**, not
+something to approximate from P1–P6 by construction choice.

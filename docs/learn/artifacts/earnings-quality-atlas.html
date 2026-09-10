@@ -59,6 +59,7 @@ cross-sectionally uniformized to (0,1] — every construction here is an explici
 never the textbook dollar-value formula.</p>
 <div class="prov"><span class="badge">DESK = ledger print EQ-D1</span>
 <span class="badge">quoted: VAL-D2/D3 · SC-D3a (the within-cheap artifact)</span>
+<span class="badge">lit: eq-dossiers/a</span>
 <span class="badge">India: gated on the fundamentals handoff</span></div>
 </header>
 
@@ -147,6 +148,37 @@ Everything else is an upgrade from proxy-rank to true dollar-value construction,
 sign checked individually before any composite is built (the section 2 lesson).</p>
 </section>
 
+<section class="panel" style="border-left:3px solid var(--amber)">
+<h2>Update · 10 Sep 2026 — eq-dossiers/a: two corrections to the table above</h2>
+<p class="sub">The literature dossier's field-by-field mapping against the P1-P6 handoff schema catches
+two things section 4 got wrong. That table is left as originally published — corrections here, not
+silently edited in place.</p>
+<div class="tblwrap"><table class="plain">
+<thead><tr><th>Correction</th><th>Was (section 4)</th><th>Now</th></tr></thead><tbody>
+<tr><td>Unbuildable Beneish components</td><td class="mut">3 of 8 (DSRI, AQI, SGAI) → "5-of-8 ceiling"</td><td class="neg">4 of 8 — DEPI (depreciation index) is ALSO blocked: P1 has no D&amp;A line → the real ceiling is a <b>4-of-8</b> reduced score</td></tr>
+<tr><td>GMI (margin-change index)</td><td class="mut">labeled "partial"</td><td>the buildable substitute is an <b>EBIT-margin index</b> (ebit/revenue) — materially different and noisier than true gross margin (needs COGS, absent from P1); label it a proxy, never GMI itself</td></tr>
+<tr><td>True CFO/EBITDA</td><td class="mut">not addressed</td><td class="neg">also blocked — same missing D&amp;A line EBITDA needs added back to EBIT</td></tr>
+</tbody></table></div>
+<p class="note"><b>Why the composite backfired, cited properly:</b> Dechow-Ge-Larson-Sloan (2011) [LIT]
+distinguish two claims practitioner writing blurs — Beneish/DGLS-style components are built and
+validated to classify WHETHER A FIRM IS MANIPULATING, only secondarily (and far more weakly) to predict
+RETURNS. Section 2's e2/e3 wrong-signed misses are exactly this gap, not a fluke of this one panel:
+"flags manipulation" and "predicts underperformance" were never the same claim. The dollar-value TATA
+row in section 4 is properly the <b>Hribar &amp; Collins (2002)</b> cash-flow-statement construction —
+(net_income − cfo)/average(total_assets) — superseding Sloan's original 1996 balance-sheet formula
+precisely to dodge M&amp;A/discontinued-ops noise; that is the citation for the India rebuild.
+<b>Promoter share pledging (P5)</b> is confirmed as India's cleanest marker — a mandatory, quarterly,
+genuinely point-in-time SEBI disclosure (no filing-lag buffer, unlike every row above) with a
+well-founded reflexive mechanism (pledge → price fall → margin call → forced sale → further price
+fall) [LIT, directional only]; named examples (Zee/Essel, DHFL, Yes Bank, Anil Ambani/ADAG group, Café
+Coffee Day) are cited in the dossier strictly as <b>[CASE-STUDY LORE]</b> — no fact is asserted about
+any of them. <b>Open, unresolved:</b> the dossier cannot reconcile the Beneish (1999) cutoff — its own
+recollection says −2.22, d-quality-metric-canon.md cites −1.78 — flagged <b>[VERIFY: check the primary
+source before hard-coding any cutoff]</b>. The Ind-AS FY2016-17 transition is a structural regime
+break, not a restatement, for every row above spanning it — any India accrual design pre-registers a
+transition dummy or a post-transition-only sample.</p>
+</section>
+
 <section class="panel">
 <h2>5 · Edge candidates &amp; the India queue</h2>
 <ul class="q">
@@ -158,8 +190,9 @@ rank-difference form; the mechanically-combined composite in any form.</li>
 Beneish (5 of 8 components) + the promoter-pledge trap filter, tested WITH real deaths in the data via
 the delisted registry — the first honest trap-filter test this program will have run.</li>
 </ul>
-<p class="note">Sources of record: trial-ledger entry EQ-D1 (registration committed before the run;
-results desk-verified) · research/notes/eq-dossiers/ · research/register/handoff-prompt-india-
+<p class="note">Sources of record: trial-ledger entry EQ-D1 + its 10 Sep addendum (registration
+committed before the run; results desk-verified; literature cross-check dated after) ·
+research/notes/eq-dossiers/a-earnings-quality-red-flags.md · research/register/handoff-prompt-india-
 fundamentals.md (P1-P6 schema). Regenerates via scripts/build_eq_atlas.py, never from memory.</p>
 </section>
 </div>

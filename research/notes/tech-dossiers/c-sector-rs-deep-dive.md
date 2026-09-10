@@ -132,58 +132,42 @@ source or against desk data this session.)*
 
 **Thematic and sector mutual funds as the retail vehicle.** Indian AMCs run standing
 sector/thematic fund lines that are the primary retail-facing implementation of sector
-calls: Banking & Financial Services funds, Technology/IT funds, Pharma & Healthcare funds,
-Infrastructure funds, PSU-themed funds (including PSU-focused ETFs such as the CPSE ETF
-and Bharat 22 ETF, which are government-divestment vehicles as much as sector calls), and
-Consumption funds (FMCG/discretionary-adjacent). These are typically actively marketed
-around a narrative moment — a rate-cut cycle for banking funds, a global tech re-rating
-for IT funds, a capex-cycle narrative for infrastructure funds, a PSU re-rating narrative
-for PSU funds (2023-24 being a recent, high-profile instance) — and NFO (new fund
-offering) timing for thematic funds is a well-known industry pattern worth flagging as its
-own caution: sector/thematic fund launches and AUM inflows are anecdotally concentrated
-**near sector performance peaks, not troughs** (infrastructure funds proliferated into the
-2007-08 peak; several pharma-focused launches clustered before pharma's 2016-2020
-multi-year underperformance) — a flow-based, retail-sentiment contrarian indicator that is
-folklore-grade, not backtested by this desk, and directionally consistent with (though not
-proof of) the same "the identified narrative is late" pattern FUN-D1/FUN-D3 establish
-formally at the market/sector level (§4 below).
+calls: Banking & Financial Services, Technology/IT, Pharma & Healthcare, Infrastructure,
+PSU-themed (incl. PSU-focused ETFs such as CPSE and Bharat 22 — divestment vehicles as
+much as sector calls), and Consumption funds. These are typically marketed around a
+narrative moment (a rate-cut cycle for banking funds, a global tech re-rating for IT
+funds, a capex narrative for infrastructure funds, the 2023-24 PSU re-rating) — and NFO
+timing is a known industry pattern worth flagging: launches and AUM inflows are
+anecdotally concentrated **near sector performance peaks, not troughs** (infrastructure
+funds proliferated into the 2007-08 peak; pharma launches clustered before 2016-2020
+underperformance) — a flow-based contrarian indicator, folklore-grade, not backtested by
+this desk, directionally consistent with (not proof of) the same "the identified narrative
+is late" pattern FUN-D1/FUN-D3 establish formally (§4).
 
-**NIFTY sector indices as the liquid tradeable proxy.** Separately from the thematic-fund
-retail layer, NSE's family of sectoral indices — Nifty Bank, Nifty IT, Nifty Pharma, Nifty
-FMCG, Nifty Auto, Nifty Metal, Nifty Realty, Nifty Energy, Nifty Financial Services (a
-broader financials index than Bank alone, including NBFCs/insurance/capital markets
-names), and Nifty Media — are among the **most liquid, longest-running tradeable sector
-proxies in the Indian market**. Several have been running since the early-to-mid 2000s
-(exact base dates and launch dates given with hedges in §5 below), have listed ETFs
-tracking them (e.g., Bank BeES on Nifty Bank), and — most consequentially for
-tradability — **Nifty Bank carries one of the most liquid derivatives contracts (futures
-and, especially, weekly options) in the entire Indian market**, arguably deeper than many
-single-stock F&O contracts. This liquidity and history is exactly why these indices are
-the natural target of the still-gated NSE sectoral runsheet pull (§5): they are not a
-data-availability afterthought, they are close to the *best-instrumented* mid-frequency
-signal family available in India once the pull lands, better instrumented in some
-respects than the survivor-panel-derived, equal-weighted sector baskets FUN-D3 currently
-has to use (§4).
+**NIFTY sector indices as the liquid tradeable proxy.** NSE's sectoral index family —
+Nifty Bank, IT, Pharma, FMCG, Auto, Metal, Realty, Energy, Financial Services (broader than
+Bank alone: NBFCs/insurance/capital markets), and Media — are among the **most liquid,
+longest-running tradeable sector proxies in India**. Several run since the early-to-mid
+2000s (base/launch dates hedged in §5), carry listed ETFs (e.g., Bank BeES), and **Nifty
+Bank carries one of the most liquid derivatives contracts (futures, and especially weekly
+options) in the Indian market** — arguably deeper than most single-stock F&O. This is
+exactly why these indices are the natural target of the gated runsheet pull (§5): the
+*best-instrumented* mid-frequency signal family available in India once it lands, better
+instrumented than the survivor-panel-derived, equal-weighted baskets FUN-D3 currently uses
+(§4).
 
-**The informal cyclicality playbook Indian desks use.** As practiced conversationally on
-Indian institutional and PMS desks (again, **[PRACTITIONER OBSERVATION, not backtested by
-this desk]**, folklore-grade, no citation to offer): rate-sensitives and banks are
-expected to **lead a rate-cut easing cycle** (credit growth and NIM expectations re-rate
-financials first, mirroring the Fidelity "early cycle" cyclicals/financials leadership
-claim in §1, applied to the Indian monetary cycle specifically); IT is treated as a
-**defensive-with-currency-optionality** — a domestic-slowdown hedge because its revenue is
-USD-denominated, so INR depreciation (which often accompanies domestic stress) provides a
-translation tailwind even when the domestic cycle is weak; pharma is treated as a
-**domestic defensive** (inelastic demand, and for export-oriented pharma names, a currency
-tailwind analogous to IT's); and infrastructure/industrials/cement are treated as
-**capex-cycle beneficiaries**, expected to lead specifically around government capex
-pushes (budget-cycle and election-cycle timing narratives are frequently overlaid here,
-which is exactly the kind of fixed-calendar framing CONTRACT §8 already forbids admitting
-without a clock-test pass). All four of these are narrative heuristics carried by
-practitioner conversation and sell-side sector notes, not backed by a citable
-academic literature specific to India, and — per the cross-check below — the one piece of
-this playbook the desk has actually tested (IT as a currency-hedge defensive in a
-risk-off state) **already failed** on the desk's own data.
+**The informal cyclicality playbook Indian desks use.** As practiced conversationally
+**[PRACTITIONER OBSERVATION, not backtested by this desk]**, folklore-grade: rate-
+sensitives/banks **lead a rate-cut easing cycle** (mirroring the Fidelity "early cycle"
+claim, §1, applied to India's monetary cycle); IT is a **defensive-with-currency-
+optionality** (USD revenue provides a translation tailwind when INR weakens alongside
+domestic stress); pharma is a **domestic defensive** (inelastic demand, plus a currency
+tailwind for exporters); infrastructure/industrials/cement are **capex-cycle
+beneficiaries** around government pushes (often overlaid with budget/election-cycle timing
+— exactly the fixed-calendar framing CONTRACT §8 forbids admitting without a clock-test
+pass). None of these four is backed by a citable India-specific academic literature, and —
+per the cross-check below — the one piece the desk has actually tested (IT as a
+currency-hedge defensive in risk-off) **already failed**.
 
 ## 4. Cross-check against the desk's own booked findings
 
@@ -235,49 +219,41 @@ sector-rotation result, and the desk should stop describing its own position as 
 four specific things, each traceable to the design's own stated scope:
 
 1. **Survivorship.** The panel is 2012-2021 survivors only; it cannot see names that
-   delisted mid-sample, which is exactly the caveat FUN-D3's own entry names as "the
-   partial's biggest caveat" **[DESK, FUN-D3 / dossier-a cross-reference]**. The true
-   NIFTY sectoral TR indices are float-cap-weighted with standard index-maintenance
-   (survivorship-consistent by construction) — a methodologically different, not merely
-   longer, instrument.
+   delisted mid-sample — FUN-D3's own entry names this "the partial's biggest caveat"
+   **[DESK, FUN-D3 / dossier-a cross-reference]**. True NIFTY sectoral TR indices are
+   float-cap-weighted with standard index-maintenance (survivorship-consistent by
+   construction) — a methodologically different, not merely longer, instrument.
 2. **Construction mismatch with the academic anchor.** FUN-D3 tests a *state-conditioned
-   relative-return* read (a level/regime question — "given we are in state X, which basket
-   led over the next 21 days"), not the Moskowitz-Grinblatt *cross-sectional industry
-   momentum* construction (a trend/rank question — "rank all sectors on trailing 6-12
-   month return, buy the top, sell the bottom"). These are different objects that happen
-   to share a data need; FUN-D3 passing or failing says nothing directly about whether a
-   genuine 12-1/6-1 industry-momentum rank would work in India. Dossier a's edge candidate
-   #3 already flags this design as untested; this dossier adds the precision that it is
-   not merely *untested*, it is *conceptually distinct* from what FUN-D3 measured, not a
-   scaled-up version of it.
+   relative-return* read ("given state X, which basket led over the next 21 days"), not
+   the Moskowitz-Grinblatt *cross-sectional industry momentum* construction ("rank all
+   sectors on trailing 6-12 month return, buy top, sell bottom"). Different objects
+   sharing a data need; FUN-D3 passing or failing says nothing about whether a genuine
+   12-1/6-1 industry-momentum rank would work in India. Dossier a's edge candidate #3
+   already flags this design as untested — it is not merely untested, it is *conceptually
+   distinct* from what FUN-D3 measured, not a scaled-up version of it.
 3. **Rotation magnitude, turnover, and whipsaw are entirely unpriced.** FUN-D3's own s1
-   cell records that its four states **"run short (2-8d median)"** with CALM-UP alone
-   covering **64% of days** **[DESK, FUN-D3]**. A real rotation overlay trading every
-   state flip implied by that duration structure would churn at a rate no cell in FUN-D3
-   attempted to cost — the design is one-way and paper-only by construction (no cost
-   model, no turnover accounting), so even a fully-confirmed version of FUN-D3's own
-   sign pattern says nothing yet about whether trading it clears costs. This is the
-   single biggest gap between "an indirect rotation fact is booked" and "a rotation
-   *strategy* exists" — and it is a gap the NSE sectoral pull alone will not close either;
-   it additionally needs the book's own cost stack (already derived elsewhere in this
-   program, Known Prior #6) applied to a specific rotation rule, not yet designed.
-4. **True business-cycle phase versus a market-technical proxy.** FUN-D3 explicitly states
-   its states are **market-cycle proxies, "NOT GDP phases"** **[DESK, FUN-D3]** — the
-   actual India GDP-cycle-conditioned successor is **FUN-D4**, gated on the IIP monthly
-   pull (`ingest/vault/india_macro/`, principal-machine per RUNSHEET.md), which the
-   runsheet already records as the design that "replaces FUN-D3's market proxies." The
-   practitioner clock in §1 is a claim about the *business* cycle, not the *market-stress*
-   cycle; FUN-D3, however suggestive, is still one proxy layer removed from testing that
-   claim on its own terms.
+   cell records its four states **"run short (2-8d median)"** with CALM-UP alone covering
+   **64% of days** **[DESK, FUN-D3]**. A rotation overlay trading every implied state flip
+   would churn at a rate no cell in FUN-D3 costed — the design is one-way, paper-only (no
+   cost model, no turnover accounting), so even a fully-confirmed version of its sign
+   pattern says nothing about whether trading it clears costs. This is the biggest gap
+   between "an indirect rotation fact is booked" and "a rotation *strategy* exists" — the
+   sectoral TR pull alone will not close it; it also needs the book's own cost stack
+   (Known Prior #6) applied to a specific, not-yet-designed rotation rule.
+4. **True business-cycle phase versus a market-technical proxy.** FUN-D3 states its states
+   are **market-cycle proxies, "NOT GDP phases"** **[DESK, FUN-D3]** — the true GDP-cycle
+   successor is **FUN-D4**, gated on the IIP monthly pull (`ingest/vault/india_macro/`,
+   principal-machine per RUNSHEET.md), recorded there as "replaces FUN-D3's market
+   proxies." The practitioner clock (§1) claims the *business* cycle, not the
+   *market-stress* cycle; FUN-D3 is still one proxy layer removed from testing it directly.
 
-The precise scoping, then: FUN-D3 already falsifies the single most commonly stated
-version of the India sector playbook ("go defensive once risk-off is identifiable") and
-the IT-as-currency-hedge sub-claim, one-way, at the sector-basket level, under a
-market-stress-state definition. It does **not** yet test genuine cross-sectional industry
-momentum, does not price rotation turnover/whipsaw, is not survivorship-free, and is not
-conditioned on the true business-cycle phase the practitioner canon actually claims to
-describe. All four gaps close only with data currently gated to principal-machine pulls
-(§5).
+In short: FUN-D3 already falsifies the single most commonly stated version of the India
+sector playbook ("go defensive once risk-off is identifiable") and the IT-as-currency-
+hedge sub-claim, one-way, at the sector-basket level, under a market-stress-state
+definition. It does **not** yet test genuine cross-sectional industry momentum, price
+rotation turnover/whipsaw, run survivorship-free, or condition on the true business-cycle
+phase the practitioner canon claims to describe. All four gaps close only with data
+gated to principal-machine pulls (§5).
 
 ## 5. Target series for the runsheet ask
 
@@ -287,37 +263,24 @@ analog, and the sector-RS/industry-momentum design named there as "SECTOR-GATE,
 2026-09-10"). For that row to be maximally actionable when it is finally pulled, the
 individual series it bundles, named precisely:
 
-- **Nifty Bank** — the deepest and most liquid of the set; base date/value widely cited as
-  1 Jan 2000 = 1000, with the index itself trading (and later carrying the derivatives
-  contract that became one of the most active options products in the world) from the
-  early-to-mid 2000s **[VERIFY: exact launch date]**.
-- **Nifty IT** — base date commonly cited as 1 Jan 1996 = 1000, with the index published
-  from around 2000 as the sector's post-dot-com investor relevance grew **[VERIFY]**.
-- **Nifty FMCG** — base date around 1996, published from the early 2000s
-  **[VERIFY]**.
-- **Nifty Pharma** — launched early-to-mid 2000s, commonly associated with a base year
-  around 2001 **[VERIFY]**.
-- **Nifty Auto** — launched mid-2000s, base year commonly cited around 2004
-  **[VERIFY]**.
-- **Nifty Metal** — launched mid-2000s, base year commonly cited around 2003-2004
-  **[VERIFY]**.
-- **Nifty Realty** — the youngest of the core set; launched **2007**, matching the
-  mid-2000s IPO wave that created a tradeable listed real-estate-developer universe in
-  India **[VERIFY: exact month]**.
-- **Nifty Energy** — launched mid-2000s, base year commonly cited around 2001
-  **[VERIFY]**.
-- **Nifty Financial Services** — the newest broad-financials index of the set, launched
-  **2011** as a wider complement to Nifty Bank (adding NBFCs, insurance, capital-markets,
-  and housing-finance names) **[VERIFY]**.
-- **Nifty Media** — mentioned in the runsheet's implicit sector set; launched mid-2000s,
-  base year commonly cited around 2003-2004 **[VERIFY]**.
+| Index | Approx. base/launch | Note |
+|---|---|---|
+| Nifty Bank | base 1 Jan 2000 = 1000, trading early-to-mid 2000s **[VERIFY]** | deepest and most liquid; carries one of the most active options contracts in India |
+| Nifty IT | base 1 Jan 1996 = 1000, published ~2000 **[VERIFY]** | post-dot-com relevance |
+| Nifty FMCG | base ~1996, published early 2000s **[VERIFY]** | |
+| Nifty Pharma | base ~2001 **[VERIFY]** | |
+| Nifty Auto | base ~2004 **[VERIFY]** | |
+| Nifty Metal | base ~2003-2004 **[VERIFY]** | |
+| Nifty Realty | launched **2007 [VERIFY: exact month]** | youngest core sector; tracks the mid-2000s listed-developer wave |
+| Nifty Energy | base ~2001 **[VERIFY]** | |
+| Nifty Financial Services | launched **2011 [VERIFY]** | broader than Bank: NBFCs/insurance/capital markets/housing finance |
+| Nifty Media | base ~2003-2004 **[VERIFY]** | |
 
 Every one of these has daily history back to somewhere in the 2000-2007 window
-(materially longer than the current 2012-2021 survivor panel) and free published values
-via NSE (blocked at this environment's proxy, hence the principal-machine gate already
-recorded). The vault destination and unblock list are unchanged from RUNSHEET.md — this
-section only sharpens which named series the row resolves to, so a single pull can be
-scoped against this list rather than re-derived from scratch.
+(materially longer than the current 2012-2021 survivor panel), free via NSE (blocked at
+this environment's proxy, hence the principal-machine gate). The vault destination and
+unblock list are unchanged from RUNSHEET.md — this section only sharpens which named
+series the row resolves to, so the pull can be scoped against this list directly.
 
 ## 6. Revised verdict
 
@@ -355,13 +318,12 @@ sentence this desk should adopt:
    sectoral TR daily. Kill condition: failing to beat the stock-level L3 composite net of
    cost, or failing the same STW1999-style joint-bootstrap correction T-CTRL1 already
    applied to technical rules (dossier a §2).
-3. **A true rotation-turnover/whipsaw cost estimate applied to FUN-D3's own state
-   structure.** Mechanism: none — this is a costing exercise, not a new signal; it answers
-   whether FUN-D3's sign pattern could ever clear costs given state durations of 2-8 days
-   median **[DESK, FUN-D3, s1]**. Magnitude: unknown, that is the point of the design.
-   Data needed: sectoral TR (for realistic bid-ask/impact assumptions at the sector-ETF or
-   futures level) plus the book's existing cost stack. Kill condition: implied turnover
-   cost exceeding the FUN-D3 spread at any reasonable rebalancing discipline.
+3. **A rotation-turnover/whipsaw cost estimate applied to FUN-D3's own state structure.**
+   Mechanism: none — a costing exercise, not a new signal; answers whether FUN-D3's sign
+   pattern could ever clear costs given state durations of 2-8 days median **[DESK,
+   FUN-D3, s1]**. Magnitude: unknown, that is the point. Data needed: sectoral TR (for
+   realistic impact assumptions) plus the book's cost stack. Kill condition: implied
+   turnover cost exceeding the FUN-D3 spread at any reasonable rebalancing discipline.
 4. **FUN-D4 — the true GDP-cycle-phase successor.** Mechanism: replaces FUN-D3's
    market-stress proxy with actual India business-cycle phase (IIP-derived), testing the
    practitioner clock (§1) on its own terms for the first time. Magnitude: not yet

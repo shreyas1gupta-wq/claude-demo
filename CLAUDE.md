@@ -251,6 +251,19 @@ Beneish-style components (margin-decline, leverage-increase) run BACKWARDS (+5.2
 to +2.68) — the arc's central lesson: verify each ingredient's sign before compositing, never port a
 textbook score blind. The value-trap cross inverted again — a THIRD sighting of the within-cheap
 artifact (VAL-D2/D3, SC-D3a), still PIT-gated. Earnings Quality Atlas published (row 59) with the full
-India buildable/not-buildable field map (3 of 8 Beneish components permanently unbuildable from either
-panel). The sector-RS dossier (tech-dossiers/c) and the earnings-quality dossier (eq-dossiers/a) were
-still finishing as this status was written — their conclusions land in a same-day follow-up commit.
+India buildable/not-buildable field map. Both dossiers landed same-day and are now integrated (zero new
+cells; literature/cross-check only): tech-dossiers/c widens the industry-momentum literature (Moskowitz-
+Grinblatt, Hong-Torous-Valkanov, Grundy-Martin — flagging an open, unrun question on whether L3/N4a's
+momentum leg is partly undisclosed industry momentum) and Indian AMC practice, then delivers a REVISED
+SECTOR-RS VERDICT cross-checking the desk's own booked FUN-D1/D2/D3 prints rather than approximating
+sector data: no direct rotation edge is measurable (SECTOR-GATE stays fully gated), but FUN-D3 already
+shows that once an India stress state is identifiable, defensive rotation has missed its window and
+cyclicals/financials lead the rebound instead — Tier-C, reduce-only, folded into the Technical States
+Atlas (v4, same URL). eq-dossiers/a corrects the atlas's own India buildability table: the true Beneish
+ceiling is 4 of 8 components unbuildable (DSRI/AQI/SGAI/DEPI — not the 3 first listed; true CFO/EBITDA
+is separately blocked for the same missing-D&A reason), cites Hribar-Collins (2002) as the proper TATA
+construction, and uses Dechow-Ge-Larson-Sloan's classify-vs-predict-returns distinction to explain why
+EQ-D1's composite backfired; also flags an unresolved [VERIFY: Beneish 1999 cutoff -2.22 vs -1.78] and
+confirms promoter share pledging (P5) as India's cleanest, genuinely point-in-time red flag (named
+examples explicitly [CASE-STUDY LORE] only). Earnings Quality Atlas updated (v2, same URL). Ledger
+addenda booked under SECTOR-GATE and EQ-D1 (zero census impact — 1,305 stands). Leg 28 closed.

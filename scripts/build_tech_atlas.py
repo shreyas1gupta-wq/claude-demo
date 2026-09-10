@@ -72,9 +72,11 @@ market valuation regimes, MOM-D1's stock-level lookback anatomy, and RATIO-D1's 
 regimes + the leverage-timing read. Every number is a booked ledger print (TECH-D1..D4 + MOM-D1 +
 RATIO-D1, 52 cells, census 1,297; registrations committed before the run; the runner's prints
 desk-verified). Sector RS is data-gated
-on the NSE sectoral TR pull; leverage and index-ratio verdicts are quoted from booked entries.</p>
+on the NSE sectoral TR pull, now with a revised cross-check verdict (tech-dossiers/c); leverage and
+index-ratio verdicts are quoted from booked entries.</p>
 <div class="prov"><span class="badge">DESK = ledger print</span>
-<span class="badge">quoted: TS1 · T-CTRL1 · T2 · T3 · F2 · CU-D4 · VAL-D5 · SC-D4</span>
+<span class="badge">quoted: TS1 · T-CTRL1 · T2 · T3 · F2 · CU-D4 · VAL-D5 · SC-D4 · FUN-D1/D2/D3</span>
+<span class="badge">lit: tech-dossiers/a · tech-dossiers/c</span>
 <span class="badge">states, never rules — Tier-C consumption only</span></div>
 </header>
 
@@ -232,14 +234,49 @@ confirmed (|Δlog| autocorrelation +0.10 to +0.17 at every lag, ~6-month half-li
 premise, even though the naive ranking it might suggest inverts in practice.</p>
 </section>
 
+<section class="panel" style="border-left:3px solid var(--gate)">
+<h2>Update · 10 Sep 2026 — sector RS deep-dive: a revised verdict, still zero cells</h2>
+<p class="sub">tech-dossiers/c widens the literature (Moskowitz-Grinblatt 1999 industry momentum
+[LIT]; Hong-Torous-Valkanov 2007 JFE on cross-industry transmission speed; Grundy-Martin 2001 RFS —
+flagging an OPEN, UNRUN question for this desk's own work: a meaningful share of L3/N4a's momentum
+leg COULD be re-expressible as undisclosed industry momentum, not registered or run, a future
+candidate, not a finding) and Indian AMC/thematic-fund practitioner practice (NFO-timing-near-peaks
+folklore; IT-as-currency-hedge already FAILED per FUN-D3; PSU-bank basket chronically worst in
+CALM-UP and CALM-DOWN, merely flat in RISK-OFF). It then cross-checks the desk's OWN booked prints
+instead of approximating sector data the vault does not have.</p>
+<div class="warn"><b>The revised verdict (quoted verbatim):</b> "No direct sector-index rotation edge
+is measurable today (the NSE sectoral TR pull has not landed); but indirect, one-way evidence already
+exists that in India, once a market-stress state is identifiable, the textbook defensive rotation has
+already missed its window and cyclicals/financials lead the rebound instead (FUN-D3) — consistent
+with the same contemporaneous-versus-forward inversion FUN-D1 establishes at the country-GDP-phase
+level and FUN-D2 establishes at the earnings-cycle level. This finding is booked Tier-C (one-way,
+survivor-panel, market-proxy states, no cost model) and is reduce-only per CONTRACT §4: it may inform
+a de-risking or basket-avoidance rule, never a positive rotation trade, until the NSE sectoral TR pull
+lands and both the survivorship and turnover-cost gaps are closed."</div>
+<p class="note">FUN-D3's own quoted print, for context: "In RISK-OFF states the DEFENSIVES lag
+forward (fwd-21d rel: DEF −1.76, PHARMA worst −2.07, IT −1.86) while cyclicals and financials lead
+(+0.57%/+0.69%, NBFC best at +1.73%)... PSU banks were the chronic worst basket in both CALM-UP and
+CALM-DOWN and merely flat in RISK-OFF." Four gaps still bound this reading, named precisely by the
+dossier: survivorship, a construction mismatch with the true Moskowitz-Grinblatt design, unpriced
+turnover/whipsaw (states run 2-8 days median; CALM-UP alone is 64% of days), and true GDP-phase vs.
+a market-proxy state. <b>Zero new cells; SECTOR-GATE stays formally gated</b> — this is a cross-check
+enrichment of the gate note, quoting only already-booked FUN-D1/D2/D3 numbers, never new sector data.
+Target series for when the pull lands: 10 NIFTY sector TR indices (hedged launch years named in the
+dossier). Ranked edge candidates (all data-gated, none run): (1) the FUN-D3 avoid-defensives-in-
+risk-off rule, once turnover-costed; (2) cyclicals/financials-lead-the-rebound as a basket-tilt, not a
+timing rule; (3) the PSU-bank chronic-worst basket as a permanent-avoid candidate; (4) the
+Hong-Torous-Valkanov transmission-speed question applied to NIFTY sectors; (5) the L3/N4a
+industry-momentum decomposition question above.</p>
+</section>
+
 <section class="panel">
 <h2>5 · Quoted &amp; gated — the rest of the technical menu</h2>
 <ul class="q">
-<li><b>Sector RS / rotation — GATED (formal note, SECTOR-GATE):</b> no sector tag exists anywhere in the
-vault (US firm panel, India survivor panel alike); needs the Priority-1 NSE sectoral TR pull; the design
-brief is in research/notes/tech-dossiers/a (industry momentum per Moskowitz-Grinblatt [LIT], with
-FUN-D3's booked warning: buying defensives once risk-off is identifiable is the measured mistake in
-India). One pull unblocks this + FUN-D3 FULL + SEC-D5 together.</li>
+<li><b>Sector RS / rotation — GATED (formal note, SECTOR-GATE), revised verdict above:</b> no sector tag
+exists anywhere in the vault (US firm panel, India survivor panel alike); needs the Priority-1 NSE
+sectoral TR pull; design briefs in tech-dossiers/a (Moskowitz-Grinblatt design) and tech-dossiers/c
+(the literature widen + the FUN-D1/D2/D3 cross-check, see the Update panel above). One pull unblocks
+this + FUN-D3 FULL + SEC-D5 together.</li>
 <li><b>Index ratios:</b> equity/gold ACTIVE rotation lost to the static 50/50 blend (T3, both lookbacks) —
 but the NIFTY/gold ratio's LEVEL is a real 12m mean-reverting rebalance-bias state (RATIO-D1, above);
 small/large ratio conditioning is booked in the SC series (winter rebound a watch; never chase) and adds

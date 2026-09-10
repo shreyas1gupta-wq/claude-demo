@@ -4198,6 +4198,28 @@ industry momentum [LIT] and the practitioner RS-rotation literature are dossiere
 (tech-dossiers/a) with the registrable India design already specced there. Zero
 cells run; zero census impact. STATUS: fully gated, unchanged since Track TECH.
 
+## Addendum to SECTOR-GATE (2026-09-10, literature dossier complete — tech-dossiers/
+c-sector-rs-deep-dive.md; zero new cells, zero census impact). Widens the literature
+base (Hong-Torous-Valkanov 2007 JFE on industry-momentum transmission speed; Grundy-
+Martin 2001 RFS — flagging an OPEN, UNRUN question for the desk's own work: a
+meaningful share of L3/N4a's momentum leg COULD be re-expressible as undisclosed
+industry momentum, not registered or run, a candidate for a future design, not a
+finding) and Indian AMC/thematic-fund practitioner practice (NFO-timing-near-peaks
+folklore, IT-as-currency-hedge already FAILED per FUN-D3). THE REVISED VERDICT, cross-
+checking the desk's OWN already-booked prints rather than approximating sector data:
+"No direct sector-index rotation edge is measurable today (the NSE sectoral TR pull
+has not landed); but indirect, one-way evidence already exists that in India, once a
+market-stress state is identifiable, the textbook defensive rotation has already
+missed its window and cyclicals/financials lead the rebound instead (FUN-D3) —
+consistent with the same contemporaneous-versus-forward inversion FUN-D1 establishes
+at the country-GDP-phase level and FUN-D2 establishes at the earnings-cycle level.
+This finding is booked Tier-C (one-way, survivor-panel, market-proxy states, no cost
+model) and is reduce-only per CONTRACT §4: it may inform a de-risking or basket-
+avoidance rule, never a positive rotation trade, until the NSE sectoral TR pull lands
+and both the survivorship and turnover-cost gaps are closed." SECTOR-GATE ITSELF
+STAYS FULLY GATED — this is a cross-check enrichment of the gate note, not a new
+trial; zero cells, zero census impact.
+
 ## Entry RATIO-D1 (2026-09-10) — PRE-REGISTERED before running: INDEX & COMMODITY
 RATIO REGIMES + THE LEVERAGE-TIMING READ (principal: copper/gold, silver/gold,
 nifty/gold, smallcap/nifty ratios; when leverage is safer; vol clustering and
@@ -4425,3 +4447,55 @@ Sloan TATA, true cash-conversion ratio, and a properly-signed reduced-Beneish
 score (verifying each component's sign on Indian data before compositing — the
 lesson from e2/e3/e5) are all registrable the day the handoff authenticates.
 Census 8 (1297 -> **1305**).
+
+## Addendum to EQ-D1 (2026-09-10, literature dossier complete — eq-dossiers/
+a-earnings-quality-red-flags.md; zero new cells, zero census impact; cross-checked
+against the booked EQ-D1 prints and the earnings-quality-atlas.html §4 buildability
+table). TWO CORRECTIONS to the atlas's India buildability table: (i) the atlas listed
+only 3 of Beneish's eight components as unbuildable from the P1-P6 handoff schema
+(DSRI, AQI, SGAI); the dossier's precise field-by-field mapping finds a FOURTH —
+DEPI (depreciation index) is also blocked, since P1 has no D&A line — so the India
+ceiling is a 4-of-8 reduced score, not 5-of-8, and true CFO/EBITDA is separately
+blocked for the identical reason (EBITDA needs D&A added back to EBIT, which P1
+cannot supply). (ii) GMI is not a "partial" build as the atlas states — the buildable
+substitute is an EBIT-margin index (ebit/revenue), a materially different, noisier
+construct than the literature's true gross-margin index (which needs COGS, absent
+from P1) and must be labeled explicitly as a proxy, never presented as GMI itself.
+Both corrections are folded into the atlas (see build_eq_atlas.py Update section).
+CITATION ADD: the "TATA as dollar values" row the atlas already lists as buildable is
+properly the Hribar & Collins (2002) cash-flow-statement accrual construction —
+(net_income - cfo)/average(total_assets) — which supersedes Sloan's original 1996
+balance-sheet approach precisely because it avoids M&A/discontinued-operations noise;
+this is the correct citation for the India rebuild, not the literal 1996 formula.
+LITERATURE EXPLANATION FOR THE COMPOSITE'S FAILURE MODE: Dechow-Ge-Larson-Sloan
+(2011) draw a sharp distinction the dossier flags as widely blurred in practitioner
+writing — Beneish/DGLS-style components are built and validated to classify WHETHER
+A FIRM IS MANIPULATING (an SEC-enforcement-label target), and only secondarily,
+with markedly weaker evidence, to predict RETURNS. EQ-D1's e2/e3 wrong-signed misses
+(margin-decline and leverage-increase both printing POSITIVE D10-D1, the opposite of
+the registered red-flag-direction prior) are exactly the kind of gap this distinction
+predicts — not a fluke of this one panel, and not evidence the components are broken,
+only that "flags manipulation" and "predicts underperformance" were never the same
+claim to begin with. Re-frames e5's composite dilution (booked above) as a structural,
+not incidental, risk of blending detection-validated components with a return-
+anomaly-validated one without checking each ingredient's OWN return-prediction
+evidence first — strengthens rather than changes the already-booked CONSUMPTION line.
+INDIA MARKER STRENGTHENED: promoter share pledging (P5) is confirmed as India's
+cleanest red flag — a mandatory, quarterly SEBI shareholding-pattern disclosure,
+genuinely point-in-time by regulatory construction (no filing-lag buffer, unlike
+every accrual-based measure above), with a well-founded reflexive mechanism (pledge
+→ price fall → margin call → forced sale → further price fall, independent of
+underlying business performance) [LIT, directionally consistent with 2023-2025
+India-focused pledging/crash-risk papers, LOW CONFIDENCE on exact magnitudes]. Widely
+reported illustrations (Zee/Essel, DHFL, Yes Bank, Anil Ambani/ADAG group, Café Coffee
+Day) are explicitly [CASE-STUDY LORE] — no fact about any named company is asserted,
+only that the mechanism is commonly illustrated by these situations in Indian
+financial media. OPEN ITEM, not resolved here: **[VERIFY: Beneish 1999 exact model
+cutoff — this dossier cannot reconcile −2.22 (its own recollection of the published
+paper) against −1.78 (cited in d-quality-metric-canon.md as a practitioner-circulated
+threshold); check against the primary source before any cutoff is hard-coded into a
+design]**. Also newly on record: the Ind-AS FY2016-17 transition is a structural
+regime break (not a restatement) for every accrual/growth/margin measure spanning it —
+any India accrual-family design must pre-register an explicit transition dummy or a
+post-transition-only sample, not merely note the risk qualitatively. Zero cells; zero
+census impact — literature and data-gap enrichment only, folded into the atlas.
