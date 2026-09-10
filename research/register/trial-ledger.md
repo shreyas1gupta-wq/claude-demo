@@ -3648,3 +3648,36 @@ registration, confirmed by print. The honest large-half read: value beats growth
 (~+5-6pp) on this panel, and the szQ5 value ladder is near-monotone (+16.30 ->
 +4.65 at 1m). Consumption: context lines for the edge map only; the tradeable
 versions are the India PIT designs (as registered). Census 6 (1183 -> **1189**).
+
+## Entry H36-D1 (2026-09-10) — PRE-REGISTERED before running: THE 3-YEAR HORIZON
+BATTERY (principal directive: "3y ideas not 1m/12m — recheck everything"). The ES/SC
+arc re-read at 36m forward. WHAT ALREADY EXISTS AT 3y (recheck, quoted, NOT re-run):
+QG-D3 (ROE 36m: all-panel D10-D1 -2.8pp; large-cap Q5-Q1 0.0; Q2 best at every
+horizon); QG-D4 (36m matrices: champion ROE Q2 x low-vol 11.7%/yr; glamour-quality
+and volatile-quality worst >= 36m; growth large-cap +0.3 at 36m); ER-D1c (dp -> 3y
++0.20 INSIDE the persistent-regressor null band — 3y index-level valuation forecasting
+is null-consistent; only 20y beats the null); CU-D4iii (next-3y after a currency
+crash +13.2%/yr vs +6.2 — a booked 3y entry-state); SC-D1 v3 (corr(V_t, SL) -0.69 at
+36m). METHODS FROZEN (parents quoted per process note #5): panel fwd-36m = QG-D3's
+convention verbatim (buy-and-hold compound of forward R1M over 36m, >=75% coverage
+required, annualized); h1 uses MEDIANS (QG-D3 convention), h2-h5/h12-h13 EW MEANS
+(ES-D2/SC-D4/SC-D5/SC-D1 parent convention); time-series cells use the SC-D2/D3
+rolling-sum convention with next-36m sums annualized (/3); dec() as everywhere.
+CELLS (13): h1 d3(Eps) deciles -> fwd-36m median ann (all-panel D10-D1 + large-cap
+Q5-Q1); h2 the ES-D2 corner trio at 36m EW ann (all + large-cap repeat); h3 the
+SC-D4 six signal spreads by size quintile at fwd-36m; h4 size x Pb 5x5 at fwd-36m +
+the four corners; h5 the large-cap (szQ5) Pb row at fwd-60m; h6 US SMB 12m-momentum
+sign -> next-36m SMB ann; h7 US trailing-36m terciles -> next-36m; h8 US post-bear ->
+next-36m; h9-h11 the India IIMA analogs of h6-h8; h12 V_t terciles -> next-36m SL
+ann; h13 G_t terciles -> same. PRIORS (two-sided): h1 the negative d3 spread FADES
+toward 0 in medians (reversal-artifact signature); h2 expensive+deteriorating stays
+worst (the avoid corner is a 3y statement), increment stays <= 0; h3 value the ONLY
+positive spread across sizes; Mom/Vol/Roe/Gr spreads SHRINK vs their 12m prints in
+>= 4 of 5 size bins (the junk bounce washes out); h4 the large-row value-growth gap
+holds or widens vs 12m; h5 positive at 60m; h6/h9 momentum conditioning dead at 36m;
+h7 the US 12m continuation flattens or reverts; h8 positive (the US rebound
+compounds); h10 THE 3y IDEA CANDIDATE — the India winter rebound should be STRONGER
+cumulatively at 36m if it is real mean reversion; h11 the India post-bear damage
+narrows annualized but stays negative — if still <= -4pp/yr over 3y the playbook
+rule extends to a 3-year statement; h12 T1-T3 wider than the 12m +16.05pp;
+h13 modest positive. Census 13 on the day.
