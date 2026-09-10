@@ -3549,3 +3549,54 @@ delisted_registry (P3) is as load-bearing as the fundamentals file. VERDICT: the
 post-bear rule stands (playbook line unchanged); the winter-rebound watch is
 downgraded to IIMA-only support; no further smallcap design runs on this panel —
 every remaining India ES/SC question is PIT-data-gated. Census 3 (1160 -> **1163**).
+
+## Entry ES-D2 (2026-09-10) — PRE-REGISTERED before running: THE REVISION-PROXY
+INTERACTION MATRICES (extension of ES-D1; parent constructions quoted: d3(Eps) = Eps
+rank at t minus t-3 per stock via the calendar-aligned pivot; dec() = ceil(pct-rank x n)
+per date; EW fwd returns from R1M/R12M columns, x1200 / x100 annualization; the
+EW-survivor caveat BINDS throughout — large-cap sub-reads carry the honest weight).
+Data: firm_panel. CELLS (8): m1 d3(Eps) x Pb 5x5, fwd-1m EW ann (the value-with-
+catalyst map [LIT]); m2 d3 x Mom_11M 5x5 fwd-1m (the full-resolution version of
+ES-D1 e5's within-momentum read — parent print quoted: increments +4.1/+4.9 low-mom,
+negative high-mom, mean +0.42); m3 d3 x size (Mkt_Cap_12M) 5x5 fwd-1m (where in the
+cap spectrum the negative ladder lives); m4 d3 x Roe 5x5 fwd-1m (does improvement
+help quality or junk); m5 d3 x Vol1Y 5x5 fwd-1m (full resolution of e7); m6 = m1 at
+fwd-12m; m7 the corner read — cheap+improving (Pb Q1-Q2 x d3 Q4-Q5) vs cheap alone
+vs expensive+deteriorating, EW ann at 1m and 12m; m8 = m7 inside the top size
+quintile (the implementable read). PRIOR (two-sided): the d3 main effect stays
+negative (ES-D1); the cheap+improving corner beats cheap-alone by >= +2%/yr at 1m
+(the catalyst story) — CONSUMPTION GATE: only if m7's corner increment >= +2%/yr AND
+m8 preserves its SIGN does a "value+catalyst" flag get registered; expect m3
+smallest-quintile-concentrated and m4 junk-side-concentrated (artifact signature).
+Census 8 on the day.
+
+## Entry SC-D4 (2026-09-10) — PRE-REGISTERED before running: THE SIZE-CONDITIONAL
+EDGE MAP, US FIRM PANEL (the principal's "where can we have edge" question made a
+matrix: WITHIN each size quintile, the Q5-Q1 EW spread for each signal — which
+signals survive into the LARGE-cap end a NIFTY-750 desk can actually trade?).
+Signals (all dec() n=5 per date within size quintile): Pb (value, spread = Q1-Q5 so
+positive = cheap wins), Mom_11M_Usd, Vol1Y_Usd (spread = Q1-Q5, positive = low-vol
+wins), Roe, Eps_Basic_Gr, d3(Eps). CELLS (12): s1-s6 the six signal spreads by size
+quintile at fwd-1m EW ann; s7-s12 the same at fwd-12m (x100). PRIOR (booked-doctrine
+side): low-vol spread positive everywhere, largest in small (moderation principle);
+value positive, stronger small [LIT]; momentum positive, present in large [LIT];
+Roe ~flat (QG-D2/D3); growth ~never pays (QG-D2); d3 negative, small-concentrated
+(ES-D1). THE QUESTION CELL: which spreads keep their sign in size Q5 — prior:
+momentum and low-vol survive large-cap, value weakens, growth/d3 die. Whatever
+survives Q5 at BOTH horizons enters the edge list as "large-cap-implementable
+(US evidence, India version data-gated)". Census 12 on the day.
+
+## Entry SC-D5 (2026-09-10) — PRE-REGISTERED before running: THE SIZE x VALUE AND
+SIZE x MOMENTUM JOINT MATRICES (the small-value / small-growth / large-value /
+large-growth quadrant made explicit on this panel; FF's 25-portfolio geography [LIT]
+re-measured on the vault's own data). CELLS (6): j1 size x Pb 5x5 fwd-1m EW ann;
+j2 same fwd-3m (x400); j3 same fwd-12m (x100); j4 size x Mom_11M 5x5 fwd-1m;
+j5 same fwd-12m; j6 the four-corner summary at 12m — small-value (size Q1-Q2 x
+Pb Q1-Q2), small-growth (size Q1-Q2 x Pb Q4-Q5), large-value, large-growth, EW ann.
+PRIOR (two-sided): small-value the best corner and small-growth the worst (the FF
+lottery corner [LIT]; QG's "growth never pays" at panel level) — but on an
+EW-survivor panel the small-value print is junk-inflated, so the honest rows are
+the LARGE half: prior large-value modestly > large-growth at 12m. If small-growth
+does NOT print worst, the panel's selection tilt is re-interrogated before any
+consumption. NO consumption from j-cells beyond edge-list context lines — the
+tradeable versions are India PIT designs. Census 6 on the day.
