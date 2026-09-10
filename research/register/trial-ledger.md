@@ -4094,3 +4094,39 @@ years-long state (which is WHY it cannot be a clock and CAN be a band/floor
 instrument, VAL-D5/ER-D1c consistent); the transition asymmetry is a context line
 for the regime notes (a fresh de-rating is not yet an entry; the cheap-exit rally
 is real). Census 4 (1266 -> **1270**).
+
+## Entry MOM-D1 (2026-09-10) — PRE-REGISTERED before running: THE STOCK-LEVEL
+LOOKBACK ANATOMY ACROSS REGIMES (principal clarification: short 3-6m formation vs
+long 6-12m in STOCKS, by regime — supersedes TECH-D3 m9's "ungradeable" with clean
+constructions; m9's verdict quoted, not overwritten). CONSTRUCTION (frozen): US —
+formation returns built from the R1M pivot itself, NOT the uniformized Mom columns;
+window semantics in rows of the forward-return pivot (row t = the forward month):
+3-1 = rows t-3..t-1 (no skip), 6-1 = t-6..t-1, 6-2 = t-6..t-2 (skip-month), 12-2 =
+t-12..t-2, 12-7 = t-12..t-7 (Novy-Marx intermediate [LIT]); log1p sums; deciles per
+date; EW fwd-1m x1200; large half = size Q4-5. India — the survivor panel's monthly
+return matrix (SC-D3a construction quoted), same window semantics with fwd = next
+calendar month; EW; tradeable half = top ADV tercile. REGIMES (lagged 1m): US market
+state = sign of trailing-12m FF market TR; US vol = monthly-mean CBOE VIX expanding
+terciles min 120m; India market state = sign of trailing-12m NIFTY TR; India vol =
+monthly-mean India VIX terciles 2010-2021 (FULL-SAMPLE cut, FLAGGED — short span).
+ONE-WAY RULE, argued and frozen now: EW no-delisting bias FLATTERS loser rebounds
+and therefore DEPRESSES momentum spreads on BOTH panels — a POSITIVE momentum
+spread is admissible evidence (it survives a bias working against it); a negative
+one is non-evidence (SC-D4/TECH-D3 m9 quoted). CELLS (18): L1a-e the US lookback
+ladder — D10-D1 fwd-1m for the five windows, panel + large half; L2a spreads by US
+market state (up/down) for 6-2 and 12-7 + the (12-7 minus 6-2) difference per
+state; L2b same by VIX tercile; L2c the stress-diff verdict — does the long-minus-
+short difference FALL in down/high-vol states (the staleness mechanism [DM LIT]);
+L3a era halves (1999-2009 / 2010-2019) for 6-2 and 12-7; L3b the size read (already
+per-cell large halves; this cell = the small-vs-large lookback ordering); L4a-e the
+India lookback ladder (five windows, full + top-ADV tercile); L5a India spreads by
+market state; L5b India by VIX tercile (2010-21, flagged); L6 the verdict table —
+best lookback per market x regime. PRIORS (two-sided): US large-half 12-2 >= 6-2
+unconditionally [LIT]; 12-7 vs 6-2 genuinely open (Novy-Marx vs Goyal-Wahal [LIT]);
+THE REGIME PRIOR: long lookbacks degrade MORE in down-market/high-vol states (the
+stale-formation mechanism — after regime flips the 12m window still holds the old
+regime's winners), so the (12-7 - 6-2) diff falls under stress; India positive
+despite the bias (IIMA WML +14-15%/yr factor precedent) with the 6-month window
+relatively stronger [India-lore, LIT LOW CONF]; if India prints negative everywhere
+the read is non-evidence and the question is fully PIT-gated. Runner: Sonnet on
+this frozen spec, desk-verified before booking. Census 18 on the day.
