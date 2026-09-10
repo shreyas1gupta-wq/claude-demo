@@ -3925,3 +3925,84 @@ caveats). CONSUMPTION: the desk's cross-sectional valuation instrument = the
 pure-valuation composite (Pb + Ev_Ebitda + Fcf_Yld ranks) in large caps, Pb alone
 acceptable; signal-mixing deferred to sleeve level; P/S + margin-adjusted P/S +
 within-industry forms all India-gated as registered. Census 14 (1231 -> **1245**).
+
+## Entry TECH-D1 (2026-09-10) — PRE-REGISTERED before running: THE ATH & DRAWDOWN-
+STATE BATTERY (Track TECH opens on principal directive: technicals — ATH, stages,
+momentum conditions, market-valuation regimes; sector RS is DATA-GATED on the
+Priority-1 NSE sectoral TR pull — design brief in the dossier; leverage is QUOTED
+(QG-D2 c12, DB battery; margin-debt series not freely vaulted); index ratios QUOTED
+(T3 rotation FAIL, SC series)). Data: NIFTY Adj Close daily 2007-2026; Shiller Real
+Price + Real Dividend monthly 1871-2023 (real TR as VAL-D5); gold monthly 1833-2026
+(nominal, stated). CELLS (6): a1 NIFTY drawdown-from-running-max, expanding terciles
+(min 750 trading days, lagged 1d) -> fwd-12m TR by tercile (overlap FLAGGED);
+a2 Shiller NEW-ATH months (real TR index at running max — parameter-free) -> next-12m
+real TR mean + P(negative) vs all other months; a3 NIFTY 52w-high proximity
+(close/max252 — the documented 52-week convention), expanding terciles -> fwd-12m;
+a4 gold a2-analog (new nominal ATH month -> next-12m); a5 Shiller BREAKOUT events —
+first new ATH after >= 24 months without one (the two-year base convention,
+Weinstein [LIT]) -> next-12m vs unconditional; a6 NIFTY deep-drawdown tercile ->
+fwd-36m (the entry-state read at the 3y horizon). PRIOR (two-sided): ATH-zone/new-ATH
+months are NOT below-average forward (the "don't fear the high" claim [LIT]) — if
+they underperform materially the buy-at-close deployment doctrine gains a registered
+caveat; deep-drawdown terciles best forward (entry-state doctrine, F2/CU-D4
+precedent); a5 breakouts positive vs unconditional. Census 6 on the day.
+
+## Entry TECH-D2 (2026-09-10) — PRE-REGISTERED before running: STAGE QUADRANTS AS
+STATES, NEVER RULES. COLLISION GUARD QUOTED NOW: T-CTRL1 killed the BLL MA family
+as TRADING RULES (0/10 net) and T2 killed trend-on-states at both bands — this entry
+promotes NOTHING; it maps mechanical stage states to forward return AND vol
+(regime description; any consumption is Tier-C risk-state at most). States: the four
+(price vs MA) x (MA slope) quadrants — MA = 200-day (NIFTY daily) / 10-month
+(Shiller, gold), the documented Faber/Weinstein conventions [LIT]; slope = MA today
+vs 21 trading days (1 month) ago; labels S2~(above,rising), S4~(below,falling),
+S3~(above,falling), S1~(below,rising), lagged one bar. CELLS (5): s1 NIFTY fwd-1m
+ann mean AND realized-vol by quadrant; s2 NIFTY fwd-12m by quadrant; s3 Shiller
+fwd-12m real TR by quadrant (1881-2023); s4 gold fwd-12m by quadrant; s5 the
+technical x valuation cross — Shiller quadrant x CAPE expanding tercile: the four
+corners S2-cheap / S2-expensive / S4-cheap / S4-expensive -> fwd-12m real TR.
+PRIOR (two-sided): quadrants rank VOL reliably (S4 highest) even if mean-ranking is
+weak — the desk's vol-not-return trend doctrine (T2/F2); S2 highest mean is the
+folk claim, tested not assumed; s5 prior: S4-expensive the worst corner; if
+quadrants fail even to rank vol, the stage frame dies entirely at index level.
+Census 5 on the day.
+
+## Entry TECH-D3 (2026-09-10) — PRE-REGISTERED before running: THE MOMENTUM
+CONDITION MAP (when momentum works, when it crashes, when to switch). Data: UMD
+(ff_momentum_monthly 1927-2024); IIMA WML + MF + RF monthly 1993-2025; CBOE VIX
+daily 1990-2026 (monthly mean); firm_panel Mom_5M/Mom_11M/Mom_Sharp_* columns.
+States lagged one month throughout; expanding terciles min 120m. CELLS (10):
+m1 UMD mean in post-bear state (trailing-24m market TR < 0) vs otherwise
+[Daniel-Moskowitz LIT]; m2 UMD by VIX-level tercile (1990-2024); m3 factor
+momentum — sign of trailing-12m UMD -> next-12m UMD (overlap FLAGGED); m4 THE
+CRASH/SWITCH CELL — UMD in (post-bear AND top VIX tercile) vs all other months,
+plus the three worst UMD months listed with their state flags; m5-m7 India WML
+analogs of m1-m3 (market = MF+RF; vol state = trailing-12m realized vol of the
+market series, expanding terciles — full 1993-2025 coverage); m8 India crash cell
+(post-bear AND top-vol) + worst-3 WML months with flags; m9 stock-level lookbacks —
+Mom_11M vs Mom_5M decile D10-D1 at fwd-1m/12m, panel AND szQ5 (the SC-D4 momentum-
+inversion artifact QUOTED: levels are non-evidence; only the RELATIVE 11M-vs-5M
+comparison is read); m10 vol-scaled momentum — Mom_Sharp_11M vs Mom_11M, same reads
+(the Barroso-Santa-Clara scaling question at stock level [LIT]). PRIOR (two-sided):
+m1/m5 momentum degraded post-bear; m2 worse in top-VIX tercile; m4/m8 the crash
+state strongly negative — IF the state prints <= -10%/yr worse than baseline in
+BOTH markets, a momentum stand-down monitor (post-bear + top-vol tercile) becomes
+REGISTRABLE for the future India factor sleeve (Tier-C, reduce-only — consistent
+with the T-series doctrine); m3/m7 factor momentum positive [Ehsani-Linnainmaa
+LIT]; m9 11M >= 5M in szQ5 (the 12-1 standard); m10 Sharp variants strictly less
+negative than raw on this panel — if vol-scaling FLIPS the panel momentum sign,
+that is the panel's momentum lesson (scaling defeats part of the artifact).
+Census 10 on the day.
+
+## Entry TECH-D4 (2026-09-10) — PRE-REGISTERED before running: VALUATION-REGIME
+PERSISTENCE (the "valuation clustering" question made mechanical). Shiller CAPE
+1881-2023, expanding terciles (min 240m, lagged — the VAL-D5 construction quoted).
+CELLS (4): c1 the monthly transition matrix cheap/mid/expensive -> next month
+(P(stay) per state); c2 spell durations — median and mean months per uninterrupted
+tercile spell; c3 P(same tercile 12m ahead); c4 the transition-return read —
+fwd-12m real TR in the first 12m after a downgrade flip (expensive -> mid/cheap
+entry) vs after an upgrade flip (cheap -> mid/expensive) vs unconditional.
+PRIOR: P(stay) > 0.95 monthly and spells run YEARS (valuation is a slow clustered
+state — the clustering answer); the de-rating transitions carry the damage
+(post-expensive-exit months print below unconditional because exits happen BY
+price falling); if spells are short/noisy the "state" framing itself weakens.
+Census 4 on the day.
