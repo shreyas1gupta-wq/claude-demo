@@ -149,43 +149,34 @@ evidence base.
 ## 3. Cash-flow-based quality
 
 **Cash conversion** — most commonly CFO/NI, sometimes CFO/EBITDA — is the practitioner
-shorthand for "how much of reported profit is actually cash." A ratio persistently below
-1.0 means net income is running ahead of operating cash generation, which is
-mechanically almost identical to Sloan's high-accrual firm (TATA = (NI−CFO)/Assets is
-the accrual measure; CFO/NI is a ratio-form restatement of the same underlying gap). The
-"quality of earnings" language in equity-research practice generally means exactly this
-ratio, sometimes combined with a check on the trend (a ratio falling over several
-quarters is treated as more alarming than a single low reading). **Ball & Shivakumar
-(2005/2006), on accounting conservatism / asymmetric timeliness** [LIT] supply the
-underlying theory for why a *persistent* CFO<NI gap should matter at all: conservative
-accounting recognizes economic losses immediately (bad news hits earnings fast) but
-recognizes economic gains only as they are realized in cash (good news is deferred) — an
-asymmetric-timeliness property empirically testable via the differential responsiveness
-of earnings to negative versus positive stock returns. A firm whose reported earnings
-show *low* asymmetric timeliness (gains and losses recognized with similar speed, i.e.
-insufficient conservatism) is, by this framework, more likely managing earnings upward
-through the accrual process the conservatism principle is supposed to constrain [LIT].
+shorthand for "how much of reported profit is actually cash." Persistently below 1.0,
+net income is running ahead of operating cash generation — mechanically almost
+identical to Sloan's high-accrual firm (TATA = (NI−CFO)/Assets is the accrual measure;
+CFO/NI is a ratio-form restatement of the same gap). "Quality of earnings" in
+equity-research practice generally means exactly this ratio, often trend-checked (a
+falling ratio over several quarters is more alarming than one low reading). **Ball &
+Shivakumar (2005/2006), on accounting conservatism / asymmetric timeliness** [LIT]
+supply the theory for why a *persistent* CFO<NI gap should matter: conservative
+accounting recognizes economic losses immediately but economic gains only as realized in
+cash — an asymmetric-timeliness property testable via earnings' differential response to
+negative vs. positive stock returns. Low asymmetric timeliness (gains and losses
+recognized at similar speed) implies more upward earnings management through the
+accrual process conservatism is meant to constrain [LIT].
 
-**What the evidence actually supports.** The honest read, distinguishing this from
-Piotroski (already covered in dossier b) is important: Piotroski's F-Score treats
-CFO>NI as one of nine binary signals **specifically conditioned on being inside the
-already-cheap value universe** and is validated as improving *returns within that
-cheap subset*. The cash-conversion literature reviewed here is broader and thinner:
-direct academic evidence that a low CFO/NI ratio predicts **future abnormal stock
-returns** in an *unconditional* cross-section (i.e., applied to the whole market, not
-just value stocks) is considerably weaker and less consistently replicated than the
-evidence that it predicts **future earnings reversals, restatement risk, and distress/
-bankruptcy risk** [LIT, LOW CONFIDENCE — this is a qualitative characterization of a
-diffuse secondary literature rather than a single citable headline result]. That is:
-cash conversion is well evidenced as a **risk/distress predictor and an earnings-
-persistence predictor**; its evidence as a **standalone unconditional return
-predictor** is closer to Sloan's original accrual result restated in ratio form (and
-therefore inherits that anomaly's own decay caveat from §1) than to a distinct,
-independently-validated signal. This desk should treat cash conversion as: (a) fully
-subsumed by the Hribar-Collins accrual construction already discussed in §1 when
-applied unconditionally, and (b) a genuinely distinct, well-evidenced tool only when
-used **as a distress/trap screen conditioned on other information** — exactly
-Piotroski's architecture, not a new one.
+**What the evidence actually supports.** Distinguishing this from Piotroski (dossier b):
+his F-Score treats CFO>NI as one of nine signals **conditioned on being inside the
+already-cheap value universe**, validated as improving returns *within that subset*.
+The broader cash-conversion literature is thinner: direct evidence that a low CFO/NI
+ratio predicts **future abnormal returns unconditionally** (the whole market, not just
+value stocks) is considerably weaker than the evidence it predicts **future earnings
+reversals, restatement risk, and distress/bankruptcy risk** [LIT, LOW CONFIDENCE — a
+qualitative characterization of a diffuse literature]. Cash conversion is well evidenced
+as a **risk/distress and earnings-persistence predictor**; as a **standalone
+unconditional return predictor** it is closer to Sloan's accrual result restated in
+ratio form (inheriting that anomaly's decay caveat, §1) than a distinct signal. Treat it
+as: (a) subsumed by the Hribar-Collins accrual construction (§1) when unconditional, and
+(b) genuinely useful only **as a distress/trap screen conditioned on other
+information** — Piotroski's architecture, not a new one.
 
 ---
 

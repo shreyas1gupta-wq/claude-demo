@@ -77,78 +77,52 @@ practitioner-testing context behind that sentence.
 
 **Moskowitz-Grinblatt (1999), in more depth.** Dossier a already gives the full citation
 and headline claim (industry momentum "largely subsumes" individual-stock momentum). Two
-additional facts matter for how this desk should read its own momentum book:
-
-- **Magnitude and construction.** M&G's central test held individual stocks *randomly
-  selected within* winning/losing industries (destroying stock-specific momentum
-  information while preserving the industry-level return) and found this randomized
-  portfolio captured **most of the profit** of a standard individual-stock momentum
-  strategy — a large fraction, on the order of half or more of the raw spread, though the
-  exact percentage split across specifications is not one I can cite with full confidence
-  here **[LIT, LOW CONFIDENCE — directionally certain, the specific fraction is not]**.
-  The complementary cut — individual-stock momentum computed *within* an industry
-  (industry-neutral) — survives, but is smaller and considerably weaker than the
-  cross-industry version, and (distinctively) is **not** subject to the same sharp
-  January reversal that plagues the standard winner/loser momentum portfolios **[LIT]**.
-- **Decay at longer horizons.** Industry momentum itself is not a permanent-slope trend:
-  M&G found it profitable at horizons from 1 to 12 months but, like individual-stock
-  momentum, subject to **long-run reversal** beyond roughly a year — winning industries
-  that outperformed over the past 6-12 months tend to give some of it back at 2-3 year
-  horizons, the industry-level analog of the DeBondt-Thaler long-run reversal pattern
-  **[LIT, LOW CONFIDENCE]**. This matters directly for how the desk should size any
-  future industry-momentum design: a 12-1 industry rank (the construction proposed in
-  dossier a's edge candidate #3) is inside the window where the literature expects a
-  positive spread; a 24-36 month industry-momentum design would be fighting the same
-  reversal literature that already killed several return-timing constructs on this desk's
-  own book (T2, F7a — dossier a §2).
+further facts matter for this desk's own momentum book. **Magnitude and construction**:
+M&G's central test held individual stocks *randomly selected within* winning/losing
+industries — destroying stock-specific momentum information while preserving the
+industry-level return — and found this randomized portfolio captured **most of the
+profit** of standard individual-stock momentum, on the order of half or more of the raw
+spread (exact split not citable with confidence) **[LIT, LOW CONFIDENCE — directionally
+certain, the fraction is not]**; the complementary industry-neutral cut survives but is
+smaller, and — distinctively — is **not** subject to the sharp January reversal that
+plagues standard winner/loser portfolios **[LIT]**. **Decay at longer horizons**: industry
+momentum is profitable at 1-12 months but, like stock momentum, subject to **long-run
+reversal** beyond roughly a year — the industry-level analog of DeBondt-Thaler
+**[LIT, LOW CONFIDENCE]**. This bounds how the desk should size any future industry-
+momentum design: a 12-1 rank (dossier a's edge candidate #3) sits inside the window the
+literature expects a positive spread; a 24-36 month version would fight the same reversal
+literature that already killed T2 and F7a (dossier a §2).
 
 **Hong, Torous & Valkanov — do some industries lead the market?** Hong, Torous & Valkanov
 (2007), "Do Industries Lead the Stock Market?", *Journal of Financial Economics*
-83(2):367-396 **[LIT — recalled with reasonable confidence on author/venue/year; treat the
-exact volume/page numbers as [VERIFY]]**. Their finding: a number of industries — those
-most tied to macroeconomic fundamentals (their examples cluster around commodity-linked
-and consumer-facing industries rather than, say, technology) — **lead** the broad
-aggregate stock market by up to roughly two months, i.e., past industry returns forecast
-*future aggregate market* returns better than the reverse **[LIT, LOW CONFIDENCE on the
-exact lead window and industry list]**. Their proposed mechanism is gradual information
-diffusion (the same Hong-Stein 1999 slow-diffusion family cited elsewhere in this
-program's momentum literature base) applied at the industry-to-market level rather than
-the firm-to-firm level: industry-specific information relevant to the whole economy
-diffuses into industry prices before it diffuses into the prices of unrelated sectors and
-the aggregate index. This is a *lead-lag*, not a *rotation*, claim — it says nothing
-directly about which sector to overweight when, only that some industries contain
-information the rest of the market has not yet priced. It is nonetheless a second,
-independent (from George-Hwang, from BSV/HS) behavioral-diffusion mechanism the desk
-should keep distinct when writing survival arguments (CONTRACT §5) for any future
-industry-level design: "why does this survive being known" has a different answer for
-a level-relative-to-anchor effect (52-week high), a within-industry momentum effect, and
-a cross-market industry-lead effect, even though all three sit under the broad
-"cross-sectional predictability" umbrella.
+83(2):367-396 **[LIT — author/venue/year recalled with reasonable confidence; exact
+volume/page as [VERIFY]]**. Finding: industries tied to macroeconomic fundamentals
+(commodity-linked and consumer-facing industries, rather than technology) **lead** the
+aggregate market by up to roughly two months — past industry returns forecast *future
+market* returns better than the reverse **[LIT, LOW CONFIDENCE on the exact lead window
+and industry list]**. Mechanism: gradual information diffusion (the Hong-Stein 1999
+family) applied industry-to-market rather than firm-to-firm. This is a *lead-lag*, not a
+*rotation*, claim — it says nothing about which sector to overweight when, only that some
+industries carry unpriced information. It is a third, independent (from George-Hwang, from
+BSV/HS) diffusion mechanism the desk should keep distinct when writing survival arguments
+(CONTRACT §5) for any industry-level design.
 
-**The Grundy-Martin re-examination — a genuine complication, not a rebuttal.** Grundy &
-Martin (2001), *Review of Financial Studies* 14(1):29-78, re-examine momentum's factor
-exposures and risk characteristics using hedged, factor-neutral portfolio constructions
-**[LIT — author pairing and venue recalled with reasonable confidence; treat the exact
-title and page range as [VERIFY]]**. The result most relevant here: when momentum
-portfolios are explicitly hedged to be neutral to industry composition (alongside size and
-book-to-market), a sizeable momentum spread **survives** — meaning the M&G "industry
-explains most of momentum" claim is not the full story; a genuine within-industry,
-stock-specific component of momentum profitability remains economically large even after
-industry effects are stripped out **[LIT, LOW CONFIDENCE — the precise magnitude of the
-surviving industry-neutral spread relative to the raw spread is not one I can cite with
-confidence]**. The honest synthesis the desk should carry forward, bracketing rather than
-resolving the question: M&G show industry membership captures a large share of *raw*
-momentum profit; Grundy-Martin show a real, non-trivial residual survives once industry is
-hedged out. Read together, this is directly relevant to how this desk should think about
-its **already-booked momentum work** (L3's rank-blend, N4a's 52-week-high/12-1 overlap
-test) — the desk has never explicitly decomposed its own India momentum sleeve into an
-industry-driven component versus a within-industry component, and the M&G/Grundy-Martin
-bracket says that decomposition is not a null question to skip: a meaningful share of
-whatever L3's momentum leg earns could, in principle, be re-expressible as (undisclosed)
-industry momentum, with different decay/crowding properties than the stock-picking story
-the desk has been telling itself. This is flagged as an open decomposition question, not
-run here (no data available for it on the current survivor panel construction without
-a dedicated design).
+**The Grundy-Martin re-examination — a complication, not a rebuttal.** Grundy & Martin
+(2001), *Review of Financial Studies* 14(1):29-78 **[LIT — author pairing/venue recalled
+with reasonable confidence; exact title/page range as [VERIFY]]**, re-examine momentum
+with hedged, factor-neutral constructions. Relevant result: momentum hedged neutral to
+industry (alongside size and book-to-market) still leaves a sizeable spread — the M&G
+"industry explains most of momentum" claim is not the full story; a genuine
+within-industry, stock-specific component remains economically large **[LIT, LOW
+CONFIDENCE on the exact surviving magnitude]**. Bracketed together: M&G show industry
+captures a large share of *raw* momentum profit; Grundy-Martin show a real residual
+survives once industry is hedged out. This bears directly on this desk's **already-booked
+momentum work** (L3's rank-blend, N4a's 52-week-high/12-1 overlap) — the desk has never
+decomposed its own India momentum sleeve into industry-driven versus within-industry
+components, and that decomposition is not a null question: a meaningful share of L3's
+momentum leg could be re-expressible as undisclosed industry momentum, with different
+decay/crowding properties than the stock-picking story told so far. Flagged as an open
+decomposition question, not run here.
 
 ## 3. Indian institutional practice
 
