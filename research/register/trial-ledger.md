@@ -3498,3 +3498,28 @@ consumption is capped at Tier-C monitor/reduce-only pending PIT smallcap data.
 CONSUMPTION: one line into the india-regime-playbook (post-bear year: do not add
 smallcap risk for at least the next 12m; the i2 winter-rebound is a watch, not a
 tilt). Census 4 (1156 -> **1160**).
+
+## Entry SC-D3a (2026-09-10) — PRE-REGISTERED before running: THE SURVIVOR-PANEL
+CROSS-CHECK OF THE INDIA INVERSION (one-way partial of SC-D3; the parent's registered
+prior for the mechanism quoted verbatim per process note #5: "i3 positive but 2018-19
+is the known counterexample; TL-D2 doctrine caps ALL consumption here at Tier-C
+monitor/reduce-only" — i3 then printed INVERTED at -12.31 vs -0.20). Data: the NIFTY500
+survivor panel (n500_adjclose + n500_value_traded, daily 2012-2021, 487 names) + the
+NIFTY 50 index vault for the market state. SURVIVORSHIP ONE-WAY RULE, stated now: the
+panel deletes dead/delisted names, which FLATTERS smallcap returns; therefore a print
+AGAINST smallcap here is admissible evidence (it survives a bias working the other
+way), while a print FOR smallcap is recorded but is NOT evidence. Construction:
+monthly returns from adjclose; size proxy = trailing-12m median daily value traded,
+terciles per month (the TL-D2 s9 proxy); SL_t = EW mean monthly return, small tercile
+minus large tercile. CELLS (3): a1 the i3 analog — next-12m SL after trailing-12m
+NIFTY total-return DOWN vs UP (episodes are FEW in 2013-2021: ~2016, ~2019, COVID-2020;
+n stated with the print); a2 the i2 analog — trailing-36m SL terciles (expanding where
+feasible, else full-sample FLAGGED) -> next-12m SL; a3 the 2018-19 unwind anatomy,
+descriptive — SL cumulative from 2018-01 peak to trough and the following 12m (the
+categorization-reform episode at daily resolution; true damage is WORSE than printed,
+survivor caveat). PRIOR (two-sided): a1 NEGATIVE (hardens the i3 inversion — and on a
+panel that flatters small, a negative print is strong); a2 LO-tercile best (matches
+i2) but any pro-smallcap reading is one-way-capped at "consistent, not evidence";
+a3 trough SL cumulative <= -25pp with NO recovery inside 12m. If a1 prints POSITIVE
+the inversion does NOT harden and the IIMA-vs-panel disagreement becomes its own
+open question (booked, not resolved here). Census 3 on the day.
