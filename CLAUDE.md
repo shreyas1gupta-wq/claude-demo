@@ -140,3 +140,19 @@ artifacts refreshed to the construction era (rows 50-53, census 1,140, the stand
 the batteries, the India handoff queue, batches 3+4) — the owed preservation items cleared.
 Still waiting on the principal: the India fundamentals drop (QG-D6 + five frozen designs),
 OPEN_QUESTIONS batches 3+4 (incl. B4-4), funding_rate/ADV, Priority-1 pulls.
+2026-09-10, the ES/SC arc (principal-directed: earnings revisions/surprises + small-vs-large
+predictability; census **1,160**; 3 Sonnet dossiers in research/notes/es-dossiers/): ES-D1
+KILL — EPS rank-migration (fundamental-momentum proxy) prints NEGATIVE (-3.03/-6.47 D10-D1)
+on the EW-survivor panel, the within-momentum gate failed (+0.42 vs +2.00), diagnosed as the
+QG-D2 reversal artifact; Atlas 3.5's DATA-REJECT on India consensus STANDS; the India route is
+a PIT PEAD event study on the handoff's filing_date (registrable on arrival). SC-D1 first
+gate PASSED — the small-vs-large Pb-spread orders next-12m relative return (+16.05pp T1-T3,
+corr -0.69 at 36m, Pe-robust; in-sample, flagged); the growth gap runs weakly POSITIVE; NSE
+index-valuation runsheet row added (2021 splice caveat named). SC-D2: US SMB momentum is
+pre-1981 only (+7.96 -> -0.4/-0.7) — era-fragility instance #3; post-bear small rebound real
+(+5.15pp). SC-D3 HEADLINE: the rebound INVERTS in India (-12.31 vs -0.20 after down years;
+gap -12.11pp) — playbook addendum: NO smallcap adds for 12m after a bear year (Tier-C);
+the only India timing shape is the 36m winter rebound (+10.32, a watch); IIMA regime map
+passed its sanity gate (2018 peak, 2023-24 froth visible; mean -2.82%/yr matches TL-D2).
+Lesson 54 published (row 54). Model note: principal directed (09-10) all subagents run on
+Sonnet/Opus, never the session default — Fable weekly limit exhausted.

@@ -1,0 +1,166 @@
+<title>The Rebound That Changes Sign</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f7f7f3; --card:#fcfcfb; --ink:#14201c; --ink-2:#4c5a54; --ink-3:#8a938e;
+  --accent:#14634c; --accent-ink:#0e4a39; --rule:#dfe2db; --rule-soft:#eaece5;
+  --panel:#eef1ea; --warn-bg:#f6ede4; --warn-ink:#8a4520;
+  --good:#1baf7a; --good-bg:#e7f5ee; --bad:#b3403a; --bad-bg:#f7e7e5;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+    --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+    --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+    --good:#33bd8c; --good-bg:#16281f; --bad:#e08a84; --bad-bg:#2a1917;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101413; --card:#181d1b; --ink:#e8ece7; --ink-2:#a7b2ab; --ink-3:#6f7a74;
+  --accent:#4fb08f; --accent-ink:#6cc4a5; --rule:#2a312d; --rule-soft:#222824;
+  --panel:#1c2320; --warn-bg:#2a211a; --warn-ink:#e0a276;
+  --good:#33bd8c; --good-bg:#16281f; --bad:#e08a84; --bad-bg:#2a1917;
+}
+*{box-sizing:border-box}
+body{background:var(--ground); color:var(--ink); margin:0;
+  font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:15.5px; line-height:1.6}
+.wrap{max-width:880px; margin:0 auto; padding:0 20px 90px}
+header{padding:46px 0 8px}
+.eyebrow{font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px}
+h1{font-family:"Newsreader",Georgia,serif; font-size:clamp(30px,5vw,42px); font-weight:500; margin:0; text-wrap:balance}
+.sub{color:var(--ink-2); max-width:70ch; margin:12px 0 0}
+h2{font-family:"Newsreader",Georgia,serif; font-size:22px; font-weight:500; margin:44px 0 8px;
+  padding-top:18px; border-top:1px solid var(--rule); text-wrap:balance}
+p{max-width:72ch}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.tablewrap{overflow-x:auto; background:var(--card); border:1px solid var(--rule); border-radius:12px; margin:16px 0}
+table{border-collapse:collapse; width:100%; font-size:13.5px; min-width:560px}
+th{font-size:11px; letter-spacing:0.07em; text-transform:uppercase; color:var(--ink-3); font-weight:600;
+  text-align:left; padding:10px 12px; border-bottom:2px solid var(--rule)}
+td{padding:9px 12px; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace; font-size:12.5px; font-variant-numeric:tabular-nums; white-space:nowrap}
+.pos{color:var(--good); font-weight:600} .neg{color:var(--bad); font-weight:600}
+.verdict{background:var(--good-bg); border:1px solid var(--rule); border-left:3px solid var(--good);
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0}
+.kill{background:var(--bad-bg); border:1px solid var(--rule); border-left:3px solid var(--bad);
+  border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0}
+.warnbox{background:var(--warn-bg); color:var(--warn-ink); border-radius:8px; padding:12px 16px; margin:14px 0; font-size:14px}
+.chip{display:inline-block; font-size:11px; font-weight:600; border-radius:999px; padding:2px 9px;
+  background:var(--panel); color:var(--ink-2); border:1px solid var(--rule); vertical-align:2px}
+footer{margin-top:54px; padding-top:16px; border-top:1px solid var(--rule);
+  font-size:12.5px; color:var(--ink-3); max-width:76ch}
+a{color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Ionic quant desk · Cycle School · lesson 54 · the ES/SC arc, 10 Sep 2026</p>
+  <h1>The Rebound That Changes Sign</h1>
+  <p class="sub">Three questions from the principal — earnings revisions, earnings surprises, and
+  what predicts small-vs-large — met twenty pre-registered cells and three literature dossiers in
+  one day. One prior died, one gate passed, and the best-known size trade in American markets
+  turned out to transfer to India with the wrong sign. Every number below is a booked print from
+  the trial ledger (entries ES-D1, SC-D1, SC-D2, SC-D3); literature numbers carry [LIT].</p>
+</header>
+
+<h2>1 · Revisions: the data verdict stands, so we tested the proxy — and it failed honestly</h2>
+<p>India has no free point-in-time analyst-consensus history — that verdict (Atlas 3.5,
+DATA-REJECT) is unchanged, and the dossier work re-confirmed it: the revisions literature is
+five decades deep (Givoly-Lakonishok → Chan-Jegadeesh-Lakonishok → Gleason-Lee [LIT]), but the
+data to run it in India is paid-only. What CAN be tested free is the analyst-free substitute:
+<b>fundamental momentum</b> — rank migration in reported EPS (Novy-Marx 2015 [LIT]). ES-D1 ran
+it on the US firm panel (1,207 stocks, 1999-2019) with the prior at +2-6%/yr. The print:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Cell</th><th>Print</th><th>Read</th></tr></thead>
+  <tbody>
+    <tr><td>e1 · Δ3m EPS-rank deciles, D10−D1</td><td class="num neg">−3.03%/yr</td><td>NEGATIVE — the prior missed</td></tr>
+    <tr><td>e2 · Δ12m version</td><td class="num neg">−6.47%/yr</td><td>worse at the longer lookback</td></tr>
+    <tr><td>e3 · large-cap control</td><td class="num">+1.27 / −2.17</td><td>no effect either direction in big names</td></tr>
+    <tr><td>e4 · horizon shape</td><td class="num">−3.0 / −2.8 / −3.0</td><td>flat across 1m/3m/12m — a level, not a drift</td></tr>
+    <tr><td>e5 · within-momentum gate</td><td class="num">+0.42 vs the +2.00 bar</td><td class="neg">consumption gate FAILED</td></tr>
+    <tr><td>e7 · vol split</td><td class="num">HIvol −3.47 · LOvol −0.19</td><td>junk-concentrated</td></tr>
+  </tbody>
+</table></div>
+<div class="kill"><b>Diagnosis, not despair:</b> the negative ladder is the EW-survivor
+reversal artifact this desk already caught once (QG-D2) — EPS-rank collapses mark beaten-down
+names whose no-delisting, equal-weighted returns then bounce. The one mechanism-consistent
+pocket: fundamental improvement pays +4-5%/yr <i>only where price momentum has not yet moved</i>
+(e5's low-momentum bins — exactly the Novy-Marx nuance [LIT]). Recorded, not consumed: it sits
+inside a failed gate on a survivor panel. The India route that remains is the clean one — a
+point-in-time PEAD event study on the fundamentals handoff's <span class="mono">filing_date</span>
+column, registrable the day that vault authenticates.</div>
+
+<h2>2 · Size timing, US: the valuation spread clears its first gate</h2>
+<p>SC-D1 built, per month, the gap between what the market pays for small versus large
+(median P/B rank, bottom-quintile minus top-quintile) and asked whether that spread orders the
+NEXT year's small-minus-large return. In-sample, 240 months, flagged as such — a first-gate
+existence test, not a strategy:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Signal tercile</th><th>Next-12m small − large</th><th>Robustness</th></tr></thead>
+  <tbody>
+    <tr><td>T1 · small CHEAP vs large</td><td class="num pos">+28.78pp</td><td rowspan="3">Pe repeat: T1−T3 <span class="num">+16.81pp</span>;<br>corr(V, SL) −0.26 / −0.50 / <b>−0.69</b> at 1/12/36m — rising with horizon, as the value-spread literature says [LIT]</td></tr>
+    <tr><td>T2 · middle</td><td class="num">+13.06pp</td></tr>
+    <tr><td>T3 · small EXPENSIVE</td><td class="num">+12.73pp</td></tr>
+  </tbody>
+</table></div>
+<p>The growth gap runs the <i>other</i> way — months when small caps were out-growing large caps
+preceded MORE small outperformance (T3−T1 +9.4pp, corr +0.22 at 36m): a weak momentum-flavored
+conditioner, not a contrarian one. And the dossier adds the structural warning: wide spreads can
+forecast real cash-flow gaps rather than mispricing (Cohen-Polk-Vuolteenaho [LIT]) — the
+decomposition any India version must survive.</p>
+<div class="verdict"><b>Gate PASSED → the India ask goes live.</b> The NSE index P/E-P/B history
+row is now on the runsheet (with the 2021 standalone→consolidated splice break named in advance),
+and the dossier's caution stands: NSE's published smallcap P/E is only partially point-in-time,
+so the clean fallback instrument is a price-only smallcap/largecap relative series.</div>
+
+<h2>3 · The headline: the post-bear small rebound inverts in India</h2>
+<p>SC-D2 and SC-D3 ran the same four time-series cells on a century of US SMB (1926-2024) and
+three decades of India SMB (IIMA, 1993-2025). Two US facts printed: size momentum existed only
+before Banz published it (+7.96%/12m pre-1981, then −0.4 and −0.7 — the third era-fragility
+instance this register has booked in two days), and the post-bear small rebound is real. Then
+India:</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>Next-12m SMB after a DOWN market year</th><th>US</th><th>India</th></tr></thead>
+  <tbody>
+    <tr><td>after a down year</td><td class="num pos">+6.18%</td><td class="num neg">−12.31%</td></tr>
+    <tr><td>after an up year</td><td class="num">+1.03%</td><td class="num">−0.20%</td></tr>
+    <tr><td>the gap</td><td class="num pos">+5.15pp — the rebound</td><td class="num neg">−12.11pp — the INVERSION</td></tr>
+  </tbody>
+</table></div>
+<p>In the US, small caps are the high-beta recovery asset: the year after a bear year is their
+best state. In India, the year after a bear year is when smallcaps keep <i>losing</i> to
+largecaps — consistent with everything this register already knows about the segment
+(uncompensated beta at factor level, stress that keeps arriving after the event, the risk-off
+identifiability lag). The only India timing shape found: after a multi-year smallcap
+<i>winter</i> (bottom tercile of trailing-36m SMB), the next year prints +10.32% — a watch,
+never a tilt. The IIMA regime map passed its own sanity gate: the 2018 categorization-reform
+peak and the 2023-24 froth are both visible at the right dates, and the series' full-period
+mean (−2.82%/yr) matches the TL-D2 verdict on an independent construction.</p>
+<div class="warnbox"><b>The playbook line this bought:</b> after an Indian bear year, do not
+add smallcap risk for at least the next twelve months. Tier-C, reduce-only, like everything
+else in this segment. The rebound trade you learned from American history has the wrong sign
+here — that one sentence is what twenty cells were for.</div>
+
+<h2>4 · What the dossiers add</h2>
+<p>Three literature dossiers shipped with the prints
+(<span class="mono">research/notes/es-dossiers/</span>): revisions must never be conflated with
+forecast <i>dispersion</i> (an opposite-signed, short-sale-constraint effect [LIT]); PEAD did
+not die, it migrated to small/illiquid names where arbitrage capital won't follow — exactly
+this desk's Aggressive-book habitat and its highest-cost segment at once [LIT]; India's
+staggered 45-60-day filing calendar means any PEAD sleeve needs an explicit
+days-since-announcement state variable, not a uniformly-fresh universe; and small-cap headline
+growth is routinely diluted away per-share (Fama-French [LIT]) — any India small-growth signal
+must be built dilution-adjusted, which is precisely what the fundamentals handoff's
+shares-outstanding history will allow.</p>
+
+<footer>
+  Sources of record: research/register/trial-ledger.md entries ES-D1, SC-D1, SC-D2, SC-D3
+  (registrations committed at 7cecf2a BEFORE the run; results booked same day) ·
+  scripts/analyze_es_sc.py · research/notes/es-dossiers/a,b,c ·
+  research/notes/india-regime-playbook.md (the 2026-09-10 addendum). Census 1,140 → 1,160.
+  Data caveats live in the entries: the US firm panel is EW, survivor-tilted, no delistings;
+  SC-D1 is in-sample by construction and says so; overlapping windows flagged throughout.
+</footer>
+</div>
