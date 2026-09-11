@@ -5687,3 +5687,75 @@ indices, and the CN programme already established that city dispersion exceeds n
 (Wenzhou -63%, Hainan ~-87%, Langfang >-50% all deeper than the panel's worst national episode) —
 so a single Indian CITY can exceed any threshold this panel reports, in both directions, and the
 panel's frequencies are therefore a floor on city-level extremes, not a cap; (iv) annual frequency.
+
+## Entry IN-D1..IN-D2 RESULT (2026-09-11, interpretation written AFTER the print; runner
+`scripts/analyze_india_thresholds.py` + `research/india_thresholds.json`) — **A SUSTAINED 20%/YR
+REAL PROPERTY BOOM HAS NOT HAPPENED ANYWHERE IN THE MODERN ERA OF THIS PANEL; BUT HOT MARKETS STAY
+HOT AT FIVE YEARS, WHICH REFUTES MY OWN MEAN-REVERSION PRIOR.** Three of five bars MISSED and the
+misses carry the content. DESK VERIFICATION on a different code path (pivot+shift rather than the
+per-country loop): window count **1,934 exact**, T>=15 frequency **2.33% and forward +9.65% exact**,
+T>=20 **0.98% and +11.16% exact**, post-1970 frequencies **0.00% and 0.45% exact**.
+
+**IN-D1 — THE REAL THRESHOLD BATTERY.** 1,934 overlapping 5-year windows, 18 countries.
+Unconditional P(a >=20% crash peak begins within 5 years of any window) = **13.0%**. By threshold
+(frequency / distinct countries / next-5y real / crash lift): T>=5 **20.94%** / 18 / **+2.06%/yr** /
+1.77x; T>=10 **5.12%** / 14 / **+5.05%** / 2.02x; T>=15 **2.33%** / 7 / **+9.65%** / 1.03x; T>=20
+**0.98%** / 3 / **+11.16%** / 2.03x.
+- (a) **HIT** — T>=20%/yr real is rare at **0.98%** of windows, under the 2% bar, and confined to
+  three countries in 150 years.
+- (b) **MISS, and it is the most useful print in the entry.** The next-5y real return after a
+  T>=15 window is **+9.65%/yr** — strongly POSITIVE, not negative. It is +11.16% after T>=20.
+  **Property momentum beats mean reversion at the five-year horizon**, which is the opposite of the
+  registered prior and is recorded as such. Hot property markets stay hot.
+- (c) **MISS** at T>=15 (lift **1.03x** against the 2.0x bar) — but non-monotone: T>=10 gives 2.02x
+  and T>=20 gives 2.03x while T>=15 gives 1.03x. With 45 and 19 windows across 7 and 3 countries
+  the middle rung is small-sample noise, so the honest reading is that the crash lift is ROUGHLY
+  2x at high appreciation and the registered bar fails on the specific rung it named. Not rounded
+  into a pass.
+- (a4) The longest sustained run: **Japan, 15 consecutive years** of trailing-5y real appreciation
+  above 15%/yr — the episode CN-D1 booked as -47.3% over 18 years. The one market that did it
+  longest is the one that then fell slowest and longest.
+- (a5) **THE ERA SPLIT CONTAINS THE ANSWER TO THE PRINCIPAL'S QUESTION.** Post-1970: **0.00% of 884
+  windows** cleared 20%/yr real — it has NEVER happened in the modern era of this panel — and only
+  **0.45%** cleared 15%/yr, against pre-1970's 1.81% and 3.90%. The pre-1970 extremes are
+  currency-recovery artifacts (the panel maximum is Germany 1927 at +89.44%/yr, i.e. Weimar).
+  **THE POST-1970 PANEL MAXIMUM IS IRELAND 1999 AT +17.25%/YR REAL — and Ireland 2006 is the worst
+  modern bust in CN-D1's own episode list at -55.7%.** The fastest modern boom and the worst modern
+  bust are the same country, seven years apart.
+
+**IN-D2 — THE NOMINAL TWIN.** Registered bars first, on the full sample as written: (a) **HIT** —
+the nominal frequency at T=20 is **4.47x** the real frequency, clearing the 3x bar; (b) **MISS** —
+only **15.3%** of >=20%/yr nominal windows were simultaneously real-negative against a >=25% bar.
+BUT the registered nominal leg is dominated by currency events: the mean nominal appreciation in
+those hot windows is **+962.71%/yr**, which is Weimar and its peers, not property. UNREGISTERED
+SUB-READ, reported alongside and never instead (the CN-D1 precedent), dropping windows that touch
+any year with CPI inflation above 50% — a stated economic exclusion, not a data-dependent trim:
+T>=20%/yr nominal occurs in **2.38%** of 1,847 windows across **8 countries** (post-1970: 2.04%),
+next-5y **+8.38%/yr**; money illusion falls to **2.3%** real-negative, and inflation supplied
+**46%** of the headline (mean real +12.42 vs nominal +23.17%/yr). So bar (b) misses on BOTH cuts and
+the conclusion is the opposite of the registered prior: **nominal property gains in this panel are
+mostly REAL, not money illusion** — 20%/yr nominal has typically meant roughly 12%/yr real. That
+materially strengthens the informational content of Indian nominal price talk and is booked as a
+prior correction.
+
+**THE PRINCIPAL'S BAR, PRICED.** "Grow more than 20% for next 5yr" resolves into two different
+questions and the panel answers both: read as **20% CUMULATIVE** (=3.71%/yr) it is cleared by
+**54.55%** of nominal windows and **29.89%** of real windows — a coin flip, and at -0.75%/yr real
+against a 4.5% CPI path it is a bar that loses money in real terms and loses 68pp of cumulative
+return to the desk's own standing book over the same five years. Read as **20% CAGR** it is cleared
+by **2.38%** of hyperinflation-clean nominal windows and **0.98%** of real windows, **zero of them
+post-1970 in real terms**.
+CONSUMPTION, and it is the frame the India city screen is built on: (i) a 20%/yr nominal five-year
+call on an Indian CITY is not impossible — registered limit (iii) binds, city dispersion exceeds
+national, and CN's own evidence (Wenzhou -63%, Langfang >-50%) shows city extremes far outside any
+national figure — but it is a **~1-in-50 outcome for a national market and unprecedented in real
+terms in the modern era**, so it must be presented as a bubble-velocity call, never as a growth
+forecast; (ii) the momentum finding means the desk should NOT dismiss a hot Indian micro-market on
+mean-reversion grounds, because at five years the base rate says it keeps running; (iii) it should
+simultaneously carry **~2x crash odds**, so the correct treatment is ride-it-but-size-it, exactly
+the F3a/sizing doctrine, not a binary in-or-out; (iv) and CN-D4's finding binds — a bigger boom
+buys a FASTER unwind, not a deeper one, so the exit plan matters more than the entry level.
+LIMITS as registered: 18 ADVANCED economies, no India, no EM, nothing at India's urbanization stage;
+windows OVERLAP so frequencies are exposure shares and no significance is claimed; these are
+NATIONAL indices and city dispersion exceeds them in both directions; annual frequency.
+CENSUS 10 (1389 -> **1399**).

@@ -134,7 +134,9 @@ this census exists so that can never happen silently.
 | CN-D3 predictive debt run-up (mortgage, household, public, lift, false positives) | 5 | 5 |
 | CN-D4 boom size vs crash depth/duration/velocity | 4 | 4 |
 | CN-D5 equities after a housing peak (1y/3y/5y, crisis split, benchmark) | 5 | 5 |
-| **RUNNING TOTAL (run cells)** | | **1389** |
+| IN-D1 real appreciation-threshold battery (4 thresholds + duration + era) | 6 | 6 |
+| IN-D2 nominal twin (3 threshold cells + money-illusion) | 4 | 4 |
+| **RUNNING TOTAL (run cells)** | | **1399** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·
