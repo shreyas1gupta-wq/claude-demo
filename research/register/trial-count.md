@@ -129,7 +129,12 @@ this census exists so that can never happen silently.
 | CH-D3 partial adjustment on the asset book (5 lambda + verdict) | 6 | 6 |
 | CH-D4 share-turnover lookback ladder, US panel (3 lookbacks + ladder + interaction) | 5 | 5 |
 | CH-D5 India volume shock (3 horizons + liquid sub-read + interaction + redundancy) | 6 | 6 |
-| **RUNNING TOTAL (run cells)** | | **1365** |
+| CN-D1 property-crash anatomy (census + depth/duration/velocity/pre-crash/ratio) | 6 | 6 |
+| CN-D2 rental yield through the cycle (peak, trough, change, compression) | 4 | 4 |
+| CN-D3 predictive debt run-up (mortgage, household, public, lift, false positives) | 5 | 5 |
+| CN-D4 boom size vs crash depth/duration/velocity | 4 | 4 |
+| CN-D5 equities after a housing peak (1y/3y/5y, crisis split, benchmark) | 5 | 5 |
+| **RUNNING TOTAL (run cells)** | | **1389** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

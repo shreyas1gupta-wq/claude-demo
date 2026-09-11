@@ -5342,3 +5342,131 @@ knowing that the measurable aggregate does not predict housing is itself the ans
 frequency cannot resolve within-year velocity, so all velocity statistics are annual-resolution
 lower bounds on peak monthly rates; (iv) the panel ends in 2020 and therefore contains no
 post-COVID episode.
+
+## Entry CN-D1..CN-D5 RESULT (2026-09-11, interpretation written AFTER the print; runner
+`scripts/analyze_china_baserate.py` + `research/china_baserate.json`) — **THE PROPERTY-CRASH BASE
+RATE: A THIRD OF THE VALUE, OVER FIVE TO SEVEN YEARS, AT A SPEED THAT MATCHES THE BOOM — AND THE
+BEST EARLY-WARNING INDICATOR IN THE LITERATURE IS WRONG SEVEN TIMES OUT OF EIGHT.**
+
+**TWO IMPLEMENTATION FIXES, BOTH MADE BEFORE ANY INTERPRETATION WAS WRITTEN, BOTH RECORDED
+BECAUSE BOTH CHANGED A VERDICT.** (i) The first implementation treated "never recovered to the old
+peak" as an unfinished decline and excluded it — which silently dropped **Japan 1991, Ireland 2006,
+Spain 2007, Denmark 2007 and UK 2007**, i.e. precisely the episodes China is being compared with.
+The registration says the TROUGH must be reached by 2020, not that the price must have recovered;
+the code was stricter than its own registration. An episode now counts when its trough is
+identifiable (recovered, OR at least 3 further observations after the trough). Census 43 -> **48**,
+and this materially moved a bar: CN-D3's mortgage lift went 1.29x (MISS) -> **1.72x (HIT)**. That
+is exactly why the fix had to precede interpretation. (ii) The unconditional equity benchmark was a
+1-year arithmetic panel mean while the episode 3y/5y cells were geometric annualized — the same
+units mismatch caught in CH-D2 earlier the same day; the benchmark is now horizon-matched and
+geometric (1y +7.20 / 3y +5.75 / 5y +5.45). DESK VERIFICATION on different code paths: Japan
+1991->2009 depth and velocity recomputed by hand off the two raw observations = **-47.31% and
+-3.50%/yr, exact**, with 2009 confirmed as the true minimum over 1991-2020 and pre-crash 5y +6.13
+exact; CN-D3's lift rebuilt with a disjoint peak-scan and an explicit forward-window loop = 1.64x
+against the script's 1.72x, the gap fully explained (the rebuild omits the registered 10-year
+peak-separation filter, finding 50 raw peaks vs 48 after separation), with the false-positive rate
+matching **exactly at 87.2%**.
+
+**CN-D1 — CRASH ANATOMY. Two bars HIT, one MISS, and the MISS is the headline.** 48 completed
+episodes, 18 countries, one unfinished decline excluded (Italy 2007). (a) HIT — median
+peak-to-trough REAL decline **-34.22%** (p25 -49.96, p75 -27.52), inside the registered [-40,-25].
+(b) HIT — median duration **6.5 years** (p25 4.75, p75 12.25) against the >=4y bar: property
+declines are slow in a way equity declines are not. (c) **MISS** — the median ratio of |decline
+velocity| to pre-crash 5-year appreciation velocity is **1.12x**, not below 1.0. Busts run FASTER
+per year than the booms that preceded them. Median decline velocity **-6.95%/yr** against median
+pre-crash appreciation of +5.60%/yr (10y: +4.41%/yr). **There is no "gentle deflation" discount in
+the base rate**, and any China narrative that assumes the unwind will be slower than the run-up is
+arguing against the historical record, not from it.
+*UNREGISTERED SUB-READ, reported alongside and never instead of the registered bars:* the
+pre-WWII episodes are dominated by war and hyperinflation rather than property cycles — Germany
+1913 **-98.2%**, Finland 1911 -91.3%, Japan 1927 -90.5%, France 1914 -83.8%, plus 65- and 56-year
+"declines" — and they own the full sample's tail. Restricting to peaks from 1970 (n=24, 16
+countries) gives: depth **-32.00%** (p25 -39.43, p75 -29.19), duration **5.5y**, decline velocity
+**-7.41%/yr**, pre-crash appreciation **+6.21%/yr**, and a velocity ratio of **0.99x** — almost
+exactly parity. The cleanest statement the panel supports: *a property bust runs at about the same
+annual speed as the boom that preceded it, and takes back about a third of the real price over five
+to seven years.* THE TWO ARCHETYPES, which bracket any China forecast: **Japan 1991** (-47.3% over
+**18 years** at only -3.50%/yr, ratio 0.57 — the slow grind) versus **Ireland 2006** (-55.7% over 6
+years at -12.70%/yr, ratio 1.55) and **Finland 1989** (-14.87%/yr, the fastest in the panel). Same
+approximate destination, three times the speed.
+
+**CN-D2 — RENTAL YIELD THROUGH THE CYCLE. BOTH BARS HIT.** Median yield **at the peak 3.78%**
+(modern era 3.29%), **at the trough 5.23%** (modern 4.94%), an expansion of **+1.41pp** (modern
++1.53pp) — bar (a) cleared, and the mechanism is visible: price falls faster than rent. Bar (b)
+cleared too — the yield COMPRESSES into the peak by **-0.83pp** over the final five years, so a
+compressing yield is a genuine warning marker rather than a coincidence. THE PLACEMENT THAT MATTERS
+AND ITS CAVEAT: the modern panel's peak yields run 1.49% (Spain 2007) to 8.22% (Finland 1974), with
+a median of 3.29%; **the lowest peak yield in the entire modern panel belongs to Spain, which then
+fell 42.9%**. Where China's tier-1 yields actually sit against that distribution is a
+web-sourced number and is therefore deliberately NOT asserted in this entry — it is the job of the
+`b4-resi-yield-national` dossier, and the comparison will be made in the dashboard with the source
+attached.
+
+**CN-D3 — WHAT PREDICTED IT. One HIT, one MISS with a mechanism, and one HIT that is the most
+practically important number in the battery.** (a) HIT — mortgage credit/GDP rose **+6.75pp** in
+the five years before a crash peak against a panel mean of +2.52pp, and the top-quintile
+contingency gives P(crash peak within 3y) 12.8% vs a 7.4% base rate = **LIFT 1.72x**, clearing the
+1.5x bar. Household debt behaves the same (+8.92 vs +3.64pp, lift 1.67x). The Jordà-Schularick-
+Taylor mortgage channel is real. (b) **MISS, and not in the registered direction**: public debt
+(`debtgdp`) does not merely fail to predict — its lift is **0.23x**, a strongly NEGATIVE
+relationship, and the 5y public-debt change at crash peaks (+0.77pp) is BELOW the panel mean
+(+1.50pp). The mechanism is reverse causality: public debt rises *during and after* property busts
+(bailouts, lost revenue, stimulus), not before them, so high public-debt growth marks the aftermath
+of someone else's bust rather than the approach of your own. The registered prior of "no predictive
+lift, within [0.8,1.25]" is recorded as MISSED. This extends DB-D1..D9's finding (public debt LEVEL
+never hurts equities) to a new statement: public debt GROWTH does not predict housing peaks either,
+and reads backwards. And the compounding limit, registered in advance: `debtgdp` is
+central-government debt, so it is the WRONG aggregate for China by construction — neither the
+aggregate this panel measures nor the one China actually carries (LGFV and quasi-fiscal) supports a
+public-debt early warning. (c) HIT, and far worse than registered — the mortgage indicator's
+**FALSE-POSITIVE RATE IS 87.2%** (registered prior: >=50%). Of 430 country-years in the top
+quintile of 5-year mortgage-credit growth, **87% were NOT followed by a crash peak within three
+years**. The best-supported early-warning indicator in the housing literature is wrong roughly
+seven times out of eight at a 3-year horizon. **CONSUMPTION, and it is a discipline point as much
+as a finding: "credit is growing fast, therefore a crash is coming" is a statement with a ~1-in-8
+hit rate.** Anyone who called China off credit aggregates alone was running that base rate, which
+is why the perma-bear calls spanned a decade before landing. Credit growth belongs in a regime
+STATE, never in a timing rule — the identical conclusion the ER arc reached about valuation, now
+established independently for housing credit.
+
+**CN-D4 — DOES A BIGGER BOOM CRASH FASTER OR ONLY FURTHER? BOTH BARS MISS, AND THE INVERSION IS
+THE RESULT.** Split at the median pre-crash 5y velocity (5.60%/yr): big-boom episodes print depth
+-37.99% vs small-boom -34.22% — deeper by only **3.76pp**, failing the >=8pp bar — while decline
+velocity is -8.53%/yr vs -5.04%/yr, a gap of **3.49pp/yr** that badly fails the registered "<2pp
+and not materially faster" prior. Duration: 6.0 years vs 10.0. The modern-era re-read agrees in
+direction (depth gap +2.00pp, velocity -8.50 vs -5.85). **A bigger boom buys a FASTER unwind, not a
+deeper one.** Depth is roughly invariant to how big the run-up was — about a third, whatever
+happened on the way up — and what the boom's size actually predicts is SPEED. Both registered
+priors were written the other way round and are recorded as missed. This is the single most
+decision-relevant cell for a China timeline: China's run-up was large, so the base rate points to a
+fast unwind reaching an ordinary destination, not a uniquely deep one.
+
+**CN-D5 — EQUITIES AFTER A HOUSING PEAK. Bar (a) HIT, bar (b) MISS on the more bearish branch,
+exactly as the two-sided registration anticipated.** Horizon-matched geometric unconditional
+benchmarks: 1y +7.20%, 3y +5.75%, 5y +5.45% real. All 48 episodes: next-1y **-6.53%** (excess
+**-13.73pp**), next-3y +1.65% (excess -4.10pp), next-5y +4.42% (excess -1.03pp). Split by whether a
+banking crisis fired within 3 years of the peak: crisis (n=17) next-1y **-12.27%**, excess
+**-19.48pp** — bar (a) cleared decisively; no-crisis (n=31) next-1y **-3.00%**, excess **-10.20pp**
+— bar (b) wanted within 3pp and gets -10.20, a clear MISS. **So a housing peak is an equity event
+whether or not the banks break; banks breaking roughly doubles it** (gap -9.28pp at 1y). THE SHAPE
+IS THE CONSUMPTION: the excess decays -13.73pp (1y) -> -4.10pp (3y) -> -1.03pp (5y). This is a
+FRONT-LOADED, largely mean-reverting one-year event, not a lost decade for equities — and it
+independently corroborates this desk's own CI-D5 crisis event study (t0 -14.1%, recovery from t+1)
+on a completely different construction and episode definition.
+
+**WHAT THE BASE RATE LETS THE DESK SAY.** Five statements, each with a number behind it: (1) a
+property bust takes back about a third of real value over five to seven years; (2) it runs at about
+the same annual speed as its own boom, and a larger boom buys speed rather than depth; (3) the
+rental yield expands ~1.5pp from peak to trough and compresses into the peak beforehand, so a
+compressed yield is a real warning marker; (4) rapid mortgage-credit growth genuinely lifts crash
+odds 1.7x but is wrong seven times out of eight, so it is a state and never a trigger, while public
+debt reads backwards; (5) the equity damage is a front-loaded ~-10pp excess in year one, doubled if
+banks break, and essentially gone by year five. China's own numbers are placed against each of
+these in the dashboard, from sourced dossiers, never from this panel.
+LIMITS, as registered plus one discovered: JST is 18 ADVANCED economies and this is a base rate,
+never a forecast; `debtgdp` misses LGFV entirely; annual frequency makes every velocity figure a
+lower bound on peak monthly rates; the panel ends in 2020 so there is no post-COVID episode; and
+the one discovered in the run — the pre-1945 episodes are war-and-inflation artifacts rather than
+property cycles, which is why the modern-era sub-read is reported throughout and why the registered
+full-sample bars must be read with that contamination in view rather than quietly re-cut.
+CENSUS 24 (1365 -> **1389**).
