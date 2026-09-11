@@ -1,9 +1,15 @@
-# HANDOFF PROMPT — THE INDIA REAL-ESTATE PREDICTION ENGINE (v3.1)
+# HANDOFF PROMPT — THE INDIA REAL-ESTATE PREDICTION ENGINE (v4)
 Written 2026-09-11 at the close of the IN programme, for a NEW Claude Code thread.
 Paste everything below the rule. Self-contained: assumes the repo, assumes no memory of the
 conversation that produced it.
 
-**v3 supersedes v2.** It adds the principal's four scope decisions, the cost-drag calculation that
+**v4 supersedes v3.1.** It folds in the evidence pack's audit: the §4.1 censoring identity is
+corrected to a behavioural/bunching problem with a one-number day-one diagnostic, the area-basis
+constant is replaced by an explicit loading factor, and §11.5 adds the twelve research modalities
+nobody has swept — three of which are uncensored Indian price series. Read
+`research/register/india-realestate-evidence-pack.md` alongside this.
+
+**v3 superseded v2.** It adds the principal's four scope decisions, the cost-drag calculation that
 reframes the entire exercise, the rental-data route that may resolve the yield conflict, and the
 project's own "what we will not build" boundary. **v3.1 adds §0.5: run this on the desktop app, not
 on the web, because the web environment cannot reach any primary Indian source.**
@@ -184,6 +190,22 @@ are separated.
 
 ### §4.1 — THE INTELLECTUAL CORE: UNDER-REPORTING IS AN IDENTIFIED ECONOMETRIC PROBLEM
 
+> **CORRECTION, 2026-09-11, and read it before the rest of §4.1.** The censoring identity below —
+> registered = max(true, circle rate) — was **refuted as a mechanical structure** by the evidence
+> pack's audit (`india-realestate-evidence-pack.md` §6.2 #1). Stamp duty is charged on the *higher
+> of* declared price or circle rate, which constrains the **tax base**, not the **declared
+> consideration**: nothing mechanically stops a deed recording below the floor, because the duty is
+> identical either way. The floor binds through the income-tax deeming provisions (Sections 50C /
+> 43CA / 56(2)(x)) and their 5-10-20% tolerance band — an *incentive*, not a censoring rule. So the
+> pile-up at the circle rate is a **behavioural equilibrium**, and a plain Tobit likelihood assigns
+> **zero probability to any observation below the floor**, which is misspecification before any
+> distributional concern. **Day-one diagnostic, and it is one number: the share of registered
+> declarations strictly below the local circle rate.** If it is non-trivial, the model below is
+> replaced by the bunching / notch-with-plateau family — which is a *better* model, reachable with
+> the same data, and identified off the statutory tolerance-band changes. Everything else in §4.1
+> (the threshold is observed, ward-level and time-varying; the share at the floor estimates
+> under-reporting incidence) survives unchanged.
+
 Read this twice. It is the best idea available on this subject and it converts a data-quality
 complaint into a model.
 
@@ -305,7 +327,10 @@ Those same windows carry **~2× crash odds**. So: **ride-it-but-size-it, never i
 engine to express that.
 
 **6.6 Units and composition will destroy this project if you let them.** Carpet vs built-up vs
-super-built-up moves an Indian per-sqft figure **20-35%** and reverses rankings; RERA mandates carpet
+super-built-up moves an Indian per-sqft figure by a **loading factor L, psf ratio = 1 + L** — a
+70-80% carpet ratio gives **+25% to +43%**, and Mumbai loading is reported at **40-50%**, so L runs
+to **0.50** (the earlier "20-35%" constant was arithmetically wrong and is retired; evidence pack
+§6.2 #2) — and it reverses rankings; RERA mandates carpet
 since 2017 but older and broker data does not. Circle rates, jantri rates and government auction
 prices are **not market prices**. The prior programme caught a Chinese national land series whose
 *average rose* while *every tier fell* — a pure mix shift the source itself labelled 结构性上涨.
@@ -448,6 +473,50 @@ prediction dashboard goes stale and the desk has a precedent for marking such wo
   warns against).
 - Any locality index whose 5-year change cannot be reconciled to two independent sources → drop that
   locality from the published panel rather than publish an unreconciled number.
+
+## §11.5 — TWELVE THINGS NOBODY HAS SWEPT (evidence pack §7.1 — each needs its own registration)
+
+Ranked by what they would change. **The first three are uncensored Indian price observations**,
+which matters given how much of §4 is spent engineering around censoring.
+
+1. **Listed-developer quarterly filings** — DLF, Macrotech, Godrej Properties, Oberoi, Prestige,
+   Brigade, Sobha publish audited pre-sales value and volume, **average realisation per sqft by
+   city**, launches, collections, inventory and net debt. Dated, audited, per-sqft, point-in-time,
+   no evasion incentive, no notified floor. **The largest single omission.**
+2. **Public land auctions** — CIDCO, MHADA, HUDA/HSVP, NOIDA, DDA, state industrial corporations.
+   Published, dated, plot-identified, competitively bid. The clean series to calibrate any
+   under-reporting model against.
+3. **Distressed sales** — SARFAESI bank e-auction notices, IBAPI reserve prices. Address-level and
+   dated, and the only place the *downside* of the distribution is observable.
+4. **Demography and household formation** — headship rates, formation projections, internal
+   migration, age structure. **The only variable class with a claim to ten-year forecastability, and
+   currently absent — so the engine has nothing where its promised horizon actually lives.**
+5. **Physical-climate risk** — flood, heat, groundwater, subsidence, air quality. Locality-
+   discriminating, publicly mapped, genuinely forward-looking at ten years. **The desk already owns
+   a vaulted climate dataset.**
+6. **The developer incentive stack as a second wedge** — subvention/CLP plans, "stamp duty paid",
+   floor-rise and PLC waivers, furnishing credits. It widens in downturns while the headline rate is
+   defended, so a deed-based index understates exactly the drawdown you built it to see.
+7. **Dubai Land Department** — free transaction-level microdata with an open API; heavy Indian
+   participation and two documented crashes. The most India-relevant open-microdata regime.
+8. **Litigation as an observable** — eCourts, NCLT/IBC real-estate admissions, RERA complaint
+   orders. Free, dated, text-searchable; and the pack's own finding is that litigation, not
+   regulation, throttled India's supply response.
+9. **District-level credit** — RBI Basic Statistical Return, district × sector outstanding: the
+   finest free credit grain in India. Plus the **2019 external-benchmark (EBLR) mandate** as the
+   missing monetary-transmission break in the event calendar.
+10. **NRI/FX demand and gold substitution** — the desk owns the currency battery and gold to 1833,
+    and CI-D2 ranks gold above housing in high-and-rising inflation. **A weak-INR year is a testable
+    conditioner on NRI-heavy localities, and SNAPSHOT-1 says India is in one now.**
+11. **TDR markets and society-redevelopment optionality** — Mumbai TDR is a traded read on FSI
+    scarcity; cessed-building redevelopment is a genuinely India-specific value source.
+12. **The advisory and publication perimeter** — SEBI adviser perimeter, RERA agent provisions,
+    disclaimer form. **The project can be complete, correct and unpublishable.** Answer it first;
+    it is cheap now and expensive at GATE 3.
+
+Also missing from §4's method menu: the **state-space / hierarchical-trend repeat-sales family**
+(Francke; Schulz-Werwatz; Nagaraja-Brown-Zhao) — the one family built for "tens of transactions per
+cell", which is the project's binding constraint.
 
 ## §12 — AGENT ORCHESTRATION
 

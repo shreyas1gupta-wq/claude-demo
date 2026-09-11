@@ -44,6 +44,35 @@ went to adversarial citation checking before a word of synthesis was written, an
 
 ---
 
+## §0.1 — CONTENTS, AND THE ONE FINDING THAT CHANGES THE DESIGN
+
+| § | Section | Grade |
+|---|---|---|
+| §00 | What this desk already knows about property — sixteen prints | **desk** |
+| §1 | The international evidence: what is known about predicting house prices | snippet |
+| §2 | Country patterns, and what happens when a country forces disclosure | snippet |
+| §3 | The India source estate and the India literature | snippet |
+| §4 | Method: how to build and how to judge | snippet |
+| §5 | Reachability, measured rather than assumed | **measured** |
+| §6 | The audit scoreboard, and the verification queue | **audit** |
+| §7 | What was never swept, and the three ways this fails | **critique** |
+| §8 | The fifteen things to read first | — |
+| §9 | How this pack connects to the handoff prompt | — |
+
+**If you read one paragraph of this document, read this one.** The handoff prompt's intellectual
+core is a censored regression: registered price = max(true price, circle rate), with the circle rate
+as an observed, time-varying, ward-level censoring threshold. **The audit refuted that as a
+mechanical identity.** Stamp duty is charged on the *higher of* declared price or circle rate, which
+constrains the **tax base**, not the **declared consideration** — so nothing mechanically stops a
+deed recording below the floor, because duty is identical either way. What makes the floor bind is
+the income-tax deeming machinery (Sections 50C / 43CA / 56(2)(x)) and its 5-10-20% tolerance band,
+which is an *incentive*, not a censoring rule. The pile-up at the circle rate is therefore a
+**behavioural equilibrium**, and a plain Tobit likelihood assigns zero probability to any observation
+below the floor — misspecified before any distributional question, if such rows exist. **The
+day-one diagnostic is one number: the share of registered declarations strictly below the local
+circle rate.** If it is non-trivial, the correct model is the bunching/notch family, not Tobit. That
+is a better model, reachable with the same data, and §§4 and 6 say how. Full statement in §6.2 #1.
+
 ## §00 — WHAT THIS DESK ALREADY KNOWS ABOUT PROPERTY
 
 **Read this section before the literature.** The desk has been working on property since the atlas

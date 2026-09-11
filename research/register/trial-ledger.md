@@ -5790,3 +5790,61 @@ was in flight, not before it. That departs from process note #1. It is admissibl
 a literature leg carries no bar and no prior, so there is nothing a late registration could game —
 the discipline exists to stop bars moving after a print, and there is no print. Any design that
 comes OUT of this pack registers normally, before it runs.
+RESULT (2026-09-11, same day; 30 agents, 0 errors, 5.43M subagent tokens, 922 tool calls, 3.75h):
+22 dossiers + 3 audits + 4 syntheses + 1 critic landed; pack assembled at
+`research/register/india-realestate-evidence-pack.md` (**35,241 words**, 9 sections). Tag census:
+17 `[DESK PRINT]`, 41 `[2-SOURCE]`, 127 `[1-SOURCE]`, 127 `[RECALL — unverified]` — the shape of a
+snippet-grade pack, published as such.
+**FOUR OPERATIONAL FINDINGS WORTH MORE THAN THE LITERATURE ITSELF, each recorded because each cost
+something to learn:**
+1. **REACHABILITY, MEASURED: 36 of 37 endpoints blocked.** A direct `curl` probe of every major
+   international house-price source, every Indian official portal and the free geospatial stack
+   returned exactly one success — the GitHub control. Uniform failure mode, `CONNECT tunnel failed,
+   response 403` at the gateway (`kind: connect_rejected`). Script and raw output committed
+   (`_PROBE.sh`, `_PROBE.md`) so the same table becomes an acquisition checklist on the principal's
+   machine. This converts the handoff prompt's §0.5 venue decision from a judgement into a
+   measurement, and it independently REFUTED one dossier's claim that satellite providers were
+   exempt from the block.
+2. **THE AUDIT'S OWN CEILING: WebSearch exhausted at 200 calls before audits 2 and 3 ran their
+   first query** — reproduced independently in three files. So citation-existence and
+   endpoint-existence were audited for cluster A ONLY, where 16 refutations came back (including a
+   FABRICATED CO-AUTHOR on a Mian-Sufi paper, two distinct Piazzesi-Schneider papers conflated, and
+   Hsieh-Moretti's GDP figure given as ~2% against the published 3.7%). That 16-per-7-dossier rate
+   is the base rate a reader should assume applies to the unaudited three quarters, and the pack
+   says so in §6.1 rather than implying uniform verification.
+3. **THE DESIGN-CHANGING REFUTATION: the circle rate may not censor the recorded price at all.**
+   The handoff prompt's intellectual core assumed registered = max(true, circle rate) as a
+   mechanical identity. Audit 2 refuted it on the pack's own mechanics: stamp duty is charged on the
+   HIGHER of declared price or circle rate, which constrains the TAX BASE and not the declared
+   consideration, so nothing mechanically stops a deed recording below the floor. The floor binds
+   through the income-tax deeming provisions (50C/43CA/56(2)(x)) and their 5-10-20% tolerance band —
+   an incentive, not a censoring rule. Plain Tobit therefore assigns ZERO probability to below-floor
+   observations and is misspecified if any exist; the day-one diagnostic is one number, the share of
+   declarations strictly below the local circle rate, and the replacement model is the
+   bunching/notch-with-plateau family identified off the statutory tolerance changes. Booked as a
+   correction box in handoff v4 §4.1, not a quiet edit. **Recorded against myself: my workflow
+   mis-wired cluster D's synthesis to read audit 3 rather than audit 2, so the synthesis that most
+   needed this refutation never saw it. Caught in the desk pass, stated in §6.2 and here.**
+4. **THE EVIDENCE HIERARCHY HELD UNDER PRESSURE, and that is the more durable result.** Audit 1
+   instructed that the RBI HPI 18-city/2022-23 rebase be pulled from the pack because three
+   dossiers and its own recall said 10 cities/2010-11. Audit 3 refuted its sibling: all four
+   dissenting voices were model recall, while the rebase is documented on desk with a release date,
+   a reference quarter, eight named cities and a pre-registered splice rule (`partC-data.md` §C.1).
+   A majority of model memories does not outvote a desk document of record. Separately, the audit
+   caught `[2-SOURCE]` being awarded to ONE paper found at three hosting locations — which is one
+   source, and it affected every India-specific magnitude in the pack including its only causally
+   identified supply elasticity.
+OTHER CORRECTIONS BOOKED: the pack-wide "20-35%" area-basis constant is arithmetically WRONG (a
+70-80% carpet ratio implies +25% to +43%; Mumbai loading is 40-50%) and is retired in favour of an
+explicit loading factor L with psf ratio = 1+L, L up to 0.50 — fixed in handoff v4 §6.6 as well;
+and the literature's five-year mean-reversion limb is DROPPED on IN-D1's authority (+9.65%/yr real
+next-5y after a >=15%/yr window), first-party desk evidence outranking snippet-grade calibration.
+CRITIC'S RESIDUAL, folded into handoff v4 as §11.5 rather than left in a note: twelve unswept
+modalities, of which **three are UNCENSORED Indian price series** (listed-developer quarterly
+per-sqft realisations, public land auctions, SARFAESI e-auctions) and one is the only class with a
+claim to ten-year forecastability (demography/household formation, entirely absent). Also upheld
+against the pack itself: four syntheses each repeating the other three's conclusions MANUFACTURES
+the appearance of corroboration, and the pack now says so in §7.4.
+A 13-row VERIFICATION QUEUE (§6.3), ordered so a `no` answer kills the least work, replaces the
+audits' 130KB of narrative as the working artifact. Census unchanged at **1,399** — this leg
+computed nothing and claims nothing as a print.
