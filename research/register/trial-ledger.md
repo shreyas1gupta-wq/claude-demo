@@ -5253,3 +5253,92 @@ that PASSED on the number split on whether the artifact story could be internall
 which a reward-for-patience bias cannot produce) and was promoted. That test, not the p-value,
 did the adjudicating here.
 CENSUS 29 (1336 -> **1365**).
+
+## Entry CN-D1..CN-D5 (2026-09-11) — PRE-REGISTERED before running: THE PROPERTY-CRASH BASE RATE
+(the computational half of the CN programme — `research/frontier/china-property-plan.md`; principal
+directive on the China land/property crash). THE DESIGN LOGIC, stated first because it is the whole
+point: China is NOT in the JST panel and this desk has no vaulted China property series. Web research
+can tell us what China's numbers ARE; it cannot tell us what property crashes DO. So the vault leg
+builds the cross-country DISTRIBUTION of crash depth, duration, velocity, pre-crash appreciation,
+rental-yield behaviour and predictive debt run-up, and China's sourced numbers are then PLACED on
+those distributions. Source: `ingest/vault/jst/JSTdatasetR6.xlsx` sheet `JRT6 Data` — 18 countries
+1870-2020 (Ireland present, unlike r4), fields `hpnom`, `cpi`, `rent_ipolated`, `housing_rent_yd`,
+`tmort`, `thh`, `debtgdp`, `eq_tr`, `crisisJST`. REAL house prices throughout (`hpnom` deflated by
+`cpi`) — nominal-only crash statistics are the classic error this register will not repeat.
+EPISODE DEFINITION, frozen here: a CRASH EPISODE is a real-house-price peak followed by a
+cumulative decline of **>= 20%** to its trough, peaks required to be at least 10 years apart so
+overlapping drawdowns are not double-counted, and the final trough must be reached on or before
+2020 (in-sample troughs only — an unfinished decline is excluded and counted separately). The 20%
+threshold is the standard bear-market convention already used by this desk's own drawdown work,
+not a tuned parameter; the 10-year separation follows the JST housing-cycle length.
+
+**CN-D1 — CRASH ANATOMY (6 cells).** Per episode: peak year, trough year, duration in years,
+peak-to-trough real decline, annualized DECLINE velocity (%/yr), and the pre-peak annualized real
+APPRECIATION velocity over the 5 years and 10 years before the peak. Cells: c1 the episode census
+(how many, which countries, which decades); c2 the DEPTH distribution (median / p25 / p75 / worst);
+c3 the DURATION distribution; c4 the DECLINE-VELOCITY distribution; c5 the PRE-CRASH APPRECIATION
+distribution (5y and 10y); c6 the RATIO of decline velocity to pre-crash 5y appreciation velocity —
+the principal's question made a statistic. BARS/PRIORS: (a) median peak-to-trough real decline lands
+in **[25%, 40%]** — a crash is a third of the value, not a tenth and not a half [JST housing
+literature]; (b) median DURATION is **>= 4 years** — property declines are slow, unlike equity
+(this desk's own F1b tau work on the difference between fast and slow bands is the reason to expect
+it); (c) the decline is SLOWER per year than the boom was — median |decline velocity| / pre-crash 5y
+appreciation velocity **< 1.0**. If (c) fails, property busts are faster than their booms and every
+"gentle deflation" narrative about China is wrong on the base rate.
+
+**CN-D2 — THE RENTAL YIELD THROUGH THE CYCLE (4 cells).** `housing_rent_yd` at peak-5y, at the
+peak, and at the trough, per episode. Cells: d1 the yield AT THE PEAK distribution; d2 the yield AT
+THE TROUGH distribution; d3 the peak-to-trough yield CHANGE in pp; d4 the yield at peak-5y vs at
+peak (does the yield compress on the way up, i.e. is a compressed yield itself a warning). BARS:
+(a) median yield expands from peak to trough by **>= 1.0pp** (price falls faster than rent, which
+is the mechanism); (b) median yield at the peak is BELOW median yield at peak-5y — compression into
+the top. If (b) fails, yield compression is not a reliable warning marker and China's low yields
+cannot be read as one.
+
+**CN-D3 — WHAT ACTUALLY PREDICTED IT (5 cells).** The Jordà-Schularick-Taylor mortgage-credit
+channel, tested as a CONTINGENCY TABLE in the EN-D2a format (a lift, not a regression). For every
+country-year, the 5-year change in `tmort`/GDP and in `thh`/GDP. Cells: e1 mean 5y mortgage-credit
+run-up in the 5 years BEFORE a crash peak vs the panel's unconditional mean; e2 the contingency
+table P(crash peak within 3 years | country-year in the TOP QUINTILE of 5y mortgage-credit growth)
+vs the unconditional base rate, with the LIFT; e3 the same for household debt; e4 the same for
+`debtgdp` (PUBLIC debt — registered explicitly because DB-D1..D9 booked that public debt level does
+not hurt equities, and this tests whether it predicts HOUSING, a different question); e5 the
+false-positive count — how often the top quintile fired with NO crash following, because a warning
+indicator's false-alarm rate is the part practitioners are never shown. BARS: (a) the mortgage
+channel LIFT is **>= 1.5x** [JST]; (b) `debtgdp` (public) has NO predictive lift, i.e. lift within
+[0.8, 1.25] — the DB-battery's finding extended to housing; (c) the false-positive rate is HIGH
+(**>= 50%** of top-quintile firings not followed by a crash within 3 years) — registered as a prior
+because if it is low, the indicator is far better than this desk's priors and that would be the
+finding.
+
+**CN-D4 — DOES A BIGGER BOOM CRASH FASTER, OR ONLY FURTHER? (4 cells).** Split episodes at the
+median pre-crash 5y appreciation velocity. Cells: f1 DEPTH in big-boom vs small-boom episodes;
+f2 DURATION in each; f3 DECLINE VELOCITY in each; f4 the verdict. BAR: big-boom episodes are
+DEEPER by **>= 8pp** of peak-to-trough decline. PRIOR: they are NOT materially faster (velocity
+gap < 2pp/yr) — bigger booms buy a longer, not a sharper, unwind. Registered because the two
+readings have opposite consequences for a China timeline.
+
+**CN-D5 — THE INVESTABLE LEG: EQUITIES AFTER A HOUSING PEAK (5 cells).** `eq_tr` (equity total
+return), real, in the 1 / 3 / 5 years after each housing peak, EW across episodes. Cells: g1 next-1y;
+g2 next-3y annualized; g3 next-5y annualized; g4 the same three conditioned on whether `crisisJST`
+fired within 3 years of the peak (the housing peak that becomes a banking crisis vs the one that
+does not — the distinction that decides whether a China property bust is an equity event at all);
+g5 the comparison against the panel's unconditional real equity return, so the read is an EXCESS
+not a level. BARS: (a) the crisis-accompanied subset's next-1y real equity return is negative and
+at least **8pp below** the unconditional mean; (b) the NO-crisis subset is within **3pp** of
+unconditional — i.e. a housing peak on its own is not an equity event, only a housing peak that
+breaks the banks is. This is the cell that governs the India read-across, and it is registered
+two-sided: if (b) fails and housing peaks hurt equities regardless, that is a materially more
+bearish base rate and will be booked as such.
+
+CENSUS 24 on the day (6+4+5+4+5). LIMITS registered in advance, not discovered later: (i) JST is
+18 ADVANCED economies — China is an upper-middle-income economy with state-directed credit, a
+leasehold land-sale fiscal model and capital controls, so the panel is a BASE RATE and never a
+forecast, and any cell where that gap is likely to bind will be flagged in the RESULT rather than
+smoothed over; (ii) JST's `debtgdp` measures central-government debt and therefore MISSES LGFV and
+quasi-fiscal debt entirely, which is precisely where China's leverage sits — CN-D3 e4 is therefore
+a test of the WRONG debt aggregate for China by construction, and is registered anyway because
+knowing that the measurable aggregate does not predict housing is itself the answer; (iii) annual
+frequency cannot resolve within-year velocity, so all velocity statistics are annual-resolution
+lower bounds on peak monthly rates; (iv) the panel ends in 2020 and therefore contains no
+post-COVID episode.
