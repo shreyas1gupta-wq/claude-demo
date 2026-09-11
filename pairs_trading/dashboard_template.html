@@ -1,0 +1,790 @@
+<title>Nifty 50 Pairs Trading Study</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#f6f6f3; --surface:#ffffff; --surface-2:#efefea;
+  --rule:#e0dfd9; --rule-strong:#c8c7c0;
+  --ink-900:#111721; --ink-700:#333c4a; --ink-500:#5d6775; --ink-400:#7c8592;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --good:#1baf7a; --bad:#e34948; --warn:#eda100;
+  --accent:#2a78d6;
+  --heat-0:#cde2fb; --heat-1:#9ec5f4; --heat-2:#6da7ec; --heat-3:#3987e5; --heat-4:#256abf; --heat-5:#184f95;
+  --neg-1:#f6c9c9; --neg-2:#ec9a9a; --neg-3:#e06c6c; --neg-4:#cf4646;
+  --mid:#f0efec;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --paper:#13161b; --surface:#1a1e24; --surface-2:#222730;
+    --rule:#2b313a; --rule-strong:#3c4350;
+    --ink-900:#f1f2f4; --ink-700:#c6ccd5; --ink-500:#98a1ad; --ink-400:#79828f;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --good:#199e70; --bad:#e66767; --warn:#c98500;
+    --accent:#3987e5;
+    --heat-0:#16304f; --heat-1:#184f95; --heat-2:#1c5cab; --heat-3:#256abf; --heat-4:#3987e5; --heat-5:#6da7ec;
+    --neg-1:#4a2222; --neg-2:#7a2f2f; --neg-3:#a83f3f; --neg-4:#d15252;
+    --mid:#2a2f37;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#13161b; --surface:#1a1e24; --surface-2:#222730;
+  --rule:#2b313a; --rule-strong:#3c4350;
+  --ink-900:#f1f2f4; --ink-700:#c6ccd5; --ink-500:#98a1ad; --ink-400:#79828f;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --good:#199e70; --bad:#e66767; --warn:#c98500;
+  --accent:#3987e5;
+  --heat-0:#16304f; --heat-1:#184f95; --heat-2:#1c5cab; --heat-3:#256abf; --heat-4:#3987e5; --heat-5:#6da7ec;
+  --neg-1:#4a2222; --neg-2:#7a2f2f; --neg-3:#a83f3f; --neg-4:#d15252;
+  --mid:#2a2f37;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink-700);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px; line-height:1.6; margin:0;
+}
+.wrap{max-width:1080px; margin:0 auto; padding-inline:20px; padding-block:0 72px}
+h1,h2,h3{font-family:Newsreader,Georgia,serif; color:var(--ink-900); text-wrap:balance; margin:0}
+h1{font-size:clamp(30px,5.2vw,46px); font-weight:600; line-height:1.12; letter-spacing:-.01em}
+h2{font-size:clamp(21px,3vw,27px); font-weight:600; line-height:1.2}
+h3{font-size:17px; font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-400)}
+.mono{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+
+/* masthead */
+header.top{border-bottom:1px solid var(--rule); padding-block:34px 26px; margin-bottom:38px}
+.top .kicker{display:flex; gap:14px; flex-wrap:wrap; align-items:baseline; margin-bottom:16px}
+.lede{font-family:Newsreader,Georgia,serif; font-size:clamp(17px,2.2vw,20px); line-height:1.5;
+  color:var(--ink-700); max-width:62ch; margin-top:16px}
+.meta{display:flex; flex-wrap:wrap; gap:8px 26px; margin-top:20px; font-size:12.5px; color:var(--ink-500)}
+.meta b{color:var(--ink-900); font-weight:600}
+
+/* verdict */
+.verdict{background:var(--surface); border:1px solid var(--rule);
+  border-left:3px solid var(--accent); padding:22px 24px; margin-bottom:34px}
+.verdict p{max-width:72ch}
+.verdict p + p{margin-top:11px}
+
+section{margin-block:52px}
+section > .eyebrow{display:block; margin-bottom:7px}
+section > h2 + p, section > h2 + .sub{margin-top:12px; max-width:70ch; color:var(--ink-500); font-size:14.5px}
+
+/* tiles */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:1px;
+  background:var(--rule); border:1px solid var(--rule); margin-top:26px}
+.tile{background:var(--surface); padding:15px 16px 16px}
+.tile .k{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink-400)}
+.tile .v{font-family:Newsreader,Georgia,serif; font-size:29px; line-height:1.15; color:var(--ink-900);
+  font-variant-numeric:tabular-nums; margin-top:5px}
+.tile .n{font-size:12px; color:var(--ink-500); margin-top:3px}
+.v.pos{color:var(--good)} .v.neg{color:var(--bad)}
+
+/* figures */
+figure{margin:0}
+.fig{background:var(--surface); border:1px solid var(--rule); padding:18px 18px 14px; margin-top:20px}
+.fig-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+  flex-wrap:wrap; margin-bottom:4px}
+.fig-head h3{font-family:"IBM Plex Sans",sans-serif; font-size:14px; font-weight:600; color:var(--ink-900)}
+figcaption{font-size:12.5px; color:var(--ink-500); margin-top:10px; max-width:78ch}
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--ink-500)}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.swatch{width:11px; height:11px; border-radius:2px; display:inline-block}
+svg{display:block; width:100%; height:auto; overflow:visible}
+.gridline{stroke:var(--rule); stroke-width:1}
+.axis{fill:var(--ink-400); font-family:"IBM Plex Mono",monospace; font-size:10px}
+.zeroline{stroke:var(--rule-strong); stroke-width:1}
+.dlabel{fill:var(--ink-900); font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500}
+
+/* tables */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--rule); background:var(--surface); margin-top:20px}
+table{border-collapse:collapse; width:100%; font-size:13px; min-width:520px}
+th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+  color:var(--ink-400); text-align:right; padding:10px 12px; border-bottom:1px solid var(--rule-strong);
+  font-weight:500; white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:8px 12px; border-bottom:1px solid var(--rule); text-align:right;
+  font-variant-numeric:tabular-nums; color:var(--ink-700)}
+tbody tr:last-child td{border-bottom:none}
+td.name{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-900); white-space:nowrap}
+.pos{color:var(--good)} .neg{color:var(--bad)}
+.chip{display:inline-block; font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:.05em;
+  padding:1px 6px; border:1px solid var(--rule-strong); color:var(--ink-500); border-radius:2px;
+  white-space:nowrap}
+.chip.same{border-color:var(--s3); color:var(--s3)}
+
+/* prose blocks */
+.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; margin-top:22px}
+.note{border-top:2px solid var(--ink-900); padding-top:12px}
+.note h3{margin-bottom:6px}
+.note p{font-size:13.5px; color:var(--ink-500)}
+ol.steps{margin:22px 0 0; padding:0; list-style:none; counter-reset:s;
+  display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule)}
+ol.steps li{counter-increment:s; background:var(--surface); padding:14px 16px; display:grid;
+  grid-template-columns:34px 1fr; gap:12px; align-items:start}
+ol.steps li::before{content:counter(s,decimal-leading-zero); font-family:"IBM Plex Mono",monospace;
+  font-size:11px; color:var(--ink-400); padding-top:3px}
+ol.steps b{color:var(--ink-900); font-weight:600}
+ol.steps span{font-size:13.5px; color:var(--ink-500); display:block; margin-top:2px}
+
+.callout{border:1px solid var(--rule); border-left:3px solid var(--bad); background:var(--surface);
+  padding:16px 18px; margin-top:22px; font-size:14px}
+.callout.ok{border-left-color:var(--good)}
+.callout b{color:var(--ink-900)}
+
+footer{border-top:1px solid var(--rule); margin-top:60px; padding-top:22px;
+  font-size:12.5px; color:var(--ink-400)}
+footer p + p{margin-top:8px}
+
+#tip{position:fixed; pointer-events:none; opacity:0; transition:opacity .1s; z-index:50;
+  background:var(--ink-900); color:var(--paper); font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px; line-height:1.45; padding:7px 9px; border-radius:3px; max-width:240px}
+#tip b{color:var(--paper)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+@media (max-width:560px){ .tile .v{font-size:24px} }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="kicker">
+    <span class="eyebrow">Statistical arbitrage · Indian equities</span>
+    <span class="eyebrow">47 stocks · 1,081 pairs · 2012–2021</span>
+  </div>
+  <h1>Can you build a pairs trading strategy on Nifty 50 stocks?</h1>
+  <p class="lede">Yes — cointegrated pairs genuinely exist inside the index, and a walk-forward
+  strategy on them makes money out of sample. But the edge is thin, it shrank every year of the
+  sample, and it dies at roughly 80 basis points of round-trip cost.</p>
+  <div class="meta">
+    <span>Universe <b>47 Nifty 50 constituents</b></span>
+    <span>Price history <b>Jan 2012 – Dec 2021</b></span>
+    <span>Out-of-sample <b>Jan 2015 – Dec 2021 (6.9y)</b></span>
+    <span>Trades <b id="m-trades">—</b></span>
+  </div>
+</header>
+
+<div class="verdict">
+  <p><b style="color:var(--ink-900)">The short answer.</b> Screening all 1,081 pairs each quarter,
+  trading the 10 most strongly cointegrated ones on a 60-day rolling z-score, and charging 10 bps
+  per leg per side produces a <b style="color:var(--ink-900)">Sharpe of 0.54</b> on 4.4% volatility
+  over seven out-of-sample years — a 2.3% CAGR unlevered, 5.3% levered to a 10% vol target. It has
+  almost no market beta (0.04) and a maximum drawdown of 8.8% against the index's 38%.</p>
+  <p>It also fails to clear a 95% significance bar (bootstrapped Sharpe CI −0.21 to +1.29), and the
+  classic textbook version of the same strategy — a fixed formation-period z-score, as in Gatev et
+  al. — <b style="color:var(--ink-900)">loses money</b> on this universe. What works here is
+  narrow, and knowing which knob matters is most of the answer.</p>
+</div>
+
+<div class="tiles" id="tiles"></div>
+
+<section>
+  <span class="eyebrow">Construction</span>
+  <h2>How the strategy is built</h2>
+  <p class="sub">Everything below is walk-forward. Pairs are chosen on a three-year formation
+  window and traded on the quarter that follows it — the trading window never contributes to its
+  own pair selection, hedge ratio or entry thresholds.</p>
+  <ol class="steps">
+    <li><div><b>Screen every pair on log prices</b><span>All 1,081 combinations of 47 stocks. Keep
+      pairs with log-price correlation &gt; 0.70, then run an Engle–Granger regression in both
+      directions and keep the orientation with the stronger residual stationarity.</span></div></li>
+    <li><div><b>Filter on mean-reversion quality</b><span>ADF p-value &lt; 0.05 on the residual,
+      Ornstein–Uhlenbeck half-life between 5 and 60 days, at least 12 mean crossings per formation
+      year, and a positive hedge ratio. Typically 60–230 of the 1,081 pairs survive.</span></div></li>
+    <li><div><b>Trade the 10 most stationary</b><span>Rank survivors by ADF p-value, take the top
+      10, equal-weight the capital. Each pair holds ₹1 of the dependent leg against ₹β of the
+      independent leg, scaled so gross exposure per pair is constant.</span></div></li>
+    <li><div><b>Signal on a 60-day rolling z-score</b><span>Enter when |z| &gt; 2.0 (short the rich
+      leg, long the cheap leg), exit at |z| &lt; 0.5, stop out at |z| &gt; 3.5, force-close after 60
+      days. The rolling window is trailing-only — this single choice is what separates a profitable
+      strategy from a losing one.</span></div></li>
+    <li><div><b>Re-screen every 63 trading days</b><span>Pairs decay. Re-running the screen each
+      quarter replaces broken relationships; open positions close at the boundary, which is why 31%
+      of trades exit on the window edge rather than at the target.</span></div></li>
+    <li><div><b>Charge 10 bps per leg, per side</b><span>40 bps per completed round trip across both
+      legs — brokerage, STT, exchange charges, impact and slippage for a Nifty 50 name. The short
+      leg assumes stock futures, since cash-market shorts cannot be carried overnight in
+      India.</span></div></li>
+  </ol>
+</section>
+
+<section>
+  <span class="eyebrow">Out-of-sample result</span>
+  <h2>Seven years of walk-forward equity</h2>
+  <p class="sub">The strategy compounds quietly and independently of the market. It is not a
+  competitor to owning the index — it is an uncorrelated, low-volatility return stream that only
+  becomes interesting with leverage or as a diversifier.</p>
+  <figure class="fig">
+    <div class="fig-head"><h3>Growth of ₹1, out of sample</h3>
+      <div class="legend" id="lg-eq"></div></div>
+    <div id="c-equity"></div>
+    <figcaption>Weekly points. The equal-weight benchmark holds all 47 stocks over the identical
+    dates. Vol-targeted applies a trailing-60-day vol scalar to a 10% annual target, capped at 4×
+    leverage.</figcaption>
+  </figure>
+  <figure class="fig">
+    <div class="fig-head"><h3>Drawdown</h3><div class="legend" id="lg-dd"></div></div>
+    <div id="c-dd"></div>
+    <figcaption>The March 2020 crash costs the index 38%; the pairs book loses 8.8% at its worst —
+    but its worst is spread across 2020 rather than concentrated in the crash.</figcaption>
+  </figure>
+  <figure class="fig">
+    <div class="fig-head"><h3>Calendar-year returns</h3><div class="legend" id="lg-yr"></div></div>
+    <div id="c-yearly"></div>
+    <figcaption>Six positive years out of seven, but every one of them small — and 2020 is the only
+    loss. The strategy never beats a strong equity year; it earns its place by not participating in
+    the bad ones.</figcaption>
+  </figure>
+  <div class="tbl-wrap"><table id="t-yearly"></table></div>
+</section>
+
+<section>
+  <span class="eyebrow">The binding constraint</span>
+  <h2>Transaction costs decide everything</h2>
+  <p class="sub">At zero cost this is a Sharpe-1.1 strategy. Every basis point of friction takes a
+  visible bite, and the whole edge is gone at 20 bps per leg per side.</p>
+  <figure class="fig">
+    <div class="fig-head"><h3>Sharpe ratio vs. execution cost</h3>
+      <div class="legend"><span><i class="swatch" style="background:var(--s1)"></i>Sharpe</span></div></div>
+    <div id="c-cost"></div>
+    <figcaption>Cost is charged per leg, per side; the axis labels show the equivalent all-in cost
+    of one completed round trip across both legs. Breakeven sits at 20 bps per leg (80 bps round
+    trip).</figcaption>
+  </figure>
+  <div class="callout"><b>Why this matters more here than in a US study.</b> Average holding period
+  is 15 days and the book turns over roughly 60 round trips a year across 10 pairs. Indian
+  large-cap STT plus impact on a two-leg trade realistically lands in the 25–60 bps round-trip
+  range — inside the profitable zone, but not by a wide margin. Any execution sloppiness, and the
+  strategy is a coin flip.</div>
+  <div class="tbl-wrap"><table id="t-cost"></table></div>
+</section>
+
+<section>
+  <span class="eyebrow">Signal design</span>
+  <h2>One parameter separates profit from loss</h2>
+  <p class="sub">Fourteen configurations, all run over the same out-of-sample period. The split is
+  not subtle: every variant that calibrates the z-score on the formation window loses money, and
+  every variant that uses a trailing rolling window makes it.</p>
+  <figure class="fig">
+    <div class="fig-head"><h3>Out-of-sample Sharpe by configuration</h3>
+      <div class="legend"><span><i class="swatch" style="background:var(--s1)"></i>Positive</span>
+      <span><i class="swatch" style="background:var(--bad)"></i>Negative</span></div></div>
+    <div id="c-variants"></div>
+    <figcaption>Variant A is the textbook distance/cointegration method with static formation-period
+    thresholds. Variants B–N vary one thing at a time from the rolling-z baseline.</figcaption>
+  </figure>
+  <div class="cols">
+    <div class="note"><h3>Why static z-scores fail</h3><p>A spread's mean drifts. Calibrating μ and σ
+    on a three-year formation window and then holding them fixed for a year means that by month six
+    a normal spread reads as a 3-sigma event. 66% of static-z trades exit on the stop-loss versus
+    8% of rolling-z trades.</p></div>
+    <div class="note"><h3>Why rolling betas also fail</h3><p>Letting the hedge ratio float on a
+    120-day window (variant C) sounds more adaptive and scores −0.74. A drifting β re-anchors the
+    spread continuously, which destroys the very stationarity the screen selected for. Fix β at
+    formation; let only the z-score adapt.</p></div>
+    <div class="note"><h3>Fewer pairs, not more</h3><p>Concentrating in the 5–10 most stationary
+    pairs beats diversifying across 20–40. The ADF ranking carries real information: pairs ranked
+    10–40 add trades and costs without adding edge.</p></div>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><h3>Sharpe by number of pairs and re-screening frequency</h3>
+      <div class="legend" id="lg-grid"></div></div>
+    <div id="c-grid"></div>
+    <figcaption>Fifteen combinations of book width and re-screening cadence. The surface slopes
+    consistently toward fewer pairs; the best cell (5 pairs, annual re-screen, Sharpe 0.90) sits on
+    only 179 trades and should be read as a small sample, not as the right setting.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Structural finding</span>
+  <h2>The opportunity set is shrinking</h2>
+  <p class="sub">This is the most durable result in the study and the one least dependent on
+  strategy design: the number of Nifty 50 pairs that pass a cointegration screen fell by roughly
+  two-thirds between 2015 and late 2020.</p>
+  <figure class="fig">
+    <div class="fig-head"><h3>Cointegrated pairs surviving the screen, by formation window</h3>
+      <div class="legend" id="lg-cen"></div></div>
+    <div id="c-census"></div>
+    <figcaption>Out of 1,081 candidate pairs per window. Same-sector pairs (the intuitive ones —
+    two cement makers, two private banks) are a small and roughly stable minority throughout; the
+    decline is concentrated in cross-sector pairs.</figcaption>
+  </figure>
+  <div class="cols">
+    <div class="note"><h3>2015</h3><p><span class="mono" style="color:var(--ink-900);font-size:22px">190</span>
+    pairs passed, 17.6% of the universe. Median half-life 24 days.</p></div>
+    <div class="note"><h3>Dec 2020</h3><p><span class="mono" style="color:var(--ink-900);font-size:22px">61</span>
+    pairs passed, 5.6% of the universe — the low of the sample.</p></div>
+    <div class="note"><h3>Of all survivors</h3><p><span class="mono" style="color:var(--ink-900);font-size:22px">13%</span>
+    were same-sector. Most cointegration in the index is cross-sector and economically
+    accidental.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">The pairs themselves</span>
+  <h2>What actually cointegrates in the Nifty 50</h2>
+  <p class="sub">Ranked by how many of the 27 quarterly screens each pair survived into the traded
+  top-10. The most persistent relationships are the ones with a real balance-sheet link.</p>
+  <div class="tbl-wrap"><table id="t-pairs"></table></div>
+  <div class="cols">
+    <div class="note"><h3>HDFC / HDFCBANK</h3><p>Selected in 12 of 27 windows, the most persistent
+    pair in the study — a parent and its listed bank, mean-reverting with a 12-day half-life and an
+    average ADF p-value of 0.0002. Note that the 2023 merger would end this pair entirely.</p></div>
+    <div class="note"><h3>ULTRACEMCO / SHREECEM</h3><p>The cleanest same-sector pair: two cement
+    majors on the same input costs and the same construction cycle. 10-day half-life, 90% win rate
+    across 10 trades.</p></div>
+    <div class="note"><h3>HINDALCO / TATASTEEL</h3><p>The worst performer, −23% cumulative across 5
+    trades with a 20% win rate. Two metals names that look like an obvious pair and trade like a
+    single commodity-beta bet when the cycle turns.</p></div>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><h3>Best and worst pairs by cumulative P&amp;L</h3>
+      <div class="legend"><span><i class="swatch" style="background:var(--s1)"></i>Profitable</span>
+      <span><i class="swatch" style="background:var(--bad)"></i>Loss-making</span></div></div>
+    <div id="c-pairpnl"></div>
+    <figcaption>Cumulative return on unit gross exposure, summed over every trade the pair
+    generated. Concentration is high: the top three pairs contribute more than the entire rest of
+    the book nets out to.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Trade anatomy</span>
+  <h2>How the edge is actually earned</h2>
+  <p class="sub">A high hit rate with a payoff ratio below one — many small wins funding fewer,
+  larger losses. That is the normal signature of a mean-reversion book, and it is also why the
+  stop-loss policy matters so much.</p>
+  <div class="cols">
+    <figure class="fig" style="margin-top:0">
+      <div class="fig-head"><h3>Trade P&amp;L distribution</h3></div>
+      <div id="c-tpnl"></div>
+      <figcaption>420 trades, % return on unit gross exposure.</figcaption>
+    </figure>
+    <figure class="fig" style="margin-top:0">
+      <div class="fig-head"><h3>Holding period</h3></div>
+      <div id="c-hold"></div>
+      <figcaption>Trading days held. Median under two weeks.</figcaption>
+    </figure>
+  </div>
+  <div class="cols">
+    <figure class="fig" style="margin-top:0">
+      <div class="fig-head"><h3>Half-life of screened pairs</h3></div>
+      <div id="c-hl"></div>
+      <figcaption>Days, across all 3,798 pair-windows that passed the screen.</figcaption>
+    </figure>
+    <figure class="fig" style="margin-top:0">
+      <div class="fig-head"><h3>ADF p-value of screened pairs</h3></div>
+      <div id="c-adf"></div>
+      <figcaption>Concentrated at the strong end — the screen is not scraping the 5% boundary.</figcaption>
+    </figure>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><h3>Monthly returns</h3>
+      <div class="legend" id="lg-mon"></div></div>
+    <div id="c-monthly"></div>
+    <figcaption>Percent per month. The loss cluster in the first half of 2020 is the only sustained
+    drawdown in the record.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <span class="eyebrow">Reading the result honestly</span>
+  <h2>What would stop me deploying this as-is</h2>
+  <div class="cols">
+    <div class="note"><h3>It is not statistically significant</h3><p>A 2,000-draw bootstrap puts the
+    Sharpe's 95% interval at −0.21 to +1.29, with an 8.2% chance the true Sharpe is at or below
+    zero. Seven years and 420 trades is simply not enough to distinguish 0.54 from noise.</p></div>
+    <div class="note"><h3>The configuration was chosen in-sample</h3><p>The 14 variants and the 15
+    grid cells were all evaluated on the same out-of-sample period. The honest headline is the
+    distribution of that family — median Sharpe around 0.45 — not the best cell in it.</p></div>
+    <div class="note"><h3>Survivorship bias</h3><p>The universe is the Nifty 50 as constituted at
+    the end of the sample, back-filled to 2012. Stocks that were in the index and got dropped are
+    absent, which flatters both the strategy and the benchmark.</p></div>
+    <div class="note"><h3>Execution assumptions</h3><p>Fills are at the closing price on the signal
+    day, both legs, with no borrow cost, no futures roll cost, no basis risk between the cash and
+    futures leg, and no capacity limit. Each of those is a real deduction.</p></div>
+    <div class="note"><h3>The data ends in 2021</h3><p>The freely available dataset used here stops
+    at 31 December 2021. The declining-cointegration trend implies the most recent four years are
+    the hardest, and they are exactly the ones not tested.</p></div>
+    <div class="note"><h3>Two constituents are missing</h3><p>HDFCLIFE and SBILIFE listed in late
+    2017 and cannot support a three-year formation window early in the sample, so the universe is
+    47 rather than 49 names.</p></div>
+  </div>
+  <div class="callout ok"><b>Where I would take it next.</b> Three changes have the best chance of
+  moving this from marginal to deployable: widen the universe to the Nifty 200, where far more
+  genuine same-sector pairs exist and the cointegration decay is less severe; replace the pairwise
+  screen with a multi-asset cointegration basket so the hedge is a portfolio rather than one stock;
+  and model execution against actual stock-futures spreads rather than closing prices, because on
+  these numbers execution quality is the strategy.</div>
+</section>
+
+<footer>
+  <p><b style="color:var(--ink-700)">Method.</b> Engle–Granger two-step cointegration on log
+  adjusted closing prices; Augmented Dickey–Fuller with one lag and a constant on the residual;
+  half-life from an AR(1) fit of the residual's first difference. Walk-forward with a 756-day
+  formation window and 63-day trading windows. All performance is net of 10 bps per leg per side
+  unless stated.</p>
+  <p><b style="color:var(--ink-700)">Data.</b> Daily OHLCV and adjusted closes for 47 Nifty 50
+  constituents, 2 January 2012 – 31 December 2021, 2,465 trading days, from a public NIFTY 500
+  dataset on GitHub. Benchmark is an equal-weight buy-and-hold of the same 47 names over identical
+  dates.</p>
+  <p>Research study only. Backtested results are hypothetical, carry no allowance for capacity or
+  market impact beyond the stated cost model, and are not investment advice.</p>
+</footer>
+</div>
+<div id="tip" role="status"></div>
+
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+(function(){
+"use strict";
+const D = JSON.parse(document.getElementById("payload").textContent);
+const S = D.summary, NS = "http://www.w3.org/2000/svg";
+const tip = document.getElementById("tip");
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const el = (t, a, p) => { const e = document.createElementNS(NS, t);
+  for (const k in (a||{})) e.setAttribute(k, a[k]);
+  if (p) p.appendChild(e); return e; };
+const txt = (p, x, y, s, cls, anchor) => { const t = el("text", {x, y, class: cls||"axis"}, p);
+  if (anchor) t.setAttribute("text-anchor", anchor); t.textContent = s; return t; };
+const fmt = (v, d) => (v==null||isNaN(v)) ? "—" : v.toFixed(d==null?2:d);
+const pct = (v, d) => (v>=0?"+":"") + fmt(v*100, d==null?1:d) + "%";
+
+function showTip(e, html){ tip.innerHTML = html; tip.style.opacity = 1;
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY - 10;
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+  if (y + r.height > innerHeight - 8) y = innerHeight - r.height - 8;
+  tip.style.left = Math.max(8,x) + "px"; tip.style.top = Math.max(8,y) + "px"; }
+function hideTip(){ tip.style.opacity = 0; }
+function hoverable(node, html){
+  node.addEventListener("mousemove", e => showTip(e, html));
+  node.addEventListener("mouseleave", hideTip);
+}
+function frame(mount, w, h){ mount.innerHTML = "";
+  const s = el("svg", {viewBox:`0 0 ${w} ${h}`, role:"img"}, mount); return s; }
+
+/* ---------------------------------------------------------------- tiles */
+(function tiles(){
+  const t = [
+    ["Sharpe ratio", fmt(S.strategy.sharpe), "net of costs, 6.9y OOS", ""],
+    ["CAGR", pct(S.strategy.cagr), "unlevered · 5.3% at 10% vol", "pos"],
+    ["Volatility", fmt(S.strategy.vol*100,1)+"%", "vs 17.8% for the index", ""],
+    ["Max drawdown", pct(S.strategy.max_dd), "index lost 38.2%", "neg"],
+    ["Win rate", fmt(S.win_rate*100,1)+"%", S.n_trades+" trades, 14.6d average", ""],
+    ["Market beta", fmt(S.beta_to_bench), "correlation "+fmt(S.corr_to_bench), ""],
+    ["Breakeven cost", "20 bps", "per leg, per side", ""],
+    ["Bootstrap p-value", fmt(S.significance.p_value_sharpe_le_0,3), "for Sharpe ≤ 0", ""],
+  ];
+  document.getElementById("tiles").innerHTML = t.map(([k,v,n,c]) =>
+    `<div class="tile"><div class="k">${k}</div><div class="v ${c}">${v}</div><div class="n">${n}</div></div>`).join("");
+  document.getElementById("m-trades").textContent = S.n_trades;
+})();
+
+/* ------------------------------------------------------------ line chart */
+function lineChart(mountId, legendId, series, dates, opts){
+  opts = opts || {};
+  const W = 820, H = opts.h || 300, L = 52, R = 14, T = 14, B = 26;
+  const mount = document.getElementById(mountId), svg = frame(mount, W, H);
+  const all = series.flatMap(s => s.v);
+  let lo = opts.min != null ? opts.min : Math.min(...all), hi = opts.max != null ? opts.max : Math.max(...all);
+  const pad = (hi - lo) * 0.08; hi += pad; if (opts.min == null) lo -= pad;
+  const X = i => L + i * (W - L - R) / (dates.length - 1);
+  const Y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  const ticks = 5;
+  for (let i = 0; i <= ticks; i++){
+    const v = lo + (hi - lo) * i / ticks;
+    el("line", {x1:L, x2:W-R, y1:Y(v).toFixed(1), y2:Y(v).toFixed(1), class:"gridline"}, svg);
+    txt(svg, L-8, Y(v)+3.5, opts.fmtY ? opts.fmtY(v) : fmt(v,2), "axis", "end");
+  }
+  const yrs = {}; dates.forEach((d,i) => { const y = d.slice(0,4); if (!(y in yrs)) yrs[y] = i; });
+  Object.entries(yrs).forEach(([y,i]) => txt(svg, X(i), H-8, y, "axis", "middle"));
+  series.forEach(s => {
+    const d = s.v.map((v,i) => (i?"L":"M") + X(i).toFixed(1) + " " + Y(v).toFixed(1)).join(" ");
+    if (s.area) el("path", {d: d + ` L ${X(s.v.length-1).toFixed(1)} ${Y(opts.min||0).toFixed(1)} L ${X(0).toFixed(1)} ${Y(opts.min||0).toFixed(1)} Z`,
+      fill: s.color, "fill-opacity": .12, stroke:"none"}, svg);
+    el("path", {d, fill:"none", stroke:s.color, "stroke-width":2,
+      "stroke-linejoin":"round", "stroke-linecap":"round"}, svg);
+    const last = s.v[s.v.length-1];
+    el("circle", {cx:X(s.v.length-1).toFixed(1), cy:Y(last).toFixed(1), r:3.5, fill:s.color,
+      stroke:css("--surface"), "stroke-width":2}, svg);
+  });
+  const cross = el("line", {x1:0,x2:0,y1:T,y2:H-B, stroke:css("--rule-strong"), "stroke-width":1, opacity:0}, svg);
+  const hit = el("rect", {x:L, y:T, width:W-L-R, height:H-T-B, fill:"transparent"}, svg);
+  hit.addEventListener("mousemove", e => {
+    const bb = hit.getBoundingClientRect();
+    let i = Math.round((e.clientX - bb.left) / bb.width * (dates.length - 1));
+    i = Math.max(0, Math.min(dates.length - 1, i));
+    cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 1);
+    showTip(e, `<b>${dates[i]}</b><br>` + series.map(s =>
+      `${s.name}: ${opts.fmtT ? opts.fmtT(s.v[i]) : fmt(s.v[i],3)}`).join("<br>"));
+  });
+  hit.addEventListener("mouseleave", () => { cross.setAttribute("opacity",0); hideTip(); });
+  if (legendId) document.getElementById(legendId).innerHTML = series.map(s =>
+    `<span><i class="swatch" style="background:${s.color}"></i>${s.name}</span>`).join("");
+}
+
+/* --------------------------------------------------------------- equity */
+lineChart("c-equity", "lg-eq", [
+  {name:"Pairs strategy", v:D.equity.strategy, color:css("--s1")},
+  {name:"Vol-targeted 10%", v:D.equity.vol_targeted, color:css("--s2")},
+  {name:"Nifty 50 equal weight", v:D.equity.benchmark, color:css("--s3")},
+], D.equity.dates, {h:320, fmtY: v => "₹" + v.toFixed(1), fmtT: v => "₹" + v.toFixed(3)});
+
+lineChart("c-dd", "lg-dd", [
+  {name:"Pairs strategy", v:D.equity.dd_strategy, color:css("--s1"), area:true},
+  {name:"Nifty 50 equal weight", v:D.equity.dd_bench, color:css("--s3"), area:true},
+], D.equity.dates, {h:220, max:0, fmtY: v => v.toFixed(0)+"%", fmtT: v => v.toFixed(1)+"%"});
+
+/* -------------------------------------------------------- grouped bars */
+(function yearly(){
+  const y = D.yearly, W = 820, H = 260, L = 46, R = 14, T = 14, B = 30;
+  const svg = frame(document.getElementById("c-yearly"), W, H);
+  const vals = y.strategy.concat(y.benchmark);
+  const hi = Math.max(...vals) * 1.12, lo = Math.min(0, Math.min(...vals) * 1.3);
+  const Y = v => T + (hi - v) * (H - T - B) / (hi - lo);
+  for (let i = 0; i <= 4; i++){ const v = lo + (hi-lo)*i/4;
+    el("line", {x1:L, x2:W-R, y1:Y(v).toFixed(1), y2:Y(v).toFixed(1), class:"gridline"}, svg);
+    txt(svg, L-8, Y(v)+3.5, v.toFixed(0)+"%", "axis", "end"); }
+  el("line", {x1:L, x2:W-R, y1:Y(0), y2:Y(0), class:"zeroline"}, svg);
+  const bw = (W-L-R) / y.years.length, gap = 10, w = (bw - gap) / 2 - 3;
+  const set = [["Pairs strategy", y.strategy, css("--s1")], ["Nifty 50 equal weight", y.benchmark, css("--s3")]];
+  y.years.forEach((yr, i) => {
+    set.forEach(([nm, arr, c], j) => {
+      const v = arr[i], x = L + i*bw + gap/2 + j*(w+3), top = Math.min(Y(v), Y(0)), h = Math.abs(Y(v)-Y(0));
+      const r = el("rect", {x:x.toFixed(1), y:top.toFixed(1), width:w.toFixed(1),
+        height:Math.max(h,1).toFixed(1), fill:c, rx:2}, svg);
+      hoverable(r, `<b>${yr} · ${nm}</b><br>${v>=0?"+":""}${v.toFixed(2)}%`);
+      txt(svg, x + w/2, v >= 0 ? Y(v)-5 : Y(v)+11, (v>=0?"+":"")+v.toFixed(1), "dlabel", "middle");
+    });
+    txt(svg, L + i*bw + bw/2, H-8, yr, "axis", "middle");
+  });
+  document.getElementById("lg-yr").innerHTML = set.map(([nm,,c]) =>
+    `<span><i class="swatch" style="background:${c}"></i>${nm}</span>`).join("");
+  document.getElementById("t-yearly").innerHTML =
+    `<thead><tr><th>Year</th><th>Pairs strategy</th><th>Vol-targeted 10%</th><th>Nifty 50 EW</th><th>Excess</th></tr></thead><tbody>`
+    + y.years.map((yr,i) => `<tr><td class="name">${yr}</td>`
+      + [y.strategy[i], y.vol_targeted[i], y.benchmark[i], y.strategy[i]-y.benchmark[i]]
+        .map(v => `<td class="${v>=0?'pos':'neg'}">${v>=0?"+":""}${v.toFixed(2)}%</td>`).join("")
+      + `</tr>`).join("") + `</tbody>`;
+})();
+
+/* ----------------------------------------------------------------- cost */
+(function cost(){
+  const c = D.cost, W = 820, H = 250, L = 46, R = 22, T = 16, B = 44;
+  const svg = frame(document.getElementById("c-cost"), W, H);
+  const hi = 1.2, lo = -0.7;
+  const X = i => L + i * (W-L-R) / (c.length - 1);
+  const Y = v => T + (hi - v) * (H-T-B) / (hi - lo);
+  for (let i = 0; i <= 5; i++){ const v = lo + (hi-lo)*i/5;
+    el("line", {x1:L, x2:W-R, y1:Y(v).toFixed(1), y2:Y(v).toFixed(1), class:"gridline"}, svg);
+    txt(svg, L-8, Y(v)+3.5, v.toFixed(1), "axis", "end"); }
+  el("line", {x1:L, x2:W-R, y1:Y(0), y2:Y(0), class:"zeroline"}, svg);
+  el("path", {d: c.map((p,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(p.sharpe).toFixed(1)).join(" "),
+    fill:"none", stroke:css("--s1"), "stroke-width":2, "stroke-linejoin":"round"}, svg);
+  c.forEach((p,i) => {
+    const cc = el("circle", {cx:X(i).toFixed(1), cy:Y(p.sharpe).toFixed(1), r:4,
+      fill: p.sharpe>=0 ? css("--s1") : css("--bad"), stroke:css("--surface"), "stroke-width":2}, svg);
+    hoverable(cc, `<b>${p.cost_bps_leg_side} bps per leg</b><br>Round trip: ${p.roundtrip_bps} bps<br>Sharpe: ${fmt(p.sharpe)}<br>CAGR: ${pct(p.cagr,2)}`);
+    txt(svg, i===0 ? X(i)+9 : X(i), Y(p.sharpe) - 10, fmt(p.sharpe), "dlabel", i===0 ? "start" : "middle");
+    txt(svg, X(i), H-26, p.cost_bps_leg_side, "axis", "middle");
+    txt(svg, X(i), H-13, p.roundtrip_bps, "axis", "middle");
+  });
+  txt(svg, L-8, H-26, "bps/leg", "axis", "end");
+  txt(svg, L-8, H-13, "round trip", "axis", "end");
+  document.getElementById("t-cost").innerHTML =
+    `<thead><tr><th>Cost per leg/side</th><th>Round trip</th><th>Sharpe</th><th>CAGR</th><th>Max drawdown</th></tr></thead><tbody>`
+    + c.map(p => `<tr><td class="name">${p.cost_bps_leg_side} bps</td><td>${p.roundtrip_bps} bps</td>`
+      + `<td class="${p.sharpe>=0?'pos':'neg'}">${fmt(p.sharpe)}</td>`
+      + `<td class="${p.cagr>=0?'pos':'neg'}">${pct(p.cagr,2)}</td><td>${pct(p.max_dd,1)}</td></tr>`).join("")
+    + `</tbody>`;
+})();
+
+/* ------------------------------------------------------------- variants */
+(function variants(){
+  const v = D.variants.slice().sort((a,b) => b.sharpe - a.sharpe);
+  const W = 820, rowH = 26, L = 250, R = 20, T = 22, H = T + v.length*rowH + 26;
+  const svg = frame(document.getElementById("c-variants"), W, H);
+  const hi = 0.8, lo = -0.8;
+  const X = s => L + (s - lo) * (W-L-R) / (hi - lo);
+  [-0.8,-0.4,0,0.4,0.8].forEach(t => {
+    el("line", {x1:X(t).toFixed(1), x2:X(t).toFixed(1), y1:T-6, y2:T+v.length*rowH,
+      class: t===0 ? "zeroline" : "gridline"}, svg);
+    txt(svg, X(t), T-11, t.toFixed(1), "axis", "middle"); });
+  v.forEach((d,i) => {
+    const y = T + i*rowH + 4, x0 = X(0), x1 = X(d.sharpe);
+    const r = el("rect", {x:Math.min(x0,x1).toFixed(1), y:y.toFixed(1),
+      width:Math.max(Math.abs(x1-x0),1.5).toFixed(1), height:rowH-11, rx:2,
+      fill: d.sharpe>=0 ? css("--s1") : css("--bad")}, svg);
+    hoverable(r, `<b>${d.variant}</b><br>Sharpe ${fmt(d.sharpe)}<br>CAGR ${pct(d.cagr,2)}<br>Max DD ${pct(d.max_dd,1)}<br>${d.n_trades} trades · ${fmt(d.win_rate*100,0)}% win<br>${fmt(d.stop_pct*100,0)}% stopped out`);
+    txt(svg, L-10, y + rowH/2 - 1, d.variant.length > 38 ? d.variant.slice(0,37)+"…" : d.variant, "axis", "end");
+    const lab = txt(svg, x1 + (d.sharpe>=0 ? 6 : 8), y + rowH/2 - 1, fmt(d.sharpe), "dlabel", "start");
+    if (d.sharpe < 0) lab.setAttribute("fill", "#ffffff");
+  });
+  txt(svg, (L+W-R)/2, H-6, "Out-of-sample Sharpe ratio", "axis", "middle");
+})();
+
+/* ----------------------------------------------------------- grid heat */
+(function grid(){
+  const g = D.grid, ns = [...new Set(g.map(d=>d.n_pairs))], rs = [...new Set(g.map(d=>d.reform_days))];
+  const W = 820, cellH = 54, L = 116, T = 30, R = 20, H = T + rs.length*cellH + 34;
+  const svg = frame(document.getElementById("c-grid"), W, H);
+  const cw = (W-L-R)/ns.length;
+  const ramp = ["--heat-0","--heat-1","--heat-2","--heat-3","--heat-4","--heat-5"].map(css);
+  const lo = Math.min(...g.map(d=>d.sharpe)), hi = Math.max(...g.map(d=>d.sharpe));
+  ns.forEach((n,i) => txt(svg, L + i*cw + cw/2, T-12, n + (n===1?" pair":" pairs"), "axis", "middle"));
+  rs.forEach((r,j) => {
+    txt(svg, L-12, T + j*cellH + cellH/2 + 3, r===63?"Quarterly":(r===126?"Half-yearly":"Annual"), "axis", "end");
+    txt(svg, L-12, T + j*cellH + cellH/2 + 16, r+"d re-screen", "axis", "end");
+    ns.forEach((n,i) => {
+      const d = g.find(x => x.n_pairs===n && x.reform_days===r);
+      const k = Math.min(5, Math.max(0, Math.round((d.sharpe-lo)/(hi-lo)*5)));
+      const rect = el("rect", {x:(L+i*cw+1).toFixed(1), y:(T+j*cellH+1).toFixed(1),
+        width:(cw-2).toFixed(1), height:cellH-2, fill:ramp[k], rx:2}, svg);
+      hoverable(rect, `<b>${n} pairs · ${r}-day re-screen</b><br>Sharpe ${fmt(d.sharpe)}<br>CAGR ${pct(d.cagr,2)}<br>Max DD ${pct(d.max_dd,1)}<br>${d.n_trades} trades`);
+      const t = txt(svg, L+i*cw+cw/2, T+j*cellH+cellH/2+2, fmt(d.sharpe), "dlabel", "middle");
+      t.setAttribute("fill", k >= 3 ? "#ffffff" : css("--ink-900"));
+      const t2 = txt(svg, L+i*cw+cw/2, T+j*cellH+cellH/2+16, d.n_trades+" trades", "axis", "middle");
+      t2.setAttribute("fill", k >= 3 ? "#ffffff" : css("--ink-500"));
+    });
+  });
+  document.getElementById("lg-grid").innerHTML =
+    `<span>Sharpe ${fmt(lo)}</span>` + ramp.map(c =>
+      `<i class="swatch" style="background:${c};width:20px;border-radius:0"></i>`).join("") + `<span>${fmt(hi)}</span>`;
+})();
+
+/* --------------------------------------------------------------- census */
+(function census(){
+  const c = D.census, W = 820, H = 270, L = 44, R = 16, T = 16, B = 30;
+  const svg = frame(document.getElementById("c-census"), W, H);
+  const hi = 250, lo = 0;
+  const X = i => L + i*(W-L-R)/(c.length-1), Y = v => T + (hi-v)*(H-T-B)/(hi-lo);
+  for (let i = 0; i <= 5; i++){ const v = lo + (hi-lo)*i/5;
+    el("line", {x1:L, x2:W-R, y1:Y(v).toFixed(1), y2:Y(v).toFixed(1), class:"gridline"}, svg);
+    txt(svg, L-8, Y(v)+3.5, v.toFixed(0), "axis", "end"); }
+  const mk = (key, color, fill) => {
+    const d = c.map((p,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(p[key]).toFixed(1)).join(" ");
+    if (fill) el("path", {d: d + ` L ${X(c.length-1).toFixed(1)} ${Y(0)} L ${X(0).toFixed(1)} ${Y(0)} Z`,
+      fill: color, "fill-opacity":.12}, svg);
+    el("path", {d, fill:"none", stroke:color, "stroke-width":2, "stroke-linejoin":"round"}, svg);
+  };
+  mk("n_candidates", css("--s1"), true); mk("same_sector", css("--s3"), true);
+  c.forEach((p,i) => {
+    if (i % 2) return;
+    txt(svg, X(i), H-8, p.form_end.slice(2,7), "axis", "middle");
+  });
+  const hit = el("rect", {x:L,y:T,width:W-L-R,height:H-T-B,fill:"transparent"}, svg);
+  const cross = el("line", {x1:0,x2:0,y1:T,y2:H-B,stroke:css("--rule-strong"),"stroke-width":1,opacity:0}, svg);
+  hit.addEventListener("mousemove", e => { const bb = hit.getBoundingClientRect();
+    let i = Math.round((e.clientX-bb.left)/bb.width*(c.length-1)); i = Math.max(0,Math.min(c.length-1,i));
+    cross.setAttribute("x1",X(i)); cross.setAttribute("x2",X(i)); cross.setAttribute("opacity",1);
+    showTip(e, `<b>Window ending ${c[i].form_end}</b><br>Passed screen: ${c[i].n_candidates} of 1,081 (${fmt(c[i].pct_of_1081,1)}%)<br>Same sector: ${c[i].same_sector}<br>Median half-life: ${fmt(c[i].med_half_life,1)}d`); });
+  hit.addEventListener("mouseleave", () => { cross.setAttribute("opacity",0); hideTip(); });
+  document.getElementById("lg-cen").innerHTML =
+    `<span><i class="swatch" style="background:${css("--s1")}"></i>All cointegrated pairs</span>` +
+    `<span><i class="swatch" style="background:${css("--s3")}"></i>Same-sector pairs</span>`;
+})();
+
+/* ---------------------------------------------------------- pairs table */
+(function pairs(){
+  document.getElementById("t-pairs").innerHTML =
+    `<thead><tr><th>Pair (long / short legs)</th><th>Sector link</th><th>Windows selected</th>`
+    + `<th>Avg ADF p</th><th>Half-life</th><th>Corr</th><th>Hedge β</th><th>Trades</th><th>Win rate</th><th>Cum. P&amp;L</th></tr></thead><tbody>`
+    + D.pairs.map(p => `<tr><td class="name">${p.pair}</td>`
+      + `<td style="text-align:left"><span class="chip ${p.same_sector?'same':''}">${p.same_sector ? p.sector_y : p.sector_y+" · "+p.sector_x}</span></td>`
+      + `<td>${p.times_selected} / 27</td><td>${p.avg_adf_p < 0.0001 ? p.avg_adf_p.toExponential(1) : p.avg_adf_p.toFixed(5)}</td>`
+      + `<td>${fmt(p.avg_half_life,1)}d</td><td>${fmt(p.avg_corr,3)}</td><td>${fmt(p.avg_beta,2)}</td>`
+      + `<td>${p.trades||0}</td><td>${p.win_rate==null?"—":fmt(p.win_rate*100,0)+"%"}</td>`
+      + `<td class="${p.total_pnl>=0?'pos':'neg'}">${p.total_pnl==null?"—":pct(p.total_pnl,1)}</td></tr>`).join("")
+    + `</tbody>`;
+})();
+
+/* -------------------------------------------------------- pair pnl bars */
+(function pairPnl(){
+  const rows = D.pair_pnl_top.concat(D.pair_pnl_bot.slice().reverse());
+  const W = 820, rowH = 22, L = 190, R = 24, T = 20, H = T + rows.length*rowH + 20;
+  const svg = frame(document.getElementById("c-pairpnl"), W, H);
+  const m = Math.max(...rows.map(r => Math.abs(r.total_pnl))) * 1.15;
+  const X = v => L + (v + m) * (W-L-R) / (2*m);
+  [-m, -m/2, 0, m/2, m].forEach(t => {
+    el("line", {x1:X(t).toFixed(1), x2:X(t).toFixed(1), y1:T-6, y2:T+rows.length*rowH,
+      class: Math.abs(t)<1e-9 ? "zeroline" : "gridline"}, svg);
+    txt(svg, X(t), T-11, (t*100).toFixed(0)+"%", "axis", "middle"); });
+  rows.forEach((r,i) => {
+    const y = T + i*rowH + 3, x0 = X(0), x1 = X(r.total_pnl);
+    const rect = el("rect", {x:Math.min(x0,x1).toFixed(1), y:y.toFixed(1),
+      width:Math.max(Math.abs(x1-x0),1.5).toFixed(1), height:rowH-9, rx:2,
+      fill: r.total_pnl>=0 ? css("--s1") : css("--bad")}, svg);
+    hoverable(rect, `<b>${r.pair}</b><br>Cumulative ${pct(r.total_pnl,2)}<br>${r.trades} trades · ${fmt(r.win_rate*100,0)}% win<br>Avg hold ${fmt(r.avg_days,0)}d`);
+    txt(svg, L-10, y + rowH/2 - 1, r.pair, "axis", "end");
+    txt(svg, r.total_pnl>=0 ? x1+6 : x1-6, y + rowH/2 - 1, pct(r.total_pnl,1), "dlabel", r.total_pnl>=0?"start":"end");
+  });
+})();
+
+/* ---------------------------------------------------------- histograms */
+function hist(mountId, counts, x0, x1, unit, color){
+  const W = 400, H = 190, L = 34, R = 10, T = 12, B = 28;
+  const svg = frame(document.getElementById(mountId), W, H);
+  const hi = Math.max(...counts) * 1.12;
+  const bw = (W-L-R)/counts.length, step = (x1-x0)/counts.length;
+  const Y = v => T + (hi - v)*(H-T-B)/hi;
+  for (let i = 0; i <= 3; i++){ const v = hi*i/3;
+    el("line", {x1:L, x2:W-R, y1:Y(v).toFixed(1), y2:Y(v).toFixed(1), class:"gridline"}, svg);
+    txt(svg, L-6, Y(v)+3.5, Math.round(v), "axis", "end"); }
+  counts.forEach((c,i) => {
+    const a = x0 + i*step, b = a + step;
+    const r = el("rect", {x:(L+i*bw+1).toFixed(1), y:Y(c).toFixed(1), width:(bw-2).toFixed(1),
+      height:Math.max(H-B-Y(c),0).toFixed(1), rx:2,
+      fill: (a+b)/2 < 0 && unit === "%" ? css("--bad") : color}, svg);
+    hoverable(r, `<b>${a.toFixed(unit==="%"?1:0)} to ${b.toFixed(unit==="%"?1:0)}${unit}</b><br>${c} observations`);
+  });
+  [0, Math.floor(counts.length/2), counts.length].forEach(i => {
+    txt(svg, L + i*bw, H-8, (x0 + i*step).toFixed(unit==="%"?1:(x1<=0.06?3:0)) + unit, "axis", "middle"); });
+}
+hist("c-tpnl", D.trade_pnl_hist, -8.5, 8.5, "%", css("--s1"));
+hist("c-hold", D.hold_hist, 0, 60, "d", css("--s1"));
+hist("c-hl", D.halflife_hist, 5, 60, "d", css("--s2"));
+hist("c-adf", D.adf_hist, 0, 0.05, "", css("--s2"));
+
+/* ------------------------------------------------------- monthly heat */
+(function monthly(){
+  const m = D.monthly, MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const W = 820, cellH = 30, L = 52, T = 26, R = 12, H = T + m.years.length*cellH + 14;
+  const svg = frame(document.getElementById("c-monthly"), W, H);
+  const cw = (W-L-R)/12;
+  const flat = m.data.flat().filter(v => v != null);
+  const mx = Math.max(...flat.map(Math.abs));
+  const posR = ["--heat-1","--heat-2","--heat-3","--heat-4"].map(css);
+  const negR = ["--neg-1","--neg-2","--neg-3","--neg-4"].map(css);
+  MN.forEach((n,i) => txt(svg, L+i*cw+cw/2, T-10, n, "axis", "middle"));
+  m.years.forEach((y,j) => {
+    txt(svg, L-10, T+j*cellH+cellH/2+3.5, y, "axis", "end");
+    m.data[j].forEach((v,i) => {
+      let fill = css("--mid");
+      if (v != null && Math.abs(v) > 0.001){
+        const k = Math.min(3, Math.floor(Math.abs(v)/mx*4));
+        fill = v > 0 ? posR[k] : negR[k];
+      }
+      const r = el("rect", {x:(L+i*cw+1).toFixed(1), y:(T+j*cellH+1).toFixed(1),
+        width:(cw-2).toFixed(1), height:cellH-2, rx:2, fill}, svg);
+      if (v != null){
+        hoverable(r, `<b>${MN[i]} ${y}</b><br>${v>=0?"+":""}${v.toFixed(2)}%`);
+        const t = txt(svg, L+i*cw+cw/2, T+j*cellH+cellH/2+3.5, v.toFixed(1), "dlabel", "middle");
+        const strong = Math.abs(v) > mx*0.5;
+        t.setAttribute("fill", strong ? "#ffffff" : css("--ink-900"));
+      }
+    });
+  });
+  document.getElementById("lg-mon").innerHTML =
+    `<span>Loss</span>` + negR.slice().reverse().concat([css("--mid")]).concat(posR).map(c =>
+      `<i class="swatch" style="background:${c};width:18px;border-radius:0"></i>`).join("") + `<span>Gain</span>`;
+})();
+})();
+</script>

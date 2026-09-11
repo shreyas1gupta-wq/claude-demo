@@ -1,0 +1,4 @@
+data/
+mcap.xlsx
+results/prices_used.csv
+__pycache__/
