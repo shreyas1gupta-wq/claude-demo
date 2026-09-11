@@ -12,16 +12,16 @@ recorded rather than hidden.
 | 4 | c-yield | b4-resi-yield-national + b4-rents-falling | 9 | DONE |
 | 5 | c-velocity | b5-velocity-national + b5-velocity-precrash + b5-peak-timing | 14 | DONE |
 | 6 | c-assetclass-core | b3-apartments-vs-houses + b3-retail-shops | 10 | DONE |
-| 7 | c-office | b3-office-beijing/shanghai/shenzhen/guangzhou (merged) + b3-office-tier2 + b3-whole-buildings | 17 | running |
+| 7 | c-office | b3-office-beijing/shanghai/shenzhen/guangzhou (merged) + b3-office-tier2 + b3-whole-buildings | 17 | DONE |
 | 8 | c-land-auctions | b2-land-auctions + b2-land-state-buyers | 10 | |
 | 9 | c-businessrent | b4-business-rent + b4-price-to-income | 9 | |
 | 10 | c-creits | b7-creits-overview + b7-creits-rental-housing + b7-creits-commercial | 13 | DONE |
-| 11 | c-inventory | b6-inventory-vacancy + b5-starts-completions | 10 | |
+| 11 | c-inventory | b6-inventory-vacancy + b5-starts-completions | 10 | running |
 | 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model | 9 | |
 | 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | DONE |
 | 14 | c-developers-1 | b6-dev-evergrande + b6-dev-country + b6-dev-vanke | 18 | |
 | 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | |
-| 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | |
+| 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | running |
 | 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | running |
 | 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | |
 | 19 | c-policy | b8-policy-timeline-1 + b8-policy-timeline-2 + b8-property-tax | 14 | |
