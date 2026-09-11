@@ -226,6 +226,9 @@ seven times in eight. A state, never a trigger.</div></div>
 <div class="t"><div class="k">China, bust ÷ boom speed</div><div class="v">0.98× or 1.73×</div>
 <div class="d">On the <b>official</b> index China runs exactly at the base rate. On <b>private</b>
 estimates it runs 1.7× faster than its own boom. Same country, opposite conclusions.</div></div>
+<div class="t"><div class="k">The two Chinese yields</div><div class="v">2.3% vs 5.5%</div>
+<div class="d">Direct tier-1 market vs the cap rate implied by traded C-REITs. The base rate says
+busts <b>end</b> near 5.2% — the institutional mark is already there.</div></div>
 <div class="t"><div class="k">Equities, year one</div><div class="v">−13.7pp</div>
 <div class="d">Excess real return after a housing peak. Double if banks break. Essentially
 <b>gone by year five</b>.</div></div>
@@ -462,8 +465,59 @@ came from <b>rate cuts rather than from the asset getting cheaper relative to it
 international base rate, troughs arrive at yields near 5%.</div>
 </section>
 
+
 <section>
-<h2>6 · Which debt number was actually predicting it</h2>
+<h2>6 · C-REITs — the only market-priced mark on Chinese property, and it disagrees with everything else</h2>
+<p class="sub">Every other number on this page is an index, a survey or an appraisal. C-REITs trade,
+which makes them the one place a real clearing price on Chinese real estate is observable. What they
+say does not match the housing index at all.</p>
+<div class="tbl"><table>
+<thead><tr><th>C-REIT market</th><th>Figure</th><th>Confidence</th></tr></thead>
+<tbody>
+<tr><td>Listed vehicles / AUM</td><td class="mono">~78–79 REITs, ~RMB 200–227bn (Feb 2026)</td>
+<td><span class="tag snip">2-SOURCE</span></td></tr>
+<tr><td>Standing in Asia</td><td class="mono">Asia's largest by count; world's #2</td>
+<td><span class="tag snip">1-SOURCE</span></td></tr>
+<tr><td>Distribution yield, logistics</td><td class="mono">4.0–5.3%</td><td><span class="tag snip">1-SOURCE</span></td></tr>
+<tr><td>Distribution yield, data centre</td><td class="mono">~5.1%</td><td><span class="tag snip">1-SOURCE</span></td></tr>
+<tr><td>Distribution yield, consumer/retail</td><td class="mono">3.5–4.8%</td><td><span class="tag snip">1-SOURCE</span></td></tr>
+<tr><td>Distribution yield, affordable rental housing</td><td class="mono">4.0–4.5%</td><td><span class="tag snip">1-SOURCE</span></td></tr>
+<tr><td><b>Implied residential cap rate</b> (derived)</td>
+<td class="mono">appraisal discount rates 6.0–6.5%<br>on a disclosed rent-growth assumption of
+<b>0.66%/yr</b> → <b>≈5.3–5.9%</b></td><td><span class="tag snip">1-SOURCE construction</span></td></tr>
+</tbody></table></div>
+<h3>The divergence, and it is the most interesting single fact in this programme</h3>
+<p>The base rate says property busts end at a rental yield near <b>5.2%</b> (modern-era median at
+the trough: 4.94%). China's <i>direct</i> tier-1 market yields <b>2.0–2.6%</b> — nowhere near it. But
+the affordable-rental-housing C-REITs, the only Chinese residential assets with a market price,
+imply a cap rate of roughly <b>5.5%</b> — <i>already at or above the international trough level</i>.
+And the appraisals underpinning them assume rent growth of <b>0.66% a year</b>, which is an
+institution writing down, in a public document, that Chinese residential rents do essentially
+nothing for the foreseeable future.</p>
+<div class="warn"><b>Two readings, and honesty requires giving both.</b> The apples-to-oranges
+reading: regulated affordable-rental housing is a different asset from tier-1 owner-occupied stock —
+capped rents, different tenant risk, different growth — so the two yields were never directly
+comparable. The uncomfortable reading: to whatever extent they <i>are</i> comparable, the
+institutional market has already marked Chinese residential to the international trough while the
+owner-occupier market is still priced at less than half that yield. Both readings point the same
+way about which of the two markets has finished repricing. This number is a derived construction
+from a single source and is the top verification priority on the page.</p>
+<h3>What a foreign investor can actually own — and the number that should stop the conversation</h3>
+<ul>
+<li><b>C-REITs: effectively inaccessible.</b> QFII/RQFII access is arguable on weak single-document
+sourcing; <b>Stock Connect inclusion, announced April 2024, is still not live</b>, and HKEX's own
+chief executive was targeting Q4 2027 as of May 2026. So the one instrument that carries the honest
+mark is the one a foreign book cannot buy.</li>
+<li><b>Offshore USD developer bonds: approximately 0.6% recovery on ~$147bn of defaults.</b> Not a
+distressed-debt story with a recovery tail — a near-total loss. Any "buy the bonds at 20 cents"
+thesis from 2022 has been settled by the outcome.</li>
+<li><b>HK-listed developers</b> give equity risk rather than yield; <b>five Singapore-listed
+China-asset REITs</b> (CapitaLand China Trust, Sasseur, BHG Retail, EC World, Dasin) are the
+practical offshore route, and one of them has already failed.</li>
+</ul>
+</section>
+<section>
+<h2>7 · Which debt number was actually predicting it</h2>
 <p class="sub">This was the principal's sharpest question, and it has two answers that only look
 contradictory. The macro aggregate works as a <i>state</i> and fails as a <i>trigger</i>.</p>
 <div class="tbl"><table>
@@ -516,7 +570,7 @@ independently about valuation in its expected-return work: good states, useless 
 </section>
 
 <section>
-<h2>7 · Equities after a housing peak</h2>
+<h2>8 · Equities after a housing peak</h2>
 <p class="sub">The investable leg, and the one that decides whether a foreign allocator should care.
 Real equity total return after each housing peak, against a horizon-matched benchmark built on the
 same geometric basis.</p>
