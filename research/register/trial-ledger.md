@@ -5639,3 +5639,51 @@ NOTHING IS PROMOTED. Outputs: the China Property Crash Atlas (row 64, 22 section
 rows, CN-D1..CN-D5 (desk-grade, standing on its own), and three registrable design briefs — the
 India unlisted-developer leverage question, the India REIT sleeve sizing, and an India
 liability-mix/implicit-sponsor screen modelled on what the Three Red Lines missed.
+
+## Entry IN-D1..IN-D2 (2026-09-11) — PRE-REGISTERED before running: HOW OFTEN DOES PROPERTY
+COMPOUND AT 20%/YR, AND WHAT FOLLOWS? (the computable half of the IN programme —
+`research/frontier/india-property-plan.md`; principal asked for five Indian cities expected to
+"grow more than 20% for next 5yr 2026-2032"). THE DESIGN LOGIC: the desk has NO India property
+data and no India CPI (checked, not assumed), so no India price base rate can be computed and no
+India forecast can be desk-grade. What CAN be settled is the BAR ITSELF. Using the same vaulted
+JST R6 panel as CN-D1..D5 (18 countries 1870-2020, real house prices via `hpnom`/`cpi`), the
+question becomes: how frequently has any property market in 150 years actually compounded at these
+rates over five years, how long did it persist, and what happened next? That converts an
+unanswerable forecast into a base rate, and it is the honest way to price the principal's
+threshold. Windows are OVERLAPPING 5-year country-windows (flagged: overlapping, so counts are not
+independent observations and no significance is claimed — the SC-D2/H36-D1 precedent for
+overlapping reads applies).
+
+**IN-D1 — THE REAL-APPRECIATION THRESHOLD BATTERY (6 cells).** For thresholds T in
+{5, 10, 15, 20}%/yr annualized REAL appreciation over 5 years: a1 the FREQUENCY of country-year
+windows clearing each T, and how many distinct countries ever cleared T=20; a2 the NEXT-5-year
+annualized real return following each threshold window; a3 P(a CN-D1-defined crash peak, i.e. a
+subsequent >=20% real drawdown, begins within 5 years | window cleared T) against the
+unconditional base rate, with the LIFT; a4 the DURATION cell — the longest run of consecutive
+years any country sustained >=15%/yr real trailing-5y appreciation; a5 the era split (pre-1970 vs
+1970+), because the pre-WWII contamination CN-D1 found binds here too; a6 the verdict row.
+BARS/PRIORS: (a) T=20%/yr real over 5y is RARE — cleared by **< 2%** of country-year windows
+[prior: sustained 20% real appreciation is a bubble signature, not a growth path]; (b) the next-5y
+real return following a T>=15 window is **NEGATIVE** [the mean-reversion prior]; (c) the crash
+lift at T>=15 is **>= 2.0x** the unconditional rate. If (b) fails and high-appreciation windows are
+followed by further gains, momentum dominates mean reversion in property at the 5-year scale and
+that is the finding — recorded either way.
+
+**IN-D2 — THE NOMINAL TWIN (4 cells).** Identical construction on NOMINAL `hpnom`, because Indian
+property conversation is conducted in nominal rupees and Indian inflation differs materially from
+the panel's. b1 frequency of nominal windows clearing each T; b2 the share of >=20%/yr NOMINAL
+windows that were simultaneously NEGATIVE in real terms — the money-illusion cell, and the one that
+most directly disciplines an Indian "prices doubled" claim; b3 the next-5y nominal return after a
+T>=20 nominal window; b4 the verdict. BARS/PRIORS: (a) the nominal frequency at T=20 is at least
+**3x** the real frequency (inflation does most of the work); (b) **>= 25%** of >=20%/yr nominal
+windows were real-negative. If (b) misses badly, nominal appreciation in this panel was mostly
+real and the money-illusion caution is weaker than the desk assumes.
+
+CENSUS 10 on the day (6+4). LIMITS registered in advance: (i) JST is 18 ADVANCED economies and
+contains no India, no EM, and nothing at India's income level or urbanization stage — this prices
+the BAR, it does not forecast an Indian city; (ii) windows OVERLAP, so frequencies are exposure
+shares not independent trials and no p-value is computable or claimed; (iii) these are NATIONAL
+indices, and the CN programme already established that city dispersion exceeds national dispersion
+(Wenzhou -63%, Hainan ~-87%, Langfang >-50% all deeper than the panel's worst national episode) —
+so a single Indian CITY can exceed any threshold this panel reports, in both directions, and the
+panel's frequencies are therefore a floor on city-level extremes, not a cap; (iv) annual frequency.
