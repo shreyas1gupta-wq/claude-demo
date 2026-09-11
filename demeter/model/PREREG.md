@@ -65,6 +65,15 @@ ruinous in 1990-2012 / 1950-2012 AND the edge survives at 6 bp / 90 bp (or the c
 2. **Clustered slippage.** A stress row where per-trade cost scales with trailing realised vol: cost_bps × max(1, RV21/15%).
 3. **The 1950–2012 and 1990–2012 eras** are reported for every candidate, gate-passer or not.
 
+## Pre-OOS selection record (written before any out-of-sample run)
+
+2026-09-11 22:55 IST — DEV ranking of gate passers by dev_1990 Sharpe at 3/60 (from `dev_results/PASS2_DEV_TABLE.md`):
+vix_vrp_v2 0.678 (maxDD −19.8%) > sticky_tier 0.612 (−14.3%) > volmanaged 0.495 (−19.8%) > dissipation_reentry 0.447
+(−12.4%). Gate failures: crash_exit_dual (G3/G4). Pending: composite_dual_engine (designer continuing from banked
+files) and the three-lens verification of every passer. **Provisional DEV-chosen recommendation: vix_vrp_v2**, to be
+confirmed or replaced ONLY by (a) the composite finishing above 0.678 with all gates, or (b) a SEVERE verification
+finding against vix_vrp_v2. Whatever the OOS look shows afterwards does not change this selection.
+
 ## Deviations
 1. **2026-09-04, session-usage limit.** The six-designer workflow lost five agents to the account's usage cap after 64
    minutes (`dissipation_reentry` returned; `crash_exit_dual` and `volmanaged` had banked a final harness JSON, a signal
@@ -73,3 +82,12 @@ ruinous in 1990-2012 / 1950-2012 AND the edge survives at 6 bp / 90 bp (or the c
    two banked notes from the banked artifacts WITHOUT re-tuning (crash_exit_dual stays a gate failure at its frozen
    point; volmanaged's frozen point passes all gates), and the three unstarted lenses run fresh. No out-of-sample file
    was created or read between the two launches (`results/` unchanged since commit 9ec0bb3; `OOS_LOOK_LOG.md` absent).
+2. **2026-09-10, model-specific usage cap.** Round 2 lost the `vix_vrp` and `composite_dual_engine` designers to the
+   Fable model's cap. Both had banked work: `vix_vrp` had completed the audit, built and gate-tested `vix_vrp_v2`,
+   written the full design note and its return JSON (so it is treated as complete; the pre-committed retirement rule
+   applies — v2 replaces the original); `composite_dual_engine` had banked the mechanism note, the parameter budget,
+   the planned ablations, the signal file and one smoke run (Sharpe 0.43, maxDD −34.7% at an unfrozen point). A
+   round-3 launch on 2026-09-11 briefed fresh designers as if nothing existed; it was stopped within a minute of
+   starting and no file was written by it. Round 4 (2026-09-11) continues the composite from its banked files with
+   an Opus designer and runs the three-lens verification on every gate passer with Sonnet verifiers, three agents at
+   a time (Principal instruction of 2026-09-11).
