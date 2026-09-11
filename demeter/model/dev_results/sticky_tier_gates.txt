@@ -1,0 +1,12 @@
+sticky_tier: ALL GATES PASS
+  G1_causality: pass  value=0.0
+  G2_dev1990_sharpe: pass  value=0.6115542727934902 (bar 0.425)
+  G3_dev1990_maxdd: pass  value=-14.252593625791265 (bar -30.0)
+  G4_no_ruinous_era: pass
+      1950-1969: ok: CAGR 10.00% maxDD -33.9%
+      1970-1989: ok: CAGR 8.44% maxDD -17.3%
+      1990-1999: ok: CAGR 12.70% maxDD -14.3%
+      2000-2012H1: ok: CAGR 3.30% maxDD -4.5%
+  G5_changes_per_year: pass  value=0.44428772919605075 (bar 25.0)
+  G6_plateau: pass  value=0.9 (bar 0.5)
+  G7_param_budget: pass  value=5 (bar 6)

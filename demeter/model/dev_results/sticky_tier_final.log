@@ -1,0 +1,20 @@
+sticky_tier [DEV ONLY, cost 3.0bp/fin 60.0bp]  n_params=5
+  1990-2012H1: CAGR 7.38% Sharpe 0.61 maxDD -14.3% worstM -8.7% cash 67% chg/yr 0.4 | SPY CAGR 8.34% Sharpe 0.39 DD -50.8%
+  1950-2012H1: CAGR 8.55% Sharpe 0.35 maxDD -48.2% cash 44% chg/yr 1.0 | SPY Sharpe 0.47
+  era 1950-1969: CAGR 10.00% (SPY 13.33%) Sharpe 0.45 maxDD -33.9% chg/yr 1.5
+  era 1970-1989: CAGR 8.44% (SPY 11.47%) Sharpe 0.10 maxDD -17.3% chg/yr 1.1
+  era 1990-1999: CAGR 12.70% (SPY 17.98%) Sharpe 0.84 maxDD -14.3% chg/yr 0.8
+  era 2000-2012H1: CAGR 3.30% (SPY 1.19%) Sharpe 0.34 maxDD -4.5% chg/yr 0.2
+  stress 1987_crash: model +2.2% (SPY -25.0%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 1990_kuwait: model +3.4% (SPY -8.6%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 1998_ltcm: model +2.1% (SPY +4.9%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2000_02_bear: model +9.7% (SPY -47.2%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2002_03_recovery: model +1.3% (SPY +45.5%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2007_09_gfc: model +2.2% (SPY -54.8%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2009_recovery: model +0.1% (SPY +67.4%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2010_flash: model +0.0% (SPY -8.4%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  stress 2011_debt: model +0.0% (SPY -5.6%) DD 0.0% avgL 0.00 cash 100% 3x 0%
+  reentry census 2000_02_bear: entries to >=2x 0, mean fwd10 None, share negative None
+  reentry census 2007_09_gfc: entries to >=2x 0, mean fwd10 None, share negative None
+  plateau dev_1990: 90% of 20 perturbations within 25% of base Sharpe 0.61
+  lookahead ok=True  -> dev_results/sticky_tier.json  (9s)

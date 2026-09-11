@@ -4,6 +4,39 @@ Designer: pass-2 candidate, lens 1. Development data only (harness-truncated at 
 timestamps are Asia/Kolkata 2026-09-04. Every number in the later sections is copied from
 `dev_results/crash_exit_dual*.json` / `_grid.csv`, never from memory.
 
+## Verdict (added by the finisher, 2026-09-10, from the frozen point already banked — no re-tuning performed)
+
+**Gate failure.** `crash_exit_dual` clears G1, G2, G5, G6, G7 (dev_1990 Sharpe 0.4494, comfortably above the 0.425
+bar) but fails **G3** (dev_1990 monthly maxDD −52.76% against the −30% bar) and **G4** (three of the four eras are
+ruinous by the −40% DD test: 1950-1969 CAGR 16.31%/DD −42.7%, 1970-1989 CAGR 13.48%/DD −46.9%, 2000-2012H1 CAGR
+2.06%/DD −51.8%; only 1990-1999 clears at DD −23.9%). Per PREREG.md this candidate earns no out-of-sample look and
+was never run through `evaluate.py`. **Why, mechanically:** the lens's exit is a genuine σ-normalised or
+VIX-jump crash trigger, and it does exactly what it was designed to do on discrete shock events — 1987 −8.8% vs
+SPY −25.0%, the GFC exit fired 15-Sep-2008 and stayed OUT through the October capitulation and the November low
+(§7, §9). What it structurally cannot see is a **grinding bear that never produces a qualifying shock**: 2000-02
+(−54.2%, *worse* than SPY's −47.2%) and the Jan–Mar-2009 second leg down were both ridden at the 1x tier floor
+the entire way, because no single day or two-day cluster crossed k·σ and no VIX close jumped `j` above its
+10-day mean while vol stayed chronically — not acutely — elevated (§7 items 2000-02 and GFC; §11 item 1-2). The
+census (§8) shows the same "default IN" design also lets Decision B's 2x tier fire inside bear-market rallies (6
+times in 2000-02, 4 in 2007-09; 75-83% of those followed by 10-day losses). The grid search — 1,272 combos across
+four grid files (§5) — never found a point that fixes the drawdown without giving up the Sharpe edge: the
+drawdown surface is flat at −50…−57% across the entire feasible k/j/rv region, and the one DD-constrained variant
+actually tested (`ddalt`, j=0.10: DD −26.5%, 45% cash) drops Sharpe to 0.34 (below SPY's 0.39) and *still* fails
+G4 on 1970-89 (DD −49.3%). This reads as a genuine, non-tunable failure of the lens as specified — "am I in the
+market" defaulting to IN with only crash-shock exits — rather than a parameter-search miss: a trigger built to
+catch discrete shocks cannot handle a slow bleed at 1-2σ/day, which is exactly the failure mode §1's mechanism
+section predicted before any run.
+
+**Spot-check of sections 7-9 against `dev_results/crash_exit_dual.json` (finisher verification, 2026-09-10):** five
+numbers checked — (1) §7 1987 "−8.8% vs −25.0%, avgL 0.72, cash 32%" = JSON `1987_crash` model −8.784%/SPY
+−24.968%/avg_leverage 0.7222/pct_days_cash 32.22% ✓; (2) §7 2000-02 "−54.2% vs −47.2%, avgL 0.96, cash 14%, 22
+changes" = JSON model −54.218%/SPY −47.204%/avg_leverage 0.9561/cash 14.42%/n_changes 22 ✓; (3) §7 GFC "−42.5% vs
+−54.8%, avgL 0.90, cash 20%" = JSON model −42.504%/SPY −54.767%/avg_leverage 0.9045/cash 19.94% ✓; (4) §7 2009
+recovery "+53.8% vs +67.4%, avgL 1.03, cash 10%" = JSON model 53.770%/SPY 67.405%/avg_leverage 1.0290/cash 10.14%
+✓; (5) §6 headline block (CAGR 11.19%, Sharpe 0.449, DD −52.8%, worst month −13.2%, cash 13.5%, 12.0 chg/yr,
+up-capture 133%, down-capture 131%, beta 1.11, avg leverage 1.57) = JSON `windows.dev_1990` all fields match to the
+quoted precision ✓. **No mismatches found; no correction needed.**
+
 ## 1. Mechanism (written BEFORE any run of the signal)
 
 **The two decisions and why they are separate.** The incumbent's down-capture of 146% comes from one entangled rule:

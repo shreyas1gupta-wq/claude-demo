@@ -1,0 +1,53 @@
+{
+  "name": "volmanaged",
+  "file": "signals/volmanaged.py",
+  "built": true,
+  "gates_all_pass": true,
+  "gates": {
+    "G1_causality": true,
+    "G2_dev1990_sharpe": true,
+    "G3_dev1990_maxdd": true,
+    "G4_no_ruinous_era": true,
+    "G5_changes_per_year": true,
+    "G6_plateau": true,
+    "G7_param_budget": true
+  },
+  "dev_1990": {
+    "cagr_pct": 7.38869287023165,
+    "sharpe": 0.4945800022969806,
+    "max_dd_pct": -19.80145206761278,
+    "changes_per_year": 1.777150916784203,
+    "pct_days_cash": 0.0,
+    "worst_month_pct": -9.534869009533919
+  },
+  "dev_1950": {
+    "applicable": true,
+    "cagr_pct": 9.021836918278003,
+    "sharpe": 0.36164364506018865,
+    "max_dd_pct": -48.63895193793141,
+    "changes_per_year": 2.5478824876001527
+  },
+  "n_iterations": 806,
+  "n_tunable_params": 5,
+  "design_note": "dev_results/volmanaged_DESIGN_NOTE.md",
+  "headline": "volmanaged: Moreira-Muir inverse-variance leverage (5 tunables), ALL GATES PASS on dev_1990 (Sharpe 0.4946, maxDD -19.80%, 1.78 chg/yr, plateau 100%) and clears every 1950-2012 era; avg leverage 0.63x with 0% days in cash -- a continuously de-levered market exposure, not a market-timing exit, so it trails buy-and-hold in calm/bull eras and captures only 11.4% of the +67.4% 2009 rebound.",
+  "biggest_weakness": "No directional input, and the asymmetric no-trade band effectively fires at most one de-lever per crisis: once held leverage drops to/below band_dn=0.30 (e.g. 0.54x->0.20x in mid-Sep-2008), the band algebra (H_{t-1}-T_t>0.30 with T_t>=0) can never trigger a further decrease, so the identical 0.201x level was still in effect at the Oct-2008 Lehman capitulation, the Nov-2008 low and the Mar-2009 GFC low five months later -- and the same lack of directional input makes it trail SPY on Sharpe in every calm-to-bull era (1950-69: 0.51 vs 0.85; 1990-99: 0.81 vs 0.95; 1970-89: 0.10 vs 0.28), because avg_leverage_when_invested is only 0.63x.",
+  "bugs_in_shared_code": "none",
+  "retired_files": [],
+  "stress": {
+    "1987_crash_model_total_pct": -11.514833264639702,
+    "1990_kuwait_model_total_pct": -0.6439656930810389,
+    "1998_ltcm_model_total_pct": 2.71945023759812,
+    "2000_02_bear_model_total_pct": -0.1334178360303362,
+    "2002_03_recovery_model_total_pct": 6.840119774461839,
+    "2007_09_gfc_model_total_pct": -19.819525905745795,
+    "2009_recovery_model_total_pct": 11.417732739920217,
+    "2010_flash_model_total_pct": -1.585101074524653,
+    "2011_debt_model_total_pct": -0.7990885322699648
+  },
+  "spurious_reentry": {
+    "2000_02_bear": {"n_entries_to_2x_plus": 0, "pct_days_2x_plus": 0.0},
+    "2007_09_gfc": {"n_entries_to_2x_plus": 0, "pct_days_2x_plus": 0.0}
+  },
+  "also_finished": "crash_exit_dual: gate FAILURE (G3 dev_1990 maxDD -52.8%, G4 era ruinous); dev_1990 Sharpe and other numbers verified against dev_results/crash_exit_dual.json -- see dev_results/crash_exit_dual_RETURN.json and dev_results/crash_exit_dual_DESIGN_NOTE.md for the frozen gate-failure record."
+}

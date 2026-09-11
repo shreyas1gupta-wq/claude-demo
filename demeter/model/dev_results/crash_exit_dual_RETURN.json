@@ -1,0 +1,53 @@
+{
+  "name": "crash_exit_dual",
+  "file": "signals/crash_exit_dual.py",
+  "built": true,
+  "gates_all_pass": false,
+  "gates": {
+    "G1_causality": true,
+    "G2_dev1990_sharpe": true,
+    "G3_dev1990_maxdd": false,
+    "G4_no_ruinous_era": false,
+    "G5_changes_per_year": true,
+    "G6_plateau": true,
+    "G7_param_budget": true
+  },
+  "dev_1990": {
+    "cagr_pct": 11.193749613587967,
+    "sharpe": 0.4493867731101121,
+    "max_dd_pct": -52.76362471539806,
+    "changes_per_year": 12.040197461212975,
+    "pct_days_cash": 13.452045133991538,
+    "worst_month_pct": -13.153120607850921
+  },
+  "dev_1950": {
+    "applicable": true,
+    "cagr_pct": 13.543299902184703,
+    "sharpe": 0.43957244573354,
+    "max_dd_pct": -60.51003996444897,
+    "changes_per_year": 12.627241510873713
+  },
+  "n_iterations": 1326,
+  "n_tunable_params": 6,
+  "design_note": "dev_results/crash_exit_dual_DESIGN_NOTE.md",
+  "headline": "crash_exit_dual: GATE FAILURE on G3 (dev_1990 maxDD -52.76% vs -30% bar) and G4 (1950-69, 1970-89, 2000-2012H1 eras all breach -40% DD); G1/G2/G5/G6/G7 pass (Sharpe 0.4494 clears the 0.425 bar). Genuine crash-trigger exit works on discrete shocks (1987 -8.8% vs SPY -25.0%; GFC exit fired 15-Sep-2008, out through the Oct capitulation) but a default-IN state machine rides grinding bears (2000-02 -54.2%, worse than SPY's -47.2%) at the 1x tier floor because no single day or VIX jump ever crosses the trigger while vol stays chronically elevated. Frozen point stands as a documented gate failure; never run through evaluate.py.",
+  "biggest_weakness": "The 'am I in the market' state machine defaults to IN and exits only on a genuine sigma-normalised or VIX-jump shock, so it cannot see a grinding bear that never produces one: 2000-02 was ridden mostly at 1x the whole way (-54.2%, worse than buy-and-hold's -47.2%) and the Jan-Mar-2009 second GFC leg (-25% while still IN at 1x) because -4.3/-4.5% days were only -1.8..-2.1 sigma on an already-elevated ~2.3% sigma and VIX at 45-52 never jumped 30% above its own 10-day mean. A 1,272-combo grid search across four grid files never found a point that fixes the drawdown without giving up the Sharpe edge (the drawdown surface is flat at -50...-57% across the whole feasible region), and the one DD-constrained variant tested (j=0.10) drops Sharpe to 0.34 (below SPY) while still failing G4 on 1970-89.",
+  "bugs_in_shared_code": "none",
+  "retired_files": [],
+  "stress": {
+    "1987_crash_model_total_pct": -8.784294781734781,
+    "1990_kuwait_model_total_pct": 3.267626576914151,
+    "1998_ltcm_model_total_pct": 7.240840507586621,
+    "2000_02_bear_model_total_pct": -54.21753918683092,
+    "2002_03_recovery_model_total_pct": 55.41808932756276,
+    "2007_09_gfc_model_total_pct": -42.50392318758208,
+    "2009_recovery_model_total_pct": 53.76990553396048,
+    "2010_flash_model_total_pct": -8.034068154265084,
+    "2011_debt_model_total_pct": -4.957733551245857
+  },
+  "spurious_reentry": {
+    "2000_02_bear": {"n_entries_to_2x_plus": 6, "mean_fwd10_excess_pct": -2.32, "share_fwd10_negative_pct": 83, "pct_days_2x_plus": 9.2},
+    "2007_09_gfc": {"n_entries_to_2x_plus": 4, "mean_fwd10_excess_pct": -1.25, "share_fwd10_negative_pct": 75, "pct_days_2x_plus": 8.7}
+  },
+  "note": "Gate-failing candidate per PREREG.md Deviations #1 -- frozen point documented, not re-tuned by the finisher. See dev_results/volmanaged_RETURN.json for the schema-conforming StructuredOutput return of this task's other candidate (volmanaged, all gates pass)."
+}

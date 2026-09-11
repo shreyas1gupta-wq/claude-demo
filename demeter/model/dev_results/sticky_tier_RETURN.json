@@ -1,0 +1,18 @@
+{
+  "name": "sticky_tier",
+  "file": "C:\\tmp\\claude-demo\\demeter\\model\\signals\\sticky_tier.py",
+  "built": true,
+  "gates_all_pass": true,
+  "gates": {"G1_causality": true, "G2_dev1990_sharpe": true, "G3_dev1990_maxdd": true, "G4_no_ruinous_era": true, "G5_changes_per_year": true, "G6_plateau": true, "G7_param_budget": true},
+  "dev_1990": {"cagr_pct": 7.3818, "sharpe": 0.6116, "max_dd_pct": -14.2526, "changes_per_year": 0.4443, "pct_days_cash": 66.6608, "worst_month_pct": -8.6517},
+  "dev_1950": {"applicable": true, "cagr_pct": 8.5537, "sharpe": 0.3482, "max_dd_pct": -48.2392, "changes_per_year": 0.9775},
+  "n_iterations": 13,
+  "n_tunable_params": 5,
+  "design_note": "C:\\tmp\\claude-demo\\demeter\\model\\dev_results\\sticky_tier_DESIGN_NOTE.md",
+  "headline": "Discrete {0,1,2,3} tiers from max(EWMA20, EWMA160) vol with MM inverse-variance boundaries (1x<14%, 2x<9.9%, 3x<8.1%), 20% hysteresis, 5-session persistence, weekly re-levering. ALL GATES PASS: dev_1990 Sharpe 0.61 / maxDD -14.3% / 0.44 chg/yr (10 changes in 22.5y) / plateau 90% / 5 tunables; beats volmanaged (0.49 / -19.8% / 1.8) on Sharpe, drawdown and turnover. But it is a 1x-or-cash regime filter: 3x never held 1990-2012, 2x 6%, cash 67%, avg leverage 0.39 (volmanaged 0.63), up-capture 36%, CAGR 7.4% (5.3% with T-bills zeroed on cash days) vs SPY 8.3%; calm-year exposure BELOW volmanaged (1990-99: 0.63x vs 0.85x). Every point that holds 2-3x in calm regimes (target_vol >= 0.16, CAGR up to 9.9%) fails G4 via 1962 (-49% era DD) and 1973-74/1987 (-42%): shocks come from calm and are taken at the full held tier. Cash tier justified (1x floor: Sharpe 0.43, DD -50.8%). Stickiness cost nil in the 1987/2008 crash weeks (already in cash for regime reasons since 1987-04 and 2007-08) but severe as late RE-levering: cash 1987-92, 1997-2005, 2007-2012, missing the 1988-91, 1997-2000 and 2009-12 rallies; it buys +0.08-0.13 Sharpe and 5x fewer trades vs the unsticky variant in 1990-99 and 2003-07.",
+  "biggest_weakness": "It is not a levered strategy but a calm-decade filter whose dev_1990 Sharpe rests on three invested spells and two long cash spells that happened to contain both bears (10 decisions in 22.5 years); 2.1 of 7.4 CAGR points are T-bill interest; the 160-session slow leg keeps it in cash through every recovery (2002-03, 2009-12 missed entirely) and over 1950-2012 it is worse than buy-and-hold on Sharpe (0.35 vs 0.47). A high-vol bull market (1982-87, 2009-12 type) or a zero-rate world breaks it; the record's Mar/Apr-2020-style levered rebounds are exactly what vol-LEVEL gating cannot do.",
+  "bugs_in_shared_code": "none. Observations: dev_harness.plateau rounds integer-parameter perturbations so P=5 yields only two distinct values (4, 6) counted four times; spurious_reentry_census counts entries to >=2x only, so a rule whose in-bear ceiling is 1x/cash passes it vacuously (re-entries to 1x inside both bears reported separately: zero).",
+  "retired_files": ["dev_results/sticky_tier_smoke.json", "dev_results/sticky_tier_refsummary.py", "dev_results/sticky_tier_grid_spec.json", "dev_results/sticky_tier_gridA.json", "dev_results/sticky_tier_gridA_grid.csv", "dev_results/sticky_tier_gridA.log", "dev_results/sticky_tier_diag1.py"],
+  "spurious_reentry": {"2000_02_bear": {"n_entries_to_2x_plus": 0, "mean_fwd10_excess_pct": null, "share_fwd10_negative": null, "pct_days_2x_plus": 0.0}, "2007_09_gfc": {"n_entries_to_2x_plus": 0, "mean_fwd10_excess_pct": null, "share_fwd10_negative": null, "pct_days_2x_plus": 0.0}},
+  "stress": {"1987_crash": 2.17, "1990_kuwait": 3.43, "1998_ltcm": 2.11, "2000_02_bear": 9.66, "2002_03_recovery": 1.31, "2007_09_gfc": 2.2, "2009_recovery": 0.11, "2010_flash": 0.04, "2011_debt": 0.01}
+}

@@ -1,0 +1,169 @@
+{
+ "name": "vix_vrp_v2",
+ "params": {
+  "v_calm": 15.5,
+  "v_panic": 30.0,
+  "hyst": 0.12,
+  "rv_win": 10,
+  "vrp_min": -0.15,
+  "vrp_elev": 0.12
+ },
+ "causality_12_cutoffs": {
+  "ok": true,
+  "max_abs_diff": 0.0,
+  "details": [
+   {
+    "cutoff": "1992-03-31",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "1994-09-30",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "1997-02-28",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "1998-08-31",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "1999-12-31",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2001-09-28",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2002-10-09",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2004-05-28",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2006-06-30",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2008-10-10",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2009-03-09",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2011-08-08",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   }
+  ]
+ },
+ "lag_test_dev_1990": {
+  "base": {
+   "sharpe": 0.6782706498277302,
+   "cagr_pct": 11.71276761877824,
+   "max_dd_pct": -19.77825374927784,
+   "changes_per_year": 10.574047954866007
+  },
+  "lag1": {
+   "sharpe": 0.42190015064970876,
+   "cagr_pct": 8.096047916618954,
+   "max_dd_pct": -28.305427986488795,
+   "changes_per_year": 10.574047954866007
+  },
+  "lag2": {
+   "sharpe": 0.4312721171715598,
+   "cagr_pct": 8.2445263966471,
+   "max_dd_pct": -31.029100103438278,
+   "changes_per_year": 10.574047954866007
+  }
+ },
+ "grid_audit": {
+  "error": "no vix_vrp_v2_grid.csv"
+ },
+ "module_constants": [
+  {
+   "name": "LEV_CALM",
+   "value": "2, LEV_PANIC = 1, LEV_ELEV_ON = 1: Demeter-style discrete ti"
+  },
+  {
+   "name": "LEV_CALM",
+   "value": "2.0"
+  },
+  {
+   "name": "LEV_ELEV_ON",
+   "value": "1.0"
+  },
+  {
+   "name": "LEV_PANIC",
+   "value": "1.0"
+  }
+ ],
+ "subsamples": {
+  "halves": [
+   {
+    "start": "1990-01-01",
+    "end": "2001-03-31",
+    "sharpe": 0.8441417327987646,
+    "cagr_pct": 15.273135784728886,
+    "max_dd_pct": -18.850126006541057,
+    "changes_per_year": 10.9064039408867
+   },
+   {
+    "start": "2001-04-01",
+    "end": "2012-06-30",
+    "sharpe": 0.5304180032949783,
+    "cagr_pct": 8.262366284135014,
+    "max_dd_pct": -19.77825374927784,
+    "changes_per_year": 10.240282685512367
+   }
+  ],
+  "thirds": [
+   {
+    "start": "1990-01-01",
+    "end": "1997-06-30",
+    "sharpe": 0.6371225935782809,
+    "cagr_pct": 12.479300488940304,
+    "max_dd_pct": -18.850126006541057,
+    "changes_per_year": 8.506329113924052
+   },
+   {
+    "start": "1997-07-01",
+    "end": "2004-12-31",
+    "sharpe": 0.8919370806273235,
+    "cagr_pct": 13.54510164109679,
+    "max_dd_pct": -11.134228588773375,
+    "changes_per_year": 11.078389830508474
+   },
+   {
+    "start": "2005-01-01",
+    "end": "2012-06-30",
+    "sharpe": 0.5506853835735313,
+    "cagr_pct": 9.160979469049636,
+    "max_dd_pct": -19.778253749277862,
+    "changes_per_year": 12.146186440677965
+   }
+  ]
+ },
+ "turnover_clustering": {
+  "n_changes": 238,
+  "share_of_changes_in_top_decile_vol_days": 0.15546218487394958,
+  "share_of_days_top_decile_vol": 0.1
+ }
+}

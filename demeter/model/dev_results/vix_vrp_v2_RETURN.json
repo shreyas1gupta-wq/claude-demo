@@ -1,0 +1,62 @@
+{
+ "name": "vix_vrp_v2",
+ "file": "signals/vix_vrp_v2.py",
+ "built": true,
+ "gates_all_pass": true,
+ "gates": {
+  "G1_causality": true,
+  "G2_dev1990_sharpe": true,
+  "G3_dev1990_maxdd": true,
+  "G4_no_ruinous_era": true,
+  "G5_changes_per_year": true,
+  "G6_plateau": true,
+  "G7_param_budget": true
+ },
+ "dev_1990": {
+  "cagr_pct": 11.71276761877824,
+  "sharpe": 0.6782706498277302,
+  "max_dd_pct": -19.77825374927784,
+  "changes_per_year": 10.574047954866007,
+  "pct_days_cash": 61.9358251057828,
+  "worst_month_pct": -10.744898042283669
+ },
+ "dev_1950": {
+  "applicable": false,
+  "cagr_pct": 7.628662576941525,
+  "sharpe": 0.40251988437758807,
+  "max_dd_pct": -19.77825374927785,
+  "changes_per_year": 3.813811522319725
+ },
+ "n_iterations": 796,
+ "n_tunable_params": 6,
+ "design_note": "dev_results/vix_vrp_DESIGN_NOTE.md",
+ "headline": "vix_vrp_v2: the original VIX-regime + VRP-crash-filter machine with one added rule -- the ELEVATED regime holds 1x only when the variance risk premium is rich (VIX/100 - RV10 > 0.12), cash otherwise. ALL GATES PASS on dev_1990: Sharpe 0.6783 vs the original's 0.6084 (same -19.8% monthly maxDD, 10.6 chg/yr vs 6.0, cash 62%, plateau 96%, 6/90 Sharpe 0.642); 2000-02 bear +12.9%, GFC -9.5%, 2009 recovery +43.6% of SPY's +67.4%, zero entries to >=2x in either bear. The audit of the original found the 0.61 to be a plateau in hyst/v_calm/rv_win>=7/vrp_min with cliffs at v_panic>=35 and rv_win=5, its Sharpe coming from the 2x CALM and 1x PANIC legs while the ELEVATED cash state (63% of days) protects the bears at the cost of ~+50% of excess return in each of the 1995-99 and 2003-07 bulls; its -28.6% daily GFC drawdown is the VRP-normalised 1x PANIC leg riding Jan-Mar 2009. Tested and rejected one at a time on DEV: 3x CALM (Sharpe 0.55), unconditional 1x ELEVATED (bear -44%), every PANIC dissipation burst (2008 entries 50-100% negative). The original is retired in favour of v2 per the pre-committed rule; the file stays in place unchanged.",
+ "biggest_weakness": "The Sharpe gain over the original rests on a thin leg: at vrp_elev 0.12 the new ELEVATED 1x is open on only 132 days in 22.5 years (2.3% of days, spells of ~2-3 days, mean excess +19.8 bp/day, leg t-stat about 1.9), so the +0.07 Sharpe is fragile and the gate does NOT fix the cash-by-default cost (it recovered +11.8% of the +51% missed in 1995-99 and +7.3% of +47% in 2003-07); lower thresholds open it more but turn the 2000-02 bear negative below 0.09; the gate also inherits a realised-vol-window sensitivity (the one failed plateau perturbation is rv_win 12 -> Sharpe 0.505; grid D's rv_win 15 row averages 0.53). Structurally v2 is still a VIX-LEVEL machine with the original's untouched -28.6% daily drawdown (1x PANIC through the Jan-Mar-2009 grind with a positive VRP): a prolonged panic that grinds lower with normalised realised vol repeats it, and a bull whose VIX sits at 16-30 with realised vol close to implied is sat out almost entirely.",
+ "bugs_in_shared_code": "none",
+ "retired_files": [
+  "signals/vix_vrp.py"
+ ],
+ "stress": {
+  "1987_crash_model_total_pct": 2.1739271007258143,
+  "1990_kuwait_model_total_pct": 4.18624977383546,
+  "1998_ltcm_model_total_pct": 24.033381245589492,
+  "2000_02_bear_model_total_pct": 12.884233709079474,
+  "2002_03_recovery_model_total_pct": 28.14954220640491,
+  "2007_09_gfc_model_total_pct": -9.540944821174701,
+  "2009_recovery_model_total_pct": 43.64369895762821,
+  "2010_flash_model_total_pct": 5.372250898043229,
+  "2011_debt_model_total_pct": 15.412978478551098
+ },
+ "spurious_reentry": {
+  "2000_02_bear": {
+   "n_entries_to_2x_plus": 0,
+   "pct_days_2x_plus": 0.0,
+   "share_fwd10_negative": null
+  },
+  "2007_09_gfc": {
+   "n_entries_to_2x_plus": 0,
+   "pct_days_2x_plus": 0.0,
+   "share_fwd10_negative": null
+  }
+ }
+}
