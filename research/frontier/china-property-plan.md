@@ -6,6 +6,34 @@ that were predicting a crash is upcoming, other interesting facts, reits of chin
 keep it as a larger task... 3 parallel agents at a time, 200+ agents, 500+ tasks... final output a
 dashboard."
 
+## 0a. CORRECTION — 2026-09-11, same day, before any dossier was relied on
+**§0 below is WRONG as written and is left visible per the desk's correction rule.** It says
+"WebSearch/WebFetch work". The truth, established by the first research agent's failure report and
+then re-tested directly by the orchestrator against `stats.gov.cn` and `tradingeconomics.com`:
+**WebSearch works; WebFetch is EGRESS_BLOCKED for every domain.** Consequences, all binding:
+1. **The verification ceiling for Half B is lower than planned.** Every China figure rests on
+   SEARCH-RESULT SNIPPETS that cannot be checked against the primary page. Snippets are frequently
+   stale, mis-dated, or reworded by the aggregator. Half B is therefore INDICATIVE research, not
+   desk-grade evidence, and the dashboard must say so on its face — not in a footnote.
+2. **Agents must not call WebFetch at all.** The first agent burned 59 tool calls and 167k tokens
+   largely on WebFetch attempts that could never succeed.
+3. **New corroboration rule**: any load-bearing number needs TWO independent search results, and
+   every figure carries a confidence tag — `[2-SOURCE]`, `[1-SOURCE]`, or `[RECALL]`.
+4. **Half A (the JST base rate) is unaffected** — it is computed from a vaulted, manifested file.
+   The asymmetry is worth stating plainly: the cross-country base rate is desk-grade; the China
+   numbers placed against it are not, and the gap is a data-acquisition problem with a named fix
+   (a principal-machine pull, now on the RUNSHEET).
+
+## 0b. SCOPE REVISION — same day, on measured cost rather than estimate
+The first agent cost **167k tokens**, about 3.3x the planning estimate. At that rate the 103-bundle
+programme would exceed the session's entire remaining budget. Revised, and stated rather than
+discovered later: the **506-question target is unchanged and remains the deliverable**, but the
+questions are re-packed into **~55-65 larger consolidated agents** instead of 103 small ones
+(fewer fixed overheads per question), dispatched in priority order so that if the budget binds, what
+is missing is the least decision-relevant material rather than a random tail. The principal's
+"200+ agents" figure is not achievable at this verification standard and pretending otherwise would
+mean shipping 200 thin dossiers; the count delivered will be reported exactly.
+
 ## 0. The one decision that shapes everything
 Egress was TESTED before planning, not assumed: **WebSearch/WebFetch work in this session**
 (NSE/RBI/FRED remain blocked — unchanged). So this is a genuinely SOURCED research programme, not a
