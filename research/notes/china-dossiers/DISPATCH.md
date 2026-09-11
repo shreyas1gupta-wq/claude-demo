@@ -17,9 +17,9 @@ recorded rather than hidden.
 | 9 | c-businessrent | b4-business-rent + b4-price-to-income | 9 | |
 | 10 | c-creits | b7-creits-overview + b7-creits-rental-housing + b7-creits-commercial | 13 | DONE |
 | 11 | c-inventory | b6-inventory-vacancy + b5-starts-completions | 10 | DONE |
-| 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model + b2-land-reform + b2-land-monetization | 17 | running |
+| 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model + b2-land-reform + b2-land-monetization | 17 | DONE |
 | 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | DONE |
-| 14 | c-developers-1 | b6-dev-evergrande + b6-dev-country + b6-dev-vanke | 18 | |
+| 14 | c-developers | b6-dev-evergrande + country + vanke + sunac + poly, presale, share shift | 30 | running |
 | 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | running |
 | 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | DONE |
 | 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | DONE |
