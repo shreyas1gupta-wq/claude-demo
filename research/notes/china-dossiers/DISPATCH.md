@@ -20,7 +20,7 @@ recorded rather than hidden.
 | 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model + b2-land-reform + b2-land-monetization | 17 | DONE |
 | 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | DONE |
 | 14 | c-developers | b6-dev-evergrande + country + vanke + sunac + poly, presale, share shift | 30 | running |
-| 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | running |
+| 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | DONE |
 | 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | DONE |
 | 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | DONE |
 | 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | DONE |
