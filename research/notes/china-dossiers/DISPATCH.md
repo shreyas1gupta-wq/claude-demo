@@ -22,8 +22,8 @@ recorded rather than hidden.
 | 14 | c-developers-1 | b6-dev-evergrande + b6-dev-country + b6-dev-vanke | 18 | |
 | 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | |
 | 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | running |
-| 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | running |
-| 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | |
+| 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | DONE |
+| 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | running |
 | 19 | c-policy | b8-policy-timeline-1 + b8-policy-timeline-2 + b8-property-tax | 14 | |
 | 20 | c-bonds | b7-offshore-bonds + b7-onshore-bonds-banks + b7-foreign-investable | 13 | |
 | 21 | c-tier2-a | b1-t2 Hangzhou/Nanjing/Chengdu/Chongqing/Wuhan/Changsha | 18 | |
@@ -41,3 +41,11 @@ recorded rather than hidden.
 | 33 | c-landreform | b2-land-reform + b2-land-monetization + b2-land-vs-house + b2-land-data-sources | 17 | |
 | 34 | c-global | b9-global-spillover + b10-india-commodities + b10-india-flows | 13 | |
 | 35 | c-forward | b9-what-happens-next + b9-ghost-cities + b9-demolition-quality + b5-recovery-shape + b4-yield-vs-history + b8-comparisons-policy | 24 | |
+
+**Note, 2026-09-11 (row 17 close-out):** row 17 (`c-india`) shipped as the consolidated,
+decision-grade India dossier the principal asked for directly — it already fully covers
+`b10-india-commodities` and `b10-india-flows` (steel/cement/sector channels, MSCI weights and
+EM-flow rotation) alongside its own `b10-india-lessons` + `b10-india-property-cycle` bundles.
+Row 34 (`c-global`) should NOT re-run those two India bundles when it dispatches — cite
+`research/notes/china-dossiers/c-india.md` instead, and scope row 34 to `b9-global-spillover`
+only, to avoid duplicate search spend on the same questions.
