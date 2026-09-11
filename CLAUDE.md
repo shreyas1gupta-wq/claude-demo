@@ -374,3 +374,32 @@ named as the honest gap). Explicitly disambiguated from the standing book's own 
 65/20/15 structure (a coincidentally similar number, a different question -- that one is
 WITHIN the equity sleeve, this one is the portfolio-wide split). Folded into the Positioning
 Note (v2, same URL).
+2026-09-11, principal asked what research territory is LEFT ("we have done macro funda and
+technical... what else can give us edge and alpha"). GAP-MAP-1 booked (agenda document, not a
+trial; zero cells) — research/frontier/coverage-gap-map.md. Method: enumerate the alpha space,
+SUBTRACT what the ledger already booked, SUBTRACT what RUNSHEET already queued, report only the
+residual (which is why shareholding-pattern/IPO-listings/reconstitution/results-calendars/CP-CD/
+FPI-flows/sectoral/valuation/CPI do NOT appear — already queued). THE RESIDUAL: (i) RUNNABLE
+TODAY, no pull — rebalance-band/frequency grid (the rebalancing RULE itself has never been
+tested, only static-vs-active per T3), concentration curve, cross-sectional dispersion as a
+STATE, and the India LTCG 1-year-threshold turnover asymmetry (prices whether MOM-D1's winning
+6-2 window survives its own tax bill — no US-derived study can answer it); rationale: the OP
+sweeps showed the return gap is alpha-gated while the RISK side has headroom, so construction
+mechanics beats another factor hunt, and these attack CERTAIN costs not hypothetical alpha.
+(ii) NOT ON ANY RUNSHEET — the exchange-microstructure disclosure suite (delivery %, F&O BAN
+LIST — a candidate for the stock-level crowding instrument India's factor book has failed to
+find three times: CR1a/CR2/CR-D2a, ASM/GSM, circuits, bulk/block deals, rollover/OI); the
+corporate-event suite beyond results (IPO LOCK-IN EXPIRY as the cleanest dated mechanical supply
+shock, buybacks with acceptance ratios, demergers, open offers, delisting reverse-book-building,
+promoter preferential allotments); the India G-SEC CURVE (smallest pull on the page, and it
+discharges the EXPLICITLY OWED FUN-D8 India slope verification); corporate bond spreads +
+rating migrations; GIFT Nifty basis + ADR/GDR premia (the natural extension of T1's overnight
+finding); filing/call text analysis; and AMFI SCHEME-LEVEL NAV history — the one row bearing on
+the OPERATING business (MF alpha persistence, capacity decay, flow-performance loop). Eight rows
+added to RUNSHEET under a dated gap-map section. (iii) CHEAP FIX TAKEN: breaks-registry had NO
+TAX DIMENSION — BR7 (LTCG reintroduced, Budget 2018), BR8 (DDT abolished / dividends taxed in
+recipient's hands, Budget 2020 — with an explicit rule that VAL-D1's Div_Yld split and QG-D1's
+payout finding must NOT be read across it), BR9 (buyback tax changed twice 2019-07/2024-10 +
+F&O STT increase) registered, each with a pin-the-notification [VERIFY] per BR4/BR6 precedent,
+deliberately ahead of their consumers. Nothing promoted; every gap-map row still owes its own
+pre-registration.

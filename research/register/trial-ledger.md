@@ -4737,3 +4737,52 @@ question as the standing book's own internal 65/20/15 (core/put-ladder-and-cover
 calls/factor-sleeve structure WITHIN the equity book) — the two 65-ish numbers are a
 coincidence, not the same construction. Folded into the Positioning Note as a new
 Update section (v2, same URL). Zero cells; zero census impact.
+
+## Entry GAP-MAP-1 (2026-09-11) — THE COVERAGE GAP MAP (principal: "we have done macro
+funda and technical — what else is left which can give us edge and alpha in Indian
+markets"). NOT A TRIAL, NOT A FINDING — an agenda document in the manager-frontier-sweep
+tradition; zero cells; zero census impact. METHOD, stated so the result can be audited:
+enumerate the alpha-source space, SUBTRACT everything already booked in this ledger,
+SUBTRACT everything already queued in RUNSHEET.md, report only the residual — which is
+why several obvious-sounding candidates (shareholding-pattern dynamics, IPO listings,
+reconstitution, results calendars, CP/CD money-market rates, FPI flows, sectoral TR,
+index valuation, India CPI) do NOT appear as gaps: they were already on the runsheet.
+Written to research/frontier/coverage-gap-map.md.
+THE RESIDUAL, in three tiers. (i) RUNNABLE TODAY on vaulted data, no pull needed (G1-G5):
+a rebalance-band/frequency grid (the desk holds static blends per T3 but has never tested
+the rebalancing RULE itself), a concentration curve, cross-sectional dispersion as a STATE
+variable, the India LTCG 1-year-threshold turnover asymmetry (a mechanical after-tax kink
+no US-derived study can capture — it directly prices whether MOM-D1's winning 6-2 window
+survives its own tax bill), and book-level vol-targeting. RATIONALE for putting these
+first: the option-program sweeps already established the return gap is alpha/data-gated
+while the RISK side has headroom (OP-D6 moved drawdown twice running, not CAGR) — so
+construction mechanics, not another factor hunt, is where marginal effort on vaulted data
+most plausibly pays, and G1/G4 attack CERTAIN costs (rebalancing drag, tax drag) rather
+than hypothetical alpha. (ii) NOT ON ANY RUNSHEET — the genuine blind spots, all India-
+specific, all public in principle, all blocked at this proxy: the exchange-microstructure
+disclosure suite (delivery %, F&O ban list, ASM/GSM surveillance, circuit hits, bulk/block
+deals, rollover/OI) — note the F&O BAN LIST is a candidate for the STOCK-LEVEL CROWDING
+instrument India's factor book has now failed to find three separate times (CR1a, CR2,
+CR-D2a all no-showed); the corporate-event suite beyond results (IPO LOCK-IN EXPIRY as the
+cleanest dated mechanical supply shock in this market, buybacks with acceptance ratios,
+demergers, open offers, delisting reverse-book-building, rights/bonus/splits, promoter
+preferential allotments); the India G-SEC CURVE (2y/5y/10y/30y) — the smallest pull on the
+page and it discharges an EXPLICITLY OWED verification, FUN-D8's India slope leg, which
+FUN-D9a hardened on US data and which cannot run at all without it; India corporate bond
+spreads + rating-migration history; GIFT Nifty basis + ADR/GDR premia (the natural
+extension of T1's overnight discovery, on the same session boundary); filing/call text
+analysis (flagged in eq-dossiers/b §5, never run); and AMFI SCHEME-LEVEL NAV history —
+the one row bearing on the OPERATING business rather than the model (MF alpha persistence,
+capacity decay, the flow-performance loop). Eight rows added to RUNSHEET.md under a
+dated gap-map section. (iii) A CHEAP FIX TAKEN THIS SESSION: the breaks registry carried
+BR1-BR6 with NO TAX DIMENSION at all — BR7 (LTCG on listed equity reintroduced, Budget
+2018, the origin of the 1-year threshold), BR8 (DDT abolished / dividends taxed in the
+recipient's hands, Budget 2020 — the single largest break for any yield-based sort, with
+an explicit consumption rule that VAL-D1's Div_Yld split and QG-D1's payout finding must
+NOT be read across it), BR9 (buyback taxation changed twice, 2019-07 and 2024-10, the
+second landing inside the BR4 curbs window, plus the same-budget F&O STT increase) are
+now registered, each press-sourced with a pin-the-notification [VERIFY] in the BR4/BR6
+tradition. BR7-BR9 are deliberately registered AHEAD of their consumers so they bind the
+after-tax designs before those designs exist. CONSUMPTION: nothing promoted; no booked
+verdict changed; every gap-map row still owes its own pre-registration before any number
+is computed. Zero cells; zero census impact.
