@@ -124,7 +124,12 @@ this census exists so that can never happen silently.
 | G2 concentration curve (8 drawn N + the all-names reference) | 8 | 8 |
 | G3 dispersion-as-a-state (4 conditioned spreads + 1 redundancy cell) | 5 | 5 |
 | G4 India LTCG-threshold holding ladder (5 holds x 2 rate regimes) | 10 | 10 |
-| **RUNNING TOTAL (run cells)** | | **1336** |
+| CH-D1 rank-buffer hysteresis on the India 6-2 sleeve (5 buffers + verdict) | 6 | 6 |
+| CH-D2 overlapping re-formation frequency (5 k values + verdict) | 6 | 6 |
+| CH-D3 partial adjustment on the asset book (5 lambda + verdict) | 6 | 6 |
+| CH-D4 share-turnover lookback ladder, US panel (3 lookbacks + ladder + interaction) | 5 | 5 |
+| CH-D5 India volume shock (3 horizons + liquid sub-read + interaction + redundancy) | 6 | 6 |
+| **RUNNING TOTAL (run cells)** | | **1365** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

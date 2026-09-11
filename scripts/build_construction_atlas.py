@@ -66,8 +66,9 @@ has headroom, so construction mechanics (which attack <i>certain</i> costs — r
 drag — rather than hypothetical alpha) is where marginal effort on vaulted data most plausibly pays.
 Four designs, 31 cells, all pre-registered before any number was computed; two cells desk-verified
 independently.</p>
-<div class="prov"><span class="badge">DESK = ledger entry G1-G4</span>
-<span class="badge">census 1,305 → 1,336</span>
+<div class="prov"><span class="badge">DESK = ledger entries G1-G4 + CH-D1..D5</span>
+<span class="badge">census 1,305 → 1,336 → 1,365</span>
+<span class="badge">updated 2026-09-11 with the churn battery (§6)</span>
 <span class="badge">costs + tax rates read from the registry, never typed</span>
 <span class="badge">quoted: T3 · F6a · MOM-D1 · QG-D2 · SEC-D7 · TECH-D3</span></div>
 </header>
@@ -82,6 +83,14 @@ names. Concentration loses even though the survivor bias flatters it.</div>
 <div class="v"><b>The LTCG line is real but sub-decisive</b><div class="num">−3.85 → −2.71pp/yr</div>
 Short holds still win after tax under both rate regimes — but Jul-2024 narrowed their advantage by
 ~1.14pp/yr, leaving only ~10% of gross edge as margin.</div>
+<div class="v" style="border-color:var(--good)"><b>§6 · Tranche the momentum sleeve at 3 months</b>
+<div class="num">+1.55pp/yr after tax</div>The churn battery's one promotion: re-form a third of the
+book each month and hold each tranche three months, rather than re-forming the whole book monthly.
+Best gross, best net, best after-tax <i>and</i> shallowest drawdown of the five frequencies.</div>
+<div class="v" style="border-color:var(--bad)"><b>§6 · Our stated trading cost is too low</b>
+<div class="num">472%/yr one-way</div>The 6-2 sleeve's churn sits at the throttled end of the desk's
+own cost curve (3.5-6.5%/yr all-in), so charging statutory-only — as every momentum print here does —
+understates the drag by roughly 2-4x.</div>
 </div>
 
 <section class="panel">
@@ -224,6 +233,160 @@ results desk-verified on two cells, with the verification-pass error recorded ho
 scripts/analyze_gap_tier1.py · config/costs.yaml (statutory + the new capital_gains_tax_india block) ·
 research/frontier/coverage-gap-map.md (the Tier-1 rationale). Regenerates via
 scripts/build_construction_atlas.py, never from memory.</p>
+</section>
+
+<section class="panel" style="border-left:3px solid var(--good)">
+<h2>Update · 2026-09-11 — 6 · The churn battery (CH-D1..CH-D5, 29 cells)
+<span class="flag good">one promotion · one closure · one cost-model flag · two honest unmeasurables</span></h2>
+<p class="sub">Asked for "churn and related stuff for edge", the desk read the word both ways and kept
+the halves apart, because they are different questions. <b>Our</b> churn is turnover as a cost to be
+managed (CH-D1..D3, the direct continuation of §1 and §4). <b>The market's</b> churn is turnover as a
+signal in its own right (CH-D4..D5) — never run standalone on this desk before: <span class="mono">
+Share_Turn_12M</span> had appeared only as a VAL-D2 companion and a VAL-D3 trap marker, both inside a
+family already booked as artifact-driven. A third reading — the fund industry's own portfolio-turnover
+ratio, and the exchange's delivery percentage — is data-gated and got RUNSHEET rows rather than
+designs.</p>
+
+<p class="note"><b>Two runner bugs were found and fixed before any interpretation was written, both
+recorded because both would have flattered a result.</b> (i) Gross was reported as a geometric CAGR
+while net was arithmetic-compounded, which made "net &gt; gross" appear — a units mismatch, not free
+money; both are now on the same basis so their difference is cost alone. (ii) CH-D2 was costing
+turnover with a 1/k proxy instead of actual weight change, which overstated k=1's trading ~2.5x and
+therefore <i>biased CH-D2's own bar in favour of its winner</i>; with the real measure the gain fell
+from +4.37 to +1.67pp/yr. Four cells were then desk-verified on different code paths — one exact
+match, three sign-and-size robust under a different estimator.</p>
+
+<h3>CH-D1 · the rank buffer — bar passed on the number, deliberately not booked</h3>
+<div class="tblwrap"><table class="plain"><thead><tr><th>exit buffer b</th><th>gross</th><th>net</th><th>after STCG</th>
+<th>cost drag</th><th>one-way turnover</th><th>vol</th><th>maxDD</th><th>book</th></tr></thead><tbody>
+<tr><td class="mono">0.00 (unbuffered)</td><td>32.92%</td><td>30.21%</td><td>23.57%</td><td>2.71pp</td>
+<td class="neg">472.8%/yr</td><td>23.06</td><td class="neg">−29.29%</td><td>42</td></tr>
+<tr><td class="mono">0.05</td><td>33.15%</td><td class="pos">30.94%</td><td class="pos">24.13%</td>
+<td>2.21pp</td><td>385.3%/yr</td><td>22.66</td><td>−28.20%</td><td>48</td></tr>
+<tr><td class="mono">0.10</td><td>32.29%</td><td>30.38%</td><td>23.70%</td><td>1.91pp</td>
+<td>334.1%/yr</td><td>22.47</td><td>−28.00%</td><td>53</td></tr>
+<tr><td class="mono">0.20</td><td>31.82%</td><td>30.24%</td><td>23.60%</td><td>1.58pp</td>
+<td>277.2%/yr</td><td>22.06</td><td>−26.77%</td><td>62</td></tr>
+<tr><td class="mono">0.30</td><td>30.00%</td><td>28.68%</td><td>22.40%</td><td>1.32pp</td>
+<td>234.4%/yr</td><td class="pos">21.53</td><td class="pos">−26.15%</td><td>72</td></tr>
+</tbody></table></div>
+<p>The +0.50pp/yr promotion bar was cleared (+0.73 at b=0.05) and the result is <b>recorded, not
+consumed</b> — the registration's own one-way rule disposes of it: buffering holds names longer on a
+panel that deleted its delistings, so a print that buffering <i>helps</i> on return is
+non-evidence-grade. What is admissible is the risk column, because it runs the wrong way for the
+artifact story — if deletion flattery drove this, holding decaying names longer would <i>deepen</i>
+drawdowns, not shallow them monotonically. The honest confound, named rather than buried: the book
+grows 42 → 72 names across the grid, and §2 established the same day that diversification keeps
+paying past 20 names, so the risk gain is plausibly §2's effect arriving through the buffer rather
+than hysteresis itself.</p>
+
+<h3>CH-D2 · overlapping re-formation — both bars passed; the battery's one promotion</h3>
+<div class="tblwrap"><table class="plain"><thead><tr><th>hold k</th><th>gross</th><th>net</th><th>after tax (post-Jul-24)</th>
+<th>one-way</th><th>vol</th><th>maxDD</th></tr></thead><tbody>
+<tr><td class="mono">1m (re-form whole book)</td><td>32.88%</td><td>30.21%</td><td>23.57%</td>
+<td class="neg">38.9%/mo</td><td>23.06</td><td>−29.29%</td></tr>
+<tr><td class="mono">2m</td><td>33.16%</td><td>31.29%</td><td>24.40%</td><td>27.1%/mo</td>
+<td>22.43</td><td>−26.48%</td></tr>
+<tr><td class="mono"><b>3m</b></td><td class="pos"><b>33.81%</b></td><td class="pos"><b>32.24%</b></td>
+<td class="pos"><b>25.12%</b></td><td>22.6%/mo</td><td class="pos">22.32</td>
+<td class="pos"><b>−25.40%</b></td></tr>
+<tr><td class="mono">6m</td><td>32.03%</td><td>31.03%</td><td>24.19%</td><td>14.6%/mo</td>
+<td>22.05</td><td>−27.70%</td></tr>
+<tr><td class="mono">12m</td><td class="neg">28.22%</td><td>27.66%</td><td>23.86%</td>
+<td class="pos">8.3%/mo</td><td>22.59</td><td class="neg">−33.54%</td></tr>
+</tbody></table></div>
+<p>§4's three-month gross hump <b>reproduces on 83 monthly observations per cell</b> where §4 had
+thirteen at H=3 and six at H=12 — so that hump was real, not small-sample, and §4's record stands
+rather than being corrected. The honest test of §4's unregistered candidate, now with turnover cost
+actually modelled, passes in both rate regimes (+1.67pp/yr pre-Jul-2024, +1.55pp post). <b>Why this
+one is promotable where CH-D1 is not:</b> the artifact story is internally falsified here. If the
+panel's deletions simply rewarded holding longer, k=12 would win — instead it is the worst cell on
+gross and by far the worst on drawdown. A monotone reward-for-patience is what the bias predicts; a
+hump at three months is not. And the head-to-head the two designs jointly answer: tranching's best
+after-tax (25.12%) beats buffering's best (24.13%), so <b>to cut churn on this sleeve, stagger the
+re-formation rather than widen the exit band.</b></p>
+
+<h3>CH-D3 · partial adjustment — the bar failed, and the failure is the finding</h3>
+<div class="tblwrap"><table class="plain"><thead><tr><th>λ (fraction of the gap traded)</th><th>net CAGR</th><th>vol</th><th>maxDD</th>
+<th>CAGR/vol</th><th>one-way turnover</th></tr></thead><tbody>
+<tr><td class="mono">0.00 (drift)</td><td>13.24%</td><td class="pos">10.39</td>
+<td class="pos">−20.62%</td><td class="pos">1.275</td><td>0.00%/yr</td></tr>
+<tr><td class="mono">0.25</td><td class="pos">13.35%</td><td>11.04</td><td>−23.70%</td>
+<td>1.210</td><td>6.83%/yr</td></tr>
+<tr><td class="mono">0.50</td><td>13.25%</td><td>11.14</td><td>−24.38%</td><td>1.189</td>
+<td>9.85%/yr</td></tr>
+<tr><td class="mono">0.75</td><td>13.20%</td><td>11.16</td><td>−24.49%</td><td>1.182</td>
+<td>12.77%/yr</td></tr>
+<tr><td class="mono">1.00 (full monthly)</td><td>13.15%</td><td>11.17</td><td class="neg">−24.54%</td>
+<td class="neg">1.177</td><td class="neg">16.31%/yr</td></tr>
+</tbody></table></div>
+<p>Return spread across the entire grid: <b>0.20pp</b>. Drawdown spread: <b>3.92pp</b>. And the
+drawdown penalty is <b>front-loaded</b> — moving from no rebalancing to a quarter-step costs 3.08pp
+of the 3.92pp total (79% of the damage) for 42% of the turnover, with CAGR/vol falling monotonically
+across the grid. There is no gentle-rebalancing free lunch: on this blend <i>any</i> rebalancing pays
+nearly the full drawdown price, and trade size buys essentially nothing back. This generalizes §1's
+headline from the <i>when</i> dimension to the <i>how much</i> dimension and closes the question §1
+left open — partial adjustment does not rescue drift, so the default stands: rebalance as rarely as
+the mandate's weight bands permit, and do not tune size.</p>
+
+<h3>CH-D4 · turnover as a signal (US panel, rehearsal — never India evidence)</h3>
+<div class="tblwrap"><table class="plain"><thead><tr><th>lookback</th><th>fwd 1m</th><th>fwd 12m</th><th>fwd 36m</th>
+<th>large-cap (szQ5) 12m</th></tr></thead><tbody>
+<tr><td class="mono">Share_Turn_3M</td><td class="neg">−4.29</td><td>−0.64</td>
+<td class="pos">+4.67</td><td class="neg">−2.10</td></tr>
+<tr><td class="mono">Share_Turn_6M</td><td class="neg">−3.90</td><td>−1.29</td>
+<td class="pos">+4.45</td><td class="neg">−2.76</td></tr>
+<tr><td class="mono">Share_Turn_12M</td><td class="neg">−3.65</td><td>−2.64</td>
+<td class="pos">+4.07</td><td class="neg">−2.25</td></tr>
+</tbody></table></div>
+<p>Low-minus-high turnover, percentage points per year. The +2.00 bar fails at every lookback and
+<b>the failure is non-evidence-grade</b>: high-turnover names skew distressed and attention-driven,
+exactly the population whose worst outcomes this panel deleted, so that direction is artifact-suspect
+by the rule registered in advance. The Datar-Naik-Radcliffe neglect premium is therefore booked as
+<i>not measurable here</i>, not as rejected — the fifth sighting of this deletion artifact. What
+survives, both in the admissible direction: the <b>36-month column is positive at every lookback</b>
+(the same washing-out H36-D1 booked — a within-measure sign flip between the 12m and 36m columns is
+itself the artifact's signature), and the Lee-Swaminathan interaction cell prints <b>+4.70pp</b> at
+fwd-12m, clearing the bar — <b>quiet winners beat loud winners</b> among high-momentum names.</p>
+
+<h3>CH-D5 · the India volume shock — bar failed; the interesting cell is a sign disagreement</h3>
+<div class="tblwrap"><table class="plain"><thead><tr><th>cut</th><th>low shock</th><th>high shock</th><th>spread</th><th>n</th>
+</tr></thead><tbody>
+<tr><td class="mono">fwd 1m, full panel</td><td>+18.52</td><td>+25.34</td><td class="neg">−6.82</td>
+<td>83</td></tr>
+<tr><td class="mono">fwd 3m, full panel</td><td>+19.94</td><td>+24.84</td><td class="neg">−4.90</td>
+<td>81</td></tr>
+<tr><td class="mono">fwd 12m, full panel</td><td>+25.41</td><td>+27.34</td><td>−1.92</td><td>72</td></tr>
+<tr><td class="mono"><b>fwd 12m, liquid tercile</b></td><td>+20.15</td><td>+16.10</td>
+<td class="pos"><b>+4.05</b></td><td>72</td></tr>
+<tr><td class="mono">within 6-2 winners, 12m</td><td>—</td><td>—</td><td class="neg">−9.64</td>
+<td>72</td></tr>
+</tbody></table></div>
+<p>The India vault has rupee value traded but <b>no share count and no market cap</b>, so the
+textbook turnover ratio cannot be built here at all — the measure is an own-history substitute (21-day
+median log volume minus the prior 252-day median), which differences the size and liquidity level out
+entirely. The registered sign-flip prior <b>missed</b>: the spread carries the same sign at all three
+horizons, shrinking with horizon, so neither the pure attention story nor a clean
+Gervais-Kaniel-Mingelgrin flip describes this panel. The bar required |panel 12m| ≥ 4.00 <i>and</i>
+sign agreement with the liquid read; it gets neither, so <b>nothing is promoted</b> and the exact
+bar-miss is recorded rather than reinterpreted. The watch-list reading: the panel-wide high-shock win
+is non-evidence-grade, while the liquid-tercile print favouring the quiet state is in the admissible
+direction and is also the only third of this panel the desk could actually trade (a mean-based rebuild
+gives +4.77, so it is not median-specific). One clean positive: mean per-date rank corr(shock, 6-2
+momentum) = <b>+0.270</b>, so the volume shock is genuinely not momentum repackaged — the second
+instance this week of a construction being distinct but not yet usable.</p>
+
+<div class="note"><b>The methodological note worth keeping.</b> Two bars in this battery passed on
+the number, and they split on a single test: whether the artifact story could be internally
+falsified. CH-D1's could not — nothing in its grid contradicts "deletion rewards holding longer" — so
+it was recorded and not consumed. CH-D2's could: k=12 is the worst cell, which a
+reward-for-patience bias cannot produce. That test, not a p-value, did the adjudicating here.</div>
+
+<p class="note">Sources of record: trial-ledger entries CH-D1..CH-D5 (registration committed as
+<span class="mono">6d56c31</span> before the run) · scripts/analyze_churn.py · research/churn.json ·
+config/costs.yaml (statutory, the capital_gains_tax_india block, and the turnover_cost_curve that
+produced the cost-model flag). Regenerates via scripts/build_construction_atlas.py, never from
+memory.</p>
 </section>
 </div>
 """

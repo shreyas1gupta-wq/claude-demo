@@ -441,3 +441,65 @@ registration. Construction Mechanics Atlas published (row 63). Suite 125 green. 
 principal-gated: the India fundamentals drop, OPEN_QUESTIONS batches 3+4 (incl. B4-4),
 funding_rate/ADV, the Priority-1 pulls, and every gap-map Tier-2 row (each still owes its own
 pre-registration).
+Immediate follow-up: "i want to know more on churn and related stuff for edge" — THE CHURN
+BATTERY (CH-D1..CH-D5, pre-registered and the registration COMMITTED (6d56c31) before the run;
+four cells desk-verified on different code paths; census **1,365**; scripts/analyze_churn.py +
+research/churn.json). "Churn" was read in BOTH its meanings and the halves kept apart because
+they are different questions: OUR churn as a cost to manage (CH-D1..D3, continuing G1/G4) and
+THE MARKET's churn as a signal (CH-D4..D5, never run standalone before — Share_Turn_12M had
+appeared only as a VAL-D2 companion and VAL-D3 trap marker, both inside a family already booked
+artifact-driven). A third reading (the fund industry's own portfolio-turnover ratio) is
+data-gated and got a RUNSHEET row, not a design. TWO RUNNER BUGS FOUND AND FIXED BEFORE ANY
+INTERPRETATION WAS WRITTEN, both recorded because both would have flattered a result: gross was
+geometric CAGR while net was arithmetic-compounded (the "net > gross" units mismatch), and
+CH-D2 was costing turnover with a 1/k proxy instead of actual weight change, which overstated
+k=1's trading ~2.5x and BIASED CH-D2's OWN BAR toward its winner — with the real measure the
+gain fell +4.37 -> +1.67pp/yr. CH-D1 rank buffer: BAR PASSED ON THE NUMBER (+0.73pp/yr net at
+b=0.05) AND DELIBERATELY NOT BOOKED — the registered one-way rule disposes of it (buffering
+holds names longer on a panel that deleted its delistings, so "buffering helps on return" is
+non-evidence-grade). Admissible instead: the risk column runs the WRONG WAY for the artifact
+story (vol 23.06->21.53, maxDD -29.29->-26.15 monotone as b widens), with the honest confound
+named — the book grows 42->72 names and G2 booked the same day that diversification keeps
+paying past 20, so the risk gain is plausibly G2's effect arriving through the buffer. CH-D2
+overlapping re-formation: BOTH BARS PASS — **THE BATTERY'S ONE PROMOTION**. G4's 3-month gross
+hump REPRODUCES on 83 monthly observations per cell where G4 had six at H=12/13, so G4's hump
+was real and its record STANDS; k=3 (a third of the book re-formed monthly, each tranche held
+3 months) has the best gross 33.81 / net 32.24 / after-tax 25.12 AND the shallowest maxDD
+-25.40 of the five, beating k=1's 23.57/-29.29 by +1.55pp/yr after tax. PROMOTABLE WHERE CH-D1
+IS NOT BECAUSE THE ARTIFACT STORY IS INTERNALLY FALSIFIED: if deletion simply rewarded holding
+longer, k=12 would win — instead it is worst on gross (28.22) and by far worst on drawdown
+(-33.54). Tranching also beats buffering head-to-head (25.12 vs 24.13), so to cut churn on
+this sleeve, STAGGER THE RE-FORMATION rather than widen the exit band (Tier-C, wired when the
+India stock sleeve exists). CH-D3 partial adjustment: BAR FAILS and the failure is the finding
+— net CAGR spread across the whole lambda grid is 0.20pp while maxDD spread is 3.92pp, and THE
+DRAWDOWN PENALTY IS FRONT-LOADED (a quarter-step costs 3.08 of the 3.92pp, 79% of the damage,
+for 42% of the turnover; CAGR/vol monotone 1.275->1.177). No gentle-rebalancing free lunch: any
+rebalancing pays nearly the full drawdown price and trade SIZE is not a lever — this closes the
+question G1 left open (partial adjustment does NOT rescue drift). CH-D4 turnover-as-signal (US
+panel, REHEARSAL): BAR FAILS DECISIVELY AND NON-EVIDENCE-GRADE — szQ5 12m NEGATIVE at every
+lookback (-2.10/-2.76/-2.25), i.e. high-turnover won, exactly the artifact-suspect direction, so
+the Datar-Naik-Radcliffe neglect premium is booked NOT MEASURABLE here (fifth sighting of the
+deletion artifact) rather than rejected. Surviving in the admissible direction: the 36m column
+is POSITIVE at every lookback (+4.07..+4.67 — H36-D1's washing-out again, and a within-measure
+1m/12m-vs-36m sign flip is itself the artifact's signature) and Lee-Swaminathan's interaction
+prints +4.70pp at 12m — QUIET WINNERS BEAT LOUD WINNERS. CH-D5 India volume shock: the textbook
+turnover ratio is NOT CONSTRUCTIBLE (rupee value traded exists, no share count, no market cap —
+P1/P4-gated), so the measure is an own-history substitute (21d vs prior-252d median log volume).
+BAR FAILS AS WRITTEN and nothing is promoted: full-panel spreads carry the SAME sign at all
+three horizons (-6.82/-4.90/-1.92, shrinking with horizon) so the registered SIGN-FLIP prior
+MISSED, and the liquid tercile INVERTS to +4.05 (mean-based rebuild +4.77) — the bar required
+|panel 12m| >= 4.00 AND sign agreement and gets neither. Watch-list reading only: the panel-wide
+high-shock win is non-evidence-grade while the liquid-tercile quiet-state print is both
+admissible and the only third of the panel the desk could trade. Redundancy did NOT fire (mean
+per-date rank corr with 6-2 = +0.270) so volume shock is genuinely not momentum repackaged —
+second instance this week of distinct-but-unusable (cf. G3). **THE BATTERY'S BIGGEST NUMBER IS
+A COST-MODEL FLAG, not a result**: the unbuffered 6-2 sleeve churns **472.8%/yr one-way**, and
+config/costs.yaml's own turnover_cost_curve prices that zone at 3.5-6.5%/yr all-in against the
+1.32-2.71pp/yr the statutory-only charge used in these cells — so EVERY momentum print on this
+desk (MOM-D1, G4, these cells) understates its own cost side by roughly 2-4x. No print is
+restated; the flag is the correction, and it cuts in favour of churn reduction being worth MORE
+than shown. METHODOLOGICAL NOTE WORTH KEEPING: the two bars that passed on the number split on
+whether the artifact story could be INTERNALLY FALSIFIED — that test, not a p-value, did the
+adjudicating. Construction Mechanics Atlas updated to v2, same URL (row 63 extended with §6).
+Suite 125 green. Still principal-gated: the India fundamentals drop, OPEN_QUESTIONS batches 3+4
+(incl. B4-4), funding_rate/ADV, the Priority-1 pulls, and every gap-map Tier-2 row.

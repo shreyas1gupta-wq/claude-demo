@@ -5111,3 +5111,145 @@ RUNSHEET rows added today (AMFI/AMC scheme-level PORTFOLIO TURNOVER RATIO disclo
 fund-churn-vs-alpha question; and the NSE DELIVERY PERCENTAGE row already queued under the
 gap-map microstructure suite is hereby named as the delivery-vs-speculative-churn instrument).
 Neither is promoted or pre-registered here — each owes its own registration on arrival.
+
+## Entry CH-D1..CH-D5 RESULT (2026-09-11, interpretation written AFTER the print; runner
+`scripts/analyze_churn.py` + `research/churn.json`) — **THE CHURN QUESTION SPLITS CLEANLY:
+OUR churn is where the money is, THE MARKET's churn is mostly UNMEASURABLE on the panels we
+own.** Two runner bugs were found and fixed BEFORE any interpretation was written, both
+recorded here because both would have flattered a result: (i) gross was being reported as a
+geometric CAGR while net was arithmetic-compounded, which made "net > gross" appear in CH-D1/
+CH-D2 — a units mismatch, not free money; both are now on the same arithmetic basis so their
+difference is cost alone; (ii) CH-D2 was costing turnover with a 1/k proxy instead of actual
+weight change, which overstated k=1's trading ~2.5x and therefore **biased CH-D2's own bar in
+favour of k=3** — replaced with the same L1/2 weight-change measure CH-D1 uses, and the bar
+(b) gain duly fell from +4.37/+4.07 to +1.67/+1.55pp/yr. DESK VERIFICATION, four cells on
+deliberately different code paths: CH-D2 k=3 gross rebuilt as the mean of three staggered
+independent 3-month-hold sub-strategies = **33.81% vs the script's 33.81%** (exact); CH-D1
+b=0 turnover recounted as a new-name fraction = 38.66%/mo vs the script's L1/2 measure 39.40%
+(the right relationship — the L1 measure also charges the weight shift on retained names);
+CH-D4 Share_Turn_12M pooled = **-2.64 exact**, and the sign survives a date-equal-weighted
+estimator (-2.86 panel / -2.07 szQ5); CH-D5's liquid 12m spread rebuilt with a MEAN-based
+rather than MEDIAN-based shock = +4.77pp vs +4.05 (same sign and size — the measure is not
+median-specific). An internal cross-validation also holds: CH-D1 b=0.00 and CH-D2 k=1 are the
+same construction reached two ways and agree (gross 32.92 vs 32.88; turnover 39.40 vs 38.9%/mo).
+
+**CH-D1 — the rank buffer. BAR (a) PASSES on the number and is NOT BOOKED, exactly as
+registered.** Net (post-cost) by buffer: b=0.00 **30.21%**, b=0.05 **30.94%**, b=0.10 30.38,
+b=0.20 30.24, b=0.30 28.68 — a shallow HUMP peaking at b=0.05 with a +0.73pp/yr gain, clearing
+the +0.50 bar. The registered ONE-WAY RULE binds and disposes of it: buffering holds names
+LONGER on a panel that deleted its delistings, so a print that buffering HELPS on return is
+NON-EVIDENCE-GRADE. It is recorded, not consumed. WHAT IS ADMISSIBLE is the risk side, because
+it runs the wrong way for the artifact story: vol falls monotonically 23.06 -> 21.53 and maxDD
+shallows monotonically **-29.29 -> -26.15** as b widens. If deletion flattery were driving the
+result, holding decaying names longer would deepen drawdowns, not shallow them. THE HONEST
+CONFOUND, named: the book GROWS with b (42 -> 72 names), and G2 booked this same day that
+diversification keeps paying past 20 names — so the risk gain is plausibly G2's effect
+arriving through the buffer, not hysteresis per se. Priors: (b) turnover monotone in b HIT
+(39.40 > 32.11 > 27.84 > 23.10 > 19.54 %/mo); (c) gross decay b=0->0.30 = **+2.92pp/yr**, HIT
+under the <3.0 bar but only barely — recorded as a near-boundary hit, the mirror of G1's
+boundary miss.
+
+**THE SINGLE BIGGEST NUMBER IN THIS BATTERY, and it is a cost-model correction, not a
+result:** the unbuffered 6-2 sleeve churns **472.8%/yr one-way** (39.40%/mo), and even at
+b=0.30 it churns 234.4%/yr. Every cell above charges only the statutory round-trip (22.27bps),
+which prices that at 1.32-2.71pp/yr. But the desk's OWN `config/costs.yaml
+turnover_cost_curve` says at_100pct_liquid = 0.35-0.70%/yr and **at_500pct_throttled =
+3.5-6.5%/yr**, with incremental_hurdle_500_vs_100 = 3.0-6.0pp. At ~470% one-way we sit at the
+throttled end of our own curve, so **the true all-in drag on this sleeve is roughly 2-4x the
+statutory-only figure used here** — which means every momentum print on this desk (MOM-D1, G4,
+and these cells) understates its own cost side. Booked as a FLAG against the momentum sleeve,
+and it cuts in the direction of churn reduction being worth MORE than these numbers show, not
+less. No print is restated; the flag is the correction.
+
+**CH-D2 — overlapping re-formation. BOTH BARS PASS, and this is the battery's one PROMOTABLE
+result.** By k (gross / net / net-after-tax post-Jul2024 / maxDD / one-way): k=1 32.88 / 30.21
+/ 23.57 / **-29.29** / 38.9%mo; k=2 33.16 / 31.29 / 24.40 / -26.48 / 27.1; **k=3 33.81 / 32.24
+/ 25.12 / -25.40 / 22.6**; k=6 32.03 / 31.03 / 24.19 / -27.70 / 14.6; k=12 28.22 / 27.66 /
+23.86 / **-33.54** / 8.3. BAR (a) **CONFIRMED** — G4's 3-month gross hump reproduces on 83
+monthly observations per cell where G4 had 13 at H=3 and SIX at H=12/13, so **G4's hump was
+real, not small-sample**, and that record stands rather than being corrected. BAR (b) PASSES
+in both rate regimes (+1.67pp/yr pre-Jul-2024, **+1.55pp/yr post**), which converts G4's
+UNREGISTERED 3-month candidate into a result that cleared a bar registered in advance. k=3 is
+not a compromise: it has the best gross, the best net, the best after-tax, AND the shallowest
+maxDD of the five. THE ARTIFACT STORY IS INTERNALLY FALSIFIED HERE, which is why this one is
+promotable where CH-D1 is not: if the panel's deletions simply rewarded holding longer, k=12
+would win — instead k=12 is the worst cell on gross (28.22) and by far the worst on drawdown
+(-33.54). A monotone reward-for-patience is what the artifact predicts; a hump at 3 months is
+not. Prior (c) HIT (turnover falls 38.9 -> 27.1 -> 22.6 -> 14.6 -> 8.3 %/mo, sub-1/k because
+consecutive tranches overlap). CONSUMPTION: **the India momentum sleeve's re-formation should
+be TRANCHED at k=3 (one third of the book re-formed monthly, each tranche held three months),
+not re-formed whole each month** — Tier-C, wired when the India stock sleeve exists. And the
+head-to-head the two designs jointly answer: CH-D2's best after-tax (25.12%) beats CH-D1's
+best (24.13%), so **if you want to cut churn on this sleeve, stagger the re-formation rather
+than widen the exit band** — and unlike the buffer, tranching does not depend on a
+non-evidence-grade direction.
+
+**CH-D3 — partial adjustment. BAR (a) FAILS, and the failure is the finding.** Net CAGR by
+lambda: 0.00 **13.24%**, 0.25 13.35, 0.50 13.25, 0.75 13.20, 1.00 13.15 — a total spread of
+**0.20pp**. maxDD by lambda: **-20.62, -23.70, -24.38, -24.49, -24.54** — a spread of 3.92pp.
+No interior lambda qualifies: lambda=0.25 has the best net CAGR but its drawdown is 3.08pp
+deeper than drift's, failing the DD leg as written. Priors (b) and (c) both HIT (maxDD monotone
+deeper in lambda; turnover monotone rising 0.00/6.83/9.85/12.77/16.31 %/yr). THE NON-OBVIOUS
+RESULT: **the drawdown penalty is FRONT-LOADED** — going from no rebalancing to a quarter-step
+costs 3.08pp of the total 3.92pp penalty (79% of the damage) for 42% of the turnover, and
+CAGR/vol falls monotonically 1.275 -> 1.177 across the grid. There is no gentle-rebalancing
+free lunch: on this blend ANY rebalancing at all pays nearly the full drawdown price, and
+trade SIZE buys essentially nothing in return (0.20pp across the whole grid). This generalizes
+G1's headline from the WHEN dimension to the HOW MUCH dimension and closes the question G1
+left open: partial adjustment does NOT rescue drift, so the consumption stands where G1 left
+it — **rebalance as rarely as the mandate's weight bands permit, and when you do, size is not
+a lever worth tuning.**
+
+**CH-D4 — turnover as a signal (US panel, REHEARSAL, never India evidence). BAR (a) FAILS
+DECISIVELY AND THE FAILURE IS NON-EVIDENCE-GRADE — the fifth sighting of the deletion
+artifact, not a refutation of the literature.** LOW-minus-HIGH turnover (1m / 12m / 36m / szQ5
+12m): Share_Turn_3M -4.29 / -0.64 / **+4.67** / -2.10; 6M -3.90 / -1.29 / **+4.45** / -2.76;
+12M -3.65 / -2.64 / **+4.07** / -2.25. So high-turnover names OUTPERFORMED at 1m and 12m and
+in large caps — and the registered one-way rule says exactly that direction is
+artifact-suspect, because high-turnover names skew distressed and attention-driven, the
+population whose worst outcomes this panel deleted. Prior (b) MISSED on both limbs. **THE
+DATAR-NAIK-RADCLIFFE NEGLECT/LIQUIDITY PREMIUM IS THEREFORE NOT MEASURABLE HERE**, and is
+recorded as unmeasurable rather than rejected. WHAT SURVIVES, both in the admissible
+direction: (i) the **36m column is POSITIVE at every lookback** (+4.07 to +4.67) — low
+turnover pays at three years, the same washing-out H36-D1 booked ("at 3y the junk noise
+washes out"), and a within-measure sign flip between the 1m/12m and 36m columns is itself the
+artifact's signature; (ii) the Lee-Swaminathan interaction cell **+4.70pp** at fwd-12m clears
+the +2.00 bar — **quiet winners beat loud winners** among high-momentum names. Prior (c) HIT.
+CONSUMPTION: turnover is not a standalone factor we can measure on this panel; the durable
+reads are the 3-year horizon and the momentum-conditioning, both India-gated for a PIT test.
+
+**CH-D5 — the India volume shock. BAR (a) FAILS AS WRITTEN, and the interesting cell is a
+SIGN DISAGREEMENT between the panel and the tradeable part of it.** LOW-minus-HIGH shock
+spreads: fwd-1m **-6.82**, fwd-3m -4.90, fwd-12m **-1.92** — same sign at all three horizons,
+shrinking monotonically with horizon, so the registered SIGN-FLIP prior (b) is **MISSED** and
+recorded: neither the pure attention story nor a clean Gervais-Kaniel-Mingelgrin flip
+describes this panel; high-shock simply wins, most at the fast horizon. But the **liquid
+tercile inverts it: +4.05pp/yr at 12m** (LOW +20.15 vs HIGH +16.10), and the mean-based
+robustness rebuild gives +4.77. The bar required |panel 12m| >= 4.00 AND sign agreement with
+the liquid read; it gets neither, so **NOTHING IS PROMOTED** — the exact bar-miss is recorded
+rather than reinterpreted. The admissible reading, and it is only a watch: the panel-wide
+high-shock win is non-evidence-grade (the deleted deaths are disproportionately illiquid
+high-shock names) while the liquid-tercile print favouring the QUIET state is in the
+admissible direction and is also the only third of the panel this desk could trade. Prior (c)
+HIT — mean per-date rank corr(VS, 6-2) = **+0.270**, so the volume shock is genuinely NOT
+momentum repackaged (the same non-redundancy G3 established for dispersion-vs-vol, and a
+second instance of a construction being distinct but not yet usable). The India quiet-winners
+cell prints **-9.64pp**, the opposite sign to the US rehearsal's +4.70 — non-evidence-grade
+direction, so Lee-Swaminathan is booked as holding in the US rehearsal and UNMEASURABLE in
+India on this panel. CONSTRUCTION LIMIT, restated because it is the binding one: the India
+vault has rupee value traded but no share count and no market cap, so the textbook turnover
+ratio cannot be built at all here — the volume shock is an own-history substitute, and a true
+India turnover test is P1/P4-gated.
+
+**WHAT THIS BATTERY CHANGED.** One promotion (CH-D2's k=3 tranching, on a bar registered in
+advance and with the artifact story internally falsified). One closure (CH-D3 shuts the
+partial-adjustment door G1 left open; rebalance size is not a lever). One cost-model flag that
+touches every momentum print this desk owns (472%/yr one-way sits at the throttled end of our
+own cost curve, so statutory-only understates the drag 2-4x). Two honest unmeasurables
+(CH-D4's DNR premium and CH-D5's India turnover signal, both owned by the deletion artifact,
+both now with a named PIT route). And one methodological note worth keeping: **the two bars
+that PASSED on the number split on whether the artifact story could be internally falsified**
+— CH-D1's could not and was recorded but not consumed; CH-D2's could (k=12 is the worst cell,
+which a reward-for-patience bias cannot produce) and was promoted. That test, not the p-value,
+did the adjudicating here.
+CENSUS 29 (1336 -> **1365**).
