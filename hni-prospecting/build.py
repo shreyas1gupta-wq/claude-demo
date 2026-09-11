@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Assemble the HNI Prospecting dashboard.
+"""Assemble the HNI Prospecting deck.
 
     python3 hni-prospecting/build.py
 
-Takes the authored page and injects the figure sprite from the illustration
-set, so the artwork stays authored in one place and the dashboard ships
-self-contained. Standard library only.
+The page is self-contained: every mark is abstract SVG authored inline, so
+there is no sprite to inject. The build's job is to check that, and to report
+the shape of the result. Standard library only.
 """
 
 import os
@@ -13,46 +13,37 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
 PAGE = os.path.join(HERE, "page.html")
-SPRITE = os.path.join(ROOT, "hni-prospecting-art", "figures-inline.html")
 OUT = os.path.join(HERE, "HNI_Prospecting_Dashboard.html")
-
-# Every symbol the page references, so a renamed or dropped figure fails the
-# build rather than rendering an empty box.
-REQUIRED = ["fig-hero", "fig-promoter", "fig-executive", "fig-professional",
-            "fig-inheritor", "fig-founder", "fig-engine", "fig-trust",
-            "fig-watchouts", "fig-week"]
 
 
 def main():
     page = open(PAGE).read()
-    sprite = open(SPRITE).read()
 
-    if "<!--SPRITE-->" not in page:
-        sys.exit("page.html has no <!--SPRITE--> placeholder")
+    # The human illustrations were removed at the client's request; guard
+    # against a reference to the old figure sprite reappearing.
+    stray = sorted(set(re.findall(r'<use href="#([\w-]+)"', page)))
+    if stray:
+        sys.exit(f"page still references sprite symbols: {stray}")
+    if "<!--SPRITE-->" in page:
+        sys.exit("page still carries the sprite placeholder")
 
-    missing = [s for s in REQUIRED if f'id="{s}"' not in sprite]
-    if missing:
-        sys.exit(f"sprite is missing symbols: {missing}")
+    slides = re.findall(r'<section class="slide" id="(s\d+)">', page)
+    navs = re.findall(r'data-t="(s\d+)"', page)
+    if slides != navs:
+        sys.exit(f"nav order does not match slide order:\n  slides {slides}\n  nav    {navs}")
 
-    # static <use> in the markup, plus the ids the persona data injects at
-    # runtime -- a JS-only reference would otherwise skip this check entirely
-    used = set(re.findall(r'<use href="#([\w-]+)"', page))
-    used |= set(re.findall(r'fig:"([\w-]+)"', page))
-    undefined = sorted(u for u in used if f'id="{u}"' not in sprite)
-    if undefined:
-        sys.exit(f"page references symbols the sprite does not define: {undefined}")
+    # every page must declare a 16:9 stage
+    pages = len(re.findall(r'<div class="page', page))
+    if pages != len(slides):
+        sys.exit(f"{len(slides)} slides but {pages} page stages")
 
-    html = page.replace("<!--SPRITE-->", sprite.rstrip() + "\n")
     with open(OUT, "w") as fh:
-        fh.write(html)
+        fh.write(page)
 
-    print(f"wrote {os.path.relpath(OUT)}  {len(html):,} bytes")
-    unused = sorted(set(REQUIRED) - used)
-    print(f"  {len(re.findall(r'<section class=.slide', html))} slides, "
-          f"{len(used)}/{len(REQUIRED)} figures referenced"
-          + (f", unused: {unused}" if unused else ", all used"))
+    print(f"wrote {os.path.relpath(OUT)}  {len(page):,} bytes")
+    print(f"  {len(slides)} slides, all 16:9, {len(re.findall(r'<svg', page))} inline SVG marks")
+    print(f"  order: {' '.join(slides)}")
 
 
 if __name__ == "__main__":

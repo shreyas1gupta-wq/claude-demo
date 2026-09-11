@@ -7,828 +7,683 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Reddit+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.544.0/lucide.min.js"></script>
 <style>
 :root{
-  --indigo:#242BA1; --indigo-deep:#1C2286; --indigo-panel:#20268F; --rail:#161B63;
-  --amber:#FFB951; --amber-deep:#F2A63B;
-  --pearl:#F2F2ED; --paper:#FFFFFF;
+  --indigo:#242BA1; --indigo-d:#1A1F7A; --rail:#141959;
+  --amber:#FFB951; --amber-d:#9D6C26;
+  --pearl:#F2F2ED; --paper:#FFF;
   --ink:#1B1D33; --muted:#63657C; --line:#E4E4DB;
-  --r1:#FFB951; --r2:#6E75CE; --r3:#9AA0E0; --r4:#C9CCEF;
   --serif:"Newsreader",Georgia,serif;
-  --sans:"Reddit Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --w:236px;
+  --sans:"Reddit Sans",system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box}
-body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--pearl);
-  font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;margin:0}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:#0E1240;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.04;margin:0}
 p{margin:0}
-
 .app{height:100vh;display:flex;overflow:hidden}
 
 /* rail */
-.rail{width:var(--w);flex:0 0 var(--w);background:var(--rail);color:#EDEEFB;
-  display:flex;flex-direction:column;padding:24px 20px;gap:22px}
-.brand{display:flex;align-items:center;gap:11px}
-.brand .mark{width:30px;height:30px;flex:0 0 30px;position:relative}
-.brand .mark span{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,185,81,.5)}
-.brand .mark span:nth-child(2){inset:6px;border-color:rgba(255,185,81,.8)}
-.brand .mark span:nth-child(3){inset:11px;background:var(--amber);border:none}
-.brand b{font-family:var(--serif);font-weight:600;font-size:1.02rem;color:#fff}
-.brand small{display:block;font-size:.64rem;color:#9EA1D6;margin-top:1px}
-.nav{display:flex;flex-direction:column;gap:1px;margin-top:4px}
-.nav a{display:flex;align-items:center;gap:11px;padding:8px 10px;border-radius:9px;
-  color:#AEB2E4;text-decoration:none;font-size:.83rem;font-weight:500;cursor:pointer;
-  transition:background .16s,color .16s}
-.nav a .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;transition:.16s}
-.nav a:hover{background:rgba(255,255,255,.06);color:#fff}
-.nav a.active{background:rgba(255,185,81,.15);color:#fff}
-.nav a.active .dot{background:var(--amber);opacity:1;transform:scale(1.6)}
-.rail .count{margin-top:auto;font-size:.7rem;color:#8588BB;line-height:1.5}
+.rail{width:212px;flex:0 0 212px;background:var(--rail);color:#EDEEFB;
+  display:flex;flex-direction:column;padding:20px 16px;gap:16px;z-index:10}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:28px;height:28px;flex:0 0 28px;position:relative}
+.mark span{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,185,81,.5)}
+.mark span:nth-child(2){inset:6px;border-color:rgba(255,185,81,.85)}
+.mark span:nth-child(3){inset:11px;background:var(--amber);border:none}
+.brand b{font-family:var(--serif);font-weight:600;font-size:.98rem;color:#fff}
+.brand small{display:block;font-size:.62rem;color:#9EA1D6}
+.nav{display:flex;flex-direction:column;gap:1px;overflow-y:auto}
+.nav a{display:flex;align-items:center;gap:9px;padding:6px 9px;border-radius:8px;
+  color:#AEB2E4;font-size:.78rem;font-weight:500;cursor:pointer;transition:.16s}
+.nav a .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5;transition:.16s}
+.nav a:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav a.active{background:rgba(255,185,81,.16);color:#fff}
+.nav a.active .dot{background:var(--amber);opacity:1;transform:scale(1.7)}
+.rail .foot{margin-top:auto;font-size:.66rem;color:#8588BB;line-height:1.5}
 
-/* slides */
+/* ---- PPT-sized pages: every slide is a fixed 16:9 stage ---- */
 .main{flex:1;height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;
-  padding:52px 5.2vw;position:relative}
-.slide .wrap{width:100%;max-width:1080px;margin:0 auto}
-.indigo{background:var(--indigo);color:#EEF0FF}
-.indigo h1,.indigo h2,.indigo h3{color:#fff}
-.pearl{background:var(--pearl)}
-.paper{background:var(--paper)}
+.slide{height:100vh;display:grid;place-items:center;scroll-snap-align:center;padding:2.4vh 2vw}
+.page{position:relative;width:min(100%,calc((100vh - 4.8vh) * 16 / 9));aspect-ratio:16/9;
+  max-height:calc(100vh - 4.8vh);border-radius:14px;overflow:hidden;
+  container-type:inline-size;font-size:1.22cqw;
+  box-shadow:0 18px 50px rgba(0,0,0,.34);display:flex;flex-direction:column;
+  padding:3.6cqw 4.4cqw 3cqw;background:var(--pearl)}
+.page.indigo{background:var(--indigo);color:#EEF0FF}
+.page.indigo h1,.page.indigo h2{color:#fff}
+.page.paper{background:var(--paper)}
+.pnum{position:absolute;right:2.2cqw;bottom:1.6cqw;font-size:.72em;color:var(--muted);font-variant-numeric:tabular-nums}
+.page.indigo .pnum{color:#8F93D0}
 
-.kicker{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;
-  color:var(--indigo);margin-bottom:12px}
-.indigo .kicker{color:var(--amber)}
-.kicker i{width:15px;height:15px}
-h2.title{font-size:clamp(1.7rem,3vw,2.4rem)}
-.sub{color:var(--muted);margin-top:10px;max-width:56ch;font-size:1rem}
-.indigo .sub{color:#C6C9F2}
-.src{margin-top:14px;font-size:.74rem;color:var(--muted)}
-.indigo .src{color:#9EA1D6}
+.kicker{font-size:.8em;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--indigo)}
+.page.indigo .kicker{color:var(--amber)}
+h2.title{font-size:2.4em;margin-top:.22em;letter-spacing:-.01em}
+.lede{color:var(--muted);margin-top:.5em;font-size:1.02em;max-width:46ch;line-height:1.45}
+.page.indigo .lede{color:#C6C9F2}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;margin-top:1.4cqw}
 
-.ico{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--amber);
-  display:grid;place-items:center;color:var(--indigo)}
-.ico i{width:20px;height:20px}
-.ico.sm{width:34px;height:34px;flex-basis:34px}.ico.sm i{width:17px;height:17px}
+/* ---- reveal animation ---- */
+.r{opacity:0;transform:translateY(14px);transition:opacity .5s cubic-bezier(.2,.8,.25,1),transform .5s cubic-bezier(.2,.8,.25,1)}
+.slide.in .r{opacity:1;transform:none}
+.slide.in .r:nth-child(1){transition-delay:.04s}
+.slide.in .r:nth-child(2){transition-delay:.11s}
+.slide.in .r:nth-child(3){transition-delay:.18s}
+.slide.in .r:nth-child(4){transition-delay:.25s}
+.slide.in .r:nth-child(5){transition-delay:.32s}
+.slide.in .r:nth-child(6){transition-delay:.39s}
+.slide.in .r:nth-child(7){transition-delay:.46s}
+.slide.in .r:nth-child(8){transition-delay:.53s}
+/* key phrase highlight sweeps in behind the words */
+.hl{position:relative;display:inline;background-image:linear-gradient(var(--amber),var(--amber));
+  background-repeat:no-repeat;background-position:0 88%;background-size:0 .42em;
+  transition:background-size .7s cubic-bezier(.2,.8,.25,1) .5s}
+.slide.in .hl{background-size:100% .42em}
+.page.indigo .hl{background-image:linear-gradient(rgba(255,185,81,.34),rgba(255,185,81,.34))}
+.pop{display:inline-block;transform:scale(.8);opacity:0;transition:.45s cubic-bezier(.2,1.5,.4,1)}
+.slide.in .pop{transform:none;opacity:1}
+.draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1.1s ease .25s}
+.slide.in .draw{stroke-dashoffset:0}
+.grow{transform:scaleY(0);transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.8,.25,1)}
+.slide.in .grow{transform:none}
 
-/* figures from the illustration set */
-.fig{display:block;width:100%;height:auto}
-.figbox{border-radius:16px;overflow:hidden;line-height:0}
-.figbox.sq{max-width:190px}
+/* ---- hero ---- */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:4cqw;align-items:center;flex:1}
+.hero h1{font-size:4.4em;font-weight:500;letter-spacing:-.02em}
+.hero .tag{color:var(--amber);font-weight:600;font-size:.95em;letter-spacing:.02em}
+.hero .sub{color:#C9CCF4;font-size:1.22em;margin-top:.6em}
+.anch{margin-top:1.5em;display:flex;flex-direction:column;gap:.62em}
+.anch div{display:flex;gap:.7em;align-items:center;font-size:1em;color:#E6E8FB}
+.anch i{width:.46em;height:.46em;border-radius:50%;background:var(--amber);flex:0 0 auto}
+.orbit{width:100%;aspect-ratio:1;position:relative;max-width:30cqw;margin-left:auto}
+.orbit svg{width:100%;height:100%;overflow:visible}
 
-/* HERO */
-#s-hero .wrap{display:grid;grid-template-columns:1.06fr .94fr;gap:36px;align-items:center}
-.hero-tag{font-size:.9rem;font-weight:600;color:var(--amber);margin-bottom:18px}
-#s-hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);font-weight:500;letter-spacing:-.5px}
-#s-hero .hs{font-size:clamp(1.05rem,1.7vw,1.24rem);color:#C9CCF4;margin-top:18px;max-width:32ch}
-.anchors{margin-top:24px;display:flex;flex-direction:column;gap:11px}
-.anchors div{display:flex;gap:12px;align-items:center;font-size:.96rem;color:#E6E8FB}
-.anchors .b{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:0 0 7px}
-.hero-art{position:relative;max-width:520px;width:100%;margin-left:auto}
-.hero-art .figbox{box-shadow:0 24px 60px rgba(0,0,0,.28)}
-.cue{position:absolute;bottom:22px;left:5.2vw;color:#A1A3DB;font-size:.74rem;display:flex;align-items:center;gap:7px}
-.cue i{width:16px;height:16px;animation:bob 1.8s ease-in-out infinite}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+/* ---- KPI band ---- */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.9cqw}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:.7em;padding:1.05em 1.1em}
+.kpi .n{font-family:var(--serif);font-weight:600;color:var(--indigo);font-size:2.15em;line-height:1;letter-spacing:-.02em}
+.kpi .l{margin-top:.42em;font-size:.83em;color:var(--ink);line-height:1.35}
+.bars{display:flex;align-items:flex-end;gap:.7cqw;height:7.4cqw;margin-top:1.1em}
+.bars .b{flex:1;border-radius:.3em .3em 0 0;background:var(--indigo);position:relative;opacity:.32}
+.bars .b.on{background:var(--amber);opacity:1}
+.barn{display:flex;gap:.7cqw;margin-top:1.1em}
+.barn span{flex:1;text-align:center;font-size:.74em;color:var(--muted);font-weight:600}
+.barn span.k{color:#7A5214;font-weight:700}
+.barx{display:flex;gap:.7cqw;margin-top:.4em}
+.barx span{flex:1;text-align:center;font-size:.72em;color:var(--muted)}
+.note{margin-top:.9em;font-size:.82em;color:var(--muted)}
 
-/* KPIs */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:24px}
-.kpi{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:17px 18px}
-.kpi .n{font-family:var(--serif);font-weight:600;color:var(--indigo);font-size:1.85rem;line-height:1;letter-spacing:-.5px}
-.kpi .l{margin-top:7px;font-size:.82rem;color:var(--ink);line-height:1.4}
-.kpi .d{margin-top:5px;font-size:.72rem;color:var(--muted)}
-.strip{display:flex;gap:24px;align-items:center;margin-top:14px;background:var(--indigo);
-  color:#fff;border-radius:14px;padding:15px 22px}
-.strip .n{font-family:var(--serif);font-weight:600;color:var(--amber);font-size:1.8rem;line-height:1;flex:0 0 auto}
-.strip .t{font-size:.88rem;color:#DDE0F7}
-.spread{margin-top:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--ink)}
-.spread b{color:var(--indigo)}
-.spread .city{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-weight:600;color:var(--indigo)}
-.footline{margin-top:14px;font-family:var(--serif);font-size:1.2rem;color:var(--ink);font-weight:500}
-.footline b{color:var(--indigo)}
+/* ---- generic card grids ---- */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqw}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.85cqw}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1cqw}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:.7em;padding:1.05em 1.15em}
+.page.indigo .card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16)}
+.card h3{font-family:var(--serif);font-size:1.06em;color:var(--indigo);font-weight:600}
+.page.indigo .card h3{color:#fff}
+.card p{font-size:.85em;line-height:1.45;color:var(--ink);margin-top:.3em}
+.page.indigo .card p{color:#D6D8F3}
+.card .why{font-size:.78em;color:var(--muted);margin-top:.5em;padding-top:.45em;border-top:1px dashed var(--line)}
+.card.hl2{background:var(--indigo);border-color:var(--indigo)}
+.card.hl2 h3{color:var(--amber)}.card.hl2 p{color:#E6E8FB}
+.num{width:1.9em;height:1.9em;border-radius:50%;background:var(--amber);display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:1em;color:#151A5E;flex:0 0 auto}
+.rowc{display:flex;gap:.8em;align-items:flex-start}
 
-/* CIRCLE */
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:22px}
-.stage{position:relative;width:100%;max-width:400px;margin:0 auto;aspect-ratio:1}
-.stage svg{width:100%;height:auto;display:block;overflow:visible}
-.ring{cursor:pointer;outline:none}
-.ring circle.band{stroke:var(--indigo);stroke-width:3;transition:opacity .32s,stroke-width .22s;
-  transform-box:fill-box;transform-origin:center}
-.ring .badge circle{fill:#fff;stroke:var(--indigo);stroke-width:1.4;transition:transform .22s}
-.ring .badge text{font-family:var(--serif);font-weight:600;fill:var(--indigo);font-size:15px}
-svg[data-active="1"] .ring:not([data-layer="1"]) circle.band,
-svg[data-active="2"] .ring:not([data-layer="2"]) circle.band,
-svg[data-active="3"] .ring:not([data-layer="3"]) circle.band,
-svg[data-active="4"] .ring:not([data-layer="4"]) circle.band{opacity:.4}
-.ring.is-active circle.band{stroke:var(--amber);stroke-width:4}
-.ring.is-active .badge circle{transform:scale(1.2)}
-.ring:focus-visible circle.band{stroke:var(--amber);stroke-width:4}
-.core-label{font-family:var(--serif);fill:var(--ink);font-weight:600}
-.core-sub{fill:var(--ink);font-weight:600;font-size:9px;letter-spacing:1px}
-.stage.animate .ring circle.band{opacity:0;transform:scale(.72)}
-.stage.animate.drawn .ring circle.band{opacity:1;transform:scale(1);
-  transition:opacity .55s,transform .65s cubic-bezier(.2,.8,.25,1)}
-.stage.animate.drawn .ring[data-layer="3"] circle.band{transition-delay:.1s}
-.stage.animate.drawn .ring[data-layer="2"] circle.band{transition-delay:.2s}
-.stage.animate.drawn .ring[data-layer="1"] circle.band{transition-delay:.3s}
-.corepulse{transform-box:fill-box;transform-origin:center}
-.drawn .corepulse{animation:pulse 3.4s ease-in-out .8s infinite}
-@keyframes pulse{0%,100%{filter:drop-shadow(0 0 0 rgba(255,185,81,0))}50%{filter:drop-shadow(0 0 13px rgba(255,185,81,.6))}}
-.warm{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.78rem;color:#C6C9F2}
-.warm .bar{height:7px;flex:1;border-radius:6px;background:linear-gradient(90deg,var(--amber),var(--r2) 55%,var(--r4))}
-.detail{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;
-  padding:24px 26px;transition:opacity .28s,transform .28s}
-.detail.swap{opacity:0;transform:translateY(6px)}
-.detail .idx{display:flex;align-items:center;gap:12px}
-.detail .num{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
-  font-family:var(--serif);font-weight:600;font-size:1.4rem;color:#151A5E}
-.detail h3{font-size:1.4rem;color:#fff}
-.detail .tag{font-size:.78rem;font-weight:600;color:var(--amber);margin-top:2px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 14px}
-.chips span{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);
-  padding:6px 12px;border-radius:999px;font-size:.84rem;font-weight:500;color:#EEF0FF}
-.detail .g{color:#C9CCF4;font-size:.92rem}
+/* ---- abstract marks (no people) ---- */
+.mk{width:100%;height:auto;display:block}
+.mkbox{width:100%;max-width:13cqw;margin-left:auto}
 
-/* ENGINE */
-.engine-grid{display:grid;grid-template-columns:1fr 200px;gap:26px;align-items:center;margin-top:20px}
-.levers{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
-.lever{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:15px;
-  position:relative;cursor:default}
-.lever .ico{margin-bottom:9px}
-.lever h3{font-family:var(--serif);font-size:.98rem;color:var(--indigo);font-weight:600;margin-bottom:4px}
-.lever .is{font-size:.78rem;color:var(--ink);line-height:1.42}
-.lever .why{font-size:.76rem;color:var(--muted);line-height:1.42;margin-top:7px;padding-top:7px;
-  border-top:1px dashed var(--line)}
-.lever .why b{color:var(--amber-deep);font-weight:600}
-.lever.hl{background:var(--indigo);border-color:var(--indigo);display:flex;flex-direction:column;justify-content:center}
-.lever.hl h3{color:var(--amber)}
-.lever.hl .is{color:#E6E8FB}
-.lever.hl .attr{color:#A9AEE8;font-size:.74rem;margin-top:8px;font-style:italic}
+/* ---- personas as keys ---- */
+.keys{display:grid;grid-template-columns:repeat(5,1fr);gap:.85cqw}
+.key{background:var(--paper);border:1px solid var(--line);border-radius:.7em;padding:1em .95em;
+  cursor:pointer;text-align:left;font-family:inherit;transition:.18s;border-top:3px solid var(--line)}
+.key:hover{border-color:#cfcfc4;transform:translateY(-2px)}
+.key.on{background:var(--indigo);border-color:var(--indigo);border-top-color:var(--amber)}
+.key svg{width:2.5em;height:2.5em;display:block;margin-bottom:.5em}
+.key b{display:block;font-size:.86em;color:var(--indigo);line-height:1.25}
+.key.on b{color:#fff}
+.key em{display:block;font-style:normal;font-size:.74em;color:var(--muted);margin-top:.2em}
+.key.on em{color:var(--amber)}
+.pan{margin-top:1cqw;background:var(--indigo);border-radius:.7em;padding:1.3em 1.5em;
+  display:grid;grid-template-columns:1fr 1fr;gap:1.6em;transition:opacity .22s}
+.pan.sw{opacity:0}
+.pan h4{font-size:.74em;text-transform:uppercase;letter-spacing:.07em;color:var(--amber);margin:0 0 .35em;font-weight:700}
+.pan p{font-size:.95em;line-height:1.45;color:#EEF0FF}
 
-/* PERSONAS */
-.tabs{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
-.tab{display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line);
-  border-radius:999px;padding:5px 15px 5px 5px;cursor:pointer;font-weight:500;font-size:.86rem;color:var(--ink);
-  transition:.16s;font-family:inherit}
-.tab .pic{width:32px;height:32px;flex:0 0 32px;border-radius:50%;overflow:hidden;line-height:0;background:var(--indigo)}
-.tab .pic svg{width:100%;height:auto;transform:scale(1.5) translateY(9%)}
-.tab:hover{border-color:#cfcfc4}
-.tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
-.persona{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
-  padding:0;display:grid;grid-template-columns:186px 1fr;gap:0;transition:opacity .26s;overflow:hidden}
-.persona.swap{opacity:0}
-.persona .port{line-height:0;background:var(--indigo)}
-.persona .port svg{width:100%;height:auto;display:block}
-.persona .body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-content:start}
-.persona .headline{grid-column:1/-1;font-family:var(--serif);font-size:1.3rem;color:var(--indigo);font-weight:600}
-.persona .headline small{display:block;font-family:var(--sans);font-size:.76rem;color:var(--muted);font-weight:500;margin-top:3px}
-.persona h4{font-size:.72rem;font-weight:600;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:.4px}
-.persona p{font-size:.96rem;line-height:1.5}
+/* ---- scripts ---- */
+.scr{background:var(--paper);border:1px solid var(--line);border-radius:.7em;padding:1.15em 1.25em;
+  border-top:3px solid var(--amber)}
+.scr .l{font-size:.74em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber-d)}
+.scr q{display:block;font-family:var(--serif);font-size:1.02em;line-height:1.4;margin-top:.5em;quotes:'\201C' '\201D'}
+.trial{display:flex;gap:1.2em;align-items:center;background:var(--indigo);color:#fff;border-radius:.7em;padding:1.1em 1.4em;margin-bottom:1cqw}
+.trial b{font-family:var(--serif);font-weight:600;font-size:2.4em;color:var(--amber);line-height:1}
+.trial p{font-size:.95em;color:#DDE0F7;line-height:1.45}
 
-/* PROPOSITION */
-.trial{display:flex;gap:20px;align-items:center;background:var(--indigo);color:#fff;
-  border-radius:15px;padding:20px 24px;margin-top:20px}
-.trial .amt{font-family:var(--serif);font-weight:600;font-size:2.3rem;color:var(--amber);line-height:1;flex:0 0 auto}
-.trial p{font-size:.95rem;color:#DDE0F7;line-height:1.5}
-.scripts{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}
-.script{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
-  display:flex;flex-direction:column}
-.script .lbl{font-size:.74rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#9D6C26}
-.script q{font-family:var(--serif);font-size:1.02rem;line-height:1.45;color:var(--ink);margin-top:9px;
-  display:block;quotes:'\201C' '\201D'}
-.script q::before{content:open-quote;color:var(--amber);font-size:1.5em;line-height:0;vertical-align:-.28em;margin-right:1px}
-.script q::after{content:close-quote;color:var(--amber);font-size:1.5em;line-height:0;vertical-align:-.28em}
-.propfoot{margin-top:14px;font-size:.92rem;color:var(--muted)}
-.propfoot b{color:var(--indigo)}
+/* ---- checklist ---- */
+.chk{display:flex;gap:.8em;align-items:center;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);border-radius:.6em;padding:.85em 1.1em;cursor:pointer;
+  font-family:inherit;color:inherit;text-align:left;width:100%;transition:.18s}
+.chk:hover{background:rgba(255,255,255,.14)}
+.chk .bx{width:1.35em;height:1.35em;flex:0 0 auto;border-radius:.3em;border:2px solid rgba(255,255,255,.45);position:relative;transition:.18s}
+.chk .bx::after{content:"";position:absolute;left:.32em;top:.1em;width:.35em;height:.62em;
+  border-right:.14em solid #151A5E;border-bottom:.14em solid #151A5E;transform:rotate(42deg);opacity:0;transition:opacity .18s}
+.chk[aria-pressed=true]{background:rgba(255,185,81,.16);border-color:rgba(255,185,81,.55)}
+.chk[aria-pressed=true] .bx{background:var(--amber);border-color:var(--amber)}
+.chk[aria-pressed=true] .bx::after{opacity:1}
+.chk span{font-size:.95em;color:#EEF0FF}
+.verd{margin-top:.9em;font-family:var(--serif);font-size:1.35em;transition:color .3s}
+.verd.no{color:#FFC4B8}.verd.yes{color:var(--amber)}
 
-/* MEETINGS */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:20px}
-.step{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
-.step .h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.step .num{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--amber);
-  display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:1.15rem;color:#151A5E}
-.step h3{font-family:var(--serif);font-size:1.04rem;color:var(--indigo);font-weight:600}
-.step .tg{font-size:.72rem;font-weight:600;color:var(--muted)}
-.step p{font-size:.87rem;color:var(--ink);line-height:1.5}
-.step p+p{margin-top:8px}
-.step .em{color:var(--indigo);font-weight:600}
-.onerule{margin-top:14px;background:var(--indigo);color:#fff;border-radius:13px;padding:14px 20px;font-size:.98rem}
-.onerule b{color:var(--amber)}
-.discovery{margin-top:12px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--amber);
-  border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);line-height:1.5}
-.discovery b{color:var(--indigo)}
-
-/* 60-SECOND CHECK */
-.checkwrap{display:grid;grid-template-columns:1fr 200px;gap:30px;align-items:center;margin-top:22px}
-.checks{display:flex;flex-direction:column;gap:10px}
-.chk{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:15px 18px;cursor:pointer;
-  transition:background .18s,border-color .18s;text-align:left;font-family:inherit;color:inherit;width:100%}
-.chk:hover{background:rgba(255,255,255,.12)}
-.chk .box{width:23px;height:23px;flex:0 0 23px;border-radius:6px;border:2px solid rgba(255,255,255,.4);
-  display:grid;place-items:center;transition:.18s;margin-top:1px}
-.chk .box i{width:14px;height:14px;opacity:0;transition:opacity .18s;color:#151A5E}
-.chk .box::after{content:"";width:11px;height:6px;border-left:2.5px solid #151A5E;
-  border-bottom:2.5px solid #151A5E;transform:rotate(-45deg) translate(1px,-1px);
-  opacity:0;transition:opacity .18s;position:absolute}
-.chk .box{position:relative}
-.chk[aria-pressed="true"]{background:rgba(255,185,81,.14);border-color:rgba(255,185,81,.5)}
-.chk[aria-pressed="true"] .box{background:var(--amber);border-color:var(--amber)}
-.chk[aria-pressed="true"] .box i{opacity:0}
-.chk[aria-pressed="true"] .box::after{opacity:1}
-.chk span{font-size:.95rem;color:#EEF0FF;line-height:1.45}
-.verdict{margin-top:16px;font-family:var(--serif);font-size:1.25rem;font-weight:500;transition:color .25s}
-.verdict.no{color:#FFC4B8}.verdict.yes{color:var(--amber)}
-
-/* CRAFT / TRUST */
-.eqbox{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;margin-top:18px}
-.fraction{text-align:center}
-.fraction .terms{font-family:var(--serif);font-size:clamp(.95rem,1.7vw,1.2rem);color:#fff}
-.fraction .terms .v{color:var(--amber);font-weight:600}
-.fraction .bar{height:2px;background:rgba(255,255,255,.5);margin:9px 0}
-.fraction .den{font-family:var(--serif);font-size:clamp(.95rem,1.7vw,1.2rem);color:#fff}
-.fraction .den .v{color:#FFC4B8;font-weight:600}
-.result{display:flex;align-items:baseline;justify-content:center;gap:11px;margin-top:16px}
-.result .score{font-family:var(--serif);font-weight:600;font-size:3rem;line-height:1;transition:color .3s}
-.result .of{font-size:.8rem;color:#B0B3E2}
-.track{height:10px;border-radius:8px;background:rgba(255,255,255,.15);margin:12px auto 10px;overflow:hidden;max-width:300px}
-.track .fill{height:100%;border-radius:8px;transition:width .45s cubic-bezier(.2,.8,.25,1),background .4s}
-.tmsg{font-size:.88rem;color:#C9CCF4;min-height:2.6em;max-width:36ch;margin:0 auto}
-.sliders{display:flex;flex-direction:column;gap:20px}
-.sld label{font-size:.88rem;color:#C9CCF4;display:block;margin-bottom:10px}
-.sld input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;outline:none}
+/* ---- trust ---- */
+.eq{display:grid;grid-template-columns:1fr 1fr;gap:2.4em;align-items:center;
+  background:var(--indigo);border-radius:.8em;padding:1.6em 1.9em;color:#fff}
+.sl label{font-size:.88em;color:#C9CCF4;display:block;margin-bottom:.5em}
+.sl input{width:100%;-webkit-appearance:none;appearance:none;height:.38em;border-radius:.4em;outline:none}
 #si{background:linear-gradient(90deg,var(--amber),#D14848)}
 #sh{background:linear-gradient(90deg,#D14848,var(--amber))}
-.sld input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;
-  background:#fff;border:3px solid var(--amber);cursor:pointer;box-shadow:0 2px 7px rgba(0,0,0,.35)}
-.sld input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:#fff;border:3px solid var(--amber);cursor:pointer}
-.rlab{display:flex;justify-content:space-between;font-size:.72rem;color:#B0B3E2;margin-top:6px}
-.crafts{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:18px}
-.crafts .c{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:15px 18px}
-.crafts .c b{color:var(--indigo)}
-.crafts .c p{color:var(--ink);font-size:.85rem;margin-top:4px;line-height:1.45}
-.indigo .crafts .c{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
-.indigo .crafts .c b{color:var(--amber)}
-.indigo .crafts .c p{color:#DDE0F7}
+.sl input::-webkit-slider-thumb{-webkit-appearance:none;width:1.3em;height:1.3em;border-radius:50%;
+  background:#fff;border:.19em solid var(--amber);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.sl input::-moz-range-thumb{width:1.3em;height:1.3em;border-radius:50%;background:#fff;border:.19em solid var(--amber);cursor:pointer}
+.sl+.sl{margin-top:1.2em}
+.rl{display:flex;justify-content:space-between;font-size:.74em;color:#B0B3E2;margin-top:.3em}
+.frac{text-align:center;font-family:var(--serif);font-size:1.08em}
+.frac .v{color:var(--amber);font-weight:600}
+.frac .dv{color:#FFC4B8;font-weight:600}
+.frac hr{border:0;height:1px;background:rgba(255,255,255,.5);margin:.5em 0}
+.sc{font-family:var(--serif);font-weight:600;font-size:2.9em;line-height:1;margin-top:.35em;transition:color .3s}
+.trk{height:.45em;border-radius:.4em;background:rgba(255,255,255,.18);margin:.5em auto;max-width:16em;overflow:hidden}
+.trk i{display:block;height:100%;border-radius:.4em;transition:width .45s cubic-bezier(.2,.8,.25,1),background .4s}
+.tm{font-size:.86em;color:#C9CCF4;min-height:2.6em;max-width:30ch;margin:.3em auto 0}
 
-/* WATCH-OUTS */
-.losewrap{display:grid;grid-template-columns:1fr 190px;gap:26px;align-items:center;margin-top:20px}
-.lose{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.lose .row{display:flex;gap:15px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
-  border-radius:12px;padding:15px 18px;transition:transform .16s,box-shadow .16s}
-.lose .row:hover{transform:translateX(4px);box-shadow:-4px 0 0 var(--amber)}
-.lose .n{font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--amber-deep);flex:0 0 22px;line-height:1.2}
-.lose h3{font-family:var(--serif);font-size:.99rem;color:var(--indigo);font-weight:600}
-.lose p{font-size:.8rem;color:var(--muted);margin-top:2px;line-height:1.45}
+/* ---- circle ---- */
+.circ{display:grid;grid-template-columns:.92fr 1.08fr;gap:3em;align-items:center;flex:1}
+.stage{width:100%;max-width:26cqw;margin:0 auto}
+.stage svg{width:100%;height:auto;overflow:visible}
+.ring{cursor:pointer;outline:none}
+.ring circle.band{stroke:#fff;stroke-width:3;transition:opacity .3s,stroke-width .2s;transform-box:fill-box;transform-origin:center}
+svg[data-a="1"] .ring:not([data-l="1"]) circle.band,
+svg[data-a="2"] .ring:not([data-l="2"]) circle.band,
+svg[data-a="3"] .ring:not([data-l="3"]) circle.band,
+svg[data-a="4"] .ring:not([data-l="4"]) circle.band{opacity:.38}
+.ring.on circle.band{stroke:var(--amber);stroke-width:5}
+.ring:focus-visible circle.band{stroke:var(--amber);stroke-width:5}
+.ring .bg circle{fill:#fff;stroke:var(--indigo);stroke-width:1.4}
+.ring .bg text{font-family:var(--serif);font-weight:600;fill:var(--indigo);font-size:15px}
+.stage .ring circle.band{opacity:0;transform:scale(.7)}
+.slide.in .stage .ring circle.band{opacity:1;transform:scale(1);transition:opacity .5s,transform .6s cubic-bezier(.2,.8,.25,1)}
+.slide.in .stage .ring[data-l="3"] circle.band{transition-delay:.1s}
+.slide.in .stage .ring[data-l="2"] circle.band{transition-delay:.2s}
+.slide.in .stage .ring[data-l="1"] circle.band{transition-delay:.3s}
+.det{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);border-radius:.8em;padding:1.4em 1.6em;transition:opacity .25s}
+.det.sw{opacity:0}
+.det h3{font-size:1.4em;color:#fff}
+.det .tg{font-size:.8em;font-weight:600;color:var(--amber);margin-top:.15em}
+.chips{display:flex;flex-wrap:wrap;gap:.45em;margin:.9em 0 .7em}
+.chips span{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);
+  padding:.32em .75em;border-radius:2em;font-size:.85em;color:#EEF0FF}
+.det p{color:#C9CCF4;font-size:.92em;line-height:1.45}
+.warm{display:flex;align-items:center;gap:.6em;margin-top:.9em;font-size:.76em;color:#C6C9F2}
+.warm i{height:.4em;flex:1;border-radius:.4em;background:linear-gradient(90deg,var(--amber),#6E75CE 55%,#C9CCEF)}
 
-/* WEEK */
-.weekwrap{display:grid;grid-template-columns:1fr 190px;gap:26px;align-items:center;margin-top:20px}
-.week{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
-.wk{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;
-  padding:18px 13px;text-align:center}
-.wk .ico{margin:0 auto 11px}
-.wk .k{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--amber);line-height:1}
-.wk p{font-size:.78rem;color:#D6D8F3;margin-top:7px;line-height:1.4}
-.closer{margin-top:20px;font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);
-  color:#fff;font-weight:500;max-width:44ch;line-height:1.3}
+/* ---- week + pocket ---- */
+.wk{text-align:center;padding:1.1em .7em}
+.wk .k{font-family:var(--serif);font-weight:600;font-size:1.9em;color:var(--amber);line-height:1}
+.wk p{font-size:.8em;color:#D6D8F3;margin-top:.4em;line-height:1.35}
+.closer{margin-top:1.1em;font-family:var(--serif);font-size:1.5em;color:#fff;line-height:1.28}
 .closer b{color:var(--amber)}
-
-/* POCKET */
-.pocket{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.pk{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
-  border-radius:12px;padding:16px 19px}
-.pk .ar{color:var(--amber-deep);font-weight:700;flex:0 0 auto;font-size:1.05rem;line-height:1.4}
-.pk p{font-size:.9rem;line-height:1.5}
+.pk{display:flex;gap:.7em;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+  border-radius:.6em;padding:.85em 1em}
+.pk i{color:var(--amber-d);font-weight:700;font-style:normal;flex:0 0 auto}
+.pk p{font-size:.86em;line-height:1.4}
 .pk b{color:var(--indigo)}
-.signoff{margin-top:20px;background:var(--indigo);color:#fff;border-radius:15px;padding:22px 26px;
-  font-size:1rem;line-height:1.55;max-width:none}
-.signoff b{color:var(--amber)}
-.signoff .go{display:block;margin-top:10px;font-family:var(--serif);font-size:1.3rem;color:var(--amber)}
+.sign{margin-top:1cqw;background:var(--indigo);color:#fff;border-radius:.7em;padding:1.2em 1.5em;font-size:.98em;line-height:1.5}
+.sign b{color:var(--amber)}
+.sign em{display:block;font-style:normal;font-family:var(--serif);font-size:1.35em;color:var(--amber);margin-top:.4em}
 
-@media (max-width:1040px){
-  /* stack rather than hide -- dropping four of the ten figures on narrow
-     screens loses most of the artwork exactly where there is least else to look at */
-  .engine-grid,.checkwrap,.losewrap,.weekwrap{grid-template-columns:1fr}
-  .engine-grid .figbox,.checkwrap .figbox,.losewrap .figbox,.weekwrap .figbox{
-    max-width:150px;margin:4px auto 0;order:2}
-  .kpis{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:960px){
+@media (max-width:900px){
   .app{flex-direction:column;height:auto;overflow:visible}
-  .rail{width:100%;flex-direction:row;align-items:center;gap:12px;padding:10px 14px;overflow-x:auto;position:sticky;top:0;z-index:20}
-  .rail .count{display:none}.brand{flex:0 0 auto}
-  .nav{flex-direction:row}.nav a{white-space:nowrap;padding:6px 10px}.nav a .dot{display:none}
+  .rail{width:100%;flex-direction:row;align-items:center;padding:8px 12px;overflow-x:auto;position:sticky;top:0}
+  .rail .foot{display:none}.nav{flex-direction:row;overflow:visible}.nav a{white-space:nowrap}.nav a .dot{display:none}
   .main{height:auto;overflow:visible;scroll-snap-type:none}
-  .slide{min-height:auto;padding:44px 22px}
-  #s-hero .wrap,.cgrid,.eqbox{grid-template-columns:1fr;gap:24px}
-  .hero-art{max-width:440px;margin:6px auto 0}
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .levers{grid-template-columns:repeat(2,1fr)}
-  .steps,.scripts{grid-template-columns:1fr}
-  .persona{grid-template-columns:1fr}
-  .persona .port{max-width:170px}
-  .persona .body{grid-template-columns:1fr;gap:16px}
-  .lose,.crafts,.pocket{grid-template-columns:1fr}
-  .week{grid-template-columns:1fr 1fr}
-  .cue{display:none}
+  .slide{height:auto;padding:14px 12px}
+  .page{width:100%;aspect-ratio:auto;max-height:none;font-size:13px;padding:26px 22px;min-height:78vh}
+  .hero,.circ,.eq{grid-template-columns:1fr;gap:1.4em}
+  .orbit{max-width:220px;margin:0 auto}.mkbox{max-width:150px;margin:0 auto}
+  .kpis,.g4{grid-template-columns:repeat(2,1fr)}
+  .g3,.keys,.pan{grid-template-columns:1fr}
+  .keys{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width:540px){.kpis,.week{grid-template-columns:1fr}.levers{grid-template-columns:1fr}}
+@media print{
+  .rail,.pnum{display:none}.app{display:block;height:auto}.main{height:auto;overflow:visible}
+  .slide{height:auto;page-break-after:always;padding:0}
+  .page{width:100%;box-shadow:none;border-radius:0;font-size:11pt}
+  .r,.hl,.pop,.draw,.grow{opacity:1!important;transform:none!important;background-size:100% .42em!important;stroke-dashoffset:0!important}
+}
 @media (prefers-reduced-motion:reduce){
   .main{scroll-behavior:auto}
-  .stage.animate .ring circle.band{opacity:1;transform:none}
-  .drawn .corepulse{animation:none}.cue i{animation:none}
+  .r,.pop{transition:none;opacity:1;transform:none}
+  .hl{transition:none;background-size:100% .42em}
+  .draw{transition:none;stroke-dashoffset:0}.grow{transition:none;transform:none}
 }
 </style>
 </head>
 <body>
-<!--SPRITE-->
 <div class="app">
   <aside class="rail">
     <div class="brand"><div class="mark"><span></span><span></span><span></span></div>
       <div><b>Ionic</b><small>Wealth by Angel One</small></div></div>
     <nav class="nav" id="nav">
-      <a data-t="s-hero"><span class="dot"></span>Overview</a>
-      <a data-t="s-opp"><span class="dot"></span>The opportunity</a>
-      <a data-t="s-circle"><span class="dot"></span>Circle of influence</a>
-      <a data-t="s-engine"><span class="dot"></span>The engine</a>
-      <a data-t="s-clients"><span class="dot"></span>Who you're meeting</a>
-      <a data-t="s-prop"><span class="dot"></span>The proposition</a>
-      <a data-t="s-meet"><span class="dot"></span>The meetings</a>
-      <a data-t="s-check"><span class="dot"></span>60-second check</a>
-      <a data-t="s-craft"><span class="dot"></span>Trust</a>
-      <a data-t="s-lose"><span class="dot"></span>Watch-outs</a>
-      <a data-t="s-week"><span class="dot"></span>The week</a>
-      <a data-t="s-pocket"><span class="dot"></span>The pocket version</a>
+      <a data-t="s1"><span class="dot"></span>Overview</a>
+      <a data-t="s2"><span class="dot"></span>The opportunity</a>
+      <a data-t="s3"><span class="dot"></span>The engine</a>
+      <a data-t="s4"><span class="dot"></span>Who you're meeting</a>
+      <a data-t="s5"><span class="dot"></span>The proposition</a>
+      <a data-t="s6"><span class="dot"></span>The meetings</a>
+      <a data-t="s7"><span class="dot"></span>60-second check</a>
+      <a data-t="s8"><span class="dot"></span>Trust</a>
+      <a data-t="s9"><span class="dot"></span>Watch-outs</a>
+      <a data-t="s10"><span class="dot"></span>Circle of influence</a>
+      <a data-t="s11"><span class="dot"></span>The week</a>
+      <a data-t="s12"><span class="dot"></span>Pocket version</a>
     </nav>
-    <div class="count">HNI prospecting · session briefing</div>
+    <div class="foot">HNI prospecting · session briefing<br>12 slides · 16:9</div>
   </aside>
 
   <main class="main" id="main">
 
-    <!-- 1 HERO -->
-    <section class="slide indigo" id="s-hero">
-      <div class="wrap">
-        <div>
-          <div class="hero-tag">Ionic Wealth by Angel One</div>
-          <h1>Cracking HNI<br>prospecting</h1>
-          <p class="hs">How Ionic wins high-net-worth clients — and how you'll do it yourself.</p>
-          <div class="anchors">
-            <div><span class="b"></span>The clients exist. The skill is finding them.</div>
-            <div><span class="b"></span>Warm paths beat cold calls.</div>
-            <div><span class="b"></span>No proposition, no durable conversion.</div>
-          </div>
-        </div>
-        <div class="hero-art">
-          <div class="figbox"><svg class="fig" viewBox="0 0 1000 560" role="img"
-            aria-label="An adviser and a prospective client in conversation across a low table"><use href="#fig-hero"/></svg></div>
-        </div>
+<!-- 1 -->
+<section class="slide" id="s1"><div class="page indigo">
+  <div class="hero">
+    <div>
+      <div class="tag r">Ionic Wealth by Angel One</div>
+      <h1 class="r">Cracking HNI<br>prospecting</h1>
+      <p class="sub r">How Ionic wins high-net-worth clients — and how you'll do it yourself.</p>
+      <div class="anch r">
+        <div><i></i>The clients exist. <span class="hl">The skill is finding them.</span></div>
+        <div><i></i>Warm paths beat cold calls.</div>
+        <div><i></i>No proposition, no durable conversion.</div>
       </div>
-      <div class="cue"><i data-lucide="chevron-down"></i>Scroll or use the menu</div>
-    </section>
+    </div>
+    <div class="orbit r">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="94" fill="none" stroke="#FFB951" stroke-opacity=".28" stroke-width="1.4"/>
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#FFB951" stroke-opacity=".38" stroke-width="1.4"/>
+        <circle cx="100" cy="100" r="46" fill="none" stroke="#FFB951" stroke-opacity=".55" stroke-width="1.6"/>
+        <circle cx="100" cy="100" r="17" fill="#FFB951"/>
+        <g><circle cx="194" cy="100" r="4.5" fill="#fff" opacity=".75"/>
+          <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="26s" repeatCount="indefinite"/></g>
+        <g><circle cx="170" cy="100" r="4" fill="#FFB951"/>
+          <animateTransform attributeName="transform" type="rotate" from="120 100 100" to="480 100 100" dur="17s" repeatCount="indefinite"/></g>
+        <g><circle cx="146" cy="100" r="3.4" fill="#fff" opacity=".9"/>
+          <animateTransform attributeName="transform" type="rotate" from="250 100 100" to="610 100 100" dur="11s" repeatCount="indefinite"/></g>
+      </svg>
+    </div>
+  </div>
+  <div class="pnum">01</div>
+</div></section>
 
-    <!-- 2 OPPORTUNITY -->
-    <section class="slide pearl" id="s-opp">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="trending-up"></i>The opportunity</div>
-        <h2 class="title">A prize bigger than the market lets on</h2>
-        <div class="kpis" id="kpis">
-          <div class="kpi"><div class="n" data-count="3.9" data-dec="1" data-suf=" lakh">0</div>
-            <div class="l">dollar-millionaires in India</div><div class="d">holding ~$1.65 trillion between them</div></div>
-          <div class="kpi"><div class="n" data-count="8.5" data-dec="1" data-suf=" lakh+">0</div>
-            <div class="l">HNI base on total net worth</div><div class="d">nearly doubling to ~1.65 million by 2027</div></div>
-          <div class="kpi"><div class="n" data-count="19900" data-dec="0" data-pre="~" data-comma="1">0</div>
-            <div class="l">UHNIs at $30M+ · 6th globally</div><div class="d">up 63% in five years</div></div>
-          <div class="kpi"><div class="n" data-count="1.6" data-dec="1" data-pre="$" data-suf="T">0</div>
-            <div class="l">new AUM in play, FY24–FY29</div><div class="d">the opening this creates</div></div>
-          <div class="kpi"><div class="n" data-static="1 in 5">1 in 5</div>
-            <div class="l">new millionaires is under 40</div><div class="d">this pool is young</div></div>
-          <div class="kpi"><div class="n" data-count="40" data-dec="0" data-pre="~" data-suf="%">0</div>
-            <div class="l">of UHNI families run a family office</div><div class="d">they buy advice institutionally</div></div>
-          <div class="kpi"><div class="n" data-count="7" data-dec="0" data-suf="%">0</div>
-            <div class="l">of an advisor's time goes to prospecting</div><div class="d">the least-taught, highest-paid skill</div></div>
-          <div class="kpi"><div class="n" data-static="&gt;50%">&gt;50%</div>
-            <div class="l">of new HNI relationships arrive by referral</div><div class="d">warm paths, not cold calls</div></div>
-        </div>
-        <div class="spread"><b>And it's spreading.</b> Wealth that used to sit only in Mumbai and Delhi is now being made in
-          <span class="city">Jaipur</span><span class="city">Pune</span><span class="city">Indore</span></div>
-        <div class="strip">
-          <div class="n">₹25L</div>
-          <div class="t">is what a promoter typically puts in as a trial. He watches you for two quarters — then scales up, or walks.</div>
-        </div>
-        <p class="footline"><b>The clients exist.</b> Finding them and earning the first meeting is the skill that pays.</p>
-        <p class="src">Sources: Capgemini (2026, financial assets only) · Deloitte · session note, Ionic Wealth</p>
-      </div>
-    </section>
+<!-- 2 -->
+<section class="slide" id="s2"><div class="page">
+  <div class="kicker r">The opportunity</div>
+  <h2 class="title r">A prize bigger than the market behaves like it is</h2>
+  <div class="body">
+    <div class="kpis r">
+      <div class="kpi"><div class="n" data-c="3.9" data-d="1" data-s=" lakh">0</div><div class="l">dollar-millionaires, holding ~$1.65T</div></div>
+      <div class="kpi"><div class="n" data-c="19900" data-d="0" data-p="~" data-k="1">0</div><div class="l">UHNIs at $30M+ · 6th globally · <b>+63%</b> in 5 yrs</div></div>
+      <div class="kpi"><div class="n" data-c="1.6" data-d="1" data-p="$" data-s="T">0</div><div class="l">new AUM in play, FY24–FY29</div></div>
+      <div class="kpi"><div class="n" data-x="1 in 5">1 in 5</div><div class="l">new millionaires is under 40</div></div>
+    </div>
+    <div class="barn r" aria-hidden="true"><span>8.5L</span><span></span><span></span><span class="k">16.5L</span></div>
+    <div class="bars r" aria-hidden="true" style="margin-top:.3em">
+      <div class="b grow" style="height:34%"></div>
+      <div class="b grow" style="height:52%"></div>
+      <div class="b grow" style="height:70%"></div>
+      <div class="b on grow" style="height:100%"></div>
+    </div>
+    <div class="barx r"><span>2024</span><span>2025</span><span>2026</span><span>2027</span></div>
+    <p class="note r">HNI base, near-doubling by 2027 · wealth now made in <b>Jaipur, Pune, Indore</b>, not only Mumbai and Delhi ·
+      <b>7%</b> of an advisor's time goes to prospecting, yet <span class="hl">over half of new HNI relationships arrive by referral</span>.
+      <br>Sources: Capgemini 2026 · Deloitte</p>
+  </div>
+  <div class="pnum">02</div>
+</div></section>
 
-    <!-- 3 CIRCLE -->
-    <section class="slide indigo" id="s-circle">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="target"></i>The centrepiece</div>
-        <h2 class="title">Your circle of influence</h2>
-        <p class="sub">Tap a ring. Work it from the centre out — warmest names first.</p>
-        <div class="cgrid">
-          <div>
-            <div class="stage animate" id="stage">
-              <svg viewBox="0 0 420 420" id="ringsvg" data-active="1" role="group" aria-label="Circle of influence">
-                <g class="ring" data-layer="4" tabindex="0" role="button" aria-label="Fourth layer"><circle class="band" cx="210" cy="210" r="196" fill="#C9CCEF"></circle><g class="badge"><circle cx="210" cy="37" r="15"></circle><text x="210" y="43" text-anchor="middle">4</text></g></g>
-                <g class="ring" data-layer="3" tabindex="0" role="button" aria-label="Third layer"><circle class="band" cx="210" cy="210" r="150" fill="#9AA0E0"></circle><g class="badge"><circle cx="210" cy="83" r="15"></circle><text x="210" y="89" text-anchor="middle">3</text></g></g>
-                <g class="ring" data-layer="2" tabindex="0" role="button" aria-label="Second layer"><circle class="band" cx="210" cy="210" r="104" fill="#6E75CE"></circle><g class="badge"><circle cx="210" cy="129" r="15"></circle><text x="210" y="135" text-anchor="middle">2</text></g></g>
-                <g class="ring" data-layer="1" tabindex="0" role="button" aria-label="Innermost circle"><circle class="band corepulse" cx="210" cy="210" r="58" fill="#FFB951"></circle><text class="core-label" x="210" y="206" text-anchor="middle" font-size="25">1</text><text class="core-sub" x="210" y="227" text-anchor="middle">START HERE</text></g>
-              </svg>
-            </div>
-            <div class="warm"><span>Warmest core</span><div class="bar"></div><span>Widest reach</span></div>
-          </div>
-          <div class="detail" id="detail">
-            <div class="idx"><div class="num" id="d-num">1</div><div><h3 id="d-title">Innermost circle</h3><div class="tag" id="d-tag">Start here</div></div></div>
-            <div class="chips" id="d-chips"></div>
-            <p class="g" id="d-guide"></p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- 3 -->
+<section class="slide" id="s3"><div class="page paper">
+  <div class="kicker r">The engine</div>
+  <h2 class="title r">What powers the warm path</h2>
+  <div class="body">
+    <div class="g4 r">
+      <div class="card"><h3>Product USP</h3><p>AI second opinion, family consolidation, Allocate.</p><div class="why">Helps him before it sells anything.</div></div>
+      <div class="card"><h3>Brand campaign</h3><p>Digital and outdoor, run together.</p><div class="why">The name is familiar before you call.</div></div>
+      <div class="card"><h3>Digital RM</h3><p>Leads called fast, booked with the right RM.</p><div class="why">Speed-to-lead is a multiplier.</div></div>
+      <div class="card"><h3>RM follow-up</h3><p>High-potential leads, not spray and pray.</p><div class="why">Conversions come from patience.</div></div>
+    </div>
+    <div class="g4 r" style="margin-top:.9cqw">
+      <div class="card"><h3>Client referrals</h3><p>Asked for deliberately.</p><div class="why">One promoter knows ten more.</div></div>
+      <div class="card"><h3>Small-group events</h3><p>Curated rooms, by profession.</p><div class="why">Credibility first, product later.</div></div>
+      <div class="card"><h3>Emerging-HNI cross-sell</h3><p>Top 0.1% of the ₹2cr AO base.</p><div class="why">The warmest book you already own.</div></div>
+      <div class="card hl2"><h3>The rule above all</h3><p>None of these convert durably <span class="hl">without a product worth staying for.</span></p></div>
+    </div>
+  </div>
+  <div class="pnum">03</div>
+</div></section>
 
-    <!-- 4 ENGINE -->
-    <section class="slide paper" id="s-engine">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="settings-2"></i>The engine</div>
-        <h2 class="title">What powers the warm path</h2>
-        <p class="sub">Seven levers. Each card says what it is, and underneath, why it works.</p>
-        <div class="engine-grid">
-          <div class="levers">
-            <div class="lever"><div class="ico"><i data-lucide="box"></i></div><h3>Product USP</h3>
-              <p class="is">AI second opinion, family-level consolidation and account aggregation, and an in-house model portfolio available as Allocate.</p>
-              <p class="why"><b>Why</b> it gives you a reason to meet that helps him before it sells anything.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="megaphone"></i></div><h3>Brand campaign</h3>
-              <p class="is">Digital and outdoor, run together.</p>
-              <p class="why"><b>Why</b> the name is already familiar when you call — and a warm name converts far better than a cold one.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="zap"></i></div><h3>Digital RM</h3>
-              <p class="is">Inbound leads called fast, qualified, and booked with the right RM.</p>
-              <p class="why"><b>Why</b> speed-to-lead is a multiplier — the firm that reaches a live lead first usually keeps it.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="clipboard-check"></i></div><h3>RM follow-up</h3>
-              <p class="is">Disciplined work on high-potential leads, not spray and pray.</p>
-              <p class="why"><b>Why</b> most conversions come from patient follow-up, not first contact.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="user-plus"></i></div><h3>Client referrals</h3>
-              <p class="is">Asked for deliberately from happy clients.</p>
-              <p class="why"><b>Why</b> HNIs cluster — one satisfied promoter knows ten more just like him.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="users"></i></div><h3>Small-group events</h3>
-              <p class="is">Curated gatherings for GCC leaders, senior doctors, top-end societies, corporate management.</p>
-              <p class="why"><b>Why</b> credibility first, product later — intimacy and peer proof do the selling.</p></div>
-            <div class="lever"><div class="ico"><i data-lucide="layers"></i></div><h3>Emerging-HNI cross-sell</h3>
-              <p class="is">The top 0.1% of the ₹2 crore AO base.</p>
-              <p class="why"><b>Why</b> it's the warmest book the firm already owns, with a relationship and a data head-start.</p></div>
-            <div class="lever hl"><h3>The rule above it all</h3>
-              <p class="is">None of these levers convert durably without a product worth staying for.</p>
-              <p class="attr">— as Rohit puts it: without a strong product proposition, durable conversion will not happen.</p></div>
-          </div>
-          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
-            aria-label="A geared flywheel turning under its own momentum"><use href="#fig-engine"/></svg></div>
-        </div>
-      </div>
-    </section>
+<!-- 4 -->
+<section class="slide" id="s4"><div class="page">
+  <div class="kicker r">Who you're meeting</div>
+  <h2 class="title r">Five clients, five doors in</h2>
+  <div class="body">
+    <div class="keys r" id="keys"></div>
+    <div class="pan" id="pan"></div>
+  </div>
+  <div class="pnum">04</div>
+</div></section>
 
-    <!-- 5 CLIENTS -->
-    <section class="slide pearl" id="s-clients">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="user-search"></i>Who you're meeting</div>
-        <h2 class="title">Five clients, five doors in</h2>
-        <p class="sub">Prospecting gets easier the moment you stop treating “HNI” as one kind of person.</p>
-        <div class="tabs" id="tabs"></div>
-        <div class="persona" id="persona"></div>
-      </div>
-    </section>
+<!-- 5 -->
+<section class="slide" id="s5"><div class="page paper">
+  <div class="kicker r">The proposition</div>
+  <h2 class="title r">Charm gets the meeting. <span class="hl">The product keeps the money.</span></h2>
+  <div class="body">
+    <div class="trial r"><b>₹25L</b><p>A promoter puts ₹25 lakh in as a trial, watches two quarters, then scales up or walks.</p></div>
+    <div class="g3 r">
+      <div class="scr"><div class="l">The second opinion</div><q>Would it help to have a completely independent read on what you already hold — no strings, just a second set of eyes?</q></div>
+      <div class="scr"><div class="l">The single view</div><q>Most families your size run money across five or six institutions. Would seeing all of it on a single screen be worth an hour?</q></div>
+      <div class="scr"><div class="l">Allocate</div><q>Rather than pitch a fund, let me show you how our model portfolio behaved through the last two corrections.</q></div>
+    </div>
+    <p class="note r">Three openings, none of which asks for a rupee.</p>
+  </div>
+  <div class="pnum">05</div>
+</div></section>
 
-    <!-- 6 PROPOSITION -->
-    <section class="slide paper" id="s-prop">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="anchor"></i>No proposition, no durable conversion</div>
-        <h2 class="title">Charm gets the meeting. The product keeps the money.</h2>
-        <p class="sub">You can buy a first meeting — a good event, a warm introduction, a sharp piece of research.
-          What you cannot do is retain an HNI on charm. They will test you.</p>
-        <div class="trial">
-          <div class="amt">₹25L</div>
-          <p>A promoter puts ₹25 lakh in as a trial, watches how you behave for two quarters, and then either scales up or walks.
-            The proposition is what turns that trial into a mandate — and what decides whether he refers you to the next promoter.</p>
-        </div>
-        <p class="propfoot" style="margin-top:18px"><b>It does one more thing worth naming:</b> it lets you open a conversation without pitching.
-          Three lines the Ionic set-up hands you, none of which asks for a rupee.</p>
-        <div class="scripts">
-          <div class="script"><div class="lbl">The second opinion</div>
-            <q>You've clearly built this well. Would it help to have a completely independent read on what you already hold — no strings, just a second set of eyes?</q></div>
-          <div class="script"><div class="lbl">The single view</div>
-            <q>Most families your size run money across five or six institutions and a few entities, and no one has one view of it. Would seeing all of it on a single screen be worth an hour?</q></div>
-          <div class="script"><div class="lbl">Allocate</div>
-            <q>Rather than pitch a fund, I'd rather show you how our own model portfolio actually behaved through the last two corrections. If it isn't better than what you have, I'll tell you.</q></div>
-        </div>
-        <p class="propfoot">Prospecting fills the top of the funnel. <b>The product decides whether anything stays in it.</b></p>
-      </div>
-    </section>
+<!-- 6 -->
+<section class="slide" id="s6"><div class="page paper">
+  <div class="kicker r">The meetings</div>
+  <h2 class="title r">Earn the second, then the third</h2>
+  <div class="body">
+    <div class="g3 r">
+      <div class="card"><div class="rowc"><div class="num">1</div><div><h3>Understand</h3><p style="color:var(--muted);font-size:.78em">First meeting</p></div></div>
+        <p>Know two or three things moving in his sector — a policy shift, a deal, a margin trend. Open on his world. Offer to review what he has.</p></div>
+      <div class="card"><div class="rowc"><div class="num">2</div><div><h3>Show</h3><p style="color:var(--muted);font-size:.78em">Second meeting</p></div></div>
+        <p>Use his own numbers. Swap one fund he's unhappy with for your best. A small, winnable yes.</p></div>
+      <div class="card"><div class="rowc"><div class="num">3</div><div><h3>Raise it</h3><p style="color:var(--muted);font-size:.78em">By the third</p></div></div>
+        <p>Travel, sport, food. Be well-read in two of them. At this level that is how trust gets built.</p></div>
+    </div>
+    <div class="card hl2 r" style="margin-top:1cqw"><p style="font-size:1em"><b style="color:var(--amber)">One rule above all:</b> never sell a product in the first meeting.
+      And in discovery, ask <span class="hl">“what is it about this that worries you most?”</span> — not “how much?”</p></div>
+  </div>
+  <div class="pnum">06</div>
+</div></section>
 
-    <!-- 7 MEETINGS -->
-    <section class="slide pearl" id="s-meet">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="footprints"></i>The first meeting, and the next</div>
-        <h2 class="title">Earn the second, then the third</h2>
-        <div class="steps">
-          <div class="step"><div class="h"><div class="num">1</div><div><h3>Understand</h3><div class="tg">First meeting · earn the right to a second</div></div></div>
-            <p><span class="em">Prepare like you mean it.</span> Know his sector and two or three real things moving in it right now — a policy shift, a deal, a margin trend. Walk in with a view, not a brochure.</p>
-            <p><span class="em">Open on his world.</span> Where did the money come from, what keeps him up, what does his current setup get wrong? Offer to review what he has, and position yourself as an advisor rather than a distributor.</p>
-            <p>A reference from a willing client in his own sector or community is worth more than any pitch you can make.</p></div>
-          <div class="step"><div class="h"><div class="num">2</div><div><h3>Show</h3><div class="tg">Second meeting · show, don't tell</div></div></div>
-            <p><span class="em">Bring the review.</span> Using his own numbers, show how your products would have improved the journey: more return, less risk, fewer blind spots he didn't know he had.</p>
-            <p><span class="em">Find the low-friction entry.</span> Look for a fund he's had a bad experience with that also sits on your sell list, and replace it with the single best product from your curated set. Small, obvious, winnable — a first yes that's easy to say.</p></div>
-          <div class="step"><div class="h"><div class="num">3</div><div><h3>Raise the relationship</h3><div class="tg">By the third meeting</div></div></div>
-            <p>Talk about what he wants to talk about: travel, sport, food, politics. Be genuinely well-read in at least two of these.</p>
-            <p>At this level that isn't small talk — <span class="em">it's how trust actually gets built.</span></p></div>
-        </div>
-        <div class="onerule"><b>One rule above all others:</b> never sell a product in the first meeting. Everyone knows it. Almost everyone breaks it.</div>
-        <div class="discovery"><b>In discovery, chase the feeling under the number.</b> When he mentions a worry, the useful follow-up isn't “how much?” — it's
-          <b>“what is it about this that worries you most?”</b> Let him arrive at the answer himself, and take it at his pace, not yours.</div>
+<!-- 7 -->
+<section class="slide" id="s7"><div class="page indigo">
+  <div class="kicker r">Before any HNI meeting</div>
+  <h2 class="title r">The 60-second check</h2>
+  <div class="body">
+    <div class="g2 r" style="align-items:center">
+      <div><div id="checks" style="display:flex;flex-direction:column;gap:.55em"></div>
+        <p class="verd no" id="verd" role="status">0 of 4 — you're not ready.</p></div>
+      <div class="mkbox" style="max-width:18cqw">
+        <svg class="mk" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="78" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="12"/>
+          <circle class="draw" style="--len:490" cx="100" cy="100" r="78" fill="none" stroke="#FFB951" stroke-width="12"
+            stroke-linecap="round" transform="rotate(-90 100 100)" id="dial"/>
+          <text x="100" y="94" text-anchor="middle" font-family="Newsreader,serif" font-size="46" fill="#fff" id="dialn">0</text>
+          <text x="100" y="122" text-anchor="middle" font-size="14" fill="#B0B3E2" letter-spacing="2">OF 4</text>
+        </svg>
       </div>
-    </section>
+    </div>
+  </div>
+  <div class="pnum">07</div>
+</div></section>
 
-    <!-- 8 60-SECOND CHECK -->
-    <section class="slide indigo" id="s-check">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="timer"></i>Before any HNI meeting</div>
-        <h2 class="title">The 60-second check</h2>
-        <p class="sub">Four questions. Tick them honestly — if any answer is no, you're not ready.</p>
-        <div class="checkwrap">
-          <div>
-            <div class="checks" id="checks"></div>
-            <p class="verdict no" id="verdict" role="status">0 of 4 — you're not ready.</p>
-          </div>
-          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
-            aria-label="One decision with two routes out, one open and one flagged"><use href="#fig-watchouts"/></svg></div>
-        </div>
+<!-- 8 -->
+<section class="slide" id="s8"><div class="page paper">
+  <div class="kicker r">The craft</div>
+  <h2 class="title r">Trust is an equation</h2>
+  <div class="body">
+    <div class="eq r">
+      <div>
+        <div class="sl"><label for="si">How early are you pushing product?</label>
+          <input type="range" id="si" min="1" max="9" value="2"><div class="rl"><span>Listening</span><span>Hard selling</span></div></div>
+        <div class="sl"><label for="sh">How much homework did you do?</label>
+          <input type="range" id="sh" min="1" max="9" value="7"><div class="rl"><span>Walked in cold</span><span>Knows his sector</span></div></div>
       </div>
-    </section>
+      <div style="text-align:center">
+        <div class="frac">credibility <span class="v" id="fc">6</span> + reliability <span class="v" id="fr">6</span> + closeness <span class="v" id="fl">6</span>
+          <hr>self-interest <span class="dv" id="fs">2</span></div>
+        <div class="sc" id="sc">9.0</div>
+        <div class="trk"><i id="fill"></i></div>
+        <p class="tm" id="tm" role="status"></p>
+      </div>
+    </div>
+    <div class="g2 r" style="margin-top:1cqw">
+      <div class="card"><h3>Timing beats targeting</h3><p>HNIs switch around exits, IPOs, sales, succession. Liquid assets matter, not headline net worth. Be present at the event.</p></div>
+      <div class="card"><h3>Centres of influence carry it</h3><p>The CA, the lawyer, the banker, the founder's first investor. One good CoI out-produces a hundred cold calls.</p></div>
+    </div>
+  </div>
+  <div class="pnum">08</div>
+</div></section>
 
-    <!-- 9 CRAFT / TRUST -->
-    <section class="slide paper" id="s-craft">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="scale"></i>The craft</div>
-        <h2 class="title">Trust is an equation</h2>
-        <p class="sub">Every time you push product too early the bottom of this ratio grows and trust falls.
-          Do your homework and the top grows. Move both and watch it.</p>
-        <div class="eqbox" style="background:var(--indigo);border-radius:18px;padding:26px 30px;color:#fff">
-          <div class="sliders">
-            <div class="sld"><label for="si">How early are you pushing product?</label>
-              <input type="range" id="si" min="1" max="9" value="2" step="1">
-              <div class="rlab"><span>Listening first</span><span>Hard selling</span></div></div>
-            <div class="sld"><label for="sh">How much homework did you do?</label>
-              <input type="range" id="sh" min="1" max="9" value="7" step="1">
-              <div class="rlab"><span>Walked in cold</span><span>Knows his sector</span></div></div>
-          </div>
-          <div>
-            <div class="fraction">
-              <div class="terms">credibility <span class="v" id="f-cred">6</span> + reliability <span class="v" id="f-rel">6</span> + closeness <span class="v" id="f-clo">6</span></div>
-              <div class="bar"></div>
-              <div class="den">self-interest <span class="v" id="f-self">2</span></div>
-            </div>
-            <div class="result"><div class="score" id="t-score">9.0</div><div class="of">trust score</div></div>
-            <div class="track"><div class="fill" id="t-fill"></div></div>
-            <p class="tmsg" id="t-msg" role="status"></p>
-          </div>
-        </div>
-        <div class="crafts">
-          <div class="c"><b>Timing beats targeting.</b><p>HNIs change advisors around events — an exit, an IPO, a business sale, a succession, an inheritance. Liquid, investable assets matter far more than a headline net-worth figure. Be present at the event, not six months after it.</p></div>
-          <div class="c"><b>Centres of influence do the heavy lifting.</b><p>The CA, the lawyer, the private banker, the founder's first investor — each sits on top of dozens of relationships. One good centre of influence out-produces a hundred cold calls.</p></div>
-        </div>
-      </div>
-    </section>
+<!-- 9 -->
+<section class="slide" id="s9"><div class="page">
+  <div class="kicker r">Watch-outs</div>
+  <h2 class="title r">Five ways advisors quietly lose HNI deals</h2>
+  <div class="body">
+    <div class="g3 r">
+      <div class="card"><div class="rowc"><div class="num">1</div><h3>Pitching too early</h3></div><p>Leading with product before you know his worry.</p></div>
+      <div class="card"><div class="rowc"><div class="num">2</div><h3>Walking in unprepared</h3></div><p>He reads it in the first two minutes.</p></div>
+      <div class="card"><div class="rowc"><div class="num">3</div><h3>Talking over listening</h3></div><p>The first meeting is his to talk.</p></div>
+    </div>
+    <div class="g2 r" style="margin-top:.9cqw">
+      <div class="card"><div class="rowc"><div class="num">4</div><h3>Chasing paper wealth</h3></div><p>Only liquid, deployable money can be advised on.</p></div>
+      <div class="card"><div class="rowc"><div class="num">5</div><h3>Going quiet after the win</h3></div><p><span class="hl">HNIs leave over silence</span>, not one bad quarter.</p></div>
+    </div>
+  </div>
+  <div class="pnum">09</div>
+</div></section>
 
-    <!-- 10 WATCH-OUTS -->
-    <section class="slide pearl" id="s-lose">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="alert-triangle"></i>Watch-outs</div>
-        <h2 class="title">Five ways advisors quietly lose HNI deals</h2>
-        <div class="losewrap">
-          <div class="lose">
-            <div class="row"><div class="n">1</div><div><h3>Pitching before you understand</h3><p>Leading with a product before you know what he's actually worried about. The fastest way to look like everyone else.</p></div></div>
-            <div class="row"><div class="n">2</div><div><h3>Walking in unprepared</h3><p>No view on his sector, nothing to say that a brochure couldn't. HNIs read this in the first two minutes.</p></div></div>
-            <div class="row"><div class="n">3</div><div><h3>Talking more than you listen</h3><p>The first meeting is his to talk. If you're doing most of the talking, you're not learning anything you can use later.</p></div></div>
-            <div class="row"><div class="n">4</div><div><h3>Chasing paper wealth</h3><p>Going after a big net-worth number when almost none of it is liquid. Investable, deployable money is the only kind you can advise on this quarter.</p></div></div>
-            <div class="row"><div class="n">5</div><div><h3>Going quiet after you win</h3><p>HNIs don't leave over one bad quarter; they leave over silence. The advisor who disappears between reviews gets replaced by the one who doesn't.</p></div></div>
-          </div>
-          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
-            aria-label="A signed undertaking standing between two people"><use href="#fig-trust"/></svg></div>
-        </div>
+<!-- 10 -->
+<section class="slide" id="s10"><div class="page indigo">
+  <div class="kicker r">Where the referrals come from</div>
+  <h2 class="title r">Your circle of influence</h2>
+  <div class="circ">
+    <div class="r">
+      <div class="stage">
+        <svg viewBox="0 0 420 420" id="rsvg" data-a="1" role="group" aria-label="Circle of influence">
+          <g class="ring" data-l="4" tabindex="0" role="button" aria-label="Fourth layer"><circle class="band" cx="210" cy="210" r="196" fill="#3D44B8"/><g class="bg"><circle cx="210" cy="14" r="15"/><text x="210" y="20" text-anchor="middle">4</text></g></g>
+          <g class="ring" data-l="3" tabindex="0" role="button" aria-label="Third layer"><circle class="band" cx="210" cy="210" r="150" fill="#4A52C9"/><g class="bg"><circle cx="210" cy="60" r="15"/><text x="210" y="66" text-anchor="middle">3</text></g></g>
+          <g class="ring" data-l="2" tabindex="0" role="button" aria-label="Second layer"><circle class="band" cx="210" cy="210" r="104" fill="#5A62D8"/><g class="bg"><circle cx="210" cy="106" r="15"/><text x="210" y="112" text-anchor="middle">2</text></g></g>
+          <g class="ring" data-l="1" tabindex="0" role="button" aria-label="Innermost circle"><circle class="band" cx="210" cy="210" r="58" fill="#FFB951"/><text x="210" y="206" text-anchor="middle" font-size="25" font-family="Newsreader,serif" font-weight="600" fill="#151A5E">1</text><text x="210" y="227" text-anchor="middle" font-size="9" letter-spacing="1" font-weight="600" fill="#151A5E">START HERE</text></g>
+        </svg>
       </div>
-    </section>
+      <div class="warm"><span>Warmest</span><i></i><span>Widest</span></div>
+    </div>
+    <div class="det r" id="det">
+      <h3 id="dt">Innermost circle</h3><div class="tg" id="dg">Start here</div>
+      <div class="chips" id="dc"></div><p id="dp"></p>
+    </div>
+  </div>
+  <div class="pnum">10</div>
+</div></section>
 
-    <!-- 11 WEEK -->
-    <section class="slide indigo" id="s-week">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="calendar-check"></i>The habit</div>
-        <h2 class="title">What a prospecting week actually looks like</h2>
-        <div class="weekwrap">
-          <div class="week">
-            <div class="wk"><div class="ico"><i data-lucide="user-plus"></i></div><div class="k">2</div><p>referral asks from happy clients</p></div>
-            <div class="wk"><div class="ico"><i data-lucide="handshake"></i></div><div class="k">3</div><p>centre-of-influence touches — a CA, a lawyer, a banker</p></div>
-            <div class="wk"><div class="ico"><i data-lucide="users"></i></div><div class="k">1</div><p>small event moving through the pipeline</p></div>
-            <div class="wk"><div class="ico"><i data-lucide="phone-call"></i></div><div class="k">Every</div><p>digital-RM lead, same-day callback</p></div>
-            <div class="wk"><div class="ico"><i data-lucide="layers"></i></div><div class="k">Weekly</div><p>block of cross-sell calls into the emerging-HNI book</p></div>
-          </div>
-          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
-            aria-label="A week laid out as five columns with meetings placed across it"><use href="#fig-week"/></svg></div>
-        </div>
-        <p class="closer">Do it every week and the meetings compound. <b>Skip it for a month and the pipeline goes dry — quietly, and then all at once.</b></p>
-      </div>
-    </section>
+<!-- 11 -->
+<section class="slide" id="s11"><div class="page indigo">
+  <div class="kicker r">The habit</div>
+  <h2 class="title r">A prospecting week</h2>
+  <div class="body">
+    <div class="g4 r" style="grid-template-columns:repeat(5,1fr)">
+      <div class="card wk"><div class="k">2</div><p>referral asks</p></div>
+      <div class="card wk"><div class="k">3</div><p>centre-of-influence touches</p></div>
+      <div class="card wk"><div class="k">1</div><p>event in the pipeline</p></div>
+      <div class="card wk"><div class="k">Same-day</div><p>callback on every lead</p></div>
+      <div class="card wk"><div class="k">Weekly</div><p>cross-sell block</p></div>
+    </div>
+    <p class="closer r">Do it every week and meetings compound.<br><b>Skip a month and the pipeline goes dry — quietly, then all at once.</b></p>
+  </div>
+  <div class="pnum">11</div>
+</div></section>
 
-    <!-- 12 POCKET VERSION -->
-    <section class="slide paper" id="s-pocket">
-      <div class="wrap">
-        <div class="kicker"><i data-lucide="bookmark"></i>The pocket version</div>
-        <h2 class="title">Six lines to carry out of the room</h2>
-        <div class="pocket">
-          <div class="pk"><span class="ar">→</span><p><b>The clients exist.</b> Finding them and earning the first meeting is the skill that pays.</p></div>
-          <div class="pk"><span class="ar">→</span><p><b>Prospecting is the job</b>, not the gap between clients. Warm paths beat cold calls every time.</p></div>
-          <div class="pk"><span class="ar">→</span><p><b>Ionic's engine:</b> a product people want, a warm brand, fast digital-RM follow-up, deliberate referrals, curated small events, and cross-sell into the emerging-HNI book.</p></div>
-          <div class="pk"><span class="ar">→</span><p><b>No proposition, no durable conversion.</b> Charm gets the meeting; the product keeps the money.</p></div>
-          <div class="pk"><span class="ar">→</span><p><b>First meeting: understand, don't sell.</b> Second meeting: show with his own numbers, then take one small, winnable yes.</p></div>
-          <div class="pk"><span class="ar">→</span><p><b>Trust = (credibility + reliability + closeness) ÷ self-interest.</b> Timing beats targeting. Centres of influence do the heavy lifting.</p></div>
-        </div>
-        <div class="signoff">The competition reads the same reports you do. What separates the RM who builds a book from the one who churns leads is unglamorous:
-          <b>preparing for every meeting, leading with the client's problem instead of your product, and standing on a proposition worth referring.</b>
-          <span class="go">That's the whole game. Go and win it.</span></div>
-      </div>
-    </section>
+<!-- 12 -->
+<section class="slide" id="s12"><div class="page paper">
+  <div class="kicker r">The pocket version</div>
+  <h2 class="title r">Six lines to carry out of the room</h2>
+  <div class="body">
+    <div class="g2 r">
+      <div class="pk"><i>→</i><p><b>The clients exist.</b> Finding them and earning the first meeting is the skill that pays.</p></div>
+      <div class="pk"><i>→</i><p><b>Prospecting is the job</b>, not the gap between clients.</p></div>
+      <div class="pk"><i>→</i><p><b>The engine:</b> product, brand, fast follow-up, referrals, events, cross-sell.</p></div>
+      <div class="pk"><i>→</i><p><b>No proposition, no durable conversion.</b></p></div>
+      <div class="pk"><i>→</i><p><b>Understand first, show second</b>, then take one winnable yes.</p></div>
+      <div class="pk"><i>→</i><p><b>Trust = (credibility + reliability + closeness) ÷ self-interest.</b></p></div>
+    </div>
+    <div class="sign r">The competition reads the same reports you do. What separates the RM who builds a book is unglamorous:
+      <b>prepare for every meeting, lead with his problem, and stand on a proposition worth referring.</b>
+      <em>That's the whole game. Go and win it.</em></div>
+  </div>
+  <div class="pnum">12</div>
+</div></section>
 
   </main>
 </div>
-
 <script>
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-function icons(){ if(window.lucide&&lucide.createIcons){try{lucide.createIcons();}catch(e){}} }
-icons();
+const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = i => document.getElementById(i);
 
-/* Observers deliberately use the viewport, NOT {root:main}. Below 960px the
-   stylesheet gives .main height:auto/overflow:visible, so it stops being a
-   scroll container — with root:main every section then reports as permanently
-   intersecting, which pinned the nav to the last section and fired both
-   animations instantly on mobile. */
-const observe = (el, cb, threshold) =>
-  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) cb(e.target); }),
-    { threshold }).observe(el);
+/* ---- reveal on enter (viewport-rooted: .main stops scrolling below 900px) ---- */
+const slides=[...document.querySelectorAll('.slide')];
+new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in'); if(e.target.id==='s2') counts();}
+}),{threshold:.35}).observe;
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in'); if(e.target.id==='s2') counts();}
+}),{threshold:.35});
+slides.forEach(s=>io.observe(s));
 
-/* ---------- count-up ---------- */
-function countUp(el){
-  if(el.dataset.done) return; el.dataset.done="1";
-  if(el.dataset.static){ el.textContent=el.dataset.static; return; }
-  const target=parseFloat(el.dataset.count), dec=+(el.dataset.dec||0),
-    pre=el.dataset.pre||"", suf=el.dataset.suf||"", comma=el.dataset.comma==="1",
-    dur=reduce?0:1000, t0=performance.now();
-  const fmt=v=>pre+(comma?Math.round(v).toLocaleString('en-IN'):v.toFixed(dec))+suf;
-  if(!el.firstChild||el.firstChild.nodeType!==3) el.insertBefore(document.createTextNode(""),el.firstChild);
-  (function f(t){const p=dur?Math.min(1,(t-t0)/dur):1,e=1-Math.pow(1-p,3);
-    el.firstChild.nodeValue=fmt(target*e); if(p<1)requestAnimationFrame(f); else el.firstChild.nodeValue=fmt(target);})(t0);
+/* ---- count-ups ---- */
+function counts(){
+  document.querySelectorAll('#s2 .n').forEach(el=>{
+    if(el.dataset.done) return; el.dataset.done=1;
+    if(el.dataset.x){el.textContent=el.dataset.x;return;}
+    const t=parseFloat(el.dataset.c),d=+(el.dataset.d||0),p=el.dataset.p||'',s=el.dataset.s||'',
+      k=el.dataset.k==='1',dur=rm?0:900,t0=performance.now();
+    const f=v=>p+(k?Math.round(v).toLocaleString('en-IN'):v.toFixed(d))+s;
+    (function go(n){const q=dur?Math.min(1,(n-t0)/dur):1,e=1-Math.pow(1-q,3);
+      el.textContent=f(t*e); if(q<1)requestAnimationFrame(go); else el.textContent=f(t);})(t0);
+  });
 }
-observe(document.getElementById('s-opp'),
-  t => t.querySelectorAll('[data-count],[data-static]').forEach(countUp), .25);
 
-/* ---------- circle of influence ---------- */
-const L={
- 1:{t:"Innermost circle",tag:"Start here",c:"#FFB951",ink:"#151A5E",s:["Clients from your previous firm","Friends & family"],g:"Your warmest names and highest conversion. Mine these first."},
- 2:{t:"Second layer",tag:"Referrals",c:"#6E75CE",ink:"#fff",s:["Client referrals","Friends & family referrals"],g:"Ask deliberately, by name. Referrals cluster with people like themselves."},
- 3:{t:"Third layer",tag:"Your network",c:"#9AA0E0",ink:"#151A5E",s:["Ex-colleagues","Batchmates","Social acquaintances"],g:"Known faces with built-in credibility and a warm reason to reconnect."},
- 4:{t:"Fourth layer",tag:"Reach",c:"#C9CCEF",ink:"#151A5E",s:["Social-media connects","Networking events"],g:"Widest reach, coldest start. Work it only once the centre is worked."}
-};
-const svg=document.getElementById('ringsvg'), detail=document.getElementById('detail');
-function pick(n,focus){
-  svg.setAttribute('data-active',n);
-  svg.querySelectorAll('.ring').forEach(r=>r.classList.toggle('is-active',r.dataset.layer===String(n)));
-  const d=L[n]; detail.classList.add('swap');
-  setTimeout(()=>{
-    const num=document.getElementById('d-num'); num.textContent=n; num.style.background=d.c; num.style.color=d.ink;
-    document.getElementById('d-title').textContent=d.t;
-    document.getElementById('d-tag').textContent=d.tag;
-    document.getElementById('d-guide').textContent=d.g;
-    document.getElementById('d-chips').innerHTML=d.s.map(x=>`<span>${x}</span>`).join('');
-    detail.classList.remove('swap');
-  },reduce?0:140);
-  if(focus){const g=svg.querySelector('.ring[data-layer="'+n+'"]'); if(g)g.focus();}
-}
-svg.querySelectorAll('.ring').forEach(r=>{
-  r.addEventListener('click',()=>pick(r.dataset.layer));
-  r.addEventListener('keydown',e=>{const cur=+svg.getAttribute('data-active');
-    if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(r.dataset.layer);}
-    if(e.key==='ArrowUp'||e.key==='ArrowRight'){e.preventDefault();pick(Math.max(1,cur-1),1);}
-    if(e.key==='ArrowDown'||e.key==='ArrowLeft'){e.preventDefault();pick(Math.min(4,cur+1),1);}});
-});
-pick(1);
-observe(document.getElementById('stage'), t => t.classList.add('drawn'), .3);
-
-/* ---------- personas ----------
-   Portraits come from the illustration set; each is keyed to the session
-   note's own five types, not the set's internal archetype names. */
+/* ---- personas: abstract key marks, no figures ---- */
+const KEY=(a,b)=>`<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="${a}"/>${b}</svg>`;
 const P=[
- {fig:"fig-promoter",n:"First-generation founder",role:"Built it himself",
-  c:"Not losing what he built; tax, succession and a concentrated stake in his own company; being taken seriously.",
-  w:"A sharp, independent read on that concentrated position, plus a reference from a promoter in his own line of business."},
- {fig:"fig-executive",n:"GCC / MNC senior leader",role:"Two countries, no time",
-  c:"ESOPs and RSUs, assets sitting in two countries, almost no time to manage any of it.",
-  w:"Family-level consolidation across geographies, and a process that asks very little of his calendar."},
- {fig:"fig-professional",n:"Senior doctor / professional",role:"Slow trust, high loyalty",
+ {n:"First-generation founder",r:"Built it himself",
+  m:KEY('#242BA1','<path d="M11 27V17l9-6 9 6v10z" fill="none" stroke="#FFB951" stroke-width="2.4" stroke-linejoin="round"/>'),
+  c:"Not losing what he built. Tax, succession, a concentrated stake — and being taken seriously.",
+  w:"An independent read on that position, plus a reference from his own industry."},
+ {n:"GCC / MNC leader",r:"Two countries, no time",
+  m:KEY('#2E3A72','<circle cx="20" cy="20" r="9" fill="none" stroke="#FFB951" stroke-width="2.4"/><path d="M11 20h18M20 11c4 5 4 13 0 18M20 11c-4 5-4 13 0 18" fill="none" stroke="#FFB951" stroke-width="1.7"/>'),
+  c:"ESOPs and RSUs across two geographies, and almost no time.",
+  w:"Consolidation across geographies that spares his calendar."},
+ {n:"Senior doctor",r:"Slow trust, high loyalty",
+  m:KEY('#3C3C4E','<path d="M20 10v20M10 20h20" stroke="#FFB951" stroke-width="3.4" stroke-linecap="round"/>'),
   c:"Steady growth, discretion, and not being sold to by yet another bank.",
-  w:"Education-first small events, plain language, and patience — the trust builds slowly here."},
- {fig:"fig-founder",n:"Next-gen inheritor",role:"Under 40",
-  c:"Digital access, global and alternative exposure, and some independence from the family's old banker.",
-  w:"The app, the AI second opinion, and a proposition that feels built this decade."},
- {fig:"fig-inheritor",n:"Corporate top & middle management",role:"The warmest book you own",
-  c:"Goal-based planning, ESOP timing, moving beyond a mutual-fund-only portfolio.",
-  w:"The emerging-HNI cross-sell — a structured review of a book you can already see."}
+  w:"Education-first events, plain language, patience."},
+ {n:"Next-gen inheritor",r:"Under 40",
+  m:KEY('#4242C8','<rect x="14" y="9" width="12" height="22" rx="3" fill="none" stroke="#FFB951" stroke-width="2.4"/><circle cx="20" cy="26" r="1.6" fill="#FFB951"/>'),
+  c:"Digital access, global exposure, independence from the family's old banker.",
+  w:"The app and the AI second opinion — built this decade."},
+ {n:"Corporate management",r:"The warmest book you own",
+  m:KEY('#1C2286','<path d="M9 29V21M16 29V15M23 29V18M30 29V11" stroke="#FFB951" stroke-width="2.8" stroke-linecap="round"/>'),
+  c:"Goal-based planning, ESOP timing, moving past a mutual-fund-only portfolio.",
+  w:"The emerging-HNI cross-sell — a review of a book you already see."}
 ];
-const tabs=document.getElementById('tabs'), pane=document.getElementById('persona');
-P.forEach((p,i)=>{const b=document.createElement('button');b.className='tab'+(i?'':' active');b.type='button';
-  b.innerHTML=`<span class="pic"><svg viewBox="0 0 400 500" aria-hidden="true"><use href="#${p.fig}"/></svg></span>${p.n}`;
-  b.onclick=()=>{tabs.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');render(i);};
-  tabs.appendChild(b);});
-function render(i){const p=P[i];pane.classList.add('swap');
-  setTimeout(()=>{pane.innerHTML=`<div class="port"><svg viewBox="0 0 400 500" role="img" aria-label="${p.n}"><use href="#${p.fig}"/></svg></div>
-    <div class="body"><div class="headline">${p.n}<small>${p.role}</small></div>
-    <div><h4>What he actually cares about</h4><p>${p.c}</p></div>
-    <div><h4>The way in</h4><p>${p.w}</p></div></div>`;
-    icons();pane.classList.remove('swap');},reduce?0:130);}
-render(0);
+const keys=$('keys'), pan=$('pan');
+P.forEach((p,i)=>{const b=document.createElement('button');b.className='key'+(i?'':' on');b.type='button';
+  b.innerHTML=`${p.m}<b>${p.n}</b><em>${p.r}</em>`;
+  b.onclick=()=>{keys.querySelectorAll('.key').forEach(k=>k.classList.remove('on'));b.classList.add('on');draw(i);};
+  keys.appendChild(b);});
+function draw(i){const p=P[i];pan.classList.add('sw');
+  setTimeout(()=>{pan.innerHTML=`<div><h4>What he cares about</h4><p>${p.c}</p></div><div><h4>The way in</h4><p>${p.w}</p></div>`;
+    pan.classList.remove('sw');},rm?0:110);}
+draw(0);
 
-/* ---------- the 60-second check ---------- */
-const Q=["Do I know one real thing moving in his sector this week?",
-         "Do I have a warm reference, or a credible reason I'm the one in the room?",
-         "Have I decided what I want from this meeting — and it isn't a sale?",
-         "Can I name the one problem I think he has?"];
-const cbox=document.getElementById('checks'), verdict=document.getElementById('verdict');
-Q.forEach((q,i)=>{const b=document.createElement('button');b.className='chk';b.type='button';
+/* ---- 60-second check + dial ---- */
+const Q=["One real thing moving in his sector this week?",
+         "A warm reference, or a credible reason I'm in the room?",
+         "Decided what I want — and it isn't a sale?",
+         "Can I name the one problem he has?"];
+const cb=$('checks'), verd=$('verd'), dial=$('dial'), dialn=$('dialn');
+Q.forEach(q=>{const b=document.createElement('button');b.className='chk';b.type='button';
   b.setAttribute('aria-pressed','false');
-  b.innerHTML=`<span class="box"><i data-lucide="check"></i></span><span>${q}</span>`;
+  b.innerHTML=`<span class="bx"></span><span>${q}</span>`;
   b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');tally();};
-  cbox.appendChild(b);});
-function tally(){const n=[...cbox.querySelectorAll('.chk')].filter(b=>b.getAttribute('aria-pressed')==='true').length;
-  const ready=n===Q.length;
-  verdict.textContent=ready?"4 of 4 — you're ready.":`${n} of 4 — you're not ready.`;
-  verdict.className='verdict '+(ready?'yes':'no');}
-tally(); icons();
+  cb.appendChild(b);});
+function tally(){const n=[...cb.querySelectorAll('.chk')].filter(b=>b.getAttribute('aria-pressed')==='true').length;
+  const ok=n===4;
+  verd.textContent=ok?"4 of 4 — you're ready.":`${n} of 4 — you're not ready.`;
+  verd.className='verd '+(ok?'yes':'no');
+  dial.style.strokeDasharray='490'; dial.style.strokeDashoffset=490-(490*n/4);
+  dial.style.transition='stroke-dashoffset .45s cubic-bezier(.2,.8,.25,1)';
+  dialn.textContent=n;}
+tally();
 
-/* ---------- trust equation ----------
-   Rebuilt on the note's own formula so the widget demonstrates the equation
-   printed beside it. The previous version reduced to 100/slider via a constant
-   that cancelled itself out, leaving 8 of 10 stops sharing one message. */
-const si=document.getElementById('si'), sh=document.getElementById('sh');
-const els={cred:document.getElementById('f-cred'),rel:document.getElementById('f-rel'),
-  clo:document.getElementById('f-clo'),self:document.getElementById('f-self'),
-  score:document.getElementById('t-score'),fill:document.getElementById('t-fill'),msg:document.getElementById('t-msg')};
-const MAXTRUST=20;
+/* ---- trust equation (note's own formula; both inputs move the fraction) ---- */
+const si=$('si'), sh=$('sh');
 const mix=(a,b,t)=>'#'+[0,1,2].map(k=>Math.round(a[k]+(b[k]-a[k])*t).toString(16).padStart(2,'0')).join('');
-function terms(){
-  const push=+si.value, home=+sh.value;
-  return {cred:1+Math.round(home*0.7),          // homework buys credibility
-          rel:6,                                 // you either do what you said, or you don't
-          clo:Math.max(1,7-Math.round((push-1)*0.7)),  // pushing early costs closeness
-          self:push};
-}
-function trust(){
-  const t=terms(), num=t.cred+t.rel+t.clo, val=num/t.self;
-  els.cred.textContent=t.cred; els.rel.textContent=t.rel;
-  els.clo.textContent=t.clo; els.self.textContent=t.self;
-  els.score.textContent=val.toFixed(1);
-  const pct=Math.max(4,Math.min(100,val/MAXTRUST*100));
-  els.fill.style.width=pct+'%';
-  const col=mix([255,185,81],[209,72,72],Math.max(0,Math.min(1,1-(val-1)/9)));
-  els.fill.style.background=col; els.score.style.color=col;
-  els.msg.textContent = val>=8 ? "Trust is compounding — this is where a trial becomes a mandate."
-    : val>=4 ? "Holding. Keep the focus on his problem, not your product."
-    : val>=2.2 ? "Thin. He's being sold to, and he can feel it."
-    : "The denominator wins. You'll get the meeting and lose the mandate.";
-}
+function terms(){const push=+si.value,home=+sh.value;
+  return{cred:1+Math.round(home*.7),rel:6,clo:Math.max(1,7-Math.round((push-1)*.7)),self:push};}
+function trust(){const t=terms(),num=t.cred+t.rel+t.clo,v=num/t.self;
+  $('fc').textContent=t.cred;$('fr').textContent=t.rel;$('fl').textContent=t.clo;$('fs').textContent=t.self;
+  $('sc').textContent=v.toFixed(1);
+  const col=mix([255,185,81],[209,72,72],Math.max(0,Math.min(1,1-(v-1)/9)));
+  $('fill').style.width=Math.max(4,Math.min(100,v/20*100))+'%';
+  $('fill').style.background=col;$('sc').style.color=col;
+  $('tm').textContent = v>=8?"Trust is compounding — a trial becomes a mandate."
+    : v>=4?"Holding. Keep the focus on his problem."
+    : v>=2.2?"Thin. He's being sold to, and he can feel it."
+    : "The denominator wins. You lose the mandate.";}
 si.oninput=trust; sh.oninput=trust; trust();
 
-/* ---------- nav + scroll-spy ---------- */
-const links=[...document.querySelectorAll('#nav a')], map={};
-links.forEach(a=>{map[a.dataset.t]=a; a.onclick=()=>document.getElementById(a.dataset.t).scrollIntoView({behavior:reduce?'auto':'smooth'});});
-/* Track the section nearest the top of the viewport rather than trusting a
-   single threshold, so it stays correct in both the snapping desktop layout
-   and the plain document flow on mobile. */
-const sections=[...document.querySelectorAll('.slide')];
-let spyTick=false;
-function spy(){
-  spyTick=false;
-  const line=innerHeight*0.35;          // the slides are contiguous, so exactly
-  let best=null;                        // one of them covers this line
-  for(const s of sections){const r=s.getBoundingClientRect();
-    if(r.top<=line&&r.bottom>line){best=s;break;}}
-  if(!best){                            // above the first or below the last
-    best=sections.find(s=>s.getBoundingClientRect().bottom>0)||sections[sections.length-1];
-  }
-  links.forEach(l=>l.classList.remove('active'));
-  const a=map[best.id]; if(a)a.classList.add('active');
-}
-const onScroll=()=>{if(!spyTick){spyTick=true;requestAnimationFrame(spy);}};
-addEventListener('scroll',onScroll,{passive:true});
-document.getElementById('main').addEventListener('scroll',onScroll,{passive:true});
-addEventListener('resize',onScroll,{passive:true});
-spy();
+/* ---- circle of influence ---- */
+const L={1:{t:"Innermost circle",g:"Start here",s:["Previous-firm clients","Friends & family"],p:"Warmest names, highest conversion. Mine these first."},
+ 2:{t:"Second layer",g:"Referrals",s:["Client referrals","Friends & family referrals"],p:"Ask deliberately, by name. Referrals cluster."},
+ 3:{t:"Third layer",g:"Your network",s:["Ex-colleagues","Batchmates","Acquaintances"],p:"Known faces, built-in credibility, a warm reason to reconnect."},
+ 4:{t:"Fourth layer",g:"Reach",s:["Social-media connects","Networking events"],p:"Widest reach, coldest start. Only once the centre is worked."}};
+const rsvg=$('rsvg'), det=$('det');
+function pick(n,f){rsvg.setAttribute('data-a',n);
+  rsvg.querySelectorAll('.ring').forEach(r=>r.classList.toggle('on',r.dataset.l===String(n)));
+  const d=L[n]; det.classList.add('sw');
+  setTimeout(()=>{$('dt').textContent=d.t;$('dg').textContent=d.g;$('dp').textContent=d.p;
+    $('dc').innerHTML=d.s.map(x=>`<span>${x}</span>`).join('');det.classList.remove('sw');},rm?0:110);
+  if(f){const g=rsvg.querySelector(`.ring[data-l="${n}"]`);if(g)g.focus();}}
+rsvg.querySelectorAll('.ring').forEach(r=>{
+  r.addEventListener('click',()=>pick(r.dataset.l));
+  r.addEventListener('keydown',e=>{const c=+rsvg.getAttribute('data-a');
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(r.dataset.l);}
+    if(e.key==='ArrowUp'||e.key==='ArrowRight'){e.preventDefault();pick(Math.max(1,c-1),1);}
+    if(e.key==='ArrowDown'||e.key==='ArrowLeft'){e.preventDefault();pick(Math.min(4,c+1),1);}});});
+pick(1);
 
-icons(); addEventListener('load',icons);
+/* ---- nav + spy (line-based; works whether or not .main is the scroller) ---- */
+const links=[...document.querySelectorAll('#nav a')], map={};
+links.forEach(a=>{map[a.dataset.t]=a;a.onclick=()=>$(a.dataset.t).scrollIntoView({behavior:rm?'auto':'smooth'});});
+let tick=false;
+function spy(){tick=false;const line=innerHeight*.4;let best=null;
+  for(const s of slides){const r=s.getBoundingClientRect();if(r.top<=line&&r.bottom>line){best=s;break;}}
+  if(!best)best=slides.find(s=>s.getBoundingClientRect().bottom>0)||slides[slides.length-1];
+  links.forEach(l=>l.classList.remove('active'));const a=map[best.id];if(a)a.classList.add('active');}
+const onS=()=>{if(!tick){tick=true;requestAnimationFrame(spy);}};
+addEventListener('scroll',onS,{passive:true});
+$('main').addEventListener('scroll',onS,{passive:true});
+addEventListener('resize',onS,{passive:true});
+spy();
+/* arrow / page keys move between slides */
+addEventListener('keydown',e=>{
+  if(['ArrowDown','PageDown','ArrowUp','PageUp'].includes(e.key) && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)){
+    const cur=slides.findIndex(s=>map[s.id]&&map[s.id].classList.contains('active'));
+    const d=/Down/.test(e.key)?1:-1, nx=slides[Math.max(0,Math.min(slides.length-1,cur+d))];
+    if(nx){e.preventDefault();nx.scrollIntoView({behavior:rm?'auto':'smooth'});}}});
 </script>
 </body>
 </html>
