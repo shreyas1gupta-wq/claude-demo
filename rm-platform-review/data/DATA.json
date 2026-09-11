@@ -1,0 +1,4413 @@
+{
+ "firm": {
+  "tot_aug": 3825.2249,
+  "p_aug": 528.46,
+  "f_aug": 7.05,
+  "f_goal": 320.5,
+  "focus_basis": "prior",
+  "cl_aug": 2338,
+  "households": 1748,
+  "ge_1cr_hh": 743,
+  "ge_1cr_acct": 819,
+  "g50": 1335,
+  "l50": 1003,
+  "p_cl": 523,
+  "p_cl_live": 498,
+  "p_mar": 260.79,
+  "p_jun": 388.61,
+  "rms": 73,
+  "teams": 14,
+  "trend": [
+   [
+    "Oct-25",
+    110.54
+   ],
+   [
+    "Jan-26",
+    155.42
+   ],
+   [
+    "Mar-26",
+    260.79
+   ],
+   [
+    "Jun-26",
+    388.61
+   ],
+   [
+    "Aug-26",
+    528.46
+   ]
+  ],
+  "mix": [
+   [
+    "Allocate",
+    364.75
+   ],
+   [
+    "YE",
+    56.4
+   ],
+   [
+    "Navigate",
+    76.36
+   ],
+   [
+    "Co-Pilot",
+    30.95
+   ]
+  ],
+  "all_products": 601.39,
+  "recon_uplift": 16.28
+ },
+ "teams": [
+  {
+   "ml": "Vishal Khanna",
+   "rms": 7,
+   "tot_mar": 546.1,
+   "tot_jun": 725.9,
+   "tot_aug": 822.1098,
+   "cl_aug": 331,
+   "g50": 249,
+   "l50": 82,
+   "new_ja": 45,
+   "p_mar": 110.85,
+   "p_jun": 155.87,
+   "p_aug": 185.26,
+   "p_cl": 121,
+   "f_aug": 0.79,
+   "f_unattr": 0.0,
+   "f_goal": 50,
+   "team8": "Vishal Khanna",
+   "team8_focus": {
+    "actual": 0.79,
+    "goal": 50,
+    "covered": 0.79,
+    "label": "Vishal Khanna",
+    "desks": 1
+   },
+   "pdelta": {
+    "Allocate": 19.51,
+    "Co-Pilot": 0,
+    "Navigate": 3.11,
+    "YE": 13.87
+   },
+   "pjun_prod": {
+    "Allocate": 117.04,
+    "Co-Pilot": 0,
+    "Navigate": 17.28,
+    "YE": 14.45
+   },
+   "rows": [
+    {
+     "rm": "Pratyaksha Gupta",
+     "vintage": "1.8 yr",
+     "vintage_yr": 1.8,
+     "cl_mar": 83,
+     "cl_jun": 93,
+     "cl_aug": 107,
+     "new_ja": 15,
+     "new_aum": 25.55,
+     "g50": 89,
+     "l50": 18,
+     "tot_mar": 182.9,
+     "tot_jun": 225.2,
+     "tot_aug": 252.2206,
+     "p_mar": 45.79,
+     "p_jun": 65.17,
+     "p_aug": 82.93,
+     "p_cl": 58,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 44.63,
+       "cl": 46
+      },
+      {
+       "name": "YE",
+       "aug": 19.87,
+       "cl": 12
+      },
+      {
+       "name": "Navigate",
+       "aug": 18.43,
+       "cl": 8
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": -0.04,
+     "f_mar": 0.0,
+     "f_aug": 0.79,
+     "f_cl": 1,
+     "cl_focplat": 1,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (33% of book), +₹17.8Cr since Jun; 15 new clients since Jun."
+    },
+    {
+     "rm": "Ishan Mishra",
+     "vintage": "1.8 yr",
+     "vintage_yr": 1.8,
+     "cl_mar": 23,
+     "cl_jun": 31,
+     "cl_aug": 32,
+     "new_ja": 1,
+     "new_aum": 0.55,
+     "g50": 23,
+     "l50": 9,
+     "tot_mar": 97.8,
+     "tot_jun": 140.8,
+     "tot_aug": 144.3685,
+     "p_mar": 24.53,
+     "p_jun": 41.46,
+     "p_aug": 43.54,
+     "p_cl": 14,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 42.02,
+       "cl": 13
+      },
+      {
+       "name": "YE",
+       "aug": 1.52,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (30% of book), +₹2.1Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Saurabh Pandey",
+     "vintage": "1.4 yr",
+     "vintage_yr": 1.4,
+     "cl_mar": 53,
+     "cl_jun": 56,
+     "cl_aug": 57,
+     "new_ja": 1,
+     "new_aum": 3.11,
+     "g50": 47,
+     "l50": 10,
+     "tot_mar": 169.6,
+     "tot_jun": 206.9,
+     "tot_aug": 218.1369,
+     "p_mar": 21.72,
+     "p_jun": 25.53,
+     "p_aug": 26.01,
+     "p_cl": 11,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 20.69,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 4.92,
+       "cl": 6
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.4,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (12% of book), +₹0.5Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Prateek Chhabra",
+     "vintage": "1.0 yr",
+     "vintage_yr": 1.0,
+     "cl_mar": 35,
+     "cl_jun": 45,
+     "cl_aug": 49,
+     "new_ja": 4,
+     "new_aum": 4.79,
+     "g50": 37,
+     "l50": 12,
+     "tot_mar": 55.4,
+     "tot_jun": 95.3,
+     "tot_aug": 117.3264,
+     "p_mar": 12.04,
+     "p_jun": 13.58,
+     "p_aug": 15.54,
+     "p_cl": 15,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 14.03,
+       "cl": 14
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.01,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 2.67,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (13% of book), +₹2.0Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Arnav Kundra",
+     "vintage": "2.1 yr",
+     "vintage_yr": 2.1,
+     "cl_mar": 32,
+     "cl_jun": 46,
+     "cl_aug": 47,
+     "new_ja": 2,
+     "new_aum": 2.47,
+     "g50": 27,
+     "l50": 20,
+     "tot_mar": 40.4,
+     "tot_jun": 49.1,
+     "tot_aug": 55.4549,
+     "p_mar": 6.2,
+     "p_jun": 9.56,
+     "p_aug": 13.71,
+     "p_cl": 17,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 12.15,
+       "cl": 17
+      },
+      {
+       "name": "YE",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.55,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 1.31,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (25% of book), +₹4.2Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Mayank Shrivastava",
+     "vintage": "0.2 yr",
+     "vintage_yr": 0.2,
+     "cl_mar": null,
+     "cl_jun": 17,
+     "cl_aug": 35,
+     "new_ja": 18,
+     "new_aum": 12.74,
+     "g50": 22,
+     "l50": 13,
+     "tot_mar": 0.0,
+     "tot_jun": 8.6,
+     "tot_aug": 30.5625,
+     "p_mar": 0.57,
+     "p_jun": 0.57,
+     "p_aug": 3.53,
+     "p_cl": 6,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.03,
+       "cl": 5
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (12% of book), +₹3.0Cr since Jun; 18 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Deepak Singhal",
+     "vintage": "0.3 yr",
+     "vintage_yr": 0.3,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 4,
+     "new_ja": 4,
+     "new_aum": 4.04,
+     "g50": 4,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 4.04,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Khanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VK Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 4 new clients since Jun; no focus product yet."
+    }
+   ],
+   "rank": 1
+  },
+  {
+   "ml": "Nayanish Prabhu",
+   "rms": 9,
+   "tot_mar": 115.4,
+   "tot_jun": 179.9,
+   "tot_aug": 291.1169,
+   "cl_aug": 244,
+   "g50": 157,
+   "l50": 87,
+   "new_ja": 47,
+   "p_mar": 26.5,
+   "p_jun": 42.7,
+   "p_aug": 65.3,
+   "p_cl": 87,
+   "f_aug": 0.2,
+   "f_unattr": 0.0,
+   "f_goal": 77,
+   "team8": "Ajay Bhute",
+   "team8_focus": {
+    "actual": 1.76,
+    "goal": 77,
+    "covered": 1.76,
+    "label": "Ajay Bhute + Nayanish Prabhu",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 11.29,
+    "Co-Pilot": 2.21,
+    "Navigate": 7.11,
+    "YE": 1.51
+   },
+   "pjun_prod": {
+    "Allocate": 34.65,
+    "Co-Pilot": 4.66,
+    "Navigate": 2.87,
+    "YE": 1
+   },
+   "rows": [
+    {
+     "rm": "Manish Tahalyani",
+     "vintage": "1.5 yr",
+     "vintage_yr": 1.5,
+     "cl_mar": 62,
+     "cl_jun": 67,
+     "cl_aug": 75,
+     "new_ja": 8,
+     "new_aum": 5.11,
+     "g50": 54,
+     "l50": 21,
+     "tot_mar": 42.4,
+     "tot_jun": 57.7,
+     "tot_aug": 70.2926,
+     "p_mar": 9.87,
+     "p_jun": 16.26,
+     "p_aug": 20.91,
+     "p_cl": 33,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 18.81,
+       "cl": 33
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.1,
+       "cl": 5
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (30% of book), +₹4.6Cr since Jun; 8 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Kaushik Medhi",
+     "vintage": "0.9 yr",
+     "vintage_yr": 0.9,
+     "cl_mar": 9,
+     "cl_jun": 16,
+     "cl_aug": 19,
+     "new_ja": 3,
+     "new_aum": 1.73,
+     "g50": 12,
+     "l50": 7,
+     "tot_mar": 9.8,
+     "tot_jun": 14.4,
+     "tot_aug": 17.8987,
+     "p_mar": 5.91,
+     "p_jun": 7.46,
+     "p_aug": 9.99,
+     "p_cl": 9,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.62,
+       "cl": 7
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.01,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 4.86,
+       "cl": 1
+      }
+     ],
+     "core_pos": 4,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (56% of book), +₹2.5Cr since Jun; 3 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Somnath Balani",
+     "vintage": "0.9 yr",
+     "vintage_yr": 0.9,
+     "cl_mar": 11,
+     "cl_jun": 11,
+     "cl_aug": 19,
+     "new_ja": 9,
+     "new_aum": 8.13,
+     "g50": 12,
+     "l50": 7,
+     "tot_mar": 11.4,
+     "tot_jun": 13.1,
+     "tot_aug": 23.5302,
+     "p_mar": 4.81,
+     "p_jun": 4.81,
+     "p_aug": 9.85,
+     "p_cl": 9,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 6.82,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 1.0,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.03,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (42% of book), +₹5.0Cr since Jun; 9 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Dinesh Malekar",
+     "vintage": "1.0 yr",
+     "vintage_yr": 1.0,
+     "cl_mar": 16,
+     "cl_jun": 35,
+     "cl_aug": 41,
+     "new_ja": 6,
+     "new_aum": 4.68,
+     "g50": 19,
+     "l50": 22,
+     "tot_mar": 20.8,
+     "tot_jun": 32.6,
+     "tot_aug": 49.431,
+     "p_mar": 2.74,
+     "p_jun": 4.58,
+     "p_aug": 7.81,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 4.25,
+       "cl": 6
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 3.56,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.2,
+     "f_cl": 1,
+     "cl_focplat": 1,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (16% of book), +₹3.2Cr since Jun; 6 new clients since Jun."
+    },
+    {
+     "rm": "Mayur Purkar",
+     "vintage": "1.3 yr",
+     "vintage_yr": 1.3,
+     "cl_mar": 28,
+     "cl_jun": 31,
+     "cl_aug": 34,
+     "new_ja": 3,
+     "new_aum": 16.97,
+     "g50": 26,
+     "l50": 8,
+     "tot_mar": 24.7,
+     "tot_jun": 35.1,
+     "tot_aug": 56.1628,
+     "p_mar": 3.17,
+     "p_jun": 4.7,
+     "p_aug": 6.71,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 5.69,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.02,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (12% of book), +₹2.0Cr since Jun; 3 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sakshi Surana",
+     "vintage": "0.6 yr",
+     "vintage_yr": 0.6,
+     "cl_mar": 5,
+     "cl_jun": 17,
+     "cl_aug": 24,
+     "new_ja": 7,
+     "new_aum": 5.25,
+     "g50": 12,
+     "l50": 12,
+     "tot_mar": 3.8,
+     "tot_jun": 9.6,
+     "tot_aug": 17.3567,
+     "p_mar": 0.0,
+     "p_jun": 3.86,
+     "p_aug": 4.96,
+     "p_cl": 9,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.69,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.26,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (29% of book), +₹1.1Cr since Jun; 7 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sameer Labba",
+     "vintage": "0.6 yr",
+     "vintage_yr": 0.6,
+     "cl_mar": null,
+     "cl_jun": 10,
+     "cl_aug": 14,
+     "new_ja": 4,
+     "new_aum": 4.38,
+     "g50": 11,
+     "l50": 3,
+     "tot_mar": 0.0,
+     "tot_jun": 10.5,
+     "tot_aug": 17.8096,
+     "p_mar": 0.0,
+     "p_jun": 0.52,
+     "p_aug": 4.07,
+     "p_cl": 6,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 2.06,
+       "cl": 5
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 2.01,
+       "cl": 1
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (23% of book), +₹3.6Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Vidita Bajpai",
+     "vintage": "0.7 yr",
+     "vintage_yr": 0.7,
+     "cl_mar": 3,
+     "cl_jun": 11,
+     "cl_aug": 15,
+     "new_ja": 4,
+     "new_aum": 5.83,
+     "g50": 8,
+     "l50": 7,
+     "tot_mar": 2.5,
+     "tot_jun": 6.9,
+     "tot_aug": 15.3353,
+     "p_mar": 0.0,
+     "p_jun": 0.51,
+     "p_aug": 1,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.0,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 2
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (7% of book), +₹0.5Cr since Jun; 4 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Ashish Kumar",
+     "vintage": "0.7 yr",
+     "vintage_yr": 0.7,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 3,
+     "new_ja": 3,
+     "new_aum": 23.3,
+     "g50": 3,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 23.3,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Nayanish Prabhu",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 3 new clients since Jun; ₹23Cr book with nothing on platform — priority; no focus product yet."
+    }
+   ],
+   "rank": 2
+  },
+  {
+   "ml": "Vijay Krishna Chinni",
+   "rms": 5,
+   "tot_mar": 195.4,
+   "tot_jun": 286.7,
+   "tot_aug": 312.2672,
+   "cl_aug": 203,
+   "g50": 104,
+   "l50": 99,
+   "new_ja": 22,
+   "p_mar": 41.53,
+   "p_jun": 51.84,
+   "p_aug": 61.59,
+   "p_cl": 69,
+   "f_aug": 0.55,
+   "f_unattr": 0.0,
+   "f_goal": 30,
+   "team8": "Vijay Chinni",
+   "team8_focus": {
+    "actual": 0.55,
+    "goal": 30,
+    "covered": 0.55,
+    "label": "Vijay Chinni",
+    "desks": 1
+   },
+   "pdelta": {
+    "Allocate": 6.99,
+    "Co-Pilot": 0.02,
+    "Navigate": 4.22,
+    "YE": 0.97
+   },
+   "pjun_prod": {
+    "Allocate": 31.9,
+    "Co-Pilot": 4.56,
+    "Navigate": 4.36,
+    "YE": 8.57
+   },
+   "rows": [
+    {
+     "rm": "Hiral Desai",
+     "vintage": "2.1 yr",
+     "vintage_yr": 2.1,
+     "cl_mar": 40,
+     "cl_jun": 44,
+     "cl_aug": 52,
+     "new_ja": 1,
+     "new_aum": 2.03,
+     "g50": 32,
+     "l50": 20,
+     "tot_mar": 97.5,
+     "tot_jun": 136.1,
+     "tot_aug": 143.1711,
+     "p_mar": 19.13,
+     "p_jun": 21.18,
+     "p_aug": 24.9,
+     "p_cl": 23,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 19.08,
+       "cl": 19
+      },
+      {
+       "name": "YE",
+       "aug": 4.17,
+       "cl": 4
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.65,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.54,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vijay Krishna Chinni",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VKC Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (17% of book), +₹3.7Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Yashkumar Jain",
+     "vintage": "0.9 yr",
+     "vintage_yr": 0.9,
+     "cl_mar": 7,
+     "cl_jun": 18,
+     "cl_aug": 34,
+     "new_ja": 6,
+     "new_aum": 1.34,
+     "g50": 15,
+     "l50": 19,
+     "tot_mar": 10.4,
+     "tot_jun": 19.8,
+     "tot_aug": 24.0734,
+     "p_mar": 6.69,
+     "p_jun": 11.8,
+     "p_aug": 13.86,
+     "p_cl": 15,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 4.14,
+       "cl": 9
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 4.64,
+       "cl": 6
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 4.58,
+       "cl": 1
+      }
+     ],
+     "core_pos": 4,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.05,
+     "f_cl": 1,
+     "cl_focplat": 0,
+     "ml": "Vijay Krishna Chinni",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VKC Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (58% of book), +₹2.1Cr since Jun; 6 new clients since Jun."
+    },
+    {
+     "rm": "Sumit Sethi",
+     "vintage": "1.9 yr",
+     "vintage_yr": 1.9,
+     "cl_mar": 64,
+     "cl_jun": 74,
+     "cl_aug": 80,
+     "new_ja": 6,
+     "new_aum": 2.66,
+     "g50": 31,
+     "l50": 49,
+     "tot_mar": 57.8,
+     "tot_jun": 65.5,
+     "tot_aug": 67.6956,
+     "p_mar": 7.99,
+     "p_jun": 10.08,
+     "p_aug": 11.6,
+     "p_cl": 19,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 7.47,
+       "cl": 13
+      },
+      {
+       "name": "YE",
+       "aug": 2.85,
+       "cl": 5
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.28,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.5,
+     "f_cl": 1,
+     "cl_focplat": 0,
+     "ml": "Vijay Krishna Chinni",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VKC Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (17% of book), +₹1.5Cr since Jun; 6 new clients since Jun."
+    },
+    {
+     "rm": "Nalin Mehta",
+     "vintage": "0.8 yr",
+     "vintage_yr": 0.8,
+     "cl_mar": 12,
+     "cl_jun": 18,
+     "cl_aug": 25,
+     "new_ja": 7,
+     "new_aum": 5.86,
+     "g50": 18,
+     "l50": 7,
+     "tot_mar": 13.8,
+     "tot_jun": 40.6,
+     "tot_aug": 48.209,
+     "p_mar": 3.99,
+     "p_jun": 4.51,
+     "p_aug": 5.95,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.93,
+       "cl": 7
+      },
+      {
+       "name": "YE",
+       "aug": 2.02,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vijay Krishna Chinni",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VKC Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (12% of book), +₹1.4Cr since Jun; 7 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Siddharth Gupta",
+     "vintage": "0.9 yr",
+     "vintage_yr": 0.9,
+     "cl_mar": 5,
+     "cl_jun": 10,
+     "cl_aug": 12,
+     "new_ja": 2,
+     "new_aum": 0.74,
+     "g50": 8,
+     "l50": 4,
+     "tot_mar": 15.9,
+     "tot_jun": 24.7,
+     "tot_aug": 29.1181,
+     "p_mar": 3.73,
+     "p_jun": 4.27,
+     "p_aug": 5.28,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 4.27,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.01,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vijay Krishna Chinni",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "VKC Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (18% of book), +₹1.0Cr since Jun; 2 new clients since Jun; no focus product yet."
+    }
+   ],
+   "rank": 3
+  },
+  {
+   "ml": "Madhup Patet",
+   "rms": 12,
+   "tot_mar": 223.3,
+   "tot_jun": 346.4,
+   "tot_aug": 392.0583,
+   "cl_aug": 401,
+   "g50": 211,
+   "l50": 190,
+   "new_ja": 37,
+   "p_mar": 7.03,
+   "p_jun": 22.16,
+   "p_aug": 41.68,
+   "p_cl": 66,
+   "f_aug": 1.77,
+   "f_unattr": 0.0,
+   "f_goal": 58,
+   "team8": "Madhup Patet",
+   "team8_focus": {
+    "actual": 1.82,
+    "goal": 58,
+    "covered": 1.82,
+    "label": "Madhup Patet + Srinivasa Prasanna",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 18.18,
+    "Co-Pilot": 0,
+    "Navigate": 2.57,
+    "YE": 0.5
+   },
+   "pjun_prod": {
+    "Allocate": 16.86,
+    "Co-Pilot": 0,
+    "Navigate": 2.31,
+    "YE": 1.26
+   },
+   "rows": [
+    {
+     "rm": "Prashant Purwar",
+     "vintage": "0.4 yr",
+     "vintage_yr": 0.4,
+     "cl_mar": null,
+     "cl_jun": 39,
+     "cl_aug": 43,
+     "new_ja": 4,
+     "new_aum": 3.95,
+     "g50": 34,
+     "l50": 9,
+     "tot_mar": 0.0,
+     "tot_jun": 46.2,
+     "tot_aug": 65.7009,
+     "p_mar": 0.0,
+     "p_jun": 6.99,
+     "p_aug": 12.81,
+     "p_cl": 16,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 10.75,
+       "cl": 16
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.06,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (19% of book), +₹5.8Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Tatavarthylakshmi",
+     "vintage": "1.8 yr",
+     "vintage_yr": 1.8,
+     "cl_mar": 43,
+     "cl_jun": 45,
+     "cl_aug": 49,
+     "new_ja": 4,
+     "new_aum": 1.72,
+     "g50": 24,
+     "l50": 25,
+     "tot_mar": 34.8,
+     "tot_jun": 40.4,
+     "tot_aug": 46.4356,
+     "p_mar": 1.32,
+     "p_jun": 3.31,
+     "p_aug": 5.01,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 5.01,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (11% of book), +₹1.7Cr since Jun; 4 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Kiran P",
+     "vintage": "0.8 yr",
+     "vintage_yr": 0.8,
+     "cl_mar": 7,
+     "cl_jun": 13,
+     "cl_aug": 16,
+     "new_ja": 3,
+     "new_aum": 1.18,
+     "g50": 8,
+     "l50": 8,
+     "tot_mar": 2.2,
+     "tot_jun": 7.9,
+     "tot_aug": 10.283,
+     "p_mar": 1.27,
+     "p_jun": 2.45,
+     "p_aug": 4.11,
+     "p_cl": 6,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.35,
+       "cl": 6
+      },
+      {
+       "name": "YE",
+       "aug": 0.25,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.51,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (40% of book), +₹1.7Cr since Jun; 3 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Neeraj Kumar",
+     "vintage": "0.8 yr",
+     "vintage_yr": 0.8,
+     "cl_mar": 27,
+     "cl_jun": 27,
+     "cl_aug": 28,
+     "new_ja": 2,
+     "new_aum": 0.53,
+     "g50": 20,
+     "l50": 8,
+     "tot_mar": 33.9,
+     "tot_jun": 41.3,
+     "tot_aug": 40.347,
+     "p_mar": 1.05,
+     "p_jun": 3.1,
+     "p_aug": 3.63,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 2.59,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.04,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 1.05,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹0.5Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Srinivasa Prasanna",
+     "vintage": "0.5 yr",
+     "vintage_yr": 0.5,
+     "cl_mar": 4,
+     "cl_jun": 16,
+     "cl_aug": 21,
+     "new_ja": 5,
+     "new_aum": 1.46,
+     "g50": 11,
+     "l50": 10,
+     "tot_mar": 13.4,
+     "tot_jun": 20.6,
+     "tot_aug": 22.2746,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 3.27,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.02,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.25,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.2,
+     "f_cl": 2,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (15% of book), +₹3.3Cr since Jun; 5 new clients since Jun."
+    },
+    {
+     "rm": "Jyoti Puvvala",
+     "vintage": "2.0 yr",
+     "vintage_yr": 2.0,
+     "cl_mar": 40,
+     "cl_jun": 40,
+     "cl_aug": 46,
+     "new_ja": 6,
+     "new_aum": 1.7,
+     "g50": 23,
+     "l50": 23,
+     "tot_mar": 19.7,
+     "tot_jun": 23.5,
+     "tot_aug": 27.328,
+     "p_mar": 0.0,
+     "p_jun": 0.51,
+     "p_aug": 3.06,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.06,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 1.57,
+     "f_cl": 1,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (11% of book), +₹2.5Cr since Jun; 6 new clients since Jun; single-product (Allocate) — widen the platform mix."
+    },
+    {
+     "rm": "Arun Sinha",
+     "vintage": "2.0 yr",
+     "vintage_yr": 2.0,
+     "cl_mar": 41,
+     "cl_jun": 42,
+     "cl_aug": 43,
+     "new_ja": 2,
+     "new_aum": 2.15,
+     "g50": 15,
+     "l50": 28,
+     "tot_mar": 30.2,
+     "tot_jun": 32.8,
+     "tot_aug": 36.1666,
+     "p_mar": 1.26,
+     "p_jun": 1.77,
+     "p_aug": 2.52,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.76,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.76,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (7% of book), +₹0.8Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Madhup Patet",
+     "vintage": "0.6 yr",
+     "vintage_yr": 0.6,
+     "cl_mar": 11,
+     "cl_jun": 12,
+     "cl_aug": 12,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 8,
+     "l50": 4,
+     "tot_mar": 19.2,
+     "tot_jun": 23.5,
+     "tot_aug": 23.8629,
+     "p_mar": 0.54,
+     "p_jun": 0.79,
+     "p_aug": 2.29,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 2.03,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.26,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (10% of book), +₹1.5Cr since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sumeet Chatterjee",
+     "vintage": "0.4 yr",
+     "vintage_yr": 0.4,
+     "cl_mar": null,
+     "cl_jun": 20,
+     "cl_aug": 29,
+     "new_ja": 7,
+     "new_aum": 4.67,
+     "g50": 19,
+     "l50": 10,
+     "tot_mar": 0.0,
+     "tot_jun": 15.4,
+     "tot_aug": 24.5471,
+     "p_mar": 0.0,
+     "p_jun": 1.03,
+     "p_aug": 1.78,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.28,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (7% of book), +₹0.8Cr since Jun; 7 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Dattathreya Ganesh",
+     "vintage": "2.0 yr",
+     "vintage_yr": 2.0,
+     "cl_mar": 29,
+     "cl_jun": 29,
+     "cl_aug": 29,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 14,
+     "l50": 15,
+     "tot_mar": 34.2,
+     "tot_jun": 53.3,
+     "tot_aug": 50.6291,
+     "p_mar": 0.58,
+     "p_jun": 1.2,
+     "p_aug": 1.68,
+     "p_cl": 3,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.68,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (3.3% of book), +₹0.5Cr since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "KJ Prasahnt",
+     "vintage": "2.0 yr",
+     "vintage_yr": 2.0,
+     "cl_mar": 62,
+     "cl_jun": 63,
+     "cl_aug": 63,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 32,
+     "l50": 31,
+     "tot_mar": 35.2,
+     "tot_jun": 40.2,
+     "tot_aug": 41.4466,
+     "p_mar": 1.01,
+     "p_jun": 1.01,
+     "p_aug": 1.52,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.51,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (3.7% of book), +₹0.5Cr since Jun; no focus product yet."
+    },
+    {
+     "rm": "Anand Kumar",
+     "vintage": "1.3 yr",
+     "vintage_yr": 1.3,
+     "cl_mar": 8,
+     "cl_jun": 18,
+     "cl_aug": 22,
+     "new_ja": 4,
+     "new_aum": 1.7,
+     "g50": 3,
+     "l50": 19,
+     "tot_mar": 0.5,
+     "tot_jun": 1.3,
+     "tot_aug": 3.0369,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Madhup Patet",
+     "ml_src": "prior dashboard + Platform Charts col B",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 4 new clients since Jun; no focus product yet."
+    }
+   ],
+   "rank": 4
+  },
+  {
+   "ml": "Dhiren Shah",
+   "rms": 7,
+   "tot_mar": 239.3,
+   "tot_jun": 341.0,
+   "tot_aug": 377.6231,
+   "cl_aug": 159,
+   "g50": 92,
+   "l50": 67,
+   "new_ja": 20,
+   "p_mar": 16.04,
+   "p_jun": 28.43,
+   "p_aug": 37.04,
+   "p_cl": 41,
+   "f_aug": 0.83,
+   "f_unattr": 0.05,
+   "f_goal": 38.5,
+   "team8": "Dhiren Shah",
+   "team8_focus": {
+    "actual": 0.93,
+    "goal": 38.5,
+    "covered": 0.88,
+    "label": "Dhiren Shah + Ajay Sehgal",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 3.11,
+    "Co-Pilot": 0,
+    "Navigate": 3.21,
+    "YE": 0.28
+   },
+   "pjun_prod": {
+    "Allocate": 15.24,
+    "Co-Pilot": 0,
+    "Navigate": 7.03,
+    "YE": 8.17
+   },
+   "rows": [
+    {
+     "rm": "Shekhar Kilche",
+     "vintage": "1.6 yr",
+     "vintage_yr": 1.6,
+     "cl_mar": 35,
+     "cl_jun": 39,
+     "cl_aug": 43,
+     "new_ja": 4,
+     "new_aum": 1.48,
+     "g50": 28,
+     "l50": 15,
+     "tot_mar": 61.2,
+     "tot_jun": 72.2,
+     "tot_aug": 81.9824,
+     "p_mar": 7.11,
+     "p_jun": 13.1,
+     "p_aug": 18.88,
+     "p_cl": 11,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 9.0,
+       "cl": 7
+      },
+      {
+       "name": "YE",
+       "aug": 3.81,
+       "cl": 4
+      },
+      {
+       "name": "Navigate",
+       "aug": 6.07,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.65,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (23% of book), +₹5.8Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Hemansh Kothari",
+     "vintage": "1.2 yr",
+     "vintage_yr": 1.2,
+     "cl_mar": 27,
+     "cl_jun": 40,
+     "cl_aug": 45,
+     "new_ja": 4,
+     "new_aum": 0.61,
+     "g50": 18,
+     "l50": 27,
+     "tot_mar": 18.6,
+     "tot_jun": 27.4,
+     "tot_aug": 30.9673,
+     "p_mar": 7.33,
+     "p_jun": 10.15,
+     "p_aug": 11.92,
+     "p_cl": 18,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 5.22,
+       "cl": 10
+      },
+      {
+       "name": "YE",
+       "aug": 4.14,
+       "cl": 7
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.56,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.78,
+     "f_cl": 1,
+     "cl_focplat": 1,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (38% of book), +₹1.8Cr since Jun; 4 new clients since Jun."
+    },
+    {
+     "rm": "Pinky Gerella",
+     "vintage": "1.1 yr",
+     "vintage_yr": 1.1,
+     "cl_mar": 12,
+     "cl_jun": 18,
+     "cl_aug": 20,
+     "new_ja": 1,
+     "new_aum": 0.51,
+     "g50": 12,
+     "l50": 8,
+     "tot_mar": 8.3,
+     "tot_jun": 13.5,
+     "tot_aug": 14.382,
+     "p_mar": 1.07,
+     "p_jun": 2.61,
+     "p_aug": 3.37,
+     "p_cl": 6,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 2.07,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.3,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (23% of book), +₹0.8Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Rohan Rege",
+     "vintage": "0.9 yr",
+     "vintage_yr": 0.9,
+     "cl_mar": 3,
+     "cl_jun": 13,
+     "cl_aug": 19,
+     "new_ja": 4,
+     "new_aum": 12.81,
+     "g50": 7,
+     "l50": 12,
+     "tot_mar": 84.4,
+     "tot_jun": 103.5,
+     "tot_aug": 116.6469,
+     "p_mar": 0.53,
+     "p_jun": 1.56,
+     "p_aug": 1.86,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.55,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.31,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (1.6% of book), +₹0.3Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Ajay Sehgal",
+     "vintage": "1.7 yr",
+     "vintage_yr": 1.7,
+     "cl_mar": 22,
+     "cl_jun": 24,
+     "cl_aug": 26,
+     "new_ja": 2,
+     "new_aum": 5.31,
+     "g50": 22,
+     "l50": 4,
+     "tot_mar": 66.8,
+     "tot_jun": 124.4,
+     "tot_aug": 124.3218,
+     "p_mar": 0.0,
+     "p_jun": 1.01,
+     "p_aug": 1.01,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.51,
+       "cl": 1
+      },
+      {
+       "name": "YE",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (0.8% of book), flat vs Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Shweta Runwal",
+     "vintage": null,
+     "vintage_yr": null,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 5,
+     "new_ja": 5,
+     "new_aum": 9.32,
+     "g50": 5,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 9.32,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "Platform Charts col B (DS is the primary ML)",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 5 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Keshav Birla",
+     "vintage": "1.0 yr",
+     "vintage_yr": 1.0,
+     "cl_mar": null,
+     "cl_jun": 1,
+     "cl_aug": 1,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 0,
+     "l50": 1,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 0.0027,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Dhiren Shah",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; no focus product yet."
+    }
+   ],
+   "rank": 5
+  },
+  {
+   "ml": "Ajay Bhute",
+   "rms": 5,
+   "tot_mar": 347.0,
+   "tot_jun": 367.1,
+   "tot_aug": 397.0311,
+   "cl_aug": 239,
+   "g50": 119,
+   "l50": 120,
+   "new_ja": 28,
+   "p_mar": 10.11,
+   "p_jun": 15.25,
+   "p_aug": 32.82,
+   "p_cl": 28,
+   "f_aug": 1.56,
+   "f_unattr": 0.0,
+   "f_goal": 77,
+   "team8": "Ajay Bhute",
+   "team8_focus": {
+    "actual": 1.76,
+    "goal": 77,
+    "covered": 1.76,
+    "label": "Ajay Bhute + Nayanish Prabhu",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": -2.35,
+    "Co-Pilot": -2.27,
+    "Navigate": 1.81,
+    "YE": 0.01
+   },
+   "pjun_prod": {
+    "Allocate": 25.82,
+    "Co-Pilot": 5.68,
+    "Navigate": 2.3,
+    "YE": 1.82
+   },
+   "rows": [
+    {
+     "rm": "Parth Shah",
+     "vintage": "1.7 yr",
+     "vintage_yr": 1.7,
+     "cl_mar": 130,
+     "cl_jun": 140,
+     "cl_aug": 152,
+     "new_ja": 12,
+     "new_aum": 6.22,
+     "g50": 84,
+     "l50": 68,
+     "tot_mar": 233.9,
+     "tot_jun": 226.5,
+     "tot_aug": 240.0976,
+     "p_mar": 8.12,
+     "p_jun": 10.6,
+     "p_aug": 24.73,
+     "p_cl": 21,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 16.68,
+       "cl": 17
+      },
+      {
+       "name": "YE",
+       "aug": 1.83,
+       "cl": 3
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.81,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 3.41,
+       "cl": 1
+      }
+     ],
+     "core_pos": 4,
+     "recon_uplift": 1.58,
+     "f_mar": 0.0,
+     "f_aug": 1.56,
+     "f_cl": 2,
+     "cl_focplat": 1,
+     "ml": "Ajay Bhute",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (10% of book), +₹14.1Cr since Jun; 12 new clients since Jun."
+    },
+    {
+     "rm": "Jay Patel",
+     "vintage": "1.8 yr",
+     "vintage_yr": 1.8,
+     "cl_mar": 9,
+     "cl_jun": 11,
+     "cl_aug": 11,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 8,
+     "l50": 3,
+     "tot_mar": 78.8,
+     "tot_jun": 81.9,
+     "tot_aug": 83.7476,
+     "p_mar": 1.99,
+     "p_jun": 3.63,
+     "p_aug": 4.6,
+     "p_cl": 3,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 4.6,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.98,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Bhute",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (5% of book), +₹1.0Cr since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Dishant Doshi",
+     "vintage": "1.6 yr",
+     "vintage_yr": 1.6,
+     "cl_mar": 52,
+     "cl_jun": 51,
+     "cl_aug": 52,
+     "new_ja": 1,
+     "new_aum": 1.74,
+     "g50": 24,
+     "l50": 28,
+     "tot_mar": 34.2,
+     "tot_jun": 37.8,
+     "tot_aug": 44.7473,
+     "p_mar": 0.0,
+     "p_jun": 1.02,
+     "p_aug": 2.74,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.7,
+       "cl": 1
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.04,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 1.7,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Bhute",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (6% of book), +₹1.7Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Rohan Basak",
+     "vintage": "1.2 yr",
+     "vintage_yr": 1.2,
+     "cl_mar": 1,
+     "cl_jun": 5,
+     "cl_aug": 11,
+     "new_ja": 6,
+     "new_aum": 0.91,
+     "g50": 1,
+     "l50": 10,
+     "tot_mar": 0.1,
+     "tot_jun": 0.6,
+     "tot_aug": 1.7711,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0.75,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.49,
+       "cl": 1
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.26,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Bhute",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (42% of book), +₹0.8Cr since Jun; 6 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sumeet Talesra",
+     "vintage": "0.4 yr",
+     "vintage_yr": 0.4,
+     "cl_mar": null,
+     "cl_jun": 4,
+     "cl_aug": 13,
+     "new_ja": 9,
+     "new_aum": 7.24,
+     "g50": 2,
+     "l50": 11,
+     "tot_mar": 0.0,
+     "tot_jun": 20.3,
+     "tot_aug": 26.6675,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Bhute",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AB+NP Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 9 new clients since Jun; ₹27Cr book with nothing on platform — priority; no focus product yet."
+    }
+   ],
+   "rank": 6
+  },
+  {
+   "ml": "Srinivasa Prasanna",
+   "rms": 4,
+   "tot_mar": 38.2,
+   "tot_jun": 110.1,
+   "tot_aug": 139.4079,
+   "cl_aug": 109,
+   "g50": 46,
+   "l50": 63,
+   "new_ja": 15,
+   "p_mar": 14.98,
+   "p_jun": 17.18,
+   "p_aug": 26.28,
+   "p_cl": 11,
+   "f_aug": 0.05,
+   "f_unattr": 0.0,
+   "f_goal": 58,
+   "team8": "Madhup Patet",
+   "team8_focus": {
+    "actual": 1.82,
+    "goal": 58,
+    "covered": 1.82,
+    "label": "Madhup Patet + Srinivasa Prasanna",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 3.66,
+    "Co-Pilot": -1.42,
+    "Navigate": 5.51,
+    "YE": 0
+   },
+   "pjun_prod": {
+    "Allocate": 1.02,
+    "Co-Pilot": 17.51,
+    "Navigate": 0,
+    "YE": 0
+   },
+   "rows": [
+    {
+     "rm": "Gowtham",
+     "vintage": "1.8 yr",
+     "vintage_yr": 1.8,
+     "cl_mar": 10,
+     "cl_jun": 13,
+     "cl_aug": 15,
+     "new_ja": 2,
+     "new_aum": 0.28,
+     "g50": 4,
+     "l50": 11,
+     "tot_mar": 38,
+     "tot_jun": 41.4,
+     "tot_aug": 46.6679,
+     "p_mar": 14.98,
+     "p_jun": 16.67,
+     "p_aug": 21.13,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.53,
+       "cl": 1
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 4.51,
+       "cl": 3
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 16.09,
+       "cl": 2
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Srinivasa Prasanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Deep platform desk (45% of book), +₹4.5Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Dhanabal Manimuthu",
+     "vintage": "0.5 yr",
+     "vintage_yr": 0.5,
+     "cl_mar": 5,
+     "cl_jun": 58,
+     "cl_aug": 60,
+     "new_ja": 3,
+     "new_aum": 0.43,
+     "g50": 22,
+     "l50": 38,
+     "tot_mar": 0.2,
+     "tot_jun": 42.8,
+     "tot_aug": 54.0927,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 3.14,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.14,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Srinivasa Prasanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (6% of book), +₹3.1Cr since Jun; 3 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Arul Kumar",
+     "vintage": "0.5 yr",
+     "vintage_yr": 0.5,
+     "cl_mar": null,
+     "cl_jun": 16,
+     "cl_aug": 25,
+     "new_ja": 9,
+     "new_aum": 5.09,
+     "g50": 15,
+     "l50": 10,
+     "tot_mar": 0.0,
+     "tot_jun": 20.2,
+     "tot_aug": 27.9076,
+     "p_mar": 0.0,
+     "p_jun": 0.51,
+     "p_aug": 1.01,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.05,
+     "f_cl": 1,
+     "cl_focplat": 0,
+     "ml": "Srinivasa Prasanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (3.6% of book), +₹0.5Cr since Jun; 9 new clients since Jun; single-product (Allocate) — widen the platform mix."
+    },
+    {
+     "rm": "Swaminathan Gopalan",
+     "vintage": "0.4 yr",
+     "vintage_yr": 0.4,
+     "cl_mar": null,
+     "cl_jun": 8,
+     "cl_aug": 9,
+     "new_ja": 1,
+     "new_aum": 3.72,
+     "g50": 5,
+     "l50": 4,
+     "tot_mar": 0.0,
+     "tot_jun": 5.7,
+     "tot_aug": 10.7397,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 1,
+     "p_cl": 1,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.0,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Srinivasa Prasanna",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "MP+SP Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹1.0Cr since Jun; 1 new client since Jun; single-product (Navigate) — widen the platform mix; no focus product yet."
+    }
+   ],
+   "rank": 7
+  },
+  {
+   "ml": "Abhishek kumar",
+   "rms": 7,
+   "tot_mar": 271.9,
+   "tot_jun": 351.1,
+   "tot_aug": 429.8161,
+   "cl_aug": 162,
+   "g50": 97,
+   "l50": 65,
+   "new_ja": 32,
+   "p_mar": 11.88,
+   "p_jun": 16.38,
+   "p_aug": 23.83,
+   "p_cl": 23,
+   "f_aug": 0.1,
+   "f_unattr": 0.1,
+   "f_goal": 28,
+   "team8": "Abhishek Kumar",
+   "team8_focus": {
+    "actual": 0.1,
+    "goal": 28,
+    "covered": 0.0,
+    "label": "Abhishek Kumar",
+    "desks": 1
+   },
+   "pdelta": {
+    "Allocate": 8.19,
+    "Co-Pilot": 0,
+    "Navigate": 2,
+    "YE": 0.6
+   },
+   "pjun_prod": {
+    "Allocate": 13.04,
+    "Co-Pilot": 0,
+    "Navigate": 0,
+    "YE": 0
+   },
+   "rows": [
+    {
+     "rm": "Mani Sawhney",
+     "vintage": "0.8 yr",
+     "vintage_yr": 0.8,
+     "cl_mar": 43,
+     "cl_jun": 50,
+     "cl_aug": 52,
+     "new_ja": 2,
+     "new_aum": 3.25,
+     "g50": 40,
+     "l50": 12,
+     "tot_mar": 180.2,
+     "tot_jun": 233.9,
+     "tot_aug": 235.8265,
+     "p_mar": 8.41,
+     "p_jun": 11.63,
+     "p_aug": 15.2,
+     "p_cl": 12,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 13.2,
+       "cl": 12
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 2.0,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.58,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (6% of book), +₹3.6Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Abhinav Ratan",
+     "vintage": "0.8 yr",
+     "vintage_yr": 0.8,
+     "cl_mar": 25,
+     "cl_jun": 30,
+     "cl_aug": 33,
+     "new_ja": 2,
+     "new_aum": 1.45,
+     "g50": 29,
+     "l50": 4,
+     "tot_mar": 83.9,
+     "tot_jun": 104.5,
+     "tot_aug": 118.1407,
+     "p_mar": 3.47,
+     "p_jun": 4.24,
+     "p_aug": 5.27,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 5.27,
+       "cl": 5
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 1.31,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (4.5% of book), +₹1.0Cr since Jun; 2 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Divik Kapoor",
+     "vintage": "0.2 yr",
+     "vintage_yr": 0.2,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 14,
+     "new_ja": 14,
+     "new_aum": 39.14,
+     "g50": 11,
+     "l50": 3,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 39.1415,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 1.85,
+     "p_cl": 3,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.25,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.6,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (4.7% of book), +₹1.9Cr since Jun; 14 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sumit Gupta",
+     "vintage": "0.7 yr",
+     "vintage_yr": 0.7,
+     "cl_mar": 19,
+     "cl_jun": 33,
+     "cl_aug": 42,
+     "new_ja": 3,
+     "new_aum": 0.53,
+     "g50": 9,
+     "l50": 33,
+     "tot_mar": 7.8,
+     "tot_jun": 11.9,
+     "tot_aug": 20.6546,
+     "p_mar": 0.0,
+     "p_jun": 0.51,
+     "p_aug": 1.01,
+     "p_cl": 2,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (4.9% of book), +₹0.5Cr since Jun; 3 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Viraj Goyal",
+     "vintage": "0.3 yr",
+     "vintage_yr": 0.3,
+     "cl_mar": null,
+     "cl_jun": 2,
+     "cl_aug": 14,
+     "new_ja": 10,
+     "new_aum": 3.8,
+     "g50": 4,
+     "l50": 10,
+     "tot_mar": 0.0,
+     "tot_jun": 0.4,
+     "tot_aug": 5.3017,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0.5,
+     "p_cl": 1,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹0.5Cr since Jun; 10 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Vikram Dhar",
+     "vintage": "0.3 yr",
+     "vintage_yr": 0.3,
+     "cl_mar": null,
+     "cl_jun": 1,
+     "cl_aug": 4,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 4,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.2,
+     "tot_aug": 10.5296,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; ₹11Cr book with nothing on platform — priority; no focus product yet."
+    },
+    {
+     "rm": "Deepak Sehrawat",
+     "vintage": "0.5 yr",
+     "vintage_yr": 0.5,
+     "cl_mar": null,
+     "cl_jun": 2,
+     "cl_aug": 3,
+     "new_ja": 1,
+     "new_aum": 0.03,
+     "g50": 0,
+     "l50": 3,
+     "tot_mar": 0.0,
+     "tot_jun": 0.2,
+     "tot_aug": 0.2215,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek kumar",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AK Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 1 new client since Jun; no focus product yet."
+    }
+   ],
+   "rank": 8
+  },
+  {
+   "ml": "Abhishek Sharma",
+   "rms": 6,
+   "tot_mar": 106.1,
+   "tot_jun": 146.2,
+   "tot_aug": 249.7288,
+   "cl_aug": 217,
+   "g50": 91,
+   "l50": 126,
+   "new_ja": 25,
+   "p_mar": 15.62,
+   "p_jun": 20.04,
+   "p_aug": 23.22,
+   "p_cl": 31,
+   "f_aug": 0.5,
+   "f_unattr": 0.0,
+   "f_goal": 23,
+   "team8": "Abhishek Sharma",
+   "team8_focus": {
+    "actual": 1,
+    "goal": 23,
+    "covered": 1.0,
+    "label": "Abhishek Sharma + Harsh Bagai",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 2.81,
+    "Co-Pilot": 0,
+    "Navigate": 0.93,
+    "YE": 1.02
+   },
+   "pjun_prod": {
+    "Allocate": 16.05,
+    "Co-Pilot": 0,
+    "Navigate": 1.06,
+    "YE": 1.35
+   },
+   "rows": [
+    {
+     "rm": "Saurabh Gupta",
+     "vintage": "1.9 yr",
+     "vintage_yr": 1.9,
+     "cl_mar": 79,
+     "cl_jun": 84,
+     "cl_aug": 89,
+     "new_ja": 5,
+     "new_aum": 0.63,
+     "g50": 27,
+     "l50": 62,
+     "tot_mar": 40.5,
+     "tot_jun": 52.6,
+     "tot_aug": 58.5109,
+     "p_mar": 8.72,
+     "p_jun": 9.17,
+     "p_aug": 10.35,
+     "p_cl": 11,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 7.77,
+       "cl": 9
+      },
+      {
+       "name": "YE",
+       "aug": 1.36,
+       "cl": 3
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.22,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.5,
+     "f_cl": 2,
+     "cl_focplat": 2,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (18% of book), +₹1.2Cr since Jun; 5 new clients since Jun."
+    },
+    {
+     "rm": "Karan Chandhok",
+     "vintage": "2.0 yr",
+     "vintage_yr": 2.0,
+     "cl_mar": 53,
+     "cl_jun": 56,
+     "cl_aug": 58,
+     "new_ja": 2,
+     "new_aum": 0.52,
+     "g50": 28,
+     "l50": 30,
+     "tot_mar": 49.3,
+     "tot_jun": 54.6,
+     "tot_aug": 55.2783,
+     "p_mar": 6.05,
+     "p_jun": 8.13,
+     "p_aug": 8.61,
+     "p_cl": 12,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 8.61,
+       "cl": 12
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.64,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (16% of book), +₹0.5Cr since Jun; 2 new clients since Jun; single-product (Allocate) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Harsh Bagai",
+     "vintage": "1.5 yr",
+     "vintage_yr": 1.5,
+     "cl_mar": 34,
+     "cl_jun": 39,
+     "cl_aug": 37,
+     "new_ja": 2,
+     "new_aum": 0.53,
+     "g50": 16,
+     "l50": 21,
+     "tot_mar": 15,
+     "tot_jun": 19.1,
+     "tot_aug": 18.3976,
+     "p_mar": 0.85,
+     "p_jun": 2.74,
+     "p_aug": 3.25,
+     "p_cl": 7,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 2.48,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.77,
+       "cl": 3
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.84,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (18% of book), +₹0.5Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Shubendu Sharma",
+     "vintage": "0.2 yr",
+     "vintage_yr": 0.2,
+     "cl_mar": null,
+     "cl_jun": 10,
+     "cl_aug": 25,
+     "new_ja": 15,
+     "new_aum": 85.51,
+     "g50": 17,
+     "l50": 8,
+     "tot_mar": 0.0,
+     "tot_jun": 18,
+     "tot_aug": 112.9155,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 1.01,
+     "p_cl": 1,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 1.01,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 1,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (0.9% of book), +₹1.0Cr since Jun; 15 new clients since Jun; single-product (YE) — widen the platform mix; no focus product yet."
+    },
+    {
+     "rm": "Komal Bajaj",
+     "vintage": "0.2 yr",
+     "vintage_yr": 0.2,
+     "cl_mar": null,
+     "cl_jun": 1,
+     "cl_aug": 2,
+     "new_ja": 1,
+     "new_aum": 0.95,
+     "g50": 2,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.2,
+     "tot_aug": 2.4703,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Abhishek Sharma",
+     "vintage": "2.1 yr",
+     "vintage_yr": 2.1,
+     "cl_mar": 7,
+     "cl_jun": 7,
+     "cl_aug": 6,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 1,
+     "l50": 5,
+     "tot_mar": 1.3,
+     "tot_jun": 1.7,
+     "tot_aug": 2.1562,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Abhishek Sharma",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; no focus product yet."
+    }
+   ],
+   "rank": 9
+  },
+  {
+   "ml": "Arnab Bhattacharjee",
+   "rms": 4,
+   "tot_mar": 69.2,
+   "tot_jun": 88.5,
+   "tot_aug": 125.6944,
+   "cl_aug": 69,
+   "g50": 59,
+   "l50": 10,
+   "new_ja": 20,
+   "p_mar": 3.14,
+   "p_jun": 10.81,
+   "p_aug": 15.41,
+   "p_cl": 18,
+   "f_aug": 0.1,
+   "f_unattr": 0.0,
+   "f_goal": 16,
+   "team8": "Arnab Bhattacharjee",
+   "team8_focus": {
+    "actual": 0.1,
+    "goal": 16,
+    "covered": 0.1,
+    "label": "Arnab Bhattacharjee",
+    "desks": 1
+   },
+   "pdelta": {
+    "Allocate": 5.1,
+    "Co-Pilot": 0,
+    "Navigate": 1.01,
+    "YE": 0
+   },
+   "pjun_prod": {
+    "Allocate": 8.29,
+    "Co-Pilot": 0,
+    "Navigate": 1.01,
+    "YE": 0
+   },
+   "rows": [
+    {
+     "rm": "Mohit Parekh",
+     "vintage": "0.6 yr",
+     "vintage_yr": 0.6,
+     "cl_mar": 25,
+     "cl_jun": 29,
+     "cl_aug": 40,
+     "new_ja": 11,
+     "new_aum": 21.14,
+     "g50": 35,
+     "l50": 5,
+     "tot_mar": 44.4,
+     "tot_jun": 54.1,
+     "tot_aug": 79.8329,
+     "p_mar": 1.88,
+     "p_jun": 6.5,
+     "p_aug": 9.09,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 8.09,
+       "cl": 8
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.0,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 1.88,
+     "f_mar": 0.0,
+     "f_aug": 0.1,
+     "f_cl": 1,
+     "cl_focplat": 1,
+     "ml": "Arnab Bhattacharjee",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "Arnab Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (11% of book), +₹2.6Cr since Jun; 11 new clients since Jun."
+    },
+    {
+     "rm": "Arnab Bhattacharjee",
+     "vintage": "0.7 yr",
+     "vintage_yr": 0.7,
+     "cl_mar": 12,
+     "cl_jun": 19,
+     "cl_aug": 23,
+     "new_ja": 4,
+     "new_aum": 3.85,
+     "g50": 19,
+     "l50": 4,
+     "tot_mar": 24.8,
+     "tot_jun": 34.4,
+     "tot_aug": 38.4009,
+     "p_mar": 1.26,
+     "p_jun": 4.31,
+     "p_aug": 6.32,
+     "p_cl": 10,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 5.3,
+       "cl": 10
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.02,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Arnab Bhattacharjee",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "Arnab Team",
+     "no_team_sheet": false,
+     "remark": "Building platform share (16% of book), +₹2.0Cr since Jun; 4 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Dhaval Mathew",
+     "vintage": "0.3 yr",
+     "vintage_yr": 0.3,
+     "cl_mar": null,
+     "cl_jun": 1,
+     "cl_aug": 4,
+     "new_ja": 3,
+     "new_aum": 4.21,
+     "g50": 3,
+     "l50": 1,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 4.4806,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Arnab Bhattacharjee",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "Arnab Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 3 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Sunny Shahi",
+     "vintage": null,
+     "vintage_yr": null,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 2,
+     "new_ja": 2,
+     "new_aum": 2.98,
+     "g50": 2,
+     "l50": 0,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 2.98,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Arnab Bhattacharjee",
+     "ml_src": "Platform Charts col B (only ML in that group)",
+     "team_sheet": "Arnab Team",
+     "no_team_sheet": false,
+     "remark": "No platform book yet, flat vs Jun; 2 new clients since Jun; no focus product yet."
+    }
+   ],
+   "rank": 10
+  },
+  {
+   "ml": "Ajay Sehgal",
+   "rms": 3,
+   "tot_mar": 45.9,
+   "tot_jun": 63.5,
+   "tot_aug": 75.8493,
+   "cl_aug": 94,
+   "g50": 45,
+   "l50": 49,
+   "new_ja": 8,
+   "p_mar": 2.47,
+   "p_jun": 5.9,
+   "p_aug": 8.44,
+   "p_cl": 15,
+   "f_aug": 0.1,
+   "f_unattr": 0.0,
+   "f_goal": 38.5,
+   "team8": "Dhiren Shah",
+   "team8_focus": {
+    "actual": 0.93,
+    "goal": 38.5,
+    "covered": 0.88,
+    "label": "Dhiren Shah + Ajay Sehgal",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 2.19,
+    "Co-Pilot": 0,
+    "Navigate": 0.78,
+    "YE": 0.0
+   },
+   "pjun_prod": {
+    "Allocate": 3.94,
+    "Co-Pilot": 0,
+    "Navigate": 1.02,
+    "YE": 0.51
+   },
+   "rows": [
+    {
+     "rm": "Deep Prakash Sharma",
+     "vintage": "1.6 yr",
+     "vintage_yr": 1.6,
+     "cl_mar": 33,
+     "cl_jun": 41,
+     "cl_aug": 47,
+     "new_ja": 4,
+     "new_aum": 4.07,
+     "g50": 21,
+     "l50": 26,
+     "tot_mar": 16.9,
+     "tot_jun": 22,
+     "tot_aug": 29.3107,
+     "p_mar": 1.25,
+     "p_jun": 2.8,
+     "p_aug": 4.29,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 3.28,
+       "cl": 6
+      },
+      {
+       "name": "YE",
+       "aug": 0.51,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.5,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.1,
+     "f_cl": 2,
+     "cl_focplat": 0,
+     "ml": "Ajay Sehgal",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (15% of book), +₹1.5Cr since Jun; 4 new clients since Jun."
+    },
+    {
+     "rm": "Vinay Thakur",
+     "vintage": "1.7 yr",
+     "vintage_yr": 1.7,
+     "cl_mar": 20,
+     "cl_jun": 21,
+     "cl_aug": 24,
+     "new_ja": 1,
+     "new_aum": 0.52,
+     "g50": 12,
+     "l50": 12,
+     "tot_mar": 14.4,
+     "tot_jun": 20.4,
+     "tot_aug": 22.882,
+     "p_mar": 1.22,
+     "p_jun": 1.57,
+     "p_aug": 2.1,
+     "p_cl": 4,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.84,
+       "cl": 4
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.26,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Sehgal",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹0.5Cr since Jun; 1 new client since Jun; no focus product yet."
+    },
+    {
+     "rm": "Bhavik Shah",
+     "vintage": "1.4 yr",
+     "vintage_yr": 1.4,
+     "cl_mar": 12,
+     "cl_jun": 18,
+     "cl_aug": 23,
+     "new_ja": 3,
+     "new_aum": 0.6,
+     "g50": 12,
+     "l50": 11,
+     "tot_mar": 14.6,
+     "tot_jun": 21.1,
+     "tot_aug": 23.6566,
+     "p_mar": 0.0,
+     "p_jun": 1.53,
+     "p_aug": 2.05,
+     "p_cl": 3,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.01,
+       "cl": 2
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.04,
+       "cl": 1
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Ajay Sehgal",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "DS+AS Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹0.5Cr since Jun; 3 new clients since Jun; no focus product yet."
+    }
+   ],
+   "rank": 11
+  },
+  {
+   "ml": "Harsh Bagai",
+   "rms": 2,
+   "tot_mar": 172.7,
+   "tot_jun": 193.5,
+   "tot_aug": 211.7686,
+   "cl_aug": 106,
+   "g50": 65,
+   "l50": 41,
+   "new_ja": 5,
+   "p_mar": 0.64,
+   "p_jun": 2.05,
+   "p_aug": 7.59,
+   "p_cl": 13,
+   "f_aug": 0.5,
+   "f_unattr": 0.0,
+   "f_goal": 23,
+   "team8": "Abhishek Sharma",
+   "team8_focus": {
+    "actual": 1,
+    "goal": 23,
+    "covered": 1.0,
+    "label": "Abhishek Sharma + Harsh Bagai",
+    "desks": 2
+   },
+   "pdelta": {
+    "Allocate": 2.11,
+    "Co-Pilot": 0,
+    "Navigate": 4.55,
+    "YE": 0.0
+   },
+   "pjun_prod": {
+    "Allocate": 0.11,
+    "Co-Pilot": 0,
+    "Navigate": 0.31,
+    "YE": 0.51
+   },
+   "rows": [
+    {
+     "rm": "Mohit Gupta",
+     "vintage": "1.6 yr",
+     "vintage_yr": 1.6,
+     "cl_mar": 45,
+     "cl_jun": 49,
+     "cl_aug": 50,
+     "new_ja": 2,
+     "new_aum": 1.02,
+     "g50": 36,
+     "l50": 14,
+     "tot_mar": 49.5,
+     "tot_jun": 52.8,
+     "tot_aug": 54.8861,
+     "p_mar": 0.64,
+     "p_jun": 0.64,
+     "p_aug": 5.15,
+     "p_cl": 8,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.12,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.51,
+       "cl": 1
+      },
+      {
+       "name": "Navigate",
+       "aug": 3.52,
+       "cl": 4
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 3,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Harsh Bagai",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Thin platform share (9% of book), +₹4.5Cr since Jun; 2 new clients since Jun; no focus product yet."
+    },
+    {
+     "rm": "Tahir Jamal",
+     "vintage": "1.3 yr",
+     "vintage_yr": 1.3,
+     "cl_mar": 43,
+     "cl_jun": 48,
+     "cl_aug": 56,
+     "new_ja": 3,
+     "new_aum": 0.75,
+     "g50": 29,
+     "l50": 27,
+     "tot_mar": 123.2,
+     "tot_jun": 140.7,
+     "tot_aug": 156.8825,
+     "p_mar": 0.0,
+     "p_jun": 1.41,
+     "p_aug": 2.44,
+     "p_cl": 5,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 1.1,
+       "cl": 3
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 1.34,
+       "cl": 2
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 2,
+     "recon_uplift": 0.59,
+     "f_mar": 0.0,
+     "f_aug": 0.5,
+     "f_cl": 1,
+     "cl_focplat": 0,
+     "ml": "Harsh Bagai",
+     "ml_src": "rm signals.market_leader",
+     "team_sheet": "AS+HB Team",
+     "no_team_sheet": false,
+     "remark": "Platform barely started (1.6% of book), +₹1.0Cr since Jun; 3 new clients since Jun."
+    }
+   ],
+   "rank": 12
+  },
+  {
+   "ml": "Rohit Onkar",
+   "rms": 1,
+   "tot_mar": 0.0,
+   "tot_jun": 0.0,
+   "tot_aug": 0.4491,
+   "cl_aug": 3,
+   "g50": 0,
+   "l50": 3,
+   "new_ja": 0,
+   "p_mar": 0.0,
+   "p_jun": 0.0,
+   "p_aug": 0,
+   "p_cl": 0,
+   "f_aug": 0.0,
+   "f_unattr": 0.0,
+   "f_goal": null,
+   "team8": null,
+   "team8_focus": null,
+   "pdelta": null,
+   "pjun_prod": null,
+   "rows": [
+    {
+     "rm": "Devyani Dhuri",
+     "vintage": null,
+     "vintage_yr": null,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 3,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 0,
+     "l50": 3,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 0.4491,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Rohit Onkar",
+     "ml_src": "Platform Charts col B (new desk this cycle)",
+     "team_sheet": null,
+     "no_team_sheet": true,
+     "remark": "No platform book yet, flat vs Jun; no focus product yet."
+    }
+   ],
+   "rank": 13
+  },
+  {
+   "ml": "Vishal Rakyan",
+   "rms": 1,
+   "tot_mar": 0.0,
+   "tot_jun": 0.0,
+   "tot_aug": 0.3043,
+   "cl_aug": 1,
+   "g50": 0,
+   "l50": 1,
+   "new_ja": 0,
+   "p_mar": 0.0,
+   "p_jun": 0.0,
+   "p_aug": 0,
+   "p_cl": 0,
+   "f_aug": 0.0,
+   "f_unattr": 0.0,
+   "f_goal": null,
+   "team8": null,
+   "team8_focus": null,
+   "pdelta": {
+    "Allocate": 0,
+    "Co-Pilot": 0,
+    "Navigate": 0,
+    "YE": 0
+   },
+   "pjun_prod": {
+    "Allocate": 0,
+    "Co-Pilot": 0,
+    "Navigate": 0,
+    "YE": 0
+   },
+   "rows": [
+    {
+     "rm": "Madhuri Rathod",
+     "vintage": null,
+     "vintage_yr": null,
+     "cl_mar": null,
+     "cl_jun": null,
+     "cl_aug": 1,
+     "new_ja": 0,
+     "new_aum": 0.0,
+     "g50": 0,
+     "l50": 1,
+     "tot_mar": 0.0,
+     "tot_jun": 0.0,
+     "tot_aug": 0.3043,
+     "p_mar": 0.0,
+     "p_jun": 0.0,
+     "p_aug": 0,
+     "p_cl": 0,
+     "prod": [
+      {
+       "name": "Allocate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "YE",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Navigate",
+       "aug": 0.0,
+       "cl": 0
+      },
+      {
+       "name": "Co-Pilot",
+       "aug": 0.0,
+       "cl": 0
+      }
+     ],
+     "core_pos": 0,
+     "recon_uplift": 0.0,
+     "f_mar": 0.0,
+     "f_aug": 0.0,
+     "f_cl": 0,
+     "cl_focplat": 0,
+     "ml": "Vishal Rakyan",
+     "ml_src": "Platform Charts col B (sole RM on that desk)",
+     "team_sheet": null,
+     "no_team_sheet": true,
+     "remark": "No platform book yet, flat vs Jun; no focus product yet."
+    }
+   ],
+   "rank": 14
+  }
+ ]
+}

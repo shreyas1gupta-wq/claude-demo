@@ -9,3 +9,11 @@ template/*.pdf
 template/__pycache__/
 template/assets/overview.png
 template/assets/new*.png
+
+# Raw HNI MIS workbook + prior dashboard: client-level PII (names, AUM, ids).
+# The build reads them locally; only the RM-level aggregate output is committed.
+rm-platform-review/source/
+
+# Python bytecode
+__pycache__/
+*.pyc

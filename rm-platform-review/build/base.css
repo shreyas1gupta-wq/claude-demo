@@ -1,0 +1,94 @@
+/* Base styles carried forward from Ionic_RM_Platform_Review_FINAL_1_1.html
+   (design tokens + layout). Chart/QC additions live in render.py. */
+:root{--indigo:#242BA1;--indigo-d:#1A1F7A;--amber:#FFB951;--corn:#7BA0FF;--pearl:#F2F2ED;--coral:#FF5F49;--green:#157A3D;--ink:#1A1A2E;--grey:#71717F;--line:#E4E4EE;--card:#fff}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:'Reddit Sans',system-ui,Arial,sans-serif;color:var(--ink);background:var(--pearl);font-size:12.5px;-webkit-font-smoothing:antialiased}
+.serif,h1,h2{font-family:'Newsreader',Georgia,serif}
+.wrap{max-width:1360px;margin:0 auto;padding:0 18px 70px}
+/* topbar */
+.topbar{background:var(--indigo);color:#fff;position:sticky;top:0;z-index:60;box-shadow:0 2px 14px rgba(36,43,161,.28)}
+.tin{max-width:1360px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px}
+.emblem{width:32px;height:32px;flex:0 0 32px}
+.b1{font-family:'Newsreader',serif;font-weight:600;font-size:18px;line-height:1}
+.b2{font-size:9.5px;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;font-weight:600}
+.tblock{border-left:1px solid rgba(255,255,255,.22);padding-left:16px}
+.tt1{font-family:'Newsreader',serif;font-size:16px;font-weight:600}
+.tt2{font-size:10.5px;color:#C9CDF0}
+.fks{margin-left:auto;display:flex;gap:18px;flex-wrap:wrap}
+.fk{text-align:right}.fk .v{font-family:'Newsreader',serif;font-size:16px;font-weight:600}.fk .v .u{font-size:9px;color:var(--amber);margin-left:1px}
+.fk .l{font-size:8.5px;letter-spacing:.5px;color:#B9BEEC;text-transform:uppercase}
+/* controls */
+.controls{display:flex;gap:8px;align-items:center;padding:14px 0 4px;flex-wrap:wrap}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+.tab{background:#fff;border:1px solid var(--line);border-radius:18px;padding:5px 11px;font-size:11.5px;font-weight:500;cursor:pointer;display:flex;gap:6px;align-items:center;white-space:nowrap;transition:.12s}
+.tab:hover{border-color:var(--corn)}.tab.active{background:var(--indigo);border-color:var(--indigo);color:#fff}
+.tab .rk{font-size:9.5px;opacity:.65}.tab .mini{font-family:'Newsreader',serif;font-weight:600}.tab.active .mini{color:var(--amber)}
+.btn{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:11.5px;font-weight:600;color:var(--indigo);cursor:pointer;font-family:inherit}
+.btn:hover{background:var(--indigo);color:#fff}.btn.warn:hover{background:var(--coral);border-color:var(--coral)}
+/* team head */
+.thead{background:linear-gradient(100deg,var(--indigo),var(--indigo-d));color:#fff;border-radius:13px;padding:15px 20px;margin-top:6px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.thead .nm{font-family:'Newsreader',serif;font-size:23px;font-weight:600}
+.thead .sb{font-size:10.5px;color:#C9CDF0;margin-top:2px}
+.tk{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+.tk .v{font-family:'Newsreader',serif;font-size:17px;font-weight:600}.tk .v .u{font-size:9px;color:var(--amber);margin-left:1px}
+.tk .l{font-size:8.5px;letter-spacing:.5px;color:#C9CDF0;text-transform:uppercase;text-align:right}
+.tk .col{text-align:right}
+/* rm index chips */
+.rmidx{display:flex;gap:5px;flex-wrap:wrap;margin:11px 0 4px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:3px 9px;font-size:10.5px;cursor:pointer;color:var(--indigo);font-weight:500}
+.chip:hover{background:var(--indigo);color:#fff}
+/* CARD */
+.card{background:var(--card);border:1px solid var(--line);border-radius:13px;margin:11px 0;box-shadow:0 1px 3px rgba(0,0,0,.03);overflow:hidden}
+.chd{display:flex;align-items:center;gap:12px;padding:11px 15px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.rank2{width:26px;height:26px;border-radius:8px;background:var(--pearl);color:var(--indigo);font-family:'Newsreader',serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 26px}
+.rmn{font-family:'Newsreader',serif;font-size:18px;font-weight:600;line-height:1}
+.meta{font-size:10px;color:var(--grey);margin-top:2px}
+.penbig{margin-left:auto;text-align:right;display:flex;align-items:baseline;gap:8px}
+.penbig .pv{font-family:'Newsreader',serif;font-size:24px;font-weight:700}
+.penbig .pl{font-size:9px;color:var(--grey);text-transform:uppercase;letter-spacing:.5px}
+.pill{font-size:9px;font-weight:700;padding:2px 8px;border-radius:14px;white-space:nowrap}
+.pill.none{background:#FDE7E4;color:var(--coral)}.pill.slip{background:#FDE7E4;color:var(--coral)}
+.pill.new{background:#E3F4EA;color:var(--green)}.pill.single{background:#FFF1D9;color:#9A6A12}
+/* remark band */
+.remark{display:flex;gap:9px;align-items:flex-start;padding:9px 15px;background:#F6F7FF;border-bottom:1px solid var(--line)}
+.remark .star{color:var(--amber);font-size:14px;line-height:1.2;flex:0 0 auto}
+.remark .rtx{font-size:12.5px;font-weight:500;color:var(--ink);outline:none;flex:1;line-height:1.35}
+.remark .rtx:hover{background:#FFF6E6}.remark .rtx:focus{background:#fff;box-shadow:inset 0 0 0 1.5px var(--indigo);border-radius:5px;padding:2px 5px}
+/* body grid */
+.grid{display:grid;grid-template-columns:1.15fr 1fr 1.15fr 1.5fr 1.2fr;gap:0}
+@media(max-width:1080px){.grid{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:720px){.grid{grid-template-columns:1fr 1fr}}
+.sec{padding:10px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec h4{margin:0 0 7px;font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:var(--indigo);font-weight:700;font-family:'Reddit Sans',sans-serif}
+.st{display:flex;justify-content:space-between;align-items:baseline;padding:2px 0;font-size:11.5px}
+.st .k{color:var(--grey)}.st .val{font-weight:600;font-variant-numeric:tabular-nums}
+.big{font-family:'Newsreader',serif;font-size:15px;font-weight:600}
+.pos{color:var(--green)}.neg{color:var(--coral)}.mut{color:var(--grey)}
+.trend{display:flex;gap:6px;align-items:baseline;margin-top:2px}
+.trend .a{font-family:'Newsreader',serif;font-size:14px;font-weight:600}
+.arrow{font-size:10px}
+/* product mini table */
+.ptab{width:100%;border-collapse:collapse;font-size:10.5px;margin-top:1px}
+.ptab th{font-size:8.5px;color:var(--grey);text-transform:uppercase;letter-spacing:.3px;font-weight:600;text-align:right;padding:1px 3px}
+.ptab th.l{text-align:left}
+.ptab td{padding:2px 3px;text-align:right;border-top:1px solid #F0F0F6;font-variant-numeric:tabular-nums}
+.ptab td.l{text-align:left;font-weight:600}
+.ptab td.z{color:#C4C4D0}
+.fline{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:8px 14px;margin:9px 0 0;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px}
+.fline .fl-t{font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--indigo);font-weight:700}
+.fline .fl-step{display:inline-flex;align-items:baseline;gap:4px}
+.fline .fl-l{font-size:9.5px;color:var(--grey)}
+.fline .fl-v{font-family:'Newsreader',serif;font-weight:600;font-size:13px}
+.fline .fl-arr{color:#B7B7C2;font-size:10px}
+.fline .fl-sep{flex:0 0 1px;height:16px;background:var(--line);margin:0 4px}
+.fline .fl-mix{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--ink)}
+.fline .fl-mix i{width:8px;height:8px;border-radius:2px;display:inline-block}
+/* action */
+.act{padding:8px 15px;border-top:1px solid var(--line);display:flex;gap:8px;align-items:center;background:#FCFCFA}
+.act .lbl{font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--grey);font-weight:700;flex:0 0 auto}
+.act .inp{flex:1;font-size:12px;outline:none;color:var(--ink);min-height:16px}
+.act .inp:empty:before{content:'Add action / owner…';color:#B7B7C2}
+.act .inp:hover{background:#FFF6E6;border-radius:5px}.act .inp:focus{background:#fff;box-shadow:inset 0 0 0 1.5px var(--indigo);border-radius:5px;padding:2px 5px}
+.foot{font-size:10px;color:var(--grey);margin-top:14px;line-height:1.55}
+@media print{.topbar,.controls,.rmidx{position:static}.tab,.chip,.btn{display:none}.tab.active{display:flex}.card{break-inside:avoid;box-shadow:none}body{background:#fff}}
