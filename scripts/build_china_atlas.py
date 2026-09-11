@@ -765,6 +765,61 @@ numbers: the yield figures <b>conflict by 2–4pp across sources</b> and are not
 they are not a residential-property proxy. Enough to stop calling the sleeve unresearched; not
 enough to resize it. That is a registration-worthy design, not a conclusion.</p>
 </section>
+
+<section>
+<h2>12 · China's own precedents — and why they reframe the base rate</h2>
+<p class="sub">Almost every analysis of this crash reaches for Japan 1990 or the US 2008. China has
+two busts of its own, closer in institutional structure than any foreign analogue, and they are
+barely cited. Finding them changes which direction the base rate errs in.</p>
+<div class="tbl"><table>
+<thead><tr><th></th><th>Hainan 1988–93</th><th>Wenzhou 2011</th><th>Current bust</th></tr></thead>
+<tbody>
+<tr><td>Price move</td><td class="mono">≈300 → 7,500 CNY/sqm (1989-92),<br>then ≈6x down to ≈1,000
+by end-1993 — <b>roughly −87%</b></td><td class="mono neg">≈−50% (2009-12)<br><b>−63.1%</b> on the
+longest basis — the deepest of any Chinese city</td><td class="mono">national −24.6% real<br>city-level
+Langfang &gt;−50%</td></tr>
+<tr><td>Scale</td><td class="mono">≈20,000 developers for a province of 6–7m people</td>
+<td class="mono">Informal lending at up to <b>90%/yr</b></td><td class="mono">50–78% of stock in
+tier-3 and below</td></tr>
+<tr><td>Credit mechanism</td><td class="mono">Bank and developer speculation</td>
+<td class="mono">Private/household informal lending, 80–90 owners fled (跑路)</td>
+<td class="mono">Developer bonds, presale liabilities, LGFVs</td></tr>
+<tr><td>Institutional casualty</td><td class="mono"><b>Hainan Development Bank forced closed
+1998</b> — the last Chinese bank closure until 2018</td><td class="mono">Premier intervened
+personally; RMB 100bn support fund</td><td class="mono">Evergrande, Country Garden; offshore bonds
+≈0.6% recovery</td></tr>
+<tr><td>Resolution</td><td class="mono">Slow, state-absorbed provincial workout. Nonperforming
+property assets RMB 40.6bn in 1998 = <b>7.8% of the national total</b> <span class="tag snip">1-SOURCE</span></td>
+<td class="mono">No clean recovery — partial mid-2010s stabilization overtaken by the 2021 national
+downturn</td><td class="mono">Ongoing</td></tr>
+</tbody></table></div>
+<div class="warn"><b>The reframe, and it cuts against the comfortable reading of this whole page.</b>
+The international panel's worst modern episode is Ireland 2006 at −55.7%. China's own precedents run
+<b>deeper than that</b>: Wenzhou at −63% and Hainan at roughly −87%. The honest qualification is
+essential — those are a city and a province, while the panel is national, and city dispersion always
+exceeds national dispersion, so this is not a like-for-like comparison. But it does establish
+something the base rate alone cannot: <b>for any individual Chinese city, the 18-country national
+base rate is the optimistic frame, not the pessimistic one.</b> Langfang at over −50% is not an
+outlier against Chinese history; it is normal for a Chinese speculative satellite market.</div>
+<h3>Two details worth keeping</h3>
+<ul>
+<li><b>Wenzhou never recovered.</b> Its partial mid-2010s stabilization was overtaken by the 2021
+national downturn, so it reads as one long interrupted down-cycle rather than a V. That is the single
+Chinese city where a full cycle is observable, and the observable answer is fifteen years without a
+round trip.</li>
+<li><b>Nobody cited Hainan in 2020-21.</b> The agent searched specifically for public warnings
+invoking Hainan as a precedent ahead of this bust and found none — recorded as a finding rather than
+a failed search. The most structurally similar episode in the country's own history was absent from
+the conversation.</li>
+</ul>
+<p class="note">Confidence is materially weaker here than elsewhere on the page: Hainan's price
+figures are imprecise across sources, the 7.8% NPL share rests on a single academic paper
+(Wu/Reed/Robinson) that could not be independently re-confirmed, and the widely-circulated “RMB 30bn
+bad loans” figure traces to a separate unpinned lineage. The dossier's verdict — that Wenzhou is the
+better analogue for the credit mechanism while Hainan is the better one for the supply-side and
+resolution path, with Hainan closer overall because this bust is failing on absorption rather than
+on credit — is explicitly argued and hedged, not asserted.</p>
+</section>
 <section class="panel">
 <h2>Method, and what would make this better</h2>
 <h3>The episode definition, frozen before the run</h3>
