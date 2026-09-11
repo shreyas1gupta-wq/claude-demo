@@ -1,11 +1,12 @@
-# HANDOFF PROMPT — THE INDIA REAL-ESTATE PREDICTION ENGINE (v3)
+# HANDOFF PROMPT — THE INDIA REAL-ESTATE PREDICTION ENGINE (v3.1)
 Written 2026-09-11 at the close of the IN programme, for a NEW Claude Code thread.
 Paste everything below the rule. Self-contained: assumes the repo, assumes no memory of the
 conversation that produced it.
 
 **v3 supersedes v2.** It adds the principal's four scope decisions, the cost-drag calculation that
 reframes the entire exercise, the rental-data route that may resolve the yield conflict, and the
-project's own "what we will not build" boundary.
+project's own "what we will not build" boundary. **v3.1 adds §0.5: run this on the desktop app, not
+on the web, because the web environment cannot reach any primary Indian source.**
 
 ---
 
@@ -25,6 +26,44 @@ single principal who also advises wealth clients. Read `CLAUDE.md` and `research
 4. **Forecast form: state-conditional distributions ONLY.** No point forecasts, no headline central
    number. Per locality and horizon: median, p10, p90, sample size, and the share of comparable
    historical states that subsequently fell 20%+.
+
+## §0.5 — WHERE TO RUN THIS: DESKTOP, NOT WEB (settled; the reason is egress)
+
+**Run this project in the Claude Code desktop app on the principal's own machine.** Not in
+Claude on the web, and not in a remote/cloud session. The reason is not preference, it is a
+measured constraint: **this project is acquisition-bound, not compute-bound**, and the remote
+environment cannot reach the data it is about.
+
+- In the remote/web environment, `WebFetch` is **EGRESS-BLOCKED for every domain** (§6.1), and
+  CLAUDE.md's own environment note already lists NSE/RBI/CCIL/Kaggle/HF/FRED as blocked. Only
+  `WebSearch` snippets and **GitHub** (raw/LFS/git-proxy) are live. Every primary source in §7 —
+  IGR Maharashtra, NHB Residex, RBI DBIE, data.gov.in, the municipal and Bhulekh portals,
+  MahaRERA — is on the wrong side of that wall. A web session can *describe* the registration
+  microdata; it cannot pull a single row of it.
+- The desktop app runs with the machine's ordinary internet, so `ingest/pull_*.py` can actually
+  execute. It can also do the three things the portals require and a sandbox cannot: hold a
+  **session cookie / form-post flow** (IGR's search is not a static URL), drive a **real browser**
+  against a JS portal, and retry a long paginated crawl over hours.
+- Disk and persistence. A ward-level registration panel is plausibly multi-GB; the remote
+  container has a fixed per-session allowance and is **reclaimed after inactivity**, so anything
+  not committed is lost. Desktop keeps the working panel across days, which is what a
+  multi-session programme (§6.2) needs.
+- CLAUDE.md already classifies exactly this work as **"principal-machine runsheet pulls"**. This
+  project is the largest such pull the desk has ever queued. Running it anywhere else contradicts
+  the runsheet's own design.
+
+**The split that actually works.** Desktop owns acquisition, the vault, manifests and the
+authentication passes — Phases 0-1 end to end. Once a vault directory is committed with its
+`AUTHENTICATION.md` and sha256 manifest, the **analysis, dossier and dashboard legs are
+venue-neutral** and a web session is a fine place to run them (it reads the repo, fans out agents,
+publishes the artifact) — that is precisely how the CN and IN programmes were built. Do not invert
+it: never let a web session promise a pull.
+
+**Desktop setup, once per clone.** Same branch discipline (`claude/funny-faraday-r3v4aj`);
+`git config core.hooksPath .githooks` so the pytest + validator gate is machinery not memory;
+`PYTHONPATH=<local repo path>` for every analysis script; substitute the local clone path wherever
+this brief writes `/home/user/claude-demo`. Vault files large enough to strain git go to **LFS**,
+never outside the manifest.
 
 ## §1 — THE CALCULATION THAT REFRAMES THE WHOLE EXERCISE
 
@@ -418,8 +457,11 @@ effects and area basis explicitly.
 
 **Spawn these four first, before the plan is finalised — they are go/no-go probes, not background
 research:**
-1. **Reachability probe** — every source in §7: reachable from THIS environment or not? Hunt
-   GitHub-hosted mirrors specifically. Output: a reachable/not table plus RUNSHEET rows.
+1. **Reachability probe** — every source in §7: reachable from THIS environment or not? On desktop
+   (§0.5) this is a real probe with real answers — actually request each endpoint, record status
+   code, robots/ToS posture, whether it needs a session or a form post, and the response shape. On
+   web it degrades to a search-snippet inventory, which is the reason §0.5 exists. Output: a
+   reachable/not table plus RUNSHEET rows.
 2. **Registration-microdata feasibility** — for the 4-6 chosen cities, what does each state portal
    actually expose (fields, granularity, history, bulk vs per-document, rate limits)? Verdict on
    whether §4.1 is buildable.
