@@ -17,3 +17,6 @@ rm-platform-review/source/
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Session note + original dashboard: internal source material.
+hni-prospecting/src/

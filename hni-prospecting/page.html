@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HNI Prospecting — Ionic Wealth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Reddit+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.544.0/lucide.min.js"></script>
+<style>
+:root{
+  --indigo:#242BA1; --indigo-deep:#1C2286; --indigo-panel:#20268F; --rail:#161B63;
+  --amber:#FFB951; --amber-deep:#F2A63B;
+  --pearl:#F2F2ED; --paper:#FFFFFF;
+  --ink:#1B1D33; --muted:#63657C; --line:#E4E4DB;
+  --r1:#FFB951; --r2:#6E75CE; --r3:#9AA0E0; --r4:#C9CCEF;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"Reddit Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --w:236px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--pearl);
+  font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;margin:0}
+p{margin:0}
+
+.app{height:100vh;display:flex;overflow:hidden}
+
+/* rail */
+.rail{width:var(--w);flex:0 0 var(--w);background:var(--rail);color:#EDEEFB;
+  display:flex;flex-direction:column;padding:24px 20px;gap:22px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .mark{width:30px;height:30px;flex:0 0 30px;position:relative}
+.brand .mark span{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,185,81,.5)}
+.brand .mark span:nth-child(2){inset:6px;border-color:rgba(255,185,81,.8)}
+.brand .mark span:nth-child(3){inset:11px;background:var(--amber);border:none}
+.brand b{font-family:var(--serif);font-weight:600;font-size:1.02rem;color:#fff}
+.brand small{display:block;font-size:.64rem;color:#9EA1D6;margin-top:1px}
+.nav{display:flex;flex-direction:column;gap:1px;margin-top:4px}
+.nav a{display:flex;align-items:center;gap:11px;padding:8px 10px;border-radius:9px;
+  color:#AEB2E4;text-decoration:none;font-size:.83rem;font-weight:500;cursor:pointer;
+  transition:background .16s,color .16s}
+.nav a .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;transition:.16s}
+.nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav a.active{background:rgba(255,185,81,.15);color:#fff}
+.nav a.active .dot{background:var(--amber);opacity:1;transform:scale(1.6)}
+.rail .count{margin-top:auto;font-size:.7rem;color:#8588BB;line-height:1.5}
+
+/* slides */
+.main{flex:1;height:100vh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;
+  padding:52px 5.2vw;position:relative}
+.slide .wrap{width:100%;max-width:1080px;margin:0 auto}
+.indigo{background:var(--indigo);color:#EEF0FF}
+.indigo h1,.indigo h2,.indigo h3{color:#fff}
+.pearl{background:var(--pearl)}
+.paper{background:var(--paper)}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;
+  color:var(--indigo);margin-bottom:12px}
+.indigo .kicker{color:var(--amber)}
+.kicker i{width:15px;height:15px}
+h2.title{font-size:clamp(1.7rem,3vw,2.4rem)}
+.sub{color:var(--muted);margin-top:10px;max-width:56ch;font-size:1rem}
+.indigo .sub{color:#C6C9F2}
+.src{margin-top:14px;font-size:.74rem;color:var(--muted)}
+.indigo .src{color:#9EA1D6}
+
+.ico{width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:var(--amber);
+  display:grid;place-items:center;color:var(--indigo)}
+.ico i{width:20px;height:20px}
+.ico.sm{width:34px;height:34px;flex-basis:34px}.ico.sm i{width:17px;height:17px}
+
+/* figures from the illustration set */
+.fig{display:block;width:100%;height:auto}
+.figbox{border-radius:16px;overflow:hidden;line-height:0}
+.figbox.sq{max-width:190px}
+
+/* HERO */
+#s-hero .wrap{display:grid;grid-template-columns:1.06fr .94fr;gap:36px;align-items:center}
+.hero-tag{font-size:.9rem;font-weight:600;color:var(--amber);margin-bottom:18px}
+#s-hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);font-weight:500;letter-spacing:-.5px}
+#s-hero .hs{font-size:clamp(1.05rem,1.7vw,1.24rem);color:#C9CCF4;margin-top:18px;max-width:32ch}
+.anchors{margin-top:24px;display:flex;flex-direction:column;gap:11px}
+.anchors div{display:flex;gap:12px;align-items:center;font-size:.96rem;color:#E6E8FB}
+.anchors .b{width:7px;height:7px;border-radius:50%;background:var(--amber);flex:0 0 7px}
+.hero-art{position:relative;max-width:520px;width:100%;margin-left:auto}
+.hero-art .figbox{box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.cue{position:absolute;bottom:22px;left:5.2vw;color:#A1A3DB;font-size:.74rem;display:flex;align-items:center;gap:7px}
+.cue i{width:16px;height:16px;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:24px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:17px 18px}
+.kpi .n{font-family:var(--serif);font-weight:600;color:var(--indigo);font-size:1.85rem;line-height:1;letter-spacing:-.5px}
+.kpi .l{margin-top:7px;font-size:.82rem;color:var(--ink);line-height:1.4}
+.kpi .d{margin-top:5px;font-size:.72rem;color:var(--muted)}
+.strip{display:flex;gap:24px;align-items:center;margin-top:14px;background:var(--indigo);
+  color:#fff;border-radius:14px;padding:15px 22px}
+.strip .n{font-family:var(--serif);font-weight:600;color:var(--amber);font-size:1.8rem;line-height:1;flex:0 0 auto}
+.strip .t{font-size:.88rem;color:#DDE0F7}
+.spread{margin-top:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.85rem;color:var(--ink)}
+.spread b{color:var(--indigo)}
+.spread .city{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:4px 13px;font-weight:600;color:var(--indigo)}
+.footline{margin-top:14px;font-family:var(--serif);font-size:1.2rem;color:var(--ink);font-weight:500}
+.footline b{color:var(--indigo)}
+
+/* CIRCLE */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:22px}
+.stage{position:relative;width:100%;max-width:400px;margin:0 auto;aspect-ratio:1}
+.stage svg{width:100%;height:auto;display:block;overflow:visible}
+.ring{cursor:pointer;outline:none}
+.ring circle.band{stroke:var(--indigo);stroke-width:3;transition:opacity .32s,stroke-width .22s;
+  transform-box:fill-box;transform-origin:center}
+.ring .badge circle{fill:#fff;stroke:var(--indigo);stroke-width:1.4;transition:transform .22s}
+.ring .badge text{font-family:var(--serif);font-weight:600;fill:var(--indigo);font-size:15px}
+svg[data-active="1"] .ring:not([data-layer="1"]) circle.band,
+svg[data-active="2"] .ring:not([data-layer="2"]) circle.band,
+svg[data-active="3"] .ring:not([data-layer="3"]) circle.band,
+svg[data-active="4"] .ring:not([data-layer="4"]) circle.band{opacity:.4}
+.ring.is-active circle.band{stroke:var(--amber);stroke-width:4}
+.ring.is-active .badge circle{transform:scale(1.2)}
+.ring:focus-visible circle.band{stroke:var(--amber);stroke-width:4}
+.core-label{font-family:var(--serif);fill:var(--ink);font-weight:600}
+.core-sub{fill:var(--ink);font-weight:600;font-size:9px;letter-spacing:1px}
+.stage.animate .ring circle.band{opacity:0;transform:scale(.72)}
+.stage.animate.drawn .ring circle.band{opacity:1;transform:scale(1);
+  transition:opacity .55s,transform .65s cubic-bezier(.2,.8,.25,1)}
+.stage.animate.drawn .ring[data-layer="3"] circle.band{transition-delay:.1s}
+.stage.animate.drawn .ring[data-layer="2"] circle.band{transition-delay:.2s}
+.stage.animate.drawn .ring[data-layer="1"] circle.band{transition-delay:.3s}
+.corepulse{transform-box:fill-box;transform-origin:center}
+.drawn .corepulse{animation:pulse 3.4s ease-in-out .8s infinite}
+@keyframes pulse{0%,100%{filter:drop-shadow(0 0 0 rgba(255,185,81,0))}50%{filter:drop-shadow(0 0 13px rgba(255,185,81,.6))}}
+.warm{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:.78rem;color:#C6C9F2}
+.warm .bar{height:7px;flex:1;border-radius:6px;background:linear-gradient(90deg,var(--amber),var(--r2) 55%,var(--r4))}
+.detail{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;
+  padding:24px 26px;transition:opacity .28s,transform .28s}
+.detail.swap{opacity:0;transform:translateY(6px)}
+.detail .idx{display:flex;align-items:center;gap:12px}
+.detail .num{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  font-family:var(--serif);font-weight:600;font-size:1.4rem;color:#151A5E}
+.detail h3{font-size:1.4rem;color:#fff}
+.detail .tag{font-size:.78rem;font-weight:600;color:var(--amber);margin-top:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 14px}
+.chips span{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);
+  padding:6px 12px;border-radius:999px;font-size:.84rem;font-weight:500;color:#EEF0FF}
+.detail .g{color:#C9CCF4;font-size:.92rem}
+
+/* ENGINE */
+.engine-grid{display:grid;grid-template-columns:1fr 200px;gap:26px;align-items:center;margin-top:20px}
+.levers{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+.lever{background:var(--paper);border:1px solid var(--line);border-radius:13px;padding:15px;
+  position:relative;cursor:default}
+.lever .ico{margin-bottom:9px}
+.lever h3{font-family:var(--serif);font-size:.98rem;color:var(--indigo);font-weight:600;margin-bottom:4px}
+.lever .is{font-size:.78rem;color:var(--ink);line-height:1.42}
+.lever .why{font-size:.76rem;color:var(--muted);line-height:1.42;margin-top:7px;padding-top:7px;
+  border-top:1px dashed var(--line)}
+.lever .why b{color:var(--amber-deep);font-weight:600}
+.lever.hl{background:var(--indigo);border-color:var(--indigo);display:flex;flex-direction:column;justify-content:center}
+.lever.hl h3{color:var(--amber)}
+.lever.hl .is{color:#E6E8FB}
+.lever.hl .attr{color:#A9AEE8;font-size:.74rem;margin-top:8px;font-style:italic}
+
+/* PERSONAS */
+.tabs{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.tab{display:flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--line);
+  border-radius:999px;padding:5px 15px 5px 5px;cursor:pointer;font-weight:500;font-size:.86rem;color:var(--ink);
+  transition:.16s;font-family:inherit}
+.tab .pic{width:32px;height:32px;flex:0 0 32px;border-radius:50%;overflow:hidden;line-height:0;background:var(--indigo)}
+.tab .pic svg{width:100%;height:auto;transform:scale(1.5) translateY(9%)}
+.tab:hover{border-color:#cfcfc4}
+.tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.persona{margin-top:18px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  padding:0;display:grid;grid-template-columns:186px 1fr;gap:0;transition:opacity .26s;overflow:hidden}
+.persona.swap{opacity:0}
+.persona .port{line-height:0;background:var(--indigo)}
+.persona .port svg{width:100%;height:auto;display:block}
+.persona .body{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-content:start}
+.persona .headline{grid-column:1/-1;font-family:var(--serif);font-size:1.3rem;color:var(--indigo);font-weight:600}
+.persona .headline small{display:block;font-family:var(--sans);font-size:.76rem;color:var(--muted);font-weight:500;margin-top:3px}
+.persona h4{font-size:.72rem;font-weight:600;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:.4px}
+.persona p{font-size:.96rem;line-height:1.5}
+
+/* PROPOSITION */
+.trial{display:flex;gap:20px;align-items:center;background:var(--indigo);color:#fff;
+  border-radius:15px;padding:20px 24px;margin-top:20px}
+.trial .amt{font-family:var(--serif);font-weight:600;font-size:2.3rem;color:var(--amber);line-height:1;flex:0 0 auto}
+.trial p{font-size:.95rem;color:#DDE0F7;line-height:1.5}
+.scripts{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:16px}
+.script{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+  display:flex;flex-direction:column}
+.script .lbl{font-size:.74rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#9D6C26}
+.script q{font-family:var(--serif);font-size:1.02rem;line-height:1.45;color:var(--ink);margin-top:9px;
+  display:block;quotes:'\201C' '\201D'}
+.script q::before{content:open-quote;color:var(--amber);font-size:1.5em;line-height:0;vertical-align:-.28em;margin-right:1px}
+.script q::after{content:close-quote;color:var(--amber);font-size:1.5em;line-height:0;vertical-align:-.28em}
+.propfoot{margin-top:14px;font-size:.92rem;color:var(--muted)}
+.propfoot b{color:var(--indigo)}
+
+/* MEETINGS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:20px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px}
+.step .h{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.step .num{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:var(--amber);
+  display:grid;place-items:center;font-family:var(--serif);font-weight:600;font-size:1.15rem;color:#151A5E}
+.step h3{font-family:var(--serif);font-size:1.04rem;color:var(--indigo);font-weight:600}
+.step .tg{font-size:.72rem;font-weight:600;color:var(--muted)}
+.step p{font-size:.87rem;color:var(--ink);line-height:1.5}
+.step p+p{margin-top:8px}
+.step .em{color:var(--indigo);font-weight:600}
+.onerule{margin-top:14px;background:var(--indigo);color:#fff;border-radius:13px;padding:14px 20px;font-size:.98rem}
+.onerule b{color:var(--amber)}
+.discovery{margin-top:12px;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--amber);
+  border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);line-height:1.5}
+.discovery b{color:var(--indigo)}
+
+/* 60-SECOND CHECK */
+.checkwrap{display:grid;grid-template-columns:1fr 200px;gap:30px;align-items:center;margin-top:22px}
+.checks{display:flex;flex-direction:column;gap:10px}
+.chk{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:15px 18px;cursor:pointer;
+  transition:background .18s,border-color .18s;text-align:left;font-family:inherit;color:inherit;width:100%}
+.chk:hover{background:rgba(255,255,255,.12)}
+.chk .box{width:23px;height:23px;flex:0 0 23px;border-radius:6px;border:2px solid rgba(255,255,255,.4);
+  display:grid;place-items:center;transition:.18s;margin-top:1px}
+.chk .box i{width:14px;height:14px;opacity:0;transition:opacity .18s;color:#151A5E}
+.chk .box::after{content:"";width:11px;height:6px;border-left:2.5px solid #151A5E;
+  border-bottom:2.5px solid #151A5E;transform:rotate(-45deg) translate(1px,-1px);
+  opacity:0;transition:opacity .18s;position:absolute}
+.chk .box{position:relative}
+.chk[aria-pressed="true"]{background:rgba(255,185,81,.14);border-color:rgba(255,185,81,.5)}
+.chk[aria-pressed="true"] .box{background:var(--amber);border-color:var(--amber)}
+.chk[aria-pressed="true"] .box i{opacity:0}
+.chk[aria-pressed="true"] .box::after{opacity:1}
+.chk span{font-size:.95rem;color:#EEF0FF;line-height:1.45}
+.verdict{margin-top:16px;font-family:var(--serif);font-size:1.25rem;font-weight:500;transition:color .25s}
+.verdict.no{color:#FFC4B8}.verdict.yes{color:var(--amber)}
+
+/* CRAFT / TRUST */
+.eqbox{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;margin-top:18px}
+.fraction{text-align:center}
+.fraction .terms{font-family:var(--serif);font-size:clamp(.95rem,1.7vw,1.2rem);color:#fff}
+.fraction .terms .v{color:var(--amber);font-weight:600}
+.fraction .bar{height:2px;background:rgba(255,255,255,.5);margin:9px 0}
+.fraction .den{font-family:var(--serif);font-size:clamp(.95rem,1.7vw,1.2rem);color:#fff}
+.fraction .den .v{color:#FFC4B8;font-weight:600}
+.result{display:flex;align-items:baseline;justify-content:center;gap:11px;margin-top:16px}
+.result .score{font-family:var(--serif);font-weight:600;font-size:3rem;line-height:1;transition:color .3s}
+.result .of{font-size:.8rem;color:#B0B3E2}
+.track{height:10px;border-radius:8px;background:rgba(255,255,255,.15);margin:12px auto 10px;overflow:hidden;max-width:300px}
+.track .fill{height:100%;border-radius:8px;transition:width .45s cubic-bezier(.2,.8,.25,1),background .4s}
+.tmsg{font-size:.88rem;color:#C9CCF4;min-height:2.6em;max-width:36ch;margin:0 auto}
+.sliders{display:flex;flex-direction:column;gap:20px}
+.sld label{font-size:.88rem;color:#C9CCF4;display:block;margin-bottom:10px}
+.sld input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;outline:none}
+#si{background:linear-gradient(90deg,var(--amber),#D14848)}
+#sh{background:linear-gradient(90deg,#D14848,var(--amber))}
+.sld input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:21px;height:21px;border-radius:50%;
+  background:#fff;border:3px solid var(--amber);cursor:pointer;box-shadow:0 2px 7px rgba(0,0,0,.35)}
+.sld input[type=range]::-moz-range-thumb{width:21px;height:21px;border-radius:50%;background:#fff;border:3px solid var(--amber);cursor:pointer}
+.rlab{display:flex;justify-content:space-between;font-size:.72rem;color:#B0B3E2;margin-top:6px}
+.crafts{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:18px}
+.crafts .c{background:#FAFAF7;border:1px solid var(--line);border-radius:12px;padding:15px 18px}
+.crafts .c b{color:var(--indigo)}
+.crafts .c p{color:var(--ink);font-size:.85rem;margin-top:4px;line-height:1.45}
+.indigo .crafts .c{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14)}
+.indigo .crafts .c b{color:var(--amber)}
+.indigo .crafts .c p{color:#DDE0F7}
+
+/* WATCH-OUTS */
+.losewrap{display:grid;grid-template-columns:1fr 190px;gap:26px;align-items:center;margin-top:20px}
+.lose{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.lose .row{display:flex;gap:15px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+  border-radius:12px;padding:15px 18px;transition:transform .16s,box-shadow .16s}
+.lose .row:hover{transform:translateX(4px);box-shadow:-4px 0 0 var(--amber)}
+.lose .n{font-family:var(--serif);font-weight:600;font-size:1.3rem;color:var(--amber-deep);flex:0 0 22px;line-height:1.2}
+.lose h3{font-family:var(--serif);font-size:.99rem;color:var(--indigo);font-weight:600}
+.lose p{font-size:.8rem;color:var(--muted);margin-top:2px;line-height:1.45}
+
+/* WEEK */
+.weekwrap{display:grid;grid-template-columns:1fr 190px;gap:26px;align-items:center;margin-top:20px}
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.wk{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;
+  padding:18px 13px;text-align:center}
+.wk .ico{margin:0 auto 11px}
+.wk .k{font-family:var(--serif);font-weight:600;font-size:1.7rem;color:var(--amber);line-height:1}
+.wk p{font-size:.78rem;color:#D6D8F3;margin-top:7px;line-height:1.4}
+.closer{margin-top:20px;font-family:var(--serif);font-size:clamp(1.1rem,2vw,1.5rem);
+  color:#fff;font-weight:500;max-width:44ch;line-height:1.3}
+.closer b{color:var(--amber)}
+
+/* POCKET */
+.pocket{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.pk{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);
+  border-radius:12px;padding:16px 19px}
+.pk .ar{color:var(--amber-deep);font-weight:700;flex:0 0 auto;font-size:1.05rem;line-height:1.4}
+.pk p{font-size:.9rem;line-height:1.5}
+.pk b{color:var(--indigo)}
+.signoff{margin-top:20px;background:var(--indigo);color:#fff;border-radius:15px;padding:22px 26px;
+  font-size:1rem;line-height:1.55;max-width:none}
+.signoff b{color:var(--amber)}
+.signoff .go{display:block;margin-top:10px;font-family:var(--serif);font-size:1.3rem;color:var(--amber)}
+
+@media (max-width:1040px){
+  /* stack rather than hide -- dropping four of the ten figures on narrow
+     screens loses most of the artwork exactly where there is least else to look at */
+  .engine-grid,.checkwrap,.losewrap,.weekwrap{grid-template-columns:1fr}
+  .engine-grid .figbox,.checkwrap .figbox,.losewrap .figbox,.weekwrap .figbox{
+    max-width:150px;margin:4px auto 0;order:2}
+  .kpis{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:960px){
+  .app{flex-direction:column;height:auto;overflow:visible}
+  .rail{width:100%;flex-direction:row;align-items:center;gap:12px;padding:10px 14px;overflow-x:auto;position:sticky;top:0;z-index:20}
+  .rail .count{display:none}.brand{flex:0 0 auto}
+  .nav{flex-direction:row}.nav a{white-space:nowrap;padding:6px 10px}.nav a .dot{display:none}
+  .main{height:auto;overflow:visible;scroll-snap-type:none}
+  .slide{min-height:auto;padding:44px 22px}
+  #s-hero .wrap,.cgrid,.eqbox{grid-template-columns:1fr;gap:24px}
+  .hero-art{max-width:440px;margin:6px auto 0}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .levers{grid-template-columns:repeat(2,1fr)}
+  .steps,.scripts{grid-template-columns:1fr}
+  .persona{grid-template-columns:1fr}
+  .persona .port{max-width:170px}
+  .persona .body{grid-template-columns:1fr;gap:16px}
+  .lose,.crafts,.pocket{grid-template-columns:1fr}
+  .week{grid-template-columns:1fr 1fr}
+  .cue{display:none}
+}
+@media (max-width:540px){.kpis,.week{grid-template-columns:1fr}.levers{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){
+  .main{scroll-behavior:auto}
+  .stage.animate .ring circle.band{opacity:1;transform:none}
+  .drawn .corepulse{animation:none}.cue i{animation:none}
+}
+</style>
+</head>
+<body>
+<!--SPRITE-->
+<div class="app">
+  <aside class="rail">
+    <div class="brand"><div class="mark"><span></span><span></span><span></span></div>
+      <div><b>Ionic</b><small>Wealth by Angel One</small></div></div>
+    <nav class="nav" id="nav">
+      <a data-t="s-hero"><span class="dot"></span>Overview</a>
+      <a data-t="s-opp"><span class="dot"></span>The opportunity</a>
+      <a data-t="s-circle"><span class="dot"></span>Circle of influence</a>
+      <a data-t="s-engine"><span class="dot"></span>The engine</a>
+      <a data-t="s-clients"><span class="dot"></span>Who you're meeting</a>
+      <a data-t="s-prop"><span class="dot"></span>The proposition</a>
+      <a data-t="s-meet"><span class="dot"></span>The meetings</a>
+      <a data-t="s-check"><span class="dot"></span>60-second check</a>
+      <a data-t="s-craft"><span class="dot"></span>Trust</a>
+      <a data-t="s-lose"><span class="dot"></span>Watch-outs</a>
+      <a data-t="s-week"><span class="dot"></span>The week</a>
+      <a data-t="s-pocket"><span class="dot"></span>The pocket version</a>
+    </nav>
+    <div class="count">HNI prospecting · session briefing</div>
+  </aside>
+
+  <main class="main" id="main">
+
+    <!-- 1 HERO -->
+    <section class="slide indigo" id="s-hero">
+      <div class="wrap">
+        <div>
+          <div class="hero-tag">Ionic Wealth by Angel One</div>
+          <h1>Cracking HNI<br>prospecting</h1>
+          <p class="hs">How Ionic wins high-net-worth clients — and how you'll do it yourself.</p>
+          <div class="anchors">
+            <div><span class="b"></span>The clients exist. The skill is finding them.</div>
+            <div><span class="b"></span>Warm paths beat cold calls.</div>
+            <div><span class="b"></span>No proposition, no durable conversion.</div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="figbox"><svg class="fig" viewBox="0 0 1000 560" role="img"
+            aria-label="An adviser and a prospective client in conversation across a low table"><use href="#fig-hero"/></svg></div>
+        </div>
+      </div>
+      <div class="cue"><i data-lucide="chevron-down"></i>Scroll or use the menu</div>
+    </section>
+
+    <!-- 2 OPPORTUNITY -->
+    <section class="slide pearl" id="s-opp">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="trending-up"></i>The opportunity</div>
+        <h2 class="title">A prize bigger than the market lets on</h2>
+        <div class="kpis" id="kpis">
+          <div class="kpi"><div class="n" data-count="3.9" data-dec="1" data-suf=" lakh">0</div>
+            <div class="l">dollar-millionaires in India</div><div class="d">holding ~$1.65 trillion between them</div></div>
+          <div class="kpi"><div class="n" data-count="8.5" data-dec="1" data-suf=" lakh+">0</div>
+            <div class="l">HNI base on total net worth</div><div class="d">nearly doubling to ~1.65 million by 2027</div></div>
+          <div class="kpi"><div class="n" data-count="19900" data-dec="0" data-pre="~" data-comma="1">0</div>
+            <div class="l">UHNIs at $30M+ · 6th globally</div><div class="d">up 63% in five years</div></div>
+          <div class="kpi"><div class="n" data-count="1.6" data-dec="1" data-pre="$" data-suf="T">0</div>
+            <div class="l">new AUM in play, FY24–FY29</div><div class="d">the opening this creates</div></div>
+          <div class="kpi"><div class="n" data-static="1 in 5">1 in 5</div>
+            <div class="l">new millionaires is under 40</div><div class="d">this pool is young</div></div>
+          <div class="kpi"><div class="n" data-count="40" data-dec="0" data-pre="~" data-suf="%">0</div>
+            <div class="l">of UHNI families run a family office</div><div class="d">they buy advice institutionally</div></div>
+          <div class="kpi"><div class="n" data-count="7" data-dec="0" data-suf="%">0</div>
+            <div class="l">of an advisor's time goes to prospecting</div><div class="d">the least-taught, highest-paid skill</div></div>
+          <div class="kpi"><div class="n" data-static="&gt;50%">&gt;50%</div>
+            <div class="l">of new HNI relationships arrive by referral</div><div class="d">warm paths, not cold calls</div></div>
+        </div>
+        <div class="spread"><b>And it's spreading.</b> Wealth that used to sit only in Mumbai and Delhi is now being made in
+          <span class="city">Jaipur</span><span class="city">Pune</span><span class="city">Indore</span></div>
+        <div class="strip">
+          <div class="n">₹25L</div>
+          <div class="t">is what a promoter typically puts in as a trial. He watches you for two quarters — then scales up, or walks.</div>
+        </div>
+        <p class="footline"><b>The clients exist.</b> Finding them and earning the first meeting is the skill that pays.</p>
+        <p class="src">Sources: Capgemini (2026, financial assets only) · Deloitte · session note, Ionic Wealth</p>
+      </div>
+    </section>
+
+    <!-- 3 CIRCLE -->
+    <section class="slide indigo" id="s-circle">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="target"></i>The centrepiece</div>
+        <h2 class="title">Your circle of influence</h2>
+        <p class="sub">Tap a ring. Work it from the centre out — warmest names first.</p>
+        <div class="cgrid">
+          <div>
+            <div class="stage animate" id="stage">
+              <svg viewBox="0 0 420 420" id="ringsvg" data-active="1" role="group" aria-label="Circle of influence">
+                <g class="ring" data-layer="4" tabindex="0" role="button" aria-label="Fourth layer"><circle class="band" cx="210" cy="210" r="196" fill="#C9CCEF"></circle><g class="badge"><circle cx="210" cy="37" r="15"></circle><text x="210" y="43" text-anchor="middle">4</text></g></g>
+                <g class="ring" data-layer="3" tabindex="0" role="button" aria-label="Third layer"><circle class="band" cx="210" cy="210" r="150" fill="#9AA0E0"></circle><g class="badge"><circle cx="210" cy="83" r="15"></circle><text x="210" y="89" text-anchor="middle">3</text></g></g>
+                <g class="ring" data-layer="2" tabindex="0" role="button" aria-label="Second layer"><circle class="band" cx="210" cy="210" r="104" fill="#6E75CE"></circle><g class="badge"><circle cx="210" cy="129" r="15"></circle><text x="210" y="135" text-anchor="middle">2</text></g></g>
+                <g class="ring" data-layer="1" tabindex="0" role="button" aria-label="Innermost circle"><circle class="band corepulse" cx="210" cy="210" r="58" fill="#FFB951"></circle><text class="core-label" x="210" y="206" text-anchor="middle" font-size="25">1</text><text class="core-sub" x="210" y="227" text-anchor="middle">START HERE</text></g>
+              </svg>
+            </div>
+            <div class="warm"><span>Warmest core</span><div class="bar"></div><span>Widest reach</span></div>
+          </div>
+          <div class="detail" id="detail">
+            <div class="idx"><div class="num" id="d-num">1</div><div><h3 id="d-title">Innermost circle</h3><div class="tag" id="d-tag">Start here</div></div></div>
+            <div class="chips" id="d-chips"></div>
+            <p class="g" id="d-guide"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 ENGINE -->
+    <section class="slide paper" id="s-engine">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="settings-2"></i>The engine</div>
+        <h2 class="title">What powers the warm path</h2>
+        <p class="sub">Seven levers. Each card says what it is, and underneath, why it works.</p>
+        <div class="engine-grid">
+          <div class="levers">
+            <div class="lever"><div class="ico"><i data-lucide="box"></i></div><h3>Product USP</h3>
+              <p class="is">AI second opinion, family-level consolidation and account aggregation, and an in-house model portfolio available as Allocate.</p>
+              <p class="why"><b>Why</b> it gives you a reason to meet that helps him before it sells anything.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="megaphone"></i></div><h3>Brand campaign</h3>
+              <p class="is">Digital and outdoor, run together.</p>
+              <p class="why"><b>Why</b> the name is already familiar when you call — and a warm name converts far better than a cold one.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="zap"></i></div><h3>Digital RM</h3>
+              <p class="is">Inbound leads called fast, qualified, and booked with the right RM.</p>
+              <p class="why"><b>Why</b> speed-to-lead is a multiplier — the firm that reaches a live lead first usually keeps it.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="clipboard-check"></i></div><h3>RM follow-up</h3>
+              <p class="is">Disciplined work on high-potential leads, not spray and pray.</p>
+              <p class="why"><b>Why</b> most conversions come from patient follow-up, not first contact.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="user-plus"></i></div><h3>Client referrals</h3>
+              <p class="is">Asked for deliberately from happy clients.</p>
+              <p class="why"><b>Why</b> HNIs cluster — one satisfied promoter knows ten more just like him.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="users"></i></div><h3>Small-group events</h3>
+              <p class="is">Curated gatherings for GCC leaders, senior doctors, top-end societies, corporate management.</p>
+              <p class="why"><b>Why</b> credibility first, product later — intimacy and peer proof do the selling.</p></div>
+            <div class="lever"><div class="ico"><i data-lucide="layers"></i></div><h3>Emerging-HNI cross-sell</h3>
+              <p class="is">The top 0.1% of the ₹2 crore AO base.</p>
+              <p class="why"><b>Why</b> it's the warmest book the firm already owns, with a relationship and a data head-start.</p></div>
+            <div class="lever hl"><h3>The rule above it all</h3>
+              <p class="is">None of these levers convert durably without a product worth staying for.</p>
+              <p class="attr">— as Rohit puts it: without a strong product proposition, durable conversion will not happen.</p></div>
+          </div>
+          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
+            aria-label="A geared flywheel turning under its own momentum"><use href="#fig-engine"/></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 CLIENTS -->
+    <section class="slide pearl" id="s-clients">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="user-search"></i>Who you're meeting</div>
+        <h2 class="title">Five clients, five doors in</h2>
+        <p class="sub">Prospecting gets easier the moment you stop treating “HNI” as one kind of person.</p>
+        <div class="tabs" id="tabs"></div>
+        <div class="persona" id="persona"></div>
+      </div>
+    </section>
+
+    <!-- 6 PROPOSITION -->
+    <section class="slide paper" id="s-prop">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="anchor"></i>No proposition, no durable conversion</div>
+        <h2 class="title">Charm gets the meeting. The product keeps the money.</h2>
+        <p class="sub">You can buy a first meeting — a good event, a warm introduction, a sharp piece of research.
+          What you cannot do is retain an HNI on charm. They will test you.</p>
+        <div class="trial">
+          <div class="amt">₹25L</div>
+          <p>A promoter puts ₹25 lakh in as a trial, watches how you behave for two quarters, and then either scales up or walks.
+            The proposition is what turns that trial into a mandate — and what decides whether he refers you to the next promoter.</p>
+        </div>
+        <p class="propfoot" style="margin-top:18px"><b>It does one more thing worth naming:</b> it lets you open a conversation without pitching.
+          Three lines the Ionic set-up hands you, none of which asks for a rupee.</p>
+        <div class="scripts">
+          <div class="script"><div class="lbl">The second opinion</div>
+            <q>You've clearly built this well. Would it help to have a completely independent read on what you already hold — no strings, just a second set of eyes?</q></div>
+          <div class="script"><div class="lbl">The single view</div>
+            <q>Most families your size run money across five or six institutions and a few entities, and no one has one view of it. Would seeing all of it on a single screen be worth an hour?</q></div>
+          <div class="script"><div class="lbl">Allocate</div>
+            <q>Rather than pitch a fund, I'd rather show you how our own model portfolio actually behaved through the last two corrections. If it isn't better than what you have, I'll tell you.</q></div>
+        </div>
+        <p class="propfoot">Prospecting fills the top of the funnel. <b>The product decides whether anything stays in it.</b></p>
+      </div>
+    </section>
+
+    <!-- 7 MEETINGS -->
+    <section class="slide pearl" id="s-meet">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="footprints"></i>The first meeting, and the next</div>
+        <h2 class="title">Earn the second, then the third</h2>
+        <div class="steps">
+          <div class="step"><div class="h"><div class="num">1</div><div><h3>Understand</h3><div class="tg">First meeting · earn the right to a second</div></div></div>
+            <p><span class="em">Prepare like you mean it.</span> Know his sector and two or three real things moving in it right now — a policy shift, a deal, a margin trend. Walk in with a view, not a brochure.</p>
+            <p><span class="em">Open on his world.</span> Where did the money come from, what keeps him up, what does his current setup get wrong? Offer to review what he has, and position yourself as an advisor rather than a distributor.</p>
+            <p>A reference from a willing client in his own sector or community is worth more than any pitch you can make.</p></div>
+          <div class="step"><div class="h"><div class="num">2</div><div><h3>Show</h3><div class="tg">Second meeting · show, don't tell</div></div></div>
+            <p><span class="em">Bring the review.</span> Using his own numbers, show how your products would have improved the journey: more return, less risk, fewer blind spots he didn't know he had.</p>
+            <p><span class="em">Find the low-friction entry.</span> Look for a fund he's had a bad experience with that also sits on your sell list, and replace it with the single best product from your curated set. Small, obvious, winnable — a first yes that's easy to say.</p></div>
+          <div class="step"><div class="h"><div class="num">3</div><div><h3>Raise the relationship</h3><div class="tg">By the third meeting</div></div></div>
+            <p>Talk about what he wants to talk about: travel, sport, food, politics. Be genuinely well-read in at least two of these.</p>
+            <p>At this level that isn't small talk — <span class="em">it's how trust actually gets built.</span></p></div>
+        </div>
+        <div class="onerule"><b>One rule above all others:</b> never sell a product in the first meeting. Everyone knows it. Almost everyone breaks it.</div>
+        <div class="discovery"><b>In discovery, chase the feeling under the number.</b> When he mentions a worry, the useful follow-up isn't “how much?” — it's
+          <b>“what is it about this that worries you most?”</b> Let him arrive at the answer himself, and take it at his pace, not yours.</div>
+      </div>
+    </section>
+
+    <!-- 8 60-SECOND CHECK -->
+    <section class="slide indigo" id="s-check">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="timer"></i>Before any HNI meeting</div>
+        <h2 class="title">The 60-second check</h2>
+        <p class="sub">Four questions. Tick them honestly — if any answer is no, you're not ready.</p>
+        <div class="checkwrap">
+          <div>
+            <div class="checks" id="checks"></div>
+            <p class="verdict no" id="verdict" role="status">0 of 4 — you're not ready.</p>
+          </div>
+          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
+            aria-label="One decision with two routes out, one open and one flagged"><use href="#fig-watchouts"/></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 CRAFT / TRUST -->
+    <section class="slide paper" id="s-craft">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="scale"></i>The craft</div>
+        <h2 class="title">Trust is an equation</h2>
+        <p class="sub">Every time you push product too early the bottom of this ratio grows and trust falls.
+          Do your homework and the top grows. Move both and watch it.</p>
+        <div class="eqbox" style="background:var(--indigo);border-radius:18px;padding:26px 30px;color:#fff">
+          <div class="sliders">
+            <div class="sld"><label for="si">How early are you pushing product?</label>
+              <input type="range" id="si" min="1" max="9" value="2" step="1">
+              <div class="rlab"><span>Listening first</span><span>Hard selling</span></div></div>
+            <div class="sld"><label for="sh">How much homework did you do?</label>
+              <input type="range" id="sh" min="1" max="9" value="7" step="1">
+              <div class="rlab"><span>Walked in cold</span><span>Knows his sector</span></div></div>
+          </div>
+          <div>
+            <div class="fraction">
+              <div class="terms">credibility <span class="v" id="f-cred">6</span> + reliability <span class="v" id="f-rel">6</span> + closeness <span class="v" id="f-clo">6</span></div>
+              <div class="bar"></div>
+              <div class="den">self-interest <span class="v" id="f-self">2</span></div>
+            </div>
+            <div class="result"><div class="score" id="t-score">9.0</div><div class="of">trust score</div></div>
+            <div class="track"><div class="fill" id="t-fill"></div></div>
+            <p class="tmsg" id="t-msg" role="status"></p>
+          </div>
+        </div>
+        <div class="crafts">
+          <div class="c"><b>Timing beats targeting.</b><p>HNIs change advisors around events — an exit, an IPO, a business sale, a succession, an inheritance. Liquid, investable assets matter far more than a headline net-worth figure. Be present at the event, not six months after it.</p></div>
+          <div class="c"><b>Centres of influence do the heavy lifting.</b><p>The CA, the lawyer, the private banker, the founder's first investor — each sits on top of dozens of relationships. One good centre of influence out-produces a hundred cold calls.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 WATCH-OUTS -->
+    <section class="slide pearl" id="s-lose">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="alert-triangle"></i>Watch-outs</div>
+        <h2 class="title">Five ways advisors quietly lose HNI deals</h2>
+        <div class="losewrap">
+          <div class="lose">
+            <div class="row"><div class="n">1</div><div><h3>Pitching before you understand</h3><p>Leading with a product before you know what he's actually worried about. The fastest way to look like everyone else.</p></div></div>
+            <div class="row"><div class="n">2</div><div><h3>Walking in unprepared</h3><p>No view on his sector, nothing to say that a brochure couldn't. HNIs read this in the first two minutes.</p></div></div>
+            <div class="row"><div class="n">3</div><div><h3>Talking more than you listen</h3><p>The first meeting is his to talk. If you're doing most of the talking, you're not learning anything you can use later.</p></div></div>
+            <div class="row"><div class="n">4</div><div><h3>Chasing paper wealth</h3><p>Going after a big net-worth number when almost none of it is liquid. Investable, deployable money is the only kind you can advise on this quarter.</p></div></div>
+            <div class="row"><div class="n">5</div><div><h3>Going quiet after you win</h3><p>HNIs don't leave over one bad quarter; they leave over silence. The advisor who disappears between reviews gets replaced by the one who doesn't.</p></div></div>
+          </div>
+          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
+            aria-label="A signed undertaking standing between two people"><use href="#fig-trust"/></svg></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 WEEK -->
+    <section class="slide indigo" id="s-week">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="calendar-check"></i>The habit</div>
+        <h2 class="title">What a prospecting week actually looks like</h2>
+        <div class="weekwrap">
+          <div class="week">
+            <div class="wk"><div class="ico"><i data-lucide="user-plus"></i></div><div class="k">2</div><p>referral asks from happy clients</p></div>
+            <div class="wk"><div class="ico"><i data-lucide="handshake"></i></div><div class="k">3</div><p>centre-of-influence touches — a CA, a lawyer, a banker</p></div>
+            <div class="wk"><div class="ico"><i data-lucide="users"></i></div><div class="k">1</div><p>small event moving through the pipeline</p></div>
+            <div class="wk"><div class="ico"><i data-lucide="phone-call"></i></div><div class="k">Every</div><p>digital-RM lead, same-day callback</p></div>
+            <div class="wk"><div class="ico"><i data-lucide="layers"></i></div><div class="k">Weekly</div><p>block of cross-sell calls into the emerging-HNI book</p></div>
+          </div>
+          <div class="figbox sq"><svg class="fig" viewBox="0 0 300 300" role="img"
+            aria-label="A week laid out as five columns with meetings placed across it"><use href="#fig-week"/></svg></div>
+        </div>
+        <p class="closer">Do it every week and the meetings compound. <b>Skip it for a month and the pipeline goes dry — quietly, and then all at once.</b></p>
+      </div>
+    </section>
+
+    <!-- 12 POCKET VERSION -->
+    <section class="slide paper" id="s-pocket">
+      <div class="wrap">
+        <div class="kicker"><i data-lucide="bookmark"></i>The pocket version</div>
+        <h2 class="title">Six lines to carry out of the room</h2>
+        <div class="pocket">
+          <div class="pk"><span class="ar">→</span><p><b>The clients exist.</b> Finding them and earning the first meeting is the skill that pays.</p></div>
+          <div class="pk"><span class="ar">→</span><p><b>Prospecting is the job</b>, not the gap between clients. Warm paths beat cold calls every time.</p></div>
+          <div class="pk"><span class="ar">→</span><p><b>Ionic's engine:</b> a product people want, a warm brand, fast digital-RM follow-up, deliberate referrals, curated small events, and cross-sell into the emerging-HNI book.</p></div>
+          <div class="pk"><span class="ar">→</span><p><b>No proposition, no durable conversion.</b> Charm gets the meeting; the product keeps the money.</p></div>
+          <div class="pk"><span class="ar">→</span><p><b>First meeting: understand, don't sell.</b> Second meeting: show with his own numbers, then take one small, winnable yes.</p></div>
+          <div class="pk"><span class="ar">→</span><p><b>Trust = (credibility + reliability + closeness) ÷ self-interest.</b> Timing beats targeting. Centres of influence do the heavy lifting.</p></div>
+        </div>
+        <div class="signoff">The competition reads the same reports you do. What separates the RM who builds a book from the one who churns leads is unglamorous:
+          <b>preparing for every meeting, leading with the client's problem instead of your product, and standing on a proposition worth referring.</b>
+          <span class="go">That's the whole game. Go and win it.</span></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function icons(){ if(window.lucide&&lucide.createIcons){try{lucide.createIcons();}catch(e){}} }
+icons();
+
+/* Observers deliberately use the viewport, NOT {root:main}. Below 960px the
+   stylesheet gives .main height:auto/overflow:visible, so it stops being a
+   scroll container — with root:main every section then reports as permanently
+   intersecting, which pinned the nav to the last section and fired both
+   animations instantly on mobile. */
+const observe = (el, cb, threshold) =>
+  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) cb(e.target); }),
+    { threshold }).observe(el);
+
+/* ---------- count-up ---------- */
+function countUp(el){
+  if(el.dataset.done) return; el.dataset.done="1";
+  if(el.dataset.static){ el.textContent=el.dataset.static; return; }
+  const target=parseFloat(el.dataset.count), dec=+(el.dataset.dec||0),
+    pre=el.dataset.pre||"", suf=el.dataset.suf||"", comma=el.dataset.comma==="1",
+    dur=reduce?0:1000, t0=performance.now();
+  const fmt=v=>pre+(comma?Math.round(v).toLocaleString('en-IN'):v.toFixed(dec))+suf;
+  if(!el.firstChild||el.firstChild.nodeType!==3) el.insertBefore(document.createTextNode(""),el.firstChild);
+  (function f(t){const p=dur?Math.min(1,(t-t0)/dur):1,e=1-Math.pow(1-p,3);
+    el.firstChild.nodeValue=fmt(target*e); if(p<1)requestAnimationFrame(f); else el.firstChild.nodeValue=fmt(target);})(t0);
+}
+observe(document.getElementById('s-opp'),
+  t => t.querySelectorAll('[data-count],[data-static]').forEach(countUp), .25);
+
+/* ---------- circle of influence ---------- */
+const L={
+ 1:{t:"Innermost circle",tag:"Start here",c:"#FFB951",ink:"#151A5E",s:["Clients from your previous firm","Friends & family"],g:"Your warmest names and highest conversion. Mine these first."},
+ 2:{t:"Second layer",tag:"Referrals",c:"#6E75CE",ink:"#fff",s:["Client referrals","Friends & family referrals"],g:"Ask deliberately, by name. Referrals cluster with people like themselves."},
+ 3:{t:"Third layer",tag:"Your network",c:"#9AA0E0",ink:"#151A5E",s:["Ex-colleagues","Batchmates","Social acquaintances"],g:"Known faces with built-in credibility and a warm reason to reconnect."},
+ 4:{t:"Fourth layer",tag:"Reach",c:"#C9CCEF",ink:"#151A5E",s:["Social-media connects","Networking events"],g:"Widest reach, coldest start. Work it only once the centre is worked."}
+};
+const svg=document.getElementById('ringsvg'), detail=document.getElementById('detail');
+function pick(n,focus){
+  svg.setAttribute('data-active',n);
+  svg.querySelectorAll('.ring').forEach(r=>r.classList.toggle('is-active',r.dataset.layer===String(n)));
+  const d=L[n]; detail.classList.add('swap');
+  setTimeout(()=>{
+    const num=document.getElementById('d-num'); num.textContent=n; num.style.background=d.c; num.style.color=d.ink;
+    document.getElementById('d-title').textContent=d.t;
+    document.getElementById('d-tag').textContent=d.tag;
+    document.getElementById('d-guide').textContent=d.g;
+    document.getElementById('d-chips').innerHTML=d.s.map(x=>`<span>${x}</span>`).join('');
+    detail.classList.remove('swap');
+  },reduce?0:140);
+  if(focus){const g=svg.querySelector('.ring[data-layer="'+n+'"]'); if(g)g.focus();}
+}
+svg.querySelectorAll('.ring').forEach(r=>{
+  r.addEventListener('click',()=>pick(r.dataset.layer));
+  r.addEventListener('keydown',e=>{const cur=+svg.getAttribute('data-active');
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(r.dataset.layer);}
+    if(e.key==='ArrowUp'||e.key==='ArrowRight'){e.preventDefault();pick(Math.max(1,cur-1),1);}
+    if(e.key==='ArrowDown'||e.key==='ArrowLeft'){e.preventDefault();pick(Math.min(4,cur+1),1);}});
+});
+pick(1);
+observe(document.getElementById('stage'), t => t.classList.add('drawn'), .3);
+
+/* ---------- personas ----------
+   Portraits come from the illustration set; each is keyed to the session
+   note's own five types, not the set's internal archetype names. */
+const P=[
+ {fig:"fig-promoter",n:"First-generation founder",role:"Built it himself",
+  c:"Not losing what he built; tax, succession and a concentrated stake in his own company; being taken seriously.",
+  w:"A sharp, independent read on that concentrated position, plus a reference from a promoter in his own line of business."},
+ {fig:"fig-executive",n:"GCC / MNC senior leader",role:"Two countries, no time",
+  c:"ESOPs and RSUs, assets sitting in two countries, almost no time to manage any of it.",
+  w:"Family-level consolidation across geographies, and a process that asks very little of his calendar."},
+ {fig:"fig-professional",n:"Senior doctor / professional",role:"Slow trust, high loyalty",
+  c:"Steady growth, discretion, and not being sold to by yet another bank.",
+  w:"Education-first small events, plain language, and patience — the trust builds slowly here."},
+ {fig:"fig-founder",n:"Next-gen inheritor",role:"Under 40",
+  c:"Digital access, global and alternative exposure, and some independence from the family's old banker.",
+  w:"The app, the AI second opinion, and a proposition that feels built this decade."},
+ {fig:"fig-inheritor",n:"Corporate top & middle management",role:"The warmest book you own",
+  c:"Goal-based planning, ESOP timing, moving beyond a mutual-fund-only portfolio.",
+  w:"The emerging-HNI cross-sell — a structured review of a book you can already see."}
+];
+const tabs=document.getElementById('tabs'), pane=document.getElementById('persona');
+P.forEach((p,i)=>{const b=document.createElement('button');b.className='tab'+(i?'':' active');b.type='button';
+  b.innerHTML=`<span class="pic"><svg viewBox="0 0 400 500" aria-hidden="true"><use href="#${p.fig}"/></svg></span>${p.n}`;
+  b.onclick=()=>{tabs.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');render(i);};
+  tabs.appendChild(b);});
+function render(i){const p=P[i];pane.classList.add('swap');
+  setTimeout(()=>{pane.innerHTML=`<div class="port"><svg viewBox="0 0 400 500" role="img" aria-label="${p.n}"><use href="#${p.fig}"/></svg></div>
+    <div class="body"><div class="headline">${p.n}<small>${p.role}</small></div>
+    <div><h4>What he actually cares about</h4><p>${p.c}</p></div>
+    <div><h4>The way in</h4><p>${p.w}</p></div></div>`;
+    icons();pane.classList.remove('swap');},reduce?0:130);}
+render(0);
+
+/* ---------- the 60-second check ---------- */
+const Q=["Do I know one real thing moving in his sector this week?",
+         "Do I have a warm reference, or a credible reason I'm the one in the room?",
+         "Have I decided what I want from this meeting — and it isn't a sale?",
+         "Can I name the one problem I think he has?"];
+const cbox=document.getElementById('checks'), verdict=document.getElementById('verdict');
+Q.forEach((q,i)=>{const b=document.createElement('button');b.className='chk';b.type='button';
+  b.setAttribute('aria-pressed','false');
+  b.innerHTML=`<span class="box"><i data-lucide="check"></i></span><span>${q}</span>`;
+  b.onclick=()=>{b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true');tally();};
+  cbox.appendChild(b);});
+function tally(){const n=[...cbox.querySelectorAll('.chk')].filter(b=>b.getAttribute('aria-pressed')==='true').length;
+  const ready=n===Q.length;
+  verdict.textContent=ready?"4 of 4 — you're ready.":`${n} of 4 — you're not ready.`;
+  verdict.className='verdict '+(ready?'yes':'no');}
+tally(); icons();
+
+/* ---------- trust equation ----------
+   Rebuilt on the note's own formula so the widget demonstrates the equation
+   printed beside it. The previous version reduced to 100/slider via a constant
+   that cancelled itself out, leaving 8 of 10 stops sharing one message. */
+const si=document.getElementById('si'), sh=document.getElementById('sh');
+const els={cred:document.getElementById('f-cred'),rel:document.getElementById('f-rel'),
+  clo:document.getElementById('f-clo'),self:document.getElementById('f-self'),
+  score:document.getElementById('t-score'),fill:document.getElementById('t-fill'),msg:document.getElementById('t-msg')};
+const MAXTRUST=20;
+const mix=(a,b,t)=>'#'+[0,1,2].map(k=>Math.round(a[k]+(b[k]-a[k])*t).toString(16).padStart(2,'0')).join('');
+function terms(){
+  const push=+si.value, home=+sh.value;
+  return {cred:1+Math.round(home*0.7),          // homework buys credibility
+          rel:6,                                 // you either do what you said, or you don't
+          clo:Math.max(1,7-Math.round((push-1)*0.7)),  // pushing early costs closeness
+          self:push};
+}
+function trust(){
+  const t=terms(), num=t.cred+t.rel+t.clo, val=num/t.self;
+  els.cred.textContent=t.cred; els.rel.textContent=t.rel;
+  els.clo.textContent=t.clo; els.self.textContent=t.self;
+  els.score.textContent=val.toFixed(1);
+  const pct=Math.max(4,Math.min(100,val/MAXTRUST*100));
+  els.fill.style.width=pct+'%';
+  const col=mix([255,185,81],[209,72,72],Math.max(0,Math.min(1,1-(val-1)/9)));
+  els.fill.style.background=col; els.score.style.color=col;
+  els.msg.textContent = val>=8 ? "Trust is compounding — this is where a trial becomes a mandate."
+    : val>=4 ? "Holding. Keep the focus on his problem, not your product."
+    : val>=2.2 ? "Thin. He's being sold to, and he can feel it."
+    : "The denominator wins. You'll get the meeting and lose the mandate.";
+}
+si.oninput=trust; sh.oninput=trust; trust();
+
+/* ---------- nav + scroll-spy ---------- */
+const links=[...document.querySelectorAll('#nav a')], map={};
+links.forEach(a=>{map[a.dataset.t]=a; a.onclick=()=>document.getElementById(a.dataset.t).scrollIntoView({behavior:reduce?'auto':'smooth'});});
+/* Track the section nearest the top of the viewport rather than trusting a
+   single threshold, so it stays correct in both the snapping desktop layout
+   and the plain document flow on mobile. */
+const sections=[...document.querySelectorAll('.slide')];
+let spyTick=false;
+function spy(){
+  spyTick=false;
+  const line=innerHeight*0.35;          // the slides are contiguous, so exactly
+  let best=null;                        // one of them covers this line
+  for(const s of sections){const r=s.getBoundingClientRect();
+    if(r.top<=line&&r.bottom>line){best=s;break;}}
+  if(!best){                            // above the first or below the last
+    best=sections.find(s=>s.getBoundingClientRect().bottom>0)||sections[sections.length-1];
+  }
+  links.forEach(l=>l.classList.remove('active'));
+  const a=map[best.id]; if(a)a.classList.add('active');
+}
+const onScroll=()=>{if(!spyTick){spyTick=true;requestAnimationFrame(spy);}};
+addEventListener('scroll',onScroll,{passive:true});
+document.getElementById('main').addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',onScroll,{passive:true});
+spy();
+
+icons(); addEventListener('load',icons);
+</script>
+</body>
+</html>
