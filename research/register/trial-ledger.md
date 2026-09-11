@@ -5004,3 +5004,110 @@ only the cross-H comparison is evidence.
 **G5** stays REGISTERED-UNRUN with its spec frozen as written (book-level vol-targeting needs
 the standing-book engine plus a margin/collar interaction model; not faked).
 CENSUS 31 (1305 -> **1336**).
+
+## Entry CH-D1..CH-D5 (2026-09-11) — PRE-REGISTERED before running: THE CHURN BATTERY
+(principal: "i want to know more on churn and related stuff for edge"). "Churn" is read in
+BOTH of its meanings, kept in separate halves because they are separate questions:
+**(A) OUR churn** — turnover as a COST to be managed (CH-D1..D3, the direct continuation of
+G1/G4); **(B) THE MARKET's churn** — turnover as a SIGNAL in its own right (CH-D4..D5, never
+run standalone on this desk: `Share_Turn_12M` has appeared only as a VAL-D2 companion and a
+VAL-D3 trap marker, both inside the family VAL-D2 RESULT booked as ARTIFACT-DRIVEN, so
+neither is a turnover verdict). A THIRD reading — the fund industry's own churn (scheme
+portfolio-turnover ratio vs alpha) and the exchange's delivery percentage — is DATA-GATED and
+gets RUNSHEET rows, not designs, today. Cost comes from `quant/costs/statutory`
+(cash_delivery round-trip, registry-driven) and tax from `config/costs.yaml
+capital_gains_tax_india` — no rate is typed into the runner (process note #6).
+
+**CH-D1 — the RANK-BUFFER (hysteresis) test on the India momentum sleeve (6 cells).** MOM-D1
+named 6-2 the India peak window on a GROSS print with no turnover discipline at all. Formation
+quoted verbatim from MOM-D1/G4: `form62 = lg.rolling(5).sum().shift(2)` (6-month formation,
+1-month skip). EW long portfolio; a name ENTERS at percentile rank >= 0.90 and EXITS only
+below (0.90 - b), b in {0.00, 0.05, 0.10, 0.20, 0.30} percentile points (b=0.00 = the
+unbuffered monthly re-formation, i.e. MOM-D1's own construction, the benchmark). Per cell:
+gross ann, one-way monthly turnover, net ann after the registry round-trip applied to two-way
+turnover, and net-after-STCG at the post-Jul-2024 rate (the live regime; every holding here is
+under 12m). Cell 6 = the verdict row. BARS: (a) PROMOTION — some b > 0 delivers net ann >= the
+b=0 net ann **+0.50pp/yr**; if none does, buffering is cosmetic on this panel and the
+unbuffered rule stands as booked. (b) PRIOR — turnover falls monotonically in b (registered as
+a CHECK, not assumed: buffered portfolios can thin out and force replacement). (c) PRIOR —
+gross DECAYS with b, but by **< 3.0pp/yr** from b=0.00 to b=0.30 (the signal is not so fast
+that holding stale winners destroys it). ONE-WAY RULE, and it matters here: buffering holds
+names LONGER, and this panel deleted its delistings, so holding a decaying name longer is
+FLATTERED. A print that buffering HELPS is therefore NON-EVIDENCE-GRADE (flagged, not booked
+as doctrine); a print that buffering does NOT help, or hurts, is admissible.
+
+**CH-D2 — OVERLAPPING re-formation frequency: the fix for G4's n=6 (6 cells).** G4's holding
+ladder was non-overlapping and bottomed out at SIX observations; the Jegadeesh-Titman
+overlapping construction re-forms 1/k of the book each month and holds each tranche k months,
+yielding a monthly-frequency series at every k. k in {1, 2, 3, 6, 12} (5 cells) + the verdict
+row. Per cell: gross ann, ann vol, maxDD, one-way monthly turnover, net after the registry
+round-trip, net after tax (each tranche's own holding length picks the rate — k >= 12 gets
+LTCG, everything shorter STCG, both rate regimes printed). BARS: (a) CONFIRMATION — G4's gross
+HUMP at 3 months reproduces here, i.e. k=3 gross >= k=1 gross AND k=3 gross >= k=6 gross. If
+it does NOT reproduce on hundreds of observations, G4's hump is declared a small-sample
+artifact and that record is corrected in place. (b) PROMOTION, the honest test of G4's
+unregistered candidate now that turnover cost IS modelled: k=3 net-of-cost-and-tax >= k=1's
+**+0.50pp/yr**. (c) PRIOR — one-way turnover falls roughly as 1/k, so k=3 saves materially on
+cost; the registered question is only whether gross decay eats the saving.
+
+**CH-D3 — PARTIAL ADJUSTMENT on the asset book: the G1 continuum (6 cells).** G1 tested WHEN
+to rebalance (calendar, band) and found drift beat every rebalance rule on both return/vol and
+drawdown while being unadoptable under the mandate's weight bands. The untested dimension is
+HOW MUCH to trade. Rule: each month end, trade a fraction lambda of the distance back to the
+50/50 NIFTY / INR-gold target, lambda in {0.00, 0.25, 0.50, 0.75, 1.00} (lambda=0.00 = G1's
+"never", lambda=1.00 = G1's monthly — both are known anchors, so the interior cells are the
+new information). Same blend, same window, same registry cost. 5 cells + the verdict row.
+BARS: (a) PROMOTION — some INTERIOR lambda (0 < lambda < 1) delivers BOTH a net CAGR within
+**0.20pp/yr** of the grid's best AND a maxDD no deeper than lambda=0.00's; if so, partial
+adjustment is the mandate-compatible resolution of G1's dilemma and the lambda is named. If
+not, nothing beats the semi-annual calendar rule G1 already named. (b) PRIOR — maxDD is
+monotone INCREASING in lambda (G1's headline generalizes). (c) PRIOR — turnover is monotone
+increasing in lambda and roughly proportional to it.
+
+**CH-D4 — TURNOVER AS A SIGNAL: the lookback ladder (US firm_panel, REHEARSAL not India
+evidence — the SYNTHESIS-FZ1 labelling rule binds) (5 cells).** Construction per the VAL
+conventions: `dec()` n=5 per date on Share_Turn_{3M,6M,12M}; LOW-minus-HIGH turnover spread at
+fwd 1m (x1200) / 12m (x100) / 36m (QG-D3 compounding) + the szQ5 large-cap 12m column (the
+implementable one). 3 lookback cells each carrying that 4-column profile (VAL-D1's counting) +
+1 lookback-ladder verdict + 1 INTERACTION cell (Lee-Swaminathan: within Mom_11M top quintile,
+LOW-minus-HIGH turnover at fwd-12m). BARS: (a) PRIMARY, at the ES-D2/VAL-D2 gate scale of
+**2.00%/yr** (precedent, not a new magic number) — the szQ5 12m LOW-minus-HIGH spread >= +2.00
+for at least one lookback => the Datar-Naik-Radcliffe neglect/liquidity premium is present in
+large caps here. (b) PRIOR — the spread is POSITIVE at every lookback [Datar-Naik-Radcliffe
+1998; Amihud liquidity premium LIT] and STRONGER at 12M than 3M (levels beat shocks). (c)
+PRIOR — the interaction clears +2.00 too: quiet winners beat loud winners. ONE-WAY RULE: this
+panel deleted its delistings and high-turnover names skew toward the distressed and the
+attention-driven, exactly the population whose worst outcomes were deleted — so the bias
+FLATTERS HIGH turnover. A print that LOW turnover wins is admissible (it wins DESPITE the
+bias); a print that HIGH turnover wins is non-evidence-grade and must be read artifact-suspect
+(the EQ-D1 argument, same shape).
+
+**CH-D5 — VOLUME SHOCK on the India panel: the real-India leg (6 cells).** CONSTRUCTION LIMIT
+STATED UP FRONT, not silently dropped: the India vault has `n500_value_traded` (daily rupee
+value) but NO shares outstanding and NO market cap, so the textbook turnover ratio
+(volume/shares) is NOT constructible here — this is the P1/P4 gate again, and the honest
+substitute is a WITHIN-STOCK measure that never needs a share count. VS = log(median value
+traded over the last 21 trading days) - log(median over the prior 252) — a stock's own churn
+ACCELERATION, with the size and liquidity LEVEL differenced out entirely. Terciles per date,
+monthly. Cells: fwd-1m / fwd-3m / fwd-12m LOW-minus-HIGH spreads (3); the liquid-tercile
+sub-read at 12m (MOM-D1's prior-year top-ADV tercile convention, quoted) (1); the momentum
+interaction (within 6-2 top-decile winners, LOW-shock minus HIGH-shock at fwd-12m) (1); and a
+REDUNDANCY check, pooled corr(VS rank, 6-2 rank), with the threshold registered in advance at
+|corr| >= 0.50 => the volume shock is largely momentum repackaged and the design is DEMOTED
+(1). BARS: (a) PRIMARY — |fwd-12m LOW-minus-HIGH| >= **4.00pp/yr** AND the sign agrees in the
+liquid tercile => a real India churn signal, registrable as a Tier-C state. (4.00 is inherited
+scale, not a free parameter: TL-D2's -2.9pp/yr size base rate and MOM-D1's +5.87 liquid-tercile
+momentum print set the neighbourhood.) (b) PRIOR, two-sided BY CONSTRUCTION because the
+literature is genuinely split: the attention/overvaluation story wants HIGH shock to
+underperform (LOW-minus-HIGH positive) while the Gervais-Kaniel-Mingelgrin high-volume return
+premium wants the opposite at short horizons — so the registered prior is a SIGN FLIP ACROSS
+HORIZON: positive at 12m, negative or null at 1m. Same sign at both horizons = flip prior
+MISSED, recorded. (c) PRIOR — the redundancy check does NOT fire. ONE-WAY RULE: as CH-D4 —
+high-shock names skew event-driven and distressed, whose deaths were deleted, so the bias
+flatters HIGH shock and a print favouring LOW shock is the admissible direction.
+
+CENSUS 29 on the day (6+6+6+5+6). The third reading of churn is GATED, not designed: two
+RUNSHEET rows added today (AMFI/AMC scheme-level PORTFOLIO TURNOVER RATIO disclosures, for the
+fund-churn-vs-alpha question; and the NSE DELIVERY PERCENTAGE row already queued under the
+gap-map microstructure suite is hereby named as the delivery-vs-speculative-churn instrument).
+Neither is promoted or pre-registered here — each owes its own registration on arrival.
