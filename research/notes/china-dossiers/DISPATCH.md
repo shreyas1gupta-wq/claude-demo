@@ -20,11 +20,11 @@ recorded rather than hidden.
 | 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model + b2-land-reform + b2-land-monetization | 17 | running |
 | 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | DONE |
 | 14 | c-developers-1 | b6-dev-evergrande + b6-dev-country + b6-dev-vanke | 18 | |
-| 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | |
+| 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | running |
 | 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | DONE |
 | 17 | c-india | b10-india-lessons + b10-india-property-cycle + b10-india-commodities + b10-india-flows | 17 | DONE |
-| 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | running |
-| 19 | c-policy | b8-policy-timeline-1 + b8-policy-timeline-2 + b8-property-tax | 14 | |
+| 18 | c-facts | b9-interesting-facts-1 + b9-interesting-facts-2 | 10 | DONE |
+| 19 | c-policy | b8-policy-timeline-1 + b8-policy-timeline-2 + b8-property-tax | 14 | running |
 | 20 | c-bonds | b7-offshore-bonds + b7-onshore-bonds-banks + b7-foreign-investable | 13 | |
 | 21 | c-tier2-a | b1-t2 Hangzhou/Nanjing/Chengdu/Chongqing/Wuhan/Changsha | 18 | |
 | 22 | c-tier2-b | b1-t2 Xi'an/Zhengzhou/Tianjin/Shijiazhuang/Suzhou/Wuxi | 18 | |

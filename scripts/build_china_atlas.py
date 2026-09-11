@@ -820,6 +820,93 @@ better analogue for the credit mechanism while Hainan is the better one for the 
 resolution path, with Hainan closer overall because this bust is failing on absorption rather than
 on credit — is explicitly argued and hedged, not asserted.</p>
 </section>
+
+<section>
+<h2>13 · How much is empty — and the statistic everyone repeats that its own source disowned</h2>
+<p class="sub">"How many empty apartments does China have" is the most-asked question about this
+subject and the one with the widest range of confidently-asserted wrong answers. Two agents were
+sent at it from different directions and converged on the same conclusion.</p>
+<div class="tbl"><table>
+<thead><tr><th>Estimate</th><th>Method</th><th>Population measured</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr><td class="mono">≈50m units (21.4% urban vacancy, 2017)</td>
+<td>Gan Li / CHFS household survey</td><td>Households' own empty dwellings</td>
+<td class="pos"><b>Best-documented</b> <span class="tag snip">2-SOURCE</span></td></tr>
+<tr><td class="mono">390.88m sqm (≈4m units), end-2024</td><td>NBS completed-unsold stock</td>
+<td>Developers' finished unsold units</td><td class="pos">Official, narrow, and rising
+(+10.6%/+16.2% YoY) <span class="tag snip">2-SOURCE</span></td></tr>
+<tr><td class="mono">≈50–90m units</td><td>Range across credible surveys</td><td>Mixed</td>
+<td class="pos">The defensible range</td></tr>
+<tr><td class="mono neg">64.5–70m units</td><td>A 2010s electricity-meter claim</td>
+<td>Zero-consumption meters</td>
+<td class="neg"><b>DISOWNED AT SOURCE.</b> State Grid confirmed the figure to one outlet and denied
+it to another within days — yet it is the ancestor of every "ghost apartment" claim still in
+circulation <span class="tag snip">2-SOURCE on the dispute</span></td></tr>
+<tr><td class="mono neg">130–150m units</td><td><b>None located</b></td><td>—</td>
+<td class="neg">No method-stated source exists. Appears to descend from a retired official's 2023
+"three billion people" aside — arithmetically absurd, and self-qualified as excessive even as it was
+said</td></tr>
+</tbody></table></div>
+<h3>Years to clear: four right answers, and the denominator is the whole argument</h3>
+<div class="tbl"><table>
+<thead><tr><th>Answer</th><th>What is in the numerator</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td class="mono">≈5.8 months</td><td>Completed unsold stock only</td><td>Own calculation</td></tr>
+<tr><td class="mono">≈2–2.7 years</td><td>The broader for-sale pipeline (27.4 months, Nov 2025)</td>
+<td>CRIC/E-house, with Hao Hong and Goldman converging independently</td></tr>
+<tr><td class="mono">≈6.4 years</td><td>The entire under-construction pipeline, scaled</td>
+<td>This dossier's own estimate</td></tr>
+<tr><td class="mono">&gt;10 years</td><td>The entire under-construction pipeline</td><td>Hao Hong</td></tr>
+</tbody></table></div>
+<p>The spread is not disagreement about China — it is four different questions wearing the same
+words. Anyone quoting a years-to-clear figure without naming its denominator is quoting a number
+whose value they can choose.</p>
+<h3>The physical cycle, where the numbers are unambiguous</h3>
+<ul>
+<li><b>New starts fell 74.1%</b>: 2,271.54m sqm (2019 peak) to 587.70m sqm (2025), matching
+independently-reported "~74% below peak" almost exactly <span class="tag snip">2-SOURCE</span>.
+This is the cleanest, least-contested number in the entire programme.</li>
+<li><b>Completions fell only 37%</b> (959 → 603m sqm) — because the 保交楼 "guarantee delivery"
+campaign explicitly funds <i>finishing pre-sold units</i> rather than new construction: a PBoC
+¥200bn facility, later ¥2.23tn+ of "white-list" loans. Policy chose delivery over development,
+which is why the two series diverged.</li>
+<li><b>Construction employment peaked near 62 million jobs (2020)</b> — more workers than the
+population of Italy. A 74% starts collapse against that base is the social fact underneath the
+financial one.</li>
+</ul>
+</section>
+
+<section>
+<h2>14 · The striking facts, checked — and the ones that do not survive checking</h2>
+<div class="tbl"><table>
+<thead><tr><th>Claim</th><th>Status</th><th>The accurate version</th></tr></thead>
+<tbody>
+<tr><td>China poured more cement in ~3 years than the US did in the entire 20th century</td>
+<td class="pos"><b>CONFIRMED</b></td>
+<td>Traced to Vaclav Smil (<i>Making the Modern World</i>, on USGS data), popularized by Bill Gates
+in 2014; USGS's own cement specialist independently verified the order of magnitude. Two caveats:
+the window is a <b>moving snapshot</b> (2010-12 or 2011-13 depending on the telling, compressed to
+~2 years by 2018-19), and many retellings say "concrete" in cubic metres when the real unit is
+<b>cement in tonnes</b></td></tr>
+<tr><td>Built floor space per capita reached rich-world levels</td><td class="pos"><b>CONFIRMED</b></td>
+<td>≈39–41 sqm per person — European and Japanese levels, reached at a <b>fraction of their
+income</b> (Rogoff-Yang). Arguably the single most startling verified fact on the page</td></tr>
+<tr><td>Shenzhen price-to-income ≈35x</td><td class="amber"><b>REAL BUT STALE</b></td>
+<td>A 2018 vintage of one methodology. The same series ran to ≈48x by 2020 and ≈8–13x by 2026. At
+least three non-reconciled Chinese and international series give wildly different levels for the
+same city and year, so any single price-to-income figure here is a methodology choice</td></tr>
+<tr><td>64.5–70m empty homes</td><td class="neg"><b>DISOWNED AT SOURCE</b></td>
+<td>State Grid confirmed the electricity-meter figure to one outlet and denied it to another within
+days. Still the ancestor of every ghost-apartment claim in circulation</td></tr>
+</tbody></table></div>
+<div class="warn"><b>Why a debunking section belongs on an investment page.</b> Two agents working
+independently — one on inventory method, one on provenance — arrived at the same verdict on the
+empty-homes statistic from opposite directions. That convergence is worth more than either finding
+alone, and it points at the real hazard in this subject: the most quotable China property numbers
+are frequently mangled versions of a real figure with a different denominator, unit or year. The
+programme's standing rule is to find the original or say "widely repeated, origin not located" —
+which is a finding, not a failure.</div>
+</section>
 <section class="panel">
 <h2>Method, and what would make this better</h2>
 <h3>The episode definition, frozen before the run</h3>
