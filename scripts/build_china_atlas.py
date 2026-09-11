@@ -659,6 +659,10 @@ became a global story.</li>
 <li>The named false negatives: <b>credit ratings and developer equity prices gave almost no
 warning.</b> Evergrande carried investment-grade ratings through all of 2020.</li>
 </ul>
+<div class="warn" style="background:var(--badbg);color:var(--bad)"><b>PARTLY SUPERSEDED — see §18.</b>
+The firm-level case files show leverage gave 13-21 months on Evergrande and Sunac but only ~2 months
+on Country Garden, because presale accounting flattered its ratios. The claim below stands in
+direction and is weaker than written.</div>
 <div class="warn"><b>The synthesis, and it is the programme's most transferable finding.</b> Macro
 credit aggregates told you the <i>state</i> — that this was a system carrying crash risk — and
 nothing about the <i>timing</i>. Micro leverage told you the timing. A desk that wants an
@@ -1051,6 +1055,55 @@ recognition</b> — critics place it back with Japan.</li>
 Japan's six-cities and nationwide land indices circulate with identical index values in some
 secondary sources (they are different series), and a UK land statistic was nearly miscast as US.
 Both are recorded in the dossier — the kind of error that silently halves or doubles a headline.</p>
+</section>
+
+<section style="border-left:3px solid var(--bad);padding-left:18px">
+<h2>18 · Correction · the developer case files overturn this page's own earlier conclusion</h2>
+<p class="sub">Sections 9 and 15 concluded that macro credit aggregates gave the <i>state</i> while
+firm-level leverage gave the <i>timing</i>. The firm-by-firm evidence <b>partly refutes that</b>, and
+the correction is left here in full rather than folded quietly into the earlier text.</p>
+<div class="tbl"><table>
+<thead><tr><th>Firm</th><th>Peak total liabilities</th><th>of which interest-bearing</th>
+<th>of which PRESALE</th><th>Three Red Lines status</th><th>Warning lead</th><th>Bond recovery</th></tr></thead>
+<tbody>
+<tr><td>Evergrande</td><td class="mono">CNY 2,437bn (≈$350bn)</td><td class="mono">≈CNY 572bn</td>
+<td class="mono">≈CNY 722bn (<b>29.6%</b>)</td><td class="mono neg">RED from 2020</td>
+<td class="mono pos"><b>13–21 months</b></td><td class="mono neg">≈2–6c</td></tr>
+<tr><td>Sunac</td><td class="mono">—</td><td class="mono">&gt;200% net gearing since 2017</td>
+<td class="mono">—</td><td class="mono neg">RED from 2020</td><td class="mono pos"><b>13–21 months</b></td>
+<td class="mono neg">8–14%</td></tr>
+<tr><td><b>Country Garden</b></td><td class="mono">CNY 1,435bn</td><td class="mono">—</td>
+<td class="mono neg">CNY 668bn (<b>46.6%</b>)</td>
+<td class="mono amber">“YELLOW”, targeting full compliance by 2023</td>
+<td class="mono neg"><b>≈2 months</b></td><td class="mono neg">≈10c (90% haircut)</td></tr>
+<tr><td>Vanke</td><td class="mono">—</td><td class="mono">Shenzhen Metro loans &gt;CNY 34.6bn</td>
+<td class="mono">—</td><td class="mono">Mixed ownership</td><td class="mono">—</td>
+<td class="mono">bonds ≈20% of face; S&amp;P “Selective Default”, Fitch “Restricted Default”
+(Jan–Apr 2026) — <b>life-supported, not rescued</b></td></tr>
+</tbody></table></div>
+<div class="warn" style="background:var(--badbg);color:var(--bad)"><b>What the earlier sections got
+wrong.</b> Leverage did flag the worst offenders more than a year out — Evergrande and Sunac carried
+over 200% net gearing from 2017 and were “Red” from the policy's first day. But it <b>failed on the
+case that mattered most</b>: Country Garden, the largest private developer and the one whose failure
+made the crisis systemic, showed as merely “Yellow” and gave roughly <b>two months</b> of warning.
+The mechanism is presale accounting. Country Garden carried <b>46.6%</b> of its peak liabilities as
+presale obligations against Evergrande's 29.6% — money owed as <i>houses</i>, not cash — and that mix
+made its reported leverage look manageable. <b>The Three Red Lines were gameable by shifting the
+liability mix toward the liability that does not look like debt.</b> So the corrected statement is:
+firm leverage beats macro aggregates, but it is not sufficient, and a ratio a firm can restructure
+its way around is a ratio that will fail on the firm that most needs flagging.</div>
+<p><b>What actually predicted survival was ownership, not any ratio.</b> That is the uncomfortable
+finding. The state-linked developers came through and took the market: from roughly two-thirds
+<i>private</i> before 2021 to the state taking <b>89% of 2023 top-100 land value</b> and about
+two-thirds of sales by mid-2024. No leverage screen would have ranked Poly above Country Garden on
+2020 fundamentals; the ownership column would have.</p>
+<div class="warn" style="background:var(--gatebg);color:var(--gate)"><b>The transferable lesson, and
+it is not the one the desk expected to write.</b> In a policy-directed market the decisive variable
+is <i>who will be allowed to fail</i>, which is not in any financial statement. For an India-facing
+book this is a real constraint on importing the monitoring doctrine: a leverage screen on Indian
+developers is worth building — the earlier sections' case for that stands — but the China evidence
+says to pair it with an explicit read on the liability mix (how much is owed as delivery rather than
+cash) and on whether an implicit sponsor exists. Two of those three are not ratios.</div>
 </section>
 <section class="panel">
 <h2>Method, and what would make this better</h2>
