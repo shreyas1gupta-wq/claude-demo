@@ -8,9 +8,9 @@ recorded rather than hidden.
 |---|---|---|---|---|
 | 1 | b1-t1-overview | b1-t1-overview | 5 | DONE |
 | 2 | b2-land-national | b2-land-national | 5 | running |
-| 3 | b6-debt-predictive-summary | b6-debt-predictive-summary | 5 | running |
-| 4 | c-yield | b4-resi-yield-national + b4-rents-falling | 9 | |
-| 5 | c-velocity | b5-velocity-national + b5-velocity-precrash + b5-peak-timing | 14 | |
+| 3 | b6-debt-predictive-summary | b6-debt-predictive-summary | 5 | DONE |
+| 4 | c-yield | b4-resi-yield-national + b4-rents-falling | 9 | running |
+| 5 | c-velocity | b5-velocity-national + b5-velocity-precrash + b5-peak-timing | 14 | running |
 | 6 | c-assetclass-core | b3-apartments-vs-houses + b3-retail-shops | 10 | |
 | 7 | c-office | b3-office-beijing/shanghai/shenzhen/guangzhou (merged) + b3-office-tier2 | 14 | |
 | 8 | c-land-auctions | b2-land-auctions + b2-land-state-buyers | 10 | |
