@@ -18,7 +18,7 @@ recorded rather than hidden.
 | 10 | c-creits | b7-creits-overview + b7-creits-rental-housing + b7-creits-commercial | 13 | DONE |
 | 11 | c-inventory | b6-inventory-vacancy + b5-starts-completions | 10 | |
 | 12 | c-lgfv | b6-lgfv + b2-land-fiscal-model | 9 | |
-| 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | running |
+| 13 | c-tier3 | b1-t3-notorious + b1-t3-satellite + b1-provincial-capitals | 14 | DONE |
 | 14 | c-developers-1 | b6-dev-evergrande + b6-dev-country + b6-dev-vanke | 18 | |
 | 15 | c-japan | b5-compare-japan + b5-compare-others | 11 | |
 | 16 | c-hainan | b9-hainan-1993 + b9-wenzhou-2011 | 8 | |

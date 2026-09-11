@@ -5470,3 +5470,68 @@ the one discovered in the run — the pre-1945 episodes are war-and-inflation ar
 property cycles, which is why the modern-era sub-read is reported throughout and why the registered
 full-sample bars must be read with that contamination in view rather than quietly re-cut.
 CENSUS 24 (1365 -> **1389**).
+
+## Entry CN-DOSSIER (2026-09-11, running record; NOT a trial — zero cells, census 0) — THE CHINA
+RESEARCH HALF of the CN programme (`research/frontier/china-property-plan.md` Half B). Booked as a
+note rather than a design because nothing here is computed from vaulted data and no bar can be set
+on a search snippet; the SNAPSHOT-1 / GAP-MAP-1 precedent for descriptive entries applies.
+**EVIDENCE STANDARD, stated once and binding on every consumer**: WebFetch is EGRESS_BLOCKED for
+every domain in this session (established by the first agent's failure report and re-tested directly
+by the desk against stats.gov.cn and tradingeconomics.com), so every China figure rests on
+search-result snippets that could not be checked against a primary page. Agents were required to
+corroborate load-bearing numbers from two independent results and to tag each figure `[2-SOURCE]` /
+`[1-SOURCE]` / `[RECALL]`. This half is INDICATIVE RESEARCH, not desk-grade evidence; it may inform
+a design and may not be cited as a print. The five CN RUNSHEET rows added the same day are the
+named fix.
+DOSSIERS LANDED (8 of ~35 planned, priority order): `b1-t1-overview` (tier aggregates),
+`b6-debt-predictive-summary` (the predictive scorecard), `b2-land-national` (the land series),
+`c-yield` (rental yields and rents), `c-velocity` (crash and boom velocity), `c-assetclass-core`
+(the asset-class split), `c-creits` (C-REITs and offshore vehicles); `c-office`, `c-tier3`,
+`c-india` in flight. All in `research/notes/china-dossiers/`, each with its own confidence tags and
+a gaps section naming what could NOT be sourced.
+THE JOINED FINDINGS — the ones neither half could produce alone, and the reason the programme was
+split this way:
+1. **"Has China crashed?" has no single answer.** Tier-3 has taken a complete crash by the CN-D1
+   base rate (reported ~-30% vs a modern median of -32.0%) while tier-1 has taken about a third of
+   one (reported "<10%"). Two independent measures agree on that one-third for tier-1: the depth
+   placement and the rental-yield expansion (+0.3 to +0.8pp so far against a +1.53pp CN-D2 norm).
+   Any national average describes neither market.
+2. **THE MEASUREMENT GAP IS THE BINDING UNCERTAINTY, not the analysis.** On the official NBS index
+   China's bust/boom velocity ratio is 0.98x — indistinguishable from CN-D1's modern median of
+   0.99x, an ordinary Japan-ish grind three-quarters of the way to a median crash (-24.6% real).
+   On private estimates it is 1.73x (-40%, -10.7%/yr), the Ireland/Finland fast-crash regime and
+   already past median depth. Opposite investment conclusions; no analysis closes a 2x input gap.
+3. **The land answer is three numbers with three peak years**: revenue -52.3% (2021 peak), volume
+   -66% (2020 peak), price only -23% from a 2023 peak that is itself a composition artifact the
+   source labels 结构性上涨. Land transmits the shock fiscally (to local government, hence to
+   infrastructure, steel and cement) rather than through the housing index.
+4. **CN-D3's 87.2% false-alarm rate has a case-study twin.** The China research independently finds
+   that the extreme LEVEL readings (price-to-rent near 2%, price-to-income 12-17x) had looked that
+   way for years and were useless for dating anything, while firm-level developer leverage was both
+   earliest and clearest (only 6.3% of rated developers met the Three Red Lines at introduction).
+   Macro aggregates gave the STATE; micro balance sheets gave the TIMING. Named false negatives:
+   credit ratings (Evergrande investment-grade through all of 2020) and developer equity prices.
+5. **THE PROGRAMME'S MOST VALUABLE AND MOST CAVEATED NUMBER**: the affordable-rental-housing
+   C-REITs imply a Chinese residential cap rate of ~5.3-5.9% (appraisal discount rates 6.0-6.5%
+   against a disclosed rent-growth assumption of 0.66%/yr), i.e. AT OR ABOVE CN-D2's median trough
+   yield of 5.23% — while the direct tier-1 market yields 2.0-2.6%. The desk verified the
+   arithmetic (Gordon identity, r - g: 6.0-0.66=5.34, 6.5-0.66=5.84 — sound) but the construction
+   rests on ONE source and is the top verification priority. A NEW [VERIFY] is booked alongside it:
+   the three yields compared may not share a gross/net basis (JST documents its field only as
+   rent[t]/p[t]; China's direct figure is explicitly gross; a cap rate is net). Resolving it either
+   way WIDENS every gap shown rather than narrowing it, so the direction of each comparison
+   survives and only the magnitudes are uncertain, in a known direction.
+6. **The worst single outcome found was policy, not price**: Beijing's 2017 reclassification of
+   commercial-titled flats (商住房) took that category's volume down 94% and price ~-43%, then a
+   further ~40% in 2020. For an India-facing book the read-across is that in a policy-directed
+   market the RULE CHANGE is the tail risk and it arrives faster than any price series warns.
+7. **Access, for a foreign book**: the instrument carrying the honest mark is the one that cannot be
+   bought — C-REIT Stock Connect inclusion was announced April 2024, is still not live, and HKEX's
+   own chief executive targeted Q4 2027 as of May 2026. Offshore USD developer bonds recovered
+   ~0.6% on ~$147bn of defaults: a near-total loss, not a distressed-debt tail.
+CONSUMPTION: nothing here is promoted and no rule is registered. The programme's output is (i) the
+published China Property Crash Atlas (row 64), (ii) five RUNSHEET rows, (iii) the CN-D1..CN-D5
+base rate, which IS desk-grade and stands on its own, and (iv) one transferable monitoring
+doctrine — watch the balance sheets of the largest levered operators for timing and treat
+credit-to-GDP as a regime label, which is the identical conclusion the ER arc reached about
+valuation.
