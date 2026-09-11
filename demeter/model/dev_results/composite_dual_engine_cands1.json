@@ -1,0 +1,9 @@
+{
+ "P1_peak":    {"v_calm": 15.5, "v_high": 23.0, "hyst": 0.12, "k": 4.0, "out_days": 10, "min_hold": 10},
+ "P2":         {"v_calm": 15.5, "v_high": 22.0, "hyst": 0.12, "k": 4.0, "out_days": 10, "min_hold": 10},
+ "P3":         {"v_calm": 15.5, "v_high": 23.0, "hyst": 0.12, "k": 3.0, "out_days": 15, "min_hold": 10},
+ "P4_centre":  {"v_calm": 15.5, "v_high": 22.5, "hyst": 0.12, "k": 4.0, "out_days": 12, "min_hold": 10},
+ "P5":         {"v_calm": 15.5, "v_high": 23.0, "hyst": 0.12, "k": 3.0, "out_days": 20, "min_hold": 12},
+ "P6":         {"v_calm": 15.0, "v_high": 22.5, "hyst": 0.12, "k": 3.5, "out_days": 12, "min_hold": 10},
+ "P7":         {"v_calm": 15.5, "v_high": 23.0, "hyst": 0.14, "k": 4.0, "out_days": 12, "min_hold": 11}
+}

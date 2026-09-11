@@ -35,21 +35,32 @@ Three modes -- TIER (ordinary), OUT (after a shock), REBOUND (levered burst) -- 
   5. Before 1990 (no VIX) the signal is cash; warm-up -> 0. This is a VIX lens; dev_1950 is not applicable.
 
 Parameters (6 tunables; development window 1990-01-01..2012-06-30 via dev_harness.py grids, see design note)
-  v_calm    VIX level below which the ordinary tier is 3x (CALM exit level; entry at v_calm*(1-hyst))
-  v_high    VIX level above which the ordinary tier is cash (STRESSED entry; exit at v_high*(1-hyst))
-  hyst      shared hysteresis fraction of the two VIX bands
-  k         two-session shock size in trailing sigmas
-  out_days  sessions OUT after the last shock event before the tier is resumed
-  min_hold  minimum sessions between non-emergency state changes
+  v_calm    16.0  VIX level below which the ordinary tier is 3x (CALM exit level; entry at v_calm*(1-hyst))
+  v_high    23.0  VIX level above which the ordinary tier is cash (STRESSED entry; exit at v_high*(1-hyst))
+  hyst      0.16  shared hysteresis fraction of the two VIX bands
+  k         4.00  two-session shock size in trailing sigmas
+  out_days    10  sessions OUT after the last shock event before the tier is resumed
+  min_hold    10  minimum sessions between non-emergency state changes
+Chosen on the DEV window only, from a 3-grid search (240 + 324 coarse combos, then a 144-combo plateau grid
+scored on the mean Sharpe of each point's 1-step neighbourhood) plus six-axis 1-D sweeps. The frozen point is an
+interior plateau centre, not the grid maximum: 119 of the 144 plateau-grid points clear G2/G3/G5, the 1-D sweeps
+are flat over v_calm 14.5-16.5, v_high 22.5-24, hyst 0.16-0.20, k 3-6 and out_days 5-25, and k is deliberately
+held at its mechanism value 4.0 (two -3% days at 12% trailing vol) although k 5.5-6.0 scores ~0.03 higher.
 
 Structural constants (declared, NOT tuned, with the reason)
   LEV_CALM 3 / LEV_ELEV 1     the record's "3x calm / ~1x elevated" ordinary tier (inference note s7 ingredient 3)
   LEV_STRESS 0                lens 5's DEV finding: the 15-30 VIX band is sat out, that is what survives 2000-02/2008
-  LEV_REB                     set from the census (3 allowed only if the two-bear entries are not mostly losses)
+  LEV_REB 3                   SET FROM THE DEV CENSUS, not tuned: at the smoke point the burst fires 3 times inside
+                              the two grinding bears with 33% of them negative over the next 10 sessions (not
+                              "mostly losses"), and ablations D/E/F show dev_1990 Sharpe 0.428 / 0.400 / 0.360 at
+                              3x / 2x / 1x, so the record's 3x is kept.
   SIGMA_WIN 21, SHOCK_DAYS 2  firm-wide RV21 scale; two sessions = smallest span that is a regime statement
   J_JUMP 0.30, VIX_BASE 10, VIX_FLOOR 20   lens 1's frozen VIX-jump trigger, borrowed unchanged
   VIX_FALL 0.25, VIX_WIN 30, VIX_MIN 30, RSI_MAX 20, HOLD_DAYS 10, STOP 0.10   lens 2's frozen re-entry, borrowed
   unchanged (the strict version: 4 bear firings at 50% negative; looser versions 75-83% negative)
+  USE_SHOCK True, USE_REENTRY True   module-level ABLATION SWITCHES, not parameters. The frozen DEFAULT is both
+  True (= the model described above); the ablation script flips them to measure each ingredient's contribution.
+  They are never flipped by DEFAULT_PARAMS and are not counted against the 6-parameter budget.
 
 Known failure modes: a crash from a calm base costs the first day at 3x before the exit can fire (27-Feb-2007
 -3.5% = -10.5%); a grinding bear that keeps VIX in the ELEVATED band (20 < VIX < v_high) is ridden at 1x; a
@@ -81,8 +92,9 @@ LEV_REB = 3.0
 SIGMA_WIN, SHOCK_DAYS = 21, 2
 J_JUMP, VIX_BASE, VIX_FLOOR = 0.30, 10, 20.0
 VIX_FALL, VIX_WIN, VIX_MIN, RSI_MAX, HOLD_DAYS, STOP = 0.25, 30, 30.0, 20.0, 10, 0.10
+USE_SHOCK, USE_REENTRY = True, True      # ablation switches; frozen default = both True (see docstring)
 
-DEFAULT_PARAMS = dict(v_calm=15.5, v_high=26.0, hyst=0.12, k=4.0, out_days=15, min_hold=10)
+DEFAULT_PARAMS = dict(v_calm=16.0, v_high=23.0, hyst=0.16, k=4.0, out_days=10, min_hold=10)
 
 
 def vix_regime(vix: pd.Series, v_calm: float, v_high: float, hyst: float) -> np.ndarray:
@@ -118,8 +130,8 @@ def vix_regime(vix: pd.Series, v_calm: float, v_high: float, hyst: float) -> np.
     return out
 
 
-def signal(df: pd.DataFrame, v_calm: float = 15.5, v_high: float = 26.0, hyst: float = 0.12, k: float = 4.0,
-           out_days: int = 15, min_hold: int = 10) -> pd.Series:
+def signal(df: pd.DataFrame, v_calm: float = 16.0, v_high: float = 23.0, hyst: float = 0.16, k: float = 4.0,
+           out_days: int = 10, min_hold: int = 10) -> pd.Series:
     out_days = max(int(round(out_days)), 1)
     min_hold = max(int(round(min_hold)), 1)
     ret, px = df["spx_ret"], df["spx_px"]
@@ -138,6 +150,10 @@ def signal(df: pd.DataFrame, v_calm: float = 15.5, v_high: float = 26.0, hyst: f
     two_day = (z2 < -k).fillna(False)
     vix_base = vix.shift(1).rolling(VIX_BASE, min_periods=VIX_BASE).mean()
     vol_jump = ((vix > (1.0 + J_JUMP) * vix_base) & (vix >= VIX_FLOOR) & (ret < 0)).fillna(False)
+    if not USE_SHOCK:                                # ablation A/B only; frozen default keeps the exit
+        two_day = two_day & False
+        vol_jump = vol_jump & False
+        shock_day = shock_day & False
     trigger = (two_day | vol_jump).to_numpy()
     shock_any = shock_day | two_day | vol_jump
     since_shock = F.days_since_true(shock_any).fillna(np.inf).to_numpy()
@@ -146,6 +162,8 @@ def signal(df: pd.DataFrame, v_calm: float = 15.5, v_high: float = 26.0, hyst: f
     vix_max = vix.rolling(VIX_WIN, min_periods=VIX_WIN).max()
     rsi2 = F.rsi(px, 2)
     dis = ((vix <= (1.0 - VIX_FALL) * vix_max) & (vix >= VIX_MIN) & (rsi2 < RSI_MAX)).fillna(False).to_numpy()
+    if not USE_REENTRY:                              # ablation A/B only; frozen default keeps the burst
+        dis = np.zeros(n, dtype=bool)
 
     x_ex = (df["spx_tr_ret"] - df["rf_daily"]).fillna(0.0).to_numpy()
     warm = (vix.notna() & sigma_prev.notna()).to_numpy()

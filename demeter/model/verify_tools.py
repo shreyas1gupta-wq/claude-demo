@@ -99,11 +99,15 @@ def grid_audit(stem: str, params: dict):
 def constants(path: Path):
     src = path.read_text(encoding="utf-8", errors="replace")
     rows = []
-    for m in re.finditer(r"^([A-Z][A-Z0-9_]*)\s*=\s*(.+?)\s*(#.*)?$", src, flags=re.M):
-        name, val = m.group(1), m.group(2).strip()
-        if name in ("NAME", "FAMILY", "HYPOTHESIS", "DEFAULT_PARAMS"):
-            continue
-        rows.append({"name": name, "value": val[:60]})
+    # single-name AND multi-target tuple assignments (A, B = 1, 2) — the verifiers found the single-name-only regex
+    # missed 15 of 16 constants in one file
+    for m in re.finditer(r"^([A-Z][A-Z0-9_]*(?:\s*,\s*[A-Z][A-Z0-9_]*)*)\s*=\s*(.+?)\s*(#.*)?$", src, flags=re.M):
+        names = [n.strip() for n in m.group(1).split(",")]
+        vals = [v.strip() for v in m.group(2).split(",")] if len(names) > 1 else [m.group(2).strip()]
+        for i, name in enumerate(names):
+            if name in ("NAME", "FAMILY", "HYPOTHESIS", "DEFAULT_PARAMS"):
+                continue
+            rows.append({"name": name, "value": (vals[i] if i < len(vals) else m.group(2).strip())[:60]})
     return rows
 
 

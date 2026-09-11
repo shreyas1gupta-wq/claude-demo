@@ -1,0 +1,1302 @@
+{
+ "name": "composite_dual_engine",
+ "family": "VIX-regime tier (3x/1x/cash, hysteresis) + two-session/VIX-jump shock exit + strict VIX-dissipation 3x re-entry + minimum hold",
+ "hypothesis": "Demeter's record needs four things at once: calm-regime leverage for the equity premium, a fast exit on the first statistically clean sign of a volatility regime change, a levered re-entry at capitulation lows while implied vol is still high but already dissipating, and enough hysteresis to sit out whole months. Each part alone failed in DEV (a crash exit rides grinding bears; a level gate misses rebounds; dissipation alone is a trap); the composite should keep the calm-year 3x of the tier, the bear-market cash of the VIX-stress level, and add the rare rebound.",
+ "module": "signals\\composite_dual_engine.py",
+ "params": {
+  "v_calm": 15.5,
+  "v_high": 26.0,
+  "hyst": 0.12,
+  "k": 4.0,
+  "out_days": 15,
+  "min_hold": 10
+ },
+ "n_tunable_params": 6,
+ "dev_end": "2012-06-30",
+ "cost_bps": 3.0,
+ "financing_spread_bps": 60.0,
+ "signal_coverage": {
+  "first_nonnull": "1885-03-20",
+  "pct_nan_1950_1989": 0.0,
+  "pct_cash_1950_1989": 100.0,
+  "uses_vix": true
+ },
+ "windows": {
+  "dev_1950": {
+   "annualized_return_pct": 6.971531009470033,
+   "sharpe": 0.2559181941390392,
+   "sortino": 0.42130952480382483,
+   "calmar": 0.20103148992027445,
+   "max_drawdown_pct": -34.67880087957772,
+   "max_drawdown_daily_pct": -38.12119741012727,
+   "annualized_std_dev": 0.106754955868844,
+   "worst_month_pct": -15.013407723228633,
+   "pct_positive_months": 83.46666666666667,
+   "up_capture_pct": 42.18590936635243,
+   "down_capture_pct": 27.17521380540128,
+   "beta_to_spy": 0.2660845767588474,
+   "pct_days_cash": 73.9921149688414,
+   "avg_leverage": 0.427826529314511,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 2.323540633346051,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.1072033574971385,
+   "spy_annualized_return_pct": 10.91705941978991,
+   "spy_sharpe": 0.47046430568891867,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 750,
+   "start_date": "1950-01-03",
+   "end_date": "2012-06-29"
+  },
+  "dev_1990": {
+   "annualized_return_pct": 9.828402531086745,
+   "sharpe": 0.42810861279178913,
+   "sortino": 0.7021825413397079,
+   "calmar": 0.2834124099393146,
+   "max_drawdown_pct": -34.67880087957772,
+   "max_drawdown_daily_pct": -38.12119741012738,
+   "annualized_std_dev": 0.17721254278216586,
+   "worst_month_pct": -15.013407723228633,
+   "pct_positive_months": 61.48148148148148,
+   "up_capture_pct": 97.96407205645798,
+   "down_capture_pct": 89.06196885709353,
+   "beta_to_spy": 0.7033287251089565,
+   "pct_days_cash": 27.891396332863188,
+   "avg_leverage": 1.1861777150916784,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 6.442172073342736,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.2972284908321579,
+   "spy_annualized_return_pct": 8.33673224548206,
+   "spy_sharpe": 0.3851188460798654,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 270,
+   "start_date": "1990-01-02",
+   "end_date": "2012-06-29"
+  }
+ },
+ "windows_stress_cost_6_90": {
+  "dev_1950": {
+   "annualized_return_pct": 6.803384923842448,
+   "sharpe": 0.24128445361399253,
+   "sortino": 0.3933583685366457,
+   "calmar": 0.1935538908237417,
+   "max_drawdown_pct": -35.14982258888247,
+   "max_drawdown_daily_pct": -38.554772385679556,
+   "annualized_std_dev": 0.10666998802104145,
+   "worst_month_pct": -15.185079664667523,
+   "pct_positive_months": 83.46666666666667,
+   "up_capture_pct": 41.79963990938133,
+   "down_capture_pct": 27.584208419154425,
+   "beta_to_spy": 0.26631466568304063,
+   "pct_days_cash": 73.9921149688414,
+   "avg_leverage": 0.427826529314511,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 2.323540633346051,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.214406714994277,
+   "spy_annualized_return_pct": 10.91705941978991,
+   "spy_sharpe": 0.47046430568891867,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 750,
+   "start_date": "1950-01-03",
+   "end_date": "2012-06-29"
+  },
+  "dev_1990": {
+   "annualized_return_pct": 9.349525802503255,
+   "sharpe": 0.4034090096340303,
+   "sortino": 0.6555972808944097,
+   "calmar": 0.2659906967911811,
+   "max_drawdown_pct": -35.14982258888251,
+   "max_drawdown_daily_pct": -38.55477238567947,
+   "annualized_std_dev": 0.1771426016612884,
+   "worst_month_pct": -15.185079664667523,
+   "pct_positive_months": 61.48148148148148,
+   "up_capture_pct": 96.85510923544346,
+   "down_capture_pct": 90.04153012944634,
+   "beta_to_spy": 0.7035557741043877,
+   "pct_days_cash": 27.891396332863188,
+   "avg_leverage": 1.1861777150916784,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 6.442172073342736,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.5944569816643158,
+   "spy_annualized_return_pct": 8.33673224548206,
+   "spy_sharpe": 0.3851188460798654,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 270,
+   "start_date": "1990-01-02",
+   "end_date": "2012-06-29"
+  }
+ },
+ "windows_cost_2_40": {
+  "dev_1950": {
+   "annualized_return_pct": 7.045535653309165,
+   "sharpe": 0.26228681656038155,
+   "sortino": 0.43368795234394963,
+   "calmar": 0.20413364693372302,
+   "max_drawdown_pct": -34.514328035283036,
+   "max_drawdown_daily_pct": -37.96808004589636,
+   "annualized_std_dev": 0.10683164743920433,
+   "worst_month_pct": -14.949938421391584,
+   "pct_positive_months": 83.46666666666667,
+   "up_capture_pct": 42.36474962103124,
+   "down_capture_pct": 27.010879338533183,
+   "beta_to_spy": 0.26605470998024394,
+   "pct_days_cash": 73.9921149688414,
+   "avg_leverage": 0.427826529314511,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 2.323540633346051,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.07146890499809233,
+   "spy_annualized_return_pct": 10.91705941978991,
+   "spy_sharpe": 0.47046430568891867,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 750,
+   "start_date": "1950-01-03",
+   "end_date": "2012-06-29"
+  },
+  "dev_1990": {
+   "annualized_return_pct": 10.039590883213535,
+   "sharpe": 0.4388707582091051,
+   "sortino": 0.7228132539065829,
+   "calmar": 0.29088182951006153,
+   "max_drawdown_pct": -34.51432803528303,
+   "max_drawdown_daily_pct": -37.968080045896414,
+   "annualized_std_dev": 0.1773072571349957,
+   "worst_month_pct": -14.949938421391584,
+   "pct_positive_months": 61.48148148148148,
+   "up_capture_pct": 98.47760326949859,
+   "down_capture_pct": 88.66831708676514,
+   "beta_to_spy": 0.7034143799958645,
+   "pct_days_cash": 27.891396332863188,
+   "avg_leverage": 1.1861777150916784,
+   "avg_leverage_when_invested": 1.6449877750611246,
+   "position_changes_per_year": 6.442172073342736,
+   "n_position_changes": 145,
+   "avg_invested_spell_days": 75.74074074074075,
+   "total_cost_drag_pct_annual": 0.19815232722143863,
+   "spy_annualized_return_pct": 8.33673224548206,
+   "spy_sharpe": 0.3851188460798654,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 270,
+   "start_date": "1990-01-02",
+   "end_date": "2012-06-29"
+  }
+ },
+ "eras": {
+  "1950-1969": {
+   "cagr_pct": 2.9799416558650815,
+   "spy_cagr_pct": 13.33120650989148,
+   "sharpe": null,
+   "spy_sharpe": 0.8516035635849641,
+   "max_dd_pct": 0.0,
+   "spy_max_dd_pct": -22.173885636026235,
+   "pct_days_cash": 100.0,
+   "changes_per_year": 0.0,
+   "worst_month_pct": 0.0
+  },
+  "1970-1989": {
+   "cagr_pct": 7.871450789591683,
+   "spy_cagr_pct": 11.467336694105224,
+   "sharpe": null,
+   "spy_sharpe": 0.28330659861658875,
+   "max_dd_pct": 0.0,
+   "spy_max_dd_pct": -42.68943085343666,
+   "pct_days_cash": 100.0,
+   "changes_per_year": 0.0,
+   "worst_month_pct": 0.2540361573548866
+  },
+  "1990-1999": {
+   "cagr_pct": 17.69162877186632,
+   "spy_cagr_pct": 17.97835229072291,
+   "sharpe": 0.7354304691237664,
+   "spy_sharpe": 0.9503521301507349,
+   "max_dd_pct": -27.369280364588843,
+   "spy_max_dd_pct": -15.278516545464848,
+   "pct_days_cash": 19.62025316455696,
+   "changes_per_year": 6.7784810126582276,
+   "worst_month_pct": -15.013407723228633
+  },
+  "2000-2012H1": {
+   "cagr_pct": 3.917799453220283,
+   "spy_cagr_pct": 1.1939284965058583,
+   "sharpe": 0.18030660705916102,
+   "spy_sharpe": 0.020859453615842145,
+   "max_dd_pct": -34.67880087957771,
+   "spy_max_dd_pct": -50.78481771799137,
+   "pct_days_cash": 34.541984732824424,
+   "changes_per_year": 6.17175572519084,
+   "worst_month_pct": -11.428769495427915
+  }
+ },
+ "stress_episodes": {
+  "1987_crash": {
+   "model_total_pct": 2.1739271007258143,
+   "spy_total_pct": -24.96793850073581,
+   "model_max_dd_pct": 0.0,
+   "spy_max_dd_pct": -32.885674162754576,
+   "avg_leverage": 0.0,
+   "pct_days_cash": 100.0,
+   "pct_days_3x": 0.0,
+   "n_changes": 0,
+   "n_days": 90
+  },
+  "1990_kuwait": {
+   "model_total_pct": 3.6201317490910823,
+   "spy_total_pct": -8.568873470442174,
+   "model_max_dd_pct": -3.631222474396689,
+   "spy_max_dd_pct": -19.18338611391229,
+   "avg_leverage": 0.3050847457627119,
+   "pct_days_cash": 69.49152542372882,
+   "pct_days_3x": 0.0,
+   "n_changes": 2,
+   "n_days": 118
+  },
+  "1998_ltcm": {
+   "model_total_pct": -4.478912417804737,
+   "spy_total_pct": 4.8585698645789765,
+   "model_max_dd_pct": -9.76163391985433,
+   "spy_max_dd_pct": -19.030074258124717,
+   "avg_leverage": 0.24786324786324787,
+   "pct_days_cash": 75.21367521367522,
+   "pct_days_3x": 0.0,
+   "n_changes": 4,
+   "n_days": 117
+  },
+  "2000_02_bear": {
+   "model_total_pct": -31.889504368848097,
+   "spy_total_pct": -47.204269817745995,
+   "model_max_dd_pct": -34.82171615631838,
+   "spy_max_dd_pct": -47.5158560839972,
+   "avg_leverage": 0.5658307210031348,
+   "pct_days_cash": 47.492163009404386,
+   "pct_days_3x": 2.037617554858934,
+   "n_changes": 17,
+   "n_days": 638
+  },
+  "2002_03_recovery": {
+   "model_total_pct": 48.77822282396265,
+   "spy_total_pct": 45.518957526222415,
+   "model_max_dd_pct": -4.81187483408031,
+   "spy_max_dd_pct": -14.175145404347845,
+   "avg_leverage": 0.6796116504854369,
+   "pct_days_cash": 38.51132686084142,
+   "pct_days_3x": 3.2362459546925564,
+   "n_changes": 3,
+   "n_days": 309
+  },
+  "2007_09_gfc": {
+   "model_total_pct": -13.325794475558627,
+   "spy_total_pct": -54.76741138641958,
+   "model_max_dd_pct": -32.34073259924747,
+   "spy_max_dd_pct": -55.189430919186755,
+   "avg_leverage": 0.5561797752808989,
+   "pct_days_cash": 50.0,
+   "pct_days_3x": 2.8089887640449436,
+   "n_changes": 11,
+   "n_days": 356
+  },
+  "2009_recovery": {
+   "model_total_pct": -2.191389982986991,
+   "spy_total_pct": 67.40548437273628,
+   "model_max_dd_pct": -4.928595415141235,
+   "spy_max_dd_pct": -6.965892673760088,
+   "avg_leverage": 0.178743961352657,
+   "pct_days_cash": 82.1256038647343,
+   "pct_days_3x": 0.0,
+   "n_changes": 3,
+   "n_days": 207
+  },
+  "2010_flash": {
+   "model_total_pct": 12.66589540996701,
+   "spy_total_pct": -8.44930037242464,
+   "model_max_dd_pct": -8.400249388975078,
+   "spy_max_dd_pct": -15.699614267001483,
+   "avg_leverage": 0.5072463768115942,
+   "pct_days_cash": 78.26086956521739,
+   "pct_days_3x": 14.492753623188406,
+   "n_changes": 4,
+   "n_days": 69
+  },
+  "2011_debt": {
+   "model_total_pct": -3.312643968529816,
+   "spy_total_pct": -5.606853928286659,
+   "model_max_dd_pct": -15.496226290730919,
+   "spy_max_dd_pct": -17.893652686965122,
+   "avg_leverage": 0.40707964601769914,
+   "pct_days_cash": 76.99115044247787,
+   "pct_days_3x": 8.849557522123893,
+   "n_changes": 4,
+   "n_days": 113
+  }
+ },
+ "event_ladders": {
+  "1987-10-19": {
+   "label": "Black Monday",
+   "path": [
+    {
+     "date": "1987-10-14",
+     "spx_ret_pct": -2.95,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-15",
+     "spx_ret_pct": -2.34,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-16",
+     "spx_ret_pct": -5.16,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-19",
+     "spx_ret_pct": -20.47,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-20",
+     "spx_ret_pct": 5.33,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-21",
+     "spx_ret_pct": 9.1,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-22",
+     "spx_ret_pct": -3.92,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-23",
+     "spx_ret_pct": -0.01,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-26",
+     "spx_ret_pct": -8.28,
+     "vix": null,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1987-10-27",
+     "spx_ret_pct": 2.42,
+     "vix": null,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "1998-08-31": {
+   "label": "LTCM low",
+   "path": [
+    {
+     "date": "1998-08-26",
+     "spx_ret_pct": -0.57,
+     "vix": 31.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-08-27",
+     "spx_ret_pct": -4.71,
+     "vix": 38.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-08-28",
+     "spx_ret_pct": -0.36,
+     "vix": 39.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-08-31",
+     "spx_ret_pct": -7.13,
+     "vix": 44.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-01",
+     "spx_ret_pct": 4.23,
+     "vix": 36.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-02",
+     "spx_ret_pct": -0.72,
+     "vix": 36.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-03",
+     "spx_ret_pct": -0.79,
+     "vix": 41.4,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-04",
+     "spx_ret_pct": -0.82,
+     "vix": 43.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-08",
+     "spx_ret_pct": 5.37,
+     "vix": 37.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-09-09",
+     "spx_ret_pct": -2.43,
+     "vix": 39.7,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "1998-10-08": {
+   "label": "LTCM 2nd low",
+   "path": [
+    {
+     "date": "1998-10-05",
+     "spx_ret_pct": -2.02,
+     "vix": 42.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-06",
+     "spx_ret_pct": -0.09,
+     "vix": 41.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-07",
+     "spx_ret_pct": -1.49,
+     "vix": 43.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-08",
+     "spx_ret_pct": -0.55,
+     "vix": 45.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-09",
+     "spx_ret_pct": 2.01,
+     "vix": 42.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-12",
+     "spx_ret_pct": 1.46,
+     "vix": 40.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-13",
+     "spx_ret_pct": -0.34,
+     "vix": 40.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-14",
+     "spx_ret_pct": 0.94,
+     "vix": 39.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-15",
+     "spx_ret_pct": 5.38,
+     "vix": 33.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "1998-10-16",
+     "spx_ret_pct": 0.03,
+     "vix": 34.8,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2001-09-21": {
+   "label": "9/11 low",
+   "path": [
+    {
+     "date": "2001-09-18",
+     "spx_ret_pct": -0.24,
+     "vix": 38.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-19",
+     "spx_ret_pct": -2.02,
+     "vix": 40.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-20",
+     "spx_ret_pct": -3.18,
+     "vix": 43.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-21",
+     "spx_ret_pct": -1.45,
+     "vix": 42.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-24",
+     "spx_ret_pct": 3.52,
+     "vix": 37.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-25",
+     "spx_ret_pct": 1.04,
+     "vix": 35.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-26",
+     "spx_ret_pct": -0.35,
+     "vix": 35.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-27",
+     "spx_ret_pct": 0.87,
+     "vix": 34.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-09-28",
+     "spx_ret_pct": 2.12,
+     "vix": 31.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2001-10-01",
+     "spx_ret_pct": -0.16,
+     "vix": 32.3,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2002-07-23": {
+   "label": "Jul-02 low",
+   "path": [
+    {
+     "date": "2002-07-18",
+     "spx_ret_pct": -3.24,
+     "vix": 35.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-19",
+     "spx_ret_pct": -3.52,
+     "vix": 38.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-22",
+     "spx_ret_pct": -2.96,
+     "vix": 41.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-23",
+     "spx_ret_pct": -2.74,
+     "vix": 44.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-24",
+     "spx_ret_pct": 5.97,
+     "vix": 39.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-25",
+     "spx_ret_pct": -0.85,
+     "vix": 39.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-26",
+     "spx_ret_pct": 1.9,
+     "vix": 35.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-29",
+     "spx_ret_pct": 4.87,
+     "vix": 31.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-30",
+     "spx_ret_pct": 1.3,
+     "vix": 31.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-07-31",
+     "spx_ret_pct": 0.24,
+     "vix": 32.0,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2002-10-09": {
+   "label": "bear low",
+   "path": [
+    {
+     "date": "2002-10-04",
+     "spx_ret_pct": -1.83,
+     "vix": 39.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-07",
+     "spx_ret_pct": -2.07,
+     "vix": 42.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-08",
+     "spx_ret_pct": 1.57,
+     "vix": 41.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-09",
+     "spx_ret_pct": -2.82,
+     "vix": 42.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-10",
+     "spx_ret_pct": 3.24,
+     "vix": 37.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-11",
+     "spx_ret_pct": 4.38,
+     "vix": 35.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-14",
+     "spx_ret_pct": 0.56,
+     "vix": 36.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-15",
+     "spx_ret_pct": 4.81,
+     "vix": 34.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-16",
+     "spx_ret_pct": -2.42,
+     "vix": 36.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2002-10-17",
+     "spx_ret_pct": 1.99,
+     "vix": 34.1,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2008-10-10": {
+   "label": "Lehman capitulation",
+   "path": [
+    {
+     "date": "2008-10-07",
+     "spx_ret_pct": -4.48,
+     "vix": 53.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-08",
+     "spx_ret_pct": -2.52,
+     "vix": 57.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-09",
+     "spx_ret_pct": -6.98,
+     "vix": 63.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-10",
+     "spx_ret_pct": -2.43,
+     "vix": 70.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-13",
+     "spx_ret_pct": 14.52,
+     "vix": 55.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-14",
+     "spx_ret_pct": -1.48,
+     "vix": 55.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-15",
+     "spx_ret_pct": -9.84,
+     "vix": 69.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-16",
+     "spx_ret_pct": 4.17,
+     "vix": 67.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-17",
+     "spx_ret_pct": -0.6,
+     "vix": 70.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-20",
+     "spx_ret_pct": 6.01,
+     "vix": 53.0,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2008-10-27": {
+   "label": "Oct-08 low",
+   "path": [
+    {
+     "date": "2008-10-22",
+     "spx_ret_pct": -5.45,
+     "vix": 69.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-23",
+     "spx_ret_pct": 1.16,
+     "vix": 67.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-24",
+     "spx_ret_pct": -5.07,
+     "vix": 79.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-27",
+     "spx_ret_pct": -3.55,
+     "vix": 80.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-28",
+     "spx_ret_pct": 11.69,
+     "vix": 67.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-29",
+     "spx_ret_pct": -0.73,
+     "vix": 70.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-30",
+     "spx_ret_pct": 3.46,
+     "vix": 62.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-10-31",
+     "spx_ret_pct": 0.55,
+     "vix": 59.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-03",
+     "spx_ret_pct": 0.29,
+     "vix": 53.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-04",
+     "spx_ret_pct": 3.4,
+     "vix": 47.7,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2008-11-20": {
+   "label": "Nov-08 low",
+   "path": [
+    {
+     "date": "2008-11-17",
+     "spx_ret_pct": -1.33,
+     "vix": 69.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-18",
+     "spx_ret_pct": 1.88,
+     "vix": 67.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-19",
+     "spx_ret_pct": -6.41,
+     "vix": 74.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-20",
+     "spx_ret_pct": -7.42,
+     "vix": 80.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-21",
+     "spx_ret_pct": 5.39,
+     "vix": 72.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-24",
+     "spx_ret_pct": 6.93,
+     "vix": 64.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-25",
+     "spx_ret_pct": 0.74,
+     "vix": 60.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-26",
+     "spx_ret_pct": 3.86,
+     "vix": 54.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-11-28",
+     "spx_ret_pct": 1.26,
+     "vix": 55.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2008-12-01",
+     "spx_ret_pct": -8.86,
+     "vix": 68.5,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2009-03-09": {
+   "label": "GFC low",
+   "path": [
+    {
+     "date": "2009-03-04",
+     "spx_ret_pct": 2.37,
+     "vix": 47.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-05",
+     "spx_ret_pct": -4.08,
+     "vix": 50.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-06",
+     "spx_ret_pct": 0.17,
+     "vix": 49.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-09",
+     "spx_ret_pct": -1.18,
+     "vix": 49.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-10",
+     "spx_ret_pct": 5.96,
+     "vix": 44.4,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-11",
+     "spx_ret_pct": 0.65,
+     "vix": 43.6,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-12",
+     "spx_ret_pct": 3.94,
+     "vix": 41.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-13",
+     "spx_ret_pct": 0.78,
+     "vix": 42.4,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-16",
+     "spx_ret_pct": -0.3,
+     "vix": 43.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2009-03-17",
+     "spx_ret_pct": 3.06,
+     "vix": 40.8,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2010-07-02": {
+   "label": "2010 low",
+   "path": [
+    {
+     "date": "2010-06-29",
+     "spx_ret_pct": -3.09,
+     "vix": 34.1,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-06-30",
+     "spx_ret_pct": -0.95,
+     "vix": 34.5,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-01",
+     "spx_ret_pct": -0.45,
+     "vix": 32.9,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-02",
+     "spx_ret_pct": -0.54,
+     "vix": 30.1,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-06",
+     "spx_ret_pct": 0.66,
+     "vix": 29.6,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-07",
+     "spx_ret_pct": 3.15,
+     "vix": 26.8,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-08",
+     "spx_ret_pct": 0.99,
+     "vix": 25.7,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-09",
+     "spx_ret_pct": 0.75,
+     "vix": 25.0,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-12",
+     "spx_ret_pct": 0.06,
+     "vix": 24.4,
+     "lev_target": 3.0
+    },
+    {
+     "date": "2010-07-13",
+     "spx_ret_pct": 1.51,
+     "vix": 24.6,
+     "lev_target": 3.0
+    }
+   ]
+  },
+  "2011-08-08": {
+   "label": "US downgrade",
+   "path": [
+    {
+     "date": "2011-08-03",
+     "spx_ret_pct": 0.54,
+     "vix": 23.4,
+     "lev_target": 1.0
+    },
+    {
+     "date": "2011-08-04",
+     "spx_ret_pct": -4.68,
+     "vix": 31.7,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-05",
+     "spx_ret_pct": -0.15,
+     "vix": 32.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-08",
+     "spx_ret_pct": -6.51,
+     "vix": 48.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-09",
+     "spx_ret_pct": 4.65,
+     "vix": 35.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-10",
+     "spx_ret_pct": -4.42,
+     "vix": 43.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-11",
+     "spx_ret_pct": 4.49,
+     "vix": 39.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-12",
+     "spx_ret_pct": 0.67,
+     "vix": 36.4,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-15",
+     "spx_ret_pct": 2.12,
+     "vix": 31.9,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-08-16",
+     "spx_ret_pct": -0.85,
+     "vix": 32.9,
+     "lev_target": 0.0
+    }
+   ]
+  },
+  "2011-10-03": {
+   "label": "2011 low",
+   "path": [
+    {
+     "date": "2011-09-28",
+     "spx_ret_pct": -2.04,
+     "vix": 41.1,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-09-29",
+     "spx_ret_pct": 0.79,
+     "vix": 38.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-09-30",
+     "spx_ret_pct": -2.5,
+     "vix": 43.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-03",
+     "spx_ret_pct": -2.85,
+     "vix": 45.5,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-04",
+     "spx_ret_pct": 2.19,
+     "vix": 40.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-05",
+     "spx_ret_pct": 1.85,
+     "vix": 37.8,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-06",
+     "spx_ret_pct": 1.81,
+     "vix": 36.3,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-07",
+     "spx_ret_pct": -0.67,
+     "vix": 36.2,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-10",
+     "spx_ret_pct": 3.34,
+     "vix": 33.0,
+     "lev_target": 0.0
+    },
+    {
+     "date": "2011-10-11",
+     "spx_ret_pct": 0.1,
+     "vix": 32.9,
+     "lev_target": 0.0
+    }
+   ]
+  }
+ },
+ "spurious_reentry_census": {
+  "2000_02_bear": {
+   "n_entries_to_2x_plus": 2,
+   "dates": [
+    "2001-10-29",
+    "2002-08-28"
+   ],
+   "mean_fwd10_excess_pct": 0.6218714824859362,
+   "share_fwd10_negative": 0.5,
+   "pct_days_2x_plus": 2.037617554858934
+  },
+  "2007_09_gfc": {
+   "n_entries_to_2x_plus": 1,
+   "dates": [
+    "2008-12-19"
+   ],
+   "mean_fwd10_excess_pct": 5.984236543555155,
+   "share_fwd10_negative": 0.0,
+   "pct_days_2x_plus": 2.8089887640449436
+  }
+ },
+ "lookahead_check": {
+  "ok": true,
+  "max_abs_diff": 0.0,
+  "details": [
+   {
+    "cutoff": "1995-12-29",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2000-06-30",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2005-12-30",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2008-06-30",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   },
+   {
+    "cutoff": "2010-12-31",
+    "max_abs_diff": 0.0,
+    "nan_mismatches": 0
+   }
+  ]
+ },
+ "leverage_distribution_dev_1990": {
+  "0.0": 27.873765867418896,
+  "1.0": 48.87165021156559,
+  "3.0": 23.254583921015517
+ },
+ "reference_bh_1x": {
+  "dev_1950": {
+   "annualized_return_pct": 10.91705941978991,
+   "sharpe": 0.47046430568891867,
+   "sortino": 0.7017301695291264,
+   "calmar": 0.2149669903397597,
+   "max_drawdown_pct": -50.78481771799138,
+   "max_drawdown_daily_pct": -55.1894309191868,
+   "annualized_std_dev": 0.14570848084793664,
+   "worst_month_pct": -21.513095088876188,
+   "pct_positive_months": 62.133333333333326,
+   "up_capture_pct": 100.0,
+   "down_capture_pct": 100.0,
+   "beta_to_spy": 0.9999999999999997,
+   "pct_days_cash": 0.0,
+   "avg_leverage": 1.0,
+   "avg_leverage_when_invested": 1.0,
+   "position_changes_per_year": 0.0,
+   "n_position_changes": 0,
+   "avg_invested_spell_days": 15726.0,
+   "total_cost_drag_pct_annual": 0.0,
+   "spy_annualized_return_pct": 10.91705941978991,
+   "spy_sharpe": 0.47046430568891867,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 750,
+   "start_date": "1950-01-03",
+   "end_date": "2012-06-29"
+  },
+  "dev_1990": {
+   "annualized_return_pct": 8.33673224548206,
+   "sharpe": 0.3851188460798655,
+   "sortino": 0.55339252333321,
+   "calmar": 0.16415796334597513,
+   "max_drawdown_pct": -50.784817717991395,
+   "max_drawdown_daily_pct": -55.189430919186755,
+   "annualized_std_dev": 0.1511317476870697,
+   "worst_month_pct": -16.518655533570993,
+   "pct_positive_months": 61.48148148148148,
+   "up_capture_pct": 100.0,
+   "down_capture_pct": 100.0,
+   "beta_to_spy": 0.9999999999999999,
+   "pct_days_cash": 0.0,
+   "avg_leverage": 1.0,
+   "avg_leverage_when_invested": 1.0,
+   "position_changes_per_year": 0.0,
+   "n_position_changes": 0,
+   "avg_invested_spell_days": 5672.0,
+   "total_cost_drag_pct_annual": 0.0,
+   "spy_annualized_return_pct": 8.33673224548206,
+   "spy_sharpe": 0.3851188460798654,
+   "spy_max_drawdown_pct": -50.784817717991395,
+   "n_months": 270,
+   "start_date": "1990-01-02",
+   "end_date": "2012-06-29"
+  }
+ },
+ "grid_file": "dev_results\\composite_dual_engine_g2_grid.csv",
+ "grid_n": 324,
+ "runtime_sec": 417.9115107059479
+}

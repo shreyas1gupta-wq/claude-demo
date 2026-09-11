@@ -74,6 +74,31 @@ files) and the three-lens verification of every passer. **Provisional DEV-chosen
 confirmed or replaced ONLY by (a) the composite finishing above 0.678 with all gates, or (b) a SEVERE verification
 finding against vix_vrp_v2. Whatever the OOS look shows afterwards does not change this selection.
 
+## Verification outcomes (2026-09-12 02:10 IST — still before any out-of-sample run)
+
+Three independent Sonnet verifiers per gate passer (L1 causality & code, L2 overfit & plateau, L3 mechanism &
+execution; `VERIFY_BRIEF.md`; reports `dev_results/<name>_VERIFY_L*.md`, digest `dev_results/PASS2_VERIFICATION_SUMMARY.md`).
+A SEVERE finding blocks the OOS look. Applied as written:
+
+| candidate | DEV Sharpe | verdict | decisive finding |
+|---|---|---|---|
+| composite_dual_engine | 0.543 | **REFUTED** (L1) | LEV_REB fixed at 3x by comparing 3x/2x/1x on DEV → 7 tunables; six "borrowed" constants are other candidates' DEV-tuned values (13 DEV-selected values in all). |
+| dissipation_reentry | 0.447 | **REFUTED** (L1, L2) | flat-1x default chosen against the 3/2/1 tier on DEV → 7 tunables; G2 cleared only by 7 dated bursts (base gate 0.389 < bar); grid max is a single-trade artefact; deflation puts 0.447 inside the noise band of ~8–10 independent bets. |
+| volmanaged | 0.495 | **REFUTED** (L1, L2, L3) | POWER/EST/DISCRETE/WEEKLY each fixed by DEV comparison → 9 tunables; the Sharpe edge over SPY reverses sign on 1950–2012 (0.36 vs 0.47) and decays to 0.09 in the last DEV third; the asymmetric band froze leverage at 0.14x for 6.6 years (1997–2004) and 0.20x for 3.75 years (2008–2012). |
+| vix_vrp_v2 | 0.678 | **REFUTED** (L1, L2, L3) | LEV_CALM (2 vs 3) and LEV_PANIC (1 vs 2) chosen on DEV → 8 tunables; the +0.07 edge over the original is under one SD of its own 216-cell grid and inverts to −0.06 under a one-session delay; no v2 design note or consolidated grid file exists. **Consequence: the pre-committed retirement of `vix_vrp` was applied on an unmet precondition and is VOID — the original is reinstated as the lens-5 candidate and goes through the same three-lens verification before any look.** |
+| sticky_tier | 0.612 | **holds** (0 severe) | true tunables 6 exactly (FLOOR chosen on DEV — at the ceiling, not over); 735 parameter sets not 13; lag-robust (0.612/0.610/0.604); edge rests on 10 decisions in 22.5 years — MATERIAL disclosures carried into RESULTS.md. |
+
+Two harness limitations exposed by the verifiers, disclosed rather than patched after the fact: `gate_check.py`'s G7 counts
+only `DEFAULT_PARAMS` (the true count is a reading task, done by L1); `dev_harness.plateau` rounds integer perturbations
+so small integer parameters get asymmetric or duplicated steps. `verify_tools.constants()` missed tuple assignments and
+is fixed in the same commit as this note (it changes no result).
+
+**Pre-OOS selection, revised under the rules above:** eligible = sticky_tier (verified) + vix_vrp (pending its own
+verification). DEV ranking: sticky_tier 0.612 > vix_vrp 0.608. **DEV-chosen recommendation = sticky_tier**, unless its
+own re-check fails. Refuted candidates receive **no** OOS look in this pass; their DEV records and verifier findings are
+reported in full. An exploratory OOS look at the refuted panel would be a separate, Principal-authorised, clearly
+labelled appendix — it is not run here because a look cannot be un-taken.
+
 ## Deviations
 1. **2026-09-04, session-usage limit.** The six-designer workflow lost five agents to the account's usage cap after 64
    minutes (`dissipation_reentry` returned; `crash_exit_dual` and `volmanaged` had banked a final harness JSON, a signal

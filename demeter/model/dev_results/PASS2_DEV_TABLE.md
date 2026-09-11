@@ -11,6 +11,6 @@
 | volmanaged | lens 3 | 5 | 0.49 | 7.39% | -19.8% | 1.8 | 0 | 0.63 | 55% | 40% | 0.36 | -34.5% | -0.1% | -19.8% | 11.4% | 100% | 0.49 | PASS | 806 |
 | sticky_tier | lens 4 | 5 | 0.61 | 7.38% | -14.3% | 0.4 | 67 | 1.18 | 36% | 12% | 0.35 | -33.9% | 9.7% | 2.2% | 0.1% | 90% | 0.61 | PASS | 13 |
 | vix_vrp_v2 | lens 5 | 6 | 0.68 | 11.71% | -19.8% | 10.6 | 62 | 1.61 | 64% | 30% | 0.40 (cash pre-1990) | -19.8% | 12.9% | -9.5% | 43.6% | 96% | 0.64 | PASS | 796 |
-| composite_dual_engine | lens 6 | — | not run | | | | | | | | | | | | | | | — | — |
+| composite_dual_engine | lens 6 | 6 | 0.54 | 11.41% | -25.6% | 5.5 | 42 | 1.81 | 85% | 62% | 0.32 (cash pre-1990) | -25.6% | -14.4% | 3.4% | 0.1% | 96% | 0.52 | PASS | 1125 |
 
 SPY buy-and-hold: dev_1990 Sharpe 0.39 (CAGR 8.34%, maxDD −50.8%); 1950–2012 Sharpe 0.47. Gates per PREREG.md; 'DEV param sets' = distinct parameter sets the designer evaluated on the development window (self-reported).

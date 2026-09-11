@@ -1,0 +1,5 @@
+{
+ "R_vhigh23_5": {"v_calm": 16.0, "v_high": 23.5, "hyst": 0.16, "k": 4.0, "out_days": 10, "min_hold": 10},
+ "R_vhigh24":   {"v_calm": 16.0, "v_high": 24.0, "hyst": 0.16, "k": 4.0, "out_days": 10, "min_hold": 10},
+ "R_vhigh26":   {"v_calm": 16.0, "v_high": 26.0, "hyst": 0.16, "k": 4.0, "out_days": 10, "min_hold": 10}
+}

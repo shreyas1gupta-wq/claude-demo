@@ -1,0 +1,65 @@
+{
+  "name": "composite_dual_engine",
+  "file": "C:\\tmp\\claude-demo\\demeter\\model\\signals\\composite_dual_engine.py",
+  "built": true,
+  "gates_all_pass": true,
+  "gates": {
+    "G1_causality": true,
+    "G2_dev1990_sharpe": true,
+    "G3_dev1990_maxdd": true,
+    "G4_no_ruinous_era": true,
+    "G5_changes_per_year": true,
+    "G6_plateau": true,
+    "G7_param_budget": true
+  },
+  "dev_1990": {
+    "sharpe": 0.5426075297957885,
+    "cagr_pct": 11.411807574444577,
+    "max_dd_pct": -25.611756367237703,
+    "changes_per_year": 5.464739069111424,
+    "pct_days_cash": 42.03102961918195,
+    "avg_leverage_when_invested": 1.813868613138686,
+    "up_capture_pct": 85.38650941955001,
+    "worst_month_pct": -14.187494035193849
+  },
+  "dev_1950": {
+    "applicable": false,
+    "sharpe": 0.32341289628793524,
+    "cagr_pct": 7.52418784398492,
+    "max_dd_pct": -25.611756367237682,
+    "changes_per_year": 1.9710034338038915
+  },
+  "n_iterations": 1125,
+  "n_tunable_params": 6,
+  "design_note": "C:\\tmp\\claude-demo\\demeter\\model\\dev_results\\composite_dual_engine_DESIGN_NOTE.md",
+  "headline": "The inference note's section-7 composite works in DEV and is the first 3x-in-calm configuration in the panel to pass all seven gates - dev_1990 Sharpe 0.543, CAGR 11.41% vs SPY 8.34%, maxDD -25.6%, 5.5 changes/yr, 42% of days in cash, 23.6% of days actually at 3x, average leverage when invested 1.81x - but it does NOT beat vix_vrp_v2 (0.678 / -19.8%); the ablations say hysteresis (+0.083 Sharpe) is what makes it work, the pre-registered shock exit is Sharpe-negative on its own (-0.044), and it sits out the entire 2009 recovery in cash.",
+  "biggest_weakness": "It misses V-bottoms completely: 207 of 207 days of the 2009 recovery in cash (+0.1% vs SPY +67.4%). Both re-entry channels fail at once - VIX's 2009 minimum was 19.47 against a STRESSED-exit level of 19.32 (a 0.15-point miss), and the strict dissipation burst cannot fire when implied vol peaks with the price low (09-Mar-2009: VIX 49.7 vs a 30-day max of 52.6, needing <=39.5). Raising v_high does not buy participation (23.5/24/26 -> -0.2%/-0.2%/-2.1%) and destroys the 2000-02 protection that G3 rests on. Secondary: the 3x tier is era-concentrated (almost all 3x days fall in 1992-96 and 2004-07; zero in 1997-2000 and 2003), and v_high is the one fragile axis - the sole G6 perturbation failure and an 8-point maxDD swing per VIX point.",
+  "bugs_in_shared_code": "None. engine.py, features.py, dev_harness.py and gate_check.py behaved as documented across ~1,500 signal evaluations; lookahead_check max_abs_diff 0.0 at all five cut-offs. Two non-bug notes for the coordinator: (i) dev_harness.plateau rounds integer perturbations, so out_days/min_hold +/-15% are asymmetric steps (10 -> 8 and 12), worth knowing when reading G6; (ii) the previous designer's own helper dev_results/composite_dual_engine_show.py crashes on eras whose Sharpe is None (the all-cash pre-1990 eras) - replaced by composite_dual_engine_show2.py inside this lens's own files, not a shared-code defect.",
+  "retired_files": [],
+  "ablations": [
+    {"ablation": "A", "description": "tier only (VIX regime 3x/1x/cash, no shock exit, no re-entry, no min-hold)", "sharpe": 0.435, "cagr_pct": 9.04, "max_dd_pct": -28.0, "changes_per_year": 4.13, "pct_days_cash": 40.8, "avg_lev_invested": 1.79, "up_capture_pct": 78.6, "bear_2000_02_pct": -14.6, "gfc_pct": -10.7, "recovery_2009_pct": 0.1, "census_n": 0, "census_share_neg": null},
+    {"ablation": "B", "description": "A + shock exit", "sharpe": 0.391, "cagr_pct": 8.26, "max_dd_pct": -25.4, "changes_per_year": 4.98, "pct_days_cash": 43.2, "avg_lev_invested": 1.81, "up_capture_pct": 74.4, "bear_2000_02_pct": -14.6, "gfc_pct": -10.7, "recovery_2009_pct": 0.1, "census_n": 0, "census_share_neg": null},
+    {"ablation": "C", "description": "B + dissipation re-entry at 3x (no min-hold)", "sharpe": 0.460, "cagr_pct": 9.98, "max_dd_pct": -25.4, "changes_per_year": 5.60, "pct_days_cash": 42.3, "avg_lev_invested": 1.83, "up_capture_pct": 83.6, "bear_2000_02_pct": -16.1, "gfc_pct": -11.1, "recovery_2009_pct": 0.1, "census_n": 4, "census_share_neg": 0.50},
+    {"ablation": "D", "description": "C + hysteresis (min_hold) = THE FROZEN MODEL", "sharpe": 0.543, "cagr_pct": 11.41, "max_dd_pct": -25.6, "changes_per_year": 5.46, "pct_days_cash": 42.0, "avg_lev_invested": 1.81, "up_capture_pct": 85.4, "bear_2000_02_pct": -14.4, "gfc_pct": 3.4, "recovery_2009_pct": 0.1, "census_n": 3, "census_share_neg": 0.333},
+    {"ablation": "E", "description": "D with re-entry leverage 2x", "sharpe": 0.522, "cagr_pct": 10.60, "max_dd_pct": -25.6, "changes_per_year": 5.46, "pct_days_cash": 42.0, "avg_lev_invested": 1.80, "up_capture_pct": 82.4, "bear_2000_02_pct": -13.6, "gfc_pct": -2.0, "recovery_2009_pct": 0.1, "census_n": 3, "census_share_neg": 0.333},
+    {"ablation": "F", "description": "D with re-entry leverage 1x", "sharpe": 0.485, "cagr_pct": 9.74, "max_dd_pct": -25.6, "changes_per_year": 5.46, "pct_days_cash": 42.0, "avg_lev_invested": 1.78, "up_capture_pct": 79.3, "bear_2000_02_pct": -13.1, "gfc_pct": -7.2, "recovery_2009_pct": 0.1, "census_n": 0, "census_share_neg": null},
+    {"ablation": "G", "description": "D with ELEVATED tier = cash (the vix_vrp shape with a 3x calm tier)", "sharpe": 0.413, "cagr_pct": 8.81, "max_dd_pct": -28.5, "changes_per_year": 2.49, "pct_days_cash": 76.3, "avg_lev_invested": 3.00, "up_capture_pct": 57.2, "bear_2000_02_pct": 7.7, "gfc_pct": 20.7, "recovery_2009_pct": 0.1, "census_n": 3, "census_share_neg": 0.333},
+    {"ablation": "H", "description": "DIAGNOSTIC (not pre-registered): D with CALM tier 2x instead of 3x", "sharpe": 0.568, "cagr_pct": 10.52, "max_dd_pct": -23.5, "changes_per_year": 5.46, "pct_days_cash": 42.0, "avg_lev_invested": 1.42, "up_capture_pct": 72.1, "bear_2000_02_pct": -14.4, "gfc_pct": 3.4, "recovery_2009_pct": 0.1, "census_n": 3, "census_share_neg": 0.333},
+    {"ablation": "I", "description": "DIAGNOSTIC (not pre-registered): D with CALM tier 2x and re-entry 2x", "sharpe": 0.558, "cagr_pct": 9.71, "max_dd_pct": -19.8, "changes_per_year": 5.46, "pct_days_cash": 42.0, "avg_lev_invested": 1.41, "up_capture_pct": 69.1, "bear_2000_02_pct": -13.6, "gfc_pct": -2.0, "recovery_2009_pct": 0.1, "census_n": 3, "census_share_neg": 0.333}
+  ],
+  "stress": {
+    "1987_crash": 2.1739,
+    "1990_kuwait": -0.0825,
+    "1998_ltcm": -1.6553,
+    "2000_02_bear": -14.4136,
+    "2002_03_recovery": 40.5709,
+    "2007_09_gfc": 3.4076,
+    "2009_recovery": 0.1116,
+    "2010_flash": 13.2736,
+    "2011_debt": 3.618
+  },
+  "spurious_reentry": {
+    "2000_02_bear": {"n_entries_to_2x_plus": 2, "dates": ["2001-10-29", "2002-08-28"], "mean_fwd10_excess_pct": 0.6218714824859362, "share_fwd10_negative": 0.5, "pct_days_2x_plus": 2.0},
+    "2007_09_gfc": {"n_entries_to_2x_plus": 1, "dates": ["2008-12-19"], "mean_fwd10_excess_pct": 5.984236543555155, "share_fwd10_negative": 0.0, "pct_days_2x_plus": 2.8}
+  }
+}
