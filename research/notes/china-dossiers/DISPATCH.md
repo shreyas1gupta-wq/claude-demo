@@ -33,7 +33,7 @@ recorded rather than hidden.
 | 25 | c-tier2-e | b1-t2 Harbin/Changchun/Lanzhou/Urumqi/Zhuhai/Dongguan/Foshan/Huizhou | 24 | |
 | 26 | c-hkeq | b7-hk-china-property-equity + b7-hk-reits + b7-sg-china-reits | 14 | |
 | 27 | c-demog | b8-demographics + b8-urbanization-hukou + b8-wealth-effect + b8-sentiment-expectations | 17 | |
-| 28 | c-datatrust | b9-data-reliability + b9-who-got-it-right | 9 | |
+| 28 | c-datatrust | b9-data-reliability + b9-who-got-it-right | 9 | running |
 | 29 | c-logistics | b3-industrial-logistics + b3-hotel-hospitality + b3-whole-buildings + b3-parking-storage | 15 | |
 | 30 | c-presale | b6-presale-escrow + b6-household-mortgage | 10 | |
 | 31 | c-creditgap | b6-credit-gap + b6-property-share-gdp + b6-trusts-shadow | 13 | |

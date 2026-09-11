@@ -999,6 +999,59 @@ Time Is Buying Bad Habits.”</i> The resolution-path arguments are given both w
 the official and S&amp;P reading that it is a good start, against Pettis's that losses never
 disappear, they only get assigned — with no verdict taken, because the desk has no basis for one.</div>
 </section>
+
+<section>
+<h2>17 · Land versus housing — the multiplier the base rate cannot show</h2>
+<p class="sub">This is the structural limit of Half A stated plainly: the vaulted panel is
+<b>residential house prices only</b>. The principal asked about LAND, and land behaves very
+differently — it falls roughly one and a half to two times as far as housing, in every episode where
+both series exist. That multiplier is the missing piece of the land question.</p>
+<div class="tbl"><table>
+<thead><tr><th>Episode</th><th>House prices</th><th>Land / commercial</th><th>Ratio</th>
+<th>Years to retake nominal peak</th></tr></thead>
+<tbody>
+<tr><td><b>Japan 1990</b> (six large cities)</td><td class="mono">−47.3% real<br>(desk panel)</td>
+<td class="mono neg">residential land <b>−67.3%</b><br>commercial land <b>−88.8%</b><br>prime Ginza
+frontage ≈<b>−99%</b></td><td class="mono">1.4× / <b>1.9×</b></td><td class="mono">not retaken</td></tr>
+<tr><td>Japan 1990 (nationwide)</td><td class="mono">—</td><td class="mono">land −52.1%</td>
+<td class="mono">—</td><td class="mono">not retaken</td></tr>
+<tr><td>US 2006</td><td class="mono">−25.8% real (desk panel)</td>
+<td class="mono neg">development land ≈<b>2× house prices</b></td><td class="mono">≈2.0×</td>
+<td class="mono">≈10 years</td></tr>
+<tr><td>Ireland 2006</td><td class="mono">−55.7% real (desk panel)<br>−54.4% nominal (dossier)</td>
+<td class="mono neg">development land <b>−77.8% to over −90%</b></td><td class="mono">1.4–1.7×</td>
+<td class="mono">not retaken in the panel</td></tr>
+<tr><td>Hong Kong 1997</td><td class="mono">−66.2%</td>
+<td class="mono">≈106,000 negative-equity mortgages at the 2003 trough</td><td class="mono">—</td>
+<td class="mono neg"><b>18 years</b> (1997→2015) — the longest of the market-economy cases</td></tr>
+</tbody></table></div>
+<div class="warn"><b>Why this reframes §4 entirely.</b> China's reported average land price is down
+only <b>−23%</b> from a 2023 peak, against national housing at −21.8% nominal — i.e. land and housing
+are reported as having fallen by roughly the same amount. <b>That has not happened in any other
+episode.</b> Land fell 1.4× to 2× housing in Japan, the US and Ireland. Either China is the first
+exception, or — far more likely, given that the same series shows land prices <i>rising</i> through
+2021-22 on an explicit composition effect — the reported land series is not measuring what it
+appears to. The base rate says Chinese land should be down substantially more than Chinese housing,
+and the published number says it is not. That is now the programme's sharpest single discrepancy,
+and it is what the land-series runsheet row exists to settle.</div>
+<h3>The two other things worth carrying</h3>
+<ul>
+<li><b>Hong Kong took 18 years to retake its nominal peak</b> on a mid-pack −66% fall — longer than
+any other market economy in the comparison. Depth and duration are close to independent: the deepest
+fall is not the slowest recovery, which is the same lesson CN-D4 produced from the other direction
+(boom size predicts speed, not depth).</li>
+<li><b>China has no clean analogue, and the honest version is worse than picking one.</b> On the
+data it combines Spain- and Ireland-scale construction dependence <i>with</i> Japan-scale or larger
+asset-price excess — arguably worse than either alone. On policy, its LGFV/SOE-centric leverage has
+no counterpart in any of these cases; its liquidity response was far faster than Japan's
+decade-long delay, closer to Sweden 1992, but on the harder dimension — <b>actual loss
+recognition</b> — critics place it back with Japan.</li>
+</ul>
+<p class="note">Two source-mislabelling traps were caught in this leg rather than passed through:
+Japan's six-cities and nationwide land indices circulate with identical index values in some
+secondary sources (they are different series), and a UK land statistic was nearly miscast as US.
+Both are recorded in the dossier — the kind of error that silently halves or doubles a headline.</p>
+</section>
 <section class="panel">
 <h2>Method, and what would make this better</h2>
 <h3>The episode definition, frozen before the run</h3>
@@ -1027,6 +1080,9 @@ credit, a leasehold land-sale fiscal model and a closed capital account. This is
 a forecast.</li>
 <li>Annual data cannot resolve within-year velocity, so every speed figure understates the peak
 monthly rate.</li>
+<li><b>The panel is residential house prices ONLY.</b> It cannot see land or commercial property,
+which fall 1.4× to 2× as far (§17) — so for the principal's original land question the base rate
+supplies a multiplier, not a level.</li>
 <li>The panel ends in 2020 — there is no post-COVID episode in it.</li>
 <li>Every China figure is snippet-sourced. The named fix is a proper data pull: NBS 70-city history,
 land-transfer series, and city-level rental yields, now on the desk's runsheet.</li>
