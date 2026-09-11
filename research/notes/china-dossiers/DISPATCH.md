@@ -40,7 +40,7 @@ recorded rather than hidden.
 | 32 | c-developers-2 | b6-dev-kaisa + b6-dev-shimao + b6-dev-sino (Sunac/Poly now covered by row 14's `c-developers.md`) | 18 | |
 | 33 | c-landreform | b2-land-reform + b2-land-monetization + b2-land-vs-house + b2-land-data-sources | 17 | |
 | 34 | c-global | b9-global-spillover + b10-india-commodities + b10-india-flows | 13 | |
-| 35 | c-forward | b9-what-happens-next + b9-ghost-cities + b9-demolition-quality + b5-recovery-shape + b4-yield-vs-history + b8-comparisons-policy | 24 | |
+| 35 | c-forward | b9-what-happens-next + b9-ghost-cities + b5-recovery-shape + b8-comparisons-policy | 24 | running |
 
 **Note, 2026-09-11 (row 17 close-out):** row 17 (`c-india`) shipped as the consolidated,
 decision-grade India dossier the principal asked for directly — it already fully covers

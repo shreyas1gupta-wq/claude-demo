@@ -1105,6 +1105,65 @@ developers is worth building — the earlier sections' case for that stands — 
 says to pair it with an explicit read on the liability mix (how much is owed as delivery rather than
 cash) and on whether an implicit sponsor exists. Two of those three are not ratios.</div>
 </section>
+
+<section>
+<h2>19 · How much to trust any of this — and the adjustment rule that does not exist</h2>
+<p class="sub">This programme hit a measurement problem at nearly every turn: a 2× gap between
+official and private price declines, four defensible inventory answers, a 4.4× spread in LGFV
+estimates, and a headline vacancy statistic disowned by its own source. The closing question is
+therefore methodological: what should a careful analyst actually do about it?</p>
+<h3>The four documented ways the official index understates declines</h3>
+<ol>
+<li><b>Presale price caps</b> hold registered contract prices sticky while off-book discounts and
+rebates do the real adjusting — so the transacted price falls and the recorded price does not.</li>
+<li><b>The reference/guidance-price system (指导价).</b> The cleanest example is Shenzhen's February
+2021 second-hand scheme — and the telling detail is that it was <b>scrapped for mortgage purposes in
+February 2023 once it started blocking the recovery</b>. The same mechanism that suppressed recorded
+falls on the way down also capped recorded gains on the way up, and was removed when that became
+inconvenient.</li>
+<li><b>Methodology</b>: a peer-reviewed critique finds the matching model does not fully control for
+new sales migrating to cheaper outer rings — a composition effect inside the index itself.</li>
+<li><b>Exclusion of discounts and rebates.</b> Fortune, August 2023: official −2.4%/−6% against
+private second-hand estimates of <b>−15% to −25%</b> in prime cities.</li>
+</ol>
+<h3>Price-floor bans, dated — and then dismantled</h3>
+<p>Zhuzhou and at least eight other cities banned price cuts in <b>September 2021</b>. As the cycle
+turned, the same controls were taken apart: Guangdong developers petitioned against them in June
+2022, Guangzhou eased its cap from 6% to 20% in September 2022, and the national land-premium cap
+was rescinded in 2023. The controls were symmetric in design and asymmetric in use — imposed to stop
+falls, removed once they were preventing a recovery.</p>
+<div class="warn"><b>THE ADJUSTMENT RULE DOES NOT EXIST, AND THAT ABSENCE IS THE FINDING.</b> There
+is no sourced, transferable multiplier for converting official Chinese property figures into honest
+ones. Professional practice is <b>substitution, not haircutting</b>: swap in Beike, CREIS or CRIC for
+the specific segment you care about, rather than applying a correction factor to the official
+series. Any "multiply by 1.5-2×" rule of thumb is folklore and traces to no stable study. This
+matters directly for §2 of this page: the 2× official-versus-private gap <b>cannot be split by
+picking a midpoint</b> — the two series measure different populations with different methods, and
+the honest move is to name which one you are using for which question.</p>
+<h3>What the people who got it right actually watched — and it was not the price index</h3>
+<div class="tbl"><table>
+<thead><tr><th>Who</th><th>What they used</th><th>Lead time</th></tr></thead>
+<tbody>
+<tr><td>UBS's John Lam (SELL on Evergrande)</td><td>Developer leverage and liquidity ratios</td>
+<td class="mono pos">≈11 months pre-default</td></tr>
+<tr><td>The Three Red Lines regulators</td><td>The same firm-level ratios, from inside</td>
+<td class="mono pos">Aug 2020, ≈13 months ahead</td></tr>
+<tr><td>Rogoff-Yang; Rhodium's Logan Wright</td><td>Structural demographic and demand models</td>
+<td class="mono">Directional, not dated</td></tr>
+<tr><td>Independent cash-flow signals</td>
+<td>Land-auction failure rates, presale delivery rates, the 2022 mortgage boycott</td>
+<td class="mono">Real-time, not forecasts</td></tr>
+<tr><td class="mono neg">Chanos (2010), Chang (2001), Bass (2016)</td>
+<td>Macro thesis alone, with no dated balance-sheet trigger</td>
+<td class="mono neg">Years to decades early</td></tr>
+</tbody></table></div>
+<p><b>Every successful dated call came off a balance sheet or a cash-flow observable; every
+unsuccessful one came off a macro thesis.</b> That is the same split CN-D3 found quantitatively —
+credit aggregates with an 87.2% false-alarm rate cannot date anything — arrived at here through the
+history of who was actually right. It is also the honest frame for the perma-bears: Chanos and Bass
+were <i>directionally</i> vindicated, which is worth nothing to a book that has to size and time a
+position.</p>
+</section>
 <section class="panel">
 <h2>Method, and what would make this better</h2>
 <h3>The episode definition, frozen before the run</h3>
