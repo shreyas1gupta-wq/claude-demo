@@ -223,6 +223,9 @@ said slower; it <b>missed</b>. There is no gentle-deflation discount.</div></div
 <div class="t"><div class="k">Credit warning, false alarms</div><div class="v">87.2%</div>
 <div class="d">Rapid mortgage growth does lift 3-year crash odds <b>1.72×</b> — and is wrong about
 seven times in eight. A state, never a trigger.</div></div>
+<div class="t"><div class="k">China, bust ÷ boom speed</div><div class="v">0.98× or 1.73×</div>
+<div class="d">On the <b>official</b> index China runs exactly at the base rate. On <b>private</b>
+estimates it runs 1.7× faster than its own boom. Same country, opposite conclusions.</div></div>
 <div class="t"><div class="k">Equities, year one</div><div class="v">−13.7pp</div>
 <div class="d">Excess real return after a housing peak. Double if banks break. Essentially
 <b>gone by year five</b>.</div></div>
@@ -239,6 +242,34 @@ times the speed.</p>
 <p class="note">Real house prices (nominal deflated by CPI), annual resolution — so every velocity
 figure is a lower bound on the peak monthly rate. Hover any dot for its country, years, depth and
 duration.</p>
+
+<h3>China's own velocity, placed on that line</h3>
+<p class="sub">The scatter above is the base rate. Here is China measured the same way — and the
+answer depends entirely on whose price index you accept, which is itself the finding.</p>
+<div class="tbl"><table>
+<thead><tr><th>Measure</th><th>Cumulative from the Sep-2021 peak</th><th>Bust, %/yr</th>
+<th>Boom, %/yr</th><th>Bust ÷ boom</th><th>Which archetype</th></tr></thead>
+<tbody>
+<tr><td>Official NBS index, real</td><td class="mono">−24.6%</td><td class="mono">−6.1%</td>
+<td class="mono">+6.2%</td><td class="mono">0.98×</td>
+<td>Dead on the base rate (0.99×) — an ordinary, Japan-ish grind</td></tr>
+<tr><td>Official NBS index, nominal</td><td class="mono">−21.8%</td><td class="mono">−5.3%</td>
+<td class="mono">+6.2%</td><td class="mono">0.85×</td><td>Slightly gentler than the base rate</td></tr>
+<tr><td>Private analyst estimates</td><td class="mono">≈−40%</td><td class="mono">−10.7%</td>
+<td class="mono">+6.2%</td><td class="mono neg">1.73×</td>
+<td><b>Ireland/Finland fast-crash regime</b></td></tr>
+<tr><td>Tier-1 at its 2015-16 hottest</td><td class="mono">—</td><td class="mono">—</td>
+<td class="mono">+30.3%</td><td class="mono">—</td>
+<td>Mismatched windows; shown only to size the spike</td></tr>
+</tbody></table></div>
+<div class="warn"><b>This is the cleanest illustration of why the measurement question is not
+pedantic.</b> Take the official index and China is running at exactly the international base rate —
+a slow, ordinary unwind roughly three-quarters of the way to a median crash. Take the estimates most
+private analysts work from and China is falling <b>1.7× faster than its own boom</b>, which puts it
+with Ireland and Finland rather than Japan, and already <i>past</i> the median depth. The two
+readings support opposite investment conclusions, and no amount of analysis resolves a 2× gap in the
+input. It is the single strongest argument for the data pull on the desk's runsheet.</div>
+<h3>The registered scorecard</h3>
 <div class="tbl"><table>
 <thead><tr><th>Registered question</th><th>Bar</th><th>Print</th><th>Verdict</th></tr></thead>
 <tbody>
@@ -273,7 +304,10 @@ median</span><span><span class="sw" style="background:var(--bad)"></span>China, 
 <div class="tbl"><table>
 <thead><tr><th>Base-rate statistic</th><th>Modern panel</th><th>China, reported</th><th>Placement</th></tr></thead>
 <tbody>
-<tr><td>Peak-to-trough real decline</td><td class="mono">−32.0% median<br>(−39 to −29 mid-range)</td>
+<tr><td>National cumulative real decline</td><td class="mono">−32.0% median<br>(−39 to −29 mid-range)</td>
+<td class="mono">official −24.6%<br>private ≈−40% <span class="tag snip">SNIPPET</span></td>
+<td>Official: <b>~three-quarters</b> of a median crash. Private: <b>already past it</b></td></tr>
+<tr><td>Peak-to-trough real decline, by tier</td><td class="mono">−32.0% median<br>(−39 to −29 mid-range)</td>
 <td class="mono">tier-1 “&lt;10%”<br>tier-3 “up to 30%” <span class="tag snip">SNIPPET</span></td>
 <td>Tier-3 <b>already at the median</b>; tier-1 about a third of the way</td></tr>
 <tr><td>Latest year-on-year, new-build</td><td class="mono">—</td>

@@ -10,7 +10,7 @@ recorded rather than hidden.
 | 2 | b2-land-national | b2-land-national | 5 | DONE |
 | 3 | b6-debt-predictive-summary | b6-debt-predictive-summary | 5 | DONE |
 | 4 | c-yield | b4-resi-yield-national + b4-rents-falling | 9 | DONE |
-| 5 | c-velocity | b5-velocity-national + b5-velocity-precrash + b5-peak-timing | 14 | running |
+| 5 | c-velocity | b5-velocity-national + b5-velocity-precrash + b5-peak-timing | 14 | DONE |
 | 6 | c-assetclass-core | b3-apartments-vs-houses + b3-retail-shops | 10 | running |
 | 7 | c-office | b3-office-beijing/shanghai/shenzhen/guangzhou (merged) + b3-office-tier2 | 14 | |
 | 8 | c-land-auctions | b2-land-auctions + b2-land-state-buyers | 10 | |
