@@ -5759,3 +5759,34 @@ LIMITS as registered: 18 ADVANCED economies, no India, no EM, nothing at India's
 windows OVERLAP so frequencies are exposure shares and no significance is claimed; these are
 NATIONAL indices and city dispersion exceeds them in both directions; annual frequency.
 CENSUS 10 (1389 -> **1399**).
+
+## Entry RE-SOURCES (2026-09-11, running record; NOT a trial — zero cells, census 0) — THE
+EVIDENCE PACK for the India Real-Estate Prediction Engine handoff
+(`research/register/handoff-prompt-india-realestate-engine.md` v3.1). Booked as a note, not a
+design: nothing here is computed from vaulted data, and no falsifiable bar can be set on a
+literature sweep. The SNAPSHOT-1 / GAP-MAP-1 / CN-DOSSIER precedent for descriptive entries
+applies. **Census unchanged at 1,399.**
+PURPOSE, stated plainly: the handoff prompt tells the next thread *what to build and in what
+order*. It does not tell it *what is already known*. This leg supplies the second half — the
+international forecasting literature, the country-by-country data regimes, the India source estate,
+and the method toolkit — so the next thread starts from the research frontier instead of
+rediscovering it. The principal asked for sources and patterns explicitly, NOT another roadmap.
+EVIDENCE STANDARD, binding on every consumer and identical to CN-DOSSIER's: **WebFetch is
+EGRESS_BLOCKED for every domain in this session**, so every external claim rests on WebSearch
+snippets that could not be checked against a primary page. Every agent was required to tag each
+claim `[2-SOURCE]` / `[1-SOURCE]` / `[RECALL — unverified]`, never to invent a URL, author or
+number, and to report failures as prominently as confirmations. **This pack is INDICATIVE
+RESEARCH, not desk-grade evidence. It may inform a design and may NOT be cited as a print.**
+STRUCTURE (30 agents; 3 concurrent per CLAUDE.md rule 6; Sonnet for the sweep, Opus for audit and
+synthesis per the 09-10 model directive): 22 cited dossiers across four clusters — A the
+international forecasting evidence, B country patterns and disclosure regimes, C the India source
+estate and literature, D construction and evaluation method — then **three adversarial
+fact-checkers** whose verdicts are BINDING on the syntheses (citation integrity first, because a
+plausible-but-nonexistent author-year-journal triple is the top hallucination risk in a pack of
+this kind), then four cluster syntheses, then a completeness critic. All in
+`research/notes/re-engine-sources/`.
+SEQUENCING NOTE, recorded rather than smoothed over: this registration was written while the sweep
+was in flight, not before it. That departs from process note #1. It is admissible here only because
+a literature leg carries no bar and no prior, so there is nothing a late registration could game —
+the discipline exists to stop bars moving after a print, and there is no print. Any design that
+comes OUT of this pack registers normally, before it runs.

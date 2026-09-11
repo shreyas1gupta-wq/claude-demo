@@ -268,7 +268,10 @@ non-evidence-grade.
 ## §6 — CONSTRAINTS THE LAST SESSION PAID TO DISCOVER
 
 **6.1 WebFetch is EGRESS-BLOCKED for every domain. WebSearch works. GitHub is open.** Tested
-directly. ~20 agents each lost roughly a third of their budget to calls that cannot succeed —
+directly, and then MEASURED: a 37-endpoint `curl` probe on 2026-09-11 (`research/notes/
+re-engine-sources/_PROBE.md`) reached **1 of 37** — the GitHub control. Every international
+house-price source, every Indian official portal, and the whole free geospatial stack answered
+`CONNECT tunnel failed, response 403` at the gateway. This is the measurement behind §0.5. ~20 agents each lost roughly a third of their budget to calls that cannot succeed —
 **tell every agent never to call it.** GitHub raw/LFS/git-proxy IS reachable, so GitHub-hosted
 dataset mirrors are the one live data channel. Hunt them hard.
 
@@ -485,6 +488,22 @@ dashboard should persist a locality watchlist or accept the principal's annotati
 
 ## §14 — PRIOR WORK IN THIS REPO: READ, DO NOT REDO
 
+- **`research/register/india-realestate-evidence-pack.md` — the companion to this brief, and the
+  first thing to read after it.** Where this document says what to build, that one says what is
+  already known: the international house-price forecasting literature and its out-of-sample
+  failures, the country-by-country data regimes and the four templates India could copy, the India
+  source estate portal by portal, the under-reporting econometrics, the free geospatial stack, a
+  measured reachability table, and its own audit scoreboard of claims that did not survive
+  fact-checking. Its §00 lists the sixteen desk prints any new property work must not contradict.
+- **`research/cycles/fincycle-deep/partC-data.md`** — 460 lines of India property DATA ENGINEERING
+  already done: RBI HPI provenance and its live rebase break, NHB RESIDEX's two dated breaks and
+  its two structurally different price concepts (never blend them), housing credit, RERA, the
+  registration/stamp-duty transaction side, the circle-rate honesty note, a vintage/point-in-time
+  hazard table, and an explicit list of what cannot be measured free. **Do not re-derive this.**
+- **`docs/cycles/13-real-estate.md`** — the folk 18-year property clock and Kuznets swings both
+  FAIL this desk's pre-registered spacing test (109 peak spacings, 17 countries, median 14y, only
+  45% in [14,22]y against a >=50% bar). The mechanism is kept, inside L12; the clock is dead. If
+  anyone proposes an 18-year cycle feature, this is the answer.
 - `research/frontier/india-property-plan.md` — incl. §0 where "grow >20% in 5yr" is decomposed
   (cumulative = 3.71%/yr = **−0.75%/yr real** before costs, and **−4.60%/yr real after** them).
 - `research/notes/india-dossiers/` — **9 cited dossiers**: Mumbai inner and outer (8 micro-markets),
