@@ -1,0 +1,1126 @@
+[
+ {
+  "slug": "b1-t1-beijing",
+  "topic": "Tier-1: Beijing",
+  "qs": [
+   "Beijing: new-home price index peak (month/year) and the cumulative decline from peak to the latest available month, with the NBS 70-city series or a named local source",
+   "Beijing: SECOND-HAND home price decline from peak — usually far worse than new-build because of the presale/price-cap distortion; give the figure and explain the gap",
+   "Beijing: actual transacted price per square metre now vs at peak, in CNY/sqm, for a named district or two (centre vs suburb) — anecdote-level is fine if labelled",
+   "Beijing: residential gross rental yield now vs pre-2021, with the source's method",
+   "Beijing: transaction VOLUME (units or sqm sold) now vs the 2020/2021 peak",
+   "Beijing: any local rescue policy (purchase restrictions lifted, down-payment or mortgage-rate floor cuts, hukou easing) and the dated effect on prices"
+  ]
+ },
+ {
+  "slug": "b1-t1-shanghai",
+  "topic": "Tier-1: Shanghai",
+  "qs": [
+   "Shanghai: new-home price index peak (month/year) and the cumulative decline from peak to the latest available month, with the NBS 70-city series or a named local source",
+   "Shanghai: SECOND-HAND home price decline from peak — usually far worse than new-build because of the presale/price-cap distortion; give the figure and explain the gap",
+   "Shanghai: actual transacted price per square metre now vs at peak, in CNY/sqm, for a named district or two (centre vs suburb) — anecdote-level is fine if labelled",
+   "Shanghai: residential gross rental yield now vs pre-2021, with the source's method",
+   "Shanghai: transaction VOLUME (units or sqm sold) now vs the 2020/2021 peak",
+   "Shanghai: any local rescue policy (purchase restrictions lifted, down-payment or mortgage-rate floor cuts, hukou easing) and the dated effect on prices"
+  ]
+ },
+ {
+  "slug": "b1-t1-guangzhou",
+  "topic": "Tier-1: Guangzhou",
+  "qs": [
+   "Guangzhou: new-home price index peak (month/year) and the cumulative decline from peak to the latest available month, with the NBS 70-city series or a named local source",
+   "Guangzhou: SECOND-HAND home price decline from peak — usually far worse than new-build because of the presale/price-cap distortion; give the figure and explain the gap",
+   "Guangzhou: actual transacted price per square metre now vs at peak, in CNY/sqm, for a named district or two (centre vs suburb) — anecdote-level is fine if labelled",
+   "Guangzhou: residential gross rental yield now vs pre-2021, with the source's method",
+   "Guangzhou: transaction VOLUME (units or sqm sold) now vs the 2020/2021 peak",
+   "Guangzhou: any local rescue policy (purchase restrictions lifted, down-payment or mortgage-rate floor cuts, hukou easing) and the dated effect on prices"
+  ]
+ },
+ {
+  "slug": "b1-t1-shenzhen",
+  "topic": "Tier-1: Shenzhen",
+  "qs": [
+   "Shenzhen: new-home price index peak (month/year) and the cumulative decline from peak to the latest available month, with the NBS 70-city series or a named local source",
+   "Shenzhen: SECOND-HAND home price decline from peak — usually far worse than new-build because of the presale/price-cap distortion; give the figure and explain the gap",
+   "Shenzhen: actual transacted price per square metre now vs at peak, in CNY/sqm, for a named district or two (centre vs suburb) — anecdote-level is fine if labelled",
+   "Shenzhen: residential gross rental yield now vs pre-2021, with the source's method",
+   "Shenzhen: transaction VOLUME (units or sqm sold) now vs the 2020/2021 peak",
+   "Shenzhen: any local rescue policy (purchase restrictions lifted, down-payment or mortgage-rate floor cuts, hukou easing) and the dated effect on prices"
+  ]
+ },
+ {
+  "slug": "b1-t1-overview",
+  "topic": "Tier-1 as a class",
+  "qs": [
+   "The official NBS tier-1 / tier-2 / tier-3 aggregate new-home and second-hand price indices: peak, latest, cumulative decline for EACH tier — the single most important table in this programme",
+   "Why tier-1 has held up better than tier-2/3: the mechanism, not just the number",
+   "Is any tier-1 city actually RISING now (Shanghai has been reported as such)? Give dated figures",
+   "The gap between the official NBS index and private indices (Beike/KE Holdings, China Real Estate Information Corp/CRIC, E-house): how much does the official series understate the fall, and who says so?",
+   "What exactly are the 4 tier-1, and the commonly used 'new tier-1' list of 15? Name them and the classifier (Yicai/CBN ranking)"
+  ]
+ },
+ {
+  "slug": "b1-t2-hangzhou-nanjing",
+  "topic": "Tier-2: Hangzhou & Nanjing",
+  "qs": [
+   "Hangzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Nanjing: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Hangzhou and Nanjing: residential rental yield now vs pre-crash",
+   "Hangzhou and Nanjing: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Hangzhou or Nanjing fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Hangzhou/Nanjing: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-chengdu-chongqing",
+  "topic": "Tier-2: Chengdu & Chongqing",
+  "qs": [
+   "Chengdu: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Chongqing: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Chengdu and Chongqing: residential rental yield now vs pre-crash",
+   "Chengdu and Chongqing: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Chengdu or Chongqing fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Chengdu/Chongqing: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-wuhan-changsha",
+  "topic": "Tier-2: Wuhan & Changsha",
+  "qs": [
+   "Wuhan: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Changsha: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Wuhan and Changsha: residential rental yield now vs pre-crash",
+   "Wuhan and Changsha: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Wuhan or Changsha fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Wuhan/Changsha: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-xian-zhengzhou",
+  "topic": "Tier-2: Xi'an & Zhengzhou",
+  "qs": [
+   "Xi'an: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Zhengzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Xi'an and Zhengzhou: residential rental yield now vs pre-crash",
+   "Xi'an and Zhengzhou: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Xi'an or Zhengzhou fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Xi'an/Zhengzhou: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-tianjin-shijiazhuang",
+  "topic": "Tier-2: Tianjin & Shijiazhuang",
+  "qs": [
+   "Tianjin: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Shijiazhuang: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Tianjin and Shijiazhuang: residential rental yield now vs pre-crash",
+   "Tianjin and Shijiazhuang: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Tianjin or Shijiazhuang fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Tianjin/Shijiazhuang: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-suzhou-wuxi",
+  "topic": "Tier-2: Suzhou & Wuxi",
+  "qs": [
+   "Suzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Wuxi: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Suzhou and Wuxi: residential rental yield now vs pre-crash",
+   "Suzhou and Wuxi: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Suzhou or Wuxi fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Suzhou/Wuxi: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-qingdao-jinan",
+  "topic": "Tier-2: Qingdao & Jinan",
+  "qs": [
+   "Qingdao: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Jinan: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Qingdao and Jinan: residential rental yield now vs pre-crash",
+   "Qingdao and Jinan: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Qingdao or Jinan fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Qingdao/Jinan: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-shenyang-dalian",
+  "topic": "Tier-2: Shenyang & Dalian",
+  "qs": [
+   "Shenyang: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Dalian: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Shenyang and Dalian: residential rental yield now vs pre-crash",
+   "Shenyang and Dalian: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Shenyang or Dalian fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Shenyang/Dalian: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-xiamen-fuzhou",
+  "topic": "Tier-2: Xiamen & Fuzhou",
+  "qs": [
+   "Xiamen: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Fuzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Xiamen and Fuzhou: residential rental yield now vs pre-crash",
+   "Xiamen and Fuzhou: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Xiamen or Fuzhou fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Xiamen/Fuzhou: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-hefei-nanchang",
+  "topic": "Tier-2: Hefei & Nanchang",
+  "qs": [
+   "Hefei: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Nanchang: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Hefei and Nanchang: residential rental yield now vs pre-crash",
+   "Hefei and Nanchang: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Hefei or Nanchang fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Hefei/Nanchang: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-kunming-guiyang",
+  "topic": "Tier-2: Kunming & Guiyang",
+  "qs": [
+   "Kunming: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Guiyang: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Kunming and Guiyang: residential rental yield now vs pre-crash",
+   "Kunming and Guiyang: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Kunming or Guiyang fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Kunming/Guiyang: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-ningbo-wenzhou",
+  "topic": "Tier-2: Ningbo & Wenzhou",
+  "qs": [
+   "Ningbo: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Wenzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Ningbo and Wenzhou: residential rental yield now vs pre-crash",
+   "Ningbo and Wenzhou: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Ningbo or Wenzhou fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Ningbo/Wenzhou: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-harbin-changchun",
+  "topic": "Tier-2: Harbin & Changchun",
+  "qs": [
+   "Harbin: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Changchun: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Harbin and Changchun: residential rental yield now vs pre-crash",
+   "Harbin and Changchun: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Harbin or Changchun fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Harbin/Changchun: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-lanzhou-urumqi",
+  "topic": "Tier-2: Lanzhou & Urumqi",
+  "qs": [
+   "Lanzhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Urumqi: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Lanzhou and Urumqi: residential rental yield now vs pre-crash",
+   "Lanzhou and Urumqi: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Lanzhou or Urumqi fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Lanzhou/Urumqi: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-zhuhai-dongguan",
+  "topic": "Tier-2: Zhuhai & Dongguan",
+  "qs": [
+   "Zhuhai: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Dongguan: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Zhuhai and Dongguan: residential rental yield now vs pre-crash",
+   "Zhuhai and Dongguan: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Zhuhai or Dongguan fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Zhuhai/Dongguan: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t2-foshan-huizhou",
+  "topic": "Tier-2: Foshan & Huizhou",
+  "qs": [
+   "Foshan: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Huizhou: new-home and second-hand price peak and cumulative decline to latest, dated, sourced",
+   "Foshan and Huizhou: residential rental yield now vs pre-crash",
+   "Foshan and Huizhou: inventory / months of unsold supply, and any reported 'ghost' or stalled-project problem",
+   "Which of Foshan or Huizhou fell harder and WHY — population flow, industry base, or land-supply discipline",
+   "Foshan/Huizhou: any notable local specifics (Wenzhou's own 2011 bust, Zhengzhou's rescue fund, Tianjin's Binhai district, Kunming's oversupply) if applicable"
+  ]
+ },
+ {
+  "slug": "b1-t3-notorious",
+  "topic": "Tier-3/4: the notorious busts",
+  "qs": [
+   "Hegang, Heilongjiang: apartments reportedly selling for tens of thousands of CNY total. Current price per sqm, the peak, the mechanism (population collapse, coal)",
+   "Ordos / Kangbashi, Inner Mongolia: the original 'ghost city'. What actually happened to prices and occupancy, 2010 to now — including the part where it partly filled up",
+   "Yingkou, Danzhou (Hainan), Beihai (Guangxi): price declines and the oversupply story in each",
+   "Fuxin, Shuangyashan, Qitaihe and the other shrinking north-eastern cities: the cheapest housing in China — give prices",
+   "What share of China's housing stock and unsold inventory sits in tier-3 and below? The number that decides whether the bust is national or peripheral"
+  ]
+ },
+ {
+  "slug": "b1-t3-satellite",
+  "topic": "Tier-3: satellite and speculative belts",
+  "qs": [
+   "Langfang and Zhuozhou (the Beijing commuter belt): the 2016-17 spike and the subsequent collapse — reported as one of the worst in China. Figures",
+   "Tangshan, Baoding, Qinhuangdao: the Hebei belt's declines",
+   "Weihai, Zhoushan, Yantai: coastal second-home markets",
+   "Hainan province as a whole: the 2018 purchase ban, the free-trade-port push, and where prices are now",
+   "The 'commuter belt' pattern generally: do satellite towns of strong cities fall harder than independent tier-3s?"
+  ]
+ },
+ {
+  "slug": "b1-provincial-capitals",
+  "topic": "Provincial capitals as a class",
+  "qs": [
+   "Do provincial capitals systematically outperform non-capital cities in the same province? Evidence and figures",
+   "The 'strong provincial capital' (强省会) policy of concentrating resources in the capital: what it is, which provinces ran it, and its property consequence",
+   "Which provincial capitals have fallen the MOST and the LEAST, ranked with figures",
+   "Population flows into provincial capitals vs out of the rest of the province: the numbers behind the divergence"
+  ]
+ },
+ {
+  "slug": "b2-land-national",
+  "topic": "National land market: the headline series",
+  "qs": [
+   "China's national land-transfer income (土地出让金) by year 2015-2025 in CNY trillion, sourced to MOF — the single most important fiscal number in this story",
+   "Land-transfer income as a share of local-government revenue, by year, and the peak",
+   "Total residential land area sold nationally by year, 2015-2025, and the decline from peak",
+   "The average land price per sqm nationally, peak and now",
+   "What replaced the lost land revenue (transfers from the centre, special bonds, asset sales, tax)? Quantified if possible"
+  ]
+ },
+ {
+  "slug": "b2-land-auctions",
+  "topic": "Land auctions: failure rates and mechanics",
+  "qs": [
+   "The 'centralized land supply' (集中供地) rule introduced in 2021 for 22 major cities: what it was, how it worked, and when it was abandoned",
+   "Land-auction FAILURE / withdrawal rates (流拍率) by year and city tier — the clearest single measure of developer capitulation",
+   "The share of land parcels sold at the FLOOR/reserve price with zero premium, by year",
+   "Average land premium rate (溢价率) by year and tier, peak to now",
+   "Named examples of specific high-profile Beijing/Shanghai/Shenzhen/Hangzhou parcels: peak-era price vs a comparable recent parcel"
+  ]
+ },
+ {
+  "slug": "b2-land-state-buyers",
+  "topic": "Who is actually buying the land now",
+  "qs": [
+   "The share of land purchased by LOCAL-GOVERNMENT-LINKED entities (LGFVs, city investment companies, state land-reserve arms) vs private developers, by year — the 'the government is buying its own land' phenomenon",
+   "Evidence and estimates of this share from named research houses (Rhodium, Gavekal, Goldman, CICC, academic work)",
+   "What happens to that land afterwards — is it developed, or warehoused?",
+   "The top land buyers in China by year: how the league table shifted from private (Evergrande/Country Garden/Sunac) to state (Poly, China Overseas, China Resources, Greentown) developers",
+   "Does this inflate the reported land-transfer income, and by how much?"
+  ]
+ },
+ {
+  "slug": "b2-land-vs-house",
+  "topic": "Land price vs house price: the ratio",
+  "qs": [
+   "The land-cost share of a finished apartment's price in tier-1 vs tier-3 cities, and how it changed through the boom and bust",
+   "The '面粉贵过面包' (flour costlier than bread) phenomenon where land cost exceeded sellable housing value: when, where, and the figures",
+   "Did land prices fall MORE or LESS than house prices in the bust? Give the two series side by side",
+   "Residential vs commercial vs industrial land price series — which fell hardest"
+  ]
+ },
+ {
+  "slug": "b2-land-fiscal-model",
+  "topic": "The leasehold land-sale fiscal model",
+  "qs": [
+   "How the Chinese land-sale model actually works: state ownership, 70-year residential / 40-50 year commercial leaseholds, the 1994 tax-sharing reform that created the incentive",
+   "What happens at the end of a 70-year residential leasehold — the law, the 2007 Property Law, the Wenzhou 20-year-lease incident of 2016, and what is actually still unresolved",
+   "The 'land finance' (土地财政) critique and the leading scholars/sources on it",
+   "How much of local-government DEBT is collateralized on land value, and what a 30% land-price fall does to that collateral"
+  ]
+ },
+ {
+  "slug": "b2-land-reform",
+  "topic": "Land reform and rural land",
+  "qs": [
+   "The rural collective land vs urban state land distinction, and the 2019 Land Administration Law amendment allowing some rural construction land to market",
+   "Rural homestead (宅基地) reform pilots and why they matter for supply",
+   "The hukou-land link: why migrants cannot monetize rural land, and the effect on urban demand",
+   "Any 2024-2026 land-reform announcements (Third Plenum 2024 in particular) and what they actually change"
+  ]
+ },
+ {
+  "slug": "b2-land-monetization",
+  "topic": "Land reserves, PSL and state destocking",
+  "qs": [
+   "The Pledged Supplementary Lending (PSL) facility: size by year, what it funded, and its role in the 2015-2018 shantytown-redevelopment (棚改) boom that inflated tier-3 prices",
+   "The 2024 CNY 300bn relending facility for state purchase of unsold homes: size, uptake, and why uptake was low",
+   "The 2024-2025 programme for local governments to buy back idle LAND from developers using special bonds: size and actual execution",
+   "Have any of these programmes worked, measured by price or inventory? Sourced assessments"
+  ]
+ },
+ {
+  "slug": "b2-land-data-sources",
+  "topic": "Where land data actually comes from",
+  "qs": [
+   "The authoritative sources for Chinese land-transaction data: China Index Academy (中指院), CREIS, Wind, CEIC, the Ministry of Natural Resources, local land bureaus — what each covers and its lag",
+   "Which of these is free/scrapeable and which is paywalled — a practical acquisition note",
+   "The known reliability problems with each (the land-transfer-income vs land-sales-revenue discrepancy in particular)",
+   "Any academic or open datasets on Chinese land auctions (parcel-level) a researcher could actually download"
+  ]
+ },
+ {
+  "slug": "b3-office-beijing",
+  "topic": "Grade-A office: Beijing",
+  "qs": [
+   "Beijing Grade-A office VACANCY rate now vs 2019 and the peak-vacancy figure, sourced to CBRE/JLL/Cushman/Savills/Colliers",
+   "Beijing Grade-A office effective RENT (CNY/sqm/month) now vs peak, and the cumulative decline",
+   "Beijing office CAP RATE / net initial yield now vs pre-crash",
+   "Beijing office new supply pipeline and why vacancy stays high",
+   "Beijing: any landmark distressed office transaction or asset-management-company sale, with price and implied yield"
+  ]
+ },
+ {
+  "slug": "b3-office-shanghai",
+  "topic": "Grade-A office: Shanghai",
+  "qs": [
+   "Shanghai Grade-A office VACANCY rate now vs 2019 and the peak-vacancy figure, sourced to CBRE/JLL/Cushman/Savills/Colliers",
+   "Shanghai Grade-A office effective RENT (CNY/sqm/month) now vs peak, and the cumulative decline",
+   "Shanghai office CAP RATE / net initial yield now vs pre-crash",
+   "Shanghai office new supply pipeline and why vacancy stays high",
+   "Shanghai: any landmark distressed office transaction or asset-management-company sale, with price and implied yield"
+  ]
+ },
+ {
+  "slug": "b3-office-shenzhen",
+  "topic": "Grade-A office: Shenzhen",
+  "qs": [
+   "Shenzhen Grade-A office VACANCY rate now vs 2019 and the peak-vacancy figure, sourced to CBRE/JLL/Cushman/Savills/Colliers",
+   "Shenzhen Grade-A office effective RENT (CNY/sqm/month) now vs peak, and the cumulative decline",
+   "Shenzhen office CAP RATE / net initial yield now vs pre-crash",
+   "Shenzhen office new supply pipeline and why vacancy stays high",
+   "Shenzhen: any landmark distressed office transaction or asset-management-company sale, with price and implied yield"
+  ]
+ },
+ {
+  "slug": "b3-office-guangzhou",
+  "topic": "Grade-A office: Guangzhou",
+  "qs": [
+   "Guangzhou Grade-A office VACANCY rate now vs 2019 and the peak-vacancy figure, sourced to CBRE/JLL/Cushman/Savills/Colliers",
+   "Guangzhou Grade-A office effective RENT (CNY/sqm/month) now vs peak, and the cumulative decline",
+   "Guangzhou office CAP RATE / net initial yield now vs pre-crash",
+   "Guangzhou office new supply pipeline and why vacancy stays high",
+   "Guangzhou: any landmark distressed office transaction or asset-management-company sale, with price and implied yield"
+  ]
+ },
+ {
+  "slug": "b3-office-tier2",
+  "topic": "Grade-A office: tier-2 centres",
+  "qs": [
+   "Office vacancy and rent decline for Chengdu, Chongqing, Wuhan, Hangzhou, Tianjin, Shenyang — the tier-2 office glut, sourced",
+   "Which Chinese city has the world's highest office vacancy rate, and the figure",
+   "The 'business park' / industrial-office (产业园) category: rents and vacancy",
+   "How much of the tier-2 office supply was built by local governments for industrial-policy reasons rather than demand"
+  ]
+ },
+ {
+  "slug": "b3-retail-shops",
+  "topic": "Shops, high street and malls",
+  "qs": [
+   "High-street retail rent decline in Beijing Wangfujing, Shanghai Nanjing Road / Huaihai Road, and a named Shenzhen or Guangzhou strip — figures and dates",
+   "Shopping-MALL rents and vacancy vs high street: which held up better and why (the e-commerce interaction)",
+   "Strata-titled SHOPS (商铺) sold to retail investors: the price collapse in this category specifically, which is reported as among the worst of all",
+   "Retail property cap rates / yields now vs pre-crash",
+   "Named distressed mall sales or REIT-level retail valuations that reveal the mark"
+  ]
+ },
+ {
+  "slug": "b3-apartments-vs-houses",
+  "topic": "Apartments vs villas vs townhouses",
+  "qs": [
+   "Do villas / low-density housing (别墅, 洋房) hold value better or worse than high-rise apartments in the bust? Evidence and figures",
+   "The 'improvement housing' (改善型) vs 'first-home' segment split: which fell harder",
+   "The luxury / ultra-prime segment: has it fallen at all? Named Shanghai/Shenzhen prime projects and figures",
+   "OLD vs NEW apartments: the age-depreciation problem in Chinese housing (30-year-old buildings), and what it does to second-hand prices",
+   "The 类住宅 / commercial-titled apartment (商住房) category: the 2017 Beijing ban, and the resulting price collapse — a specific, severe and under-reported case"
+  ]
+ },
+ {
+  "slug": "b3-industrial-logistics",
+  "topic": "Industrial and logistics property",
+  "qs": [
+   "China logistics/warehouse rents and vacancy now vs 2021 peak, sourced to CBRE/JLL or a logistics REIT",
+   "Why logistics has been the most resilient Chinese property class — the mechanism",
+   "Logistics cap rates now vs pre-crash, and what the C-REIT market implies",
+   "Cold storage and data-centre property as sub-classes: yields and any oversupply"
+  ]
+ },
+ {
+  "slug": "b3-hotel-hospitality",
+  "topic": "Hotels and hospitality property",
+  "qs": [
+   "Chinese hotel RevPAR / occupancy recovery post-COVID vs 2019, and hotel asset values",
+   "Distressed hotel sales by developers deleveraging: named transactions and prices",
+   "Hotel cap rates and any listed/REIT comparables"
+  ]
+ },
+ {
+  "slug": "b3-whole-buildings",
+  "topic": "Whole buildings and block transactions",
+  "qs": [
+   "The Chinese 'block/whole-building transaction' (大宗交易) market: total volume by year 2019-2025, and the decline",
+   "Who the buyers are now (insurers, AMCs, state funds, foreign opportunistic capital) vs before",
+   "Named large whole-building trades in Shanghai/Beijing with price per sqm and implied yield, showing the mark-down",
+   "The role of Cinda/Huarong/Great Wall/Orient (the four AMCs) in absorbing distressed property, and their own resulting problems",
+   "Foreign capital: has Blackstone/Brookfield/GIC/PAG been buying or selling Chinese property? Named deals and direction"
+  ]
+ },
+ {
+  "slug": "b3-parking-storage",
+  "topic": "The odd categories",
+  "qs": [
+   "Parking spaces (车位) sold as investments: price collapse figures — a genuinely interesting and under-covered case",
+   "Serviced apartments and long-term rental apartments (长租公寓): the 2018-2021 wave of operator failures (Danke/Qingke) and what survived",
+   "Self-storage, senior housing, student housing in China: does any of it exist at scale, and any yields"
+  ]
+ },
+ {
+  "slug": "b4-resi-yield-national",
+  "topic": "Residential rental yield: the national picture",
+  "qs": [
+   "China's national average residential gross rental yield now vs 2015 and 2021, with the source and method",
+   "The 50-city rental-yield table (the widely cited one showing 1.5-2% in tier-1): give the actual numbers by city",
+   "Rental yield vs the 5-year LPR / mortgage rate: the carry spread, then vs now — the single cleanest 'is it cheap yet' statistic",
+   "Has the yield risen because rents rose or because prices fell? Decompose it",
+   "International comparison: Chinese tier-1 yields vs Tokyo, Seoul, Singapore, Hong Kong, Mumbai, New York"
+  ]
+ },
+ {
+  "slug": "b4-rents-falling",
+  "topic": "Are rents themselves falling?",
+  "qs": [
+   "China residential RENT index by year and city tier: is rent falling in nominal terms, and by how much?",
+   "The Beike/Anjuke rent indices for tier-1 cities: peak and latest",
+   "Why rents are falling: graduate unemployment, migrant outflow, the supply of unsold units pushed into the rental market",
+   "The affordable-rental-housing (保障性租赁住房) programme: units delivered and the effect on market rent"
+  ]
+ },
+ {
+  "slug": "b4-business-rent",
+  "topic": "Business rent: the cross-asset rent table",
+  "qs": [
+   "A single comparative table: office / retail / logistics / residential rent change from peak to latest, nationally and for Shanghai and Beijing",
+   "Which business-property class has the highest and lowest current yield in China, and the spread between them",
+   "Rent-free periods and incentives in Chinese office leasing now vs pre-crash — the headline-vs-effective rent gap",
+   "Lease lengths and tenant-credit deterioration in Chinese commercial leasing"
+  ]
+ },
+ {
+  "slug": "b4-yield-vs-history",
+  "topic": "Yield in historical and cross-country context",
+  "qs": [
+   "What rental yield did Japanese property carry at the 1991 peak and at the trough? The single best analogue for the yield question",
+   "US, Spanish and Irish rental yields at their peaks and troughs",
+   "Is there a yield level at which property markets historically stop falling? Evidence either way",
+   "The Gordon-growth framing: what rent growth does a 1.8% Chinese tier-1 yield imply, and is it plausible given demographics?"
+  ]
+ },
+ {
+  "slug": "b4-price-to-income",
+  "topic": "Price-to-income and affordability",
+  "qs": [
+   "Price-to-income ratios for Beijing, Shanghai, Shenzhen, Guangzhou and a few tier-2s, now vs peak, sourced (Numbeo, E-house, academic)",
+   "Shenzhen's reported ~35x price-to-income at peak: verify or correct it with a source",
+   "How Chinese price-to-income compares with Tokyo 1990, Hong Kong, London, Mumbai, New York",
+   "Mortgage debt-service-to-income ratios for Chinese households, and the 'six pockets' (六个钱包) phenomenon of family-funded down payments",
+   "Has affordability actually improved through the bust? Prices fell but so did incomes and expectations"
+  ]
+ },
+ {
+  "slug": "b5-velocity-national",
+  "topic": "Crash velocity: the national numbers",
+  "qs": [
+   "The month-by-month year-on-year decline of the NBS 70-city new-home index from the 2021 peak to the latest print — the actual velocity series",
+   "The steepest single month and the steepest 12-month window of the decline",
+   "How many consecutive months of decline, as of the latest data",
+   "The cumulative peak-to-latest decline in the official index vs private estimates (which run 2-5x larger) — reconcile them with named sources",
+   "Sales VOLUME velocity: CNY 18.2tn (2021) to the latest year, the annualized rate of collapse"
+  ]
+ },
+ {
+  "slug": "b5-velocity-precrash",
+  "topic": "Pre-crash rising velocity",
+  "qs": [
+   "The 2015-2021 appreciation: annualized rate of new-home price rises nationally and for tier-1, tier-2, tier-3 separately",
+   "The 2015-2016 boom specifically: the fastest appreciation months on record and where",
+   "The 2016-2018 tier-3 shantytown-redevelopment (棚改) boom: appreciation rates in tier-3 cities, the PSL money behind it",
+   "Longer history: what did Chinese house prices do 1998 (housing privatization) to 2021? The full appreciation record",
+   "The ratio of the boom's annualized rate to the bust's annualized rate — the principal's exact question, for China"
+  ]
+ },
+ {
+  "slug": "b5-peak-timing",
+  "topic": "Dating the peak precisely",
+  "qs": [
+   "When exactly did Chinese property peak, and by which measure? (prices, sales volume, new starts, land sales, developer bonds all peaked at different times — give each)",
+   "The sequence of the turn: which series turned first, and by how many months",
+   "The Three Red Lines (Aug 2020) and the Evergrande default (Dec 2021) as dated causal markers",
+   "Was there a warning window between the policy and the price peak that an investor could have acted in?"
+  ]
+ },
+ {
+  "slug": "b5-starts-completions",
+  "topic": "Starts, completions and the physical cycle",
+  "qs": [
+   "China housing NEW STARTS by year 2015-2025 in million sqm, and the collapse from peak (reported as ~-70%)",
+   "COMPLETIONS by year, and why completions held up while starts collapsed (the 'guarantee delivery' 保交楼 campaign)",
+   "Floor space UNDER CONSTRUCTION: the stock, and how many years of sales it represents",
+   "Unsold finished inventory vs unsold under-construction: the two numbers, and months of supply for each",
+   "Construction-sector employment and the migrant-worker consequence of a 70% starts collapse"
+  ]
+ },
+ {
+  "slug": "b5-compare-japan",
+  "topic": "The Japan comparison, done properly",
+  "qs": [
+   "Japan's urban land price index (the 6-large-cities series): peak year, the cumulative decline for RESIDENTIAL and for COMMERCIAL land, and how many years to trough — the commercial figure is the famous one",
+   "Japanese nationwide residential land vs the 6-cities index: the difference matters and is usually elided",
+   "Japan's pre-peak appreciation rate vs its decline rate — the velocity ratio",
+   "What Japanese rental yields did through it",
+   "The genuine structural differences between Japan 1990 and China 2021 (urbanization stage, income level, corporate cross-holdings, capital account, policy response speed) — sourced, both sides"
+  ]
+ },
+ {
+  "slug": "b5-compare-others",
+  "topic": "US, Spain, Ireland, Hong Kong, Thailand",
+  "qs": [
+   "US Case-Shiller: 2006 peak, peak-to-trough decline, years to trough, and the recovery",
+   "Spain and Ireland 2007-2013: peak-to-trough house-price declines, and the land/development-land declines which were far worse",
+   "Hong Kong 1997-2003: the -66% figure, the negative-equity count, and years to recover",
+   "Thailand/Indonesia 1997-98 property busts as EM analogues",
+   "Which of these China most resembles on the data, and which on the policy response? Argue both"
+  ]
+ },
+ {
+  "slug": "b5-recovery-shape",
+  "topic": "What recovery looks like, if any",
+  "qs": [
+   "Any Chinese city or segment where prices have actually stabilized or risen in the last 12 months — named, with figures",
+   "The second-hand vs new-build divergence in any recovery",
+   "Base-rate: in the international episodes, how long from trough to recovering the old nominal peak? And the real peak?",
+   "The 'L-shaped' vs 'U-shaped' debate on China property: the named analysts on each side and their actual arguments"
+  ]
+ },
+ {
+  "slug": "b6-dev-evergrande",
+  "topic": "Developer: Evergrande",
+  "qs": [
+   "Evergrande (China Evergrande Group): total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Evergrande (China Evergrande Group): the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Evergrande (China Evergrande Group): offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Evergrande (China Evergrande Group): equity price peak to now, and market cap destroyed",
+   "Evergrande (China Evergrande Group): unfinished units / projects and the delivery status",
+   "Evergrande (China Evergrande Group): what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-country",
+  "topic": "Developer: Country Garden",
+  "qs": [
+   "Country Garden (Bijia): total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Country Garden (Bijia): the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Country Garden (Bijia): offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Country Garden (Bijia): equity price peak to now, and market cap destroyed",
+   "Country Garden (Bijia): unfinished units / projects and the delivery status",
+   "Country Garden (Bijia): what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-vanke",
+  "topic": "Developer: Vanke",
+  "qs": [
+   "Vanke: total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Vanke: the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Vanke: offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Vanke: equity price peak to now, and market cap destroyed",
+   "Vanke: unfinished units / projects and the delivery status",
+   "Vanke: what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-sunac",
+  "topic": "Developer: Sunac China",
+  "qs": [
+   "Sunac China: total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Sunac China: the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Sunac China: offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Sunac China: equity price peak to now, and market cap destroyed",
+   "Sunac China: unfinished units / projects and the delivery status",
+   "Sunac China: what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-kaisa",
+  "topic": "Developer: Kaisa",
+  "qs": [
+   "Kaisa: total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Kaisa: the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Kaisa: offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Kaisa: equity price peak to now, and market cap destroyed",
+   "Kaisa: unfinished units / projects and the delivery status",
+   "Kaisa: what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-shimao",
+  "topic": "Developer: Shimao",
+  "qs": [
+   "Shimao: total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Shimao: the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Shimao: offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Shimao: equity price peak to now, and market cap destroyed",
+   "Shimao: unfinished units / projects and the delivery status",
+   "Shimao: what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-sino-ocean",
+  "topic": "Developer: Sino-Ocean and Agile",
+  "qs": [
+   "Sino-Ocean and Agile: total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Sino-Ocean and Agile: the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Sino-Ocean and Agile: offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Sino-Ocean and Agile: equity price peak to now, and market cap destroyed",
+   "Sino-Ocean and Agile: unfinished units / projects and the delivery status",
+   "Sino-Ocean and Agile: what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-dev-poly",
+  "topic": "Developer: Poly and China Overseas",
+  "qs": [
+   "Poly and China Overseas (the state survivors): total liabilities at peak in CNY and USD, and the split between bank debt, offshore bonds, onshore bonds, trade payables and presale liabilities",
+   "Poly and China Overseas (the state survivors): the default timeline — dates of first missed payment, formal default, restructuring proposal, liquidation or resolution",
+   "Poly and China Overseas (the state survivors): offshore USD bond recovery value — where the bonds trade or what the restructuring implies in cents on the dollar",
+   "Poly and China Overseas (the state survivors): equity price peak to now, and market cap destroyed",
+   "Poly and China Overseas (the state survivors): unfinished units / projects and the delivery status",
+   "Poly and China Overseas (the state survivors): what its Three Red Lines metrics looked like BEFORE the fall — the early-warning question"
+  ]
+ },
+ {
+  "slug": "b6-three-red-lines",
+  "topic": "The Three Red Lines policy",
+  "qs": [
+   "The exact definition of each of the three red lines (liability-to-asset ex-presales, net-debt-to-equity, cash-to-short-term-debt) and their thresholds",
+   "The tiering system and what each tier's debt-growth cap was",
+   "How many of the top 30/50 developers breached all three when it was introduced (Aug 2020), with the list",
+   "Did the policy cause the bust or reveal it? The sourced arguments on each side",
+   "Was the policy ever formally relaxed or abandoned, and when?"
+  ]
+ },
+ {
+  "slug": "b6-presale-escrow",
+  "topic": "The presale model and escrow",
+  "qs": [
+   "How Chinese presale works: what share of homes are sold before completion, the escrow rules, and how developers legally and illegally accessed escrowed funds",
+   "The size of presale liabilities (合同负债) across the sector — money owed as houses, not cash",
+   "The 2022 mortgage-payment strike (停贷): how many projects, the scale, and how it was resolved",
+   "'Rotten tail buildings' (烂尾楼): the estimated number of unfinished pre-sold units, sourced — the estimates vary wildly, so give the range and who says what",
+   "The post-crisis escrow tightening and its effect on developer liquidity"
+  ]
+ },
+ {
+  "slug": "b6-lgfv",
+  "topic": "LGFV and hidden local-government debt",
+  "qs": [
+   "The estimated total stock of LGFV debt in CNY trillion, from at least three named sources (IMF, Goldman, Rhodium, CICC) — and why they disagree",
+   "LGFV interest-coverage and the share unable to cover interest from operating cash flow",
+   "The 2023-2025 LGFV debt-swap / refinancing programmes: size and mechanics",
+   "The link from land-sale collapse to LGFV distress: the transmission, quantified",
+   "Any actual LGFV defaults (public bond vs non-standard/trust products) — the distinction and the record"
+  ]
+ },
+ {
+  "slug": "b6-household-mortgage",
+  "topic": "Household mortgage debt",
+  "qs": [
+   "China household debt as % of GDP and as % of disposable income, by year, peak and now, sourced to BIS or PBoC",
+   "Outstanding residential mortgage balance in CNY trillion, and the first-ever decline in it (which year and by how much)",
+   "Mortgage prepayment wave of 2022-2023: scale and why households did it",
+   "Mortgage rates: the 5-year LPR path and the actual first-home mortgage rate, peak to now",
+   "Negative equity in China: any estimates of how many households are underwater"
+  ]
+ },
+ {
+  "slug": "b6-credit-gap",
+  "topic": "The BIS credit-to-GDP gap and formal early warning",
+  "qs": [
+   "China's BIS credit-to-GDP GAP by year: what it was in 2009-2016 (reportedly among the highest ever recorded) and what it is now",
+   "The BIS early-warning framework: what gap level signals banking distress, the historical hit rate, and China's readings against it",
+   "The IMF Article IV and FSAP warnings on Chinese property: which years, what they said, how specific they were",
+   "Other formal early-warning work on China property (Rogoff-Yang, academic HP-filter credit gaps) and its dated calls",
+   "The honest verdict: was this crash forecastable from public aggregates, and by when?"
+  ]
+ },
+ {
+  "slug": "b6-property-share-gdp",
+  "topic": "Property's share of the economy",
+  "qs": [
+   "The Rogoff-Yang estimate that property accounts for ~29% of Chinese GDP: the method, the number, and the critiques",
+   "Property's share of local-government revenue, household wealth, and bank loan books — three separate numbers",
+   "Property's share of Chinese HOUSEHOLD WEALTH (reported ~60-70%) vs the US/Japan comparison",
+   "The estimated GDP drag from the property correction, by year, from named sources",
+   "Bank exposure: property-related loans as a share of Chinese bank assets, and reported NPL ratios vs plausible ones"
+  ]
+ },
+ {
+  "slug": "b6-inventory-vacancy",
+  "topic": "Inventory and the vacancy question",
+  "qs": [
+   "China's unsold housing inventory in million sqm and in UNITS, and months of supply — official and private estimates",
+   "The Beike Research Institute 2022 vacancy survey (reportedly 12% average, over 20% in some cities): the actual figures and the controversy",
+   "The 'how many empty apartments' estimates (the 65-150 million range) — who produced each, the method, and which are credible",
+   "Electricity-meter and night-lights based vacancy studies: what the academic work actually found",
+   "How many years of current sales would it take to clear the inventory?"
+  ]
+ },
+ {
+  "slug": "b6-trusts-shadow",
+  "topic": "Trusts, shadow banking and wealth products",
+  "qs": [
+   "Zhongrong Trust and Zhongzhi Enterprise Group's 2023 collapse: size, property exposure, and investor losses",
+   "The size of the Chinese trust industry's property exposure, peak and now",
+   "Developer-issued wealth-management products sold to retail and employees (Evergrande Wealth in particular): scale and losses",
+   "The 2018 asset-management rules and how shadow property credit was supposed to have been curbed"
+  ]
+ },
+ {
+  "slug": "b6-debt-predictive-summary",
+  "topic": "The predictive-indicator scorecard",
+  "qs": [
+   "Assemble a single scorecard: for each of (BIS credit gap, mortgage/GDP, price-to-income, price-to-rent, land-revenue dependence, developer leverage, starts-to-sales ratio, inventory months), what its reading was in 2019-2020 and whether it was flashing",
+   "Which indicator gave the EARLIEST signal, and which the clearest",
+   "Which widely watched indicators gave NO signal — the false negatives, which matter as much",
+   "Who publicly called it, and when, with links — and who called it far too early (the perma-bears whose 'call' spanned a decade)"
+  ]
+ },
+ {
+  "slug": "b7-creits-overview",
+  "topic": "C-REITs: the market",
+  "qs": [
+   "The Chinese public infrastructure REIT (C-REIT) pilot: launch date (June 2021), the legal structure (public fund + ABS), and how it differs from a US/Singapore REIT",
+   "Total number of listed C-REITs and total market cap / AUM as of the latest data",
+   "The asset categories permitted and the 2023-2024 expansion to consumer infrastructure and affordable rental housing",
+   "The C-REIT index performance since launch: the 2022-2023 drawdown and the 2024-2025 rally, with figures",
+   "Distribution yields on C-REITs by asset class"
+  ]
+ },
+ {
+  "slug": "b7-creits-rental-housing",
+  "topic": "C-REITs: affordable rental housing",
+  "qs": [
+   "The affordable-rental-housing C-REITs (Beijing, Shenzhen, Xiamen, Shanghai): names, codes, IPO dates, sizes",
+   "Their distribution yields and occupancy",
+   "What their valuations imply for residential cap rates in those cities — a rare market-priced mark on Chinese residential",
+   "Performance since listing"
+  ]
+ },
+ {
+  "slug": "b7-creits-commercial",
+  "topic": "C-REITs: consumer/retail and logistics",
+  "qs": [
+   "The consumer-infrastructure C-REITs (Hua Xia Huarun Commercial, China Jinmao,印力/SCPG, Wumart etc): names, sizes, yields",
+   "Logistics C-REITs (GLP/普洛斯, AVIC, Jingdong/JD): names, yields, occupancy",
+   "What implied cap rates these suggest for Chinese retail and logistics",
+   "The best-performing and worst-performing C-REITs since listing"
+  ]
+ },
+ {
+  "slug": "b7-hk-china-property-equity",
+  "topic": "HK-listed China property equity",
+  "qs": [
+   "The Hang Seng Mainland Properties Index: peak, trough, latest — the cumulative drawdown",
+   "Total market cap destroyed across HK-listed Chinese developers since 2020",
+   "How many HK-listed Chinese developers have been suspended, delisted or liquidated",
+   "The state-owned survivors' share prices vs the private developers' — the divergence, quantified",
+   "Any developer whose equity has actually recovered"
+  ]
+ },
+ {
+  "slug": "b7-hk-reits",
+  "topic": "Hong Kong REITs and HK property",
+  "qs": [
+   "Link REIT: price peak to now, distribution yield, and the NAV discount",
+   "The HK REIT market generally (Fortune, Champion, Sunlight, Prosperity): yields and drawdowns",
+   "Hong Kong office vacancy and rent decline — among the world's worst, with figures",
+   "HK residential prices: peak (2021) to now, the cumulative fall, and negative-equity counts",
+   "Why HK matters to the China story and how the two markets differ"
+  ]
+ },
+ {
+  "slug": "b7-sg-china-reits",
+  "topic": "Singapore-listed China-asset REITs",
+  "qs": [
+   "CapitaLand China Trust: price, yield, NAV, occupancy and the mark-downs on Chinese malls",
+   "Sasseur REIT, BHG Retail REIT, EC World REIT (which failed): what each held and what happened",
+   "What these Singapore-listed vehicles reveal about Chinese retail property values that mainland data does not",
+   "Dasin Retail Trust and any other China-asset SGX vehicle in distress"
+  ]
+ },
+ {
+  "slug": "b7-offshore-bonds",
+  "topic": "The offshore USD developer bond market",
+  "qs": [
+   "The size of the Chinese offshore USD high-yield property bond market at peak, and its share of the whole Asia HY index",
+   "The cumulative default count and defaulted amount by year",
+   "Recovery values actually achieved in completed restructurings — cents on the dollar, named deals",
+   "The index performance: the Asia/China HY property index drawdown and any recovery",
+   "Who held these bonds and who lost: the distribution of pain across global funds"
+  ]
+ },
+ {
+  "slug": "b7-onshore-bonds-banks",
+  "topic": "Onshore credit and the banks",
+  "qs": [
+   "Onshore developer bond defaults vs offshore: the different treatment and why",
+   "Chinese bank share prices and valuations through the property bust — why they held up",
+   "Reported vs estimated true property NPLs at Chinese banks",
+   "Bank capital raising, the 2024-2025 special-bond recapitalization of the big banks: size and reason"
+  ]
+ },
+ {
+  "slug": "b7-foreign-investable",
+  "topic": "What a foreign investor can actually own",
+  "qs": [
+   "The realistic instruument list for a foreign investor wanting China property exposure (or short exposure): HK-listed equity, offshore bonds, SGX REITs, A-share developers via Stock Connect, C-REITs (are they QFII/Connect-accessible?), CDS",
+   "Are C-REITs accessible to foreign investors at all, and how",
+   "Liquidity and practical constraints on each",
+   "Any ETF or index product giving China property exposure"
+  ]
+ },
+ {
+  "slug": "b8-policy-timeline-1",
+  "topic": "Policy timeline 2016-2021: the tightening",
+  "qs": [
+   "'Houses are for living in, not for speculation' (房住不炒): when introduced, by whom, and what followed",
+   "The 2016-2019 purchase restrictions, price caps and the 'one city one policy' framework",
+   "The 2020 Three Red Lines and the bank concentration caps on property lending (the two-part squeeze)",
+   "The 2021 centralized land auctions and the presale-fund tightening",
+   "A dated list of every major tightening measure 2016-2021"
+  ]
+ },
+ {
+  "slug": "b8-policy-timeline-2",
+  "topic": "Policy timeline 2022-2026: the rescue",
+  "qs": [
+   "A dated list of every major SUPPORT measure 2022 through 2026: the 16-point plan (Nov 2022), the three arrows, the 2023 easing, the May-2024 package, the Sep-2024 package, and anything in 2025-2026",
+   "Which measures were actually funded vs announced",
+   "The mortgage-rate floor removal, down-payment cuts, and purchase-restriction removals by city",
+   "The 'white list' project financing mechanism: size and delivery",
+   "The assessed effectiveness of each, with sourced analyst views"
+  ]
+ },
+ {
+  "slug": "b8-property-tax",
+  "topic": "The property tax that never came",
+  "qs": [
+   "The Shanghai and Chongqing property-tax pilots of 2011: design, rates, revenue, and effect",
+   "The 2021 announcement of an expanded pilot and its quiet shelving — the dates and the reported reasons",
+   "Why a property tax is both the obvious fiscal replacement for land sales and politically impossible",
+   "The latest state of play on property tax as of 2026"
+  ]
+ },
+ {
+  "slug": "b8-demographics",
+  "topic": "Demographics and structural demand",
+  "qs": [
+   "China's births by year 2016-2025 and the total-population decline, with dates",
+   "Urbanization rate now and the projected path — how much migration demand is actually left",
+   "Household formation projections and the implied structural housing demand vs current construction",
+   "The Rogoff-Yang and other estimates of 'excess' housing supply relative to demand",
+   "The age structure of housing demand and the coming inheritance wave of empty apartments"
+  ]
+ },
+ {
+  "slug": "b8-urbanization-hukou",
+  "topic": "Hukou, migration and where demand goes",
+  "qs": [
+   "The hukou system's effect on housing demand, and the 2019-2025 reforms",
+   "Net migration by city: which cities are gaining and losing population, with figures",
+   "The 'shrinking cities' literature on China: how many cities are losing population",
+   "The policy of concentrating population in city clusters (城市群) and its property implication"
+  ]
+ },
+ {
+  "slug": "b8-wealth-effect",
+  "topic": "The wealth effect and consumption",
+  "qs": [
+   "Estimates of the Chinese housing wealth destroyed in CNY/USD terms since 2021",
+   "The measured consumption response to the housing decline (the marginal propensity to consume out of housing wealth in China)",
+   "Household savings-rate and deposit behaviour through the bust",
+   "The deflation link: CPI/PPI/GDP-deflator prints and the property connection"
+  ]
+ },
+ {
+  "slug": "b8-sentiment-expectations",
+  "topic": "Expectations, which is the real variable",
+  "qs": [
+   "Survey evidence on Chinese household house-price EXPECTATIONS (the PBoC urban depositor survey in particular): the series, peak to now",
+   "Why expectations matter more than affordability in this market",
+   "The reported shift in Chinese household asset preference from property to deposits/gold/bonds — quantified",
+   "The 'gold rush' and bond-market rally as the mirror image of the property bust"
+  ]
+ },
+ {
+  "slug": "b8-comparisons-policy",
+  "topic": "Policy response compared",
+  "qs": [
+   "How Japan's policy response to 1990 compared with China's to 2021 — speed, scale, mechanism",
+   "How the US 2008 response compared (TARP, Fed, HAMP) with China's",
+   "What the international evidence says about which interventions actually shortened property busts",
+   "The 'balance-sheet recession' (Koo) framing applied to China: the argument and the counter-argument"
+  ]
+ },
+ {
+  "slug": "b9-hainan-1993",
+  "topic": "China's OWN precedent: Hainan 1993",
+  "qs": [
+   "The Hainan property bubble of 1988-1993: how big it got, the price rises, and the crash — China's own forgotten property bust",
+   "The scale: Hainan reportedly had a huge share of the country's non-performing loans afterwards. Give the figures",
+   "The Beihai (Guangxi) bubble of the same era and its abandoned buildings",
+   "What was learned and what was forgotten — and who in 2021 cited Hainan as a warning"
+  ]
+ },
+ {
+  "slug": "b9-wenzhou-2011",
+  "topic": "Wenzhou 2011: the preview nobody heeded",
+  "qs": [
+   "The Wenzhou property and private-lending crisis of 2011: price decline, the informal-credit collapse, and the boss-runaway phenomenon",
+   "Wenzhou prices peak-to-trough in that episode and whether they ever recovered",
+   "The 2016 Wenzhou 20-year land-lease expiry incident and how it was resolved",
+   "Why Wenzhou is the best single-city case study of a Chinese property bust with a full cycle observable"
+  ]
+ },
+ {
+  "slug": "b9-ghost-cities",
+  "topic": "Ghost cities: the real story",
+  "qs": [
+   "The ghost-city phenomenon: the best-documented cases and what actually happened to each over 10-15 years (several filled up)",
+   "The academic work using satellite night-lights and Baidu data to measure Chinese urban vacancy",
+   "Tianjin Binhai / Yujiapu, Zhengzhou Zhengdong, Kunming Chenggong, Ordos Kangbashi: current status of each",
+   "The honest verdict on how much of the ghost-city narrative was right"
+  ]
+ },
+ {
+  "slug": "b9-interesting-facts-1",
+  "topic": "The genuinely striking numbers",
+  "qs": [
+   "The claim that China poured more cement in 2-3 years than the US did in the entire 20th century: verify and source it",
+   "China's built floor space per capita vs Japan/Europe/US at comparable income",
+   "The number of housing units China built per year at peak vs the rest of the world combined",
+   "The share of the world's cranes / steel / cement consumed by Chinese property at peak",
+   "Any other single statistic that captures the scale, with a source"
+  ]
+ },
+ {
+  "slug": "b9-interesting-facts-2",
+  "topic": "The human and social facts",
+  "qs": [
+   "The 2022 mortgage strike: how it organized, its scale, and how the state handled it",
+   "Homebuyers who paid for units never built: estimated numbers and what recourse they had",
+   "The 'Evergrande employees forced to buy WMPs' story and similar",
+   "The effect on marriage and birth decisions of property prices, with any research",
+   "The 'lying flat' (躺平) and youth-unemployment link to housing unaffordability"
+  ]
+ },
+ {
+  "slug": "b9-demolition-quality",
+  "topic": "Building quality, demolition and the stock",
+  "qs": [
+   "The design life vs actual life of Chinese residential towers, and the 'shoddy construction' (豆腐渣) issue",
+   "The coming maintenance and renovation liability for 30-year-old towers with no sinking fund",
+   "Demolition-and-redevelopment (旧改/城市更新) as the new policy direction replacing new-build",
+   "What happens to a 30-storey tower at the end of its life — the genuinely unresolved question"
+  ]
+ },
+ {
+  "slug": "b9-data-reliability",
+  "topic": "How much can you trust any of these numbers?",
+  "qs": [
+   "The documented ways the NBS 70-city index understates declines (price caps on new-build, sample composition, the 'reference price' system)",
+   "Instances of local governments banning price cuts or setting price floors — dated, sourced examples",
+   "The gap between listed asking prices, reference prices and actual transaction prices",
+   "Which private data sources are most trusted by professionals and why",
+   "How a careful analyst should adjust official figures — the practical rule of thumb, sourced"
+  ]
+ },
+ {
+  "slug": "b9-who-got-it-right",
+  "topic": "Who called it, and what they said",
+  "qs": [
+   "The named analysts, academics and investors who publicly warned about Chinese property with dated, specific calls: what each said and when",
+   "The short sellers and the trades that worked (offshore HY, HK developer equity) and their timing",
+   "The prominent forecasts that were wrong, in both directions",
+   "What the successful callers used as their indicator — the practical lesson"
+  ]
+ },
+ {
+  "slug": "b9-global-spillover",
+  "topic": "Global spillovers",
+  "qs": [
+   "Iron ore, coking coal, copper and steel: the demand hit from Chinese property, quantified",
+   "Australian, Brazilian and Chilean export exposure to Chinese property construction",
+   "Global cement, machinery (Caterpillar/Komatsu), and elevator/fixture makers' China exposure",
+   "The luxury-goods and commodity-currency channels",
+   "Which global asset was the best pure short/long expression of the Chinese property bust, in hindsight"
+  ]
+ },
+ {
+  "slug": "b9-what-happens-next",
+  "topic": "The forward debate, fairly presented",
+  "qs": [
+   "The bull case on Chinese property from 2026 forward: the actual arguments and who makes them",
+   "The bear case: the actual arguments and who makes them",
+   "The consensus forecast range for Chinese house prices 2026-2030 from named institutions",
+   "What would have to be true for stabilization — the specific observable conditions",
+   "The most common analytical MISTAKE made about Chinese property, according to people who follow it closely"
+  ]
+ },
+ {
+  "slug": "b10-india-commodities",
+  "topic": "India read-across: commodities and industry",
+  "qs": [
+   "How the Chinese property bust changed steel, cement and commodity prices, and what that did to INDIAN steel and cement companies (import pressure from Chinese oversupply in particular)",
+   "Chinese steel export volumes since 2021 and the effect on Indian domestic prices and margins",
+   "Which Indian sectors benefit and which suffer from Chinese property deflation — sourced views",
+   "The 'China exporting deflation' thesis and its evidence"
+  ]
+ },
+ {
+  "slug": "b10-india-flows",
+  "topic": "India read-across: capital flows and allocation",
+  "qs": [
+   "The documented rotation of EM equity allocations from China to India since 2021: figures on flows and index weights",
+   "MSCI EM index weight of China vs India by year, and the crossover debate",
+   "Whether that rotation is property-driven or something else, per named sources",
+   "The risk that a Chinese policy success reverses the rotation — sized if possible"
+  ]
+ },
+ {
+  "slug": "b10-india-property-cycle",
+  "topic": "India read-across: India's own property cycle",
+  "qs": [
+   "Indian residential price and volume cycle 2013-2026: the downturn, the 2021+ upturn, and current inventory months by city",
+   "Indian developer leverage now vs the 2018-2020 NBFC crisis, and the consolidation since RERA and IBC",
+   "Indian residential rental yields by city, and the comparison with Chinese tier-1 yields",
+   "Indian REITs (Embassy, Mindspace, Brookfield, Nexus): yields, occupancy, and performance — directly relevant to the desk's open REIT gap",
+   "Does India have any of the specific vulnerabilities that broke China (land-sale fiscal dependence, presale without escrow, LGFV-equivalents)? Argue it carefully both ways"
+  ]
+ },
+ {
+  "slug": "b10-india-lessons",
+  "topic": "India read-across: what the desk should actually take",
+  "qs": [
+   "The three or four transferable lessons from the Chinese bust for an Indian multi-asset book, stated as testable propositions rather than narrative",
+   "Which early-warning indicators from the China experience are CONSTRUCTIBLE for India from public data",
+   "What Indian data would need pulling to run the equivalent monitoring — a concrete acquisition list",
+   "The honest statement of what does NOT transfer"
+  ]
+ }
+]
