@@ -4786,3 +4786,221 @@ tradition. BR7-BR9 are deliberately registered AHEAD of their consumers so they 
 after-tax designs before those designs exist. CONSUMPTION: nothing promoted; no booked
 verdict changed; every gap-map row still owes its own pre-registration before any number
 is computed. Zero cells; zero census impact.
+
+## Entry G1-G4 (2026-09-11) — PRE-REGISTERED before running: THE CONSTRUCTION-MECHANICS
+BATTERY (principal: "do the runnable today ones" — the gap map's Tier-1 rows, the only
+alpha-space residual that needs no new pull). RATIONALE quoted from GAP-MAP-1: the option
+sweeps established the return gap is alpha/data-gated while the RISK side has headroom
+(OP-D6 moved drawdown twice running, not CAGR), so construction mechanics — which attack
+CERTAIN costs (rebalancing drag, tax drag) rather than hypothetical alpha — is where
+marginal effort on vaulted data most plausibly pays.
+DATA, all already vaulted: NIFTY 50 daily 2007-2026 (index/, price-only — NO dividends,
+stated as a level caveat that affects all four designs equally and cancels in every
+WITHIN-design comparison); gold monthly 1833-2026 (commodities/) converted to INR via
+fx/inr_usd_monthly (the correct construction for an India investor, the T3 "INR-gold"
+convention quoted); IIMA RF monthly for the Sharpe leg (available to 2025-12 — the Sharpe
+sub-window is stated separately from the CAGR window, never silently mixed); NIFTY500
+survivor panel 2012-2021 (panel/, 487 names) for everything stock-level. Statutory costs
+come from quant/costs/statutory.round_trip_bps(reg,'cash_delivery') — NEVER a hardcoded
+rate (process note #6); tax rates from the new config/costs.yaml capital_gains_tax_india
+block (press-sourced, BR7/BR9 [VERIFY] attached — no number typed into the script).
+COST CONVENTION fixed now: per rebalance event, traded notional = sum|dw|/2 (selling x of
+one leg and buying x of the other turns over x of notional, incurring one sell + one buy =
+one round trip); cost = traded_notional * round_trip_bps/1e4.
+
+**G1 — the rebalance-band / frequency grid (8 cells).** The desk holds static blends
+(T3: the static 50/50 equity-gold beat active rotation at BOTH lookbacks) but has never
+tested the rebalancing RULE itself. 50/50 NIFTY / gold-INR, monthly observation,
+2007-04..2026-04. Rules: calendar {monthly, quarterly, semi-annual, annual, never} and
+threshold bands {+-3pp, +-5pp, +-10pp}. Report per rule: CAGR, ann vol, maxDD, annualized
+one-way turnover, and NET CAGR after statutory cost.
+PRIOR (from the rebalancing literature, and from F6a's own finding that transaction
+whipsaw is a rounding error at 0.02-0.28%/yr): (a) GROSS Sharpe-equivalent differences
+across the whole grid are SMALL — best-minus-worst CAGR/vol spread < 0.10; (b) after cost,
+LOW-frequency or WIDE-band wins — annual or +-10pp beats monthly by >= 0.20pp/yr net CAGR;
+(c) turnover falls monotonically as band width rises.
+BAR / KILL BRANCH stated both ways: if the NET-CAGR spread between the best and worst rule
+is < 0.20pp/yr, rebalancing choice is IMMATERIAL at this blend and is booked as a
+NON-DECISION — which is a useful kill, because it retires a whole class of fiddling; if
+the spread is >= 0.20pp/yr the winning rule is named and enters the playbook as a
+construction default (never a timing rule).
+
+**G2 — the concentration curve (8 cells).** How many names before diversification stops
+paying in India. Survivor panel monthly returns; random equal-weight draws of N names,
+N in {5,10,15,20,30,50,100,200,487(all)} — 8 drawn N's plus the all-names reference;
+200 draws per N, seed FIXED at 20260911 and stated; monthly rebalance to equal weight.
+Report per N: median CAGR, median ann vol, median CAGR/vol, and the p10 of terminal
+wealth across draws (the downside an investor actually bears, not the median).
+ONE-WAY RULE, declared before the run: the survivor panel deletes failures, and it
+flatters CONCENTRATED portfolios MORE than diversified ones (idiosyncratic blow-up is
+exactly what was deleted, and a 5-name draw from survivors is 5 survivors). Therefore a
+print saying concentration does NOT pay is ADMISSIBLE (the bias worked against it); a
+print saying concentration DOES pay is recorded as NON-EVIDENCE, not a finding.
+PRIOR: median CAGR/vol rises steeply to N~15-20 then flattens (the classic curve); the
+p10 terminal wealth keeps improving well PAST N=20 — i.e. the TAIL, not the median, is
+what argues for holding more than 20 names.
+BAR: p10 terminal-wealth improvement from N=20 to N=50 >= +10% relative => the tail
+argument holds and the stock book's floor is set above 20 names; < +10% => 20 names is
+defensible on this panel (recorded with the one-way caveat either way).
+
+**G3 — cross-sectional dispersion as a STATE (5 cells).** A state variable the desk has
+never built. Monthly cross-sectional stdev of stock monthly returns across the panel;
+expanding terciles (min 36 months, lagged 1 month — real-time by construction). Reads:
+next-1m and next-12m 6-2 momentum decile spread (D10-D1, MOM-D1's winning India window
+quoted verbatim), and next-1m / next-12m low-vol spread (bottom-trailing-12m-vol decile
+minus top), per dispersion tercile; plus the redundancy cell — corr(dispersion state,
+realized-vol state).
+PRIOR: HIGH dispersion => wider momentum spread (more cross-sectional opportunity).
+BAR: the HIGH tercile's momentum spread exceeds the LOW tercile's by >= 5pp/yr AND the
+ladder is monotone => dispersion is a real, new conditioner.
+REDUNDANCY BRANCH, pre-stated because dispersion and vol are obviously correlated: if
+corr(dispersion, realized vol) >= 0.7 AND the dispersion split merely reproduces the
+DIRECTION of TECH-D3's already-booked India vol split (low-vol +20.0 / high-vol -7.2),
+the read is booked REDUNDANT — a repackaging of a state the desk already owns, not a new
+one. Both branches are findings; only one is a new instrument.
+
+**G4 — the India LTCG-threshold turnover asymmetry (10 cells).** The mechanical after-tax
+kink no US-derived study can capture, applied to the desk's own winning India momentum
+construction. Survivor panel, 6-2 formation (MOM-D1 verbatim), LONG LEG ONLY (top decile,
+equal weight) — the realistic India case is a long-only tilt, not an academic long-short,
+and only a long leg has a coherent tax treatment. Holding period H in {1,3,6,12,13}
+months, non-overlapping, re-formed at each disposal. For each H: gross annualized return,
+then AFTER-TAX annualized under both rate regimes (pre-Jul-2024 15%/10%, post-Jul-2024
+20%/12.5%), taxing at each realization and compounding the after-tax proceeds:
+after_tax_ann = (1 + g_H*(1-rate))^(12/H) - 1, with rate = STCG if H < 12 else LTCG.
+SIMPLIFICATIONS STATED, not hidden: the annual exemption is not modelled (portfolio-level,
+immaterial at book scale); no loss set-off or carry-forward; no dividend tax (the index
+leg is price-only anyway); H=12 sits exactly ON the boundary and is therefore reported
+under BOTH treatments so the discontinuity is visible rather than assumed away.
+PRIOR: gross return FALLS as H rises (momentum decays — MOM-D1's own ladder says so), but
+the after-tax ranking may INVERT at the 12-month line because the rate drops by a third.
+BAR: if the 13-month hold's after-tax annualized return EXCEEDS the 1-month hold's under
+EITHER rate regime, the LTCG line materially reshapes India momentum design and must be
+registered into every future India momentum design (a standing construction constraint,
+not a timing rule). If it does NOT, the tax line is second-order for momentum, the 6-2 /
+short-hold construction stands, and that is booked as the answer. Also report the
+break-even: the gross monthly spread the 1m strategy needs to match the 13m one after tax.
+
+**G5 — REGISTERED-UNRUN, frozen spec (0 cells today).** Book-level vol-targeting vs
+fixed-weight: F3a vol-managed the INDEX; nobody has vol-targeted the whole three-book
+stack, and the interaction with the collar overlay is unexamined. NOT run today for a
+stated reason rather than silently dropped: it requires the standing-book engine
+(scripts/analyze_op_d6b.py run_book()) plus a margin/collar interaction model, and
+registering bars I cannot evaluate this session would be a fake registration. Spec frozen
+here in the HG1/BW1 tradition: vol-target the BOOK's realized vol to {10,12,15}% with the
+collar overlay live, versus the standing 65/20/15 fixed-weight baseline; bars are the
+SW2-A1 baseline's own (+11.46 CAGR / -11.36 maxDD) — a variant must beat BOTH or it is
+refused, per the challenger law.
+Script: scripts/analyze_gap_tier1.py. Census 31 (8+8+5+10; G5 contributes 0).
+
+## Entry G1-G4 RESULT (2026-09-11, interpretation hand-appended AFTER the print; runner
+scripts/analyze_gap_tier1.py; desk-verified independently on two cells — G1's "never" cell
+re-derived from a fully standalone 50/50 buy-and-hold construction (CAGR 13.2404% vs script
+13.24%, vol 10.3863% vs 10.39%, maxDD -20.6150% vs -20.62% — exact on all three) and G4's
+H=1m annualisation re-derived by hand (32.8301% vs 32.84%, after-tax-pre 27.3465% vs 27.35%).
+VERIFICATION-PASS NOTE, recorded as the desk records these: the FIRST verification attempt
+printed a 0.6pp CAGR gap on G1's "never" cell — the error was MINE, not the script's (I
+divided by the second portfolio value while using a denominator of all months, skipping the
+first month's return); re-derived correctly it matches exactly. The script was not changed.)
+— CONSTRUCTION MECHANICS PAY, BUT NOT WHERE THE PRIORS SAID: REBALANCING ADDS DRAWDOWN,
+DIVERSIFICATION KEEPS PAYING PAST 20 NAMES, DISPERSION IS DISTINCT BUT UNUSABLE, AND THE
+LTCG LINE IS REAL BUT SUB-DECISIVE.
+
+**G1 — the rebalance grid** (50/50 NIFTY / gold-INR, 2007-10..2026-04, n=223 months;
+statutory round trip 22.27bps read from the registry, not typed). Net CAGR / gross CAGR /
+vol / maxDD / turnover: monthly **13.19**/13.23/11.17/-24.43/16.31%yr (223 events);
+quarterly 13.39/13.42/11.21/-25.16/10.32; semi-annual **13.55**/13.57/11.28/-25.10/7.98;
+annual 13.43/13.44/10.94/-23.87/4.83; **never 13.24/13.24/10.39/-20.62/0.00**; band+-3pp
+13.36/13.39/11.16/-23.98/10.20; band+-5pp 13.24/13.26/11.15/-25.02/6.93; band+-10pp
+13.21/13.22/11.27/-23.94/3.67. GRADING, bar by bar: the BAR's kill branch does NOT fire —
+net spread best-minus-worst **0.364pp/yr >= 0.20**, so the winner is named: **semi-annual
+on net CAGR**. Prior (a) "gross CAGR/vol spread < 0.10" — **MISS BY 0.002** (actual 0.102);
+recorded as a boundary miss, not rounded into a pass (bars are never moved). Prior (b)
+"annual or +-10pp beats monthly by >= 0.20pp net" — **HIT on the annual limb** (+0.24pp),
+**MISSED on the band limb** (+0.02pp). Prior (c) turnover monotone in band width — HIT
+(10.20/6.93/3.67). **THE UNREGISTERED SURPRISE, and the headline**: pure drift ("never")
+delivered the BEST risk-adjusted return of the whole grid (CAGR/vol **1.275** vs 1.184-1.228
+for every rebalanced rule) AND the SHALLOWEST drawdown (**-20.62%** vs -23.87..-25.16%).
+Nothing in the registration anticipated that rebalancing would ADD drawdown. Mechanism
+offered as interpretation, not claim: both legs trended up across this window, so periodic
+rebalancing repeatedly sold the runner into the laggard, and the drifted book ends up
+weighted toward whatever compounded — which over this particular window also lowered
+realized portfolio vol. CONSUMPTION: the net-CAGR winner (semi-annual) and the RISK winner
+(never) are DIFFERENT rules and the entire net-CAGR range is 0.36pp — small beside the
+3-4pp maxDD differences. The one clearly DOMINATED choice is **monthly**: worst net CAGR,
+worst turnover (16.3%/yr), and no risk benefit for it. Default lands at **semi-annual or
+annual**; "never" is NOT adoptable as a rule because unbounded drift eventually breaches the
+mandate's own weight bands — a constraint stated here, not measured. Not a timing rule under
+any reading.
+
+**G2 — the concentration curve** (survivor panel, 418 names with >=60 monthly obs,
+2012-01..2021-12; 200 EW draws per N, seed 20260911). Median CAGR / median vol / CAGR-vol /
+p10 terminal wealth: N=5 25.56/26.58/0.962/**4.596x**; N=10 26.62/23.92/1.113/5.951;
+N=15 26.45/23.03/1.149/5.977; N=20 27.06/22.52/1.201/**7.393**; N=30 26.79/22.04/1.215/7.459;
+N=50 27.40/21.46/1.276/**8.213**; N=100 27.27/21.23/1.285/9.397; N=200 27.48/21.10/1.302/10.005;
+all-418 27.37/21.00/1.304/**11.012**. BAR: p10 terminal wealth N=20 -> N=50 = **+11.08% >=
++10%** — **the tail argument HOLDS**; the stock book's floor sits above 20 names. PRIOR
+"median CAGR/vol rises steeply to N~15-20 then FLATTENS" — **MISSED on the flattening**: the
+ratio keeps climbing well past 20 (1.201 -> 1.215 -> 1.276 -> 1.285 -> 1.302) and only
+settles after ~100; diversification kept paying in the MEDIAN too, not just the tail. p10 is
+monotone increasing at every step. ONE-WAY RULE APPLIED AS DECLARED: the panel deletes
+failures and therefore flatters CONCENTRATED draws more (a 5-name draw from survivors is
+five survivors) — concentration nonetheless loses on BOTH median and tail, so this print is
+**ADMISSIBLE evidence in the declared direction**, the strongest form available on this
+panel. Absolute levels (25-27%/yr) are survivor-absurd and are NOT evidence; only the shape
+across N is. CONSUMPTION: a concentrated India stock book (<20-30 names) is not supported by
+this curve; the practical floor is **50-100 names**, where median and tail have both largely
+converged. STATED LIMIT: this is a RANDOM-draw (zero-skill) curve — a skilled selector's
+optimal N is a different question this design does not answer, and no concentration claim for
+a skilled book is made either way.
+
+**G3 — dispersion as a state** (n=84 months after the 36-month expanding warm-up; LOW 28 /
+MID 30 / HIGH 26). 6-2 momentum decile spread by dispersion tercile: fwd-1m LOW **+3.14**
+MID +15.21 HIGH +13.36 (HIGH-LOW **+10.22pp**); fwd-12m LOW +5.29 MID +10.17 HIGH +9.49
+(HIGH-LOW +4.20pp). GRADING: the BAR required **BOTH** ">= +5pp AND monotone" — fwd-1m
+clears the gap but is **NOT monotone** (MID 15.21 > HIGH 13.36), so it is **PARTIALLY MET**
+and per the registration dispersion does **NOT** qualify as a clean new conditioner; fwd-12m
+fails outright (+4.20 < +5, also non-monotone). REDUNDANCY BRANCH **does NOT fire**:
+corr(dispersion, panel realized vol) = **0.453 < 0.70** — so dispersion is genuinely NOT
+repackaged volatility. The combined verdict is the precise one: **distinct but unusable** —
+the read kills the "it's just vol in disguise" objection AND simultaneously refuses
+promotion. The one piece of real content, recorded as printed rather than as a ladder: the
+LOW-dispersion tercile is where India momentum is WEAKEST (+3.14 vs +13-15 in MID/HIGH) — a
+floor observation, not a monotone state. The low-vol rows are NEGATIVE at every tercile
+(-1.13 to -21.45, most negative in HIGH dispersion): this reproduces the known EW-survivor
+junk artifact (QG-D2's inversion; SEC-D7 a6's vol-CAGR cell is already permanently
+survivorship-flagged) and is **NOT evidence about low-vol** — flagged artifact-consistent
+and deliberately not interpreted.
+
+**G4 — the India LTCG-threshold turnover asymmetry** (6-2 long leg, top decile,
+non-overlapping; rates read from config/costs.yaml, never typed). Per-period / gross-ann /
+after-tax pre-Jul2024 / after-tax post-Jul2024, with n: H=1m n=83 2.39%/**32.84**/27.35/25.57;
+H=3m n=27 8.09%/**36.52**/30.49/28.53; H=6m n=13 15.53%/33.48/28.15/26.40; H=12m n=6
+24.10%/24.10/21.69/21.09 (**on-boundary, also shown as-STCG: 20.49/19.28**); H=13m n=6
+28.55%/26.09/23.50/22.86. **BAR: the 13m hold does NOT beat the 1m hold after tax under
+either regime** — pre-Jul2024 23.50 vs 27.35 (gap **-3.85pp/yr**), post-Jul2024 22.86 vs
+25.57 (gap **-2.71pp/yr**) — so the registered branch is taken cleanly: **the tax line is
+SECOND-ORDER for India momentum and the 6-2 / short-hold construction stands.** THE
+QUANTIFIED NUANCE, which is the actually useful output: the Jul-2024 change narrowed the
+short-hold advantage by **~1.14pp/yr** (-3.85 -> -2.71) without flipping the ranking — the
+LTCG line is a real but sub-decisive drag that got materially less favourable to short holds.
+Break-even: a 1m hold needs **2.088%/month** gross (pre) or **2.163%/month** (post) to match
+the 13m hold after tax, against an actual 2.394%/month — so the post-2024 margin is only
+~0.23pp/month, roughly **10% of the gross edge**: a degradation-risk flag, because a ~10%
+decay in India momentum's gross monthly spread would flip the after-tax ranking. PRIOR
+PARTIAL MISS: "gross return falls as H rises" — actual is a **HUMP**, peaking at 3 months
+(32.84 -> **36.52** -> 33.48 -> 24.10 -> 26.09), not a monotone decline. UNREGISTERED
+FINDING flowing from that: **within the STCG zone a 3-month hold dominated the 1-month hold
+on every metric printed** (gross 36.52 vs 32.84; after-tax 30.49/28.53 vs 27.35/25.57) at the
+same tax rate and a third of the turnover — turnover cost is not even modelled here, which
+can only widen the gap. Recorded as a candidate refinement to the momentum sleeve's holding
+period, NOT consumed (it is an unregistered comparison inside a registered design).
+**THE BINDING CAVEAT, stated first among limitations**: non-overlapping periods leave n=83 /
+27 / 13 / **6** / **6** — the 12m and 13m cells rest on SIX observations across a ten-year
+panel. Direction only; no significance is claimed or computable. Survivor caveat carried:
+absolute levels (~33%/yr gross on a long leg) are survivor-absurd per MOM-D1's own flag —
+only the cross-H comparison is evidence.
+
+**G5** stays REGISTERED-UNRUN with its spec frozen as written (book-level vol-targeting needs
+the standing-book engine plus a margin/collar interaction model; not faked).
+CENSUS 31 (1305 -> **1336**).

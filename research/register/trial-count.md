@@ -120,7 +120,11 @@ this census exists so that can never happen silently.
 | MOM-D1 stock-level lookback anatomy across regimes (L1-L6) | 18 | 18 |
 | RATIO-D1 index/commodity ratio regimes + leverage-timing read (r1-r9) | 9 | 9 |
 | EQ-D1 earnings-quality / accrual-divergence battery (e1-e8) | 8 | 8 |
-| **RUNNING TOTAL (run cells)** | | **1305** |
+| G1 rebalance-band / frequency grid (5 calendar + 3 band rules) | 8 | 8 |
+| G2 concentration curve (8 drawn N + the all-names reference) | 8 | 8 |
+| G3 dispersion-as-a-state (4 conditioned spreads + 1 redundancy cell) | 5 | 5 |
+| G4 India LTCG-threshold holding ladder (5 holds x 2 rate regimes) | 10 | 10 |
+| **RUNNING TOTAL (run cells)** | | **1336** |
 
 ## Registered, unrun (forward budget — counts on the day they run)
 F1 full · F2 full (>=21 cells: 18 + F2b×2 + F2c) · F3/F4/F5/F6 fulls (index/survivor partials F3a-F6a ALL run) · FS-D1/D2/D4 ·

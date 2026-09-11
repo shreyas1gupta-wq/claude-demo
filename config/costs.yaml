@@ -7,6 +7,19 @@ statutory_fy2026_27:
   index_futures: {stt_sell: 0.0005, stamp_buy: 0.00002, exch_per_side: 0.0000183, sebi_per_side: 0.000001, gst_on_fees: 0.18}
   index_options: {stt_premium_sell: 0.0015, stt_exercise_intrinsic: 0.0015, stamp_premium_buy: 0.00003, exch_premium_per_side: 0.00038, gst_on_fees: 0.18}
   exercise_trap_rule: "hedge payoff paths model pre-expiry close-out; exercise-STT costed on forced-exercise path only"
+capital_gains_tax_india:
+  # Added 2026-09-11 for the G4 after-tax design (gap-map). BR7/BR9 in
+  # research/register/breaks-registry.md are the dated-break record and carry the same
+  # pin-the-notification [VERIFY]; nothing here may be consumed live until those are pinned.
+  verify_status: press_sourced_2026_09_11
+  exemption_note: "the Rs1L (pre-Jul-2024) / Rs1.25L annual LTCG exemption is deliberately NOT modelled - it is portfolio-level not strategy-level, and immaterial at book scale (stated in the G4 registration)"
+  holding_threshold_months: {value: 12, tier: A, source: "the listed-equity LTCG/STCG boundary itself (BR7) - a definitional threshold, not an estimate", confidence: high, changes_if: "a Finance Act redefines the listed-equity holding period"}
+  pre_2024_07:
+    ltcg_rate: {value: 0.10, tier: B, source: "LTCG on listed equity reintroduced Budget 2018 at 10% over a Rs1L exemption (BR7); press-sourced 2026-09-11", confidence: medium, changes_if: "pin the Finance Act 2018 section"}
+    stcg_rate: {value: 0.15, tier: B, source: "listed-equity STCG 15% in the pre-Jul-2024 era (BR7); press-sourced 2026-09-11", confidence: medium, changes_if: "pin the section"}
+  post_2024_07:
+    ltcg_rate: {value: 0.125, tier: B, source: "Jul-2024 budget raised listed-equity LTCG to 12.5% and the exemption to Rs1.25L (BR7/BR9); press-sourced 2026-09-11", confidence: medium, changes_if: "pin the Finance (No.2) Act 2024 section"}
+    stcg_rate: {value: 0.20, tier: B, source: "same budget raised listed-equity STCG to 20% (BR7/BR9); press-sourced 2026-09-11", confidence: medium, changes_if: "pin the section"}
 round_trip_all_in_bps:
   cash_delivery: {value: [24, 32], tier: B, source: "statutory 22.3bps + brokerage placeholder (D05 §4a)", confidence: medium, decay: "statutory can be legislated UP (two hikes in 18 months)", changes_if: "broker terms; Budget"}
   index_futures: {value: [8, 16], tier: B, source: "statutory 5.66bps (component sum re-verified by consistency audit; D05's 7.7bps figure was wrong) + brokerage", confidence: medium, decay: "same", changes_if: "same; also T+0 settlement expansion (re-derive cash-vs-futures comparison)"}

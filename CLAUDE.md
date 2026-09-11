@@ -403,3 +403,41 @@ payout finding must NOT be read across it), BR9 (buyback tax changed twice 2019-
 F&O STT increase) registered, each with a pin-the-notification [VERIFY] per BR4/BR6 precedent,
 deliberately ahead of their consumers. Nothing promoted; every gap-map row still owes its own
 pre-registration.
+Immediate follow-up: "do the runnable today ones" — the gap map's Tier-1 construction battery run
+(G1-G4 pre-registered with falsifiable bars BEFORE any computation, two cells desk-verified;
+census **1,336**; scripts/analyze_gap_tier1.py; config/costs.yaml gained a fully provenanced
+`capital_gains_tax_india` block). This leg attacks CERTAIN costs rather than hypothetical alpha,
+per the gap map's own rationale. G1 rebalance grid — bar met (net spread 0.364pp/yr), winner
+SEMI-ANNUAL at 13.55% net; priors partly missed (the gross CAGR/vol spread printed 0.102 vs the
+<0.10 bar — recorded as a boundary MISS, not rounded into a pass; the ±10pp band limb missed at
++0.02pp; turnover monotonicity hit at 10.20/6.93/3.67). THE HEADLINE IS UNREGISTERED: pure drift
+("never") had BOTH the best CAGR/vol (1.275) AND the shallowest maxDD (−20.62% vs −23.87..−25.16%)
+— rebalancing ADDED drawdown over this sample, the opposite of the folk risk-control claim; monthly
+is the one dominated choice (worst net CAGR, 16.31%/yr turnover, no risk benefit). "Never" is NOT
+adoptable — unbounded drift breaches the mandate's weight bands — so the consumption is
+semi-annual-or-annual, never monthly. G2 concentration curve — tail bar CLEARED (p10 terminal
+wealth N=20→50 = +11.08%); the flattening prior MISSED, CAGR/vol keeps climbing past 20
+(1.201→1.215→1.276→1.285→1.302→1.304) and settles only near ~100 names; practical floor 50-100;
+one-way admissible (the panel's bias flatters concentration and concentration still loses); levels
+(25-27%/yr) are survivor-absurd, ONLY the shape is evidence, and it is a zero-skill random-draw
+curve that says nothing about a skilled book's optimal N. G3 dispersion-as-a-state — DISTINCT BUT
+UNUSABLE: the redundancy branch did NOT fire (corr with panel realized vol 0.453 < 0.70, so
+dispersion is genuinely not repackaged vol), but the fwd-1m momentum gap (+10.22pp, clears +5) is
+NOT monotone (MID 15.21 > HIGH 13.36) → bar PARTIALLY met → not promoted; fwd-12m fails outright
+(+4.20pp). Real content: LOW dispersion is where momentum is weakest (+3.14 vs +13-15). Low-vol
+rows negative everywhere = the known EW-survivor artifact (QG-D2, SEC-D7 a6), flagged and
+deliberately not interpreted. G4 India LTCG holding ladder — THE TAX LINE IS REAL BUT SECOND-ORDER
+and MOM-D1's 6-2 short-hold construction STANDS: 13m after-tax loses to 1m under both regimes
+(23.50 vs 27.35, −3.85pp pre-Jul-2024; 22.86 vs 25.57, −2.71pp post), i.e. Jul-2024 narrowed the
+short-hold advantage ~1.14pp/yr without flipping it; break-even 1m gross needs 2.088%/mo (pre) or
+2.163%/mo (post) vs actual 2.394%/mo — the post-2024 margin is only ~10% of gross, booked as a
+degradation-risk flag. Prior partial miss: gross is a HUMP peaking at 3m (36.52), not a monotone
+decline. UNREGISTERED CANDIDATE, NOT CONSUMED: the 3-month hold dominated the 1-month hold on every
+metric at the same STCG rate and a third of the turnover. Binding caveat: non-overlapping n =
+83/27/13/6/6 — the 12m/13m cells rest on SIX observations, direction only. G5 (the standing-book
+rebalance-interaction cell) stays REGISTERED-UNRUN with a frozen spec — it needs the book engine
+plus a margin/collar interaction model, and registering unevaluable bars would be a fake
+registration. Construction Mechanics Atlas published (row 63). Suite 125 green. Still
+principal-gated: the India fundamentals drop, OPEN_QUESTIONS batches 3+4 (incl. B4-4),
+funding_rate/ADV, the Priority-1 pulls, and every gap-map Tier-2 row (each still owes its own
+pre-registration).
