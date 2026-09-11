@@ -1,304 +1,14 @@
 {
  "names": [
-  "sticky_tier",
-  "final_model_fewtrades_p2"
+  "final_model_fewtrades_p2",
+  "baseline_volregime_p2",
+  "trend_vol_fewtrades_p2",
+  "final_model_p2",
+  "vix_dissipation_p2",
+  "shock_reentry_p2",
+  "sticky_tier"
  ],
  "rows": [
-  {
-   "name": "sticky_tier",
-   "family": "discrete {0,1,2,3} leverage tiers from a trailing EWMA vol regime; wide hysteresis, persistence, cooling-off, weekly re-levering",
-   "params": {
-    "target_vol": 0.14,
-    "h": 0.2,
-    "hl": 20.0,
-    "long_mult": 8.0,
-    "P": 5
-   },
-   "n_params": 5,
-   "cost": "3/60",
-   "oos": {
-    "annualized_return_pct": 3.231407497428318,
-    "sharpe": 0.2407121819252616,
-    "sortino": 0.31742194490054904,
-    "calmar": 0.180647216790982,
-    "max_drawdown_pct": -17.88794510555466,
-    "position_changes_per_year": 0.7361963190184049,
-    "pct_days_cash": 73.21063394683026,
-    "avg_leverage_when_invested": 1.0665212649945475,
-    "up_capture_pct": 25.56033573644537,
-    "down_capture_pct": 28.94812818389007,
-    "beta_to_spy": 0.19297706397244135,
-    "worst_month_pct": -14.64281549259977,
-    "pct_positive_months": 91.46341463414635
-   },
-   "dev": {
-    "annualized_return_pct": 7.38178815699273,
-    "sharpe": 0.6115542727934902,
-    "max_drawdown_pct": -14.252593625791265,
-    "position_changes_per_year": 0.44428772919605075
-   },
-   "corr_demeter": 0.13470385292573553,
-   "lookahead_ok": true,
-   "sub_periods": [
-    {
-     "start": "1950-01-03",
-     "end": "1989-12-29",
-     "cagr_pct": 9.21851002244285,
-     "spy_cagr_pct": 12.395408064507873,
-     "sharpe": 0.3100061558292112,
-     "spy_sharpe": 0.5206282016367643,
-     "max_dd_pct": -48.239179526041994,
-     "spy_max_dd_pct": -42.68943085343666,
-     "pct_days_cash": 31.231350706186596,
-     "changes_per_year": 1.2782971951462103
-    },
-    {
-     "start": "1990-01-02",
-     "end": "2011-12-30",
-     "cagr_pct": 7.553809717299176,
-     "spy_cagr_pct": 8.087902977367367,
-     "sharpe": 0.618658543993052,
-     "spy_sharpe": 0.36447990007741177,
-     "max_dd_pct": -14.252593625791265,
-     "spy_max_dd_pct": -50.784817717991395,
-     "pct_days_cash": 65.90950063097169,
-     "changes_per_year": 0.45429962141698216
-    },
-    {
-     "start": "2012-07-02",
-     "end": "2019-12-31",
-     "cagr_pct": 4.742067401768213,
-     "spy_cagr_pct": 14.430241854468683,
-     "sharpe": 0.4430409059866442,
-     "spy_sharpe": 1.2405770225738122,
-     "max_dd_pct": -15.84347520070314,
-     "spy_max_dd_pct": -13.532104595482842,
-     "pct_days_cash": 53.471118177000534,
-     "changes_per_year": 1.2019077901430844
-    },
-    {
-     "start": "2020-01-02",
-     "end": "2026-02-11",
-     "cagr_pct": 1.423451137390419,
-     "spy_cagr_pct": 14.849885094668203,
-     "sharpe": -0.41150881133565126,
-     "spy_sharpe": 0.7461081480060892,
-     "max_dd_pct": -7.551211097071953,
-     "spy_max_dd_pct": -23.92717752991794,
-     "pct_days_cash": 97.4609375,
-     "changes_per_year": 0.1640625
-    },
-    {
-     "start": "2012-07-02",
-     "end": "2026-02-11",
-     "cagr_pct": 3.231407497428318,
-     "spy_cagr_pct": 14.619402896875089,
-     "sharpe": 0.2407121819252616,
-     "spy_sharpe": 0.9424924265008536,
-     "max_dd_pct": -17.88794510555466,
-     "spy_max_dd_pct": -23.927177529917955,
-     "pct_days_cash": 73.21063394683026,
-     "changes_per_year": 0.7361963190184049
-    }
-   ],
-   "yearly": [
-    {
-     "year": 2012,
-     "n_months": 6,
-     "model": 0.047372235593212686,
-     "demeter": 10.840943282361515,
-     "spy": 5.636368547282711
-    },
-    {
-     "year": 2013,
-     "n_months": 12,
-     "model": 2.8243576756005195,
-     "demeter": 32.59671504765027,
-     "spy": 32.2666248959891
-    },
-    {
-     "year": 2014,
-     "n_months": 12,
-     "model": 13.463789560006534,
-     "demeter": 12.9275990290177,
-     "spy": 13.577362824515781
-    },
-    {
-     "year": 2015,
-     "n_months": 12,
-     "model": -6.937814315190272,
-     "demeter": 9.95323798900245,
-     "spy": 1.2963105203683378
-    },
-    {
-     "year": 2016,
-     "n_months": 12,
-     "model": 4.844319856401702,
-     "demeter": 21.944237372206032,
-     "spy": 11.869447491738839
-    },
-    {
-     "year": 2017,
-     "n_months": 12,
-     "model": 25.652494952735626,
-     "demeter": 33.267772731174475,
-     "spy": 21.735908314439012
-    },
-    {
-     "year": 2018,
-     "n_months": 12,
-     "model": -5.952525885888016,
-     "demeter": 23.35269644603388,
-     "spy": -4.4694110444548185
-    },
-    {
-     "year": 2019,
-     "n_months": 12,
-     "model": 5.1751596767080965,
-     "demeter": 17.104691647622516,
-     "spy": 31.3739718197207
-    },
-    {
-     "year": 2020,
-     "n_months": 12,
-     "model": -7.4840294879720215,
-     "demeter": 165.13871741563685,
-     "spy": 18.27303254038877
-    },
-    {
-     "year": 2021,
-     "n_months": 12,
-     "model": 0.04518873075125551,
-     "demeter": 40.96553377555851,
-     "spy": 28.62024042270763
-    },
-    {
-     "year": 2022,
-     "n_months": 12,
-     "model": 2.0512449896813445,
-     "demeter": 19.24139133870444,
-     "spy": -18.19288117756598
-    },
-    {
-     "year": 2023,
-     "n_months": 12,
-     "model": 5.161039325387962,
-     "demeter": 25.330769416637857,
-     "spy": 26.17240482840648
-    },
-    {
-     "year": 2024,
-     "n_months": 12,
-     "model": 5.090993160982449,
-     "demeter": 22.407822812607403,
-     "spy": 24.90006229740871
-    },
-    {
-     "year": 2025,
-     "n_months": 12,
-     "model": 4.111450911764636,
-     "demeter": 42.2589158591822,
-     "spy": 17.779535442943395
-    },
-    {
-     "year": 2026,
-     "n_months": 1,
-     "model": 0.2805318660771272,
-     "demeter": -2.749999999999997,
-     "spy": 1.4399999999999968
-    }
-   ],
-   "c240": {
-    "cagr_pct": 3.2426082706198622,
-    "sharpe": 0.24215234616195946,
-    "max_dd_pct": -17.836751093482984
-   },
-   "s690": {
-    "cagr_pct": 3.2032885323243887,
-    "sharpe": 0.23699723789624022,
-    "max_dd_pct": -18.038302118998683
-   },
-   "adjusted": {
-    "base": {
-     "cagr_pct": 3.2314075310941437,
-     "sharpe": 0.2407121862532985,
-     "max_dd_pct": -17.88794498331002
-    },
-    "tbill_zeroed_on_cash": {
-     "cagr_pct": 1.737583311227442,
-     "sharpe": 0.05104524989222403,
-     "max_dd_pct": -20.274271073773733
-    },
-    "clustered_slippage": {
-     "cagr_pct": 3.2259239009978735,
-     "sharpe": 0.23988804259734106,
-     "max_dd_pct": -17.93788314996774
-    },
-    "tbill_on_cash_days_pct_annual": 1.466695881128908
-   },
-   "fire_check": [
-    {
-     "date": "2018-12-24",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2018-12-26",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2020-03-20",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2020-03-23",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2020-03-24",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2022-10-12",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2022-10-13",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2022-10-14",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2025-04-08",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    },
-    {
-     "date": "2025-04-09",
-     "position_in_effect": 0.0,
-     "target_decided_at_close": 0.0
-    }
-   ],
-   "dev_plateau_share": 0.9,
-   "acceptance": {
-    "sharpe_gt_0.73": false,
-    "maxdd_ge_-20.5": true,
-    "changes_lt_25": true,
-    "no_ruinous_era": false,
-    "lookahead": true,
-    "survives_6_90": false,
-    "ALL": false
-   }
-  },
   {
    "name": "final_model_fewtrades_p2",
    "family": "trend hysteresis + volatility tier, weekly decisions (low turnover)",
@@ -590,6 +300,1773 @@
     "maxdd_ge_-20.5": true,
     "changes_lt_25": true,
     "no_ruinous_era": true,
+    "lookahead": true,
+    "survives_6_90": false,
+    "ALL": false
+   }
+  },
+  {
+   "name": "baseline_volregime_p2",
+   "family": "volatility-regime + trend (reference baseline)",
+   "params": {
+    "vol_win": 21,
+    "lo": 0.15,
+    "hi": 0.25,
+    "ma": 200
+   },
+   "n_params": 4,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 21.697132667190978,
+    "sharpe": 0.8299767699900774,
+    "sortino": 1.3610455756496547,
+    "calmar": 0.702280534607956,
+    "max_drawdown_pct": -30.89524997201193,
+    "position_changes_per_year": 10.085889570552148,
+    "pct_days_cash": 17.294770669003796,
+    "avg_leverage_when_invested": 2.6227481455316144,
+    "up_capture_pct": 160.65893798230218,
+    "down_capture_pct": 173.00305682325433,
+    "beta_to_spy": 1.25334833901165,
+    "worst_month_pct": -19.730815718658956,
+    "pct_positive_months": 66.46341463414635
+   },
+   "dev": {
+    "annualized_return_pct": 9.865909678985062,
+    "sharpe": 0.373330650913544,
+    "max_drawdown_pct": -38.23868504249018,
+    "position_changes_per_year": 11.64033850493653
+   },
+   "corr_demeter": 0.30124563984492764,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 25.661372831714303,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": 0.7564019940444247,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": -31.18409877056815,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 32.434851800278494,
+     "changes_per_year": 7.845235727073801
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": 9.78445630963325,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": 0.3684482936796243,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -38.23868504249018,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 32.99080584099513,
+     "changes_per_year": 11.539210383991346
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 21.552931220042204,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.878652716745694,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -30.89524997201193,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 11.92368839427663,
+     "changes_per_year": 10.149443561208267
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 21.8727433761708,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": 0.7698128866970316,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -27.605705151799476,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 23.893229166666664,
+     "changes_per_year": 10.0078125
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 21.697132667190978,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.8299767699900774,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -30.89524997201193,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 17.294770669003796,
+     "changes_per_year": 10.085889570552148
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": 12.19654245691304,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 93.79257179610738,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": 13.629640788603425,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -22.1732212411585,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": 18.033413293855084,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 72.42646766125046,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": -15.244643109675993,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 30.32490833468875,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": 27.240354304395996,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 52.489468630180156,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": -15.526068012706052,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 8.073169979663009,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 60.43361194039962,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 15.295687497906506,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": 3.5835781436079017,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 22.23269169557678,
+    "sharpe": 0.8471129506736256,
+    "max_dd_pct": -30.457204354191692
+   },
+   "s690": {
+    "cagr_pct": 20.585421714043427,
+    "sharpe": 0.7935933892962879,
+    "max_dd_pct": -31.875460714311032
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 21.697132588233426,
+     "sharpe": 0.8299767678190927,
+     "max_dd_pct": -30.895249998729636
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 21.323798274386753,
+     "sharpe": 0.816964074223786,
+     "max_dd_pct": -31.473130891175682
+    },
+    "clustered_slippage": {
+     "cagr_pct": 21.640807446008115,
+     "sharpe": 0.8279235906604893,
+     "max_dd_pct": -31.01654500852369
+    },
+    "tbill_on_cash_days_pct_annual": 0.3091411047547731
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "acceptance": {
+    "sharpe_gt_0.73": true,
+    "maxdd_ge_-20.5": false,
+    "changes_lt_25": true,
+    "no_ruinous_era": true,
+    "lookahead": true,
+    "survives_6_90": true,
+    "ALL": false
+   }
+  },
+  {
+   "name": "trend_vol_fewtrades_p2",
+   "family": "trend + volatility tier, deliberately low turnover",
+   "params": {
+    "ma_fast": 100,
+    "ma_slow": 200,
+    "rv_lo": 0.13,
+    "rv_hi": 0.2,
+    "min_days": 15
+   },
+   "n_params": 5,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 18.069846681515966,
+    "sharpe": 0.7153916401760643,
+    "sortino": 1.1373974671425275,
+    "calmar": 0.5665317586217375,
+    "max_drawdown_pct": -31.895558203967976,
+    "position_changes_per_year": 11.042944785276074,
+    "pct_days_cash": 19.339760444054924,
+    "avg_leverage_when_invested": 2.6262223831944946,
+    "up_capture_pct": 151.21398382077328,
+    "down_capture_pct": 177.50166063874047,
+    "beta_to_spy": 1.275462876942675,
+    "worst_month_pct": -17.678876383998865,
+    "pct_positive_months": 65.2439024390244
+   },
+   "dev": {
+    "annualized_return_pct": 8.847182603641969,
+    "sharpe": 0.3343608881832257,
+    "max_drawdown_pct": -36.45483758668675,
+    "position_changes_per_year": 12.17348377997179
+   },
+   "corr_demeter": 0.3398687669796654,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 22.76054890925323,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": 0.6721210808902242,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": -40.133553463049,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 34.00636562562164,
+     "changes_per_year": 7.6196538691068225
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": 8.984319982715917,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": 0.3380513411470773,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -36.45483758668675,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 33.675860825671535,
+     "changes_per_year": 11.94808004326663
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 19.003923903942056,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.8158705543535278,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -30.958712983275472,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 15.474297827239003,
+     "changes_per_year": 9.481717011128776
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 16.943682134056438,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": 0.6068060741413546,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -31.895558203967976,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 24.088541666666664,
+     "changes_per_year": 12.9609375
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 18.069846681515966,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.7153916401760643,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -31.895558203967976,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 19.339760444054924,
+     "changes_per_year": 11.042944785276074
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": 5.240656694732615,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 91.09077793364084,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": 9.353567548745989,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -26.328049360149553,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": 26.424566342603928,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 72.42646766125046,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": -2.777499136805639,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 7.386334067316147,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": 10.230178335691775,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 56.17533324210453,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": -29.351925392738153,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 17.917380725064767,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 48.84864110937941,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 19.137903208004058,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": 3.5835781436079017,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 18.53913137356935,
+    "sharpe": 0.7308160680306622,
+    "max_dd_pct": -31.764442776821898
+   },
+   "s690": {
+    "cagr_pct": 17.129923683649253,
+    "sharpe": 0.684006772847769,
+    "max_dd_pct": -32.23475556291297
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 18.06984664801623,
+     "sharpe": 0.7153916399448792,
+     "max_dd_pct": -31.895558014662118
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 17.67466084679292,
+     "sharpe": 0.7015380593583517,
+     "max_dd_pct": -33.37660369133049
+    },
+    "clustered_slippage": {
+     "cagr_pct": 18.019846818679074,
+     "sharpe": 0.7135667312724694,
+     "max_dd_pct": -31.967591583245756
+    },
+    "tbill_on_cash_days_pct_annual": 0.3373400527820613
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "acceptance": {
+    "sharpe_gt_0.73": false,
+    "maxdd_ge_-20.5": false,
+    "changes_lt_25": true,
+    "no_ruinous_era": false,
+    "lookahead": true,
+    "survives_6_90": false,
+    "ALL": false
+   }
+  },
+  {
+   "name": "final_model_p2",
+   "family": "trend hysteresis + volatility-tiered leverage + shock override",
+   "params": {
+    "ma_fast": 100,
+    "ma_slow": 200,
+    "rv_lo": 0.12,
+    "rv_hi": 0.16,
+    "min_days": 10,
+    "shock_days": 5
+   },
+   "n_params": 6,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 15.590353994761784,
+    "sharpe": 0.6488222731530072,
+    "sortino": 1.0428330799490764,
+    "calmar": 0.4405890559350765,
+    "max_drawdown_pct": -35.385250234311584,
+    "position_changes_per_year": 11.705521472392638,
+    "pct_days_cash": 20.479111890154837,
+    "avg_leverage_when_invested": 2.448934606906686,
+    "up_capture_pct": 139.67468202191978,
+    "down_capture_pct": 171.2229337243182,
+    "beta_to_spy": 1.227175458513809,
+    "worst_month_pct": -18.55207643361625,
+    "pct_positive_months": 62.80487804878049
+   },
+   "dev": {
+    "annualized_return_pct": 9.529421091399314,
+    "sharpe": 0.3696429816198531,
+    "max_drawdown_pct": -28.77612806772143,
+    "position_changes_per_year": 9.774330042313116
+   },
+   "corr_demeter": 0.26470497384055314,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 22.60957393490417,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": 0.6820841039702642,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": -33.72656841788528,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 34.17545255619654,
+     "changes_per_year": 7.118360851402427
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": 9.394015480770278,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": 0.3620409606658479,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -28.77612806772143,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 32.594195060393005,
+     "changes_per_year": 9.722011898323418
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 15.852669769597384,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.7039069792543896,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -35.385250234311584,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 16.322204557498676,
+     "changes_per_year": 10.817170111287759
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 15.272121617691091,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": 0.5807941948164524,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -28.841760006275962,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 25.5859375,
+     "changes_per_year": 12.796875
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 15.590353994761784,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.6488222731530072,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -35.385250234311584,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 20.479111890154837,
+     "changes_per_year": 11.705521472392638
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": 4.371851155888584,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 71.1797016076541,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": -0.016736996710275953,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -12.132863199951638,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": -0.7979876017918941,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 56.70229832665819,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": -1.3049265275592248,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 25.202958786085205,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": 22.27029537790697,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 43.890562736879055,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": -19.93432684942552,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 12.555047313742197,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 39.99604113080479,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 10.181683604440007,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": -2.452763057708196,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 16.04095073677798,
+    "sharpe": 0.6647643210786832,
+    "max_dd_pct": -34.79703306996146
+   },
+   "s690": {
+    "cagr_pct": 14.641851713448805,
+    "sharpe": 0.6147292957221413,
+    "max_dd_pct": -36.67842273415756
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 15.590353846936988,
+     "sharpe": 0.6488222683201654,
+     "max_dd_pct": -35.38525019011084
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 15.178034010648634,
+     "sharpe": 0.6333798588772733,
+     "max_dd_pct": -35.44217515833711
+    },
+    "clustered_slippage": {
+     "cagr_pct": 15.543559315480437,
+     "sharpe": 0.6470144523427831,
+     "max_dd_pct": -35.432686282217496
+    },
+    "tbill_on_cash_days_pct_annual": 0.35955156339231903
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "acceptance": {
+    "sharpe_gt_0.73": false,
+    "maxdd_ge_-20.5": false,
+    "changes_lt_25": true,
+    "no_ruinous_era": true,
+    "lookahead": true,
+    "survives_6_90": false,
+    "ALL": false
+   }
+  },
+  {
+   "name": "vix_dissipation_p2",
+   "family": "implied-volatility dissipation + volatility-regime leverage tier",
+   "params": {
+    "vix_ma": 10,
+    "enter_buf": 0.02,
+    "exit_buf": 0.0,
+    "shock_z": 2.5,
+    "shock_days": 3,
+    "rv_lo": 0.18
+   },
+   "n_params": 6,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 16.311277448253293,
+    "sharpe": 0.6731353348079064,
+    "sortino": 1.14874058395291,
+    "calmar": 0.4390505654171754,
+    "max_drawdown_pct": -37.151250295634405,
+    "position_changes_per_year": 43.214723926380366,
+    "pct_days_cash": 38.97166228454572,
+    "avg_leverage_when_invested": 2.5318334131163236,
+    "up_capture_pct": 117.32310953065104,
+    "down_capture_pct": 123.14638648626304,
+    "beta_to_spy": 1.13446731764503,
+    "worst_month_pct": -15.954156210165172,
+    "pct_positive_months": 58.536585365853654
+   },
+   "dev": {
+    "annualized_return_pct": -7.17762015075153,
+    "sharpe": -0.3121667307321252,
+    "max_drawdown_pct": -93.54182302834461,
+    "position_changes_per_year": 46.60578279266572
+   },
+   "corr_demeter": 0.4323647720228754,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 5.39732306204781,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": null,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": 0.0,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 100.0,
+     "changes_per_year": 0.0
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": -7.858338923894759,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": -0.34113193565209093,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -93.54182302834461,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 40.38218857039841,
+     "changes_per_year": 46.70200108166576
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 9.576875861793388,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.460116446665251,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -37.151250295634405,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 39.37466878643349,
+     "changes_per_year": 44.871224165341815
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 25.06199911714404,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": 0.9477499425607449,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -25.80686396772568,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 38.4765625,
+     "changes_per_year": 41.1796875
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 16.311277448253293,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.6731353348079064,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -37.151250295634405,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 38.97166228454572,
+     "changes_per_year": 43.214723926380366
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": -0.5646628892164607,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 52.06199683335764,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": 3.3657950036293682,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -26.934912672080735,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": 1.6041320313122442,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 22.909059831435098,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": 2.770605983518193,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 35.48133746008637,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": 93.84153269180268,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 8.880980503797353,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": -19.18292380974027,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 32.87788400642546,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 53.39814000259571,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 14.555332415921018,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": 3.68086432772905,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 17.85642919632466,
+    "sharpe": 0.728635432822976,
+    "max_dd_pct": -34.66793424279992
+   },
+   "s690": {
+    "cagr_pct": 12.10590870196362,
+    "sharpe": 0.5195328145626411,
+    "max_dd_pct": -43.617021865166016
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 16.3112774269327,
+     "sharpe": 0.6731353334802628,
+     "max_dd_pct": -37.151250610096156
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 15.593133460582642,
+     "sharpe": 0.6470784166175194,
+     "max_dd_pct": -37.23054767470902
+    },
+    "clustered_slippage": {
+     "cagr_pct": 16.095581169101813,
+     "sharpe": 0.6653698014793402,
+     "max_dd_pct": -37.35434005576319
+    },
+    "tbill_on_cash_days_pct_annual": 0.6230923171698405
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 1.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 1.0,
+     "target_decided_at_close": 1.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 1.0,
+     "target_decided_at_close": 1.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "acceptance": {
+    "sharpe_gt_0.73": false,
+    "maxdd_ge_-20.5": false,
+    "changes_lt_25": false,
+    "no_ruinous_era": false,
+    "lookahead": true,
+    "survives_6_90": false,
+    "ALL": false
+   }
+  },
+  {
+   "name": "shock_reentry_p2",
+   "family": "volatility-shock exit + mean-reversion re-entry",
+   "params": {
+    "rv_exit": 0.22,
+    "shock_z": 2.5,
+    "cool_days": 5,
+    "vix_fall": 0.3,
+    "vix_win": 20,
+    "rv_calm": 0.16
+   },
+   "n_params": 6,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 15.634778610860401,
+    "sharpe": 0.5800629167052224,
+    "sortino": 0.9837935732743615,
+    "calmar": 0.3466497179263295,
+    "max_drawdown_pct": -45.102528005469566,
+    "position_changes_per_year": 21.2760736196319,
+    "pct_days_cash": 23.634238971662285,
+    "avg_leverage_when_invested": 2.8599846977811785,
+    "up_capture_pct": 147.37250720006531,
+    "down_capture_pct": 185.63895547130014,
+    "beta_to_spy": 1.5033993322870922,
+    "worst_month_pct": -23.396427746126058,
+    "pct_positive_months": 57.3170731707317
+   },
+   "dev": {
+    "annualized_return_pct": -4.710985942352163,
+    "sharpe": -0.18613772291802946,
+    "max_drawdown_pct": -82.90448144044998,
+    "position_changes_per_year": 19.726375176304654
+   },
+   "corr_demeter": 0.43046824842785586,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 25.663616188653403,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": 0.7638165144696577,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": -39.661659935114265,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 38.61149791127909,
+     "changes_per_year": 12.256614282872487
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": -4.388185800550959,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": -0.1777458340767608,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -82.90448144044998,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 40.49035514692626,
+     "changes_per_year": 19.716603569497025
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 9.493587510943824,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.4433576182941106,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -45.102528005469566,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 19.395866454689983,
+     "changes_per_year": 20.565977742448332
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 23.56985568017247,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": 0.7223850209562218,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -27.345103460533203,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 28.841145833333332,
+     "changes_per_year": 22.1484375
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 15.634778610860401,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.5800629167052224,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -45.102528005469566,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 23.634238971662285,
+     "changes_per_year": 21.2760736196319
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": 7.752994741467156,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 53.9743542873367,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": 3.3962088139152247,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -35.785843634942246,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": 16.90033940358273,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 63.07488695324874,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": -20.19350544286621,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 17.804237017400283,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": 55.77428518353316,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 50.3064881600821,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": -24.938474318232828,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 31.96796559857191,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 18.067165379831174,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 49.56424681046574,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": -4.277969244642943,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 16.57981760913636,
+    "sharpe": 0.607700466952455,
+    "max_dd_pct": -44.157879687543655
+   },
+   "s690": {
+    "cagr_pct": 13.322955211006171,
+    "sharpe": 0.5113924333475172,
+    "max_dd_pct": -47.548225929018386
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 15.634778415636008,
+     "sharpe": 0.580062911529191,
+     "max_dd_pct": -45.10252799092015
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 15.186766334946,
+     "sharpe": 0.5664913388728291,
+     "max_dd_pct": -45.1324224825831
+    },
+    "clustered_slippage": {
+     "cagr_pct": 15.197589058962757,
+     "sharpe": 0.5690013101574379,
+     "max_dd_pct": -45.378326107446085
+    },
+    "tbill_on_cash_days_pct_annual": 0.39056383330247857
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "acceptance": {
+    "sharpe_gt_0.73": false,
+    "maxdd_ge_-20.5": false,
+    "changes_lt_25": true,
+    "no_ruinous_era": false,
+    "lookahead": true,
+    "survives_6_90": false,
+    "ALL": false
+   }
+  },
+  {
+   "name": "sticky_tier",
+   "family": "discrete {0,1,2,3} leverage tiers from a trailing EWMA vol regime; wide hysteresis, persistence, cooling-off, weekly re-levering",
+   "params": {
+    "target_vol": 0.14,
+    "h": 0.2,
+    "hl": 20.0,
+    "long_mult": 8.0,
+    "P": 5
+   },
+   "n_params": 5,
+   "cost": "3/60",
+   "oos": {
+    "annualized_return_pct": 3.231407497428318,
+    "sharpe": 0.2407121819252616,
+    "sortino": 0.31742194490054904,
+    "calmar": 0.180647216790982,
+    "max_drawdown_pct": -17.88794510555466,
+    "position_changes_per_year": 0.7361963190184049,
+    "pct_days_cash": 73.21063394683026,
+    "avg_leverage_when_invested": 1.0665212649945475,
+    "up_capture_pct": 25.56033573644537,
+    "down_capture_pct": 28.94812818389007,
+    "beta_to_spy": 0.19297706397244135,
+    "worst_month_pct": -14.64281549259977,
+    "pct_positive_months": 91.46341463414635
+   },
+   "dev": {
+    "annualized_return_pct": 7.38178815699273,
+    "sharpe": 0.6115542727934902,
+    "max_drawdown_pct": -14.252593625791265,
+    "position_changes_per_year": 0.44428772919605075
+   },
+   "corr_demeter": 0.13470385292573553,
+   "lookahead_ok": true,
+   "sub_periods": [
+    {
+     "start": "1950-01-03",
+     "end": "1989-12-29",
+     "cagr_pct": 9.21851002244285,
+     "spy_cagr_pct": 12.395408064507873,
+     "sharpe": 0.3100061558292112,
+     "spy_sharpe": 0.5206282016367643,
+     "max_dd_pct": -48.239179526041994,
+     "spy_max_dd_pct": -42.68943085343666,
+     "pct_days_cash": 31.231350706186596,
+     "changes_per_year": 1.2782971951462103
+    },
+    {
+     "start": "1990-01-02",
+     "end": "2011-12-30",
+     "cagr_pct": 7.553809717299176,
+     "spy_cagr_pct": 8.087902977367367,
+     "sharpe": 0.618658543993052,
+     "spy_sharpe": 0.36447990007741177,
+     "max_dd_pct": -14.252593625791265,
+     "spy_max_dd_pct": -50.784817717991395,
+     "pct_days_cash": 65.90950063097169,
+     "changes_per_year": 0.45429962141698216
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2019-12-31",
+     "cagr_pct": 4.742067401768213,
+     "spy_cagr_pct": 14.430241854468683,
+     "sharpe": 0.4430409059866442,
+     "spy_sharpe": 1.2405770225738122,
+     "max_dd_pct": -15.84347520070314,
+     "spy_max_dd_pct": -13.532104595482842,
+     "pct_days_cash": 53.471118177000534,
+     "changes_per_year": 1.2019077901430844
+    },
+    {
+     "start": "2020-01-02",
+     "end": "2026-02-11",
+     "cagr_pct": 1.423451137390419,
+     "spy_cagr_pct": 14.849885094668203,
+     "sharpe": -0.41150881133565126,
+     "spy_sharpe": 0.7461081480060892,
+     "max_dd_pct": -7.551211097071953,
+     "spy_max_dd_pct": -23.92717752991794,
+     "pct_days_cash": 97.4609375,
+     "changes_per_year": 0.1640625
+    },
+    {
+     "start": "2012-07-02",
+     "end": "2026-02-11",
+     "cagr_pct": 3.231407497428318,
+     "spy_cagr_pct": 14.619402896875089,
+     "sharpe": 0.2407121819252616,
+     "spy_sharpe": 0.9424924265008536,
+     "max_dd_pct": -17.88794510555466,
+     "spy_max_dd_pct": -23.927177529917955,
+     "pct_days_cash": 73.21063394683026,
+     "changes_per_year": 0.7361963190184049
+    }
+   ],
+   "yearly": [
+    {
+     "year": 2012,
+     "n_months": 6,
+     "model": 0.047372235593212686,
+     "demeter": 10.840943282361515,
+     "spy": 5.636368547282711
+    },
+    {
+     "year": 2013,
+     "n_months": 12,
+     "model": 2.8243576756005195,
+     "demeter": 32.59671504765027,
+     "spy": 32.2666248959891
+    },
+    {
+     "year": 2014,
+     "n_months": 12,
+     "model": 13.463789560006534,
+     "demeter": 12.9275990290177,
+     "spy": 13.577362824515781
+    },
+    {
+     "year": 2015,
+     "n_months": 12,
+     "model": -6.937814315190272,
+     "demeter": 9.95323798900245,
+     "spy": 1.2963105203683378
+    },
+    {
+     "year": 2016,
+     "n_months": 12,
+     "model": 4.844319856401702,
+     "demeter": 21.944237372206032,
+     "spy": 11.869447491738839
+    },
+    {
+     "year": 2017,
+     "n_months": 12,
+     "model": 25.652494952735626,
+     "demeter": 33.267772731174475,
+     "spy": 21.735908314439012
+    },
+    {
+     "year": 2018,
+     "n_months": 12,
+     "model": -5.952525885888016,
+     "demeter": 23.35269644603388,
+     "spy": -4.4694110444548185
+    },
+    {
+     "year": 2019,
+     "n_months": 12,
+     "model": 5.1751596767080965,
+     "demeter": 17.104691647622516,
+     "spy": 31.3739718197207
+    },
+    {
+     "year": 2020,
+     "n_months": 12,
+     "model": -7.4840294879720215,
+     "demeter": 165.13871741563685,
+     "spy": 18.27303254038877
+    },
+    {
+     "year": 2021,
+     "n_months": 12,
+     "model": 0.04518873075125551,
+     "demeter": 40.96553377555851,
+     "spy": 28.62024042270763
+    },
+    {
+     "year": 2022,
+     "n_months": 12,
+     "model": 2.0512449896813445,
+     "demeter": 19.24139133870444,
+     "spy": -18.19288117756598
+    },
+    {
+     "year": 2023,
+     "n_months": 12,
+     "model": 5.161039325387962,
+     "demeter": 25.330769416637857,
+     "spy": 26.17240482840648
+    },
+    {
+     "year": 2024,
+     "n_months": 12,
+     "model": 5.090993160982449,
+     "demeter": 22.407822812607403,
+     "spy": 24.90006229740871
+    },
+    {
+     "year": 2025,
+     "n_months": 12,
+     "model": 4.111450911764636,
+     "demeter": 42.2589158591822,
+     "spy": 17.779535442943395
+    },
+    {
+     "year": 2026,
+     "n_months": 1,
+     "model": 0.2805318660771272,
+     "demeter": -2.749999999999997,
+     "spy": 1.4399999999999968
+    }
+   ],
+   "c240": {
+    "cagr_pct": 3.2426082706198622,
+    "sharpe": 0.24215234616195946,
+    "max_dd_pct": -17.836751093482984
+   },
+   "s690": {
+    "cagr_pct": 3.2032885323243887,
+    "sharpe": 0.23699723789624022,
+    "max_dd_pct": -18.038302118998683
+   },
+   "adjusted": {
+    "base": {
+     "cagr_pct": 3.2314075310941437,
+     "sharpe": 0.2407121862532985,
+     "max_dd_pct": -17.88794498331002
+    },
+    "tbill_zeroed_on_cash": {
+     "cagr_pct": 1.737583311227442,
+     "sharpe": 0.05104524989222403,
+     "max_dd_pct": -20.274271073773733
+    },
+    "clustered_slippage": {
+     "cagr_pct": 3.2259239009978735,
+     "sharpe": 0.23988804259734106,
+     "max_dd_pct": -17.93788314996774
+    },
+    "tbill_on_cash_days_pct_annual": 1.466695881128908
+   },
+   "fire_check": [
+    {
+     "date": "2018-12-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2018-12-26",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-20",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-23",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2020-03-24",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-12",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-13",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2022-10-14",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-08",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    },
+    {
+     "date": "2025-04-09",
+     "position_in_effect": 0.0,
+     "target_decided_at_close": 0.0
+    }
+   ],
+   "dev_plateau_share": 0.9,
+   "acceptance": {
+    "sharpe_gt_0.73": false,
+    "maxdd_ge_-20.5": true,
+    "changes_lt_25": true,
+    "no_ruinous_era": false,
     "lookahead": true,
     "survives_6_90": false,
     "ALL": false

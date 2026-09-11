@@ -99,6 +99,28 @@ own re-check fails. Refuted candidates receive **no** OOS look in this pass; the
 reported in full. An exploratory OOS look at the refuted panel would be a separate, Principal-authorised, clearly
 labelled appendix — it is not run here because a look cannot be un-taken.
 
+**vix_vrp (reinstated original), verified 2026-09-12 02:35:** **REFUTED** (L1; L2 and L3 hold with MATERIAL findings).
+Decisive: the three leverage constants (2x calm / cash elevated / 1x panic) have no documented provenance — pass 1 left
+no design note, neither audited grid varies them, and the docstring says the regime→leverage mapping was read off a
+DEV conditional-Sharpe table — so the true count is 8 (G7 breach); and the same docstring says the OOS window "was looked
+at only through the final evaluate.py runs", which pass 1 never recorded (no results file, no mention in RESULTS.md) —
+an unresolvable contradiction that defaults to refuted. Material: a one-session execution lag cuts DEV Sharpe 0.608→0.486
+and widens maxDD −19.8%→−28.3%; more than half the DEV Sharpe comes from the 1x PANIC leg (13.6% of days, ~5–6 panics);
+halves 0.84 / 0.40. **No OOS look.**
+
+## Outcome of the look budget (final)
+
+| candidate | earned a look? | looked? | result at 3/60 |
+|---|---|---|---|
+| sticky_tier | yes (gates + verification) | **1 signal look, 3 cost rows** (2026-09-12 02:08) | OOS Sharpe 0.24, CAGR 3.23%, maxDD −17.9%, 73% cash, 10 changes in 13.6 years — **fails acceptance** |
+| vix_vrp, vix_vrp_v2, volmanaged, dissipation_reentry, composite_dual_engine | no (refuted) | no | — |
+| crash_exit_dual | no (gate failure) | no | — |
+| pass-1 panel (6 models) | already evaluated in pass 1 | re-run at the three cost rows only (tags `_p2*`), not new looks | see RESULTS.md leaderboard |
+
+Total new out-of-sample looks in pass 2: **one**. Total candidates with OOS numbers across both passes: **seven** (six from
+pass 1, one from pass 2). The DEV-chosen recommendation of pass 2 (sticky_tier) failed out of sample; the pass-1 incumbent
+`final_model_fewtrades` remains the recommended model.
+
 ## Deviations
 1. **2026-09-04, session-usage limit.** The six-designer workflow lost five agents to the account's usage cap after 64
    minutes (`dissipation_reentry` returned; `crash_exit_dual` and `volmanaged` had banked a final harness JSON, a signal

@@ -37,13 +37,19 @@ Python 3.11 with pandas, numpy (and scikit-learn / statsmodels / hmmlearn for th
 * The factsheet quotes 3,219 trading days for its four-quadrant analysis while the four quadrant counts sum to
   3,477; both figures are preserved and flagged.
 
-## Headline result of the replication study
+## Headline result of the replication study (two passes)
 
-The recommended model (`model/signals/final_model_fewtrades.py`: trend hysteresis, volatility-tiered leverage,
-shock override, weekly sticky decisions) returns **17.6% a year out of sample** at a **−20.2% drawdown** with about
-**9 position changes a year**, against Demeter's published **31.3% at −13.65%** rebalanced daily. The gap is entirely
-on the downside — down-capture 146% versus Demeter's 23%.
+The recommended model is still pass 1's `model/signals/final_model_fewtrades.py` (trend hysteresis, volatility-tiered
+leverage, shock override, weekly sticky decisions): **16.8% a year out of sample, Sharpe 0.73, −20.5% drawdown, about 9
+position changes a year at 3 bp per unit traded and 60 bp financing**, against Demeter's published **31.3% at −13.65%**
+rebalanced daily. The gap is entirely on the downside — down-capture 147% versus Demeter's 23% — and SPY's own Sharpe
+(0.95) beats every model built.
 
-The study's most useful finding is negative: the rule that best fits Demeter's record after 2012 ("3× while VIX is
-below its 10-day average, else cash") returns **+18.3% a year out of sample and −5.7% a year with a 92% drawdown
-across 1990–2012**. Selecting on the recent window alone would have shipped it. See `model/RESULTS.md`.
+Pass 2 (2026-09-04 → 09-12, `model/PREREG.md`) tried to beat it under a pre-registered, development-only protocol:
+six new candidates, five passed the development gates, adversarial verification refuted four (every one had "structural
+constants" that were in fact chosen by comparing development results), and the single survivor took its one
+out-of-sample look and failed it (3.2% a year, Sharpe 0.24, 73% of days in cash). The generalisable lesson is the mirror
+image of pass 1's: pass 1's trap ("3× while VIX is below its 10-day average") only works after 2012; every pass-2 rule
+that survived 1990–2012 did so by sitting in cash through two bears, which is exactly what the 2012–2026 bull punishes.
+A daily-close rule that works in both windows was not found. See `model/RESULTS.md` (leaderboard, verification, what
+failed) and `model/PREREG.md` (gates, look budget, deviations).
