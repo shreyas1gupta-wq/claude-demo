@@ -5535,3 +5535,107 @@ base rate, which IS desk-grade and stands on its own, and (iv) one transferable 
 doctrine — watch the balance sheets of the largest levered operators for timing and treat
 credit-to-GDP as a regime label, which is the identical conclusion the ER arc reached about
 valuation.
+
+## Entry CN-DOSSIER CLOSE (2026-09-11, running record closed; zero cells, census 0) — the China
+research half of the CN programme is COMPLETE at **20 cited dossiers** in
+`research/notes/china-dossiers/` (b1-t1-overview, b6-debt-predictive-summary, b2-land-national,
+c-yield, c-velocity, c-assetclass-core, c-creits, c-office, c-tier3, c-india, c-hainan, c-inventory,
+c-facts, c-lgfv, c-policy, c-japan, c-developers, c-datatrust, c-forward, c-presale). Evidence
+standard unchanged and binding: snippet-sourced, indicative, may inform a design and may NOT be
+cited as a print. Five CN RUNSHEET rows are the named fix.
+
+**THE CORRECTION THIS LEG FORCED, recorded because the desk published the superseded claim twice.**
+The b6 scorecard's reading — macro credit aggregates give the STATE, firm-level leverage gives the
+TIMING — was reported to the principal and published on the atlas. `c-developers` PARTLY REFUTES
+it and the correction is now a published section (§18) with a superseded-notice left on the original
+claim, per the corrections rule. Leverage gave **13-21 months** on Evergrande and Sunac (>200% net
+gearing since 2017, RED from the policy's first day) but only **≈2 months** on **Country Garden** —
+the largest private developer, whose failure made the crisis systemic, and which showed as merely
+"YELLOW". MECHANISM, then confirmed at design level by `c-presale`: **the Three Red Lines are
+structurally blind to presale liabilities.** Ratio 1 explicitly subtracts advance receipts from both
+numerator and denominator; ratios 2 and 3 count only interest-bearing debt; and the 0-15%/yr
+debt-growth cap binds only interest-bearing borrowing. So financing a book through customer
+prepayments grew it **at zero ratio cost**. Country Garden carried 46.6% of peak liabilities as
+presale against Evergrande's 29.6%. CORRECTED STATEMENT: firm leverage beats macro aggregates but is
+NOT sufficient, and a ratio a firm can restructure around will fail on the firm that most needs
+flagging. WHAT ACTUALLY PREDICTED SURVIVAL WAS OWNERSHIP — state-linked developers took 89% of 2023
+top-100 land value and ~2/3 of sales by mid-2024, from ~2/3 PRIVATE pre-2021. No leverage screen
+ranks Poly above Country Garden on 2020 fundamentals; the ownership column does. Intent is NOT
+claimed (whether firms shifted deliberately or presale was simply cheaper capital is unproven).
+
+**THE STRUCTURAL LIMIT OF CN-D1..D5, now quantified.** The vaulted panel is RESIDENTIAL HOUSE
+PRICES ONLY, and the principal's question was about LAND. `c-japan`: land falls **1.4x to 2x** as far
+as housing wherever both series exist — Japan six-city commercial land **-88.8%** (prime Ginza
+≈-99%) and residential land -67.3% against -47.3% real house prices; US development land ≈2x house
+prices; Ireland development land -77.8% to over -90% against -54.4% houses. **China reports land
+-23% against housing -21.8% — roughly EQUAL, which has happened in no other episode.** Either China
+is the first exception or the land series is not measuring what it appears to (the same series shows
+land prices RISING through 2021-22 on an explicit composition effect the source labels 结构性上涨).
+Booked as the programme's sharpest single discrepancy and the reason the land-series runsheet row
+exists. Also: Hong Kong took **18 years** to retake its nominal peak on a mid-pack -66% fall, so
+depth and duration are near-independent — CN-D4's finding (boom size predicts speed, not depth)
+reached from the other direction.
+
+**CHINA'S OWN PRECEDENTS REFRAME THE BASE RATE's DIRECTION OF ERROR.** `c-hainan`: Wenzhou 2011 fell
+**-63.1%** on the longest basis (deepest of any Chinese city, and never recovered — one long
+interrupted down-cycle, fifteen years without a round trip) and Hainan 1988-93 roughly **-87%**,
+both deeper than the panel's worst modern episode (Ireland -55.7%). Qualification stated: those are
+a city and a province against national indices and city dispersion always exceeds national — but it
+establishes that **for any individual Chinese city the 18-country national base rate is the
+OPTIMISTIC frame**. Langfang at >-50% is normal for a Chinese speculative satellite, not an outlier.
+No public warning invoking Hainan was found from 2020-21 — recorded as a finding.
+
+**THE CONSENSUS PATH LANDS ON THE BASE RATE.** `c-forward`: official cumulative real decline -24.6%;
+Goldman's path (bottom in 2027 after a further ≈10%) compounds to **-32.1%** against CN-D1's
+modern-era median of **-32.00%**. The sell-side consensus terminates within 0.1pp of the 150-year
+historical median — either implicit calibration or coincidence, but either way the consensus is
+forecasting an ORDINARY property crash. 2026 negative everywhere (Morgan Stanley -2/-3%, UBS -10%,
+Reuters poll -3.4%); no institution calls a national rise before 2028.
+
+**FIVE INDEPENDENT ROUTES TO ONE CONCLUSION — the programme's actual thesis.** CN-D3's 87.2%
+false-alarm rate on mortgage-credit growth; the b6 scorecard finding the extreme LEVEL ratios had
+looked extreme for years; `c-datatrust` finding every successful DATED call came off a balance sheet
+or cash-flow observable (UBS's John Lam ≈11 months on Evergrande; land-auction failure rates; presale
+delivery rates) while every unsuccessful one came off a macro thesis (Chanos 2010, Chang 2001, Bass
+2016 — years to decades early); `c-forward` naming premature repeated bottom-calling as the field's
+most common mistake (Country Garden's own 2022 "worst is over"; UBS's Nov-2025 retraction; Fitch and
+S&P each revising 2026 twice); and `c-policy`'s uptake rule. **THE STRUCTURE WAS KNOWABLE AND THE
+TIMING WAS NOT.** This is the identical conclusion the ER arc reached about valuation, now
+established for housing credit from five directions.
+
+**FOUR OTHER FINDINGS WORTH CARRYING.** (i) `c-policy`'s GENERATOR: in a policy-directed economy
+measures requiring local discretion FAIL (the 2023 CNY100bn state-purchase facility drew ≈2% uptake;
+its CNY300bn successor drew 29 of 200+ cities) while measures executed by fiat SUCCEED (the Sep-2024
+mortgage cut repriced a $5.3tn book). Discount voluntary-uptake announcements heavily; take
+administratively executable ones near face value. Policy is near exhausted on the demand-cost axis
+(mortgage floor gone, down-payments at a record 15%), and the property tax was never the answer —
+the 2011 pilots raised ≈3% of local revenue against a land-sale hole now >CNY4.5tn/yr. (ii) The
+methodological rule from `c-datatrust`: **NO adjustment multiplier for official Chinese data exists**
+— practice is SUBSTITUTION (Beike/CREIS/CRIC for the segment), not haircutting, and any "x1.5-2"
+rule of thumb is folklore. So the 2x official-vs-private gap cannot be split at a midpoint. (iii)
+`c-inventory` + `c-facts` CONVERGED INDEPENDENTLY on debunking the ubiquitous 64.5-70m
+empty-homes figure — State Grid confirmed it to one outlet and denied it to another within days; the
+130-150m range has no method-stated source at all; the defensible range is ~50-90m (Gan Li/CHFS
+~50m best-documented). Starts fell **-74.1%** (2,271.54 -> 587.70m sqm) while completions fell only
+-37% because 保交楼 funds finishing pre-sold units — policy chose delivery over development. (iv)
+Mortgage balances fell **for the first time in PBoC records back to 2004** in Q2 2023 (-0.7% to
+CNY38.6tn, now CNY36.72tn) — Chinese households are net repayers, the balance-sheet-recession
+signature in its purest observable form.
+
+**CONSUMPTION FOR THE INDIA BOOK** (`c-india`, and this is the only part that touches positions):
+the deflation channel is real and already priced (Chinese steel exports 66-67Mt -> 119.0Mt as
+property's steel share fell 32%->23%; Indian HRC and steelmaker margins -58/-95% YoY Q1 FY25; 12%
+safeguard duty). Cement is NOT analogous (≈5% of consumption is traded internationally). THE LIVE
+RISK IS THE FLOW CHANNEL AND IT IS DEMONSTRATED: China's Sep-2024 stimulus triggered ≈US$10.2bn of
+Indian FPI outflows in ONE MONTH — a Chinese policy SUCCESS is an Indian outflow event. On
+vulnerabilities India differs on every measurable mechanism (RERA 70% escrow designed in pre-crisis
+vs China's post-crisis retrofit; land-sale dependence 27-38% of local revenue vs negligible;
+property 22-31% of GDP vs 7-15%; listed developer leverage not comparable) — but **tier-2/3 UNLISTED
+developer leverage is genuinely unknown**, a measurement gap in exactly the place China's defaults
+came from. And the SNAPSHOT-1 REIT gap is PARTIALLY CLOSED: Embassy ≈5.3-8%, Mindspace 6-8%,
+Brookfield 6.4-9%, Nexus 7.5-9%, but the figures conflict 2-4pp across sources and **no residential
+REIT exists in India** — enough to stop calling the sleeve unresearched, not enough to resize it.
+NOTHING IS PROMOTED. Outputs: the China Property Crash Atlas (row 64, 22 sections), five RUNSHEET
+rows, CN-D1..CN-D5 (desk-grade, standing on its own), and three registrable design briefs — the
+India unlisted-developer leverage question, the India REIT sleeve sizing, and an India
+liability-mix/implicit-sponsor screen modelled on what the Three Red Lines missed.

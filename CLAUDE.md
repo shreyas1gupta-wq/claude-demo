@@ -503,3 +503,70 @@ whether the artifact story could be INTERNALLY FALSIFIED — that test, not a p-
 adjudicating. Construction Mechanics Atlas updated to v2, same URL (row 63 extended with §6).
 Suite 125 green. Still principal-gated: the India fundamentals drop, OPEN_QUESTIONS batches 3+4
 (incl. B4-4), funding_rate/ADV, the Priority-1 pulls, and every gap-map Tier-2 row.
+2026-09-11 (evening), THE CN PROGRAMME — the China land/property crash, principal-directed as a
+large task with parallel agents ("keep it as a larger task, think harder, prepare plan, use 3
+parallel agent at a time... final outputs summary in human understandable best dashboard").
+Plan: `research/frontier/china-property-plan.md`. Structure: TWO HALVES kept apart because they
+carry different evidential weight, which is the whole design. **HALF A, desk-grade**: CN-D1..CN-D5
+pre-registered (registration committed BEFORE the run) on `ingest/vault/jst/JSTdatasetR6.xlsx` —
+18 countries 1870-2020, 48 real house-price crash episodes; census **1,365 -> 1,389**; four cells
+desk-verified on separate code paths. **HALF B, indicative only**: 20 cited dossiers in
+`research/notes/china-dossiers/` from ~20 Sonnet agents run 3-concurrent (rule 6). TWO CORRECTIONS
+TO MY OWN PLAN, both dated and left visible: **WebFetch is EGRESS_BLOCKED for every domain** (only
+WebSearch works — established by an agent's failure report, then re-tested directly), so every
+China figure rests on search snippets that cannot be checked against a primary page; and the first
+agent cost 167k tokens (3.3x estimate), so the 506-question manifest was re-packed into ~35 larger
+agents. HALF A's PRINTS: median crash **-34.2%** over **6.5y** (modern era -32.0%/5.5y); the
+registered "busts are slower than booms" bar **MISSED** — velocity ratio 1.12x full / **0.99x**
+modern, so there is no gentle-deflation discount; CN-D4 **BOTH priors missed** — a bigger boom buys
+**SPEED not depth** (depth gap only 3.8pp, but 3.5pp/yr faster); rental yield compresses -0.83pp
+into the peak and expands **+1.53pp** to the trough; mortgage-credit growth lifts 3y crash odds
+**1.72x** with an **87.2% FALSE-ALARM RATE** while public-debt growth reads BACKWARDS (0.23x — it
+rises after busts); equities lose **-13.7pp** excess real in year one, double if banks break,
+recovered by year five (independently reproducing CI-D5 on a different construction). Two runner
+bugs fixed BEFORE interpretation, one changing a verdict (the completion rule silently excluded
+Japan 1991/Ireland 2006/Spain 2007 — the exact comparisons — and fixing it moved the mortgage lift
+1.29x MISS -> 1.72x HIT). HALF B's JOINED FINDINGS: tier-3 has taken a FULL base-rate crash
+(~-30%, and 50-78% of stock sits there, so the bust is structurally NATIONAL) while tier-1 has
+taken about a THIRD of one, so no national average describes either; the land answer is THREE
+numbers with three peak years (revenue -52.3%, volume -66%, price only -23% from a 2023 peak that
+is a composition artifact); tier-1's 2021 PEAK yield ~1.7-1.8% was the **second-lowest peak yield
+in 150 years** (behind only Spain 2007 at 1.49%, which fell 42.9%); the C-REITs imply a ~5.5%
+residential cap rate, AT OR ABOVE the base-rate trough yield, while the direct market yields
+2.0-2.6% — with a new [VERIFY] on whether the three yields share a gross/net basis (resolving it
+either way WIDENS every gap); offices fell FURTHER than housing (-20 to -34% tier-1 rents, Wuhan
+vacancy 43.2% vs San Francisco 26-28%) and foreign share of office deals is 0% Beijing / 8%
+Shanghai. **THE PUBLISHED CORRECTION (§18)**: the b6 scorecard's "firm leverage gives the timing"
+claim, which I reported twice, is PARTLY REFUTED — leverage gave 13-21 months on Evergrande/Sunac
+but ≈2 months on **Country Garden**, because `c-presale` confirmed at DESIGN level that the Three
+Red Lines are structurally blind to presale liabilities (ratio 1 subtracts advance receipts from
+both sides; ratios 2-3 and the growth cap count only interest-bearing debt) — so presale financing
+grew a book at ZERO ratio cost. **OWNERSHIP predicted survival better than any ratio** (state took
+89% of 2023 top-100 land value). LAND vs HOUSING: `c-japan` gives the multiplier CN-D1 structurally
+cannot (land falls 1.4-2x housing; Japan six-city commercial land -88.8%, Ginza ≈-99%) — so China
+reporting land -23% against housing -21.8% is the programme's SHARPEST DISCREPANCY. China's OWN
+precedents (Wenzhou -63.1% never recovered; Hainan ≈-87%) are deeper than the panel's worst modern
+episode, so for any single Chinese CITY the national base rate is the OPTIMISTIC frame. The
+consensus path lands ON the base rate (official -24.6% + Goldman's further ~10% = -32.1% vs the
+modern median -32.00%). FIVE INDEPENDENT ROUTES to one thesis — **the structure was knowable and
+the timing was not**, the ER arc's conclusion re-established for housing credit. INDIA (the only
+part touching positions): deflation channel real and priced (steel exports 66-67 -> 119.0Mt; Indian
+HRC and margins -58/-95% YoY; 12% safeguard duty), cement NOT analogous; **the live risk is FLOW —
+China's Sep-2024 stimulus caused ≈US$10.2bn of Indian FPI outflows in one month, so a Chinese
+policy SUCCESS is an Indian outflow event**; India differs on every measurable vulnerability (RERA
+70% escrow pre-crisis by design, land-sale dependence negligible, property 7-15% of GDP) EXCEPT
+tier-2/3 UNLISTED developer leverage, which is unknown — a gap in exactly the place China's
+defaults came from. SNAPSHOT-1's REIT gap PARTIALLY CLOSED (Embassy/Mindspace/Brookfield/Nexus
+yields sourced but conflicting 2-4pp; **no residential REIT exists in India**) — enough to stop
+calling it unresearched, not enough to resize. Also booked: `c-inventory` and `c-facts` converged
+independently on debunking the 64.5-70m empty-homes figure (State Grid confirmed then denied it
+within days; the 130-150m range has NO method-stated source; defensible range ~50-90m); starts
+-74.1% while completions fell only -37% (保交楼 chose delivery over development); mortgage balances
+fell for the FIRST TIME in PBoC records back to 2004; `c-policy`'s generator (voluntary-uptake
+measures FAIL at ~2%, fiat measures succeed); and `c-datatrust`'s negative finding that **NO
+adjustment multiplier for official Chinese data exists** — practice is SUBSTITUTION not haircutting.
+China Property Crash Atlas published (row 64, 22 sections, 3 charts). Five CN RUNSHEET rows added
+(NBS 70-city history is load-bearing — the official-vs-private 2x measurement gap is the binding
+uncertainty, not the analysis). NOTHING PROMOTED; three registrable India design briefs named.
+Suite 125 green. Still principal-gated: the India fundamentals drop, OPEN_QUESTIONS batches 3+4,
+funding_rate/ADV, the Priority-1 pulls, every gap-map Tier-2 row, and now the five CN rows.
