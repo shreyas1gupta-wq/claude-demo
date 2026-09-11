@@ -20,7 +20,7 @@
 4. **Abstract marks instead.** An animated orbit on the hero, a growth-bar chart
    on the opportunity, five geometric key marks for the personas, a progress
    dial on the 60-second check, and the ring diagram on the circle. All inline
-   SVG, no external assets — the file dropped from 115KB to 43KB.
+   SVG, no external assets.
 5. **More animation.** Slides reveal on entry with staggered offsets; key
    phrases get an amber highlight that sweeps in behind the words; bars grow
    from the baseline; KPIs count up; the check dial fills as you tick; the
@@ -47,6 +47,21 @@ swapping, checklist reaching "ready" with the dial at 4, the trust fraction
 equal to its score across all 81 slider combinations, the circle rings
 switching, zero console errors, no horizontal scroll, and **zero contrast
 failures**.
+
+Two things only a screenshot could catch were fixed this pass: the amber
+highlight wash turned muddy grey on the dark pages, and in the two indigo
+callouts it sat *behind white text*. On any dark surface the highlight is now a
+solid amber rule under the words instead of a wash behind them. A scripted
+audit now checks every `.hl` against the luminance of the surface it actually
+sits on, so the mismatch cannot come back silently.
+
+## Self-contained
+
+The two typefaces (Newsreader, Reddit Sans — latin subsets) are embedded as
+base64 `@font-face` rules, so the file has **no external dependency at all**:
+it renders identically offline, on a locked-down machine, or off a USB stick.
+That is what takes it to ~795KB; there is still nothing to download alongside
+it. Removing the Google Fonts link also cleared the last console error.
 
 ## Kept from v2
 
