@@ -1,0 +1,255 @@
+<title>The India Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+__SHARED_STYLE__
+<style>
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pos);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0 0}
+.verdict h2{font-size:24px;margin-bottom:8px} .verdict p{font-size:15.5px;color:var(--ink-2);max-width:78ch} .verdict p b{color:var(--ink)}
+.ladder{display:grid;grid-template-columns:auto 1fr}
+.ladder .n{font-family:var(--serif);font-size:24px;color:var(--strategy);padding:12px 16px 12px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:right;min-width:52px}
+.ladder .b{padding:12px 0 12px 18px;border-bottom:1px solid var(--line)}
+.ladder .n:last-of-type,.ladder .b:last-of-type{border-bottom:0}
+.ladder h4{margin:0 0 3px;font:600 14px var(--sans)} .ladder p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font:600 11px var(--sans);letter-spacing:.03em;text-transform:uppercase}
+.pill.ok{background:var(--pos-soft);color:var(--pos)} .pill.bad{background:var(--neg-soft);color:var(--neg)} .pill.mid{background:var(--spy-soft);color:var(--spy)}
+tr.hi td{background:var(--strategy-soft)} tr.hi td:first-child{font-weight:600}
+tr.win td{background:var(--pos-soft)} tr.win td:first-child{font-weight:600}
+.limit{padding-left:20px;font-size:14px;color:var(--ink-2);max-width:80ch} .limit li{margin-bottom:9px} .limit b{color:var(--ink)}
+.grid2 .tbl-wrap table.tbl-compact th,.grid2 .tbl-wrap table.tbl-compact td{padding:5px 7px;font-size:12px}
+.spec{font-family:var(--mono);font-size:12.5px;white-space:pre-wrap;color:var(--ink-2);background:var(--band);padding:14px 16px;border-radius:6px;overflow-x:auto;line-height:1.6}
+.spec b{color:var(--ink);font-weight:600}
+.waterfall{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;font-size:13.5px}
+.waterfall .lab{color:var(--ink-2)} .waterfall .v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.waterfall .tot{border-top:1px solid var(--line-2);padding-top:8px;margin-top:2px;color:var(--ink);font-weight:600}
+.chart .bar.a{fill:var(--strategy)} .chart .bar.b{fill:var(--spy)} .chart .bar.c{fill:var(--pos)}
+.sw.a{background:var(--strategy)} .sw.b{background:var(--spy)} .sw.c{background:var(--pos)}
+.warnbox{border:1px solid var(--neg);background:var(--neg-soft);border-radius:6px;padding:16px 18px}
+</style>
+
+<div class="top"><div class="wrap">
+  <a class="brand" href="#top">The India <i>Model</i></a>
+  <nav aria-label="Sections"><a href="#verdict">Result</a><a href="#spec">Specification</a><a href="#where">Where returns come from</a><a href="#vrp">The premium</a><a href="#risk">Key risk</a><a href="#ops">Operating it</a><a href="#limits">Limits</a></nav>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Model specification · Nifty Midcap Select · developed 2014–2019, tested 2020–2026</div>
+      <h1 style="margin-top:10px">A midcap model that does not forecast anything</h1>
+      <p class="lede">Seven timing families were tested on Indian midcaps and every one reduced risk-adjusted return. So this model gives up on prediction entirely. It earns its keep in two places instead: how the exposure is wrapped, and a premium the Indian option market has paid every year since 2014.</p>
+    </div>
+    <dl class="meta-list">
+      <dt>Position</dt><dd id="m-pos"></dd>
+      <dt>Overlay</dt><dd id="m-ov"></dd>
+      <dt>Trading</dt><dd id="m-trade"></dd>
+      <dt>Chosen on</dt><dd>Nifty Midcap 50, May 2014 – Dec 2019</dd>
+      <dt>Tested on</dt><dd>Midcap 50 from 2020; Midcap Select from Sep 2021</dd>
+      <dt>Costs</dt><dd>Full statutory stack at 2026 rates × 1.5 safety margin</dd>
+    </dl>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="verdict" id="verdict"><h2>The result</h2><div id="verdict-text"></div></div>
+</div></header>
+
+<main>
+<section id="spec"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What to actually do</div><h2>The specification</h2><p>Four rules. There is no signal to compute daily, no regime to classify, and nothing to forecast.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>The rules</h3><div class="ladder" id="rules"></div></div>
+    <div class="card"><h3>The monthly cycle, concretely</h3><div class="spec" id="cycle"></div>
+      <p class="sub" style="margin-top:10px">Position changes average <b id="chg"></b> a year — the exposure level essentially never moves. What recurs is the monthly option cycle, which is a scheduled operation rather than a decision.</p></div>
+  </div>
+</div></section>
+
+<section id="where"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Attribution</div><h2>Where the return actually comes from</h2><p>Built up from the naive starting point — one times exposure held through futures — one change at a time, on the out-of-sample window.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Midcap Select, Sep 2021 – Aug 2026</h3><div class="waterfall" id="water"></div>
+      <p class="sub" style="margin-top:12px" id="water-note"></p></div>
+    <div class="card"><h3>Every variant, out of sample</h3><p class="sub">Each row changes one thing. The model row is the combination chosen on development data.</p><div class="tbl-wrap" id="t-oos"></div></div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Risk and return, model versus the alternatives</h3><p class="sub">Both out-of-sample windows. The model is the only variant that improves return and risk at the same time.</p><div id="c-cmp"></div>
+    <div class="legend"><span><i class="sw a"></i>Annualised return</span><span><i class="sw b"></i>Volatility</span><span><i class="sw c"></i>Maximum drawdown (absolute)</span></div></div>
+</div></section>
+
+<section id="vrp"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">The engine of the excess return</div><h2>India's variance risk premium</h2><p>Implied volatility has exceeded the volatility that actually followed, in every calendar year since the India VIX series begins. That gap is what the overlay sells.</p></div></div>
+  <div class="grid3" id="vrp-tiles"></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Mean premium by year</h3><p class="sub">India VIX minus the realised Nifty volatility over the following 21 sessions, in volatility points. Positive means options were dear.</p><div id="c-vrp"></div></div>
+    <div class="card"><h3>What the overlay did, cycle by cycle</h3><p class="sub" id="cyc-sub"></p><div class="tbl-wrap" id="t-cyc"></div></div>
+  </div>
+</div></section>
+
+<section id="risk"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Read this before trading it</div><h2>The one assumption that decides whether this works</h2></div></div>
+  <div class="warnbox"><h3 style="margin-bottom:6px">The overlay's edge rests on midcap implied volatility being richer than Nifty's</h3>
+    <p id="risk-text" style="color:var(--ink-2);max-width:80ch"></p></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Sensitivity to that assumption</h3><p class="sub">Re-running the model with midcap implied volatility set to different multiples of India VIX. The measured ratio of <em>realised</em> volatilities is 1.35×, which is what the base case uses.</p><div class="tbl-wrap" id="t-iv"></div></div>
+    <div class="card"><h3>How to settle it in a day</h3>
+      <p>Pull the MIDCPNIFTY option chain at the close for the near-month expiry, take the implied volatility of the strike nearest 6% above spot, and divide by that day's India VIX. Repeat for twenty sessions and take the median.</p>
+      <p>If that ratio comes back at <b>1.3 or above</b>, the base case holds and the overlay is worth roughly three percentage points a year. If it comes back near <b>1.0</b>, the overlay is worth nothing and the model collapses to the cost saving alone — still positive, but a far smaller prize.</p>
+      <p class="sub">A second check worth making at the same time: the quoted bid-ask on those strikes. The model assumes 70 basis points of premium as a half-spread. Wider quotes eat the premium directly.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="ops"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Running it</div><h2>Operating rules and failure modes</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Standing rules</h3><ul class="limit" id="ops-list"></ul></div>
+    <div class="card"><h3>What would make me stop</h3><ul class="limit" id="stop-list"></ul></div>
+  </div>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Honest accounting</div><h2>Limitations</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>What this study does not establish</h3><ul class="limit" id="limits-list"></ul></div>
+    <div class="card"><h3>Reproducing it</h3><div class="spec">cd demeter/india
+python3 data/build_india_dataset.py
+python3 explore_core.py      # the seven timing families that failed
+python3 vrp_overlay.py       # the premium measurement
+python3 india_model.py       # development selection and the tests above
+python3 build_model_report.py</div>
+      <h3 style="margin-top:16px">Companion pages</h3>
+      <p class="sub">The cost arithmetic behind the synthetic wrapper, and the US study this grew out of, are separate notes in the same repository.</p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Ionic Wealth research. Backtested results are hypothetical and benefit from hindsight. Option premiums are Black-Scholes values computed from India VIX scaled by a measured volatility ratio, not executed prices; the overlay's contribution is an estimate whose sensitivity is shown above. Index data from a public mirror of NSE end-of-day files. Leverage magnifies losses as well as gains. Nothing here is investment advice.</div></footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = __DATA_JSON__;
+__SHARED_HELPERS__
+const M=D.model, V=D.vrp, CH=D.checks;
+const OOS=M.oos, MCS='Midcap Select, 2021-09+', MC50='Midcap 50, 2020+';
+const g=(w,v)=>OOS.find(r=>r.window===w && r.variant===v);
+const futs=g(MCS,'buy & hold 1x, futures, no overlay'), syn=g(MCS,'buy & hold 1x, synthetic, no overlay');
+const otm=M.chosen.call_otm, CL=M.chosen._constant_leverage;
+const synOv=g(MCS,`buy & hold 1x, synthetic + ${(otm*100).toFixed(0)}% call overlay`);
+const model=g(MCS,'MODEL as chosen on development'), modelFut=g(MCS,'MODEL but on futures (cost check)');
+const modelNoOv=g(MCS,'MODEL without overlay (overlay check)'), volSized=g(MCS,'vol-sized instead of constant (sizing check)');
+const m50=g(MC50,'MODEL as chosen on development'), m50f=g(MC50,'buy & hold 1x, futures, no overlay');
+
+$('#m-pos').textContent=`${CL}× Nifty Midcap Select, held as an at-the-money option synthetic`;
+$('#m-ov').textContent=`Short one monthly call ${(otm*100).toFixed(0)}% out of the money against the position`;
+$('#m-trade').textContent=`${fmt.num(model.changes_per_year,1)} exposure changes a year, plus twelve scheduled option cycles`;
+$('#chg').textContent=fmt.num(model.changes_per_year,1);
+
+const kpis=[
+ {l:'Annualised return', v:fmt.pct(model.cagr_pct,2), s:`futures buy & hold <b>${fmt.pct(futs.cagr_pct,2)}</b>`},
+ {l:'Maximum drawdown', v:fmt.pct(model.max_dd_pct,2), s:`against <b>${fmt.pct(futs.max_dd_pct,1)}</b>`},
+ {l:'Sharpe ratio', v:fmt.num(model.sharpe,2), s:`against <b>${fmt.num(futs.sharpe,2)}</b>`},
+ {l:'Calmar ratio', v:fmt.num(model.calmar,2), s:`against <b>${fmt.num(futs.calmar,2)}</b>`},
+ {l:'Volatility', v:fmt.pct(model.vol_pct,1), s:`against <b>${fmt.pct(futs.vol_pct,1)}</b>`},
+ {l:'Exposure changes', v:fmt.num(model.changes_per_year,1), s:'a year — there is no timing engine'},
+];
+$('#kpis').append(...kpis.map(k=>h('div',{class:'kpi'},`<div class="eyebrow">${k.l}</div><div class="v">${k.v}</div><div class="s"><span>Sep 2021 – Aug 2026</span><span>${k.s}</span></div>`)));
+
+$('#verdict-text').innerHTML=`<p>On Nifty Midcap Select out of sample, the model returned <b>${fmt.pct(model.cagr_pct,2)}</b> a year against <b>${fmt.pct(futs.cagr_pct,2)}</b> for the same index held one-for-one through futures — while running <b>${fmt.pct(futs.vol_pct-model.vol_pct,1)} less volatility</b> and cutting the worst drawdown from ${fmt.pct(futs.max_dd_pct,1)} to <b>${fmt.pct(model.max_dd_pct,2)}</b>. Sharpe rises from ${fmt.num(futs.sharpe,2)} to <b>${fmt.num(model.sharpe,2)}</b> and Calmar from ${fmt.num(futs.calmar,2)} to <b>${fmt.num(model.calmar,2)}</b>.</p>
+<p>It does this while holding only <b>${CL}×</b> exposure and changing that exposure <b>${fmt.num(model.changes_per_year,1)} times a year</b>. On the longer Midcap 50 window the pattern repeats: <b>${fmt.pct(m50.cagr_pct,2)}</b> against ${fmt.pct(m50f.cagr_pct,2)} for futures buy-and-hold, at ${fmt.pct(m50.vol_pct,1)} volatility against ${fmt.pct(m50f.vol_pct,1)}.</p>
+<p>Nothing in this comes from predicting the market. It comes from paying less to hold the position and being paid for selling volatility that was systematically overpriced.</p>`;
+
+/* rules */
+const rules=[['1','Hold '+CL+'× Midcap Select, always',`Buy a near-the-money MIDCPNIFTY call and sell the same-strike put to build a delta-one long. The payoff matches the future; the tax and exchange charges fall on about 4% of notional in premium instead of on 100% of it. Exposure stays at ${CL}× regardless of what the market is doing.`],
+ ['2','Sell a '+(otm*100).toFixed(0)+'% out-of-the-money call each month',`At each monthly expiry, write one call ${(otm*100).toFixed(0)}% above spot against the position, sized to the exposure held. This is a covered call: the upside above that strike is sold, and the premium is kept.`],
+ ['3','Square off, never let anything expire in the money',`An in-the-money option allowed to expire attracts 0.125% securities transaction tax on its full intrinsic settlement value. Close both the synthetic and any in-the-money short call before expiry, then reopen in the next series.`],
+ ['4','Do not time the market',`No trend filter, no volatility regime, no drawdown exit. Every one of those was tested on the development window and every one lowered the Sharpe ratio. The exposure level is a policy decision, not a forecast.`]];
+$('#rules').append(...rules.flatMap(([n,t,d])=>[h('div',{class:'n'},n),h('div',{class:'b'},`<h4>${t}</h4><p>${d}</p>`)]));
+$('#cycle').innerHTML=`<b>On monthly expiry day (last Tuesday), near the close:</b>
+
+1.  Close the expiring synthetic
+      buy back the short put, sell the long call
+2.  Close the short ${(otm*100).toFixed(0)}% call if it is in the money
+      let it lapse only if it is out of the money
+3.  Reopen the synthetic in the next series
+      buy the ATM call, sell the ATM put
+      size = ${CL} × capital ÷ index level
+4.  Write the new ${(otm*100).toFixed(0)}% out-of-the-money call
+      same expiry, same number of lots as the position
+
+<b>On every other day:</b> nothing.`;
+
+/* waterfall */
+(function(){
+  const steps=[['Buy & hold 1×, through futures', futs.cagr_pct, null],
+    ['Switch the wrapper to an option synthetic', syn.cagr_pct, syn.cagr_pct-futs.cagr_pct],
+    ['Add the '+(otm*100).toFixed(0)+'% covered call overlay', synOv.cagr_pct, synOv.cagr_pct-syn.cagr_pct],
+    ['Hold '+CL+'× instead of 1×', model.cagr_pct, model.cagr_pct-synOv.cagr_pct]];
+  const w=$('#water');
+  steps.forEach(([l,v,d],i)=>{ w.appendChild(h('div',{class:'lab'+(i===steps.length-1?' tot':'')}, l + (d!=null?` <span class="${d>0?'pos':'neg'}">${fmt.pct(d,2,true)}</span>`:'')));
+    w.appendChild(h('div',{class:'v'+(i===steps.length-1?' tot':'')}, fmt.pct(v,2))); });
+  $('#water-note').innerHTML=`The wrapper is worth <b>${fmt.pct(syn.cagr_pct-futs.cagr_pct,2)}</b> a year and the overlay <b>${fmt.pct(synOv.cagr_pct-syn.cagr_pct,2)}</b>. Cutting exposure to ${CL}× costs <b>${fmt.pct(model.cagr_pct-synOv.cagr_pct,2)}</b> of return but buys a drawdown of ${fmt.pct(model.max_dd_pct,1)} against ${fmt.pct(synOv.max_dd_pct,1)} and volatility of ${fmt.pct(model.vol_pct,1)} against ${fmt.pct(synOv.vol_pct,1)} — the reason development preferred it. Running the same model at 1× is a legitimate choice if the mandate tolerates the risk.`;
+})();
+(function(){
+  const rows=OOS.filter(r=>r.window===MCS).map(r=>({v:r.variant, c:r.cagr_pct, vo:r.vol_pct, s:r.sharpe, so:r.sortino, d:r.max_dd_pct, k:r.calmar, l:r.avg_lev, ch:r.changes_per_year,
+    _cls: r.variant.startsWith('MODEL as')?'win':(r.variant.includes('synthetic +')?'hi':'')}));
+  $('#t-oos').appendChild(table([{key:'v',label:'Variant',cls:'lbl'},{key:'c',label:'Return',fmt:v=>fmt.pct(v,2),color:true},
+    {key:'vo',label:'Vol',fmt:v=>fmt.pct(v,1)},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max DD',fmt:v=>fmt.pct(v,1),color:true},
+    {key:'k',label:'Calmar',fmt:v=>fmt.num(v,2)}],rows,{cls:'tbl-compact'}));
+})();
+(function(){
+  const pick=[['Futures 1×',futs,m50f],['Synthetic 1×',syn,g(MC50,'buy & hold 1x, synthetic, no overlay')],
+    ['Synthetic + overlay',synOv,g(MC50,`buy & hold 1x, synthetic + ${(otm*100).toFixed(0)}% call overlay`)],
+    ['MODEL',model,m50],['Vol-sized',volSized,g(MC50,'vol-sized instead of constant (sizing check)')]];
+  barChart($('#c-cmp'),{cats:pick.map(p=>p[0]),height:320,yFmt:v=>fmt.pct(v,0),
+    series:[{name:'Return',values:pick.map(p=>p[1].cagr_pct),cls:'a'},{name:'Volatility',values:pick.map(p=>p[1].vol_pct),cls:'b'},{name:'Max drawdown',values:pick.map(p=>Math.abs(p[1].max_dd_pct)),cls:'c'}],
+    catTip:c=>c+' — Midcap Select', extraTip:[{name:'Sharpe',values:pick.map(p=>p[1].sharpe),fmt:v=>fmt.num(v,2)},{name:'Midcap 50 return',values:pick.map(p=>p[2]?p[2].cagr_pct:null),fmt:v=>v==null?'—':fmt.pct(v,2)}]});
+})();
+
+/* vrp */
+(function(){
+  const v=V.vrp;
+  const tiles=[['Mean implied minus realised', fmt.num(v.mean_vrp,2)+' pts', `India VIX averaged ${fmt.pct(v.mean_iv,2)} against ${fmt.pct(v.mean_rv_next,2)} realised over the following month, across ${fmt.int(v.n_days)} days.`],
+    ['Days implied exceeded realised', fmt.pct(v.pct_days_positive_vrp,1), `The ratio of implied to realised averaged ${fmt.num(v.iv_over_rv_ratio,2)}×. Selling that gap is the overlay's entire thesis.`],
+    ['Years with a positive premium', Object.keys(v.by_year).filter(y=>v.by_year[y].mean_vrp>0).length + ' of ' + Object.keys(v.by_year).length, `Including 2020. The premium narrowed in 2024 and 2026 but never inverted on an annual average.`]];
+  $('#vrp-tiles').append(...tiles.map(([l,val,s])=>h('div',{class:'card'},`<div class="eyebrow">${l}</div><div style="font-family:var(--serif);font-size:34px;line-height:1;margin:6px 0">${val}</div><p class="sub" style="margin:0;color:var(--ink-2)">${s}</p>`)));
+  const ys=Object.keys(v.by_year).sort();
+  barChart($('#c-vrp'),{cats:ys,width:600,height:280,yFmt:x=>fmt.num(x,1),
+    series:[{name:'Implied minus realised (points)',values:ys.map(y=>v.by_year[y].mean_vrp),cls:'c'}],
+    catTip:y=>y+' — '+v.by_year[y].n+' observations'});
+  const cyc=M.overlay_cycles_mcs||[];
+  const assigned=cyc.filter(c=>c.payoff_pct<0);
+  $('#cyc-sub').innerHTML=`${cyc.length} monthly cycles on Midcap Select. The call finished in the money in <b>${assigned.length}</b> of them (${fmt.pct(assigned.length/cyc.length*100,0)}). Worst single cycle <b>${fmt.pct(Math.min(...cyc.map(c=>c.pnl_pct)),2)}</b>; average premium collected ${fmt.pct(cyc.reduce((a,c)=>a+c.premium_pct,0)/cyc.length,2)} of notional.`;
+  const worst=[...cyc].sort((a,b)=>a.pnl_pct-b.pnl_pct).slice(0,6);
+  $('#t-cyc').appendChild(table([{key:'expiry',label:'Cycle ending',cls:'lbl'},{key:'index_move_pct',label:'Index move',fmt:v=>fmt.pct(v,2,true),color:true},
+    {key:'premium_pct',label:'Premium',fmt:v=>fmt.pct(v,2)},{key:'payoff_pct',label:'Paid on assignment',fmt:v=>fmt.pct(v,2)},{key:'pnl_pct',label:'Cycle P&L',fmt:v=>fmt.pct(v,2,true),color:true}],worst,{cls:'tbl-compact'}));
+})();
+
+/* risk */
+(function(){
+  const iv=M.iv_sensitivity||[];
+  const at1=iv.find(r=>r.vol_ratio===1.0&&r.window==='Midcap Select'), at135=iv.find(r=>r.vol_ratio===1.35&&r.window==='Midcap Select');
+  $('#risk-text').innerHTML=`India VIX measures implied volatility on the <b>Nifty</b>, not on midcaps. No published implied-volatility index exists for Midcap Select, so the model estimates midcap implied volatility as India VIX multiplied by <b>${fmt.num(V.vrp.midcap_nifty_vol_ratio,2)}</b> — the ratio of their <em>realised</em> volatilities. If midcap options are in fact priced at the same implied volatility as Nifty options, the overlay contributes <b>${fmt.pct(at1.overlay_pct,2)}</b> a year instead of ${fmt.pct(at135.overlay_pct,2)}, and the model's return falls from ${fmt.pct(at135.cagr_pct,2)} to <b>${fmt.pct(at1.cagr_pct,2)}</b> — below plain synthetic buy-and-hold. Everything else in this note is robust; this single number is not, and it is cheap to check.`;
+  const rows=iv.map(r=>({r:r.vol_ratio, w:r.window, c:r.cagr_pct, s:r.sharpe, d:r.max_dd_pct, o:r.overlay_pct, _cls:r.vol_ratio===1.35?'hi':''}));
+  $('#t-iv').appendChild(table([{key:'r',label:'Midcap IV ÷ India VIX',cls:'lbl',fmt:v=>fmt.num(v,2)+'×'},{key:'w',label:'Window',cls:'lbl'},
+    {key:'o',label:'Overlay adds',fmt:v=>fmt.pct(v,2,true),color:true},{key:'c',label:'Model return',fmt:v=>fmt.pct(v,2),color:true},
+    {key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)}],rows,{cls:'tbl-compact'}));
+})();
+
+/* ops */
+const ops=[['Roll on expiry day, not before','The premium decays fastest in the final week, so the overlay is collecting most of its income in the days you would give away by rolling early.'],
+ ['Size the call to the position, not to the capital',`At ${CL}× exposure you write ${CL} calls per unit of capital. Writing more turns a covered call into a naked short and changes the risk profile completely.`],
+ ['Never let an in-the-money option go to exercise','The 0.125% settlement tax on intrinsic value is larger than a month of overlay premium. Square off.'],
+ ['Watch the far-month liquidity before extending tenor','A quarterly synthetic is cheaper on paper than three monthly ones, but only if the far-month MIDCPNIFTY strikes actually quote. Check depth before assuming the saving.'],
+ ['Track realised versus implied yourself','Keep a rolling log of the implied volatility you sold at and the volatility that followed. That series is the model\'s health monitor.']];
+$('#ops-list').append(...ops.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+const stops=[['The measured midcap implied-to-Nifty ratio settles below about 1.15','At that level the overlay stops paying for its own risk and the model should revert to plain synthetic buy-and-hold.'],
+ ['The premium turns negative for two consecutive quarters','A persistent inversion of implied against realised volatility means the market has repriced, and the thesis is gone rather than merely quiet.'],
+ ['Bid-ask on the 6% strike widens beyond about 150 basis points of premium','Spread is a bigger threat to this model than any market move, because it is paid every single month.'],
+ ['Regulation changes the tax base','If securities transaction tax on options moves from premium to notional, the entire architecture loses its advantage overnight and futures become the honest choice again.']];
+$('#stop-list').append(...stops.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+
+/* limits */
+const lims=[['Option prices are modelled, not observed','Premiums are Black-Scholes values from a scaled India VIX with an assumed 70 basis point half-spread. No MIDCPNIFTY option quotes were available to this study. The overlay contribution is therefore an estimate with the sensitivity shown above.'],
+ ['Midcap Select has five years of history',`The index begins ${CH.coverage.mcs.first}. Development used Nifty Midcap 50, which reaches back to ${CH.coverage.mc50.first} and correlates ${fmt.num(CH.midcap_proxy_corr_vs_mcs.mc50,3)} with Midcap Select, but is not the same index.`],
+ ['One market regime','Both test windows are dominated by a midcap bull market. A covered-call overlay looks its best in a rising-but-not-exploding market and its worst in a violent melt-up, which this sample lacks.'],
+ ['Margin is not modelled','The synthetic\'s short put and the overlay\'s short call both attract SPAN and exposure margin. The model reports exposure, not capital efficiency, and a real implementation may be margin-bound before it is cost-bound.'],
+ ['Tax on the strategy\'s own gains is ignored','Securities transaction tax and exchange charges are modelled; income tax treatment of derivative gains is not. For an Indian investor that is a material omission in any comparison against holding a midcap fund.'],
+ ['The unlevered fund alternative is not tested','A plain midcap index fund pays no roll cost and no option spread. It is the honest benchmark for anyone who does not need the leverage or the overlay, and this note does not price it.']];
+$('#limits-list').append(...lims.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+</script>

@@ -1,0 +1,525 @@
+<title>The India Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F5F7FB; --surface:#FFFFFF; --band:#EDF0F7; --line:#DEE3EE; --line-2:#C9D0DF;
+  --ink:#131A2B; --ink-2:#4A5470; --ink-3:#7A849E; --navy:#14213D; --navy-ink:#F4F6FB;
+  --strategy:#2748C6; --strategy-soft:rgba(39,72,198,.14); --spy:#B7861B; --spy-soft:rgba(183,134,27,.16);
+  --pos:#1E8E63; --neg:#D8432E; --pos-soft:rgba(30,142,99,.12); --neg-soft:rgba(216,67,46,.12); --cash:#8A93AB;
+  --shade:rgba(20,33,61,.045); --tip-bg:#14213D; --tip-ink:#F4F6FB; --focus:#2748C6;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif; --sans:"Instrument Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1424; --surface:#161E33; --band:#1B2540; --line:#2A3450; --line-2:#3A4562;
+    --ink:#E9EDF6; --ink-2:#B3BBD0; --ink-3:#8791AA; --navy:#0B1020; --navy-ink:#E9EDF6;
+    --strategy:#6684F5; --strategy-soft:rgba(102,132,245,.22); --spy:#B98A2A; --spy-soft:rgba(214,168,63,.22);
+    --pos:#2FAA7A; --neg:#E9604B; --pos-soft:rgba(61,187,138,.16); --neg-soft:rgba(240,107,87,.16); --cash:#7C86A0;
+    --shade:rgba(233,237,246,.05); --tip-bg:#E9EDF6; --tip-ink:#0E1424; --focus:#8FA6FF;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1424; --surface:#161E33; --band:#1B2540; --line:#2A3450; --line-2:#3A4562;
+  --ink:#E9EDF6; --ink-2:#B3BBD0; --ink-3:#8791AA; --navy:#0B1020; --navy-ink:#E9EDF6;
+  --strategy:#6684F5; --strategy-soft:rgba(102,132,245,.22); --spy:#B98A2A; --spy-soft:rgba(214,168,63,.22);
+  --pos:#2FAA7A; --neg:#E9604B; --pos-soft:rgba(61,187,138,.16); --neg-soft:rgba(240,107,87,.16); --cash:#7C86A0;
+  --shade:rgba(233,237,246,.05); --tip-bg:#E9EDF6; --tip-ink:#0E1424; --focus:#8FA6FF;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+a{color:var(--strategy)} a:focus-visible,button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.005em;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05}
+h2{font-size:clamp(24px,3vw,32px);line-height:1.15}
+h3{font-size:20px;line-height:1.25}
+p{margin:0 0 .8em;max-width:68ch}
+.eyebrow{font:600 11.5px/1 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.muted{color:var(--ink-2)} .faint{color:var(--ink-3)}
+.pos{color:var(--pos)} .neg{color:var(--neg)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(16px,3vw,36px)}
+/* nav */
+.top{position:sticky;top:0;z-index:20;background:var(--navy);color:var(--navy-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:50px;overflow-x:auto;scrollbar-width:none}
+.top .wrap::-webkit-scrollbar{display:none}
+.brand{font-family:var(--serif);font-size:19px;white-space:nowrap;color:var(--navy-ink);text-decoration:none}
+.brand i{font-style:italic;color:#D9B25C}
+.top nav{display:flex;gap:16px;margin-left:auto}
+.top nav a{color:var(--navy-ink);opacity:.78;text-decoration:none;font-size:13px;white-space:nowrap}
+.top nav a:hover{opacity:1}
+/* header */
+header.hero{padding:44px 0 26px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:end}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero .lede{font-size:17px;color:var(--ink-2);margin-top:14px;max-width:62ch}
+.meta-list{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px;margin:0}
+.meta-list dt{color:var(--ink-3)} .meta-list dd{margin:0;color:var(--ink)}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:26px 0 0}
+@media (max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 14px 12px;min-width:0}
+.kpi .eyebrow{margin-bottom:8px}
+.kpi .v{font-family:var(--serif);font-size:34px;line-height:1;letter-spacing:-.01em}
+.kpi .s{margin-top:8px;font-size:12.5px;color:var(--ink-3);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.kpi .s b{color:var(--spy);font-weight:600}
+/* sections */
+section{padding:40px 0 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;margin-bottom:18px}
+.sec-head p{margin:6px 0 0;color:var(--ink-2)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 18px 14px;min-width:0}
+.card h3{margin-bottom:4px}
+.card .sub{font-size:13px;color:var(--ink-3);margin:0 0 10px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-2);margin:4px 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:14px;height:3px;border-radius:2px;background:var(--ink-3)}
+.sw.strat{background:var(--strategy)} .sw.spy{background:var(--spy)} .sw.box{height:12px;width:12px;border-radius:2px}
+.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart text{font-family:var(--sans);font-size:11.5px;fill:var(--ink-3)}
+.chart .tick{fill:var(--ink-3)} .chart .endlabel{font-size:11.5px;font-weight:600}
+.chart .endlabel.strat{fill:var(--strategy)} .chart .endlabel.spy{fill:var(--spy)}
+.chart .grid{stroke:var(--line);stroke-width:1} .chart .zero{stroke:var(--line-2);stroke-width:1.2}
+.chart .line{stroke-width:2;stroke-linejoin:round;stroke-linecap:round} .chart .line.strat{stroke:var(--strategy)} .chart .line.spy{stroke:var(--spy)}
+.chart .area.strat{fill:var(--strategy);opacity:.16} .chart .area.spy{fill:var(--spy);opacity:.18}
+.chart .dot.strat{fill:var(--strategy);stroke:var(--surface);stroke-width:2} .chart .dot.spy{fill:var(--spy);stroke:var(--surface);stroke-width:2}
+.chart .crosshair{stroke:var(--ink-3);stroke-width:1;stroke-dasharray:3 3}
+.chart .shade{fill:var(--shade)} .chart .shade-label{font-size:11px;fill:var(--ink-3);font-weight:600;letter-spacing:.04em}
+.chart .bar.strat{fill:var(--strategy)} .chart .bar.spy{fill:var(--spy)} .chart .bar:hover{opacity:.85}
+.chart .barlabel{font-size:10.5px;fill:var(--ink-2)}
+.chart .ref{stroke:var(--ink-3);stroke-dasharray:4 4;stroke-width:1}
+.chart .fit{stroke:var(--strategy);stroke-width:1.6}
+.chart .pt{fill:var(--strategy);stroke:var(--surface);stroke-width:1.2;opacity:.9} .chart .pt.hollow{fill:var(--surface);stroke:var(--strategy);stroke-width:1.8;opacity:1}
+.chart .pt:hover{r:7}
+.chart .quad-pos{fill:var(--pos);opacity:.06} .chart .quad-neg{fill:var(--neg);opacity:.06}
+.chart .annot{font-size:11px;fill:var(--ink-2)}
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:7px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink-2);background:var(--band);position:sticky;top:0}
+th:first-child,td:first-child{text-align:left}
+td.lbl,th.lbl{text-align:left;color:var(--ink);font-weight:500}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--band)}
+.tbl-compact th,.tbl-compact td{padding:5px 8px;font-size:12.5px}
+.spy-row td{color:var(--spy);font-style:italic}
+.stat-tbl th,.stat-tbl td{padding:5px 6px;font-size:12px}
+.stat-tbl th.group{text-align:center;border-left:1px solid var(--line-2)} .stat-tbl td.gl,.stat-tbl th.gl{border-left:1px solid var(--line-2)}
+.stat-tbl td.strat,td.strat{font-weight:600} th.group{text-align:center} .stat-tbl td.stated{color:var(--ink-3)}
+.ok{color:var(--pos);font-size:11px;margin-left:4px} .warn{color:var(--spy);font-size:11px;margin-left:4px}
+.heat td{padding:6px 6px;text-align:center;font-size:12.2px;min-width:52px;border-bottom:1px solid var(--line)}
+.heat td.y{font-weight:600;text-align:left} .heat td.ytd{font-weight:600;border-left:1px solid var(--line-2)}
+.heat th{text-align:center} .heat th:first-child{text-align:left}
+.toggle{display:inline-flex;border:1px solid var(--line-2);border-radius:6px;overflow:hidden}
+.toggle button{background:var(--surface);color:var(--ink-2);border:0;padding:6px 12px;font:500 12.5px var(--sans);cursor:pointer}
+.toggle button+button{border-left:1px solid var(--line-2)}
+.toggle button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink)}
+/* quadrants */
+.quads{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.quads{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.quad{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;border-top:4px solid var(--cash)}
+.quad.gain{border-top-color:var(--pos)} .quad.loss{border-top-color:var(--neg)}
+.quad .v{font-family:var(--serif);font-size:32px;line-height:1} .quad .p{font-size:13px;color:var(--ink-2);margin-top:4px}
+.quad .bar{height:6px;background:var(--band);border-radius:3px;margin-top:10px;overflow:hidden} .quad .bar i{display:block;height:100%;background:var(--ink-3)}
+.quad.gain .bar i{background:var(--pos)} .quad.loss .bar i{background:var(--neg)}
+.quad .d{font-size:12.5px;color:var(--ink-3);margin-top:8px}
+/* engine diagram */
+.engine{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+@media (max-width:760px){.engine{grid-template-columns:1fr}}
+.eng{border:1px solid var(--line);border-radius:6px;padding:16px 18px;background:var(--surface)}
+.eng.one{border-top:4px solid var(--strategy)} .eng.two{border-top:4px solid var(--cash)}
+.eng h3{margin-bottom:6px} .eng ul{margin:8px 0 0;padding-left:18px;font-size:13.5px;color:var(--ink-2)}
+.signal{align-self:center;text-align:center;padding:14px 16px;border:1px dashed var(--line-2);border-radius:6px;font-size:13px;color:var(--ink-2);max-width:220px}
+.signal b{display:block;font-family:var(--serif);font-size:20px;color:var(--ink);font-weight:400}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px 22px;margin:0;font-size:13.5px}
+.facts dt{color:var(--ink-3);font-size:12px;text-transform:uppercase;letter-spacing:.06em} .facts dd{margin:0 0 4px}
+.phen td{white-space:normal;vertical-align:top;text-align:left;font-size:13px;line-height:1.45;min-width:180px}
+.phen th{text-align:left}
+.takeaways{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px}
+@media (max-width:900px){.takeaways{grid-template-columns:1fr}}
+.takeaways li{padding:10px 0 10px 14px;border-left:3px solid var(--strategy);font-size:14.5px;color:var(--ink-2)}
+.takeaways li b{color:var(--ink);font-weight:600}
+.capture{display:grid;grid-template-columns:150px 1fr 64px;gap:8px 12px;align-items:center;font-size:13px}
+.capture .lab{color:var(--ink-2)} .capture .track{position:relative;height:10px;background:var(--band);border-radius:5px}
+.capture .track i{position:absolute;left:0;top:0;height:100%;border-radius:5px} .capture .track em{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--ink-3)}
+.capture .val{text-align:right;font-weight:600}
+.capture .up i{background:var(--strategy)} .capture .down i{background:var(--neg)}
+.note{font-size:13px;color:var(--ink-2);background:var(--band);border-left:3px solid var(--spy);padding:10px 14px;border-radius:0 6px 6px 0;margin:14px 0}
+.defs{columns:2;column-gap:28px;font-size:13px} @media (max-width:800px){.defs{columns:1}}
+.defs dt{font-weight:600;break-after:avoid} .defs dd{margin:0 0 8px;color:var(--ink-2)}
+footer{padding:30px 0 50px;color:var(--ink-3);font-size:12.5px}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);padding:8px 10px;border-radius:6px;font-size:12.5px;line-height:1.4;box-shadow:0 6px 24px rgba(0,0,0,.18);display:none;max-width:260px}
+#tip .tip-h{font-weight:600;margin-bottom:4px;opacity:.85} #tip .tip-r{display:flex;align-items:center;gap:6px;justify-content:space-between}
+#tip .tip-r b{margin-left:12px;font-family:var(--mono);font-weight:500} #tip .sw{width:10px;height:3px}
+</style>
+<style>
+.verdict{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--pos);border-radius:0 6px 6px 0;padding:18px 22px;margin:22px 0 0}
+.verdict h2{font-size:24px;margin-bottom:8px} .verdict p{font-size:15.5px;color:var(--ink-2);max-width:78ch} .verdict p b{color:var(--ink)}
+.ladder{display:grid;grid-template-columns:auto 1fr}
+.ladder .n{font-family:var(--serif);font-size:24px;color:var(--strategy);padding:12px 16px 12px 0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:right;min-width:52px}
+.ladder .b{padding:12px 0 12px 18px;border-bottom:1px solid var(--line)}
+.ladder .n:last-of-type,.ladder .b:last-of-type{border-bottom:0}
+.ladder h4{margin:0 0 3px;font:600 14px var(--sans)} .ladder p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font:600 11px var(--sans);letter-spacing:.03em;text-transform:uppercase}
+.pill.ok{background:var(--pos-soft);color:var(--pos)} .pill.bad{background:var(--neg-soft);color:var(--neg)} .pill.mid{background:var(--spy-soft);color:var(--spy)}
+tr.hi td{background:var(--strategy-soft)} tr.hi td:first-child{font-weight:600}
+tr.win td{background:var(--pos-soft)} tr.win td:first-child{font-weight:600}
+.limit{padding-left:20px;font-size:14px;color:var(--ink-2);max-width:80ch} .limit li{margin-bottom:9px} .limit b{color:var(--ink)}
+.grid2 .tbl-wrap table.tbl-compact th,.grid2 .tbl-wrap table.tbl-compact td{padding:5px 7px;font-size:12px}
+.spec{font-family:var(--mono);font-size:12.5px;white-space:pre-wrap;color:var(--ink-2);background:var(--band);padding:14px 16px;border-radius:6px;overflow-x:auto;line-height:1.6}
+.spec b{color:var(--ink);font-weight:600}
+.waterfall{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;font-size:13.5px}
+.waterfall .lab{color:var(--ink-2)} .waterfall .v{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.waterfall .tot{border-top:1px solid var(--line-2);padding-top:8px;margin-top:2px;color:var(--ink);font-weight:600}
+.chart .bar.a{fill:var(--strategy)} .chart .bar.b{fill:var(--spy)} .chart .bar.c{fill:var(--pos)}
+.sw.a{background:var(--strategy)} .sw.b{background:var(--spy)} .sw.c{background:var(--pos)}
+.warnbox{border:1px solid var(--neg);background:var(--neg-soft);border-radius:6px;padding:16px 18px}
+</style>
+
+<div class="top"><div class="wrap">
+  <a class="brand" href="#top">The India <i>Model</i></a>
+  <nav aria-label="Sections"><a href="#verdict">Result</a><a href="#spec">Specification</a><a href="#where">Where returns come from</a><a href="#vrp">The premium</a><a href="#risk">Key risk</a><a href="#ops">Operating it</a><a href="#limits">Limits</a></nav>
+</div></div>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">Model specification · Nifty Midcap Select · developed 2014–2019, tested 2020–2026</div>
+      <h1 style="margin-top:10px">A midcap model that does not forecast anything</h1>
+      <p class="lede">Seven timing families were tested on Indian midcaps and every one reduced risk-adjusted return. So this model gives up on prediction entirely. It earns its keep in two places instead: how the exposure is wrapped, and a premium the Indian option market has paid every year since 2014.</p>
+    </div>
+    <dl class="meta-list">
+      <dt>Position</dt><dd id="m-pos"></dd>
+      <dt>Overlay</dt><dd id="m-ov"></dd>
+      <dt>Trading</dt><dd id="m-trade"></dd>
+      <dt>Chosen on</dt><dd>Nifty Midcap 50, May 2014 – Dec 2019</dd>
+      <dt>Tested on</dt><dd>Midcap 50 from 2020; Midcap Select from Sep 2021</dd>
+      <dt>Costs</dt><dd>Full statutory stack at 2026 rates × 1.5 safety margin</dd>
+    </dl>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="verdict" id="verdict"><h2>The result</h2><div id="verdict-text"></div></div>
+</div></header>
+
+<main>
+<section id="spec"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">What to actually do</div><h2>The specification</h2><p>Four rules. There is no signal to compute daily, no regime to classify, and nothing to forecast.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>The rules</h3><div class="ladder" id="rules"></div></div>
+    <div class="card"><h3>The monthly cycle, concretely</h3><div class="spec" id="cycle"></div>
+      <p class="sub" style="margin-top:10px">Position changes average <b id="chg"></b> a year — the exposure level essentially never moves. What recurs is the monthly option cycle, which is a scheduled operation rather than a decision.</p></div>
+  </div>
+</div></section>
+
+<section id="where"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Attribution</div><h2>Where the return actually comes from</h2><p>Built up from the naive starting point — one times exposure held through futures — one change at a time, on the out-of-sample window.</p></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Midcap Select, Sep 2021 – Aug 2026</h3><div class="waterfall" id="water"></div>
+      <p class="sub" style="margin-top:12px" id="water-note"></p></div>
+    <div class="card"><h3>Every variant, out of sample</h3><p class="sub">Each row changes one thing. The model row is the combination chosen on development data.</p><div class="tbl-wrap" id="t-oos"></div></div>
+  </div>
+  <div class="card" style="margin-top:22px"><h3>Risk and return, model versus the alternatives</h3><p class="sub">Both out-of-sample windows. The model is the only variant that improves return and risk at the same time.</p><div id="c-cmp"></div>
+    <div class="legend"><span><i class="sw a"></i>Annualised return</span><span><i class="sw b"></i>Volatility</span><span><i class="sw c"></i>Maximum drawdown (absolute)</span></div></div>
+</div></section>
+
+<section id="vrp"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">The engine of the excess return</div><h2>India's variance risk premium</h2><p>Implied volatility has exceeded the volatility that actually followed, in every calendar year since the India VIX series begins. That gap is what the overlay sells.</p></div></div>
+  <div class="grid3" id="vrp-tiles"></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Mean premium by year</h3><p class="sub">India VIX minus the realised Nifty volatility over the following 21 sessions, in volatility points. Positive means options were dear.</p><div id="c-vrp"></div></div>
+    <div class="card"><h3>What the overlay did, cycle by cycle</h3><p class="sub" id="cyc-sub"></p><div class="tbl-wrap" id="t-cyc"></div></div>
+  </div>
+</div></section>
+
+<section id="risk"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Read this before trading it</div><h2>The one assumption that decides whether this works</h2></div></div>
+  <div class="warnbox"><h3 style="margin-bottom:6px">The overlay's edge rests on midcap implied volatility being richer than Nifty's</h3>
+    <p id="risk-text" style="color:var(--ink-2);max-width:80ch"></p></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>Sensitivity to that assumption</h3><p class="sub">Re-running the model with midcap implied volatility set to different multiples of India VIX. The measured ratio of <em>realised</em> volatilities is 1.35×, which is what the base case uses.</p><div class="tbl-wrap" id="t-iv"></div></div>
+    <div class="card"><h3>How to settle it in a day</h3>
+      <p>Pull the MIDCPNIFTY option chain at the close for the near-month expiry, take the implied volatility of the strike nearest 6% above spot, and divide by that day's India VIX. Repeat for twenty sessions and take the median.</p>
+      <p>If that ratio comes back at <b>1.3 or above</b>, the base case holds and the overlay is worth roughly three percentage points a year. If it comes back near <b>1.0</b>, the overlay is worth nothing and the model collapses to the cost saving alone — still positive, but a far smaller prize.</p>
+      <p class="sub">A second check worth making at the same time: the quoted bid-ask on those strikes. The model assumes 70 basis points of premium as a half-spread. Wider quotes eat the premium directly.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="ops"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Running it</div><h2>Operating rules and failure modes</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>Standing rules</h3><ul class="limit" id="ops-list"></ul></div>
+    <div class="card"><h3>What would make me stop</h3><ul class="limit" id="stop-list"></ul></div>
+  </div>
+</div></section>
+
+<section id="limits"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Honest accounting</div><h2>Limitations</h2></div></div>
+  <div class="grid2">
+    <div class="card"><h3>What this study does not establish</h3><ul class="limit" id="limits-list"></ul></div>
+    <div class="card"><h3>Reproducing it</h3><div class="spec">cd demeter/india
+python3 data/build_india_dataset.py
+python3 explore_core.py      # the seven timing families that failed
+python3 vrp_overlay.py       # the premium measurement
+python3 india_model.py       # development selection and the tests above
+python3 build_model_report.py</div>
+      <h3 style="margin-top:16px">Companion pages</h3>
+      <p class="sub">The cost arithmetic behind the synthetic wrapper, and the US study this grew out of, are separate notes in the same repository.</p></div>
+  </div>
+</div></section>
+</main>
+<footer><div class="wrap">Ionic Wealth research. Backtested results are hypothetical and benefit from hindsight. Option premiums are Black-Scholes values computed from India VIX scaled by a measured volatility ratio, not executed prices; the overlay's contribution is an estimate whose sensitivity is shown above. Index data from a public mirror of NSE end-of-day files. Leverage magnifies losses as well as gains. Nothing here is investment advice.</div></footer>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const D = {"model":{"defaults":{"target_vol":0.18,"max_lev":1.5,"ewma_hl":40,"min_days":20,"shock_z":3.5,"shock_days":10,"call_otm":0.08,"core_tenor_days":30},"vol_ratio":1.35,"chosen":{"call_otm":0.06,"_constant_leverage":0.75},"dev_grid":[{"sizing":"constant 0.75x","call_otm":0.0,"cagr_pct":9.515386782533541,"vol_pct":15.8656234514117,"sharpe":0.2728074501742246,"max_dd_pct":-19.626072058503073,"calmar":0.48483398787945253,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":0.0,"score":0.5152244441139509},{"sizing":"constant 1.0x","call_otm":0.0,"cagr_pct":10.016292708654273,"vol_pct":21.154603661220868,"sharpe":0.2728074501742246,"max_dd_pct":-28.16248923312157,"calmar":0.35566077365328314,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":0.0,"score":0.4506378370008661},{"sizing":"constant 1.25x","call_otm":0.0,"cagr_pct":10.204570727456751,"vol_pct":26.443678686581084,"sharpe":0.2728074501742245,"max_dd_pct":-36.036169323561026,"calmar":0.28317579029646855,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":0.0,"score":0.41439534532245875},{"sizing":"vol target 0.14","call_otm":0.0,"cagr_pct":5.036006740898502,"vol_pct":14.276616473323253,"sharpe":-0.0006600520669288572,"max_dd_pct":-22.142209514277077,"calmar":0.22743921457573305,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":0.0,"score":0.11305955522093766},{"sizing":"vol target 0.14","call_otm":0.0,"cagr_pct":5.036006740898502,"vol_pct":14.276616473323253,"sharpe":-0.0006600520669288572,"max_dd_pct":-22.142209514277077,"calmar":0.22743921457573305,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":0.0,"score":0.11305955522093766},{"sizing":"vol target 0.18","call_otm":0.0,"cagr_pct":4.698794906650061,"vol_pct":18.172884922261794,"sharpe":0.01671155281123252,"max_dd_pct":-31.128721004563854,"calmar":0.15094725240915488,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":0.0,"score":0.09218517901580996},{"sizing":"vol target 0.18","call_otm":0.0,"cagr_pct":4.698794906650061,"vol_pct":18.172884922261794,"sharpe":0.01671155281123252,"max_dd_pct":-31.128721004563854,"calmar":0.15094725240915488,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":0.0,"score":0.09218517901580996},{"sizing":"vol target 0.22","call_otm":0.0,"cagr_pct":4.271111389159432,"vol_pct":21.302312938658346,"sharpe":0.0238077373408682,"max_dd_pct":-36.29961323512399,"calmar":0.1176627244343928,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":0.0,"score":0.0826390995580646},{"sizing":"vol target 0.22","call_otm":0.0,"cagr_pct":3.8664978366146796,"vol_pct":21.868283640174454,"sharpe":0.010791949281755066,"max_dd_pct":-37.773630245731916,"calmar":0.10235970997390592,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":0.0,"score":0.061971804268708026},{"sizing":"constant 0.75x","call_otm":0.04,"cagr_pct":12.450097026196726,"vol_pct":16.349605134533903,"sharpe":0.4313504976698138,"max_dd_pct":-16.050786097583657,"calmar":0.7756689890765542,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":2.723982336369803,"score":0.8191849922080909},{"sizing":"constant 1.0x","call_otm":0.04,"cagr_pct":13.924432420180889,"vol_pct":21.799541475054976,"sharpe":0.431350497669814,"max_dd_pct":-21.806277992276158,"calmar":0.6385515412173026,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":3.631976448493071,"score":0.7506262682784652},{"sizing":"constant 1.25x","call_otm":0.04,"cagr_pct":15.06873101513191,"vol_pct":27.249569832178004,"sharpe":0.43135049766981365,"max_dd_pct":-27.5962566066581,"calmar":0.5460425749011301,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":4.5399705606163385,"score":0.7043717851203787},{"sizing":"vol target 0.14","call_otm":0.04,"cagr_pct":7.377068861249603,"vol_pct":14.636803571114815,"sharpe":0.15627862331740902,"max_dd_pct":-17.944125193349482,"calmar":0.411113318802731,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.4619549765553073,"score":0.3618352827187745},{"sizing":"vol target 0.14","call_otm":0.04,"cagr_pct":7.377068861249603,"vol_pct":14.636803571114815,"sharpe":0.15627862331740902,"max_dd_pct":-17.944125193349482,"calmar":0.411113318802731,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.4619549765553073,"score":0.3618352827187745},{"sizing":"vol target 0.18","call_otm":0.04,"cagr_pct":8.341745763757768,"vol_pct":18.682757972487966,"sharpe":0.20758269660229167,"max_dd_pct":-23.725052274649006,"calmar":0.35160073272720227,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.7189841388475102,"score":0.3833830629658928},{"sizing":"vol target 0.18","call_otm":0.04,"cagr_pct":8.341745763757768,"vol_pct":18.682757972487966,"sharpe":0.20758269660229167,"max_dd_pct":-23.725052274649006,"calmar":0.35160073272720227,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.7189841388475102,"score":0.3833830629658928},{"sizing":"vol target 0.22","call_otm":0.04,"cagr_pct":7.742588322128663,"vol_pct":21.921565152707807,"sharpe":0.1812878025621081,"max_dd_pct":-28.05114152488689,"calmar":0.2760168713725772,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":3.613170942735782,"score":0.3192962382483967},{"sizing":"vol target 0.22","call_otm":0.04,"cagr_pct":7.54768682577367,"vol_pct":22.472886576100013,"sharpe":0.174167926189697,"max_dd_pct":-29.228348160061646,"calmar":0.25823172710413445,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":3.8210165647147547,"score":0.30328378974176423},{"sizing":"constant 0.75x","call_otm":0.05,"cagr_pct":12.499962416173304,"vol_pct":16.154016518589813,"sharpe":0.43732292862093985,"max_dd_pct":-16.15906869963841,"calmar":0.7735571058283213,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":2.7363110286594714,"score":0.8241014815351004},{"sizing":"constant 1.0x","call_otm":0.05,"cagr_pct":14.008166509823772,"vol_pct":21.538915354930907,"sharpe":0.43732292862093974,"max_dd_pct":-21.665532836206758,"calmar":0.6465645971288444,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":3.648414704879295,"score":0.7606052271853619},{"sizing":"constant 1.25x","call_otm":0.05,"cagr_pct":15.195267521917089,"vol_pct":26.92390731957712,"sharpe":0.4373229286209397,"max_dd_pct":-28.16510060093106,"calmar":0.5395069500094303,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":4.56051838109912,"score":0.7070764036256548},{"sizing":"vol target 0.14","call_otm":0.05,"cagr_pct":7.3609116963852195,"vol_pct":14.473679156941294,"sharpe":0.1553288164636292,"max_dd_pct":-17.928422383522147,"calmar":0.41057219307542464,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.4234250847756806,"score":0.3606149130013415},{"sizing":"vol target 0.14","call_otm":0.05,"cagr_pct":7.3609116963852195,"vol_pct":14.473679156941294,"sharpe":0.1553288164636292,"max_dd_pct":-17.928422383522147,"calmar":0.41057219307542464,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.4234250847756806,"score":0.3606149130013415},{"sizing":"vol target 0.18","call_otm":0.05,"cagr_pct":8.193939042132525,"vol_pct":18.46514172482689,"sharpe":0.20030772323125867,"max_dd_pct":-24.59216787747205,"calmar":0.3331930345855634,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.54245860505352,"score":0.36690424052404036},{"sizing":"vol target 0.18","call_otm":0.05,"cagr_pct":8.193939042132525,"vol_pct":18.46514172482689,"sharpe":0.20030772323125867,"max_dd_pct":-24.59216787747205,"calmar":0.3331930345855634,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.54245860505352,"score":0.36690424052404036},{"sizing":"vol target 0.22","call_otm":0.05,"cagr_pct":7.811519422166535,"vol_pct":21.64503432171276,"sharpe":0.1837926506939088,"max_dd_pct":-29.08609817963056,"calmar":0.2685653941592297,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":3.6172998828182554,"score":0.31807534777352364},{"sizing":"vol target 0.22","call_otm":0.05,"cagr_pct":7.556694174863976,"vol_pct":22.201572983663226,"sharpe":0.17392028659689418,"max_dd_pct":-30.362433940118482,"calmar":0.24888301740787544,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":3.769206921392128,"score":0.2983617953008319},{"sizing":"constant 0.75x","call_otm":0.06,"cagr_pct":12.568405841391762,"vol_pct":16.029051629898717,"sharpe":0.443253535805767,"max_dd_pct":-16.237813646233224,"calmar":0.7740208204881895,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":2.7769009733884036,"score":0.8302639460498618},{"sizing":"constant 1.0x","call_otm":0.06,"cagr_pct":14.111010882123276,"vol_pct":21.37242137036079,"sharpe":0.44325353580576715,"max_dd_pct":-22.188457046019227,"calmar":0.6359617909824377,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":3.7025346311845375,"score":0.761234431296986},{"sizing":"constant 1.25x","call_otm":0.06,"cagr_pct":15.338339112933763,"vol_pct":26.715884962224408,"sharpe":0.44325353580576704,"max_dd_pct":-29.32367602389353,"calmar":0.5230701328317695,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":4.628168288980673,"score":0.7047886022216518},{"sizing":"vol target 0.14","call_otm":0.06,"cagr_pct":7.324083390168057,"vol_pct":14.372993920351638,"sharpe":0.1529716776567762,"max_dd_pct":-18.11435697629703,"calmar":0.4043247794968242,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.3747614789395057,"score":0.35513406740518827},{"sizing":"vol target 0.14","call_otm":0.06,"cagr_pct":7.324083390168057,"vol_pct":14.372993920351638,"sharpe":0.1529716776567762,"max_dd_pct":-18.11435697629703,"calmar":0.4043247794968242,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.3747614789395057,"score":0.35513406740518827},{"sizing":"vol target 0.18","call_otm":0.06,"cagr_pct":8.005710602448989,"vol_pct":18.32713681256177,"sharpe":0.19076433402256468,"max_dd_pct":-25.556540670739338,"calmar":0.31325486127373386,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.3432281685281207,"score":0.3473917646594316},{"sizing":"vol target 0.18","call_otm":0.06,"cagr_pct":8.005710602448989,"vol_pct":18.32713681256177,"sharpe":0.19076433402256468,"max_dd_pct":-25.556540670739338,"calmar":0.31325486127373386,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.3432281685281207,"score":0.3473917646594316},{"sizing":"vol target 0.22","call_otm":0.06,"cagr_pct":7.833895279667358,"vol_pct":21.47181226398665,"sharpe":0.18450196337097308,"max_dd_pct":-30.095358857436715,"calmar":0.2603024378867495,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":3.6010435930730242,"score":0.3146531823143478},{"sizing":"vol target 0.22","call_otm":0.06,"cagr_pct":7.532910144255145,"vol_pct":22.032853828938677,"sharpe":0.17252257394262321,"max_dd_pct":-31.444709236333246,"calmar":0.2395604960961488,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":3.710105246835843,"score":0.2923028219906976},{"sizing":"constant 0.75x","call_otm":0.08,"cagr_pct":12.496042971251843,"vol_pct":15.919528232549027,"sharpe":0.44114228715431103,"max_dd_pct":-16.331247656301773,"calmar":0.7651615623151712,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":2.69494617873002,"score":0.8237230683118966},{"sizing":"constant 1.0x","call_otm":0.08,"cagr_pct":14.022207917627426,"vol_pct":21.22654396048752,"sharpe":0.441142287154311,"max_dd_pct":-23.6088524038667,"calmar":0.5939385649821269,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":3.5932615716400265,"score":0.7381115696453744},{"sizing":"constant 1.25x","call_otm":0.08,"cagr_pct":15.237576664498832,"vol_pct":26.533654180659568,"sharpe":0.44114228715431075,"max_dd_pct":-30.928918193800836,"calmar":0.4926643915904223,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":4.491576964550033,"score":0.6874744829495218},{"sizing":"vol target 0.14","call_otm":0.08,"cagr_pct":7.1402995927341895,"vol_pct":14.297730005444425,"sharpe":0.14082981975576664,"max_dd_pct":-18.606193655563295,"calmar":0.38375928601598874,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.1926685550064575,"score":0.332709462763761},{"sizing":"vol target 0.14","call_otm":0.08,"cagr_pct":7.1402995927341895,"vol_pct":14.297730005444425,"sharpe":0.14082981975576664,"max_dd_pct":-18.606193655563295,"calmar":0.38375928601598874,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":2.1926685550064575,"score":0.332709462763761},{"sizing":"vol target 0.18","call_otm":0.08,"cagr_pct":7.665817884613535,"vol_pct":18.220989883611647,"sharpe":0.17322216179530928,"max_dd_pct":-26.878716932145775,"calmar":0.28520029077152675,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.008852842193928,"score":0.3158223071810726},{"sizing":"vol target 0.18","call_otm":0.08,"cagr_pct":7.665817884613535,"vol_pct":18.220989883611647,"sharpe":0.17322216179530928,"max_dd_pct":-26.878716932145775,"calmar":0.28520029077152675,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":3.008852842193928,"score":0.3158223071810726},{"sizing":"vol target 0.22","call_otm":0.08,"cagr_pct":7.6876055192018455,"vol_pct":21.34562558920411,"sharpe":0.17785089322872144,"max_dd_pct":-31.491403540891227,"calmar":0.24411758939926503,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":3.4385175870088935,"score":0.29990968792835393},{"sizing":"vol target 0.22","call_otm":0.08,"cagr_pct":7.327133809938791,"vol_pct":21.910454655639406,"sharpe":0.16336177665215965,"max_dd_pct":-32.937207798697585,"calmar":0.22245764895191034,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":3.4918946828033066,"score":0.27459060112811484},{"sizing":"constant 0.75x","call_otm":0.12,"cagr_pct":10.762466175161745,"vol_pct":15.87468138079051,"sharpe":0.3440864053787051,"max_dd_pct":-18.4394048767347,"calmar":0.5836666772657574,"avg_lev":0.75,"changes_per_year":0.18327272727272725,"core_cost_pct":0.9249889566358707,"overlay_pct":1.134165178781036,"score":0.6359197440115838},{"sizing":"constant 1.0x","call_otm":0.12,"cagr_pct":11.689066921503288,"vol_pct":21.166699283008665,"sharpe":0.34408640537870516,"max_dd_pct":-26.74488842480511,"calmar":0.43705798041998994,"avg_lev":1.0,"changes_per_year":0.18327272727272725,"core_cost_pct":1.2333186088478278,"overlay_pct":1.5122202383747148,"score":0.5626153955887001},{"sizing":"constant 1.25x","call_otm":0.12,"cagr_pct":12.302141932752342,"vol_pct":26.458811946080278,"sharpe":0.3440864053787049,"max_dd_pct":-34.45454816910922,"calmar":0.35705422321521035,"avg_lev":1.25,"changes_per_year":0.18327272727272725,"core_cost_pct":1.5416482610597848,"overlay_pct":1.8902752979683932,"score":0.5226135169863101},{"sizing":"vol target 0.14","call_otm":0.12,"cagr_pct":5.67948614142626,"vol_pct":14.275787784092984,"sharpe":0.043081668749221945,"max_dd_pct":-21.007277453242644,"calmar":0.27035802969078154,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":0.8163996392263515,"score":0.17826068359461272},{"sizing":"vol target 0.14","call_otm":0.12,"cagr_pct":5.67948614142626,"vol_pct":14.275787784092984,"sharpe":0.043081668749221945,"max_dd_pct":-21.007277453242644,"calmar":0.27035802969078154,"avg_lev":0.6857459379615952,"changes_per_year":8.064,"core_cost_pct":0.8889796541877588,"overlay_pct":0.8163996392263515,"score":0.17826068359461272},{"sizing":"vol target 0.18","call_otm":0.12,"cagr_pct":5.7071001975882885,"vol_pct":18.182610153906932,"sharpe":0.07057109379085309,"max_dd_pct":-29.820756490779708,"calmar":0.1913801281115343,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":1.1655438517911967,"score":0.16626115784662024},{"sizing":"vol target 0.18","call_otm":0.12,"cagr_pct":5.7071001975882885,"vol_pct":18.182610153906932,"sharpe":0.07057109379085309,"max_dd_pct":-29.820756490779708,"calmar":0.1913801281115343,"avg_lev":0.8738921713441654,"changes_per_year":8.430545454545454,"core_cost_pct":1.1162883758914646,"overlay_pct":1.1655438517911967,"score":0.16626115784662024},{"sizing":"vol target 0.22","call_otm":0.12,"cagr_pct":5.401200100471382,"vol_pct":21.30972488091258,"sharpe":0.07543657211541539,"max_dd_pct":-34.80676114964305,"calmar":0.1551767507827074,"avg_lev":1.0509601181683899,"changes_per_year":7.330909090909091,"core_cost_pct":1.3255924463711142,"overlay_pct":1.284429547442823,"score":0.1530249475067691},{"sizing":"vol target 0.22","call_otm":0.12,"cagr_pct":5.003127104658356,"vol_pct":21.87561232602463,"sharpe":0.06156203903683665,"max_dd_pct":-36.284771421152605,"calmar":0.13788503850796557,"avg_lev":1.0744091580502215,"changes_per_year":8.797090909090908,"core_cost_pct":1.3706040744312538,"overlay_pct":1.2947594638124311,"score":0.13050455829081944}],"oos":[{"window":"Midcap 50, 2020+","variant":"buy & hold 1x, futures, no overlay","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":21.022497594999233,"vol_pct":21.393423190345008,"sharpe":0.7562481280730516,"sortino":0.8579030392578624,"max_dd_pct":-42.50350146924872,"calmar":0.49460625285681487,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":2.5731576783555026,"overlay_pct":0.0,"growth_of_100k":349857.4002441071},{"window":"Midcap 50, 2020+","variant":"buy & hold 1x, synthetic, no overlay","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":22.685985603192993,"vol_pct":21.402847698409886,"sharpe":0.8198124783834959,"sortino":0.9280097054799549,"max_dd_pct":-42.37456404633978,"calmar":0.53536799997244,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":1.2048910715614751,"overlay_pct":0.0,"growth_of_100k":382652.8833828517},{"window":"Midcap 50, 2020+","variant":"buy & hold 1x, synthetic + 6% call overlay","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":25.599328480809636,"vol_pct":22.095990362045974,"sharpe":0.9072616037846288,"sortino":1.0209953835782026,"max_dd_pct":-41.9604843640359,"calmar":0.6100818155176178,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":1.2048910715614751,"overlay_pct":2.5015716790695457,"growth_of_100k":446377.6818147115},{"window":"Midcap 50, 2020+","variant":"MODEL as chosen on development","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":20.768673500699485,"vol_pct":16.56993225869367,"sharpe":0.9072616037846288,"sortino":1.0209953835782026,"max_dd_pct":-33.01029512619221,"calmar":0.6291574619767777,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":0.9036683036711063,"overlay_pct":1.8761787593021595,"growth_of_100k":345069.3391771713},{"window":"Midcap 50, 2020+","variant":"MODEL but on futures (cost check)","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":19.539546635875915,"vol_pct":16.5540923680542,"sharpe":0.8461788911398406,"sortino":0.950841827814229,"max_dd_pct":-33.12232897520136,"calmar":0.5899206740717159,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":1.9298682587666267,"overlay_pct":1.8761787593021595,"growth_of_100k":322661.24136115634},{"window":"Midcap 50, 2020+","variant":"MODEL without overlay (overlay check)","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":18.626921294410504,"vol_pct":16.050152766554294,"sharpe":0.819812478383496,"sortino":0.928009705479955,"max_dd_pct":-33.36917982083537,"calmar":0.5582073456531301,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.1523579201934704,"core_cost_pct":0.9036683036711063,"overlay_pct":0.0,"growth_of_100k":306832.4120568114},{"window":"Midcap 50, 2020+","variant":"vol-sized instead of constant (sizing check)","label":"","start":"2020-01-01","end":"2026-08-31","years":6.56,"cagr_pct":17.55986539785428,"vol_pct":20.038324006829114,"sharpe":0.658933375297963,"sortino":0.7176975869623495,"max_dd_pct":-43.49609968715659,"calmar":0.40371126432375987,"avg_lev":0.9453459889773423,"pct_days_flat":0.0,"changes_per_year":8.532043530834342,"core_cost_pct":1.1880525317415165,"overlay_pct":2.1860763945015114,"growth_of_100k":289164.46024277376},{"window":"Midcap Select, 2021-09+","variant":"buy & hold 1x, futures, no overlay","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":13.974973273761272,"vol_pct":18.639709163101244,"sharpe":0.48042923234031115,"sortino":0.6211069318816997,"max_dd_pct":-25.439587229298677,"calmar":0.5493396236266895,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":2.6004965853658537,"overlay_pct":0.0,"growth_of_100k":189358.34953105042},{"window":"Midcap Select, 2021-09+","variant":"buy & hold 1x, synthetic, no overlay","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":15.560676996790068,"vol_pct":18.641736663840383,"sharpe":0.5545684751236524,"sortino":0.7157506939103735,"max_dd_pct":-24.857471040205958,"calmar":0.6259959821182653,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":1.2176926208952394,"overlay_pct":0.0,"growth_of_100k":202569.00598900334},{"window":"Midcap Select, 2021-09+","variant":"buy & hold 1x, synthetic + 6% call overlay","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":20.14955316039948,"vol_pct":18.933350479285334,"sharpe":0.7546202054179514,"sortino":0.9746281783965765,"max_dd_pct":-18.273278300846574,"calmar":1.1026786123793662,"avg_lev":1.0,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":1.2176926208952394,"overlay_pct":3.951506961025137,"growth_of_100k":244974.04122820296},{"window":"Midcap Select, 2021-09+","variant":"MODEL as chosen on development","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":16.85277760729653,"vol_pct":14.200492784249267,"sharpe":0.754620205417951,"sortino":0.9746281783965759,"max_dd_pct":-13.65597336321488,"calmar":1.2340956707408999,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":0.91326946567143,"overlay_pct":2.9636302207688523,"growth_of_100k":213866.58454210323},{"window":"Midcap Select, 2021-09+","variant":"MODEL but on futures (cost check)","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":15.650773686274078,"vol_pct":14.18240649329387,"sharpe":0.6824599244994438,"sortino":0.8801373787984119,"max_dd_pct":-13.798080042030458,"calmar":1.134271843517367,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":1.9503724390243906,"overlay_pct":2.9636302207688523,"growth_of_100k":203341.034533538},{"window":"Midcap Select, 2021-09+","variant":"MODEL without overlay (overlay check)","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":13.47717971417508,"vol_pct":13.98279150243049,"sharpe":0.5545684751236524,"sortino":0.7157506939103734,"max_dd_pct":-18.52482779548662,"calmar":0.7275198378609843,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.2048780487804878,"core_cost_pct":0.91326946567143,"overlay_pct":0.0,"growth_of_100k":185355.69655199655},{"window":"Midcap Select, 2021-09+","variant":"vol-sized instead of constant (sizing check)","label":"","start":"2021-09-16","end":"2026-08-31","years":4.88,"cagr_pct":16.190020366140946,"vol_pct":17.81466042840643,"sharpe":0.6147626872426167,"sortino":0.789304454577127,"max_dd_pct":-16.935981426272374,"calmar":0.9559540695424809,"avg_lev":0.9956575682382134,"pct_days_flat":0.0,"changes_per_year":8.399999999999999,"core_cost_pct":1.2453674531883132,"overlay_pct":3.270553594363021,"growth_of_100k":208010.82925436925}],"iv_sensitivity":[{"vol_ratio":1.0,"window":"Midcap Select","cagr_pct":13.03728443120522,"sharpe":0.5223964380360455,"max_dd_pct":-15.929515199056254,"overlay_pct":-0.3663664284994849},{"vol_ratio":1.0,"window":"Midcap 50 2020+","cagr_pct":15.848409846305621,"sharpe":0.6576235167635475,"max_dd_pct":-33.2189968363412,"overlay_pct":-2.2923384731750653},{"vol_ratio":1.15,"window":"Midcap Select","cagr_pct":14.515509819387118,"sharpe":0.6138174038882921,"max_dd_pct":-14.835815713192513,"overlay_pct":0.935608756115063},{"vol_ratio":1.15,"window":"Midcap 50 2020+","cagr_pct":17.790498435920952,"sharpe":0.7581071507421399,"max_dd_pct":-33.13700164205847,"overlay_pct":-0.6288199028414914},{"vol_ratio":1.35,"window":"Midcap Select","cagr_pct":16.85277760729653,"sharpe":0.754620205417951,"max_dd_pct":-13.65597336321488,"overlay_pct":2.9636302207688523},{"vol_ratio":1.35,"window":"Midcap 50 2020+","cagr_pct":20.768673500699485,"sharpe":0.9072616037846288,"max_dd_pct":-33.01029512619221,"overlay_pct":1.8761787593021595},{"vol_ratio":1.5,"window":"Midcap Select","cagr_pct":18.835182121200322,"sharpe":0.870144483859255,"max_dd_pct":-13.285901350369677,"overlay_pct":4.6551416139715425},{"vol_ratio":1.5,"window":"Midcap 50 2020+","cagr_pct":23.24740303143271,"sharpe":1.026486856561404,"max_dd_pct":-32.90548866533166,"overlay_pct":3.919678135938161}],"full_history_mc50":{"label":"Midcap 50 2014-2026","start":"2014-05-15","end":"2026-08-31","years":12.02,"cagr_pct":16.991615240521817,"vol_pct":16.325530069221717,"sharpe":0.7013103896571383,"sortino":0.8341426228769591,"max_dd_pct":-33.025044406195526,"calmar":0.5145069611877395,"avg_lev":0.75,"pct_days_flat":0.0,"changes_per_year":0.08319577418289864,"core_cost_pct":0.9102817898180668,"overlay_pct":2.283231756500799,"growth_of_100k":659491.3772110111},"overlay_cycles_mcs":[{"open":"2021-09-28","expiry":"2021-10-26","size":0.75,"premium_pct":0.8678235845673135,"payoff_pct":-0.8366232801927718,"pnl_pct":0.013847226776734556,"index_move_pct":6.836623280192788},{"open":"2021-10-26","expiry":"2021-11-30","size":0.75,"premium_pct":0.9071602019937185,"payoff_pct":-0.0,"pnl_pct":0.8891631776747823,"index_move_pct":-6.396958408934994},{"open":"2021-11-30","expiry":"2021-12-28","size":0.75,"premium_pct":1.1738355072372875,"payoff_pct":-0.0,"pnl_pct":1.1514729655034652,"index_move_pct":-0.3433027201192429},{"open":"2021-12-28","expiry":"2022-01-25","size":0.75,"premium_pct":0.6461007990921138,"payoff_pct":-0.0,"pnl_pct":0.6323773589681814,"index_move_pct":1.2204073889770184},{"open":"2022-01-25","expiry":"2022-02-22","size":0.75,"premium_pct":1.1967515783566296,"payoff_pct":-0.0,"pnl_pct":1.1740138968720124,"index_move_pct":-3.7611701116332052},{"open":"2022-02-22","expiry":"2022-03-29","size":0.75,"premium_pct":2.314142924328081,"payoff_pct":-0.0,"pnl_pct":2.2731133677272957,"index_move_pct":1.6333989515201486},{"open":"2022-03-29","expiry":"2022-04-26","size":0.75,"premium_pct":1.1895044306897173,"payoff_pct":-0.0,"pnl_pct":1.166885386171951,"index_move_pct":1.6890672294576747},{"open":"2022-04-26","expiry":"2022-05-31","size":0.75,"premium_pct":1.2290100198550191,"payoff_pct":-0.0,"pnl_pct":1.2057442625217227,"index_move_pct":-6.562805082026535},{"open":"2022-05-31","expiry":"2022-06-28","size":0.75,"premium_pct":1.0914583222216967,"payoff_pct":-0.0,"pnl_pct":1.0704443081869293,"index_move_pct":-5.689589665653482},{"open":"2022-06-28","expiry":"2022-07-26","size":0.75,"premium_pct":1.2076402609257866,"payoff_pct":-0.0,"pnl_pct":1.184724329965323,"index_move_pct":5.691951315881205},{"open":"2022-07-26","expiry":"2022-08-30","size":0.75,"premium_pct":1.091736385189817,"payoff_pct":-2.5849997067964643,"pnl_pct":-1.5142818875766932,"index_move_pct":8.58499970679647},{"open":"2022-08-30","expiry":"2022-09-27","size":0.75,"premium_pct":0.8857747931423379,"payoff_pct":-0.0,"pnl_pct":0.8681278513879642,"index_move_pct":-4.5201706539936275},{"open":"2022-09-27","expiry":"2022-10-25","size":0.75,"premium_pct":1.2221916752049584,"payoff_pct":-0.0,"pnl_pct":1.1990375352645184,"index_move_pct":3.035916289592766},{"open":"2022-10-25","expiry":"2022-11-29","size":0.75,"premium_pct":0.9237065219318308,"payoff_pct":-0.0,"pnl_pct":0.9054386317080967,"index_move_pct":0.24016358571095076},{"open":"2022-11-29","expiry":"2022-12-27","size":0.75,"premium_pct":0.37475899757078784,"payoff_pct":-0.0,"pnl_pct":0.3654774661524478,"index_move_pct":-1.9981654390624493},{"open":"2022-12-27","expiry":"2023-01-31","size":0.75,"premium_pct":0.7269213371596182,"payoff_pct":-0.0,"pnl_pct":0.7118748518962347,"index_move_pct":-3.150909789403833},{"open":"2023-01-31","expiry":"2023-02-28","size":0.75,"premium_pct":0.6876768098742608,"payoff_pct":-0.0,"pnl_pct":0.6732727638016629,"index_move_pct":-2.0605247594732146},{"open":"2023-02-28","expiry":"2023-03-28","size":0.75,"premium_pct":0.40959806072524646,"payoff_pct":-0.0,"pnl_pct":0.3997462082688178,"index_move_pct":-2.466917531315127},{"open":"2023-03-28","expiry":"2023-04-25","size":0.75,"premium_pct":0.5090288512160845,"payoff_pct":-2.006221356467107,"pnl_pct":-1.5086720556567126,"index_move_pct":8.006221356467114},{"open":"2023-04-25","expiry":"2023-05-30","size":0.75,"premium_pct":0.3243890693960493,"payoff_pct":-2.7444338033288767,"pnl_pct":-2.4285017015677584,"index_move_pct":8.744433803328878},{"open":"2023-05-30","expiry":"2023-06-27","size":0.75,"premium_pct":0.24702403624281727,"payoff_pct":-0.0,"pnl_pct":0.2398335465790099,"index_move_pct":4.119310876832083},{"open":"2023-06-27","expiry":"2023-07-25","size":0.75,"premium_pct":0.16496518137193367,"payoff_pct":-0.0,"pnl_pct":0.1591180082917794,"index_move_pct":4.055739405314629},{"open":"2023-07-25","expiry":"2023-08-29","size":0.75,"premium_pct":0.21642044531696636,"payoff_pct":-0.0,"pnl_pct":0.20973094133318967,"index_move_pct":4.365213573280657},{"open":"2023-08-29","expiry":"2023-09-26","size":0.75,"premium_pct":0.2632017747072301,"payoff_pct":-0.0,"pnl_pct":0.25574645287632214,"index_move_pct":4.0296997055044415},{"open":"2023-09-26","expiry":"2023-10-31","size":0.75,"premium_pct":0.2948607922950622,"payoff_pct":-0.0,"pnl_pct":0.28688720728079853,"index_move_pct":-4.431583434436181},{"open":"2023-10-31","expiry":"2023-11-28","size":0.75,"premium_pct":0.2341120185909216,"payoff_pct":-3.210684325195997,"pnl_pct":-2.9835514244739985,"index_move_pct":9.210684325196006},{"open":"2023-11-28","expiry":"2023-12-26","size":0.75,"premium_pct":0.25948728913532265,"payoff_pct":-1.7306524243376291,"pnl_pct":-1.4785596503100846,"index_move_pct":7.730652424337636},{"open":"2023-12-26","expiry":"2024-01-30","size":0.75,"premium_pct":0.6550057664949214,"payoff_pct":-0.0,"pnl_pct":0.6411365506298102,"index_move_pct":3.0659460300178853},{"open":"2024-01-30","expiry":"2024-02-27","size":0.75,"premium_pct":0.60733706812329,"payoff_pct":-0.0,"pnl_pct":0.5942481964775141,"index_move_pct":3.7995397355365723},{"open":"2024-02-27","expiry":"2024-03-26","size":0.75,"premium_pct":0.5703164979314777,"payoff_pct":-0.0,"pnl_pct":0.557833658943033,"index_move_pct":-4.604082522750097},{"open":"2024-03-26","expiry":"2024-04-30","size":0.75,"premium_pct":0.45077270135309305,"payoff_pct":-0.0,"pnl_pct":0.44024681344164396,"index_move_pct":5.343493273008693},{"open":"2024-04-30","expiry":"2024-05-28","size":0.75,"premium_pct":0.3126367492421222,"payoff_pct":-0.0,"pnl_pct":0.3043721689684821,"index_move_pct":4.728407061642459},{"open":"2024-05-28","expiry":"2024-06-25","size":0.75,"premium_pct":1.5496591677390819,"payoff_pct":-0.038315764027370844,"pnl_pct":1.4828285685236888,"index_move_pct":6.03831576402738},{"open":"2024-06-25","expiry":"2024-07-30","size":0.75,"premium_pct":0.6124827367178948,"payoff_pct":-0.0,"pnl_pct":0.5993096296539182,"index_move_pct":4.783383948998954},{"open":"2024-07-30","expiry":"2024-08-27","size":0.75,"premium_pct":0.31343615201282227,"payoff_pct":-0.0,"pnl_pct":0.3051584853879214,"index_move_pct":1.6515664822527532},{"open":"2024-08-27","expiry":"2024-09-24","size":0.75,"premium_pct":0.37561599239788457,"payoff_pct":-0.0,"pnl_pct":0.3663204318371058,"index_move_pct":1.5437065008427675},{"open":"2024-09-24","expiry":"2024-10-29","size":0.75,"premium_pct":0.5107094957696362,"payoff_pct":-0.0,"pnl_pct":0.49920243294370137,"index_move_pct":-5.720372475365288},{"open":"2024-10-29","expiry":"2024-11-26","size":0.75,"premium_pct":0.4546968075739698,"payoff_pct":-0.0,"pnl_pct":0.44410668141582804,"index_move_pct":0.3628974305744048},{"open":"2024-11-26","expiry":"2024-12-31","size":0.75,"premium_pct":0.7293154919409615,"payoff_pct":-0.0,"pnl_pct":0.7142298139807425,"index_move_pct":2.6862323135488975},{"open":"2024-12-31","expiry":"2025-01-28","size":0.75,"premium_pct":0.44828316296561443,"payoff_pct":-0.0,"pnl_pct":0.43779802919589467,"index_move_pct":-9.78438558025303},{"open":"2025-01-28","expiry":"2025-02-25","size":0.75,"premium_pct":0.8300008407909095,"payoff_pct":-0.0,"pnl_pct":0.813266927560361,"index_move_pct":-5.058654804025964},{"open":"2025-02-25","expiry":"2025-03-25","size":0.75,"premium_pct":0.3833616490706029,"payoff_pct":-0.0,"pnl_pct":0.3739392908707866,"index_move_pct":4.758329677486461},{"open":"2025-03-25","expiry":"2025-04-29","size":0.75,"premium_pct":0.5377760858030483,"payoff_pct":-0.0,"pnl_pct":0.525825938567612,"index_move_pct":5.298150482670483},{"open":"2025-04-29","expiry":"2025-05-27","size":0.75,"premium_pct":0.7396272926357982,"payoff_pct":-0.0,"pnl_pct":0.7243728088483168,"index_move_pct":3.471504715047158},{"open":"2025-05-27","expiry":"2025-06-24","size":0.75,"premium_pct":0.8678235845673115,"payoff_pct":-0.0,"pnl_pct":0.8504705069695044,"index_move_pct":4.196269718307066},{"open":"2025-06-24","expiry":"2025-07-29","size":0.75,"premium_pct":0.5377760858030403,"payoff_pct":-0.0,"pnl_pct":0.5258259385676041,"index_move_pct":-0.8682027860068331},{"open":"2025-07-29","expiry":"2025-08-26","size":0.75,"premium_pct":0.21325971950507447,"payoff_pct":-0.0,"pnl_pct":0.20662195710855458,"index_move_pct":-2.7770318482088774},{"open":"2025-08-26","expiry":"2025-09-30","size":0.75,"premium_pct":0.38762211840751265,"payoff_pct":-0.0,"pnl_pct":0.37813001564297605,"index_move_pct":-0.5721388127133187},{"open":"2025-09-30","expiry":"2025-10-28","size":0.75,"premium_pct":0.18296994679474576,"payoff_pct":-0.0872670992321035,"pnl_pct":0.08956093359175411,"index_move_pct":6.087267099232108},{"open":"2025-10-28","expiry":"2025-11-25","size":0.75,"premium_pct":0.24268721835424015,"payoff_pct":-0.0,"pnl_pct":0.23556772309315963,"index_move_pct":3.2956262812168013},{"open":"2025-11-25","expiry":"2025-12-30","size":0.75,"premium_pct":0.3925081348051481,"payoff_pct":-0.0,"pnl_pct":0.3829360471704196,"index_move_pct":-1.4869592299391},{"open":"2025-12-30","expiry":"2026-01-27","size":0.75,"premium_pct":0.10485787691352404,"payoff_pct":-0.0,"pnl_pct":0.09999467002452268,"index_move_pct":-3.407737438793068},{"open":"2026-01-27","expiry":"2026-02-24","size":0.75,"premium_pct":0.4482831629656133,"payoff_pct":-0.0,"pnl_pct":0.43779802919589356,"index_move_pct":2.3652943012201444},{"open":"2026-02-24","expiry":"2026-03-24","size":0.75,"premium_pct":0.421162034324529,"payoff_pct":-0.0,"pnl_pct":0.4111208777700443,"index_move_pct":-6.812951485836871},{"open":"2026-03-24","expiry":"2026-04-28","size":0.75,"premium_pct":2.0250378133112705,"payoff_pct":-5.520139797644495,"pnl_pct":-3.5313988440098467,"index_move_pct":11.520139797644502},{"open":"2026-04-28","expiry":"2026-05-26","size":0.75,"premium_pct":0.8134581994735974,"payoff_pct":-0.0,"pnl_pct":0.796995091928236,"index_move_pct":5.004597117231868},{"open":"2026-05-26","expiry":"2026-06-30","size":0.75,"premium_pct":0.8293204411326178,"payoff_pct":-0.0,"pnl_pct":0.8125976661533396,"index_move_pct":-1.6983973398021157},{"open":"2026-06-30","expiry":"2026-07-28","size":0.75,"premium_pct":0.37304719994752233,"payoff_pct":-0.0,"pnl_pct":0.3637936909301627,"index_move_pct":0.7950729047887961},{"open":"2026-07-28","expiry":"2026-08-25","size":0.75,"premium_pct":0.2882610997502276,"payoff_pct":-0.0,"pnl_pct":0.2803955527588738,"index_move_pct":3.162426372235849}]},"vrp":{"vrp":{"n_days":3009,"mean_iv":16.536095048188766,"mean_rv_next":14.05291484722401,"mean_vrp":2.4831802009647586,"median_vrp":3.2064295235838696,"pct_days_positive_vrp":79.79395147889664,"iv_over_rv_ratio":1.1767021452816446,"by_year":{"2014":{"mean_vrp":2.082996329060723,"n":154},"2015":{"mean_vrp":1.5853136640564633,"n":239},"2016":{"mean_vrp":2.245718578380804,"n":245},"2017":{"mean_vrp":3.6924451557563662,"n":248},"2018":{"mean_vrp":2.7796014782072653,"n":246},"2019":{"mean_vrp":3.319993237055589,"n":244},"2020":{"mean_vrp":2.0108579061727196,"n":250},"2021":{"mean_vrp":3.2109951270814245,"n":248},"2022":{"mean_vrp":2.99097378212956,"n":248},"2023":{"mean_vrp":2.869454266753273,"n":246},"2024":{"mean_vrp":1.4659990865728794,"n":249},"2025":{"mean_vrp":2.5142976120835896,"n":249},"2026":{"mean_vrp":0.5220116565903173,"n":143}},"worst_month_vrp":-62.976129849810945,"best_month_vrp":30.544588835534284,"midcap_nifty_vol_ratio":1.3467755962354027},"overlay":[{"label":"Nifty: covered call 4% OTM","n_cycles":146,"years":12.17,"annual_pnl_pct":2.0702156285887616,"mean_cycle_pct":0.17256164325573675,"win_rate_pct":81.5068493150685,"worst_cycle_pct":-7.703811764323182,"best_cycle_pct":2.38501064554102,"std_cycle_pct":1.242180542950783,"mean_premium_pct":0.6848928418660755,"mean_cost_pct":0.010249115019672567,"cost_as_pct_of_premium":1.4964552690823256,"pct_cycles_assigned":23.28767123287671},{"label":"Nifty: covered call 6% OTM","n_cycles":146,"years":12.17,"annual_pnl_pct":1.9421894449051653,"mean_cycle_pct":0.16189009371707236,"win_rate_pct":94.52054794520548,"worst_cycle_pct":-6.307719720882883,"best_cycle_pct":1.7850172255179184,"std_cycle_pct":0.8000667743801819,"mean_premium_pct":0.36906358725242117,"mean_cost_pct":0.006973915116648234,"cost_as_pct_of_premium":1.889624270052527,"pct_cycles_assigned":7.534246575342466},{"label":"Nifty: short put 6% OTM","n_cycles":146,"years":12.17,"annual_pnl_pct":0.4746874126938217,"mean_cycle_pct":0.03956729861183534,"win_rate_pct":95.8904109589041,"worst_cycle_pct":-20.88152073709389,"best_cycle_pct":4.128677038725297,"std_cycle_pct":1.82877864897195,"mean_premium_pct":0.24018966944496326,"mean_cost_pct":0.005637471969158046,"cost_as_pct_of_premium":2.3470917721754097,"pct_cycles_assigned":4.794520547945205},{"label":"Nifty: strangle 4% call / 6% put","n_cycles":146,"years":12.17,"annual_pnl_pct":2.5449030412825837,"mean_cycle_pct":0.2121289418675721,"win_rate_pct":80.13698630136986,"worst_cycle_pct":-20.092055801385484,"best_cycle_pct":4.512156122906788,"std_cycle_pct":2.153932564553083,"mean_premium_pct":0.9250825113110388,"mean_cost_pct":0.015886586988830612,"cost_as_pct_of_premium":1.7173156766649864,"pct_cycles_assigned":28.08219178082192},{"label":"Midcap Select: covered call 5% OTM","n_cycles":59,"years":4.91,"annual_pnl_pct":3.98498000187674,"mean_cycle_pct":0.33137665928203885,"win_rate_pct":86.4406779661017,"worst_cycle_pct":-4.248223327806313,"best_cycle_pct":2.5658311453972544,"std_cycle_pct":1.2768362445259798,"mean_premium_pct":0.8414769078377565,"mean_cost_pct":0.016921778284275997,"cost_as_pct_of_premium":2.010961694451947,"pct_cycles_assigned":22.033898305084744},{"label":"Midcap Select: covered call 8% OTM","n_cycles":59,"years":4.91,"annual_pnl_pct":3.3440264949860703,"mean_cycle_pct":0.2780772621035064,"win_rate_pct":94.91525423728814,"worst_cycle_pct":-2.034961720126948,"best_cycle_pct":1.7432851929255695,"std_cycle_pct":0.48634688917628766,"mean_premium_pct":0.3904371247594236,"mean_cost_pct":0.009538184868918394,"cost_as_pct_of_premium":2.4429502893188126,"pct_cycles_assigned":8.47457627118644},{"label":"Midcap 50: covered call 5% OTM","n_cycles":146,"years":12.17,"annual_pnl_pct":2.4735008047477685,"mean_cycle_pct":0.2061772491557449,"win_rate_pct":78.08219178082192,"worst_cycle_pct":-8.274964732882035,"best_cycle_pct":3.3113752098427605,"std_cycle_pct":1.573478871865826,"mean_premium_pct":0.9893059153760432,"mean_cost_pct":0.01934176279031895,"cost_as_pct_of_premium":1.9550841139938997,"pct_cycles_assigned":27.397260273972602},{"label":"Midcap 50: covered call 8% OTM","n_cycles":146,"years":12.17,"annual_pnl_pct":3.19283733994631,"mean_cycle_pct":0.26613713587168386,"win_rate_pct":92.46575342465754,"worst_cycle_pct":-5.93465960365671,"best_cycle_pct":2.4218243020301435,"std_cycle_pct":0.8277850839478824,"mean_premium_pct":0.5043501614987709,"mean_cost_pct":0.011402959506427385,"cost_as_pct_of_premium":2.260921156948053,"pct_cycles_assigned":8.904109589041095}]},"costs":[{"structure":"MIDCPNIFTY futures","round_turn_bp":13.986666666666668,"rolls_per_year":12,"hold_cost_pct_per_year_1x":2.5176000000000003,"premium_pct_of_notional":null},{"structure":"MIDCPNIFTY 30d ATM synthetic","round_turn_bp":6.549310961131404,"rolls_per_year":12,"hold_cost_pct_per_year_1x":1.1788759730036527,"premium_pct_of_notional":4.119632368601374},{"structure":"MIDCPNIFTY 90d ATM synthetic","round_turn_bp":17.482586002631418,"rolls_per_year":4,"hold_cost_pct_per_year_1x":1.048955160157885,"premium_pct_of_notional":7.533809623756864},{"structure":"MIDCPNIFTY 30d deep-ITM (10%) synthetic-equiv","round_turn_bp":28.378257963571777,"rolls_per_year":12,"hold_cost_pct_per_year_1x":5.10808643344292,"premium_pct_of_notional":10.64217710355383},{"structure":"Nifty futures","round_turn_bp":8.986666666666666,"rolls_per_year":12,"hold_cost_pct_per_year_1x":1.6176,"premium_pct_of_notional":null},{"structure":"Nifty 30d ATM synthetic","round_turn_bp":2.659804847050283,"rolls_per_year":12,"hold_cost_pct_per_year_1x":0.4787648724690509,"premium_pct_of_notional":2.754989733895804},{"structure":"Nifty 90d ATM synthetic","round_turn_bp":5.4962594892828225,"rolls_per_year":4,"hold_cost_pct_per_year_1x":0.3297755693569694,"premium_pct_of_notional":5.194069424587723},{"structure":"Nifty 180d ATM synthetic","round_turn_bp":13.193679088931733,"rolls_per_year":2,"hold_cost_pct_per_year_1x":0.395810372667952,"premium_pct_of_notional":7.675151468035987},{"structure":"Nifty 365d ATM synthetic","round_turn_bp":30.836437838109365,"rolls_per_year":1,"hold_cost_pct_per_year_1x":0.4625465675716405,"premium_pct_of_notional":11.455032697858499}],"checks":{"nifty_futures_index":{"start":"2016-06-24","end":"2026-08-24","n":2209,"corr_fut_vs_price":0.9900842183412399,"fut_ann_pct":8.283631727990286,"price_minus_cash_ann_pct":7.469561457055835,"basis_drag_ann_pct":0.8140702709344525,"note":"futures return minus (price return - cash) = net carry the futures holder gives up or gains, i.e. (dividend yield - basis premium)","futtri_minus_fut_ann_pct":Infinity,"cash_ann_pct":5.380485412282978},"carry_applied_ann_pct":0.8140702709344525,"coverage":{"mcs":{"first":"2021-09-15","last":"2026-08-31","n":1231},"mc50":{"first":"2012-02-21","last":"2026-08-31","n":3583},"nifty":{"first":"2012-02-21","last":"2026-08-31","n":3583},"vix":{"first":"2014-05-14","last":"2026-08-31","n":3030},"rate1d":{"first":"2016-06-23","last":"2026-08-26","n":2295},"futidx":{"first":"2016-06-16","last":"2026-08-26","n":2310}},"rows":3583,"midcap_proxy_corr_vs_mcs":{"mc50":0.9765698250834969,"mc100":0.9591741990740601,"mc150":0.9526364690823328},"midcap_proxy_overlap":{"start":"2021-09-16","end":"2026-08-31","n":1230},"annualised_price_return_pct":{"mcs":16.15710719709773,"mc50":15.250241382758723,"nifty":10.796780832873631},"annualised_vol_pct":{"mcs":18.651327250755596,"mc50":21.3242493110218,"nifty":16.05569583306698}}};
+const $ = (s, r=document) => r.querySelector(s);
+const NS='http://www.w3.org/2000/svg';
+const fmt = {
+  pct:(v,d=2,sign=false)=> v==null||!isFinite(v)?'—':((sign&&v>0?'+':'')+v.toFixed(d)+'%'),
+  num:(v,d=2)=> v==null||!isFinite(v)?'—':v.toFixed(d),
+  int:v=> v==null?'—':Math.round(v).toLocaleString('en-US'),
+  money:v=> v==null?'—':'$'+Math.round(v).toLocaleString('en-US'),
+  mon:(m)=>{ if(!m) return '—'; const [y,mm]=m.split('-'); return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mm-1]+' '+y; }
+};
+const cls=v=> v==null?'':(v>0?'pos':v<0?'neg':'');
+function el(tag, attrs={}, parent){ const e=document.createElementNS(NS, tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(parent) parent.appendChild(e); return e; }
+function h(tag, attrs={}, html){ const e=document.createElement(tag); for(const k in attrs) e.setAttribute(k, attrs[k]); if(html!=null) e.innerHTML=html; return e; }
+function niceTicks(a,b,n=5){ const span=b-a||1; const step0=span/n; const mag=Math.pow(10,Math.floor(Math.log10(step0))); const norm=step0/mag; const step=(norm<1.5?1:norm<3?2:norm<7?5:10)*mag; const t=[]; for(let v=Math.ceil(a/step)*step; v<=b+1e-9; v+=step) t.push(+v.toFixed(10)); return t; }
+const tip=$('#tip');
+function showTip(ev, html){ tip.innerHTML=html; tip.style.display='block'; const w=tip.offsetWidth, hh=tip.offsetHeight; let x=ev.clientX+14, y=ev.clientY+14; if(x+w>window.innerWidth-8) x=ev.clientX-w-14; if(y+hh>window.innerHeight-8) y=ev.clientY-hh-14; tip.style.left=x+'px'; tip.style.top=y+'px'; }
+function hideTip(){ tip.style.display='none'; }
+
+/* ---------- line / area chart ---------- */
+function lineChart(node, cfg){
+  const W=cfg.width||960, H=cfg.height||300, m={t:16,r:cfg.rightPad==null?(W<700?84:92):cfg.rightPad,b:30,l:cfg.leftPad||56};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b, n=cfg.x.length;
+  const xs=i=> m.l + (n>1? i/(n-1)*iw : 0);
+  const vals=[]; cfg.series.forEach(s=> s.values.forEach(v=>{ if(v!=null&&isFinite(v)) vals.push(v);}));
+  let y0,y1;
+  if(cfg.yDomain){ [y0,y1]=cfg.yDomain; } else { y0=Math.min(...vals); y1=Math.max(...vals); if(cfg.includeZero){y0=Math.min(0,y0);y1=Math.max(0,y1);} if(cfg.yType!=='log'){ const pad=(y1-y0)*0.07; y0-=pad; y1+=pad; } else { y0*=0.85; y1*=1.15; } }
+  let ys, ticks;
+  if(cfg.yType==='log'){ const l0=Math.log10(y0), l1=Math.log10(y1); ys=v=> m.t+ih-(Math.log10(v)-l0)/(l1-l0)*ih; ticks=[]; for(let e=Math.floor(l0); e<=Math.ceil(l1); e++) for(const k of [1,2,5]){ const v=k*Math.pow(10,e); if(v>=y0&&v<=y1) ticks.push(v);} }
+  else { ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih; ticks=niceTicks(y0,y1,cfg.nTicks||5); }
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  if(cfg.shade) cfg.shade.forEach(s=>{ el('rect',{x:xs(s.from),y:m.t,width:xs(s.to)-xs(s.from),height:ih,class:'shade'},svg); if(s.label){ const t=el('text',{x:xs(s.from)+8,y:m.t+14,class:'shade-label'},svg); t.textContent=s.label; } });
+  ticks.forEach(t=>{ const y=ys(t); el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'grid'},svg); const tx=el('text',{x:m.l-8,y:y+4,class:'tick','text-anchor':'end'},svg); tx.textContent=cfg.yFmt?cfg.yFmt(t):t; });
+  if(cfg.yType!=='log' && y0<0 && y1>0) el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  (cfg.refLines||[]).forEach(r=>{ if(r.y>=y0&&r.y<=y1){ el('line',{x1:m.l,x2:m.l+iw,y1:ys(r.y),y2:ys(r.y),class:'ref'},svg); const t=el('text',{x:m.l+iw-4,y:ys(r.y)-5,class:'annot','text-anchor':'end'},svg); t.textContent=r.label; } });
+  const xt = cfg.xTicks || cfg.x.map((lab,i)=> lab.endsWith('-01')?i:null).filter(i=>i!=null);
+  xt.forEach(i=>{ el('line',{x1:xs(i),x2:xs(i),y1:m.t+ih,y2:m.t+ih+4,class:'grid'},svg); const tx=el('text',{x:xs(i),y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=cfg.xFmt?cfg.xFmt(cfg.x[i]):cfg.x[i].slice(0,4); });
+  cfg.series.forEach(s=>{
+    let d='', pen=false, first=null, last=null;
+    s.values.forEach((v,i)=>{ if(v==null||!isFinite(v)){pen=false;return;} d+=(pen?'L':'M')+xs(i).toFixed(1)+' '+ys(v).toFixed(1); pen=true; if(first==null) first=i; last=i; });
+    if(s.area && first!=null){ let a='M'+xs(first).toFixed(1)+' '+ys(0).toFixed(1); s.values.forEach((v,i)=>{ if(v==null) return; a+='L'+xs(i).toFixed(1)+' '+ys(v).toFixed(1); }); a+='L'+xs(last).toFixed(1)+' '+ys(0).toFixed(1)+'Z'; el('path',{d:a,class:'area '+s.cls},svg); }
+    const p=el('path',{d,class:'line '+s.cls,fill:'none'},svg); if(s.dash) p.setAttribute('stroke-dasharray','5 4');
+    if(cfg.endLabels!==false && last!=null){ const t=el('text',{x:m.l+iw+8,y:ys(s.values[last])+4,class:'endlabel '+s.cls},svg); t.textContent=(s.short||s.name)+' '+(cfg.yFmt?cfg.yFmt(s.values[last]):s.values[last]); }
+  });
+  if(cfg.endLabels!==false){ // de-collide end labels
+    const labs=[...svg.querySelectorAll('.endlabel')].sort((a,b)=>+a.getAttribute('y')-+b.getAttribute('y')); for(let i=1;i<labs.length;i++){ const prev=+labs[i-1].getAttribute('y'), cur=+labs[i].getAttribute('y'); if(cur-prev<13) labs[i].setAttribute('y',prev+13); } }
+  const hl=el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,class:'crosshair',style:'display:none'},svg);
+  const dots=cfg.series.map(s=> el('circle',{r:4,class:'dot '+s.cls,style:'display:none'},svg));
+  const overlay=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent'},svg);
+  overlay.addEventListener('mousemove',ev=>{ const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W; const i=Math.max(0,Math.min(n-1,Math.round((px-m.l)/iw*(n-1)))); hl.setAttribute('x1',xs(i)); hl.setAttribute('x2',xs(i)); hl.style.display='';
+    let rows=`<div class="tip-h">${cfg.xTip?cfg.xTip(cfg.x[i]):fmt.mon(cfg.x[i])}</div>`;
+    cfg.series.forEach((s,k)=>{ const v=s.values[i]; if(v==null){dots[k].style.display='none';} else {dots[k].setAttribute('cx',xs(i)); dots[k].setAttribute('cy',ys(v)); dots[k].style.display='';} rows+=`<div class="tip-r"><span><i class="sw ${s.cls}"></i> ${s.name}</span><b>${v==null?'—':(cfg.tipFmt||cfg.yFmt||(x=>x))(v)}</b></div>`; });
+    (cfg.extraTip||[]).forEach(e=>{ rows+=`<div class="tip-r"><span>${e.name}</span><b>${e.fmt(e.values[i])}</b></div>`; });
+    showTip(ev, rows); });
+  overlay.addEventListener('mouseleave',()=>{hl.style.display='none';dots.forEach(d=>d.style.display='none');hideTip();});
+}
+
+/* ---------- grouped bar chart ---------- */
+function barChart(node, cfg){
+  const W=cfg.width||960, H=cfg.height||300, m={t:20,r:16,b:cfg.rotateLabels?86:30,l:52};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b, n=cfg.cats.length;
+  const vals=[]; cfg.series.forEach(s=> s.values.forEach(v=>{ if(v!=null) vals.push(v);}));
+  let y0=Math.min(0,...vals), y1=Math.max(0,...vals); const pad=(y1-y0)*0.1; y0-= (y0<0?pad:0); y1+=pad;
+  const ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':cfg.aria||''},node);
+  niceTicks(y0,y1,5).forEach(t=>{ const y=ys(t); el('line',{x1:m.l,x2:m.l+iw,y1:y,y2:y,class:'grid'},svg); const tx=el('text',{x:m.l-8,y:y+4,class:'tick','text-anchor':'end'},svg); tx.textContent=cfg.yFmt?cfg.yFmt(t):t; });
+  el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg);
+  (cfg.refLines||[]).forEach(r=>{ if(r.y>=y0&&r.y<=y1){ el('line',{x1:m.l,x2:m.l+iw,y1:ys(r.y),y2:ys(r.y),class:'ref'},svg); const t=el('text',{x:m.l+iw-4,y:ys(r.y)-5,class:'annot','text-anchor':'end'},svg); t.textContent=r.label; } });
+  const gw=iw/n, k=cfg.series.length, bw=Math.min(28, gw*0.72/k), gap=2;
+  cfg.cats.forEach((c,i)=>{ const cx=m.l+gw*i+gw/2;
+    if(cfg.rotateLabels){ const tx=el('text',{x:cx,y:m.t+ih+12,class:'tick','text-anchor':'end',transform:`rotate(-40 ${cx} ${m.t+ih+12})`},svg); tx.textContent=c; }
+    else { const tx=el('text',{x:cx,y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=c; }
+    cfg.series.forEach((s,j)=>{ const v=s.values[i]; if(v==null) return; const x=cx-(k*bw+(k-1)*gap)/2+j*(bw+gap); const y=Math.min(ys(v),ys(0)); const hgt=Math.max(1,Math.abs(ys(v)-ys(0)));
+      const r=el('rect',{x,y,width:bw,height:hgt,rx:2,class:'bar '+s.cls},svg);
+      r.addEventListener('mousemove',ev=>{ let rows=`<div class="tip-h">${cfg.catTip?cfg.catTip(c,i):c}</div>`; cfg.series.forEach(ss=>{ rows+=`<div class="tip-r"><span><i class="sw ${ss.cls}"></i> ${ss.name}</span><b>${cfg.yFmt(ss.values[i])}</b></div>`; }); (cfg.extraTip||[]).forEach(e=>{ rows+=`<div class="tip-r"><span>${e.name}</span><b>${e.fmt(e.values[i])}</b></div>`; }); showTip(ev,rows); });
+      r.addEventListener('mouseleave',hideTip);
+      if(s.label){ const t=el('text',{x:x+bw/2,y: v>=0? y-4 : y+hgt+11, class:'barlabel','text-anchor':'middle'},svg); t.textContent=cfg.labelFmt?cfg.labelFmt(v):v; }
+    });
+  });
+}
+
+/* ---------- scatter ---------- */
+function scatter(node, pts, cfg){
+  const W=cfg.width||960, H=cfg.height||440, m={t:16,r:20,b:34,l:54};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const xv=pts.map(p=>p.spy), yv=pts.map(p=>p.strategy);
+  const x0=Math.floor(Math.min(...xv)/5)*5-1, x1=Math.ceil(Math.max(...xv)/5)*5+1, y0=Math.floor(Math.min(...yv)/5)*5-2, y1=Math.ceil(Math.max(...yv)/5)*5+2;
+  const xs=v=> m.l+(v-x0)/(x1-x0)*iw, ys=v=> m.t+ih-(v-y0)/(y1-y0)*ih;
+  node.innerHTML='';
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart',role:'img','aria-label':'Monthly strategy return versus SPY return'},node);
+  el('rect',{x:xs(x0),y:ys(y1),width:xs(0)-xs(x0),height:ys(0)-ys(y1),class:'quad-pos'},svg);
+  el('rect',{x:xs(x0),y:ys(0),width:xs(0)-xs(x0),height:ys(y0)-ys(0),class:'quad-neg'},svg);
+  niceTicks(y0,y1,6).forEach(t=>{ el('line',{x1:m.l,x2:m.l+iw,y1:ys(t),y2:ys(t),class:'grid'},svg); const tx=el('text',{x:m.l-8,y:ys(t)+4,class:'tick','text-anchor':'end'},svg); tx.textContent=fmt.pct(t,0); });
+  niceTicks(x0,x1,6).forEach(t=>{ el('line',{x1:xs(t),x2:xs(t),y1:m.t,y2:m.t+ih,class:'grid'},svg); const tx=el('text',{x:xs(t),y:m.t+ih+18,class:'tick','text-anchor':'middle'},svg); tx.textContent=fmt.pct(t,0); });
+  el('line',{x1:m.l,x2:m.l+iw,y1:ys(0),y2:ys(0),class:'zero'},svg); el('line',{x1:xs(0),x2:xs(0),y1:m.t,y2:m.t+ih,class:'zero'},svg);
+  const lo=Math.max(x0,y0), hi=Math.min(x1,y1); el('line',{x1:xs(lo),y1:ys(lo),x2:xs(hi),y2:ys(hi),class:'ref'},svg);
+  const nn=pts.length, mx=xv.reduce((a,b)=>a+b,0)/nn, my=yv.reduce((a,b)=>a+b,0)/nn; let sxy=0,sxx=0; for(let i=0;i<nn;i++){sxy+=(xv[i]-mx)*(yv[i]-my); sxx+=(xv[i]-mx)**2;} const beta=sxy/sxx, alpha=my-beta*mx;
+  el('line',{x1:xs(x0),y1:ys(alpha+beta*x0),x2:xs(x1),y2:ys(alpha+beta*x1),class:'fit'},svg);
+  const a1=el('text',{x:xs(x1)-6,y:ys(alpha+beta*x1)-8,class:'annot','text-anchor':'end'},svg); a1.textContent=`fit: β = ${beta.toFixed(2)}, α = ${fmt.pct(alpha,2,true)} / month`;
+  const a2=el('text',{x:xs(x0)+8,y:ys(y1)+14,class:'annot'},svg); a2.textContent='SPY down, strategy up';
+  const a3=el('text',{x:xs(x0)+8,y:ys(y0)-8,class:'annot'},svg); a3.textContent='SPY down, strategy down';
+  const a4=el('text',{x:m.l+iw-6,y:m.t+ih-8,class:'annot','text-anchor':'end'},svg); a4.textContent='SPY monthly return →';
+  pts.forEach(p=>{ const c=el('circle',{cx:xs(p.spy),cy:ys(p.strategy),r:4.5,class:'pt'+(p.period==='commingled_fund'?' hollow':'')},svg);
+    c.addEventListener('mousemove',ev=> showTip(ev,`<div class="tip-h">${fmt.mon(p.month)}</div><div class="tip-r"><span>Strategy</span><b>${fmt.pct(p.strategy,2,true)}</b></div><div class="tip-r"><span>SPY</span><b>${fmt.pct(p.spy,2,true)}</b></div><div class="tip-r"><span>Excess</span><b>${fmt.pct(p.strategy-p.spy,2,true)}</b></div>`)); c.addEventListener('mouseleave',hideTip); });
+  return {beta, alpha};
+}
+
+/* ---------- helpers for tables ---------- */
+function table(cols, rows, opts={}){ const t=h('table',{class:opts.cls||''}); const thead=h('thead'); const tr=h('tr'); cols.forEach(c=> tr.appendChild(h('th',{class:c.cls||''},c.label))); thead.appendChild(tr); t.appendChild(thead); const tb=h('tbody'); rows.forEach(r=>{ const trr=h('tr',{class:r._cls||''}); cols.forEach(c=>{ const v=r[c.key]; const td=h('td',{class:(c.cls||'')+' '+(c.color?cls(v):'')}, c.fmt?c.fmt(v,r):v); trr.appendChild(td); }); tb.appendChild(trr); }); t.appendChild(tb); return t; }
+
+
+const M=D.model, V=D.vrp, CH=D.checks;
+const OOS=M.oos, MCS='Midcap Select, 2021-09+', MC50='Midcap 50, 2020+';
+const g=(w,v)=>OOS.find(r=>r.window===w && r.variant===v);
+const futs=g(MCS,'buy & hold 1x, futures, no overlay'), syn=g(MCS,'buy & hold 1x, synthetic, no overlay');
+const otm=M.chosen.call_otm, CL=M.chosen._constant_leverage;
+const synOv=g(MCS,`buy & hold 1x, synthetic + ${(otm*100).toFixed(0)}% call overlay`);
+const model=g(MCS,'MODEL as chosen on development'), modelFut=g(MCS,'MODEL but on futures (cost check)');
+const modelNoOv=g(MCS,'MODEL without overlay (overlay check)'), volSized=g(MCS,'vol-sized instead of constant (sizing check)');
+const m50=g(MC50,'MODEL as chosen on development'), m50f=g(MC50,'buy & hold 1x, futures, no overlay');
+
+$('#m-pos').textContent=`${CL}× Nifty Midcap Select, held as an at-the-money option synthetic`;
+$('#m-ov').textContent=`Short one monthly call ${(otm*100).toFixed(0)}% out of the money against the position`;
+$('#m-trade').textContent=`${fmt.num(model.changes_per_year,1)} exposure changes a year, plus twelve scheduled option cycles`;
+$('#chg').textContent=fmt.num(model.changes_per_year,1);
+
+const kpis=[
+ {l:'Annualised return', v:fmt.pct(model.cagr_pct,2), s:`futures buy & hold <b>${fmt.pct(futs.cagr_pct,2)}</b>`},
+ {l:'Maximum drawdown', v:fmt.pct(model.max_dd_pct,2), s:`against <b>${fmt.pct(futs.max_dd_pct,1)}</b>`},
+ {l:'Sharpe ratio', v:fmt.num(model.sharpe,2), s:`against <b>${fmt.num(futs.sharpe,2)}</b>`},
+ {l:'Calmar ratio', v:fmt.num(model.calmar,2), s:`against <b>${fmt.num(futs.calmar,2)}</b>`},
+ {l:'Volatility', v:fmt.pct(model.vol_pct,1), s:`against <b>${fmt.pct(futs.vol_pct,1)}</b>`},
+ {l:'Exposure changes', v:fmt.num(model.changes_per_year,1), s:'a year — there is no timing engine'},
+];
+$('#kpis').append(...kpis.map(k=>h('div',{class:'kpi'},`<div class="eyebrow">${k.l}</div><div class="v">${k.v}</div><div class="s"><span>Sep 2021 – Aug 2026</span><span>${k.s}</span></div>`)));
+
+$('#verdict-text').innerHTML=`<p>On Nifty Midcap Select out of sample, the model returned <b>${fmt.pct(model.cagr_pct,2)}</b> a year against <b>${fmt.pct(futs.cagr_pct,2)}</b> for the same index held one-for-one through futures — while running <b>${fmt.pct(futs.vol_pct-model.vol_pct,1)} less volatility</b> and cutting the worst drawdown from ${fmt.pct(futs.max_dd_pct,1)} to <b>${fmt.pct(model.max_dd_pct,2)}</b>. Sharpe rises from ${fmt.num(futs.sharpe,2)} to <b>${fmt.num(model.sharpe,2)}</b> and Calmar from ${fmt.num(futs.calmar,2)} to <b>${fmt.num(model.calmar,2)}</b>.</p>
+<p>It does this while holding only <b>${CL}×</b> exposure and changing that exposure <b>${fmt.num(model.changes_per_year,1)} times a year</b>. On the longer Midcap 50 window the pattern repeats: <b>${fmt.pct(m50.cagr_pct,2)}</b> against ${fmt.pct(m50f.cagr_pct,2)} for futures buy-and-hold, at ${fmt.pct(m50.vol_pct,1)} volatility against ${fmt.pct(m50f.vol_pct,1)}.</p>
+<p>Nothing in this comes from predicting the market. It comes from paying less to hold the position and being paid for selling volatility that was systematically overpriced.</p>`;
+
+/* rules */
+const rules=[['1','Hold '+CL+'× Midcap Select, always',`Buy a near-the-money MIDCPNIFTY call and sell the same-strike put to build a delta-one long. The payoff matches the future; the tax and exchange charges fall on about 4% of notional in premium instead of on 100% of it. Exposure stays at ${CL}× regardless of what the market is doing.`],
+ ['2','Sell a '+(otm*100).toFixed(0)+'% out-of-the-money call each month',`At each monthly expiry, write one call ${(otm*100).toFixed(0)}% above spot against the position, sized to the exposure held. This is a covered call: the upside above that strike is sold, and the premium is kept.`],
+ ['3','Square off, never let anything expire in the money',`An in-the-money option allowed to expire attracts 0.125% securities transaction tax on its full intrinsic settlement value. Close both the synthetic and any in-the-money short call before expiry, then reopen in the next series.`],
+ ['4','Do not time the market',`No trend filter, no volatility regime, no drawdown exit. Every one of those was tested on the development window and every one lowered the Sharpe ratio. The exposure level is a policy decision, not a forecast.`]];
+$('#rules').append(...rules.flatMap(([n,t,d])=>[h('div',{class:'n'},n),h('div',{class:'b'},`<h4>${t}</h4><p>${d}</p>`)]));
+$('#cycle').innerHTML=`<b>On monthly expiry day (last Tuesday), near the close:</b>
+
+1.  Close the expiring synthetic
+      buy back the short put, sell the long call
+2.  Close the short ${(otm*100).toFixed(0)}% call if it is in the money
+      let it lapse only if it is out of the money
+3.  Reopen the synthetic in the next series
+      buy the ATM call, sell the ATM put
+      size = ${CL} × capital ÷ index level
+4.  Write the new ${(otm*100).toFixed(0)}% out-of-the-money call
+      same expiry, same number of lots as the position
+
+<b>On every other day:</b> nothing.`;
+
+/* waterfall */
+(function(){
+  const steps=[['Buy & hold 1×, through futures', futs.cagr_pct, null],
+    ['Switch the wrapper to an option synthetic', syn.cagr_pct, syn.cagr_pct-futs.cagr_pct],
+    ['Add the '+(otm*100).toFixed(0)+'% covered call overlay', synOv.cagr_pct, synOv.cagr_pct-syn.cagr_pct],
+    ['Hold '+CL+'× instead of 1×', model.cagr_pct, model.cagr_pct-synOv.cagr_pct]];
+  const w=$('#water');
+  steps.forEach(([l,v,d],i)=>{ w.appendChild(h('div',{class:'lab'+(i===steps.length-1?' tot':'')}, l + (d!=null?` <span class="${d>0?'pos':'neg'}">${fmt.pct(d,2,true)}</span>`:'')));
+    w.appendChild(h('div',{class:'v'+(i===steps.length-1?' tot':'')}, fmt.pct(v,2))); });
+  $('#water-note').innerHTML=`The wrapper is worth <b>${fmt.pct(syn.cagr_pct-futs.cagr_pct,2)}</b> a year and the overlay <b>${fmt.pct(synOv.cagr_pct-syn.cagr_pct,2)}</b>. Cutting exposure to ${CL}× costs <b>${fmt.pct(model.cagr_pct-synOv.cagr_pct,2)}</b> of return but buys a drawdown of ${fmt.pct(model.max_dd_pct,1)} against ${fmt.pct(synOv.max_dd_pct,1)} and volatility of ${fmt.pct(model.vol_pct,1)} against ${fmt.pct(synOv.vol_pct,1)} — the reason development preferred it. Running the same model at 1× is a legitimate choice if the mandate tolerates the risk.`;
+})();
+(function(){
+  const rows=OOS.filter(r=>r.window===MCS).map(r=>({v:r.variant, c:r.cagr_pct, vo:r.vol_pct, s:r.sharpe, so:r.sortino, d:r.max_dd_pct, k:r.calmar, l:r.avg_lev, ch:r.changes_per_year,
+    _cls: r.variant.startsWith('MODEL as')?'win':(r.variant.includes('synthetic +')?'hi':'')}));
+  $('#t-oos').appendChild(table([{key:'v',label:'Variant',cls:'lbl'},{key:'c',label:'Return',fmt:v=>fmt.pct(v,2),color:true},
+    {key:'vo',label:'Vol',fmt:v=>fmt.pct(v,1)},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max DD',fmt:v=>fmt.pct(v,1),color:true},
+    {key:'k',label:'Calmar',fmt:v=>fmt.num(v,2)}],rows,{cls:'tbl-compact'}));
+})();
+(function(){
+  const pick=[['Futures 1×',futs,m50f],['Synthetic 1×',syn,g(MC50,'buy & hold 1x, synthetic, no overlay')],
+    ['Synthetic + overlay',synOv,g(MC50,`buy & hold 1x, synthetic + ${(otm*100).toFixed(0)}% call overlay`)],
+    ['MODEL',model,m50],['Vol-sized',volSized,g(MC50,'vol-sized instead of constant (sizing check)')]];
+  barChart($('#c-cmp'),{cats:pick.map(p=>p[0]),height:320,yFmt:v=>fmt.pct(v,0),
+    series:[{name:'Return',values:pick.map(p=>p[1].cagr_pct),cls:'a'},{name:'Volatility',values:pick.map(p=>p[1].vol_pct),cls:'b'},{name:'Max drawdown',values:pick.map(p=>Math.abs(p[1].max_dd_pct)),cls:'c'}],
+    catTip:c=>c+' — Midcap Select', extraTip:[{name:'Sharpe',values:pick.map(p=>p[1].sharpe),fmt:v=>fmt.num(v,2)},{name:'Midcap 50 return',values:pick.map(p=>p[2]?p[2].cagr_pct:null),fmt:v=>v==null?'—':fmt.pct(v,2)}]});
+})();
+
+/* vrp */
+(function(){
+  const v=V.vrp;
+  const tiles=[['Mean implied minus realised', fmt.num(v.mean_vrp,2)+' pts', `India VIX averaged ${fmt.pct(v.mean_iv,2)} against ${fmt.pct(v.mean_rv_next,2)} realised over the following month, across ${fmt.int(v.n_days)} days.`],
+    ['Days implied exceeded realised', fmt.pct(v.pct_days_positive_vrp,1), `The ratio of implied to realised averaged ${fmt.num(v.iv_over_rv_ratio,2)}×. Selling that gap is the overlay's entire thesis.`],
+    ['Years with a positive premium', Object.keys(v.by_year).filter(y=>v.by_year[y].mean_vrp>0).length + ' of ' + Object.keys(v.by_year).length, `Including 2020. The premium narrowed in 2024 and 2026 but never inverted on an annual average.`]];
+  $('#vrp-tiles').append(...tiles.map(([l,val,s])=>h('div',{class:'card'},`<div class="eyebrow">${l}</div><div style="font-family:var(--serif);font-size:34px;line-height:1;margin:6px 0">${val}</div><p class="sub" style="margin:0;color:var(--ink-2)">${s}</p>`)));
+  const ys=Object.keys(v.by_year).sort();
+  barChart($('#c-vrp'),{cats:ys,width:600,height:280,yFmt:x=>fmt.num(x,1),
+    series:[{name:'Implied minus realised (points)',values:ys.map(y=>v.by_year[y].mean_vrp),cls:'c'}],
+    catTip:y=>y+' — '+v.by_year[y].n+' observations'});
+  const cyc=M.overlay_cycles_mcs||[];
+  const assigned=cyc.filter(c=>c.payoff_pct<0);
+  $('#cyc-sub').innerHTML=`${cyc.length} monthly cycles on Midcap Select. The call finished in the money in <b>${assigned.length}</b> of them (${fmt.pct(assigned.length/cyc.length*100,0)}). Worst single cycle <b>${fmt.pct(Math.min(...cyc.map(c=>c.pnl_pct)),2)}</b>; average premium collected ${fmt.pct(cyc.reduce((a,c)=>a+c.premium_pct,0)/cyc.length,2)} of notional.`;
+  const worst=[...cyc].sort((a,b)=>a.pnl_pct-b.pnl_pct).slice(0,6);
+  $('#t-cyc').appendChild(table([{key:'expiry',label:'Cycle ending',cls:'lbl'},{key:'index_move_pct',label:'Index move',fmt:v=>fmt.pct(v,2,true),color:true},
+    {key:'premium_pct',label:'Premium',fmt:v=>fmt.pct(v,2)},{key:'payoff_pct',label:'Paid on assignment',fmt:v=>fmt.pct(v,2)},{key:'pnl_pct',label:'Cycle P&L',fmt:v=>fmt.pct(v,2,true),color:true}],worst,{cls:'tbl-compact'}));
+})();
+
+/* risk */
+(function(){
+  const iv=M.iv_sensitivity||[];
+  const at1=iv.find(r=>r.vol_ratio===1.0&&r.window==='Midcap Select'), at135=iv.find(r=>r.vol_ratio===1.35&&r.window==='Midcap Select');
+  $('#risk-text').innerHTML=`India VIX measures implied volatility on the <b>Nifty</b>, not on midcaps. No published implied-volatility index exists for Midcap Select, so the model estimates midcap implied volatility as India VIX multiplied by <b>${fmt.num(V.vrp.midcap_nifty_vol_ratio,2)}</b> — the ratio of their <em>realised</em> volatilities. If midcap options are in fact priced at the same implied volatility as Nifty options, the overlay contributes <b>${fmt.pct(at1.overlay_pct,2)}</b> a year instead of ${fmt.pct(at135.overlay_pct,2)}, and the model's return falls from ${fmt.pct(at135.cagr_pct,2)} to <b>${fmt.pct(at1.cagr_pct,2)}</b> — below plain synthetic buy-and-hold. Everything else in this note is robust; this single number is not, and it is cheap to check.`;
+  const rows=iv.map(r=>({r:r.vol_ratio, w:r.window, c:r.cagr_pct, s:r.sharpe, d:r.max_dd_pct, o:r.overlay_pct, _cls:r.vol_ratio===1.35?'hi':''}));
+  $('#t-iv').appendChild(table([{key:'r',label:'Midcap IV ÷ India VIX',cls:'lbl',fmt:v=>fmt.num(v,2)+'×'},{key:'w',label:'Window',cls:'lbl'},
+    {key:'o',label:'Overlay adds',fmt:v=>fmt.pct(v,2,true),color:true},{key:'c',label:'Model return',fmt:v=>fmt.pct(v,2),color:true},
+    {key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)}],rows,{cls:'tbl-compact'}));
+})();
+
+/* ops */
+const ops=[['Roll on expiry day, not before','The premium decays fastest in the final week, so the overlay is collecting most of its income in the days you would give away by rolling early.'],
+ ['Size the call to the position, not to the capital',`At ${CL}× exposure you write ${CL} calls per unit of capital. Writing more turns a covered call into a naked short and changes the risk profile completely.`],
+ ['Never let an in-the-money option go to exercise','The 0.125% settlement tax on intrinsic value is larger than a month of overlay premium. Square off.'],
+ ['Watch the far-month liquidity before extending tenor','A quarterly synthetic is cheaper on paper than three monthly ones, but only if the far-month MIDCPNIFTY strikes actually quote. Check depth before assuming the saving.'],
+ ['Track realised versus implied yourself','Keep a rolling log of the implied volatility you sold at and the volatility that followed. That series is the model\'s health monitor.']];
+$('#ops-list').append(...ops.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+const stops=[['The measured midcap implied-to-Nifty ratio settles below about 1.15','At that level the overlay stops paying for its own risk and the model should revert to plain synthetic buy-and-hold.'],
+ ['The premium turns negative for two consecutive quarters','A persistent inversion of implied against realised volatility means the market has repriced, and the thesis is gone rather than merely quiet.'],
+ ['Bid-ask on the 6% strike widens beyond about 150 basis points of premium','Spread is a bigger threat to this model than any market move, because it is paid every single month.'],
+ ['Regulation changes the tax base','If securities transaction tax on options moves from premium to notional, the entire architecture loses its advantage overnight and futures become the honest choice again.']];
+$('#stop-list').append(...stops.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+
+/* limits */
+const lims=[['Option prices are modelled, not observed','Premiums are Black-Scholes values from a scaled India VIX with an assumed 70 basis point half-spread. No MIDCPNIFTY option quotes were available to this study. The overlay contribution is therefore an estimate with the sensitivity shown above.'],
+ ['Midcap Select has five years of history',`The index begins ${CH.coverage.mcs.first}. Development used Nifty Midcap 50, which reaches back to ${CH.coverage.mc50.first} and correlates ${fmt.num(CH.midcap_proxy_corr_vs_mcs.mc50,3)} with Midcap Select, but is not the same index.`],
+ ['One market regime','Both test windows are dominated by a midcap bull market. A covered-call overlay looks its best in a rising-but-not-exploding market and its worst in a violent melt-up, which this sample lacks.'],
+ ['Margin is not modelled','The synthetic\'s short put and the overlay\'s short call both attract SPAN and exposure margin. The model reports exposure, not capital efficiency, and a real implementation may be margin-bound before it is cost-bound.'],
+ ['Tax on the strategy\'s own gains is ignored','Securities transaction tax and exchange charges are modelled; income tax treatment of derivative gains is not. For an Indian investor that is a material omission in any comparison against holding a midcap fund.'],
+ ['The unlevered fund alternative is not tested','A plain midcap index fund pays no roll cost and no option spread. It is the honest benchmark for anyone who does not need the leverage or the overlay, and this note does not price it.']];
+$('#limits-list').append(...lims.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+</script>
