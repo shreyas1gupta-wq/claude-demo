@@ -120,7 +120,7 @@ tbody tr:hover td{background:var(--paper)}
 .fig svg .mark{transition:opacity .12s}
 .fig svg .mark:hover,.fig svg .mark:focus{opacity:.78;outline:none}
 .fig svg .hit{fill:transparent}
-.small-multiples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.small-multiples{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:18px 24px}
 .small-multiples h4{margin:0 0 4px;font-size:13px;font-weight:700;color:var(--ink2)}
 .small-multiples .unit{font-size:11.5px;color:var(--muted);font-weight:500}
 
@@ -234,6 +234,7 @@ const fmt = (v, d) => { if (v==null || isNaN(v)) return '–'; const n = Number(
 const pct = v => v==null||isNaN(v) ? '–' : (Number(v)>0?'+':'') + fmt(v,1) + '%';
 const cr = v => v==null||isNaN(v) ? '–' : (Number(v)<0?'−':'') + '₹' + fmt(Math.abs(v), Math.abs(v)>=100?0:1) + ' Cr';
 const num = s => { if (typeof s==='number') return s; if (s==null) return null; const m = String(s).replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) * (String(s).trim().startsWith('−')?-1:1) : null; };
+const shortLabel = (s, n, keep) => { let x=String(s||'').replace(/\s*\([^)]*\)?/g,'').trim(); if (!keep) x=x.split(/\s*[—–:;,]\s+/)[0].trim() || x; return x.length>n ? x.slice(0,n-1)+'…' : x; };
 const wrapText = (s, n) => { const words = String(s).split(/\s+/), lines=[]; let cur=''; words.forEach(w=>{ if ((cur+' '+w).trim().length>n && cur){ lines.push(cur); cur=w; } else cur=(cur+' '+w).trim(); }); if (cur) lines.push(cur); return lines; };
 
 /* ---------- tooltip ---------- */
@@ -329,7 +330,7 @@ function stackedHBar(container, rows, series, opt){
 
 /* ---------- chart: scatter (risk/return) ---------- */
 function scatter(container, pts, opt){
-  opt=opt||{}; container.innerHTML=''; const W=widthOf(container); const H=Math.min(460, Math.max(300, W*0.6)); const padL=48,padR=90,padT=16,padB=40;
+  opt=opt||{}; container.innerHTML=''; const W=widthOf(container); const H=Math.min(560, Math.max(320, W*0.7)); const padL=48,padR=110,padT=16,padB=40;
   const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
   const xs=pts.map(p=>p.x), ys=pts.map(p=>p.y); const xmin=0, xmax=Math.max(...xs)*1.12||1; const ymin=Math.min(0,...ys), ymax=Math.max(...ys)*1.12||1;
   const sx=v=>padL+(v-xmin)/(xmax-xmin)*(W-padL-padR), sy=v=>H-padB-(v-ymin)/(ymax-ymin)*(H-padT-padB);
@@ -339,15 +340,17 @@ function scatter(container, pts, opt){
   S('text',{x:(padL+W-padR)/2,y:H-6,'text-anchor':'middle',class:'axis',text:opt.xLabel||'Expected volatility (annualised)'},svg);
   const yl=S('text',{x:12,y:(padT+H-padB)/2,'text-anchor':'middle',class:'axis',text:opt.yLabel||'Expected return p.a.'},svg); yl.setAttribute('transform','rotate(-90 12 '+((padT+H-padB)/2)+')');
   // label collision avoidance: greedy nudging of label boxes
-  const placed=[];
+  const placed=pts.map(p=>({x:sx(p.x)-8,y:sy(p.y)-8,w:16,h:16}));
   pts.slice().sort((a,b)=>b.emph-a.emph || a.y-b.y).forEach(p=>{
     const cx=sx(p.x), cy=sy(p.y);
     if (p.emph){ const d=S('path',{d:'M'+cx+' '+(cy-8)+' L'+(cx+8)+' '+cy+' L'+cx+' '+(cy+8)+' L'+(cx-8)+' '+cy+'Z',class:'mark'},svg); d.style.fill='var(--accent)'; d.style.stroke='var(--surface)'; d.style.strokeWidth='2'; hover(d,p.label,p.rows); }
     else { const c=S('circle',{cx:cx,cy:cy,r:5.5,class:'mark'},svg); c.style.fill='var(--s1)'; c.style.stroke='var(--surface)'; c.style.strokeWidth='2'; hover(c,p.label,p.rows); const hit=S('circle',{cx:cx,cy:cy,r:12,class:'hit'},svg); hover(hit,p.label,p.rows); }
-    const txt=p.label.length>22?p.label.slice(0,21)+'…':p.label; const tw=txt.length*6.3+4; let lx=cx+9, ly=cy+4; let box={x:lx,y:ly-10,w:tw,h:13};
-    const collides=b=>placed.some(q=>!(b.x+b.w<q.x||q.x+q.w<b.x||b.y+b.h<q.y||q.y+q.h<b.y));
-    const tries=[[9,4],[9,-8],[9,16],[-tw-9,4],[-tw-9,-8],[-tw-9,16],[9,28],[-tw-9,28]]; for (const t of tries){ box={x:cx+t[0],y:cy+t[1]-10,w:tw,h:13}; if(!collides(box)) { lx=cx+t[0]; ly=cy+t[1]; break; } }
-    placed.push(box); const label=S('text',{x:lx,y:ly,class:p.emph?'lab':'',text:txt},svg); if (p.emph){ label.style.fill='var(--accent-ink)'; }
+    const txt=p.emph ? shortLabel(p.label,14)+' model' : shortLabel(p.label,26,true); const tw=txt.length*(p.emph?6.4:5.9)+4; let lx=null, ly=null, box=null;
+    const collides=b=>placed.some(q=>!(b.x+b.w<q.x||q.x+q.w<b.x||b.y+b.h<q.y||q.y+q.h<b.y)) || b.x<padL || b.x+b.w>W-4 || b.y<padT-4 || b.y+b.h>H-padB;
+    const tries=[[9,4],[9,-8],[9,16],[-tw-9,4],[-tw-9,-8],[-tw-9,16],[-tw/2,-12],[-tw/2,22],[9,28],[-tw-9,28],[9,-20],[-tw-9,-20]];
+    for (const t of tries){ const b={x:cx+t[0],y:cy+t[1]-10,w:tw,h:13}; if(!collides(b)) { lx=cx+t[0]; ly=cy+t[1]; box=b; break; } }
+    if (lx==null && !p.emph) return; if (lx==null){ lx=cx+9; ly=cy-12; box={x:lx,y:ly-10,w:tw,h:13}; }
+    placed.push(box); const label=S('text',{x:lx,y:ly,class:p.emph?'lab':'',text:txt},svg); if (!p.emph) label.style.fontSize='11px'; if (p.emph){ label.style.fill='var(--accent-ink)'; }
   });
   return svg;
 }
@@ -358,7 +361,7 @@ function heatmap(container, rowsLab, colsLab, matrix, opt){
   const H=headH+rowsLab.length*(cellH+2)+8; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
   const flat=matrix.flat().filter(v=>v!=null); const amax=Math.max(1,...flat.map(Math.abs));
   colsLab.forEach((c,j)=>{ const lines=wrapText(c,Math.floor(cellW/6)).slice(0,2); lines.forEach((ln,k)=>S('text',{x:labelW+j*(cellW+2)+cellW/2,y:14+k*13,'text-anchor':'middle',class:'axis',text:ln},svg)); });
-  rowsLab.forEach((r,i)=>{ const y=headH+i*(cellH+2); S('text',{x:labelW-8,y:y+cellH/2+4,'text-anchor':'end',class:'axis',text:r},svg);
+  rowsLab.forEach((r,i)=>{ const y=headH+i*(cellH+2); S('text',{x:labelW-8,y:y+cellH/2+4,'text-anchor':'end',class:'axis',text:shortLabel(r,9,true)},svg);
     colsLab.forEach((c,j)=>{ const v=matrix[i][j]; const x=labelW+j*(cellW+2); const rect=S('rect',{x:x,y:y,width:cellW,height:cellH,rx:2,class:'mark'},svg);
       if (v==null){ rect.style.fill='var(--mid)'; rect.style.fillOpacity='.5'; S('text',{x:x+cellW/2,y:y+cellH/2+4,'text-anchor':'middle',class:'axis',text:'n/a'},svg); }
       else { const a=Math.min(1,0.12+0.88*Math.pow(Math.abs(v)/amax,0.7)); rect.style.fill= v>=0?'var(--pos)':'var(--neg)'; rect.style.fillOpacity=a.toFixed(2);
@@ -374,7 +377,7 @@ function areaLine(container, pts, opt){
   const ymax=Math.max(...pts.map(p=>p.y))*1.05||1; const sx=i=>padL+i/(pts.length-1||1)*(W-padL-padR), sy=v=>H-padB-v/ymax*(H-padT-padB);
   const g=S('g',{class:'grid'},svg), ax=S('g',{class:'axis'},svg);
   niceTicks(0,ymax,5).forEach(t=>{S('line',{x1:padL,x2:W-padR,y1:sy(t),y2:sy(t)},g); S('text',{x:padL-8,y:sy(t)+4,'text-anchor':'end',text:(opt.tick||fmt)(t)},ax);});
-  pts.forEach((p,i)=>{ if (pts.length<=12 || i%2===0) S('text',{x:sx(i),y:H-padB+16,'text-anchor':'middle',text:p.label},ax); });
+  pts.forEach((p,i)=>{ if (pts.length<=12 || i%2===0) S('text',{x:sx(i),y:H-padB+16,'text-anchor':'middle',text:shortLabel(p.label,12)},ax); });
   const area=S('path',{d:'M'+sx(0)+' '+sy(0)+' '+pts.map((p,i)=>'L'+sx(i)+' '+sy(p.y)).join(' ')+' L'+sx(pts.length-1)+' '+sy(0)+'Z'},svg); area.style.fill='var(--s1)'; area.style.fillOpacity='.1';
   const line=S('path',{d:pts.map((p,i)=>(i?'L':'M')+sx(i)+' '+sy(p.y)).join(' '),fill:'none','stroke-width':'2','stroke-linejoin':'round','stroke-linecap':'round'},svg); line.style.stroke='var(--s1)';
   pts.forEach((p,i)=>{ const c=S('circle',{cx:sx(i),cy:sy(p.y),r:4.5,class:'mark'},svg); c.style.fill='var(--s1)'; c.style.stroke='var(--surface)'; c.style.strokeWidth='2'; const hit=S('rect',{x:sx(i)-14,y:padT,width:28,height:H-padT-padB,class:'hit'},svg); hover(hit,p.label,p.rows); hover(c,p.label,p.rows); });
@@ -388,10 +391,10 @@ function smallMultiples(container, items, metrics, opt){
   const panels=metrics.map(m=>{ const box=h('div'); box.appendChild(h('h4',{text:m.name+' '}, [h('span',{class:'unit',text:m.unit||''})])); const c=h('div'); box.appendChild(c); container.appendChild(box); return {m,c}; });
   panels.forEach(({m,c})=>{
     const rows=items.map(it=>({label:it.label, values:[m.get(it)], emph:it.emph}));
-    onResize(()=>{ c.innerHTML=''; const W=widthOf(c); const bar=14,rowH=26,labelW=Math.min(150,W*0.42),padT=4,padB=20,padR=54; const H=padT+rows.length*rowH+padB; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H},c);
+    onResize(()=>{ c.innerHTML=''; const W=widthOf(c); const bar=14,rowH=26,labelW=Math.min(210,W*0.46),padT=4,padB=20,padR=54; const H=padT+rows.length*rowH+padB; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H},c);
       const vals=rows.map(r=>r.values[0]).filter(v=>v!=null); let min=Math.min(0,...vals),max=Math.max(0,...vals); if(min===max)max=min+1; const sx=v=>labelW+(v-min)/(max-min)*(W-labelW-padR);
       const g=S('g',{class:'grid'},svg); niceTicks(min,max,4).forEach(t=>{S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-6,'text-anchor':'middle',class:'axis',text:fmt(t)},S('g',{class:'axis'},svg));}); S('line',{x1:sx(0),x2:sx(0),y1:padT,y2:H-padB,class:'base'},svg);
-      rows.forEach((r,i)=>{ const y=padT+i*rowH+(rowH-bar)/2; S('text',{x:labelW-8,y:y+bar-3,'text-anchor':'end',class:'rowlab',text:r.label.length>20?r.label.slice(0,19)+'…':r.label},svg); const v=r.values[0]; if(v==null) return; const xa=sx(Math.min(0,v)),xb=sx(Math.max(0,v)); const rect=S('rect',{x:xa,y:y,width:Math.max(1,xb-xa),height:bar,class:'mark'},svg); rect.style.fill = r.emph ? 'var(--accent)' : 'var(--dim)'; const lp=labPos(v,xa,xb,sx(0),max<=0); S('text',{x:lp[0],y:y+bar-2,'text-anchor':lp[1],class:'lab',text:(m.fmt||fmt)(v)},svg); hover(rect,r.label,[{label:m.name,value:(m.fmt||fmt)(v)}]); });
+      rows.forEach((r,i)=>{ const y=padT+i*rowH+(rowH-bar)/2; S('text',{x:labelW-8,y:y+bar-3,'text-anchor':'end',class:'rowlab',text:shortLabel(r.label, Math.floor(labelW/6.6))},svg); const v=r.values[0]; if(v==null) return; const xa=sx(Math.min(0,v)),xb=sx(Math.max(0,v)); const rect=S('rect',{x:xa,y:y,width:Math.max(1,xb-xa),height:bar,class:'mark'},svg); rect.style.fill = r.emph ? 'var(--accent)' : 'var(--dim)'; const lp=labPos(v,xa,xb,sx(0),max<=0); S('text',{x:lp[0],y:y+bar-2,'text-anchor':lp[1],class:'lab',text:(m.fmt||fmt)(v)},svg); hover(rect,r.label,[{label:m.name,value:(m.fmt||fmt)(v)}]); });
     });
   });
 }
@@ -416,7 +419,7 @@ function smallMultiples(container, items, metrics, opt){
 })();
 // 2 · portfolio stats
 (function(){ const ps=arr('portfolio_stats'); if(!ps.length) return; const f=figure('fig-stats',{title:'Model portfolios vs benchmarks', sub:'Expected return, volatility and expected maximum drawdown. The two models are emphasised; benchmarks are context.'}); if(!f) return;
-  const items=ps.map(p=>({label:p.portfolio, emph:/moder|aggr/i.test(p.portfolio), p:p})); const c=h('div'); f.body.appendChild(c);
+  const items=ps.map(p=>({label:/allocate/i.test(p.portfolio)?'Allocate 80/20':shortLabel(p.portfolio,24), emph:/moder|aggr/i.test(p.portfolio), p:p})); const c=h('div'); f.body.appendChild(c);
   smallMultiples(c, items, [{name:'Expected return',unit:'% p.a.',get:it=>it.p.exp_return_pct,fmt:v=>fmt(v,1)+'%'},{name:'Expected volatility',unit:'% p.a.',get:it=>it.p.exp_vol_pct,fmt:v=>fmt(v,1)+'%'},{name:'Expected max drawdown',unit:'%',get:it=>it.p.exp_max_dd_pct==null?null:-Math.abs(it.p.exp_max_dd_pct),fmt:v=>fmt(v,0)+'%'}]);
   f.addTableToggle(()=>tableEl(['Portfolio','Exp. return %','Exp. vol %','Sharpe','Exp. max DD %','Equity beta','Liquid in 90d %','Cost bps'], ps.map(p=>[p.portfolio,fmt(p.exp_return_pct,1),fmt(p.exp_vol_pct,1),fmt(p.sharpe,2),fmt(p.exp_max_dd_pct,0),fmt(p.equity_beta,2),fmt(p.liquidity_90d_pct,0),fmt(p.cost_bps,0)]),[1,2,3,4,5,6,7]));
 })();
@@ -450,15 +453,16 @@ function smallMultiples(container, items, metrics, opt){
 })();
 // 4 · rebalance policy comparison
 (function(){ const rc=arr('rebalance_comparison'); if(!rc.length) return; const f=figure('fig-rebal',{title:'Rebalancing policy trade-offs', sub:'Annual turnover, tracking error to the strategic allocation, cost and the number of consent events each policy generates. The recommended policy is emphasised.', note:'Figures are model estimates for a ₹500 Cr balanced book under the stated assumptions; see section 4 for the arithmetic.'}); if(!f) return;
-  const items=rc.map(r=>({label:r.policy, emph:/recommend|adopt|prefer|chosen|✓|yes/i.test(r.verdict||''), r:r})); if(!items.some(i=>i.emph)) items.forEach(i=>i.emph=/hybrid/i.test(i.label));
+  const polShort=s=>{ const m=String(s).match(/^([A-Z])\.\s*(.*)$/); let x=m?m[2]:String(s); x=x.replace(/,?\s*full rebalance to target/i,'').replace(/:?\s*monthly review,\s*breach\s*→\s*inner band edge/i,' → inner edge').replace(/\s*\+\s*event overlay,\s*trade to target/i,'+event → target').replace(/\s*\+\s*event overlay,\s*inner edge/i,'+event → inner edge').replace(/,\s*continuous monitor,\s*trade to target/i,''); return (m?m[1]+'. ':'')+x; };
+  const items=rc.map(r=>({label:polShort(r.policy), emph:/recommend|adopt|prefer|chosen|✓|yes/i.test(r.verdict||''), r:r})); if(!items.some(i=>i.emph)) items.forEach(i=>i.emph=/hybrid/i.test(i.label));
   const c=h('div'); f.body.appendChild(c); smallMultiples(c, items, [{name:'Turnover',unit:'% p.a.',get:it=>it.r.turnover_pct,fmt:v=>fmt(v,0)+'%'},{name:'Tracking error to SAA',unit:'bps',get:it=>it.r.tracking_error_bps,fmt:v=>fmt(v,0)},{name:'Cost',unit:'bps p.a.',get:it=>it.r.cost_bps,fmt:v=>fmt(v,0)},{name:'Consent events',unit:'per year',get:it=>it.r.consent_events_per_year,fmt:v=>fmt(v,0)}]);
   f.addTableToggle(()=>tableEl(['Policy','Turnover % p.a.','TE bps','Cost bps','Consent events / yr','Verdict'], rc.map(r=>[r.policy,fmt(r.turnover_pct,0),fmt(r.tracking_error_bps,0),fmt(r.cost_bps,0),fmt(r.consent_events_per_year,0),r.verdict||'']),[1,2,3,4]));
 })();
 // 5 · stress library
 (function(){ const st=arr('stress_scenarios'); if(!st.length) return; const f=figure('fig-stress',{title:'Historical stress library: ₹ Cr impact on the two models', sub:'Estimated portfolio P&L if each episode repeated on the current allocation. Bars extend left of zero for losses. Hover for the asset-class moves behind each estimate.', note:'Asset-class moves are historical (verified/approx. per Appendix A); portfolio P&L is a linear pass-through of sleeve weights × moves, before any hedge or rebalancing response.'}); if(!f) return;
   f.body.appendChild(legend([{label:'Moderate',color:'var(--s1)'},{label:'Aggressive',color:'var(--s2)'}])); const c=h('div'); f.body.appendChild(c);
-  const rows=st.map(s=>({label:s.scenario+(s.period?' ('+s.period+')':''), values:[s.moderate_pnl_cr, s.aggressive_pnl_cr], s:s}));
-  onResize(()=>groupedHBar(c, rows, ['Moderate','Aggressive'], {fmt:v=>cr(v), tick:v=>'₹'+fmt(v,0), labelW:Math.min(230, widthOf(c)*0.38), extraRows:r=>[{label:'Nifty 50',value:pct(r.s.nifty50_pct)},{label:'Midcap',value:pct(r.s.midcap_pct)},{label:'Smallcap',value:pct(r.s.smallcap_pct)},{label:'Gold INR',value:pct(r.s.gold_inr_pct)},{label:'Bonds',value:pct(r.s.bonds_pct)},{label:'USDINR',value:pct(r.s.usdinr_pct)},{label:'Recovery',value:r.s.recovery_months||'–'}]}));
+  const rows=st.map(s=>({label:shortLabel(s.scenario,46,true), values:[s.moderate_pnl_cr, s.aggressive_pnl_cr], s:s}));
+  onResize(()=>groupedHBar(c, rows, ['Moderate','Aggressive'], {fmt:v=>cr(v), tick:v=>'₹'+fmt(v,0), labelW:Math.min(230, widthOf(c)*0.38), extraRows:r=>[{label:'Period',value:r.s.period||'–'},{label:'Nifty 50',value:pct(r.s.nifty50_pct)},{label:'Midcap',value:pct(r.s.midcap_pct)},{label:'Smallcap',value:pct(r.s.smallcap_pct)},{label:'Gold INR',value:pct(r.s.gold_inr_pct)},{label:'Bonds',value:pct(r.s.bonds_pct)},{label:'USDINR',value:pct(r.s.usdinr_pct)},{label:'Recovery',value:r.s.recovery_months||'–'}]}));
   f.addTableToggle(()=>tableEl(['Scenario','Period','Nifty 50','Midcap','Smallcap','Gold INR','Bonds','USDINR','VIX peak','Moderate ₹ Cr','Aggressive ₹ Cr','Recovery','Note'], st.map(s=>[s.scenario,s.period||'',pct(s.nifty50_pct),pct(s.midcap_pct),pct(s.smallcap_pct),pct(s.gold_inr_pct),pct(s.bonds_pct),pct(s.usdinr_pct),s.vix_peak||'–',fmt(s.moderate_pnl_cr,0),fmt(s.aggressive_pnl_cr,0),s.recovery_months||'–',s.note||'']),[2,3,4,5,6,7,9,10]));
 })();
 // 5 · limits
