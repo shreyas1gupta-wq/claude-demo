@@ -1,0 +1,541 @@
+<title>₹500 Cr NDPMS Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#F6F7FB; --surface:#FFFFFF; --ink:#16233B; --ink2:#4B5568; --muted:#7C8494;
+  --hair:#E3E6EE; --hair2:#CDD2DE; --accent:#1B27A3; --accent-ink:#1B27A3; --accent-soft:#EEEFF9;
+  --s1:#4A57C4; --s2:#D98F1F; --s3:#1E9E6A; --s4:#7B5EA7; --s5:#B9443A;
+  --pos:#4A57C4; --neg:#B9443A; --neg-soft:#FBE9E7; --mid:#EDEEF3; --dim:#C9CDD8;
+  --good:#1E9E6A; --good-soft:#E3F4EC; --warn:#B97413; --warn-soft:#FDF1DC; --crit:#C7382A; --crit-soft:#FBE3E0;
+  --shadow:0 1px 2px rgba(22,35,59,.06),0 8px 24px -12px rgba(22,35,59,.18);
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#0F1524; --surface:#151A26; --ink:#EEF1F8; --ink2:#B8C0D0; --muted:#8A93A6;
+    --hair:#26304A; --hair2:#34405E; --accent:#8C95DE; --accent-ink:#B4BBF0; --accent-soft:#1C2340;
+    --s1:#7C88EC; --s2:#BD7E1E; --s3:#22A070; --s4:#8F6FC8; --s5:#DC4F45;
+    --pos:#7C88EC; --neg:#DC4F45; --neg-soft:#3A1F22; --mid:#26304A; --dim:#3A4560;
+    --good:#2FB985; --good-soft:#12302A; --warn:#E0A23A; --warn-soft:#3A2C12; --crit:#F06A5C; --crit-soft:#3B1E1B;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0F1524; --surface:#151A26; --ink:#EEF1F8; --ink2:#B8C0D0; --muted:#8A93A6;
+  --hair:#26304A; --hair2:#34405E; --accent:#8C95DE; --accent-ink:#B4BBF0; --accent-soft:#1C2340;
+  --s1:#7C88EC; --s2:#BD7E1E; --s3:#22A070; --s4:#8F6FC8; --s5:#DC4F45;
+  --pos:#7C88EC; --neg:#DC4F45; --neg-soft:#3A1F22; --mid:#26304A; --dim:#3A4560;
+  --good:#2FB985; --good-soft:#12302A; --warn:#E0A23A; --warn-soft:#3A2C12; --crit:#F06A5C; --crit-soft:#3B1E1B;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;
+  padding-inline:16px;padding-block:0 64px;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-ink)}
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.shell{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px}
+@media (max-width:900px){.shell{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- rail ---------- */
+.rail{position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;padding-block:28px 24px;font-size:13px}
+@media (max-width:900px){.rail{position:static;max-height:none;padding-block:20px 0}}
+.rail .brand{font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.01em;color:var(--ink);margin-bottom:4px}
+.rail .brand small{display:block;font-family:var(--sans);font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.rail ol{list-style:none;margin:16px 0 0;padding:0;border-left:1px solid var(--hair)}
+.rail li a{display:flex;gap:10px;padding:5px 0 5px 12px;color:var(--ink2);text-decoration:none;border-left:2px solid transparent;margin-left:-1px;line-height:1.35}
+.rail li a:hover{color:var(--ink);border-left-color:var(--hair2)}
+.rail li a.active{color:var(--accent-ink);border-left-color:var(--accent)}
+.rail .tnum{flex:0 0 22px;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600;font-size:11.5px;padding-top:1px}
+.rail .legend{margin-top:22px;padding-top:16px;border-top:1px solid var(--hair);display:grid;gap:7px;color:var(--ink2)}
+.rail .legend div{display:flex;align-items:center;gap:8px}
+@media (max-width:900px){.rail ol{display:none}.rail .legend{display:none}}
+
+/* ---------- masthead ---------- */
+main{min-width:0;padding-block:28px 0}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.masthead h1{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.6vw,42px);line-height:1.12;letter-spacing:-.01em;margin:10px 0 14px;text-wrap:balance;max-width:26ch}
+.masthead .meta{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--ink2);font-size:13.5px}
+.masthead .meta b{color:var(--ink);font-weight:600}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 8px}
+@media (max-width:1000px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.tiles{grid-template-columns:minmax(0,1fr)}}
+.tile{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:14px 16px 12px;min-width:0}
+.tile .lbl{font-size:12px;color:var(--muted);font-weight:600}
+.tile .val{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-top:4px;line-height:1.15}
+.tile .val small{font-size:14px;font-weight:600;color:var(--ink2);letter-spacing:0}
+.tile .sub{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.preamble{color:var(--ink2);max-width:70ch;margin-top:18px}
+
+/* ---------- sections & prose ---------- */
+.doc-section{margin-top:52px;padding-top:26px;border-top:1px solid var(--hair)}
+.doc-section h2{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.4vw,29px);line-height:1.2;margin:0 0 18px;display:flex;gap:14px;align-items:baseline;text-wrap:balance}
+.doc-section h2 .secnum{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--accent-ink);background:var(--accent-soft);border-radius:6px;padding:4px 8px;flex:0 0 auto;transform:translateY(-3px)}
+.prose{max-width:78ch}
+.prose h3{font-family:var(--sans);font-size:16.5px;font-weight:700;margin:30px 0 8px;letter-spacing:-.005em}
+.prose h4{font-size:14.5px;font-weight:700;margin:22px 0 6px;color:var(--ink)}
+.prose p{margin:0 0 12px;color:var(--ink)}
+.prose li{margin:3px 0}
+.prose ul,.prose ol{padding-left:22px;margin:6px 0 12px}
+.prose strong{font-weight:700}
+.prose code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+.prose pre{background:var(--surface);border:1px solid var(--hair);border-radius:8px;padding:12px 14px;overflow-x:auto;font-size:12.5px}
+.prose blockquote{margin:12px 0;padding:8px 16px;border-left:3px solid var(--accent);background:var(--accent-soft);color:var(--ink2);border-radius:0 8px 8px 0}
+.prose hr{border:0;border-top:1px solid var(--hair);margin:26px 0}
+.prose .tbl-wrap{max-width:none}
+.tbl-wrap{overflow-x:auto;margin:10px 0 18px;border:1px solid var(--hair);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:480px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--surface);position:sticky;top:0}
+tbody tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:hover td{background:var(--paper)}
+
+/* ---------- figures ---------- */
+.fig{background:var(--surface);border:1px solid var(--hair);border-radius:12px;padding:18px 20px 14px;margin:0 0 22px;box-shadow:var(--shadow);max-width:100%;min-width:0}
+.fig header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.fig h3{font-family:var(--sans);font-size:15.5px;font-weight:700;margin:0;letter-spacing:-.005em}
+.fig .sub{font-size:13px;color:var(--ink2);margin-top:3px;max-width:70ch}
+.fig .tools{display:flex;gap:6px;flex:0 0 auto}
+.btn{font:inherit;font-size:12px;font-weight:600;color:var(--ink2);background:var(--paper);border:1px solid var(--hair2);border-radius:6px;padding:5px 10px;cursor:pointer}
+.btn[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent)}
+.fig .body{margin-top:14px;min-width:0}
+.fig .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink2);margin:8px 0 2px}
+.fig .legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.sw.line{height:3px;border-radius:2px;width:16px}
+.fig .note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.45}
+.fig .tbl-wrap{margin:8px 0 0;border:0;border-top:1px solid var(--hair);border-radius:0}
+.fig svg{display:block;width:100%;height:auto;overflow:visible;font-family:inherit}
+.fig svg text{font-family:inherit;font-size:12px;fill:var(--ink2)}
+.fig svg .axis text{fill:var(--muted);font-size:11.5px;font-variant-numeric:tabular-nums}
+.fig svg .grid line{stroke:var(--hair);stroke-width:1}
+.fig svg .base{stroke:var(--hair2);stroke-width:1}
+.fig svg .lab{fill:var(--ink);font-weight:600;font-size:11.5px;font-variant-numeric:tabular-nums}
+.fig svg .rowlab{fill:var(--ink);font-size:12.5px}
+.fig svg .mark{transition:opacity .12s}
+.fig svg .mark:hover,.fig svg .mark:focus{opacity:.78;outline:none}
+.fig svg .hit{fill:transparent}
+.small-multiples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.small-multiples h4{margin:0 0 4px;font-size:13px;font-weight:700;color:var(--ink2)}
+.small-multiples .unit{font-size:11.5px;color:var(--muted);font-weight:500}
+
+/* tooltip */
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--ink);color:var(--paper);border-radius:8px;padding:8px 11px;font-size:12.5px;line-height:1.4;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:300px;display:none}
+#tip .t{font-weight:700;margin-bottom:3px}
+#tip .r{display:flex;justify-content:space-between;gap:14px}
+#tip .r b{font-weight:700;font-variant-numeric:tabular-nums}
+#tip .r i{font-style:normal;opacity:.8;display:inline-flex;align-items:center;gap:6px}
+#tip .k{width:10px;height:3px;border-radius:2px;display:inline-block}
+
+/* pills & badges */
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:3px 9px;border:1.5px solid transparent;white-space:nowrap}
+.pill.must{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pill.should{border-color:var(--accent);color:var(--accent-ink)}
+.pill.could{border-color:var(--hair2);color:var(--ink2)}
+.pill.avoid{background:var(--neg-soft);color:var(--neg);border-color:var(--neg)}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;border-radius:5px;padding:2px 7px;background:var(--paper);color:var(--ink2);border:1px solid var(--hair);white-space:nowrap}
+.badge.ok{background:var(--good-soft);color:var(--good);border-color:transparent}
+.badge.consent{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent}
+.badge.restricted{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.badge.no{background:var(--crit-soft);color:var(--crit);border-color:transparent}
+.badge.verify{background:var(--paper);color:var(--muted);border:1px dashed var(--hair2)}
+.chip{display:inline-block;font-size:12px;font-weight:600;border-radius:6px;padding:2px 8px;white-space:normal}
+.chip.g{background:var(--good-soft);color:var(--good)} .chip.a{background:var(--warn-soft);color:var(--warn)} .chip.r{background:var(--crit-soft);color:var(--crit)}
+.dots{font-size:10px;letter-spacing:1px;color:var(--accent-ink);white-space:nowrap}
+.dots .off{color:var(--dim)}
+.cadence-tag{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
+/* matrix controls */
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
+.controls .chips{display:flex;gap:6px;flex-wrap:wrap}
+.controls select,.controls input{font:inherit;font-size:13px;color:var(--ink);background:var(--paper);border:1px solid var(--hair2);border-radius:6px;padding:6px 9px;min-width:0}
+.controls input{flex:1 1 180px}
+.counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 14px}
+@media (max-width:560px){.counts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.count{border:1px solid var(--hair);border-radius:8px;padding:10px 12px;background:var(--paper)}
+.count .n{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.count .l{font-size:11.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.matrix-table td:first-child{min-width:220px}
+.matrix-table td .why{display:block;color:var(--ink2);font-size:12.5px;margin-top:3px}
+
+/* roadmap */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.phase{border:1px solid var(--hair);border-radius:10px;background:var(--paper);padding:12px 14px;min-width:0}
+.phase .ph{font-weight:700;font-size:14px}
+.phase .win{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin:2px 0 8px}
+.phase ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink)}
+.phase li{margin:4px 0}
+.phase .dep{font-size:12px;color:var(--ink2);margin-top:8px;border-top:1px solid var(--hair);padding-top:6px}
+.timeline{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:4px;margin:0 0 14px}
+.timeline div{height:8px;border-radius:4px;background:var(--s1)}
+.timeline div:nth-child(2){opacity:.75}.timeline div:nth-child(3){opacity:.5}.timeline div:nth-child(4){opacity:.3}
+
+.group-h{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft)}
+.group-h td{padding:6px 11px}
+.sources{font-size:12.5px;color:var(--ink2)}
+@media print{.rail{display:none}.fig{box-shadow:none;break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="shell">
+  <aside class="rail" aria-label="Contents">
+    <div class="brand">Ionic Wealth<small>Investment Office · NDPMS</small></div>
+    <ol id="toc">__TOC__</ol>
+    <div class="legend" aria-hidden="true">
+      <div><span class="pill must">Must</span> required / owns returns</div>
+      <div><span class="pill should">Should</span> first 6 months</div>
+      <div><span class="pill could">Could</span> nice-to-have</div>
+      <div><span class="pill avoid">Avoid</span> wrong for NDPMS</div>
+    </div>
+  </aside>
+
+  <main>
+    <header class="masthead">
+      <div class="eyebrow">Ionic Wealth · Non-Discretionary PMS · Operating blueprint</div>
+      <h1>__DOC_TITLE__</h1>
+      <div class="meta"><span>Mandate <b>₹500 Cr</b></span><span>Vehicle <b>NDPMS (SEBI PM Regs 2020)</b></span><span>Core cadence <b>monthly rebalance</b></span><span>Built <b>__BUILT__</b></span></div>
+      <div class="tiles" id="tiles"></div>
+      <div class="preamble prose">__PREAMBLE__</div>
+    </header>
+    __SECTIONS__
+  </main>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script type="application/json" id="meta">__META_JSON__</script>
+<script type="application/json" id="data">__DATA_JSON__</script>
+<script>
+(function(){
+'use strict';
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const META = JSON.parse(document.getElementById('meta').textContent);
+const NS = 'http://www.w3.org/2000/svg';
+const SERIES = ['var(--s1)','var(--s2)','var(--s3)','var(--s4)','var(--s5)'];
+const $ = (s,p)=> (p||document).querySelector(s);
+const arr = k => Array.isArray(DATA[k]) ? DATA[k] : [];
+function h(tag, attrs, children){
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs){ if (k==='class') e.className=attrs[k]; else if (k==='text') e.textContent=attrs[k]; else if (k.startsWith('on')) e.addEventListener(k.slice(2), attrs[k]); else e.setAttribute(k, attrs[k]); }
+  (children||[]).forEach(c => { if (c==null) return; e.appendChild(typeof c==='string' ? document.createTextNode(c) : c); });
+  return e;
+}
+function S(tag, attrs, parent){
+  const e = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs){ if (k==='text') e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); }
+  if (parent) parent.appendChild(e);
+  return e;
+}
+const fmt = (v, d) => { if (v==null || isNaN(v)) return '–'; const n = Number(v); const dd = d==null ? (Math.abs(n)>=100?0:1) : d; return n.toLocaleString('en-IN',{minimumFractionDigits:dd, maximumFractionDigits:dd}); };
+const pct = v => v==null||isNaN(v) ? '–' : (Number(v)>0?'+':'') + fmt(v,1) + '%';
+const cr = v => v==null||isNaN(v) ? '–' : (Number(v)<0?'−':'') + '₹' + fmt(Math.abs(v), Math.abs(v)>=100?0:1) + ' Cr';
+const num = s => { if (typeof s==='number') return s; if (s==null) return null; const m = String(s).replace(/,/g,'').match(/-?\d+(\.\d+)?/); return m ? parseFloat(m[0]) * (String(s).trim().startsWith('−')?-1:1) : null; };
+const wrapText = (s, n) => { const words = String(s).split(/\s+/), lines=[]; let cur=''; words.forEach(w=>{ if ((cur+' '+w).trim().length>n && cur){ lines.push(cur); cur=w; } else cur=(cur+' '+w).trim(); }); if (cur) lines.push(cur); return lines; };
+
+/* ---------- tooltip ---------- */
+const tip = document.getElementById('tip');
+function showTip(ev, title, rows){
+  tip.innerHTML = '';
+  if (title) tip.appendChild(h('div',{class:'t',text:title}));
+  (rows||[]).forEach(r => {
+    const row = h('div',{class:'r'});
+    const lab = h('i'); if (r.color){ const k=h('span',{class:'k'}); k.style.background=r.color; lab.appendChild(k);} lab.appendChild(document.createTextNode(r.label));
+    row.appendChild(lab); row.appendChild(h('b',{text:r.value})); tip.appendChild(row);
+  });
+  tip.style.display='block'; moveTip(ev);
+}
+function moveTip(ev){ const pad=14, w=tip.offsetWidth, hh=tip.offsetHeight; let x=ev.clientX+pad, y=ev.clientY+pad; if (x+w>window.innerWidth-8) x=ev.clientX-w-pad; if (y+hh>window.innerHeight-8) y=ev.clientY-hh-pad; tip.style.left=x+'px'; tip.style.top=y+'px'; }
+function hideTip(){ tip.style.display='none'; }
+function hover(el, title, rows){ el.addEventListener('pointerenter', e=>showTip(e,title,rows)); el.addEventListener('pointermove', moveTip); el.addEventListener('pointerleave', hideTip); el.setAttribute('tabindex','0'); el.addEventListener('focus', e=>{ const r=el.getBoundingClientRect(); showTip({clientX:r.left+r.width/2, clientY:r.top}, title, rows); }); el.addEventListener('blur', hideTip); }
+
+/* ---------- figure shell ---------- */
+function figure(id, opts){
+  const slot = document.querySelector('.fig-slot[data-fig="'+id+'"]');
+  if (!slot) return null;
+  const card = h('section',{class:'fig', id:id, 'aria-labelledby':id+'-h'});
+  const head = h('header'); const tt = h('div'); tt.appendChild(h('h3',{id:id+'-h',text:opts.title})); if (opts.sub) tt.appendChild(h('div',{class:'sub',text:opts.sub})); head.appendChild(tt);
+  const tools = h('div',{class:'tools'}); head.appendChild(tools); card.appendChild(head);
+  const body = h('div',{class:'body'}); card.appendChild(body);
+  const tableWrap = h('div',{class:'tbl-wrap'}); tableWrap.hidden = true; card.appendChild(tableWrap);
+  if (opts.note) card.appendChild(h('div',{class:'note',text:opts.note}));
+  slot.replaceWith(card);
+  return {card, body, tools, tableWrap, addTableToggle(build, hideBodyOnTable){
+    const b = h('button',{class:'btn','aria-pressed':'false',text:'Table'});
+    b.addEventListener('click', ()=>{ const on = b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed', on?'true':'false'); if (on && !tableWrap.firstChild) tableWrap.appendChild(build()); tableWrap.hidden = !on; if (hideBodyOnTable) body.hidden = on; });
+    tools.appendChild(b);
+  }};
+}
+function tableEl(cols, rows, numCols){
+  const t = h('table'); const th = h('thead'); const tr = h('tr');
+  cols.forEach((c,i)=> tr.appendChild(h('th',{class:(numCols||[]).includes(i)?'num':'',text:c}))); th.appendChild(tr); t.appendChild(th);
+  const tb = h('tbody'); rows.forEach(r=>{ const trr=h('tr'); r.forEach((c,i)=>{ const td=h('td',{class:(numCols||[]).includes(i)?'num':''}); if (c instanceof Node) td.appendChild(c); else td.textContent = c==null?'–':String(c); trr.appendChild(td); }); tb.appendChild(trr); }); t.appendChild(tb);
+  return t;
+}
+function legend(items){ const l=h('div',{class:'legend'}); items.forEach(it=>{ const s=h('span'); const sw=h('span',{class:'sw'+(it.line?' line':'')}); sw.style.background=it.color; s.appendChild(sw); s.appendChild(document.createTextNode(it.label)); l.appendChild(s); }); return l; }
+
+/* redraw-on-resize registry */
+const draws = [];
+function onResize(fn){ draws.push(fn); fn(); }
+let rt; window.addEventListener('resize', ()=>{ clearTimeout(rt); rt=setTimeout(()=>draws.forEach(f=>f()),120); });
+const widthOf = el => Math.max(280, el.clientWidth || el.parentElement.clientWidth || 600);
+
+/* ---------- chart: grouped horizontal bars (supports negatives) ---------- */
+function groupedHBar(container, rows, series, opt){
+  opt = opt||{}; const colors = opt.colors||SERIES; const labelW = opt.labelW||150;
+  container.innerHTML='';
+  const W = widthOf(container); const bar = opt.bar||12, gap=2, rowPad=10;
+  const rowH = series.length*(bar+gap)+rowPad; const padT=8, padB=22, padR = 64;
+  const H = padT + rows.length*rowH + padB;
+  const svg = S('svg',{viewBox:'0 0 '+W+' '+H, width:W, height:H, role:'img','aria-label':opt.aria||''}, container);
+  const vals = rows.flatMap(r=>r.values).filter(v=>v!=null);
+  let min = Math.min(0,...vals), max = Math.max(0,...vals); if (min===max) max=min+1;
+  const x0 = labelW, x1 = W - padR; const sx = v => x0 + (v-min)/(max-min)*(x1-x0);
+  const g = S('g',{class:'grid'},svg); const ticks = niceTicks(min,max,5);
+  ticks.forEach(t=>{ S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-6,'text-anchor':'middle',class:'axis',text:(opt.tick||fmt)(t)},S('g',{class:'axis'},svg)); });
+  S('line',{x1:sx(0),x2:sx(0),y1:padT,y2:H-padB,class:'base'},svg);
+  rows.forEach((r,i)=>{
+    const y = padT + i*rowH + rowPad/2;
+    const lines = wrapText(r.label, Math.floor(labelW/6.4)).slice(0,2);
+    lines.forEach((ln,k)=> S('text',{x:x0-10,y:y+rowH/2-rowPad/2+ (k-(lines.length-1)/2)*13 + 4,'text-anchor':'end',class:'rowlab',text:ln},svg));
+    r.values.forEach((v,j)=>{ if (v==null) return; const yy = y + j*(bar+gap); const xa = sx(Math.min(0,v)), xb = sx(Math.max(0,v)); const w = Math.max(1, xb-xa);
+      const rect = S('rect',{x:xa,y:yy,width:w,height:bar,rx:0,class:'mark'},svg); rect.style.fill = colors[j];
+      const lab = (opt.fmt||fmt)(v); const lp = labPos(v, xa, xb, sx(0), max<=0); S('text',{x:lp[0],y:yy+bar-2,'text-anchor':lp[1],class:'lab',text:lab},svg);
+      hover(rect, r.label, series.map((s,k)=>({label:s, value:(opt.fmt||fmt)(r.values[k]), color:colors[k]})).concat(opt.extraRows ? opt.extraRows(r) : []));
+    });
+  });
+  return svg;
+}
+function labPos(v, xa, xb, x0, allNeg){ if (v>=0) return [xb+5,'start']; if (allNeg) return [x0+5,'start']; return [xa-5,'end']; }
+function niceTicks(min,max,n){ const span=max-min; const step0=span/n; const p=Math.pow(10,Math.floor(Math.log10(step0))); const cands=[1,2,2.5,5,10].map(c=>c*p); const step=cands.find(c=>span/c<=n)||cands[cands.length-1]; const t=[]; for(let v=Math.ceil(min/step)*step; v<=max+1e-9; v+=step) t.push(Math.round(v*1000)/1000); return t; }
+
+/* ---------- chart: stacked horizontal bars ---------- */
+function stackedHBar(container, rows, series, opt){
+  opt=opt||{}; const colors=opt.colors||SERIES; const labelW=opt.labelW||170; container.innerHTML='';
+  const W=widthOf(container); const bar=16, rowH=30, padT=8, padB=22, padR=70; const H=padT+rows.length*rowH+padB;
+  const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
+  const totals=rows.map(r=>r.parts.reduce((a,b)=>a+(b||0),0)); const max=Math.max(...totals)||1;
+  const x0=labelW,x1=W-padR; const sx=v=>x0+v/max*(x1-x0);
+  const g=S('g',{class:'grid'},svg); niceTicks(0,max,5).filter(t=>!opt.intTicks||Number.isInteger(t)).forEach(t=>{S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-6,'text-anchor':'middle',class:'axis',text:(opt.tick||fmt)(t)},S('g',{class:'axis'},svg));});
+  S('line',{x1:x0,x2:x0,y1:padT,y2:H-padB,class:'base'},svg);
+  rows.forEach((r,i)=>{ const y=padT+i*rowH+(rowH-bar)/2; S('text',{x:x0-10,y:y+bar-3,'text-anchor':'end',class:'rowlab',text:r.label.length>28?r.label.slice(0,27)+'…':r.label},svg);
+    let acc=0; r.parts.forEach((v,j)=>{ if(!v) return; const xa=sx(acc), xb=sx(acc+v); acc+=v; const w=Math.max(0,xb-xa-2); const rect=S('rect',{x:xa,y:y,width:w,height:bar,class:'mark'},svg); rect.style.fill=colors[j]; hover(rect,r.label,series.map((s,k)=>({label:s,value:(opt.fmt||fmt)(r.parts[k]),color:colors[k]})).concat([{label:'Total',value:(opt.fmt||fmt)(totals[i])}])); });
+    S('text',{x:sx(totals[i])+6,y:y+bar-3,class:'lab',text:(opt.fmt||fmt)(totals[i])},svg); });
+  return svg;
+}
+
+/* ---------- chart: scatter (risk/return) ---------- */
+function scatter(container, pts, opt){
+  opt=opt||{}; container.innerHTML=''; const W=widthOf(container); const H=Math.min(460, Math.max(300, W*0.6)); const padL=48,padR=90,padT=16,padB=40;
+  const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
+  const xs=pts.map(p=>p.x), ys=pts.map(p=>p.y); const xmin=0, xmax=Math.max(...xs)*1.12||1; const ymin=Math.min(0,...ys), ymax=Math.max(...ys)*1.12||1;
+  const sx=v=>padL+(v-xmin)/(xmax-xmin)*(W-padL-padR), sy=v=>H-padB-(v-ymin)/(ymax-ymin)*(H-padT-padB);
+  const g=S('g',{class:'grid'},svg), ax=S('g',{class:'axis'},svg);
+  niceTicks(xmin,xmax,6).forEach(t=>{S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-padB+16,'text-anchor':'middle',text:fmt(t,0)+'%'},ax);});
+  niceTicks(ymin,ymax,5).forEach(t=>{S('line',{x1:padL,x2:W-padR,y1:sy(t),y2:sy(t)},g); S('text',{x:padL-8,y:sy(t)+4,'text-anchor':'end',text:fmt(t,0)+'%'},ax);});
+  S('text',{x:(padL+W-padR)/2,y:H-6,'text-anchor':'middle',class:'axis',text:opt.xLabel||'Expected volatility (annualised)'},svg);
+  const yl=S('text',{x:12,y:(padT+H-padB)/2,'text-anchor':'middle',class:'axis',text:opt.yLabel||'Expected return p.a.'},svg); yl.setAttribute('transform','rotate(-90 12 '+((padT+H-padB)/2)+')');
+  // label collision avoidance: greedy nudging of label boxes
+  const placed=[];
+  pts.slice().sort((a,b)=>b.emph-a.emph || a.y-b.y).forEach(p=>{
+    const cx=sx(p.x), cy=sy(p.y);
+    if (p.emph){ const d=S('path',{d:'M'+cx+' '+(cy-8)+' L'+(cx+8)+' '+cy+' L'+cx+' '+(cy+8)+' L'+(cx-8)+' '+cy+'Z',class:'mark'},svg); d.style.fill='var(--accent)'; d.style.stroke='var(--surface)'; d.style.strokeWidth='2'; hover(d,p.label,p.rows); }
+    else { const c=S('circle',{cx:cx,cy:cy,r:5.5,class:'mark'},svg); c.style.fill='var(--s1)'; c.style.stroke='var(--surface)'; c.style.strokeWidth='2'; hover(c,p.label,p.rows); const hit=S('circle',{cx:cx,cy:cy,r:12,class:'hit'},svg); hover(hit,p.label,p.rows); }
+    const txt=p.label.length>22?p.label.slice(0,21)+'…':p.label; const tw=txt.length*6.3+4; let lx=cx+9, ly=cy+4; let box={x:lx,y:ly-10,w:tw,h:13};
+    const collides=b=>placed.some(q=>!(b.x+b.w<q.x||q.x+q.w<b.x||b.y+b.h<q.y||q.y+q.h<b.y));
+    const tries=[[9,4],[9,-8],[9,16],[-tw-9,4],[-tw-9,-8],[-tw-9,16],[9,28],[-tw-9,28]]; for (const t of tries){ box={x:cx+t[0],y:cy+t[1]-10,w:tw,h:13}; if(!collides(box)) { lx=cx+t[0]; ly=cy+t[1]; break; } }
+    placed.push(box); const label=S('text',{x:lx,y:ly,class:p.emph?'lab':'',text:txt},svg); if (p.emph){ label.style.fill='var(--accent-ink)'; }
+  });
+  return svg;
+}
+
+/* ---------- chart: heatmap (diverging, two hues + neutral) ---------- */
+function heatmap(container, rowsLab, colsLab, matrix, opt){
+  opt=opt||{}; container.innerHTML=''; const W=widthOf(container); const labelW=46; const cellW=Math.max(46,(W-labelW)/colsLab.length-2); const cellH=Math.max(22,Math.min(28,cellW*0.55)); const headH=44;
+  const H=headH+rowsLab.length*(cellH+2)+8; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
+  const flat=matrix.flat().filter(v=>v!=null); const amax=Math.max(1,...flat.map(Math.abs));
+  colsLab.forEach((c,j)=>{ const lines=wrapText(c,Math.floor(cellW/6)).slice(0,2); lines.forEach((ln,k)=>S('text',{x:labelW+j*(cellW+2)+cellW/2,y:14+k*13,'text-anchor':'middle',class:'axis',text:ln},svg)); });
+  rowsLab.forEach((r,i)=>{ const y=headH+i*(cellH+2); S('text',{x:labelW-8,y:y+cellH/2+4,'text-anchor':'end',class:'axis',text:r},svg);
+    colsLab.forEach((c,j)=>{ const v=matrix[i][j]; const x=labelW+j*(cellW+2); const rect=S('rect',{x:x,y:y,width:cellW,height:cellH,rx:2,class:'mark'},svg);
+      if (v==null){ rect.style.fill='var(--mid)'; rect.style.fillOpacity='.5'; S('text',{x:x+cellW/2,y:y+cellH/2+4,'text-anchor':'middle',class:'axis',text:'n/a'},svg); }
+      else { const a=Math.min(1,0.12+0.88*Math.pow(Math.abs(v)/amax,0.7)); rect.style.fill= v>=0?'var(--pos)':'var(--neg)'; rect.style.fillOpacity=a.toFixed(2);
+        const t=S('text',{x:x+cellW/2,y:y+cellH/2+4,'text-anchor':'middle',text:(v>0?'+':'')+fmt(v,cellW<56?0:1)},svg); t.style.fill = a>0.55 ? '#fff' : 'var(--ink)'; t.style.fontSize='11px'; t.style.fontWeight='600'; t.style.fontVariantNumeric='tabular-nums'; t.style.pointerEvents='none'; }
+      hover(rect, r+' · '+c, [{label:opt.unit||'Return', value: v==null?'n/a':pct(v)}]); }); });
+  return svg;
+}
+
+/* ---------- chart: single-series area line ---------- */
+function areaLine(container, pts, opt){
+  opt=opt||{}; container.innerHTML=''; const W=widthOf(container); const H=Math.max(220,Math.min(300,W*0.4)); const padL=54,padR=90,padT=14,padB=36;
+  const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,role:'img'},container);
+  const ymax=Math.max(...pts.map(p=>p.y))*1.05||1; const sx=i=>padL+i/(pts.length-1||1)*(W-padL-padR), sy=v=>H-padB-v/ymax*(H-padT-padB);
+  const g=S('g',{class:'grid'},svg), ax=S('g',{class:'axis'},svg);
+  niceTicks(0,ymax,5).forEach(t=>{S('line',{x1:padL,x2:W-padR,y1:sy(t),y2:sy(t)},g); S('text',{x:padL-8,y:sy(t)+4,'text-anchor':'end',text:(opt.tick||fmt)(t)},ax);});
+  pts.forEach((p,i)=>{ if (pts.length<=12 || i%2===0) S('text',{x:sx(i),y:H-padB+16,'text-anchor':'middle',text:p.label},ax); });
+  const area=S('path',{d:'M'+sx(0)+' '+sy(0)+' '+pts.map((p,i)=>'L'+sx(i)+' '+sy(p.y)).join(' ')+' L'+sx(pts.length-1)+' '+sy(0)+'Z'},svg); area.style.fill='var(--s1)'; area.style.fillOpacity='.1';
+  const line=S('path',{d:pts.map((p,i)=>(i?'L':'M')+sx(i)+' '+sy(p.y)).join(' '),fill:'none','stroke-width':'2','stroke-linejoin':'round','stroke-linecap':'round'},svg); line.style.stroke='var(--s1)';
+  pts.forEach((p,i)=>{ const c=S('circle',{cx:sx(i),cy:sy(p.y),r:4.5,class:'mark'},svg); c.style.fill='var(--s1)'; c.style.stroke='var(--surface)'; c.style.strokeWidth='2'; const hit=S('rect',{x:sx(i)-14,y:padT,width:28,height:H-padT-padB,class:'hit'},svg); hover(hit,p.label,p.rows); hover(c,p.label,p.rows); });
+  const last=pts[pts.length-1]; S('text',{x:sx(pts.length-1)+10,y:sy(last.y)+4,class:'lab',text:(opt.endLabel||fmt)(last.y)},svg);
+  return svg;
+}
+
+/* ---------- chart: small multiples of single-metric bars ---------- */
+function smallMultiples(container, items, metrics, opt){
+  opt=opt||{}; container.innerHTML=''; container.className='small-multiples';
+  const panels=metrics.map(m=>{ const box=h('div'); box.appendChild(h('h4',{text:m.name+' '}, [h('span',{class:'unit',text:m.unit||''})])); const c=h('div'); box.appendChild(c); container.appendChild(box); return {m,c}; });
+  panels.forEach(({m,c})=>{
+    const rows=items.map(it=>({label:it.label, values:[m.get(it)], emph:it.emph}));
+    onResize(()=>{ c.innerHTML=''; const W=widthOf(c); const bar=14,rowH=26,labelW=Math.min(150,W*0.42),padT=4,padB=20,padR=54; const H=padT+rows.length*rowH+padB; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H},c);
+      const vals=rows.map(r=>r.values[0]).filter(v=>v!=null); let min=Math.min(0,...vals),max=Math.max(0,...vals); if(min===max)max=min+1; const sx=v=>labelW+(v-min)/(max-min)*(W-labelW-padR);
+      const g=S('g',{class:'grid'},svg); niceTicks(min,max,4).forEach(t=>{S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-6,'text-anchor':'middle',class:'axis',text:fmt(t)},S('g',{class:'axis'},svg));}); S('line',{x1:sx(0),x2:sx(0),y1:padT,y2:H-padB,class:'base'},svg);
+      rows.forEach((r,i)=>{ const y=padT+i*rowH+(rowH-bar)/2; S('text',{x:labelW-8,y:y+bar-3,'text-anchor':'end',class:'rowlab',text:r.label.length>20?r.label.slice(0,19)+'…':r.label},svg); const v=r.values[0]; if(v==null) return; const xa=sx(Math.min(0,v)),xb=sx(Math.max(0,v)); const rect=S('rect',{x:xa,y:y,width:Math.max(1,xb-xa),height:bar,class:'mark'},svg); rect.style.fill = r.emph ? 'var(--accent)' : 'var(--dim)'; const lp=labPos(v,xa,xb,sx(0),max<=0); S('text',{x:lp[0],y:y+bar-2,'text-anchor':lp[1],class:'lab',text:(m.fmt||fmt)(v)},svg); hover(rect,r.label,[{label:m.name,value:(m.fmt||fmt)(v)}]); });
+    });
+  });
+}
+
+/* ================= TILES ================= */
+(function tiles(){
+  const t=document.getElementById('tiles'); if(!t) return;
+  const tile=(lbl,val,sub)=>{ const d=h('div',{class:'tile'}); d.appendChild(h('div',{class:'lbl',text:lbl})); const v=h('div',{class:'val'}); v.innerHTML=val; d.appendChild(v); if(sub) d.appendChild(h('div',{class:'sub',text:sub})); return d; };
+  t.appendChild(tile('Mandate','₹500 Cr <small>NDPMS</small>','Consent-driven · monthly rebalance core · '+META.sleeves+' sleeves'));
+  if (META.mod_ret!=null) t.appendChild(tile('Moderate model · expected', fmt(META.mod_ret,1)+'% <small>p.a.</small>','vol '+fmt(META.mod_vol,1)+'% · exp. max drawdown '+fmt(META.mod_dd,0)+'%'));
+  if (META.agg_ret!=null) t.appendChild(tile('Aggressive model · expected', fmt(META.agg_ret,1)+'% <small>p.a.</small>','vol '+fmt(META.agg_vol,1)+'% · exp. max drawdown '+fmt(META.agg_dd,0)+'%'));
+  t.appendChild(tile('Worst historical stress (Moderate)', cr(META.worst_mod), (META.worst_name||'')+' · Aggressive '+cr(META.worst_agg)));
+})();
+
+/* ================= FIGURES ================= */
+// 2 · allocation
+(function(){ const rows=arr('sample_allocation'); if(!rows.length) return; const f=figure('fig-alloc',{title:'Model portfolios sized to ₹500 Cr', sub:'Sleeve allocation in ₹ Cr for the Moderate and Aggressive variants. Bars grow from zero; hover for %, bands and liquidity.', note:'Rebalance band and days-to-liquidate are per sleeve; see the table. Percentages sum to 100 within each model.'}); if(!f) return;
+  const modT=rows.reduce((a,r)=>a+(r.moderate_pct||0),0), aggT=rows.reduce((a,r)=>a+(r.aggressive_pct||0),0);
+  f.body.appendChild(legend([{label:'Moderate ('+fmt(modT,0)+'%)',color:'var(--s1)'},{label:'Aggressive ('+fmt(aggT,0)+'%)',color:'var(--s2)'}])); const c=h('div'); f.body.appendChild(c);
+  onResize(()=>groupedHBar(c, rows.map(r=>({label:r.sleeve, values:[r.moderate_cr, r.aggressive_cr]})), ['Moderate','Aggressive'], {fmt:v=>'₹'+fmt(v,0), tick:v=>'₹'+fmt(v,0)+' Cr', labelW:Math.min(190, widthOf(c)*0.34)}));
+  f.addTableToggle(()=>tableEl(['Sleeve','Instruments','Moderate %','Moderate ₹ Cr','Aggressive %','Aggressive ₹ Cr','Exp. return %','Exp. vol %','Band ±%','Liquidity','Line items'], rows.map(r=>[r.sleeve,r.instruments,fmt(r.moderate_pct,1),fmt(r.moderate_cr,1),fmt(r.aggressive_pct,1),fmt(r.aggressive_cr,1),fmt(r.exp_return_pct,1),fmt(r.exp_vol_pct,1),fmt(r.band_pct,1),r.liquidity_days||'–',r.line_items||'–']).concat([['Total','',fmt(modT,1),fmt(rows.reduce((a,r)=>a+(r.moderate_cr||0),0),1),fmt(aggT,1),fmt(rows.reduce((a,r)=>a+(r.aggressive_cr||0),0),1),'','','','','']]),[2,3,4,5,6,7,8]));
+})();
+// 2 · portfolio stats
+(function(){ const ps=arr('portfolio_stats'); if(!ps.length) return; const f=figure('fig-stats',{title:'Model portfolios vs benchmarks', sub:'Expected return, volatility and expected maximum drawdown. The two models are emphasised; benchmarks are context.'}); if(!f) return;
+  const items=ps.map(p=>({label:p.portfolio, emph:/moder|aggr/i.test(p.portfolio), p:p})); const c=h('div'); f.body.appendChild(c);
+  smallMultiples(c, items, [{name:'Expected return',unit:'% p.a.',get:it=>it.p.exp_return_pct,fmt:v=>fmt(v,1)+'%'},{name:'Expected volatility',unit:'% p.a.',get:it=>it.p.exp_vol_pct,fmt:v=>fmt(v,1)+'%'},{name:'Expected max drawdown',unit:'%',get:it=>it.p.exp_max_dd_pct==null?null:-Math.abs(it.p.exp_max_dd_pct),fmt:v=>fmt(v,0)+'%'}]);
+  f.addTableToggle(()=>tableEl(['Portfolio','Exp. return %','Exp. vol %','Sharpe','Exp. max DD %','Equity beta','Liquid in 90d %','Cost bps'], ps.map(p=>[p.portfolio,fmt(p.exp_return_pct,1),fmt(p.exp_vol_pct,1),fmt(p.sharpe,2),fmt(p.exp_max_dd_pct,0),fmt(p.equity_beta,2),fmt(p.liquidity_90d_pct,0),fmt(p.cost_bps,0)]),[1,2,3,4,5,6,7]));
+})();
+// 2 · CMA scatter
+(function(){ const cma=arr('cma'); if(!cma.length) return; const f=figure('fig-cma',{title:'Capital-market assumptions: risk vs return', sub:'Forward 10-year assumptions per asset class; diamonds mark the two model portfolios. Hover for historical drawdown and correlation to Nifty 50.', note:'Assumptions are the house view used for sizing, not forecasts. Historical figures are labelled verified/approx. in the appendix tables.'}); if(!f) return;
+  const ps=arr('portfolio_stats').filter(p=>/moder|aggr/i.test(p.portfolio));
+  const pts=cma.filter(a=>a.exp_vol_pct!=null&&a.exp_return_pct!=null).map(a=>({label:a.asset_class,x:a.exp_vol_pct,y:a.exp_return_pct,emph:0,rows:[{label:'Exp. return',value:fmt(a.exp_return_pct,1)+'%'},{label:'Exp. vol',value:fmt(a.exp_vol_pct,1)+'%'},{label:'Hist. CAGR',value:a.hist_cagr_pct||'–'},{label:'Hist. max DD',value:fmt(a.hist_max_dd_pct,0)+'%'},{label:'Corr. Nifty 50',value:fmt(a.corr_nifty50,2)}]}))
+    .concat(ps.map(p=>({label:p.portfolio,x:p.exp_vol_pct,y:p.exp_return_pct,emph:1,rows:[{label:'Exp. return',value:fmt(p.exp_return_pct,1)+'%'},{label:'Exp. vol',value:fmt(p.exp_vol_pct,1)+'%'},{label:'Sharpe',value:fmt(p.sharpe,2)},{label:'Exp. max DD',value:fmt(p.exp_max_dd_pct,0)+'%'}]})));
+  const c=h('div'); f.body.appendChild(c); onResize(()=>scatter(c,pts));
+  f.addTableToggle(()=>tableEl(['Asset class','Exp. return %','Exp. vol %','Hist. CAGR','Hist. max DD %','Corr. Nifty 50','Basis'], cma.map(a=>[a.asset_class,fmt(a.exp_return_pct,1),fmt(a.exp_vol_pct,1),a.hist_cagr_pct||'–',fmt(a.hist_max_dd_pct,0),fmt(a.corr_nifty50,2),a.source_note||'']),[1,2,3,4,5]));
+})();
+// 2 · calendar returns heatmap
+(function(){ const cy=arr('calendar_returns'); if(!cy.length) return; const f=figure('fig-calret',{title:'Calendar-year total returns, 2006 onward', sub:'Blue = positive, brick = negative; depth of colour scales with the size of the move. Cells marked n/a were not available in the data pack.', note:'Total-return indices where available. See Appendix A for verification status and sources.'}); if(!f) return;
+  const cols=[['nifty50_tri','Nifty 50 TRI'],['midcap150_tri','Midcap 150 TRI'],['smallcap250_tri','Smallcap 250 TRI'],['gold_inr','Gold (INR)'],['bonds','Bonds'],['liquid','Liquid'],['sp500_inr','S&P 500 (INR)']].filter(k=>cy.some(r=>r[k[0]]!=null&&String(r[k[0]]).trim()!==''&&!/^n\/?a$/i.test(String(r[k[0]]))));
+  const rows=cy.map(r=>String(r.year)); const M=cy.map(r=>cols.map(k=>num(r[k[0]])));
+  const c=h('div'); f.body.appendChild(c); onResize(()=>heatmap(c,rows,cols.map(k=>k[1]),M,{unit:'Calendar-year return'}));
+  f.addTableToggle(()=>tableEl(['Year'].concat(cols.map(k=>k[1])), cy.map(r=>[r.year].concat(cols.map(k=>r[k[0]]==null?'n/a':String(r[k[0]])))), cols.map((k,i)=>i+1)));
+})();
+// 2 · deployment plan
+(function(){ const dp=arr('deployment_plan'); if(!dp.length) return; const f=figure('fig-deploy',{title:'Deploying the fresh ₹500 Cr', sub:'Cumulative capital invested by week under the staggered plan. Hover a week for the tranche, what it buys and the acceleration rule.'}); if(!f) return;
+  let acc=0; const pts=dp.map(d=>{ acc+= (d.tranche_cr||0); return {label:d.week, y:acc, rows:[{label:'Tranche',value:cr(d.tranche_cr)},{label:'Cumulative',value:cr(acc)+' ('+fmt(d.cumulative_pct,0)+'%)'},{label:'Deploys into',value:d.what||''},{label:'Accelerate if',value:d.acceleration_rule||'–'}]}; });
+  const c=h('div'); f.body.appendChild(c); onResize(()=>areaLine(c,pts,{tick:v=>'₹'+fmt(v,0),endLabel:v=>cr(v)}));
+  f.addTableToggle(()=>tableEl(['Week','Tranche ₹ Cr','Cumulative %','What is deployed','Acceleration rule'], dp.map(d=>[d.week,fmt(d.tranche_cr,1),fmt(d.cumulative_pct,0),d.what,d.acceleration_rule||'–']),[1,2]));
+})();
+// 3 · operating calendar
+(function(){ const oc=arr('operating_calendar'); if(!oc.length) return; const f=figure('fig-calendar',{title:'Operating calendar', sub:'What happens at each cadence, when (IST) and who owns it.'}); if(!f) return;
+  const order=['daily','weekly','monthly','quarterly','annual','event'];
+  const sorted=oc.slice().sort((a,b)=>{ const ia=order.findIndex(o=>String(a.cadence).toLowerCase().startsWith(o)), ib=order.findIndex(o=>String(b.cadence).toLowerCase().startsWith(o)); return (ia<0?99:ia)-(ib<0?99:ib); });
+  const t=h('table'); const tb=h('tbody'); sorted.forEach(row=>{ const gh=h('tr',{class:'group-h'}); gh.appendChild(h('td',{colspan:'3',text:String(row.cadence).toUpperCase()+(row.time_ist?' · '+row.time_ist:'')+(row.owner?' · owner: '+row.owner:'')})); tb.appendChild(gh); (row.activities||[]).forEach((a,i)=>{ const tr=h('tr'); tr.appendChild(h('td',{class:'cadence-tag',text:i===0?'':''})); tr.appendChild(h('td',{colspan:'2',text:a})); tb.appendChild(tr); }); }); t.appendChild(tb);
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(t); f.body.appendChild(w);
+})();
+// 4 · rebalance policy comparison
+(function(){ const rc=arr('rebalance_comparison'); if(!rc.length) return; const f=figure('fig-rebal',{title:'Rebalancing policy trade-offs', sub:'Annual turnover, tracking error to the strategic allocation, cost and the number of consent events each policy generates. The recommended policy is emphasised.', note:'Figures are model estimates for a ₹500 Cr balanced book under the stated assumptions; see section 4 for the arithmetic.'}); if(!f) return;
+  const items=rc.map(r=>({label:r.policy, emph:/recommend|adopt|prefer|chosen|✓|yes/i.test(r.verdict||''), r:r})); if(!items.some(i=>i.emph)) items.forEach(i=>i.emph=/hybrid/i.test(i.label));
+  const c=h('div'); f.body.appendChild(c); smallMultiples(c, items, [{name:'Turnover',unit:'% p.a.',get:it=>it.r.turnover_pct,fmt:v=>fmt(v,0)+'%'},{name:'Tracking error to SAA',unit:'bps',get:it=>it.r.tracking_error_bps,fmt:v=>fmt(v,0)},{name:'Cost',unit:'bps p.a.',get:it=>it.r.cost_bps,fmt:v=>fmt(v,0)},{name:'Consent events',unit:'per year',get:it=>it.r.consent_events_per_year,fmt:v=>fmt(v,0)}]);
+  f.addTableToggle(()=>tableEl(['Policy','Turnover % p.a.','TE bps','Cost bps','Consent events / yr','Verdict'], rc.map(r=>[r.policy,fmt(r.turnover_pct,0),fmt(r.tracking_error_bps,0),fmt(r.cost_bps,0),fmt(r.consent_events_per_year,0),r.verdict||'']),[1,2,3,4]));
+})();
+// 5 · stress library
+(function(){ const st=arr('stress_scenarios'); if(!st.length) return; const f=figure('fig-stress',{title:'Historical stress library: ₹ Cr impact on the two models', sub:'Estimated portfolio P&L if each episode repeated on the current allocation. Bars extend left of zero for losses. Hover for the asset-class moves behind each estimate.', note:'Asset-class moves are historical (verified/approx. per Appendix A); portfolio P&L is a linear pass-through of sleeve weights × moves, before any hedge or rebalancing response.'}); if(!f) return;
+  f.body.appendChild(legend([{label:'Moderate',color:'var(--s1)'},{label:'Aggressive',color:'var(--s2)'}])); const c=h('div'); f.body.appendChild(c);
+  const rows=st.map(s=>({label:s.scenario+(s.period?' ('+s.period+')':''), values:[s.moderate_pnl_cr, s.aggressive_pnl_cr], s:s}));
+  onResize(()=>groupedHBar(c, rows, ['Moderate','Aggressive'], {fmt:v=>cr(v), tick:v=>'₹'+fmt(v,0), labelW:Math.min(230, widthOf(c)*0.38), extraRows:r=>[{label:'Nifty 50',value:pct(r.s.nifty50_pct)},{label:'Midcap',value:pct(r.s.midcap_pct)},{label:'Smallcap',value:pct(r.s.smallcap_pct)},{label:'Gold INR',value:pct(r.s.gold_inr_pct)},{label:'Bonds',value:pct(r.s.bonds_pct)},{label:'USDINR',value:pct(r.s.usdinr_pct)},{label:'Recovery',value:r.s.recovery_months||'–'}]}));
+  f.addTableToggle(()=>tableEl(['Scenario','Period','Nifty 50','Midcap','Smallcap','Gold INR','Bonds','USDINR','VIX peak','Moderate ₹ Cr','Aggressive ₹ Cr','Recovery','Note'], st.map(s=>[s.scenario,s.period||'',pct(s.nifty50_pct),pct(s.midcap_pct),pct(s.smallcap_pct),pct(s.gold_inr_pct),pct(s.bonds_pct),pct(s.usdinr_pct),s.vix_peak||'–',fmt(s.moderate_pnl_cr,0),fmt(s.aggressive_pnl_cr,0),s.recovery_months||'–',s.note||'']),[2,3,4,5,6,7,9,10]));
+})();
+// 5 · limits
+(function(){ const rl=arr('risk_limits'); if(!rl.length) return; const f=figure('fig-limits',{title:'Risk limit framework', sub:'Hard limits, warning levels and the action on breach, with the monitoring cadence.'}); if(!f) return;
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(tableEl(['Metric','Limit','Warning','Action on breach','Cadence'], rl.map(r=>[r.metric,r.limit,r.warning||'–',r.action,r.cadence||'–']))); f.body.appendChild(w);
+})();
+// 5 · early warning
+(function(){ const ew=arr('early_warning'); if(!ew.length) return; const f=figure('fig-ewi',{title:'Early-warning indicator board', sub:'Thresholds that move an indicator from green to amber to red, and the pre-agreed action on red.'}); if(!f) return;
+  const chip=(cls,txt)=>{ const s=h('span',{class:'chip '+cls}); s.textContent=(cls==='g'?'● ':cls==='a'?'▲ ':'■ ')+(txt||'–'); return s; };
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(tableEl(['Indicator','Green','Amber','Red','Action on red','Source'], ew.map(r=>[r.indicator,chip('g',r.green),chip('a',r.amber),chip('r',r.red),r.action_on_red,r.source||'–']))); f.body.appendChild(w);
+})();
+// 5 · hedge menu
+(function(){ const hm=arr('hedge_menu'); if(!hm.length) return; const f=figure('fig-hedge',{title:'Tail-hedge menu', sub:'Annual carry cost, protection delivered in a −25% equity shock, and whether NDPMS consent mechanics allow it in time to matter.'}); if(!f) return;
+  const rows=hm.map(r=>({label:r.hedge, values:[num(r.annual_cost_bps)], r:r})).filter(r=>r.values[0]!=null);
+  if (rows.length){ const c=h('div'); f.body.appendChild(h('div',{class:'sub',text:'Annual cost, bps of the hedged sleeve'})); f.body.appendChild(c); onResize(()=>groupedHBar(c, rows, ['Annual cost (bps)'], {fmt:v=>fmt(v,0)+' bps', tick:v=>fmt(v,0), bar:14, labelW:Math.min(230, widthOf(c)*0.4), colors:['var(--s1)']})); }
+  const w=h('div',{class:'tbl-wrap'}); w.appendChild(tableEl(['Hedge','Annual cost bps','Protection in −25%','NDPMS feasibility','Verdict'], hm.map(r=>[r.hedge,r.annual_cost_bps,r.protection_in_minus25||'–',r.ndpms_feasibility||'–',r.verdict]),[1])); f.body.appendChild(w);
+})();
+// 6 · return decomposition
+(function(){ const rd=arr('return_decomposition'); if(!rd.length) return; const f=figure('fig-decomp',{title:'Owning the returns: where alpha comes from and where it leaks', sub:'Illustrative annual contribution of each component in bps versus the composite benchmark. Positive components in blue, drags in brick; the net line is the accountability number.', note:'Illustrative budget, not a forecast. Each component has a named owner and a measurement method (table).'}); if(!f) return;
+  const c=h('div'); f.body.appendChild(c);
+  onResize(()=>{ c.innerHTML=''; const W=widthOf(c); const bar=16,rowH=30,labelW=Math.min(240,W*0.4),padT=6,padB=22,padR=70; const H=padT+rd.length*rowH+padB; const svg=S('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H},c);
+    const vals=rd.map(r=>r.illustrative_bps); let min=Math.min(0,...vals),max=Math.max(0,...vals); if(min===max)max=min+1; const sx=v=>labelW+(v-min)/(max-min)*(W-labelW-padR);
+    const g=S('g',{class:'grid'},svg); niceTicks(min,max,6).forEach(t=>{S('line',{x1:sx(t),x2:sx(t),y1:padT,y2:H-padB},g); S('text',{x:sx(t),y:H-6,'text-anchor':'middle',class:'axis',text:fmt(t,0)},S('g',{class:'axis'},svg));}); S('line',{x1:sx(0),x2:sx(0),y1:padT,y2:H-padB,class:'base'},svg);
+    rd.forEach((r,i)=>{ const y=padT+i*rowH+(rowH-bar)/2; const isNet=/net|total/i.test(r.component); const lab=S('text',{x:labelW-8,y:y+bar-3,'text-anchor':'end',class:'rowlab',text:r.component.length>34?r.component.slice(0,33)+'…':r.component},svg); if(isNet) lab.style.fontWeight='700'; const v=r.illustrative_bps; const xa=sx(Math.min(0,v)),xb=sx(Math.max(0,v)); const rect=S('rect',{x:xa,y:y,width:Math.max(1,xb-xa),height:bar,class:'mark'},svg); rect.style.fill = isNet ? 'var(--accent)' : (v>=0?'var(--pos)':'var(--neg)'); if(!isNet&&v>=0) rect.style.fillOpacity='.85'; const lp=labPos(v,xa,xb,sx(0),max<=0); S('text',{x:lp[0],y:y+bar-3,'text-anchor':lp[1],class:'lab',text:(v>0?'+':'')+fmt(v,0)+' bps'},svg); hover(rect,r.component,[{label:'Contribution',value:(v>0?'+':'')+fmt(v,0)+' bps'},{label:'Measured by',value:r.how_measured||''},{label:'Owner',value:r.owner||'–'}]); }); });
+  f.addTableToggle(()=>tableEl(['Component','Illustrative bps','How it is measured','Owner'], rd.map(r=>[r.component,(r.illustrative_bps>0?'+':'')+fmt(r.illustrative_bps,0),r.how_measured,r.owner||'–']),[1]));
+})();
+// 7 · cost stack
+(function(){ const cs=arr('cost_stack'); if(!cs.length) return; const f=figure('fig-cost',{title:'Total cost of ownership by instrument', sub:'Stacked bps per year: underlying expense ratio, NDPMS fee treatment, transaction cost and tax drag. Total at the bar end.', note:'Tax drag is an annualised estimate at the client’s marginal treatment under FY2026-27 rules; see section 1 and the fee-layering rules in section 7.'}); if(!f) return;
+  const series=['Expense ratio','PM fee','Transaction cost','Tax drag']; f.body.appendChild(legend(series.map((s,i)=>({label:s,color:SERIES[i]})))); const c=h('div'); f.body.appendChild(c);
+  onResize(()=>stackedHBar(c, cs.map(r=>({label:r.instrument, parts:[r.expense_bps||0,r.pm_fee_bps||0,r.txn_bps||0,r.tax_drag_bps||0]})), series, {fmt:v=>fmt(v,0)+' bps', tick:v=>fmt(v,0), labelW:Math.min(210, widthOf(c)*0.36)}));
+  f.addTableToggle(()=>tableEl(['Instrument','Expense bps','PM fee bps','Txn bps','Tax drag bps','Total bps','Note'], cs.map(r=>[r.instrument,fmt(r.expense_bps,0),fmt(r.pm_fee_bps,0),fmt(r.txn_bps,0),fmt(r.tax_drag_bps,0),fmt(r.total_bps,0),r.note||'']),[1,2,3,4,5]));
+})();
+// 8 · dashboards inventory
+(function(){ const dp=arr('dashboard_panels'); if(!dp.length) return; const f=figure('fig-dash',{title:'Dashboard inventory', sub:'Every panel the operating model needs, grouped by dashboard, with metrics, refresh cadence and alert rule.'}); if(!f) return;
+  const groups={}; dp.forEach(p=>{ (groups[p.dashboard]=groups[p.dashboard]||[]).push(p); });
+  const t=h('table'); t.appendChild(h('thead',{}, [h('tr',{}, ['Panel','Metrics','Refresh','Alert rule'].map(c=>h('th',{text:c})))])); const tb=h('tbody');
+  Object.keys(groups).forEach(gk=>{ const gh=h('tr',{class:'group-h'}); gh.appendChild(h('td',{colspan:'4',text:gk+' · '+groups[gk].length+' panels'})); tb.appendChild(gh); groups[gk].forEach(p=>{ const tr=h('tr'); [p.panel,p.metrics,p.refresh,p.alert_rule||'–'].forEach(v=>tr.appendChild(h('td',{text:v}))); tb.appendChild(tr); }); }); t.appendChild(tb);
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(t); f.body.appendChild(w);
+})();
+// 8 · RACI
+(function(){ const rc=arr('team_raci'); if(!rc.length) return; const f=figure('fig-raci',{title:'Who does what: RACI', sub:'R = responsible, A = accountable, C = consulted, I = informed.'}); if(!f) return;
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(tableEl(['Activity','PM','Analyst','Risk','Ops / Trading','Compliance','RM'], rc.map(r=>[r.activity,r.pm||'',r.analyst||'',r.risk||'',r.ops||'',r.compliance||'',r.rm||'']),[1,2,3,4,5,6])); f.body.appendChild(w);
+})();
+// 9 · matrix
+(function(){ const mx=arr('matrix'); if(!mx.length) return; const f=figure('fig-matrix',{title:'CAN vs SHOULD vs AVOID: the consolidated matrix', sub:'Every capability considered for the mandate, with the verdict, its NDPMS feasibility, effort, impact, cadence and delivery phase. Filter by verdict or domain, or search.'}); if(!f) return;
+  const counts=h('div',{class:'counts'}); ['must','should','could','avoid'].forEach(v=>{ const d=h('div',{class:'count'}); d.appendChild(h('div',{class:'n',text:String(mx.filter(m=>m.verdict===v).length)})); d.appendChild(h('div',{class:'l',text:v})); counts.appendChild(d); }); f.body.appendChild(counts);
+  // stacked bar by domain
+  const doms=[...new Set(mx.map(m=>m.domain))]; const vs=['must','should','could','avoid']; const vcol=['var(--accent)','var(--s1)','var(--dim)','var(--neg)'];
+  f.body.appendChild(legend(vs.map((v,i)=>({label:v[0].toUpperCase()+v.slice(1),color:vcol[i]})))); const bc=h('div'); f.body.appendChild(bc);
+  onResize(()=>{ const svg=stackedHBar(bc, doms.map(d=>({label:d, parts:vs.map(v=>mx.filter(m=>m.domain===d&&m.verdict===v).length)})), vs.map(v=>v[0].toUpperCase()+v.slice(1)), {fmt:v=>fmt(v,0), tick:v=>fmt(v,0), labelW:Math.min(200, widthOf(bc)*0.36), colors:vcol, intTicks:true}); svg.querySelectorAll('rect.mark').forEach((r,i)=>{ if (r.style.fill==='var(--s1)') r.style.fillOpacity='.7'; }); });
+  const ctl=h('div',{class:'controls'}); const chips=h('div',{class:'chips'}); let fv='all', fd='all', q='';
+  const mk=(v,l)=>{ const b=h('button',{class:'btn','aria-pressed':v==='all'?'true':'false',text:l}); b.addEventListener('click',()=>{ fv=v; chips.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true'); render(); }); return b; };
+  chips.appendChild(mk('all','All '+mx.length)); vs.forEach(v=>chips.appendChild(mk(v,v[0].toUpperCase()+v.slice(1)))); ctl.appendChild(chips);
+  const sel=h('select',{id:'matrix-domain','aria-label':'Filter by domain'}); sel.appendChild(h('option',{value:'all',text:'All domains'})); doms.forEach(d=>sel.appendChild(h('option',{value:d,text:d}))); sel.addEventListener('change',()=>{fd=sel.value;render();}); ctl.appendChild(sel);
+  const inp=h('input',{id:'matrix-search',type:'search',placeholder:'Search items…','aria-label':'Search matrix'}); inp.addEventListener('input',()=>{q=inp.value.toLowerCase();render();}); ctl.appendChild(inp); f.body.appendChild(ctl);
+  const wrap=h('div',{class:'tbl-wrap'}); f.body.appendChild(wrap);
+  const feas=v=>{ const m={allowed:['ok','Allowed'],allowed_with_consent:['consent','With consent'],restricted:['restricted','Restricted'],not_allowed:['no','Not allowed'],unclear_verify:['verify','Verify']}[v]||['',v]; return h('span',{class:'badge '+m[0],text:m[1]}); };
+  const dots=v=>{ const n={low:1,medium:2,high:3}[v]||0; const s=h('span',{class:'dots',title:v}); s.innerHTML=[1,2,3].map(i=>'<span class="'+(i<=n?'':'off')+'">●</span>').join(''); return s; };
+  function render(){ wrap.innerHTML=''; const rows=mx.filter(m=>(fv==='all'||m.verdict===fv)&&(fd==='all'||m.domain===fd)&&(!q||(m.item+' '+m.rationale+' '+m.domain+' '+(m.owner||'')).toLowerCase().includes(q)));
+    const order={must:0,should:1,could:2,avoid:3}; rows.sort((a,b)=>order[a.verdict]-order[b.verdict]||a.domain.localeCompare(b.domain));
+    const t=tableEl(['Item','Verdict','Domain','NDPMS','Effort','Impact','Cadence','Phase','Owner'], rows.map(m=>{ const it=h('div'); it.appendChild(h('div',{text:m.item})); it.appendChild(h('span',{class:'why',text:m.rationale})); return [it,h('span',{class:'pill '+m.verdict,text:m.verdict}),m.domain,feas(m.ndpms_feasibility),dots(m.effort),dots(m.impact),m.cadence,m.phase,m.owner||'–']; })); t.classList.add('matrix-table'); wrap.appendChild(t); if(!rows.length) wrap.appendChild(h('div',{class:'note',text:'No items match.'})); }
+  render();
+})();
+// 10 · roadmap
+(function(){ const rm=arr('roadmap'); if(!rm.length) return; const f=figure('fig-roadmap',{title:'Build roadmap', sub:'Deliverables by phase with owners and dependencies. Phases are sequential; the bar shading follows the order.'}); if(!f) return;
+  const tl=h('div',{class:'timeline'}); tl.style.setProperty('--n',rm.length); rm.forEach(()=>tl.appendChild(h('div'))); f.body.appendChild(tl);
+  const ph=h('div',{class:'phases'}); rm.forEach(p=>{ const d=h('div',{class:'phase'}); d.appendChild(h('div',{class:'ph',text:p.phase})); d.appendChild(h('div',{class:'win',text:(p.window||'')+(p.owner?' · '+p.owner:'')})); const ul=h('ul'); (p.deliverables||[]).forEach(x=>ul.appendChild(h('li',{text:x}))); d.appendChild(ul); if(p.dependencies&&p.dependencies.length) d.appendChild(h('div',{class:'dep',text:'Depends on: '+p.dependencies.join('; ')})); ph.appendChild(d); }); f.body.appendChild(ph);
+})();
+// 11 · KPIs
+(function(){ const k=arr('kpis'); if(!k.length) return; const f=figure('fig-kpi',{title:'KPIs for owning the returns', sub:'Targets, measurement cadence and owner for each accountability metric.'}); if(!f) return;
+  const w=h('div',{class:'tbl-wrap'}); w.style.border='0'; w.appendChild(tableEl(['KPI','Target','Cadence','Owner'], k.map(r=>[r.kpi,r.target,r.cadence||'–',r.owner||'–']))); f.body.appendChild(w);
+})();
+// remove empty slots
+document.querySelectorAll('.fig-slot').forEach(s=>s.remove());
+
+/* ---------- TOC active state ---------- */
+const links=[...document.querySelectorAll('#toc a')]; const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+if ('IntersectionObserver' in window && secs.length){ const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting){ links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id)); } }); },{rootMargin:'-10% 0px -80% 0px'}); secs.forEach(s=>io.observe(s)); }
+})();
+</script>
