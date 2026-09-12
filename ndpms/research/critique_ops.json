@@ -1,0 +1,190 @@
+{
+  "reviewer": "Head of Operations & Client Servicing (NDPMS/PMS ops veteran) — focus: consent workflow, ops load, SLAs, reconciliation, data feeds, custodian/broker realities, team sizing, build roadmap",
+  "overall_assessment": "The seven-document set is unusually well-sourced for a first pass, and the consent-latency quantification (a rupee cost attached to every day of delay, threaded through regulatory, rebalancing, risk and performance) is genuinely good design discipline — it treats NDPMS friction as a budgeted cost, not a complaint. The recon matrix, the R0-R4 return hierarchy and the hybrid band/event-overlay rebalancing design are strong enough to keep close to verbatim. But read as an operator who has to run this book on Monday morning, the blueprint is optimistic in three specific ways the earlier CIO and Compliance reviews did not fully surface. First, the team is sized for a steady-state book, not for the actual daily/weekly grind of eleven reconciliation types, AIF capital-call tracking, corporate-action processing and custodian liaison on a multi-instrument Rs 500 Cr book — 1.5 Ops FTE and 0.5 Compliance FTE, with no named backup for the PM or Compliance seat, is thin enough that a single absence during a live event stalls the consent machinery. Second, the design treats the monthly RPP as the operating heartbeat but never stress-tests it against real client behaviour: a 30-minute walkthrough of 50+ trade lines every month forever, for a UHNW family that travels, and a capital-call SLA (~10 business days) that is tighter than the normal consent cadence with no standing pre-authorisation to fund it, are both realistic failure points that will surface in year one, not year three. Third, the build roadmap compresses custodian selection, OMS/RMS compliance-rule configuration and AP-relationship onboarding into the same 0-30-day window with no dependency gating and no BCP/DR test before the Rs 500 Cr actually starts moving. None of this is unfixable, but it needs to be fixed before the operating model is presented as ready to run, not discovered during the first tail event.",
+  "findings": [
+    {
+      "domain": "operations/allocation",
+      "target": "design_allocation.md §6 deployment plan + §9 build sequence (week 0-2 sign IPS + deployment schedule + acceleration rules); design_operations.md §2.6 Standing Instructions Register",
+      "issue_type": "regulatory_misstatement",
+      "severity": "high",
+      "detail": "100% of the client's capital is deployed across ~50 lines over 12 weeks under acceleration logic (pull forward tranches on -5%/-10%/VIX>22 triggers) authorised by a single week-0 consent, monitored and fired by the PM alone. This is a stronger 'standing discretion' fact pattern than the monthly band-restoring trades every other domain worries about, yet the deployment-ladder acceleration is not even listed as a category in the Standing Instructions Register (6 rows, none of which is this), so it gets neither the legal scrutiny nor the audit trail the other five instructions get.",
+      "suggested_fix": "Add 'deployment-ladder acceleration' as a named seventh Standing Instruction with its own trigger/instrument/max-Rs/revocability row, subject it to the same legal-opinion gate as band-restoring instructions, and re-confirm client consent at least once mid-deployment (e.g. week 6) rather than relying solely on the week-0 signature for 12 weeks of execution.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §7.1 (Ops/fund accounting 1.5 FTE, Compliance 0.5 FTE) and §4.1 (11-row recon matrix) and §8.2 (key-person delegation)",
+      "issue_type": "underestimated_cost_or_risk",
+      "severity": "high",
+      "detail": "1.5 Ops FTE is asked to run daily cash/holdings/MF-folio/CA/dividend/fee recons, weekly AIF-tranche and deployment-tranche checks, monthly AIF-statement recon, and custodian liaison, for a book that itself flags needing three new automation extensions (AIF ledger, bond settlement leg, third-party-PMS look-through). 0.5 Compliance FTE runs pre-trade checks, associate-limit real-time monitoring, consent-audit and SEBI/APMI filing on the same book. 'Documented delegation of authority' names no specific backup individual or activation test — if the PM and the Compliance officer are both unavailable during a live tail event, no one is authorised to act in the consent machinery described in Section 2.",
+      "suggested_fix": "Raise Ops/fund-accounting to at least 2.0-2.5 FTE and Compliance to a fully dedicated 1.0 FTE for year 1; name specific backup individuals for the PM and Compliance sign-off gates and rehearse the handover once before go-live, not 'quarterly' starting after go-live.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §3.2 (AIF capital-call SLA ~10 business days) and §2.6 Standing Instructions Register (no capital-call funding instruction listed); design_allocation.md Moderate/Aggressive AIF sizing 9%/12% of AUM",
+      "issue_type": "missing",
+      "severity": "high",
+      "detail": "A drawdown notice from a private-credit or PE fund typically gives ~10 business days. None of the six listed standing instructions covers funding it, so it depends on an ad hoc RPP subject to the standard 2-day-target/48-hour-escalation consent SLA. A slow or travelling client missing the call triggers PPM default remedies (forced sale of the LP interest at a discount, forfeiture of prior distributions, exclusion from future closes) — a real, avoidable, money-losing failure mode absent from the design.",
+      "suggested_fix": "Add a standing instruction: 'AIF capital-call funding: pre-authorised sweep from the liquid/arbitrage sleeve up to the committed-but-undrawn amount already disclosed in the IPS, executed on receipt of a drawdown notice from an approved fund, client notified same day' — mirroring the cash-sweep instruction's mechanics.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §2.2 RPP template (50-55 line trade list) and §2.4 (T-1 '30-minute call/portal walkthrough') and §7.1 (RM/client servicing 0.5-1.0 FTE)",
+      "issue_type": "impractical",
+      "severity": "high",
+      "detail": "design_allocation.md caps the line count at 50-55 (hard cap 60). Walking a principal or family office through 50+ trade lines with cost/tax detail in 30 minutes every month indefinitely is optimistic: it either becomes an 'approve all' rubber-stamp (undermining the NDPMS consent premise) or consumes 2-3x the budgeted RM/PM time per cycle across calls, follow-ups and partial-rejection handling.",
+      "suggested_fix": "Redesign the client-facing pack as a one-page executive summary (drift, top 5-8 changes, cost/tax total) with full 50-line detail as an appendix; size the walkthrough at 45-60 minutes; track actual engagement depth as an operating KPI, not just SLA-to-approve.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §9.1 roadmap (Phase 0-30: custodian selected and onboarded + OMS pre-trade rules configured, both parallel MUST/SHOULD; Phase 90-180: BCP drill marked COULD); design_rebalancing.md §6.3 (AP relationship needed 'before go-live', not a dated roadmap item)",
+      "issue_type": "impractical",
+      "severity": "high",
+      "detail": "Custodian onboarding for a multi-asset book (equity+MF+AIF+bonds+international look-through) realistically needs KYC/agreement negotiation, SFTP/API testing and a parallel run — rarely achievable in 30 days even alone, let alone alongside OMS compliance-rule configuration and UAT in the same window. The AP relationship the rebalancing note requires 'on day one' is never a dated deliverable in the operations roadmap. The first BCP/DR drill is scheduled 90-180 days in, i.e. after several live monthly cycles and the entire 12-week deployment ladder have already run untested.",
+      "suggested_fix": "Sequence custodian selection -> OMS compliance-rule configuration -> AP/AMC-direct relationship rather than parallelising them; add 'AP relationship signed' as a named dated Phase 0-30 deliverable; move a lightweight BCP/DR tabletop test to before the first live monthly cycle.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §8.1 (error-trade policy: firm-borne losses booked to a segregated error-account) vs §9.3 cost table (no PI-insurance or error-reserve line)",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "The design commits the firm to absorb certain error-trade losses via a segregated error-account, but no line item in the annual cost stack (custodian, OMS/RMS, e-sign, data feeds, engineering, team, audit/legal, contingency/BCP) funds it.",
+      "suggested_fix": "Add a PI-insurance premium or a funded error-reserve (sized off historical error-trade incidence at comparable books) as an explicit §9.3 cost line.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations/rebalancing",
+      "target": "design_rebalancing.md §3 (corporate-action active-election row: ad hoc consent required, 'before the corporate-action deadline', no numeric SLA) vs design_operations.md §2.4 SLA table (RPP-specific only)",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "Rights-issue subscription windows are commonly 2-3 weeks and rights subscriptions are separately flagged as an 'active' unlisted-cap event needing extra compliance headroom checks. If a CA is announced shortly after that month's RPP has gone out, the next natural consent touchpoint is a month away; relying on an undefined ad hoc channel with no committed turnaround risks missing value-accretive elections.",
+      "suggested_fix": "Define a CA-election-specific SLA (e.g. RM contact within 4 business hours of the record-date notice, client decision within 3 business days, explicit 'no response = default no-action' clause) as its own row in design_operations.md §2.4.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §3.3 custodian selection criteria (NAV/CA-processing SLA listed as a criterion, no enforcement mechanism anywhere in the document)",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "No SLA credit, penalty clause, or escalation-to-remedy path is specified for when the custodian itself misses NAV or corporate-action deadlines, unlike the internal recon-break escalation ladder which is fully specified.",
+      "suggested_fix": "Require the custodian contract to include SLA credits/penalties for late NAV/CA processing and specify an escalation path (Ops lead -> CFO -> contractual remedy) mirroring the internal break-escalation design.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §9.3 ('Team (6.7-7.2 FTE, blended fully-loaded cost approx. Rs 18-25 lakh/FTE) — 120-180 [Rs lakh/yr]')",
+      "issue_type": "underestimated_cost_or_risk",
+      "severity": "medium",
+      "detail": "Rs 18-25 lakh fully-loaded is plausible for junior Ops/RM support but low for a dedicated PM and Risk manager at a firm running a Rs 500 Cr multi-asset mandate under regulatory scrutiny in Mumbai; the true blended team cost is likely nearer the top of, or above, the stated Rs 120-180 lakh band, which directly weakens the 'tight but workable' economics conclusion built on it.",
+      "suggested_fix": "Re-run the team-cost line with role-specific (not blended) fully-loaded salary bands before presenting the Rs 184-318 lakh/yr 'tight but workable' framing to the CIO/board.",
+      "confidence": "low"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §2.3 (only DSC mentioned for HUF/trust/corporate signatories) vs design_regulatory.md §2 (mandate likely spread across individual/HUF/family trust/holding company) and the compliance review's open legal-entity-structuring question",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "A DSC line item is not a full consent workflow — a trust or holding company's RPP approval may need a preceding board/trustee resolution authorising the specific signatory, or a standing Power of Attorney with its own lapse risk (director changes, POA renewal). None of this is modelled in the SLA table, which assumes a single individual clicking 'approve' within 2 business days.",
+      "suggested_fix": "Map the actual legal-entity structure first, then design a distinct consent sub-workflow (with its own SLA) for any entity requiring board/trustee-level authorisation, rather than treating 'DSC available' as sufficient design.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §6 ('Client consolidated view' dashboard, look-through incl. LRS/IFSC sleeve) vs design_regulatory.md §4 (LRS capacity N=5 -> Rs 11 Cr/yr; TCS 20% -> Rs 2.2 Cr blocked till ITR credit)",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "LRS is a per-individual, bank-tracked annual limit; nothing describes how the house coordinates across family members to avoid inadvertent double-use of capacity already used elsewhere (school fees, property purchase abroad), nor how the TCS cash-drag is tracked and reconciled back into the family's liquidity picture.",
+      "suggested_fix": "Add an LRS-utilisation tracker (per family member, updated at least quarterly via RM/bank confirmation) to the consolidated-view dashboard's data model, and add the TCS-credit timeline to the cost/tax dashboard.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §5.2/§9.2 (Build Python pipeline/recon engine, no described code review/UAT/promotion gate) vs the sibling CIO review's confirmed 100x scaling bug in sel/tco.py and arithmetic errors in a rebalancing worked example",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "This project's own design phase already produced at least one materially wrong, unreviewed number that would have shaped a client-facing 'tax dominates cost' narrative had it not been caught. A production pipeline computing daily VaR, consent-latency shortfall and monthly TCO for real client money needs a described peer-review/unit-test/UAT gate before a model change reaches the dashboards — none is specified.",
+      "suggested_fix": "Add a change-control step to the roadmap: any change to a compute engine feeding a client- or IC-facing dashboard requires a second reviewer and a documented reconciliation check against the prior run, before 'automation maturity' (Phase 90-180) is declared complete.",
+      "confidence": "high"
+    },
+    {
+      "domain": "operations/selection",
+      "target": "design_selection.md §3.3 ('pull the third-party PMS's monthly client statement... via a data-sharing agreement') and design_operations.md §5.1 (AIF statements 'monthly, some quarterly... manual ingest') vs design_performance.md §5.1 (monthly pack due T+5 business days)",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "Third-party PMS managers and AIF administrators routinely deliver statements 15-30 days after month-end in practice, past the T+5-business-day monthly-pack deadline. 'Via a data-sharing agreement' is aspirational, not a negotiated SLA with a named remedy.",
+      "suggested_fix": "Make a negotiated data-delivery SLA (with a stated day-count and escalation contact) a condition of onboarding any third-party PMS or AIF manager, and have the monthly pack explicitly show 'as at last-confirmed-date' for any stale sleeve rather than silently holding the whole pack.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory",
+      "target": "design_regulatory.md §1.5 ('Custodian for securities... mandatory for PMs (historic <Rs 500 Cr AUM exemption; at Rs 500 Cr+ it binds anyway)')",
+      "issue_type": "factual_error",
+      "severity": "low",
+      "detail": "A web check this session confirms the pre-2020 Rs 500 Cr AUM exemption threshold was removed by the SEBI (Portfolio Managers) Regulations, 2020, making custodian appointment mandatory for essentially all portfolio managers regardless of AUM (except purely advisory PMs). The document's framing ('binds anyway at this size') incorrectly implies smaller PMS books might still be exempt.",
+      "suggested_fix": "Correct the sentence to state the custodian requirement is unconditional under the 2020 Regulations (except advisory-only PMs), dropping the AUM-threshold framing everywhere it recurs.",
+      "confidence": "medium",
+      "evidence_url": "https://www.anandrathipms.com/blog/role-of-custodian-in-pms.php"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §2.4 SLA table (48h/72h escalation triggers, no business-hours-vs-calendar / holiday / on-call rotation stated)",
+      "issue_type": "missing",
+      "severity": "low",
+      "detail": "No stated rule for what happens when a 48-hour escalation clock lands on a weekend or market holiday, and no named on-call rotation for CIO/RM escalation calls outside standard business hours — a real gap around Diwali/year-end when HNI clients are least reachable.",
+      "suggested_fix": "State explicitly whether SLA hours are business hours or calendar hours, and name an on-call escalation rotation for out-of-hours triggers.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §3.4 (second-broker relationship, >=10% of listed-equity flow for TCA benchmarking) vs §9.3 cost table (no line item for it)",
+      "issue_type": "missing",
+      "severity": "low",
+      "detail": "A second, non-group broker relationship requires its own OMS connectivity, custodian standing-settlement-instruction setup and dual contract-note reconciliation — none of which is budgeted or scheduled; it is left as an unbudgeted 'standing option.'",
+      "suggested_fix": "Add second-broker onboarding as an explicit Phase 90-180 roadmap item with a small cost-stack line.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations/rebalancing",
+      "target": "design_operations.md §2.2 ('validity window 10 trading days') vs design_rebalancing.md §6.6 ('naturally staggers execution over up to four weekly tranches')",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "'Up to four weekly tranches' assumes consent lands promptly on T0. If consent instead lands near the 48-hour escalation point, only 1-2 Thursdays remain inside the 10-trading-day window before the pack lapses, with no documented fallback (partial execution vs full reissue) for this common case.",
+      "suggested_fix": "Model tranche count as a function of actual consent-arrival day, and define a rule for unexecuted lines when the window closes before all tranches complete.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §5.2 pipeline (01:30 IST stale-file check; 02:30 IST publish; 06:30 IST ops pre-market check) — no recovery SLA if a feed is still stale at 06:00",
+      "issue_type": "missing",
+      "severity": "low",
+      "detail": "The stale-file check is a detection control, not a recovery/escalation SLA — no stated action if AMFI NAV or the custodian EOD file is still delayed past the 02:30 publish deadline.",
+      "suggested_fix": "Add an explicit recovery SLA: if a feed is still stale at 06:00 IST, Ops manually pulls the prior validated file with a flag and notifies Risk/PM before the 06:30 check.",
+      "confidence": "low"
+    }
+  ],
+  "top_missing_items": [
+    "A standing, pre-authorised AIF capital-call funding instruction (sweep from liquid/arbitrage up to the disclosed committed-but-undrawn amount) — currently the single biggest unaddressed 'we missed the deadline and lost money' scenario in the design.",
+    "Named, tested backup individuals (not just 'documented delegation of authority') for the PM and Compliance sign-off seats, rehearsed once before go-live.",
+    "A negotiated custodian SLA with enforcement teeth (credits/penalties, escalation path) — currently 'SLA' appears only as a selection criterion, not a contractual mechanism.",
+    "A distinct, faster consent sub-workflow for board/trustee-authorised entities (HUF/trust/holding company), separate from the individual e-sign flow the SLA table assumes.",
+    "A dedicated fast-track SLA for time-bound corporate-action elections (rights issues, buybacks) distinct from both the standard monthly RPP and the tail-event ad hoc process.",
+    "Change-control/UAT discipline for the compute engines (risk_calc, tco, rebalancing simulation) that feed client- and IC-facing numbers — this project's own design phase already produced one materially wrong output a basic review would have caught.",
+    "PI insurance or a funded error-reserve to actually back the error-trade policy's commitment that the firm absorbs certain losses.",
+    "A realistic, dependency-gated build sequence for custodian -> OMS/RMS compliance-rule configuration -> AP/AMC-direct relationship, with a pre-go-live (not 90-180-day) BCP/DR tabletop test.",
+    "LRS-utilisation and TCS-credit tracking across family members, feeding the consolidated client view and the cost/tax dashboard.",
+    "Negotiated data-delivery SLAs with third-party PMS managers and AIF administrators, since the monthly attribution close (T+5 business days) assumes data the house does not control arrives on time.",
+    "A realistic client-facing RPP format (executive summary + appendix) and an engagement-depth KPI, so the monthly walkthrough does not silently degrade into a rubber-stamp.",
+    "Second-broker relationship onboarding (OMS connectivity, settlement instructions, cost) budgeted and scheduled, not left as an unbudgeted 'standing option.'"
+  ],
+  "what_is_strong": [
+    "The consent-latency cost quantification (Rs/day-of-delay, tied to real vol and position size) threaded consistently through regulatory, rebalancing, risk and performance — turns an abstract legal constraint into a concrete, monitored, budgeted number.",
+    "The hybrid band design with an event overlay (design_rebalancing.md, 'Strategy H') is a well-reasoned, quantified answer to the calendar-vs-threshold rebalancing trade-off, sized specifically to the monthly consent cadence.",
+    "The recon matrix's structure (11 recon types, each with a compares/SLA/escalation row) is the right skeleton for a multi-instrument book — it just needs the staffing to actually run it.",
+    "The standing-instruction register's design principle (narrow, mechanical, fully parameterised, revocable, never expanding scope) is the correct shape for the discretion boundary, and should stay this narrow when new instructions (capital-call funding, deployment-ladder acceleration) are added.",
+    "Reusing the existing house dashboard family (IPS, attribution, deployment tracker) rather than standing up a parallel BI stack for NDPMS is the pragmatic, cost-efficient call."
+  ]
+}

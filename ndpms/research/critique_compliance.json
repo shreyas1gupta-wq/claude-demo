@@ -1,0 +1,236 @@
+{
+  "reviewer": "Principal Officer / Compliance Officer (SEBI PMS/AIF, 15 yrs) — review of NDPMS ₹500 Cr operating model",
+  "overall_assessment": "All seven design notes and both data packs were read in full, plus sel/tco.json. Individually each domain note is well organised, cites sources, and is unusually disciplined about flagging its own uncertainty ('unclear_verify', 'approx.') rather than asserting invented facts. The regulatory core (NDPMS definition, 25% unlisted cap, fee/exit-load rules, FIFO tax-lot mechanics, the 2026 draft being pipeline-not-law) is consistent across documents and matches the verified fact pack. The problems are concentrated at the seams between documents, and in a small number of quantitative outputs that do not survive a sanity check against the documents' own inputs. Three findings are severe enough to block sign-off: (1) the allocation design's own expected gross alpha (+45-55 bps) is smaller than the fee/cost load the performance design computes (~77 bps), implying negative net alpha against the very targets (>=+100 bps 3Y) the performance design sets as its primary accountability metric; (2) the rebalancing/operations notes operationalise, and mark 'must', a self-executing pre-authorised sell-side de-risk trigger that the regulatory and risk notes simultaneously flag as legally unresolved and requiring a legal opinion; and (3) third-party PMS allocations are booked as line items inside the ₹500 Cr model-portfolio sleeve tables in design_allocation, while design_regulatory, design_selection and design_risk all state that a third-party PMS must sit outside NDPMS AUM. A cluster of smaller cross-document inconsistencies (which regulation number governs the 3-month reporting cycle, which fixed-fee assumption to model, whether SIF and Cat III AIF share a tax treatment) and one apparent computation bug in the TCO tax-drag model round out the findings. None of this is unfixable — the underlying regulatory research is sound — but merging into one blueprint requires a reconciliation pass on the items below, and the two 'must'-labelled items that are still legally unresolved should be downgraded to 'should, pending legal opinion' until outside counsel or a SEBI Informal Guidance response is obtained.",
+  "findings": [
+    {
+      "domain": "performance/allocation",
+      "target": "design_allocation.md §3.3 'Expected alpha vs own composite — Moderate +55 bps / Aggressive +45 bps' (gross of fees) vs design_performance.md §3.5 total fee/cost load ~77 bps and §6.1 net-alpha target >=+100 bps (3Y), <0% = red",
+      "issue_type": "inconsistent",
+      "severity": "high",
+      "detail": "The allocation design's own gross expected alpha (+45 to +55 bps) is smaller than the ~77 bps of fees/opex/booked costs the performance design computes for the same portfolio, implying net alpha of roughly -22 to -32 bps — which would score 'red' against the performance design's own 3-year target (>=+100 bps) and against its <0% red threshold. The portfolio as constructed is expected, on the design set's own numbers, to structurally miss the primary accountability metric it is being judged against.",
+      "suggested_fix": "Reconcile the CMA-implied gross alpha with the fee/cost model before any client-facing target is set: either raise the targeted gross active return (higher selection weight, lower TER core, or a materially lower fee), lower the stated net-alpha target to something the CMAs can support, or explicitly disclose in the IPS that Year 1-3 net alpha is expected to be negative/near-zero pending fee renegotiation.",
+      "confidence": "high"
+    },
+    {
+      "domain": "allocation/regulatory",
+      "target": "design_allocation.md §3.1/§3.2 model-portfolio sleeve tables include '1 PMS (₹10-15 Cr)' inside the ₹500 Cr total, vs design_regulatory.md §1.4/§7 and design_selection.md §3.3 stating third-party PMS sits outside NDPMS AUM",
+      "issue_type": "inconsistent",
+      "severity": "high",
+      "detail": "design_regulatory.json's own can_do list tags investing NDPMS client funds inside a third-party PMS as ndpms_feasibility: not_allowed, and design_selection/design_risk both describe the third-party PMS sleeve as a separate account reconciled only via look-through reporting. design_allocation nonetheless sizes and sums a PMS allocation as a line item inside the costed ₹500 Cr Moderate/Aggressive model portfolios, whose sleeve percentages total exactly 100%/₹500 Cr. Either the real NDPMS custody AUM is smaller than ₹500 Cr (the PMS money sits elsewhere), or the firm intends to hold it inside NDPMS custody, which its own regulatory analysis says is not permitted.",
+      "suggested_fix": "Remove the third-party PMS line from the in-AUM sleeve tables and model it as a separate, client-signed relationship reported only on a consolidated look-through basis, consistent with design_regulatory/design_selection/design_risk; re-total the sleeve percentages to sum to what is actually inside NDPMS custody.",
+      "confidence": "high"
+    },
+    {
+      "domain": "rebalancing/regulatory/risk",
+      "target": "design_rebalancing.md §3 event-trigger table ('Sleeve band breach >=1.5x... Pre-authorised in IPS; executed, then reported at next monthly cycle') and design_rebalancing.json can_do item marked recommendation: must, vs design_regulatory.md §5.1 point 4 and design_risk.md §7.4 both marked status: unclear_verify pending legal opinion",
+      "issue_type": "regulatory_misstatement",
+      "severity": "high",
+      "detail": "A pre-set trigger that fires a sell-side de-risk trade without a specific, contemporaneous client instruction is exactly the fact pattern SEBI's May-2026 First Global order (cited in these same documents) penalised as outsourced/discretionary decision-making. The regulatory and risk notes correctly flag this as legally unresolved and recommend a legal opinion or SEBI Informal Guidance before go-live, but the rebalancing note's own machine-readable recommendation field marks the identical mechanism 'must', and the operations note builds task lists and a standing-instruction register entry around it as if cleared.",
+      "suggested_fix": "Downgrade this mechanism to 'should, contingent on legal clearance' everywhere it appears (rebalancing, risk, operations); until cleared, route any band breach >=1.5x through a same/next-day ad hoc consent request (already designed elsewhere in the same documents as the fallback) rather than self-executing.",
+      "confidence": "high"
+    },
+    {
+      "domain": "regulatory",
+      "target": "design_regulatory.md §2 ('Decision: Must... It is the only route that lets a bespoke NDPMS agreement carry the monthly-consent machinery we need') and §5.1",
+      "issue_type": "regulatory_misstatement",
+      "severity": "high",
+      "detail": "LVAI accreditation, per the document's own sourcing, relaxes Schedule IV's prescribed agreement contents and allows bilateral fee/exit-load terms — a contractual/commercial relaxation. It does not change what Regulation 24/2 require for a trade to count as client-directed rather than discretionary. Presenting LVAI status as what 'lets' the standing-instruction/consent-latency design work conflates these two different things; the legal risk in finding #3 above exists identically whether or not the client is LVAI-accredited.",
+      "suggested_fix": "Reframe LVAI's benefit accurately (bespoke commercial terms, unlisted headroom, CIV eligibility) and treat the standing-instruction consent-mechanics question as a separate, unresolved legal item that LVAI status does not resolve.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "selection",
+      "target": "design_selection.md §9 TCO table and sel/tco.json: tax-drag bps for Arbitrage (1,913.6 = 19.1%), Silver (2,541.5 = 25.4%), REIT/InvIT (1,624.0 = 16.2%), Gold ETF (1,196.0 = 12.0%)",
+      "issue_type": "factual_error",
+      "severity": "high",
+      "detail": "Each of these annual tax-drag figures exceeds or nearly consumes the entire pre-tax expected return the same document set assigns to that asset class in design_allocation.md's CMA table (arbitrage 6.2%, gold 8.0%, REIT/InvIT 9.5%, silver 8.5%). A 12.5%-LTCG, buy-and-hold, low-turnover sleeve cannot generate a tax bill larger than its total return under any realistic realisation schedule. By contrast the short-duration/money-market row checks out exactly (257 bps tax drag ≈ 6.6% E[R] x ~39% slab, consistent with full annual income recognition), which suggests the bug is specific to how equity-taxed/distribution sleeves are handled in sel/tco.py, not a global model error.",
+      "suggested_fix": "Re-derive the tax-drag formula for equity-taxed and distribution-heavy sleeves in sel/tco.py (check units/scaling, and whether the model is applying a rate to the full notional rather than to the realised gain or income component); do not present the headline 'All-in TCO ~424 bps' or the 'tax dominates cost' conclusion to the IC until this is fixed and re-run.",
+      "confidence": "high"
+    },
+    {
+      "domain": "regulatory/performance/operations",
+      "target": "design_regulatory.md §1.5 'Report to client... (Reg 31)' and design_operations.md vs design_performance.md §0.3/§5.1 'Regulation 22' and 'Reg. 22'",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "Two different regulation numbers are cited across the document set for what is described as the identical SEBI requirement (periodic client report at an interval not exceeding 3 months). data_facts.md's own T2 table uses 'Reg 31' but rates the whole table only partially_verified. Since neither primary SEBI regulation text could be fetched this session, this is an internal citation conflict on a clause number that will appear in the Disclosure Document and client agreement.",
+      "suggested_fix": "Pull the current consolidated SEBI (Portfolio Managers) Regulations, 2020 text directly (not a secondary summary) and confirm the correct regulation number before it is used in any client-facing document; use one number consistently across all seven notes.",
+      "confidence": "medium",
+      "evidence_url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html"
+    },
+    {
+      "domain": "regulatory/operations/performance",
+      "target": "design_regulatory.md §6 and design_operations.md §9.3 assume 0.30% p.a. fixed fee (₹1.50 Cr/yr) vs design_performance.md §3.5 Table 5 assumes 0.50% p.a. (₹2.50 Cr/yr) for the identical fee line",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "These two fee assumptions materially change both the client-facing fee illustration and design_operations' own economics conclusion ('fixed operating cost ₹1.8-3.2 Cr approaches or exceeds the 0.30% fixed-fee revenue ₹1.5 Cr') — that conclusion reads very differently at a 0.50% fee (₹2.5 Cr revenue comfortably covers the low end of the cost range).",
+      "suggested_fix": "Pick one fixed-fee assumption for the worked ₹500 Cr numbers and use it consistently in the regulatory, operations and performance notes; if the fee is genuinely still under negotiation, label every downstream number that depends on it as sensitive to the fee rate rather than presenting one fixed figure as settled.",
+      "confidence": "high"
+    },
+    {
+      "domain": "allocation/selection",
+      "target": "design_allocation.md CMA table row 'Cat III long-short AIF / SIF hybrid LS' (single tax note 'Trust-level tax up to ~42.7%') vs design_selection.md §5.1 SIF vs Cat III post-tax comparison (+198 bps/yr in SIF's favour on identical gross returns)",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "design_selection.md correctly shows SIF gets investor-level, MF-style taxation (~12.5% LTCG), materially better than Cat III's fund-level tax up to MMR (~42.7%), and recommends defaulting to SIF over Cat III wherever both exist. design_allocation.md's CMA table nonetheless groups both wrappers under one row and one tax note, which will apply the wrong (much higher, or much lower) tax drag depending on which wrapper is actually selected for that sleeve.",
+      "suggested_fix": "Split the CMA table row into two (Cat III long-short AIF; SIF hybrid long-short) with their own tax notes and expected net-of-tax returns, consistent with design_selection's own analysis.",
+      "confidence": "high"
+    },
+    {
+      "domain": "risk",
+      "target": "design_risk.md §6 Early-Warning Indicator Board, 'USDINR (spot ~₹88 [design_allocation.md])'",
+      "issue_type": "factual_error",
+      "severity": "medium",
+      "detail": "The verified data pack (data_market.md T6) and design_allocation.md's own §0 market-context paragraph both state USDINR was approx. 95.7-95.79 as of 11-Sep-2026, roughly an 8% higher level than the ₹88 baseline used here. This baseline anchors the green/amber/red monthly-move thresholds (<1% / 1-3% / >3%) for the FX risk indicator, so the dashboard as specified will misjudge what counts as a 1% or 3% move from the wrong starting level.",
+      "suggested_fix": "Update the early-warning board's USDINR reference level to the verified ~95.79 figure (or better, compute the monthly move off the live daily feed rather than a hard-coded reference) before the dashboard is built.",
+      "confidence": "high",
+      "evidence_url": "https://hdfcsky.com/news/india-vix-rises-4-66percent-to-12-42-as-oil-rupee-and-global-yields-pressure-indian-markets-september-11-2026"
+    },
+    {
+      "domain": "allocation/selection",
+      "target": "design_allocation.md §3.1/§3.2 direct-stock sleeve (22 names Moderate, 25 Aggressive) vs design_selection.md §6.2 'Portfolio construction rules: 25-35 names (30 as base case)'",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "A roughly 25-35% gap in assumed single-name diversification between the sizing/liquidity model (design_allocation) and the construction-rule design (design_selection) for what is meant to be the same NIFTY-750 scorecard sleeve.",
+      "suggested_fix": "Align the name count assumed in the allocation sizing tables with the 25-35-name construction rule (or vice versa, if the construction rule is meant to be aspirational/Year-2), and note the difference explicitly if intentional.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "allocation",
+      "target": "design_allocation.md §3.1 costed Moderate model (9% unlisted: Cat II 5% + Cat III/SIF 4%) vs §5.3 'illustrative' Moderate SAA band table (AIF Cat I/II target 5%, band 0-7.5%; Cat III target 2.5%, band 0-5%; total unlisted <=15% IPS)",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "Two different sleeve breakdowns for 'the Moderate model' appear within the same document without being reconciled line-by-line, which will confuse whichever version is carried forward as the canonical Model Master in the merged blueprint.",
+      "suggested_fix": "Pick one canonical Moderate (and Aggressive) sleeve table with one set of weights/bands and reference it everywhere else in the document rather than maintaining two versions.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory/risk",
+      "target": "design_regulatory.md §1.2 'cure window approx. 90 days, verify' for an active unlisted-cap breach, vs design_risk.md Limit #9 which treats any active breach as an immediate hard block with no cure window",
+      "issue_type": "regulatory_misstatement",
+      "severity": "medium",
+      "detail": "No source is given for the specific 90-day figure, it appears in only one of seven documents, and data_facts.md's own T1 table discusses 'active' vs 'passive' breach conceptually without naming any cure period. design_risk.md's parallel control instead treats an active breach as non-compliance requiring an immediate block, which may mean no cure window exists at all for an active breach (only passive/market-move breaches are typically curable). Building a desk process that assumes a 90-day grace period for something that may in fact require immediate remediation is a real inspection risk.",
+      "suggested_fix": "Confirm with compliance/primary regulation text whether any cure window applies to an active unlisted-cap breach at all; if none exists, remove the 90-day figure and align design_regulatory with design_risk's 'immediate hard block, no cure' treatment.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory/risk/operations/allocation",
+      "target": "Associate/related-party limits (15% single / 25% aggregate per asset class / 30% combined) repeated across four documents, all sourced to the same unfetched Aug-2022 APMI PDF",
+      "issue_type": "underestimated_cost_or_risk",
+      "severity": "medium",
+      "detail": "Because Angel One is both the group and the executing broker on this mandate, the associate-investment limit is precisely the control most likely to be tested at inspection, yet it rests on a single secondary source that could not be fetched this session (data_facts.md rates the whole table only partially_verified). Four documents repeating the same figure does not amount to independent corroboration.",
+      "suggested_fix": "Confirm the 15/25/30% figures directly against the primary SEBI circular (or SEBI's website) before hard-coding them as an IPS/RMS limit; if a discrepancy is found, every document that cites it needs updating.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "allocation/selection/performance",
+      "target": "REIT/InvIT dividend 'exemption from 1-Apr-2026' used in downstream return/income figures in design_performance.md's Policy Composite and cost/tax-drag sections, without repeating the caveat carried in design_allocation.md and design_selection.md",
+      "issue_type": "overstated",
+      "severity": "medium",
+      "detail": "data_facts.md is explicit that this dividend exemption is a 'pending 2026 Bill, not yet confirmed enacted' and lists treating REIT/InvIT distributions as simple tax-free dividends under its 'commonly believed but wrong' list (item 16), noting real distributions are a multi-component blend requiring Form 64B-level analysis. design_allocation and design_selection do carry a 'verify enactment' caveat where the exemption is first introduced, but design_performance's later uses of REIT/InvIT return and income figures do not re-flag the uncertainty at the point of use.",
+      "suggested_fix": "Carry the 'not yet enacted, verify' flag forward to every table/figure derived from the REIT/InvIT dividend-exemption assumption, not only the first table it appears in; consider modelling both the pre- and post-enactment cases in the composite benchmark and cost/tax-drag tables.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory/selection/performance",
+      "target": "PMS management-fee non-deductibility risk (data_facts.md: 'contested/fact-specific — no blanket deduction') is documented but not reflected as a sensitivity in any cost/return model (design_selection §9 TCO, design_performance §3.5, design_regulatory §6 worked numbers)",
+      "issue_type": "underestimated_cost_or_risk",
+      "severity": "medium",
+      "detail": "All quantitative models implicitly treat the fee as reducing the client's realised/post-tax return without adjustment for the possibility that a tribunal disallows the fee as a deduction against capital gains, in which case post-tax return would be lower than modelled.",
+      "suggested_fix": "Add an explicit sensitivity line in the R3/R4 post-tax series (design_performance) and the TCO table (design_selection) showing the incremental tax cost if the PM fee is treated as non-deductible for a given client's fact pattern.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory/selection",
+      "target": "design_regulatory.md §1.4 ('Ionic may be paid as distributor' for a third-party PMS referral) vs the conflicts-of-interest protocol in design_operations.md §1.5, which is scoped only to Angel-One-group products",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "Recommending a fee-paying third-party PMS manager over a non-fee-paying or lower-fee alternative is a comparable conflict of interest to recommending an Angel One group product, but the one-time-consent + IC-best-selection-minute + real-time-alert discipline built for group products is not extended to this referral-commission relationship anywhere in the document set.",
+      "suggested_fix": "Extend the same conflicts protocol (disclosed consent, IC best-selection minute against non-fee-paying alternatives, disclosure of the commission in the periodic report) to any third-party PMS or product where Ionic/Angel One earns a distribution fee.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "regulatory/risk",
+      "target": "design_regulatory.md source [1] ('...last-amended-on-february-07-2023...'), design_allocation.md source [3] ('...last-amended-on-september-03-2025...'), design_risk.md source [1] ('...last-amended-on-february-10-2025...') — all purporting to cite the same regulation",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "Three different 'as amended' dates are cited for what should be a single current consolidated text of the SEBI (Portfolio Managers) Regulations, 2020. A reader cannot tell from the document set which amendment date the blueprint is actually built on.",
+      "suggested_fix": "Standardise on a single, dated citation to the current consolidated regulations text (or the 16-Jul-2025 Master Circular, whichever is being relied on for a given clause) across all seven notes.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations/regulatory",
+      "target": "design_regulatory.json open_questions: 'Which legal entities will hold the ₹500 Cr (individuals, HUF, family trust, holding company, LLP)?' — raised but never modelled in any design note",
+      "issue_type": "missing",
+      "severity": "high",
+      "detail": "LVAI status requires each entity to independently sign a >=₹10 Cr agreement; AIF Large Value Fund entry is ₹25 Cr; SIF's ₹10 lakh minimum is per-PAN; tax rates differ by entity type (slab vs 25.17% company); FEMA route (LRS vs OPI) depends on whether the client is an individual or a holding company. None of the seven design notes propose or model a concrete entity structure, even though almost every other number in the blueprint (fee schedule, unlisted headroom, international-sleeve routing, LVAI eligibility) depends on the answer.",
+      "suggested_fix": "Produce a concrete legal-entity structuring proposal (or explicitly request it from the client/their counsel) before finalising the IPS, fee schedule, or international-sleeve design.",
+      "confidence": "high"
+    },
+    {
+      "domain": "operations",
+      "target": "No AML/KYC/PMLA beneficial-ownership or source-of-funds due-diligence framework anywhere in design_operations.md's governance/controls sections",
+      "issue_type": "missing",
+      "severity": "high",
+      "detail": "A ₹500 Cr inflow into a single mandate is exactly the profile that triggers enhanced due diligence under PMLA Rules (beneficial-ownership declaration, source-of-funds verification, STR/CTR monitoring thresholds); none of the seven design notes mention this obligation, even though the governance note (design_operations §1) otherwise covers IC composition, four-eyes controls and conflicts policy in detail.",
+      "suggested_fix": "Add an explicit AML/KYC/PMLA workstream (beneficial-ownership capture, source-of-funds documentation, ongoing STR/CTR monitoring) to the governance and build-roadmap sections.",
+      "confidence": "high"
+    },
+    {
+      "domain": "operations/regulatory",
+      "target": "No mention of SEBI SCORES / Ombudsman grievance-redressal process in design_operations.md's client-communication section (§8.3) or anywhere else",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "SEBI's SCORES 2.0 grievance-redressal mechanism (with its statutory response timelines) is a standard registered-PM obligation and typically appears in the Disclosure Document and client communication cadence; it is absent from every document reviewed.",
+      "suggested_fix": "Add the SCORES/Ombudsman process and response-time SLA to the client-communication and Disclosure Document sections.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "operations",
+      "target": "design_operations.md §8.1 error-trade policy has no professional-indemnity-insurance or capital-reserve line item; design_operations.md §9.3's cost table has no insurance line",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "The error-trade policy describes a qualitative remedy process ('unwind at no cost to client... booked to a segregated error-account') but no document models the capital or insurance backing for that promise, nor references the firm's own net-worth adequacy against a plausible error-trade loss at ₹500 Cr scale.",
+      "suggested_fix": "Add a professional-indemnity-insurance line (or a modelled firm-capital reserve) to the annual cost table and reference it in the error-trade policy.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "selection/risk",
+      "target": "No independent QA/back-test/sanity-check process described for risk_calc.py, sel/tco.py or the rebalancing Monte Carlo simulation before their outputs are used operationally",
+      "issue_type": "missing",
+      "severity": "medium",
+      "detail": "Finding #5 above shows sel/tco.json currently produces an implausible tax-drag figure that a basic cross-check against the CMA table in the same document set would have caught; no document describes a review/QA step for these models before their numbers reach the IC or the client.",
+      "suggested_fix": "Add a model-validation step (independent review of key formulas, sanity checks against CMA-implied bounds) to the build roadmap before any of these models' outputs are presented as the operating baseline.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "risk/operations",
+      "target": "design_operations.md §3.3 recommends custodian 'independence from Angel One group' but no document addresses order-routing/best-execution conflicts specifically when the traded instrument is itself a group product (e.g. an Angel One AMC ETF), beyond general brokerage-rate-card benchmarking",
+      "issue_type": "missing",
+      "severity": "low",
+      "detail": "The existing conflicts protocol addresses (a) investing in group securities and (b) Angel One as executing broker generically, but does not address the compounded case of the broker executing a trade in a group-issued instrument, which raises a second-order best-execution question beyond the existing rate-card check.",
+      "suggested_fix": "Extend the quarterly best-execution TCA review to specifically flag and separately report slippage/spread on trades in group-issued instruments.",
+      "confidence": "low"
+    }
+  ],
+  "top_missing_items": [
+    "A completed legal opinion / SEBI Informal Guidance response on the standing-instruction and event-trigger mechanism before it is labelled 'must' anywhere in the operating model.",
+    "AML/KYC, PMLA beneficial-ownership and source-of-funds due diligence framework for a ₹500 Cr inflow.",
+    "A concrete legal-entity structuring proposal (individual/HUF/trust/holding-company split of the ₹500 Cr) resolving the open question that every LVAI/AIF/SIF/FEMA number in the blueprint depends on.",
+    "SEBI SCORES/Ombudsman grievance-redressal process and response-time SLA.",
+    "Independent QA/sanity-check process for the quantitative models (risk_calc.py, sel/tco.py, the rebalancing Monte Carlo) — one of them currently produces an implausible output.",
+    "Professional indemnity insurance / firm capital provisioning for error trades, beyond the qualitative error-trade policy.",
+    "A single reconciled canonical Model Master (one Moderate model, one fee assumption, one direct-stock name count) instead of at least three internally competing versions.",
+    "Board/trustee-level governance design for a corporate or trust client entity, distinct from 'authorised signatories' for e-sign.",
+    "A worked example showing net alpha actually clearing the performance targets under the allocation design's own CMAs, plus what portfolio/fee changes would be needed to close the current gap.",
+    "Explicit treatment of Angel-One-as-broker execution conflicts specifically on trades in group-issued instruments.",
+    "Data-vendor/index-licence and tax-adviser engagement letters as dated, gated deliverables in the build roadmap, not just 'review by tax counsel' footnotes."
+  ],
+  "what_is_strong": [
+    "The R0-R4 return-series hierarchy plus Perold implementation-shortfall decomposition (design_performance §1.1, §3.6) rigorously isolates consent-latency cost from selection/allocation/tax effects and is audit-ready.",
+    "The hybrid band-design Monte Carlo comparison (design_rebalancing §2.3) quantifies turnover/cost/tax/TE trade-offs across eight strategies and lands on a specific, defensible recommendation.",
+    "The consent-latency cost formula (proportional to weight x vol x sqrt(days)) applied consistently across the regulatory, risk, rebalancing and performance notes is a good unifying framework worth adopting as the house standard.",
+    "The FIFO/demat-account segregation strategy (Core/Tactical/Income books) is a correctly reasoned, practical way to approximate specific-identification given mandatory FIFO.",
+    "The uniform feasibility-tagging discipline (allowed / allowed_with_consent / restricted / not_allowed / unclear_verify) applied across all seven domains is genuinely useful governance scaffolding worth keeping as the house convention.",
+    "The Angel-One-group conflicts protocol (one-time Annexure A consent + self-imposed 10% IPS cap vs SEBI's 15/25/30% + IC best-selection minute + real-time 80%-of-cap alert) is a defensible, above-minimum control design."
+  ]
+}

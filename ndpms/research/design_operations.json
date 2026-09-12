@@ -1,0 +1,817 @@
+{
+  "domain": "Governance, operations, technology, data and automation for the ₹500 Cr NDPMS mandate",
+  "executive_summary": "The ₹500 Cr NDPMS mandate is executed, not decided, into existence: SEBI Reg 24/2 make the client's dated instruction the only lawful trigger for a trade, so the operating model's job is to make that instruction cheap, fast and provable, not to preserve trading speed. Our design collapses the month into one omnibus Rebalance Proposal Pack (RPP) — IC house view (T-5) to compliance-checked pack (T-3) to client e-sign/OTP consent (T0, 2-business-day SLA) to weekly Mon/Thu execution tranches to post-trade report — with every order carrying a foreign-key link to the consent record that authorised it. A narrow, revocable standing-instruction register (cash sweeps, distribution reinvestment, approved-tranche execution, hedge auto-roll) removes trivial friction without drifting into discretion; the unreachable-client-in-a-tail-event path is bounded to defensive, reversible, already-consented actions only, pending an Informal Guidance check. Governance runs on a six-member IC with 4-eyes controls at every maker/checker point, versioned model portfolios, and a self-imposed 10% associate-product cap tighter than SEBI's 15/25/30% ceiling. Operations extends four existing house automations (cash recon, IPS dashboard, attribution/TWRR, deployment tracker) with an AIF capital-call ledger, a bond/G-sec settlement leg and a consent-tracker dashboard, on a daily 01:00-02:30 IST ingest-validate-compute-publish pipeline. A ~6.7-7.2 FTE team costs approx. ₹1.8-3.2 Cr/yr against ~₹1.5-2.5 Cr of fee revenue — workable only if this platform is built to carry a second mandate within 12-18 months. First 90 days: legal/custodian/OMS foundation, then a live consent portal and one fully-audited dry-run monthly cycle before scaling automation in days 90-180.",
+  "can_do": [
+    {
+      "item": "Omnibus monthly RPP as the single consent instrument",
+      "what": "One Rebalance Proposal Pack per month covering all sleeve trades, e-signed as a whole or line-by-line",
+      "why": "Reg 24/2 require a client direction per trade; an omnibus pack turns 500+ line items into one lawful, auditable consent event",
+      "ndpms_feasibility": "allowed_with_consent",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "monthly",
+      "recommendation": "must"
+    },
+    {
+      "item": "Consent ledger with order-level FK to rpp_id/standing_instruction_id",
+      "what": "Every OMS order record carries the consent record that authorised it; orders without a valid FK are blocked at release",
+      "why": "This is the actual inspection-proof of non-discretion, not a policy document",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Aadhaar e-Sign / DSC + OTP-email fallback for consent capture",
+      "what": "Primary digital consent via recognised e-signature; OTP email/SMS as fallback channel, both hash-logged",
+      "why": "SEBI's 2024 digital-onboarding circular permits fully digital PMS consent artifacts; IT Act 2000 s.3A recognises e-Sign",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "monthly",
+      "recommendation": "must"
+    },
+    {
+      "item": "Narrow, revocable standing-instruction register",
+      "what": "Cash sweep >₹50L, distribution reinvestment, approved-tranche execution, hedge auto-roll, tail de-risk trigger",
+      "why": "Removes trivial per-event friction while each instruction stays fully specified (trigger, instrument, quantity, cap) so it does not become discretion",
+      "ndpms_feasibility": "unclear_verify",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "should"
+    },
+    {
+      "item": "2-business-day consent SLA with 48h escalation",
+      "what": "RM call at 48h non-response, CIO escalation, auto-lapse of unexecuted lines at day 10",
+      "why": "Latency-cost model shows ~₹79 lakh (10-day delay) vs ~₹35 lakh (2-day) of 1-sigma tracking risk on a 5% AUM deployment gap",
+      "ndpms_feasibility": "allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "monthly",
+      "recommendation": "must"
+    },
+    {
+      "item": "Bounded unreachable-client tail protocol",
+      "what": "Three-channel attempt sequence, standing-instruction execution only, IC-documented defensive action beyond 72h under narrowest consent reading",
+      "why": "Reg 24 gives no discretion carve-out for emergencies; 'unable to act, no instruction' must be an acceptable documented outcome",
+      "ndpms_feasibility": "unclear_verify",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "should"
+    },
+    {
+      "item": "LVAI onboarding for every investing entity",
+      "what": "Accredit each entity and sign ≥₹10 Cr to get Schedule IV relief and 100% unlisted headroom",
+      "why": "Only route that lets a bespoke consent/standing-instruction annex replace boilerplate agreement terms",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "one-time",
+      "recommendation": "must"
+    },
+    {
+      "item": "Six-member IC with 4-eyes maker/checker at every control point",
+      "what": "CIO, PM, Risk, Compliance, Trading/Ops (non-voting), independent advisor; quorum requires a non-investment vote",
+      "why": "Prevents a single desk from both proposing and approving a trade or model change",
+      "ndpms_feasibility": "allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "monthly",
+      "recommendation": "must"
+    },
+    {
+      "item": "Versioned Model Master with IC-approved diffs",
+      "what": "Semantic-versioned model portfolio (vX.Y), every >1pp sleeve change IC-minuted and client-notified",
+      "why": "Drift/recon reports must always compare against the currently-effective, provably-approved model",
+      "ndpms_feasibility": "allowed",
+      "effort": "low",
+      "impact": "medium",
+      "cadence": "monthly",
+      "recommendation": "should"
+    },
+    {
+      "item": "Self-imposed 10% associate-product IPS cap vs 15/25/30% SEBI ceiling",
+      "what": "Tighter internal cap plus real-time alert at 80% of cap and mandatory IC best-selection minute",
+      "why": "Angel One group products create a structural conflict; SEBI mandates alert-based monitoring already",
+      "ndpms_feasibility": "allowed_with_consent",
+      "effort": "low",
+      "impact": "medium",
+      "cadence": "event-driven",
+      "recommendation": "must"
+    },
+    {
+      "item": "Pre-trade compliance rule engine in the OMS",
+      "what": "Hard-coded checks: unlisted-cap headroom, associate headroom, derivative notional ≤ portfolio funds, no short/leverage, MF direct-plan flag",
+      "why": "Automates the Reg 24 hard limits at the point of order entry rather than relying on manual review",
+      "ndpms_feasibility": "allowed",
+      "effort": "high",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Purpose-segregated demat accounts (Core/Tactical/Income)",
+      "what": "2-3 client demat accounts to manage FIFO lot selection for tax-aware rebalancing",
+      "why": "Indian law imposes FIFO per demat account; separate accounts let tactical sells avoid disturbing long-held core lots",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "medium",
+      "cadence": "one-time",
+      "recommendation": "should"
+    },
+    {
+      "item": "AIF capital-call and look-through tracker",
+      "what": "Drawdown-notice calendar, committed/called/distributed ledger, IRR/DPI/TVPI computation for the Cat I/II/III sleeve",
+      "why": "AIF units have no exchange order flow; without this ledger the sleeve is invisible to daily risk/cash monitoring",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "medium",
+      "cadence": "monthly",
+      "recommendation": "should"
+    },
+    {
+      "item": "Third-party PMS sleeve booked outside NDPMS AUM, look-through reported",
+      "what": "Client signs directly with the external PM; Ionic reports the sleeve in a consolidated view only",
+      "why": "A PMS strategy is a service contract, not a security; Reg 24 bars investing on another entity's advice inside NDPMS AUM",
+      "ndpms_feasibility": "restricted",
+      "effort": "low",
+      "impact": "medium",
+      "cadence": "monthly",
+      "recommendation": "should"
+    },
+    {
+      "item": "Extend existing cash-recon automation with AIF ledger + bond settlement leg",
+      "what": "Add capital-call and G-sec/corporate-bond settlement recon to the house's single-strategy recon skill",
+      "why": "The multi-instrument NDPMS book breaks the current recon's asset-class assumptions",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Tail-risk dashboard (VaR/drawdown/hedge book/early-warning board)",
+      "what": "Daily-refreshed dashboard owned by Risk, escalation triggers feeding the tail-event protocol",
+      "why": "NDPMS removes the option to react intraday; the dashboard has to surface the breach early enough that the 2-day consent SLA still protects the client",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Consent tracker dashboard (RPP status, SLA breaches, standing-instruction log)",
+      "what": "Live view of sent/viewed/approved/rejected/lapsed RPPs and every standing-instruction execution",
+      "why": "Turns the consent SLA from a policy into a monitored, escalating metric",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Daily 01:00-02:30 IST Python ingest-validate-compute-publish pipeline",
+      "what": "Pulls AMFI/NSE/custodian/RTA/APMI/CCIL feeds, computes TWRR/drift/risk, republishes HTML dashboards before market open",
+      "why": "Reuses the house's existing dashboard pipeline pattern; daily monitoring is explicitly required even though rebalancing is monthly",
+      "ndpms_feasibility": "allowed",
+      "effort": "high",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Automated best-execution TCA report on Angel One brokerage",
+      "what": "Quarterly comparison of achieved slippage/rate card vs a non-group broker benchmark, ≥10% of flow routed to a second broker",
+      "why": "Manages the broker-conflict optics and gives the IC an evidence base for the conflicts policy",
+      "ndpms_feasibility": "allowed_with_consent",
+      "effort": "medium",
+      "impact": "medium",
+      "cadence": "quarterly",
+      "recommendation": "should"
+    },
+    {
+      "item": "Manager watchlist scorecard (active MF/PMS/AIF)",
+      "what": "Quarterly scoring vs hurdle rate, style drift, redemption-notice status",
+      "why": "Owning the returns requires proactively flagging underperforming external managers, not waiting for annual review",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "medium",
+      "cadence": "quarterly",
+      "recommendation": "should"
+    },
+    {
+      "item": "8-10 year immutable consent-ledger retention with hash-chained records",
+      "what": "WORM-style storage of every RPP, e-sign artifact, call recording; monthly integrity re-verification",
+      "why": "This ledger is the primary inspection evidence for the entire non-discretionary claim",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "must"
+    },
+    {
+      "item": "Monthly (not quarterly) client statement",
+      "what": "Voluntarily exceed Reg 31's 3-month minimum by reporting monthly",
+      "why": "Builds trust and gives an early warning channel for a client to flag a disputed trade well before the regulatory deadline",
+      "ndpms_feasibility": "allowed",
+      "effort": "low",
+      "impact": "medium",
+      "cadence": "monthly",
+      "recommendation": "should"
+    },
+    {
+      "item": "Error-trade policy with segregated firm-error account",
+      "what": "Any trade outside a valid RPP/standing instruction is frozen, disclosed same-day, and never netted against client P&L",
+      "why": "Protects the client and gives compliance an unambiguous, pre-agreed remedy path",
+      "ndpms_feasibility": "allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "must"
+    },
+    {
+      "item": "Annual BCP drill simulating tail event + custodian outage",
+      "what": "Measures time-to-restore trading capability and time-to-notify clients under simultaneous stress",
+      "why": "NDPMS's consent dependency makes a systems outage during a tail event the single worst-case scenario to rehearse",
+      "ndpms_feasibility": "allowed",
+      "effort": "medium",
+      "impact": "medium",
+      "cadence": "annual",
+      "recommendation": "should"
+    },
+    {
+      "item": "Second-mandate-ready platform build (not a bespoke one-off)",
+      "what": "Design OMS/pipeline/dashboards so a second NDPMS client can be onboarded on the same infrastructure",
+      "why": "Fixed operating cost (₹1.8-3.2 Cr/yr) approaches the single mandate's fee revenue; economics only work at scale",
+      "ndpms_feasibility": "allowed",
+      "effort": "high",
+      "impact": "high",
+      "cadence": "one-time",
+      "recommendation": "should"
+    },
+    {
+      "item": "Discretionary-style 'pre-approved model with PM-timed execution'",
+      "what": "Treating a signed-off model + bands as blanket authority for the PM to time and size trades without a fresh RPP",
+      "why": "SEBI's May-2026 First Global order treats quantity/timing/client-level execution choices as 'investment decisions' — this recharacterises the book as de facto discretionary and breaches Reg 24",
+      "ndpms_feasibility": "not_allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "avoid"
+    },
+    {
+      "item": "Executing on a third-party model/signal feed inside NDPMS AUM",
+      "what": "Piping an external manager's model portfolio directly into NDPMS execution without independent IC ownership of each call",
+      "why": "Reg 24 bars investing client funds 'based on the advice of any other entity'; core investment functions cannot be outsourced",
+      "ndpms_feasibility": "not_allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "avoid"
+    },
+    {
+      "item": "Broad, open-ended standing instructions ('rebalance to target whenever drift exceeds band')",
+      "what": "A standing instruction that lets the PM pick timing/size/instrument freely once a condition is met",
+      "why": "Indistinguishable from discretion in substance; the narrow, fully-specified design in Section 2.6 is the compliant boundary",
+      "ndpms_feasibility": "not_allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "event-driven",
+      "recommendation": "avoid"
+    },
+    {
+      "item": "Pooling this client's NDPMS assets with other clients' accounts",
+      "what": "Any commingled demat/bank account across clients for convenience",
+      "why": "PMS Regs require client-name demat and a separate scheduled-bank account per client; pooling is a straightforward breach",
+      "ndpms_feasibility": "not_allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "one-time",
+      "recommendation": "avoid"
+    },
+    {
+      "item": "Silent compliance-rule overrides in the OMS",
+      "what": "Allowing a blocked pre-trade rule to be bypassed without a logged reason and second sign-off",
+      "why": "Defeats the entire 4-eyes/audit-trail design that the NDPMS defence rests on",
+      "ndpms_feasibility": "not_allowed",
+      "effort": "low",
+      "impact": "high",
+      "cadence": "daily",
+      "recommendation": "avoid"
+    }
+  ],
+  "tables": [
+    {
+      "title": "Governance calendar",
+      "columns": [
+        "Cadence",
+        "Forum",
+        "Key agenda item",
+        "Output"
+      ],
+      "rows": [
+        [
+          "Monthly (last Wed)",
+          "IC house-view meeting",
+          "Macro/pillar scorecard, SAA drift, TAA tilt",
+          "Signed house view + RPP v0"
+        ],
+        [
+          "Monthly (T-3)",
+          "Pre-RPP compliance gate",
+          "Reg 24 unlisted/associate checks, cost/tax estimate",
+          "RPP v1 client-ready"
+        ],
+        [
+          "Weekly (Mon/Thu)",
+          "Ops stand-up",
+          "Tranche status, cash ladder, corporate actions",
+          "Break log update"
+        ],
+        [
+          "Weekly",
+          "Risk stand-up",
+          "VaR/drawdown vs limits, hedge book",
+          "Risk flag list"
+        ],
+        [
+          "Quarterly",
+          "IC scorecard + manager review",
+          "Attribution, cost/tax drag, watchlist scoring",
+          "IC scorecard, manager actions"
+        ],
+        [
+          "Quarterly",
+          "Compliance/Audit",
+          "Associate-limit audit, KYC refresh sample",
+          "Audit note"
+        ],
+        [
+          "Annual",
+          "Firm-level performance audit",
+          "Full NDPMS book audit",
+          "SEBI confirmation within 60 days of FY-end"
+        ],
+        [
+          "Ad hoc (<=4h)",
+          "Tail-event IC",
+          "Daily risk breach / unreachable-client escalation",
+          "Emergency directive log"
+        ]
+      ],
+      "source_note": "Cadence design; SEBI annual audit deadline verified in the regulatory design note [R1]."
+    },
+    {
+      "title": "NDPMS consent SLA and escalation",
+      "columns": [
+        "Stage",
+        "Target",
+        "Escalation trigger",
+        "Action"
+      ],
+      "rows": [
+        [
+          "RPP sent -> viewed",
+          "4 business hours",
+          "Not viewed by T+1",
+          "RM call"
+        ],
+        [
+          "Viewed -> approved/rejected",
+          "<=2 business days",
+          "Not actioned by 48h",
+          "RM call + CIO email"
+        ],
+        [
+          "No response",
+          "72h",
+          "--",
+          "CIO escalation call; else invoke unreachable-client protocol"
+        ],
+        [
+          "Rejected line items",
+          "Same day",
+          "--",
+          "PM revises, re-issues affected lines within 1 business day"
+        ],
+        [
+          "Consent expiring",
+          "Day 8 of 10",
+          "2 days before lapse",
+          "Auto-reminder; auto-lapse at day 10"
+        ]
+      ],
+      "source_note": "SLA design built on the latency-cost model in the regulatory design note [R1]; not a SEBI-mandated number."
+    },
+    {
+      "title": "Consent-latency cost model (illustrative, 5% / ₹25 Cr equity deployment gap, ~1% daily index vol, 1-sigma)",
+      "columns": [
+        "Delay (days)",
+        "Approx. tracking-risk cost (₹ lakh)",
+        "Design implication"
+      ],
+      "rows": [
+        [
+          "2",
+          "~35",
+          "Target SLA for RPP consent"
+        ],
+        [
+          "5",
+          "~56",
+          "Acceptable secondary threshold before escalation"
+        ],
+        [
+          "10",
+          "~79",
+          "Cost of a full unresponsive-client cycle; justifies 48h/72h escalation gates"
+        ]
+      ],
+      "source_note": "approx. — cost = weight_gap x daily_vol x sqrt(days); carried from the regulatory design note [R1]."
+    },
+    {
+      "title": "Reconciliation matrix",
+      "columns": [
+        "Recon",
+        "Frequency",
+        "Compares",
+        "Break SLA"
+      ],
+      "rows": [
+        [
+          "Cash",
+          "Daily (T+1 AM)",
+          "Custodian bank stmt vs internal ledger",
+          "Same day (>₹10L) / T+1"
+        ],
+        [
+          "Holdings",
+          "Daily",
+          "Depository + custodian file vs internal book",
+          "Same day"
+        ],
+        [
+          "MF folios vs RTA",
+          "Daily",
+          "CAMS/KFintech feed vs internal MF ledger",
+          "T+1"
+        ],
+        [
+          "AIF statements",
+          "Monthly",
+          "Fund NAV/capital account vs internal tracker",
+          "5 business days"
+        ],
+        [
+          "Corporate actions",
+          "Daily / on ex-date",
+          "Depository CA feed vs entitlement",
+          "T+1 of ex-date"
+        ],
+        [
+          "Dividends/interest",
+          "Daily",
+          "Bank credit vs entitlement",
+          "T+2"
+        ],
+        [
+          "Fee accruals",
+          "Daily / event-driven",
+          "Computed accrual vs custodian statement",
+          "Monthly close, T+3"
+        ],
+        [
+          "Benchmark data",
+          "Daily",
+          "NSE Indices/AMFI feed vs internal series",
+          "T+1"
+        ],
+        [
+          "Composite/model deviation",
+          "Monthly + weekly interim",
+          "Actual weights vs Model Master IPS",
+          "Per house SLA"
+        ],
+        [
+          "Attribution/TWRR",
+          "Monthly",
+          "Computed TWRR vs custodian-confirmed valuations",
+          "T+5 business days"
+        ]
+      ],
+      "source_note": "Extends the house's existing cash-recon, IPS-dashboard, attribution and deployment-tracker automations."
+    },
+    {
+      "title": "Team FTE and cost, ₹500 Cr NDPMS (approx.)",
+      "columns": [
+        "Role",
+        "FTE (approx.)",
+        "Core responsibility"
+      ],
+      "rows": [
+        [
+          "CIO / IC chair",
+          "0.2",
+          "House view, IC chair, accountability for alpha"
+        ],
+        [
+          "PM (dedicated)",
+          "1.0",
+          "Model portfolio, RPP authoring, manager selection"
+        ],
+        [
+          "Research analyst",
+          "1.0",
+          "NIFTY-750 scorecard, manager/AIF due diligence"
+        ],
+        [
+          "Risk manager",
+          "0.5",
+          "VaR/drawdown, limits, stress testing, hedges"
+        ],
+        [
+          "Trading/dealing desk",
+          "1.0",
+          "Order execution across venues"
+        ],
+        [
+          "Ops/fund accounting",
+          "1.5",
+          "Recon, NAV oversight, corporate actions, custodian liaison"
+        ],
+        [
+          "Compliance officer",
+          "0.5",
+          "Pre-trade checks, associate monitoring, consent audit, filings"
+        ],
+        [
+          "RM/client servicing",
+          "0.5-1.0",
+          "Consent walkthroughs, escalations, client reporting"
+        ],
+        [
+          "Data/pipeline engineer",
+          "0.5",
+          "Daily pipeline, dashboard builds"
+        ],
+        [
+          "Total",
+          "~6.7-7.2",
+          "--"
+        ]
+      ],
+      "source_note": "House design estimate, approx.; not independently benchmarked against a named peer PMS."
+    },
+    {
+      "title": "Dashboard portfolio",
+      "columns": [
+        "Dashboard",
+        "Owner",
+        "Refresh",
+        "Audience"
+      ],
+      "rows": [
+        [
+          "IPS/allocation drift",
+          "PM/Ops",
+          "Daily compute, weekly publish",
+          "IC, Ops, Compliance"
+        ],
+        [
+          "Deployment tracker",
+          "Trading desk",
+          "Weekly",
+          "IC, Ops"
+        ],
+        [
+          "Attribution/TWRR",
+          "PM/Risk",
+          "Monthly",
+          "IC, RM (client extract)"
+        ],
+        [
+          "Tail-risk dashboard",
+          "Risk",
+          "Daily",
+          "IC, Risk, CIO"
+        ],
+        [
+          "Liquidity dashboard",
+          "Ops/Risk",
+          "Weekly",
+          "IC, Ops"
+        ],
+        [
+          "Consent tracker",
+          "Compliance/RM",
+          "Daily",
+          "Compliance, RM, IC"
+        ],
+        [
+          "Cost/tax dashboard",
+          "PM/Fund accountant",
+          "Monthly",
+          "IC, CFO"
+        ],
+        [
+          "Manager watchlist",
+          "PM/Research",
+          "Quarterly",
+          "IC"
+        ],
+        [
+          "Recon break board",
+          "Ops",
+          "Daily",
+          "Ops, Compliance"
+        ],
+        [
+          "Client consolidated view",
+          "RM",
+          "Monthly",
+          "Client"
+        ]
+      ],
+      "source_note": "House dashboard design; extends existing IPS/attribution/deployment-tracker HTML dashboards."
+    },
+    {
+      "title": "Build roadmap by phase",
+      "columns": [
+        "Phase (days)",
+        "Key deliverables",
+        "Rating"
+      ],
+      "rows": [
+        [
+          "0-30",
+          "LVAI agreement + annexes signed; custodian onboarded; OMS pre-trade rules configured; consent-ledger schema live",
+          "must/should"
+        ],
+        [
+          "0-30",
+          "Daily feed ingestion live; existing dashboards extended with placeholder AIF/bond ledger",
+          "should"
+        ],
+        [
+          "30-90",
+          "Consent portal v1 (e-sign/OTP RPP workflow) + consent tracker + standing-instruction register",
+          "must"
+        ],
+        [
+          "30-90",
+          "Tail-risk dashboard live; AIF capital-call ledger; bond/G-sec recon leg added",
+          "should"
+        ],
+        [
+          "30-90",
+          "First live monthly RPP->consent->execution->recon->report cycle, Compliance-audited dry run",
+          "must"
+        ],
+        [
+          "90-180",
+          "Full daily pipeline automated; manager watchlist live; automated best-execution TCA report",
+          "should"
+        ],
+        [
+          "90-180",
+          "Documented BCP + first drill; infrastructure ready for a second NDPMS mandate",
+          "could"
+        ]
+      ],
+      "source_note": "House build-sequencing design."
+    },
+    {
+      "title": "Indicative annual operating cost, ₹ lakh/yr (approx., order-of-magnitude)",
+      "columns": [
+        "Item",
+        "₹ lakh/yr (approx.)",
+        "Basis"
+      ],
+      "rows": [
+        [
+          "Custodian + fund accounting",
+          "15-40",
+          "3-8 bps x ₹500 Cr"
+        ],
+        [
+          "OMS/RMS licence",
+          "15-35",
+          "Mid-tier multi-asset OMS, India market, approx."
+        ],
+        [
+          "E-sign/consent platform",
+          "3-8",
+          "Per-transaction e-sign API at monthly RPP volume"
+        ],
+        [
+          "Data feeds (index, valuation agency, CCIL)",
+          "10-20",
+          "APMI valuation + index licence, approx."
+        ],
+        [
+          "Data/dashboard engineering",
+          "8-12",
+          "0.5 FTE-equivalent + hosting, internal allocation"
+        ],
+        [
+          "Team (~6.7-7.2 FTE)",
+          "120-180",
+          "Blended fully-loaded cost ~₹18-25 lakh/FTE"
+        ],
+        [
+          "Audit/legal",
+          "8-15",
+          "APMI ToR audit + counsel"
+        ],
+        [
+          "Contingency/BCP",
+          "5-8",
+          "Backup systems, drill costs"
+        ],
+        [
+          "Total",
+          "~184-318",
+          "Against ~₹1.5-2.5 Cr fee revenue -- workable only at platform scale"
+        ]
+      ],
+      "source_note": "House cost estimate, approx.; not vendor-quoted."
+    }
+  ],
+  "detailed_markdown": "# NDPMS ₹500 Cr Mandate — Governance, Operations, Technology, Data and Automation\n\nStatus date: 12 September 2026. This note is the operating-model layer that sits under the regulatory design note (mandate architecture, Reg 24/31 perimeter, LVAI route, consent legal structure) [R1], the allocation note (CMAs, sleeve weights), the selection note (instrument due diligence) and the rebalancing/risk/performance notes (monthly cycle, band design, TWRR/attribution) already produced for this mandate. Figures here reuse those documents' ₹500 Cr sleeve weights, consent SLA and cadence so all six notes tie out. Where a fact is SEBI/RBI-sourced it carries the bracketed source used in the regulatory note (re-verified here); house-specific numbers (FTE, cost, dashboard refresh) are our own design and marked \"approx.\" where not independently verifiable.\n\n**Design thesis.** NDPMS moves the cost of ownership from *decision* to *process*: the PM cannot out-trade the market with speed, so alpha must come from house-view quality, tax/cost discipline and low consent-friction execution — and the team must be able to *prove*, at every stage, that the client directed each trade (Reg 24/2 read together) [R1][1]. Everything below is built to make that proof cheap and the friction small.\n\n---\n\n## 1. Governance\n\n### 1.1 Investment Committee (IC) — composition and mandate\nSix voting members, quorum 4, at least one non-investment (compliance/risk) vote required for quorum: CIO (chair), Head of Research/PM for the mandate, Head of Risk, Head of Compliance, Head of Trading/Ops (non-voting, present for feasibility), one independent/senior advisor (non-executive, tie-break). The IC owns: house view sign-off, model-portfolio version approval, Rebalance Proposal Pack (RPP) approval before it goes to the client, watchlist/exception decisions, and the quarterly IC scorecard (defined in the performance note) [R1].\n\n### 1.2 Calendar\n\n| Cadence | Forum | Agenda | Output |\n|---|---|---|---|\n| Monthly (last Wed) | IC house-view meeting | Macro/pillar scorecard review, SAA drift vs bands, TAA tilt (±2 discretion band per the allocation note), RPP draft review | Signed house view memo; RPP v0 |\n| Monthly (T-3, 2 biz days later) | Pre-RPP compliance gate | Reg 24 unlisted/associate checks, pre-trade compliance, cost/tax estimate | RPP v1 (client-ready) |\n| Weekly (Mon/Thu) | Ops stand-up | Deployment tranche status, cash ladder, corporate actions, recon breaks | Break log update |\n| Weekly | Risk stand-up | VaR/drawdown vs limits, early-warning board, hedge book status | Risk flag list |\n| Quarterly | IC scorecard + manager review | Attribution vs benchmark, cost/tax drag, active-manager watchlist scoring | IC scorecard; manager actions |\n| Quarterly | Compliance/Audit | Reg 24 associate-limit audit, AML/KYC refresh sample, standing-instruction usage audit | Audit note |\n| Annual | Firm-level performance audit (APMI ToR) | Full NDPMS book audit, confirmation to SEBI within 60 days of FY-end | Audit report to SEBI [R1] |\n| Ad hoc (≤4h notice) | Tail-event IC | Any daily risk breach (Section 2 of the risk note) or client-unreachable escalation | Emergency directive log |\n\n### 1.3 Decision log and IPS document structure\nEvery IC decision is logged with: date, decision ID, members present, motion, vote, dissent (if any), rationale (1 paragraph), effective date, and linked artifact (model version hash, RPP ID). Retained 8 years minimum (aligns with SEBI recordkeeping practice under the PMS Regs) [R1]. IPS document structure for this mandate (single master PDF + machine-readable YAML twin for the pipeline):\n\n1. Client identity, accreditation status (LVAI certificate ref, validity date), minimum-investment confirmation.\n2. Objective, horizon, risk profile, liquidity needs, ESG/exclusion list (if any).\n3. Strategic Asset Allocation table — sleeve, target %, band, ₹ Cr at ₹500 Cr (from the allocation note).\n4. Benchmark: house composite for the mandate + per-sleeve reference index.\n5. Consent Protocol (Annex B of the agreement) — RPP format, SLA, standing-instruction register.\n6. Eligible-universe and hard-limit table (unlisted 25%/LVAI 100%, associate 15/25/30%, derivative exposure ≤ portfolio funds) [R1].\n7. Fee schedule, HWM definition, exit-load schedule.\n8. Reporting pack list and cadence.\n9. Version history (semantic version, e.g. IPS v1.3; every SAA/band change is a new minor version, IC-approved, client-notified).\n\n### 1.4 Model-portfolio governance and version control\nModel Master (existing house artifact) gets an NDPMS-specific branch: `model/ndpms-500cr-moderate-vX.Y`. Every change — CMA update, sleeve reweight, new fund added to the eligible list — is a pull-request-style change: proposed by PM, reviewed by Risk, approved by IC, tagged with effective date, diffed against prior version in the recon pipeline (Section 4) so drift reports always compare against the *currently effective* version, not a stale one. Version changes >1 percentage point on any sleeve require full IC minute; <1pp (rebalancing within band) is logged but not re-voted.\n\n### 1.5 Conflicts policy — group products\nAngel One group products (AMC schemes, group AIF/SIF, Angel One as broker) sit under a standing conflicts protocol, not case-by-case waivers:\n- One-time client consent at onboarding in the prescribed Annexure A format for associate investment, refreshed if the associate list changes [R1][4].\n- Self-imposed IPS cap 10% of AUM per associate product family (tighter than the SEBI 15/25/30% ceiling) [R1][4].\n- IC best-selection minute required every time a group product is chosen over a non-group alternative — must show the group product scored ≥ the top 2 non-group alternatives on the relevant due-diligence scorecard (selection note).\n- Angel One as executing broker: brokerage must be demonstrably at or below the rate card available to a non-group client of similar size; quarterly best-execution report benchmarks our achieved slippage against a TCA (transaction-cost-analysis) peer set.\n- Real-time alert (not monthly review) the moment any associate exposure crosses 80% of its cap — 2022 SEBI amendment requires alert-based monitoring [R1][4].\n\n### 1.6 Four-eyes controls\n| Control point | Maker | Checker | Tooling |\n|---|---|---|---|\n| RPP trade list | PM/Analyst | Compliance (pre-trade) | OMS compliance rule engine |\n| Order entry | Dealer | Second dealer / Ops (input match to RPP) | OMS 2-factor release |\n| Standing-instruction trigger | System (automated) | Ops (daily exception report) | RMS batch job |\n| Cash movement / RTGS | Ops | CFO/Fund accountant | Custodian dual-authorization |\n| NAV/valuation override | Fund accountant | Risk/Compliance | Valuation exception log |\n| Model version change | PM | IC + Risk | Git-style model versioning |\n| Client consent capture | RM | Compliance (audit trail hash check) | e-sign platform log |\n\n---\n\n## 2. NDPMS consent workflow\n\n### 2.1 Design principle\nUnder NDPMS the client's dated, evidenced instruction is the *only* thing that authorises a trade (Reg 24 read with Reg 2 definitions) [R1][1]. The workflow below turns that into one omnibus monthly approval instead of per-trade friction, while keeping every element specific enough that it is a direction, not a discretion (SEBI's 26-May-2026 order against First Global — outsourcing/discretion recharacterisation risk is real and enforced) [R1][12].\n\n### 2.2 Proposal-pack (RPP) template — contents\n1. Cover: client name, account, IPS version referenced, month, IC house-view summary (3 lines).\n2. Drift table: current vs target weight per sleeve, band status (green/amber/red).\n3. Trade list: ISIN/scheme code, instrument name, side, quantity **or** ₹ amount, execution window (dates), participation-rate rule, limit-price/NAV-cutoff rule, rationale (1 line), estimated cost (bps), estimated tax impact (STCG/LTCG flag).\n4. Compliance annex: unlisted-cap headroom before/after, associate-exposure headroom before/after, derivative notional check.\n5. Cost/tax summary: total estimated transaction cost (₹), estimated tax drag (₹), net expected benefit of the rebalance.\n6. Consent block: \"Approve all\" single click, or line-item approve/reject with a mandatory reason if rejecting; validity window (10 trading days, then lapses — new pack required) [R1].\n7. Signature block: e-sign (Aadhaar eSign/DSC) or OTP-authenticated portal click-through, each with device/IP/timestamp metadata.\n\n### 2.3 Digital consent mechanism — design and legal basis\n- **Primary channel**: client web/app portal, Aadhaar e-Sign (Section 3A, IT Act 2000, recognised electronic signature) or class-2/3 DSC for HUF/trust/corporate signatories; SEBI's digital-onboarding circular (effective 1-Oct-2024) permits fully digital PMS onboarding and consent artifacts [R1][8].\n- **Secondary/fallback channel**: OTP-authenticated email reply from the registered email ID on file, OTP sent to the registered mobile — used only when the portal is unavailable; logged with a distinct \"fallback channel used\" flag for audit.\n- **Tertiary (escalation only)**: recorded voice call (Section 2.5) — used solely for the \"client unreachable in a tail event\" path, never as the default channel.\n- Every consent event writes an immutable record: `{rpp_id, client_id, line_items[], approve/reject, channel, timestamp (IST, NTP-synced), signer_identity, IP, device_fingerprint, document_hash (SHA-256 of the exact RPP PDF shown)}`. Store in an append-only ledger (WORM S3-equivalent object lock or a hash-chained table) — this is the audit trail an inspection will pull.\n- **Retention**: minimum 8 years (aligned to SEBI recordkeeping norms under the PMS Regs and IT Rules); we recommend 10 years given the mandate size.\n\n### 2.4 SLA and escalation\n\n| Stage | Target | Escalation trigger | Action |\n|---|---|---|---|\n| RPP sent → client viewed | 4 business hours | Not viewed by T+1 | RM call |\n| Client viewed → approved/rejected | ≤ 2 business days (per regulatory note's latency-cost model) | Not actioned by 48h | RM call + CIO email |\n| No response | 72h | — | Escalation call from CIO; if still unreachable, invoke Section 2.5 |\n| Rejected line items | Same day | — | PM revises, re-issues affected lines only (partial RPP) within 1 business day |\n| Consent expiring (day 8 of 10) | — | 2 days before lapse | Auto-reminder; unexecuted lines lapse automatically at day 10 [R1] |\n\nQuantified rationale: a 5% (₹25 Cr) equity under/over-deployment at ~1% daily index vol costs approx. ₹79 lakh of 1-sigma tracking risk over 10 days of delay vs approx. ₹35 lakh over 2 days — this is why the 2-business-day SLA is the design target, not a courtesy (regulatory note, Section 5.2) [R1].\n\n### 2.5 Client unreachable during a tail event\n1. Attempt all three channels (portal push, OTP email/SMS, recorded call) at T, T+4h, T+24h.\n2. If a **standing instruction** already covers the situation (e.g., \"auto-de-risk equity by X% if house VaR breach persists 2 consecutive days\" — pre-approved, mechanical, revocable), execute it and notify the client on all channels simultaneously; log as a standing-instruction execution, not a fresh consent.\n3. If no standing instruction covers it and the client remains unreachable beyond 72 hours during a live tail event: the IC convenes an emergency session, documents the risk (VaR/drawdown numbers from the risk note's early-warning board), and may take a **defensive, capital-preserving, reversible-only** action (e.g., buying an index put, moving to already-approved liquid sleeve **only up to the standing sweep limit**) under the narrowest possible reading of pre-existing consent; anything broader is refused and logged as \"unable to act — no client instruction,\" which is the compliant position, not a failure, under Reg 24 [R1][1]. This boundary should be reviewed with external counsel/an SEBI Informal Guidance request before go-live — status: unclear_verify (regulatory note flags the same open point) [R1].\n4. Every unreachable-client event, action taken (or not taken) and its rationale go into the decision log (Section 1.3) and are disclosed to the client in the next monthly report.\n\n### 2.6 Standing-instruction design (narrow, mechanical, revocable — carried from the regulatory note) [R1]\n| # | Instruction | Trigger | Instrument/quantity rule | Max ₹ | Revocable |\n|---|---|---|---|---|---|\n| 1 | Cash sweep | Idle cash > ₹50 lakh, daily | Named liquid/overnight fund, 100% of excess | Uncapped (mechanical) | Yes, portal toggle |\n| 2 | Distribution reinvestment | Dividend/interest received | Same instrument or liquid fund per pre-set rule | Amount received | Yes |\n| 3 | Corporate-action default | Voluntary CA (rights/buyback) | Default = no action unless in an approved RPP | — | Yes |\n| 4 | Approved tranche execution | Already-approved RPP line | Exact ₹/qty from RPP, Mon/Thu cadence | As per RPP | Auto-lapses at RPP expiry |\n| 5 | Hedge auto-roll | Approved hedge nearing expiry | Same notional, next monthly series | ≤ 1% AUM premium budget/yr | Yes |\n| 6 | Tail de-risk (if adopted) | 2-day sustained VaR/drawdown breach per risk note | Reduce equity sleeve by pre-agreed X pp to a pre-agreed floor | Pre-agreed ₹ ceiling | Yes, reviewed quarterly |\n\nAnything that changes a sleeve's *target* weight or introduces a new security stays in the RPP — standing instructions never expand scope, they only execute what's already been directed.\n\n### 2.7 Recording and storage\n- Voice: call-recording system (telephony compliance recorder) retaining WAV + transcript, indexed by client ID and RPP ID, 8-year retention.\n- Documents: RPP PDFs, signed consent artifacts, and IC minutes in a document-management system with version control and legal hold capability.\n- Backup: daily encrypted backup of the consent ledger to a separate cloud region; monthly integrity check (hash re-verification of a sample of records).\n\n---\n\n## 3. Order and portfolio management (OMS/RMS)\n\n### 3.1 Multi-instrument book — routing map\n\n| Instrument class | Execution venue/route | System of record | Settlement |\n|---|---|---|---|\n| Listed equity, ETFs | Exchange (NSE/BSE) via broker OMS, algo/DMA for size | OMS → demat (client-name) | T+1 |\n| Direct MF (incl. index, active, SIF) | MFU (MF Utility) or BSE StAR MF, direct-plan flag mandatory [R1] | OMS/MF order module → RTA folio | T+1 (equity)/T+1-2 (debt) |\n| AIF Cat I/II/III | Subscription via contribution agreement + drawdown notices; no exchange | Manual/portal subscription tracker, capital-call calendar | Per PPM (T+3 to T+10 typical, approx.) |\n| Bonds/G-secs/SDLs/corp bonds | NSE/BSE RFQ platform (for retail-lot corp bonds), NDS-OM/RFQ (G-sec, via custodian/PD), direct placement for large lots | OMS bond module | T+1/T+2 |\n| Third-party PMS | Outside NDPMS OMS — client signs directly with the external PM; we track via a consolidated-reporting feed only | Consolidated reporting DB (look-through) | N/A to our book |\n| REIT/InvIT (listed) | Exchange | OMS | T+1 |\n| Gold/silver ETF, SGB (secondary) | Exchange | OMS | T+1 |\n| International (Indian-listed ETF/FoF) | Exchange/AMC, premium-to-iNAV check pre-trade | OMS | T+1/T+3 (FoF) |\n\n### 3.2 OMS/RMS requirements\n- **Pre-trade compliance engine**: hard-coded rules for (a) unlisted-cap headroom (25% NDPMS / self-cap 15% IPS), (b) associate-exposure headroom (15/25/30% SEBI / 10% IPS), (c) derivative notional ≤ portfolio funds, (d) no short sale, (e) no leverage/margin, (f) MF direct-plan flag, (g) demat-account routing (purpose-segregated accounts per the rebalancing note's FIFO design). Every order blocked by a rule requires an explicit compliance override with a logged reason — never a silent bypass.\n- **Order timestamping**: order placement, release, exchange ack, fill — all NTP-synced, immutable log; SEBI's Master Circular requires time-stamping and (for AUM ≥ ₹1,000 Cr) an automated OMS — at ₹500 Cr we are below that automatic threshold but build to the same standard from day one since we intend to scale and because the audit trail is the actual defence for NDPMS [R1][3].\n- **Linkage to consent**: every order in the OMS carries an `rpp_id` (or `standing_instruction_id`) foreign key; an order cannot be released without a valid, unexpired, matching consent record — this is the single most important control in the whole book.\n- **AIF/PMS-sleeve tracker**: not an OMS object (no exchange order) but a capital-call and NAV tracker with drawdown notices, capital-call SLA (typically 10 business days, approx., per PPM), and a rolling \"committed vs called vs distributed\" ledger (for IRR/DPI/TVPI computation on the AIF sleeve).\n- **RMS**: real-time position and exposure limits feeding the risk note's daily VaR/drawdown/liquidity metrics; hard block on any order that would breach a hard limit (associate cap, unlisted cap, derivative notional) at the RMS layer, independent of the OMS pre-trade check (defence in depth).\n\n### 3.3 Custodian selection and fund accounting\n- Custodian is mandatory for PMs (and mandatory before any commodity-derivative use) [R1][3]. Selection criteria: SEBI-registered custodian with PMS/AIF servicing experience, NAV computation SLA, corporate-action processing SLA, API/SFTP connectivity for the daily data pipeline (Section 5), and independence from Angel One group (avoids a second-order conflict).\n- Fund accounting: daily NAV computation (T+1 morning), reconciled against the recon engine (Section 4); accrual-basis fee computation (management fee daily accrual, performance fee at HWM crystallisation dates).\n- Cost: custodian + fund-accounting fees run approx. 3–8 bps p.a. of AUM in the Indian market for a book this size and complexity (industry-typical range; not independently verified for a specific vendor quote) — on ₹500 Cr that is approx. ₹15–40 lakh/yr, consistent with the regulatory note's operating-expense-cap illustration (0.50% cap = ₹2.50 Cr/yr ceiling, custody a sub-component) [R1].\n\n### 3.4 Brokerage arrangement — Angel One as broker\nGoverned by the conflicts policy (Section 1.5): brokerage at actuals, rate card benchmarked quarterly, best-execution TCA report to the IC, and a standing option (disclosed to the client) to route a minority of flow through a second, non-group broker for benchmarking — recommended at ≥10% of listed-equity flow in year 1 purely as a TCA control, reviewed after 6 months.\n\n---\n\n## 4. Reconciliations\n\n### 4.1 Recon matrix\n\n| Recon | Frequency | Compares | Break SLA (resolve by) | Escalation |\n|---|---|---|---|---|\n| Cash (bank vs internal ledger) | Daily (T+1 AM) | Custodian bank statement vs OMS/ledger cash position | Same day for >₹10 lakh breaks; T+1 for smaller | Ops lead → CFO if unresolved 2 days |\n| Holdings (custodian/depository vs internal book) | Daily | CDSL/NSDL statement + custodian holding file vs internal position | Same day | Ops → Compliance if >₹25 lakh or >2 days |\n| MF folios vs RTA | Daily (CAMS/KFintech feed) | Folio-level units/NAV vs internal MF ledger | T+1 | Ops → RTA helpdesk ticket; escalate at T+3 |\n| AIF statements | Monthly (per fund's NAV statement) | Units/NAV/capital account vs internal AIF tracker | 5 business days of receipt | PM → fund's investor-relations desk |\n| Corporate actions | Daily (announcement) / on ex-date | Depository CA feed vs entitlement computed vs credited | T+1 of ex-date; T+3 of credit due date | Ops → custodian if credit delayed |\n| Dividends/interest | Daily | Bank credit vs entitlement | T+2 | Ops |\n| Fee accruals | Daily (mgmt fee), event-driven (perf fee/HWM) | Computed accrual vs custodian/fund-accountant statement | Monthly close, T+3 | Fund accountant → Compliance |\n| Benchmark data | Daily | NSE Indices/AMFI feed vs internal benchmark series | T+1 | Data team |\n| Composite/model deviation (extends existing house cash-recon skill) | Monthly (+ weekly interim) | Actual weights (Portfolio Appraisal) vs Model Master IPS targets, composite rules (FI+ESS caps etc.) | Per existing house SLA | PM/Ops |\n| IPS drift / allocation vs model (extends existing IPS dashboard) | Daily compute, published weekly | Client-level allocation vs model + band | Amber at band edge, red flag to IC same day | PM |\n| Deployment tranche tracking (extends existing deployment tracker) | Weekly (Mon/Thu cadence) | Planned tranche vs executed | Same week | Trading desk |\n| Attribution/TWRR (extends existing attribution dashboard) | Monthly | Computed TWRR/contribution vs custodian-confirmed valuations | T+5 business days of month-end | PM/Risk |\n\n### 4.2 Break-resolution workflow\nEvery break gets a ticket: `{recon_type, date, amount, ageing, assigned_to, root_cause_category, resolution, closed_date}`. Root-cause categories: timing (T+1 lag), corporate action unprocessed, trade-booking error, RTA/custodian data error, FX/valuation source mismatch. Weekly break-ageing report to Ops head; any break >₹25 lakh or aged >5 business days escalates to Compliance and appears on the monthly IC pack. This mandate's size (₹500 Cr, multi-instrument) means the existing single-strategy cash-recon automation needs three extensions: (i) an AIF/capital-call ledger it doesn't currently carry, (ii) a bond/G-sec settlement leg, (iii) a look-through line for the third-party PMS sleeve (reported, not reconciled, since it sits outside our custody).\n\n---\n\n## 5. Data architecture\n\n### 5.1 Feeds\n\n| Data | Source | Frequency | Format/access |\n|---|---|---|---|\n| Equity/ETF prices, indices (Nifty 50 TRI, Nifty Arbitrage, sector indices) | NSE/BSE, NSE Indices | EOD (+ intraday for risk) | Bhavcopy/API, licensed index-data feed |\n| MF NAVs | AMFI | Daily (post ~9 PM IST) | AMFI NAVAll.txt / API |\n| AIF NAV/capital statements | Fund administrator/AMPI-empanelled valuer | Monthly (some quarterly) | PDF/Excel, manual ingest |\n| Debt valuation (bonds, G-secs, SDLs, MM) | APMI-empanelled valuation agencies (CRISIL, ICRA Analytics, NSE Indices) | Daily | File feed [R1][32] |\n| G-sec/SDL trade & yield data | CCIL (NDS-OM, F-TRAC), RBI | Daily | CCIL data feed |\n| FX, gold/silver reference | RBI reference rate, MCX/LBMA-linked domestic benchmark | Daily | RBI/MCX feed |\n| Overseas index/ETF data (for international sleeve) | Index provider + Indian-listed ETF iNAV | Daily | Vendor feed |\n| Corporate actions | Depository (CDSL/NSDL) CA file, exchange announcements | Daily | Depository API |\n| Benchmark constituents (Nifty 50 TRI, Nifty Arbitrage) | NSE Indices | On rebalance (semi-annual/quarterly per index methodology) | NSE Indices file |\n| Custodian holdings/cash/transactions | Custodian | Daily (EOD) | SFTP/API |\n| RTA (MF folios) | CAMS/KFintech | Daily | RTA API/file |\n| Regulatory reference (SEBI/APMI circulars, accreditation registry) | SEBI/APMI/registered accreditation agencies | Event-driven | Manual monitoring + periodic pull |\n\n### 5.2 Pipeline design (Python) — ingest → validate → compute → publish\n\n```\n01:00 IST  Ingest: pull AMFI NAV, NSE/BSE bhavcopy, custodian EOD file, RTA feed,\n           APMI debt valuation, CCIL G-sec data, corporate-action file, FX/gold ref.\n01:30 IST  Validate: schema check, stale-file check (flag if a feed hasn't updated),\n           cross-check custodian holdings vs internal ledger row counts, NAV\n           day-over-day change outlier flag (>X% move on a debt instrument = alert).\n02:00 IST  Compute: daily TWRR (per client, per sleeve, per composite benchmark),\n           IPS drift %, VaR/drawdown/liquidity metrics (risk note engine),\n           recon break detection (Section 4), fee accrual roll-forward.\n02:30 IST  Publish: regenerate HTML dashboards (static build, house pattern —\n           same pipeline family as the existing IPS-monitoring, attribution/TWRR\n           and deployment-tracker dashboards), push to internal hosting\n           (GitHub Pages / internal static host per house convention), archive\n           the day's computed dataset (parquet/CSV) to the data lake.\n06:30 IST  Ops desk pre-market check: recon exceptions, corporate-action\n           calendar, cash ladder for the day's Mon/Thu tranche if applicable.\n09:00 IST  Market open — trading desk executes any approved-and-live RPP lines\n           per participation-rate rules (rebalancing note, Section 6).\n17:00 IST  Post-close: fills reconciled into OMS, T+1 settlement queue built.\n```\n\n### 5.3 Storage\n- Transaction/holdings store: append-only ledger (client_id, instrument, date, qty, price, side, rpp_id/standing_instruction_id) — this FK to consent is the schema's defining feature for NDPMS.\n- Time-series store for prices/NAVs/benchmarks (columnar, e.g., parquet on object storage) — cheap, fast for the daily compute job.\n- Document store for RPPs, consent artifacts, IC minutes (Section 2.7).\n- All PII (client identity, KYC, accreditation certificates) segregated with access control distinct from the market-data/compute layer.\n\n### 5.4 Dashboard hosting\nSame pattern as the house's existing HTML dashboards (IPS monitoring, attribution/TWRR, deployment tracking): static HTML regenerated by the daily/monthly pipeline job, hosted internally (GitHub Pages-equivalent or internal static host), access-controlled to the IC/Ops/Compliance/RM group; client-facing extracts are a separate, simplified, branded export (house palette navy #16233B / indigo #1B27A3 / green #1E9E6A / coral #E0402F / amber #F2A93C) generated from the same computed dataset, not re-keyed.\n\n---\n\n## 6. Dashboards portfolio\n\n| Dashboard | Purpose | Owner | Refresh | Audience |\n|---|---|---|---|---|\n| IPS/allocation drift (extends existing IPS dashboard) | Actual vs model weights, band breaches, composite-rule checks | PM/Ops | Daily compute, published weekly | IC, Ops, Compliance |\n| Deployment tracker (extends existing) | Mon redemption/Thu deployment tranche status for fresh ₹500 Cr and ongoing flows | Trading desk | Weekly | IC, Ops |\n| Attribution/TWRR (extends existing) | Brinson-Fachler contribution, alpha vs benchmark, cost/tax drag | PM/Risk | Monthly | IC, RM (client extract) |\n| Tail-risk dashboard (new — per risk note Section 8) | VaR/drawdown vs limits, stress scenarios, early-warning board, hedge book | Risk | Daily | IC, Risk, CIO |\n| Liquidity dashboard (new) | Days-to-liquidate by sleeve, AIF lock-up/redemption-window calendar, cash ladder | Ops/Risk | Weekly | IC, Ops |\n| Consent tracker (new) | RPP status (sent/viewed/approved/rejected/lapsed), SLA breach flags, standing-instruction execution log | Compliance/RM | Daily | Compliance, RM, IC |\n| Cost/tax dashboard (new) | Realised transaction cost bps, tax drag (STCG vs LTCG), fee accrual vs cap | PM/Fund accountant | Monthly | IC, CFO |\n| Manager watchlist (new) | Active MF/PMS/AIF manager scorecard vs hurdle, style drift, redemption-notice status | PM/Research | Quarterly | IC |\n| Reconciliation break board (new) | Live break count/ageing across all 10 recon types (Section 4) | Ops | Daily | Ops, Compliance |\n| Corporate-action calendar (new) | Upcoming CAs, election deadlines, default-instruction status | Ops | Daily | Ops, PM |\n| Client consolidated view (new, client-facing) | Look-through across NDPMS AUM + third-party PMS sleeve + LRS/IFSC sleeve advised outside AUM | RM | Monthly | Client |\n\n---\n\n## 7. Team and RACI\n\n### 7.1 Roles and approx. FTE for ₹500 Cr NDPMS (single large mandate, multi-instrument)\n\n| Role | FTE (approx.) | Core responsibility |\n|---|---|---|\n| CIO / IC chair | 0.2 (shared) | House view, IC chair, accountability for alpha |\n| PM (dedicated) | 1.0 | Model portfolio, RPP authoring, manager selection |\n| Research analyst | 1.0 | NIFTY-750 scorecard, manager/AIF due diligence, macro pillar |\n| Risk manager | 0.5 | VaR/drawdown, limits, stress testing, hedge design |\n| Trading/dealing desk | 1.0 | Order execution across venues, participation-rate discipline |\n| Ops/fund accounting | 1.5 | Recon (Section 4), NAV oversight, corporate actions, custodian liaison |\n| Compliance officer | 0.5 (dedicated slice of a shared role) | Pre-trade checks, associate-limit monitoring, consent-audit, SEBI/APMI reporting |\n| RM/client servicing | 0.5–1.0 (depends on # of underlying entities in the mandate) | Consent walkthroughs, escalations, client reporting |\n| Data/pipeline engineer | 0.5 (shared across house dashboards) | Daily pipeline, dashboard builds |\n| **Total** | **≈ 6.7–7.2 FTE** | — |\n\nAt ₹500 Cr this is a rich staffing ratio (approx. ₹70 Cr AUM/FTE) versus a typical scaled PMS book (₹150–300 Cr/FTE, approx.) — justified in year 1 by the build effort (Section 9) and the multi-instrument/NDPMS consent overhead; expect the ratio to improve as automation matures and if a second mandate is onboarded onto the same infrastructure.\n\n### 7.2 RACI (abbreviated — key activities)\n\n| Activity | CIO | PM | Risk | Ops | Compliance | RM |\n|---|---|---|---|---|---|---|\n| House view / IC sign-off | A | R | C | I | C | I |\n| RPP authoring | I | R/A | C | I | C | I |\n| Pre-trade compliance check | I | C | I | I | R/A | I |\n| Consent capture/SLA tracking | I | I | I | C | A | R |\n| Order execution | I | C | I | R/A | I | I |\n| Daily recon | I | I | C | R/A | I | I |\n| Daily risk monitoring | I | C | R/A | I | I | I |\n| Tail-event escalation | A | R | R | C | C | R |\n| Monthly client report | I | C | I | R | A | R |\n| SEBI/APMI monthly filing | I | I | I | C | R/A | I |\n| Model version change | A | R | C | I | C | I |\n\n### 7.3 Operating calendar (summary)\nDaily: recon (all 10 types), risk monitoring, cash/CA processing, NAV oversight, consent-tracker check. Weekly: deployment tranches (Mon/Thu), ops/risk stand-ups, break-ageing report. Monthly: IC house view + RPP cycle (Section 2), client reporting, SEBI/APMI filing, cost/tax dashboard, attribution/TWRR refresh. Quarterly: IC scorecard, manager watchlist review, compliance/audit review, best-execution TCA review. Annual: firm-level performance audit, IPS full review, accreditation re-certification check, BCP drill (Section 8).\n\n---\n\n## 8. Controls, incident, BCP and client communication\n\n### 8.1 Error-trade policy\nAny trade executed without a valid matching consent record, or outside RPP-specified parameters (wrong quantity/side/instrument), is an error trade: (i) immediate freeze of the position, (ii) same-day disclosure to the client with proposed remedy (unwind at no cost to client, or ratify if the client prefers to keep it and it's within their interest), (iii) root-cause logged, (iv) reported to Compliance/IC within 24 hours, (v) if the loss is borne by the firm, booked to a segregated error-account, never netted against client P&L.\n\n### 8.2 Incident and BCP playbooks\n- **System outage (OMS/custodian feed down)**: fallback to manual order slips with dual sign-off, custodian direct-dial confirmation; no RPP execution proceeds without the compliance engine's checks being replicable manually from the last-validated dataset.\n- **Data feed failure (NAV/price)**: use prior-day validated value with a flag, do not publish a dashboard on stale-but-unflagged data; if AIF/RTA feed is late, hold the recon open rather than guess.\n- **Key-person unavailability**: documented delegation of authority (PM → designated backup PM; Compliance officer → designated backup) for RPP approval-gate sign-off, refreshed quarterly.\n- **Cyber/consent-ledger integrity incident**: immediate read-only lockdown of the consent ledger, forensic hash-verification against the last known-good backup, client notification per the incident-response SLA (target: within 72 hours, aligned to typical breach-notification practice).\n- **BCP drill**: annual, simulating a T0 tail event plus simultaneous custodian outage; measures time-to-restore trading capability and time-to-notify clients.\n\n### 8.3 Client communication cadence and documents\n| Document | Cadence | Trigger |\n|---|---|---|\n| RPP | Monthly (+ ad hoc for event-driven rebalances per the rebalancing note) | House-view cycle |\n| Monthly portfolio statement (Reg 31 content, monthly not quarterly by our own commitment) | Monthly | Month-end |\n| Tail-event notification | Ad hoc | Risk breach / unreachable-client protocol |\n| Quarterly review call | Quarterly | Calendar |\n| Annual review + IPS refresh | Annual | Calendar / material change |\n| Cost & tax summary | Annual (ahead of ITR season) | March/April |\n| Disclosure Document update notice | On material change | Filed change |\n\n---\n\n## 9. Build roadmap, build-vs-buy and cost\n\n### 9.1 Roadmap\n\n| Phase | Days | Deliverables | CAN/SHOULD/AVOID |\n|---|---|---|---|\n| 0–30 | Legal/compliance foundation | LVAI agreement + all annexes signed; custodian selected and onboarded; OMS pre-trade compliance rules configured; consent-ledger schema live (even if UI is manual/email-based initially) | MUST/SHOULD |\n| 0–30 | Data foundation | Daily feed ingestion (AMFI, NSE, custodian) live; existing house dashboards (IPS, attribution, deployment tracker) extended with a placeholder NDPMS/AIF/bond ledger | SHOULD |\n| 30–90 | Consent portal v1 | E-sign/OTP RPP workflow live (even a lightweight portal beats email-only); consent tracker dashboard; standing-instruction register configured | MUST |\n| 30–90 | Risk & recon build-out | Tail-risk dashboard live; AIF capital-call ledger; bond/G-sec settlement leg added to recon | SHOULD |\n| 30–90 | First live monthly cycle | Run one full RPP → consent → execution → recon → report cycle end-to-end, dry-run audited by Compliance | MUST |\n| 90–180 | Automation maturity | Full daily pipeline (Section 5.2) automated, dashboards auto-publish; manager watchlist scorecard live; best-execution TCA report automated | SHOULD |\n| 90–180 | Scale-readiness | Documented BCP, completed first drill; process ready to onboard a second NDPMS mandate on the same infrastructure | COULD |\n\n### 9.2 Build-vs-buy\n\n| Component | Build vs Buy | Rationale |\n|---|---|---|\n| OMS/RMS core | Buy (licensed OMS with PMS/multi-instrument support) + build compliance-rule layer on top | Exchange connectivity/algo execution is a solved problem; the Reg-24 rule engine and consent-FK linkage is our IP |\n| Custodian/fund accounting | Buy (SEBI-registered custodian) | Mandatory, specialised, regulated function |\n| Consent/e-sign platform | Buy (e-sign API, e.g. Aadhaar eSign/DSC provider) + build the RPP workflow/UI in-house | Signature legality needs a licensed provider; workflow logic is house-specific |\n| Dashboards (IPS, attribution, deployment, risk, consent) | Build | Already the house's core competency (existing HTML dashboard family); extending is cheaper than buying a generic BI tool that won't encode Reg-24/IPS logic |\n| Data pipeline (ingest/validate/compute/publish) | Build (Python, on top of existing house pipeline pattern) | Same reasoning; also the fastest path to daily VaR/TWRR specific to this mandate |\n| Recon engine | Build (extend existing cash-recon automation) | House already owns this; extending beats a generic recon SaaS for the composite-rule logic |\n| AIF/PMS capital-call and look-through tracker | Build (spreadsheet/lightweight app v1, proper module by day 90) | Low transaction volume, high specificity; not worth a vendor contract at this scale |\n| CRM/client portal | Buy or extend existing RM tooling | Not core IP |\n\n### 9.3 Indicative annual cost (₹ lakh/yr, approx. — order-of-magnitude, not vendor-quoted)\n\n| Item | ₹ lakh/yr (approx.) | Basis |\n|---|---|---|\n| Custodian + fund accounting | 15–40 | 3–8 bps × ₹500 Cr (Section 3.3) |\n| OMS/RMS licence | 15–35 | Mid-tier multi-asset OMS for a book this size, India market, approx. |\n| E-sign/consent platform | 3–8 | Per-transaction e-sign API cost at monthly RPP volume |\n| Data feeds (index/benchmark licences, valuation agency, CCIL) | 10–20 | APMI-empanelled valuation + index data licence, approx. |\n| Data/dashboard engineering (0.5 FTE-equivalent + hosting) | 8–12 | Internal allocation, approx. |\n| Team (6.7–7.2 FTE, blended fully-loaded cost approx. ₹18–25 lakh/FTE) | 120–180 | Section 7.1 |\n| Audit/legal (annual performance audit, LVAI documentation, Informal Guidance if sought) | 8–15 | APMI ToR audit + counsel |\n| Contingency/BCP (backup systems, drill costs) | 5–8 | — |\n| **Total** | **≈ 184–318** | **Against fee income of ≈ ₹1.5–2.5 Cr fixed fee + performance fee (Section 6, regulatory note) — a tight but workable economics story only if a second mandate is layered onto the same build within 12–18 months** |\n\nThis cost stack is the single strongest argument for treating this as a platform build, not a one-off account: at ₹500 Cr alone, fixed operating cost (₹1.8–3.2 Cr) approaches or exceeds the 0.30% fixed-fee revenue (₹1.5 Cr) before performance fees, so the business case depends on this infrastructure serving multiple NDPMS mandates going forward.\n\n---\n\n## Sources\n[R1] Ionic Wealth NDPMS Regulatory Design Note (this project, 12-Sep-2026) — synthesises and cites: SEBI (Portfolio Managers) Regulations 2020 (as amended) https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html ; SEBI Master Circular for Portfolio Managers, 16-Jul-2025 https://www.sebi.gov.in/legal/master-circulars/jul-2025/master-circular-for-portfolio-managers_95347.html ; SEBI related-party circular (2022) on associate-investment limits https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf ; SEBI digital-onboarding circular (2024) https://www.apmiindia.org/storagebox/images/Circulars/Facilitating%20ease%20in%20digital%20on-boarding%20process%20for%20clients%20and%20enhancing%20transparency%20-%202nd%20May'24.pdf ; SEBI performance-benchmarking circular (2022) https://www.apmiindia.org/storagebox/images/Circulars/Performance-Benchmarking-16th-Dec'22.pdf ; SEBI firm-level performance audit circular (2023) https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/ ; SEBI order, First Global Finance, 26-May-2026 https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779810509185.pdf ; APMI valuation-agency references https://www.lexibox.in/pms/performance-benchmarking-and-reporting-of-performance-by-portfolio-managers/ ; Regulation 31 (client reporting) text https://indiankanoon.org/doc/31059892/. Full source list [1]-[34] retained in the regulatory design note.\n[1] SEBI (Portfolio Managers) Regulations, 2020 — as above.\n[2] Ionic Wealth NDPMS Rebalancing Design Note (this project) — monthly consent-to-execution calendar.\n[3] SEBI Master Circular for Portfolio Managers, 16-Jul-2025 — as above (custodian, OMS/dealing-room, time-stamping requirements).\n[4] SEBI related-party/associate-investment circular (2022) — as above.\n[8] SEBI digital-onboarding circular, effective 1-Oct-2024 — as above.\n[12] SEBI order against First Global Finance, 26-May-2026 — as above (outsourcing/discretion recharacterisation precedent).\n[32] APMI-empanelled valuation agencies reference — as above.\nAdditional this-session check: PMS fee/cost structure background — https://scripbox.com/wealth/portfolio-management-services-pms-fees-and-charges/ ; https://www.fincart.com/blog/pms-charges (custodian/demat charge line items, management-fee range, confirms 0.50% opex cap and exit-load-to-3% figures independently).\n",
+  "risks_and_pitfalls": [
+    "Standing instructions drift into de facto discretion in practice, even if narrowly worded on paper, and get recharacterised at inspection (SEBI's First Global order shows this risk is actively enforced).",
+    "A consent-ledger gap (missing FK, unlogged override) turns one trade into unauthorised discretionary action with no defensible audit trail.",
+    "Client non-responsiveness during a genuine tail event forces a choice between an under-hedged loss and an under-consented action; the boundary is legally unclear (unclear_verify) until tested with counsel/Informal Guidance.",
+    "Angel One brokerage/associate-product conflicts erode credibility with the client or regulator if the best-execution/TCA evidence is thin or infrequent.",
+    "Active unlisted-cap breach via a rights issue or CIV drawdown the PM did not anticipate (a 'passive' cap-crossing must be cured within a limited window).",
+    "AIF/PMS capital calls and NAV updates arrive on manual PDF feeds; a missed capital call can trigger default provisions in the fund's own PPM, independent of NDPMS mechanics.",
+    "FIFO tax-lot rules undermine tax-aware rebalancing plans if trades are routed through the wrong demat account; purpose-segregation must be enforced at order-entry, not just in policy.",
+    "International sleeve execution at a premium to iNAV when AMC overseas caps are exhausted, or open MF windows close abruptly, stranding planned deployment.",
+    "Custodian/OMS/RTA feed outage on a day a tail-risk breach also occurs — the worst-case correlated-failure scenario the BCP must be drilled against.",
+    "Fixed operating cost (~₹1.8-3.2 Cr/yr) approaches or exceeds the fixed-fee revenue (~₹1.5 Cr) on this single mandate; the platform economics only work if a second mandate is onboarded within 12-18 months.",
+    "Model-version governance gaps: an un-versioned or ambiguously-effective model portfolio makes every subsequent drift/recon report unreliable.",
+    "Error-trade ambiguity: without a pre-agreed remedy protocol, an execution mistake becomes a dispute rather than a same-day disclosed correction.",
+    "SEBI's 2026 PMS Regulations consultation paper (not yet notified) could change derivative, foreign-securities or standing-instruction rules mid-build; the operating model must be built to absorb a regulatory change, not assume today's rules are permanent.",
+    "Monthly SEBI/APMI reporting errors on a multi-instrument NDPMS book (wrong AUM classification, missed associate-exposure disclosure) are a compliance exposure distinct from the trading/consent risk."
+  ],
+  "open_questions": [
+    "Will external counsel/an SEBI Informal Guidance request confirm the standing-instruction design (Section 2.6) and the bounded tail-event protocol (Section 2.5) as consistent with 'non-discretionary,' or do they need to be narrowed further?",
+    "Does the client (and each investing entity) want to pursue LVAI accreditation for all sleeves, or only a subset — and what is the realistic accreditation timeline given the January-2026 net-worth-certificate format change?",
+    "Which custodian will be selected, and can it commit to the daily API/SFTP feed cadence the pipeline design assumes (Section 5), including for the AIF and bond legs?",
+    "Is a second NDPMS (or DPMS) mandate realistically expected within 12-18 months, given the cost-vs-revenue economics in Section 9.3 depend on platform reuse?",
+    "What is the client's tolerance for the fallback consent channels (OTP email/recorded call) versus insisting on portal-only e-sign, and does that change the build sequence?",
+    "Should Ionic route a fixed minimum percentage of listed-equity flow to a non-group broker from day one (Section 3.4), or only after the first quarterly TCA report flags a concern?",
+    "How many underlying legal entities sit inside this ₹500 Cr mandate (individual, HUF, trust, holding company), since RM/compliance FTE and the consent-workflow complexity scale with entity count, not just AUM?",
+    "Does compliance want monthly (our proposed default) or the regulatory-minimum quarterly client statement, given the extra production load of monthly reporting?",
+    "What is the firm's actual current OMS/RMS vendor stack, and can it support the Reg-24 pre-trade rule engine and consent-FK design without a full replacement?"
+  ],
+  "sources": [
+    {
+      "title": "SEBI (Portfolio Managers) Regulations, 2020 (as amended)",
+      "url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html"
+    },
+    {
+      "title": "SEBI Master Circular for Portfolio Managers, 16 July 2025",
+      "url": "https://www.sebi.gov.in/legal/master-circulars/jul-2025/master-circular-for-portfolio-managers_95347.html"
+    },
+    {
+      "title": "SEBI related-party circular (associate-investment limits), 26 Aug 2022",
+      "url": "https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf"
+    },
+    {
+      "title": "SEBI digital-onboarding circular, effective 1 Oct 2024",
+      "url": "https://www.apmiindia.org/storagebox/images/Circulars/Facilitating%20ease%20in%20digital%20on-boarding%20process%20for%20clients%20and%20enhancing%20transparency%20-%202nd%20May'24.pdf"
+    },
+    {
+      "title": "SEBI performance-benchmarking and reporting circular, 16 Dec 2022",
+      "url": "https://www.apmiindia.org/storagebox/images/Circulars/Performance-Benchmarking-16th-Dec'22.pdf"
+    },
+    {
+      "title": "SEBI circular on audit of firm-level performance data of Portfolio Managers, 2 Aug 2023",
+      "url": "https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/"
+    },
+    {
+      "title": "SEBI order against First Global Finance, 26 May 2026 (outsourcing of core PMS functions)",
+      "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779810509185.pdf"
+    },
+    {
+      "title": "APMI valuation-agency and performance-reporting reference",
+      "url": "https://www.lexibox.in/pms/performance-benchmarking-and-reporting-of-performance-by-portfolio-managers/"
+    },
+    {
+      "title": "Regulation 31 (client reporting) text",
+      "url": "https://indiankanoon.org/doc/31059892/"
+    },
+    {
+      "title": "PMS charges and fee structure background (custodian/demat line items, opex cap, exit load)",
+      "url": "https://scripbox.com/wealth/portfolio-management-services-pms-fees-and-charges/"
+    },
+    {
+      "title": "A Complete Guide to PMS Charges Structure in India",
+      "url": "https://www.fincart.com/blog/pms-charges"
+    }
+  ]
+}

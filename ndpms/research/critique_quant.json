@@ -1,0 +1,170 @@
+{
+  "reviewer": "Quantitative risk manager / performance-measurement specialist (CFA, FRM)",
+  "date": "2026-09-12",
+  "overall_assessment": "The quantitative core of this operating model is unusually well engineered. Independently recomputing the parametric VaR/ES table, the EWMA vol-shock example, the Black-Scholes hedge-cost table, the Brinson-Fachler/Carino attribution worked year, the consent-latency sqrt(t) cost formula (reused identically across four documents), and the SIF-vs-Cat-III post-tax comparison all reproduced the documents' own numbers to within rounding. A parallel compliance-focused review (critique_compliance.md) correctly flags the TCO tax-drag anomaly and the gross-alpha-vs-fee-load gap; this review corroborates both independently and adds several high-severity items a compliance lens would not surface: (i) four mutually inconsistent versions of the mandate's own SAA / policy composite across the regulatory, allocation and performance notes, with no canonical table any risk limit, TE band or cost budget can be checked against; (ii) the allocation design's own modeled ex-ante tracking error (1.5% Moderate / 2.1% Aggressive) sits below the 'green' TE band (2.5-4.5% / 4.5-6.0%) and IR floor (>=0.40) the risk/performance notes set as governance targets, meaning the constructed portfolio would flag amber/red for closet-indexing by the framework's own rule; (iii) the PM-fee assumption used differs by domain (0.30% regulatory/operations vs 0.50% performance), a 20bp swing large enough to flip the net-alpha conclusion; (iv) the stress-library's summary capture-ratio sentences (45-55%/65-75%) understate the dispersion actually present in the ten-episode table; and (v) Cat III AIF internal leverage is not reflected in look-through gross-notional risk limits anywhere. The rebalancing Monte Carlo is honestly caveated about simulation noise, but the caveat is under-applied: its TE column moves non-monotonically with turnover in a way that looks like exactly the noise it warns about elsewhere. Market-data provenance is mostly disciplined, with one exception: the Nifty 50 closing levels feeding the Black-Scholes hedge-cost table are asserted as verified in three documents but the data pack's own accuracy legend says the underlying close could not be confirmed. None of this is fatal, but every item would change a number the CIO/IC will rely on, and each is exactly the kind of error a single merge pass would otherwise launder into an operating fact.",
+  "findings": [
+    {
+      "domain": "cross-domain / benchmark",
+      "target": "design_regulatory.md §5.3 SAA table (25/25/7.5/15/7.5/5/7.5/5/2.5) vs design_performance.md Table 3 'Policy composite' (55/7/22/4/4/5/3) vs design_allocation.md §3.1/§3.3 Moderate model and composite benchmark (five-sleeve 32/33/9/34/2, and 55/5/25/5/10)",
+      "issue_type": "inconsistent",
+      "severity": "high",
+      "detail": "Four separate documents each present a full sleeve-weight breakdown for the same single ₹500 Cr NDPMS mandate, and no two of them match. design_regulatory.md's IPS band table splits domestic equity into 'direct 25% + index/ETF/active/SIF 25%' (50% total equity-like) with 7.5% international, 15% fixed income, 7.5% cash, 5% REIT, 7.5% gold/silver, 7.5% AIF. design_performance.md's Table 3 uses 55% domestic equity, 7% international, 22% fixed income, 4% AIF Cat II, 4% REIT, 5% gold/silver, 3% cash (self-flagged 'illustrative... to be replaced'). design_allocation.md's own Moderate model (§3.1) sums to a different equity/FI split again (~50% equity-like inc. factor/direct/international, ~24% FI, ~34% stabilisers combined with REIT+gold), while its separately-proposed composite BENCHMARK (§3.3, reused correctly by design_risk.md §2.5) is 55% Nifty500/5% S&P500/25% bond index/5% gold/10% arbitrage. Every downstream ₹-Cr number (risk limits sized to 'Moderate' in design_risk.md §1, TE/alpha targets in design_performance.md, IPS bands in design_regulatory.md) is computed off whichever of these four tables that document happened to use, so the merged blueprint cannot show a single 'this is the mandate's SAA' table without first reconciling the four.",
+      "suggested_fix": "Before merging, pick ONE authoritative SAA table (recommend design_allocation.md §3.1's Moderate model, since design_risk.md already keys its ₹-Cr limits and design_rebalancing.md's Monte Carlo off it) and make every other document's sleeve table a pointer/reference to it rather than an independent restatement. Explicitly retire design_performance.md Table 3 and design_regulatory.md §5.3 as superseded once reconciled.",
+      "confidence": "high"
+    },
+    {
+      "domain": "risk / performance (benchmark governance)",
+      "target": "design_allocation.md §3.3 'Tracking error vs own composite: Moderate 1.5%, Aggressive 2.1%' vs design_risk.md §2.5 TE bands ('green 2.5-4.5% Moderate / 4.5-6.0% Aggressive... red >6.0% or <1.5% (closet-indexing)') and design_performance.md Table 7 (TE target 2.5-4.5%, IR target >=0.40)",
+      "issue_type": "inconsistent",
+      "severity": "high",
+      "detail": "The allocation design's own model output for the constructed portfolio's ex-ante tracking error (1.5% Moderate, 2.1% Aggressive) sits below the 'green' TE floor both the risk note and the performance note set as the governance target (2.5% Moderate floor, 4.5% Aggressive floor) -- Moderate's 1.5% sits exactly on the risk note's own stated 'red: closet-indexing' threshold. Recomputing the Information Ratio from the allocation design's own numbers (expected alpha +55bps Moderate / +45bps Aggressive, over TE 1.5%/2.1%) gives IR = 0.37 (Moderate) and 0.21 (Aggressive) -- both below the performance design's IR>=0.40 target, with Aggressive barely above the 0.20 'red' floor. None of the seven notes states this: the portfolio as sized in the allocation design would, by the risk/performance frameworks' own thresholds, be flagged amber-to-red for under-active-risk-taking (closet indexing) from day one, independent of and additional to the previously-flagged alpha-vs-fee shortfall.",
+      "suggested_fix": "Either widen the direct-equity/TAA sleeves in the allocation design until modeled ex-ante TE clears 2.5%/4.5%, or lower the TE/IR governance floors in the risk and performance designs to match what the actual constructed SAA can deliver -- but state explicitly which of the two is happening, and do not publish both a 1.5-2.1% ex-ante TE and a 2.5%+ 'green' floor in the same blueprint without reconciling them.",
+      "confidence": "high"
+    },
+    {
+      "domain": "performance / cost stack",
+      "target": "design_regulatory.md §6 worked numbers ('Fixed fee 0.30%... ₹1.50 Cr/yr') and design_operations.md §9.3 vs design_performance.md §3.5 Table 5 ('PM fixed fee (assume 0.50%...)')",
+      "issue_type": "inconsistent",
+      "severity": "high",
+      "detail": "The single largest recurring cost line -- the PM's own management fee -- is modeled at two different rates across the document set: 0.30% p.a. (₹1.50 Cr/yr) in design_regulatory.md's and design_operations.md's worked numbers, vs 0.50% p.a. (₹2.50 Cr/yr) in design_performance.md's cost/tax-drag budget (Table 5) and its net-alpha worked year (§3.5-3.7, §6.2). This is a 20bp swing on the single line that determines whether gross active return (allocation design's own +45 to +55bps) covers the fee load: at 0.30% fee the total booked-cost load is ~53bps (30 fee + 5.4 GST + 10 opex + 8 brokerage), leaving gross alpha roughly breakeven to slightly positive (+2bps Moderate / -8bps Aggressive); at 0.50% fee the load is ~77bps (as computed in design_performance.md), leaving both models clearly negative (-22 to -32bps). The client-facing message -- 'the portfolio roughly covers its fee' vs 'the portfolio is designed to structurally miss its own net-alpha target' -- depends entirely on which fee assumption is used, and the documents disagree with each other on it.",
+      "suggested_fix": "Fix the actual proposed fee rate for this specific ₹500 Cr mandate (it is a negotiated number, not a CMA) and propagate it consistently into every cost/alpha table across all seven notes before any net-alpha conclusion is shown to the IC or client.",
+      "confidence": "high"
+    },
+    {
+      "domain": "selection / cost stack (corroborating)",
+      "target": "design_selection.md §9 TCO table -- Arbitrage fund tax drag 1,914 bps, Silver ETF 2,542 bps, REITs/InvITs 1,624 bps, Gold ETF 1,196 bps",
+      "issue_type": "factual_error",
+      "severity": "high",
+      "detail": "Independently recomputed: these per-sleeve annual tax-drag figures (11.96%-25.42% of that sleeve's NAV, presented as an ANNUAL recurring bps-of-NAV line alongside TER) each exceed or nearly consume the entire pre-tax expected return the SAME document set (design_allocation.md's CMA table) assigns to that asset class (arbitrage E[R] 6.2%, gold 8.0%, REIT 9.5%, silver 8.5%). A 12.5%-LTCG, buy-and-hold sleeve cannot generate an annual tax bill larger than its total return under any realistic turnover assumption; by contrast the short-duration/money-market row's 257bps tax drag checks out exactly against its 6.6% E[R] taxed at ~39% slab on full annual income recognition. The weighted portfolio total (317bps tax drag, feeding the headline 'All-in TCO ~424bps/~₹21.2 Cr/yr') is therefore built on several sleeve-level inputs that look like a units/scaling bug in sel/tco.py (most likely conflating a one-time deferred-tax-liability-style full-realisation assumption with an annual recurring flow) for the equity-taxed and distribution-heavy rows specifically. This independently corroborates and quantifies the same anomaly flagged in the parallel compliance review.",
+      "suggested_fix": "Re-derive sel/tco.py's tax-drag formula for gold/silver/REIT/arbitrage against a realistic assumed annual realisation/turnover rate (consistent with the rebalancing design's own 4-25%/yr liquid-book turnover, not ~100%) before the TCO table or its 'tax dominates cost' conclusion is presented to the IC.",
+      "confidence": "high"
+    },
+    {
+      "domain": "risk (look-through / concentration)",
+      "target": "design_selection.md §4.1 ('Cat III leverage reportedly capped at ~2x NAV... verify') vs design_risk.md §2.10 (look-through) and §1 limits table",
+      "issue_type": "missing",
+      "severity": "high",
+      "detail": "design_risk.md §2.10 correctly instructs that Cat III AIFs using internal leverage/derivatives should be shown at GROSS notional in the look-through, 'not just NAV, since the fund's own leverage is invisible in the raw NAV return' -- but nowhere in §1's limit table (single AIF cap #4, illiquid aggregate #9, derivative notional #10) is this gross-vs-NAV distinction actually applied to size the 3-5% AUM Cat III/SIF allocation the allocation design proposes. If Cat III leverage is genuinely up to ~2x NAV (flagged unclear_verify in design_selection.md), a nominal 4% AUM (₹20 Cr) Cat III allocation could represent up to ₹40 Cr of gross economic exposure -- materially changing the portfolio's true look-through concentration, VaR contribution and the illiquid-aggregate limit (#9, 15% house/25% legal ceiling) calculation, none of which currently reflect this.",
+      "suggested_fix": "Confirm the Cat III leverage cap with the AIF's own PPM/leverage disclosure before allocating, and have the risk dashboard's look-through concentration panel (design_risk.md §8) explicitly carry a gross-notional column for any levered Cat III/SIF holding, feeding into limit #9's utilisation %, not just its NAV-basis weight.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "risk (stress library)",
+      "target": "design_risk.md §3 summary sentence: 'roughly 45-55% of headline Nifty drawdown captured across the stress set' (Moderate) and '~65-75%' (Aggressive)",
+      "issue_type": "overstated",
+      "severity": "medium",
+      "detail": "Recomputing each episode's actual capture ratio (Moderate ₹ loss / 500 Cr, divided by the Nifty % move given in the same table) shows a much wider range than the summary states: Moderate ranges from ~39% (Tariff shock) to ~63% (IL&FS), with Taper (60%), Election-day (58%), COVID (58%) and 2022 rate shock (56%) all above the stated 55% ceiling -- only the mean across all ten episodes (~54%) sits inside the quoted band. Aggressive shows the same pattern: IL&FS (81%) and 2022 rate shock (76%) exceed the stated 75% ceiling, while Tariff shock (62%) falls below the stated 65% floor. The summary sentence therefore understates how much of Nifty's move the book actually captures in several of the sharpest, most credit-driven episodes (IL&FS, Taper, COVID) -- exactly the episodes a tail-risk dashboard exists to warn about.",
+      "suggested_fix": "Replace the single 45-55%/65-75% band with the actual min-median-max capture ratio across the ten episodes (e.g., Moderate 39-63%, median 54%; Aggressive 62-81%, median 71%), and flag which episode-types (credit events, sharp single-day moves) drive the high end, since those are the ones most likely to recur.",
+      "confidence": "high"
+    },
+    {
+      "domain": "rebalancing (Monte Carlo methodology)",
+      "target": "design_rebalancing.md §2.3 Table (Strategies E vs F, and G vs H): TE vs SAA falls (0.89%->0.78%, and 0.79%->0.61%) when turnover falls (6.1%->4.0%, and 8.2%->4.4%) moving from 'trade to target' to 'trade to inner band edge'",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "In both matched pairs, the 'inner-edge' variant leaves a HIGHER average absolute drift (11.9pp->12.4pp for E/F) than its 'trade to target' counterpart, yet is reported with a LOWER tracking error vs SAA. A strategy that structurally sits further from target on average should generally show equal-or-higher tracking error, not lower -- the note's own methodology disclosure states each strategy row was simulated on an INDEPENDENT random path (no common random numbers), and explicitly warns that only the relative ranking of turnover/cost/tax is reliable, singling out CAGR as the noisy column. This result suggests the TE column is contaminated by the same path-specific noise the note warns about for CAGR, undermining the confidence with which §2.3 recommends 'Strategy H' partly on the strength of its TE ranking (0.61%, 'tightest of the threshold family').",
+      "suggested_fix": "Rebuild the Monte Carlo with common random numbers (same simulated return path applied to every strategy) before using the TE column's exact values or ranking to select a strategy; until then, present Strategy H's recommendation on turnover/cost/tax grounds only, not on its TE ranking.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "risk (hypothetical scenario labeling)",
+      "target": "design_risk.md §4 'Credit event: one Cat II fund marks -40%... ₹12.5 Cr AIF exposure (5% single-fund cap fully used)'",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "§1's limit #4 defines the single-AIF cap as '5% of AUM (₹25 Cr) per fund.' The ₹12.5 Cr position used in this scenario is 2.5% of the ₹500 Cr book -- half of the stated per-fund cap, not the cap 'fully used.' The figure is internally consistent with the Moderate model's own construction (2 Cat II funds sharing a 5%/₹25 Cr sleeve, ~₹12.5 Cr each per allocation design §3.1), so the underlying loss math (-40%x₹12.5Cr + AA-book contribution = -₹6.6Cr) is correct, but the parenthetical mislabels utilisation and could lead a reader to under-estimate how much worse a true full-cap (₹25 Cr) single-fund mark would be (-40%x₹25Cr = -₹10Cr from that fund alone, exceeding the scenario's stated total loss).",
+      "suggested_fix": "Relabel as '(50% of the single-fund cap; one of two Cat II lines)' and add a second, genuinely full-cap variant of the scenario (₹25 Cr fund marked -40%) since that is the true worst case the limit framework permits.",
+      "confidence": "high"
+    },
+    {
+      "domain": "risk / market data provenance",
+      "target": "design_risk.md §5.2 ('S=23,500, Nifty spot, ~10-Sep-2026 close 23,477.80 [9]'); design_performance.md §0 ('Nifty 50 closed 23,398.10 on 11-Sep-2026 [24]'); design_rebalancing.md source [4] (same 23,398.10 figure) vs data_market.md T6",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "Three design documents cite specific, slightly different Nifty 50 closing levels for 10/11-Sep-2026 (23,477.80 and 23,398.10) as verified facts with source citations. The verified data pack (data_market.md T6) explicitly states its own last CONFIRMED close is 23,914.45 on 2-Sep-2026, and separately warns that a '26,140.75' figure seen in a live-quote snippet could not be dated with confidence and should NOT be used. None of the three design documents' 10/11-Sep levels appear in, or are corroborated by, the data pack's own verification table -- per the task's instruction to prefer the verified data pack over designer assertions when they conflict, these three closing levels should be treated as unconfirmed, not verified. This matters concretely for design_risk.md §5.2, where S=23,500 is a direct input to the Black-Scholes hedge-cost table (5% OTM strike, premium ~0.73%/qtr) -- a ~1.8% gap versus the data pack's actual last-confirmed close (23,914) would shift the OTM strike level and the quoted premium by a small but non-trivial amount.",
+      "suggested_fix": "Re-pull the NSE bhavcopy for the exact 10/11/12-Sep-2026 close before finalising the hedge-cost table, and relabel the three design documents' current Nifty-level citations as 'approx.' rather than '[verified]' until reconciled with data_market.md.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "performance (tax mechanics)",
+      "target": "design_performance.md §1.5 DTL worked example: 'unrealised gains ₹40 Cr (equity LT), ₹10 Cr (equity ST), ₹6 Cr (debt at 30% slab) with 15% surcharge -> DTL ≈ ₹10.5 Cr'",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "The example applies a 15%-capped surcharge uniformly to all three gain types, including the ₹6 Cr slab-taxed debt gain. design_regulatory.md §3 states the 15% surcharge cap applies specifically to capital gains taxed under the old 111A/112/112A sections and to dividends; slab-taxed income (which is what a Sec 50AA 'deemed short-term' debt-fund gain is taxed as) is NOT capital-gains income and can carry the full slab-income surcharge (up to 25% for the highest bracket, which is exactly how design_regulatory.md's own '39.0%' effective debt-coupon rate is built: 30% x 1.25 surcharge x 1.04 cess = 39.0%). Applying the correct up-to-25% surcharge to the ₹6 Cr debt-gain component instead of 15% would raise that component's tax from ~₹2.15 Cr to ~₹2.34 Cr, moving total DTL from ₹10.5 Cr (2.1% of AUM) to roughly ₹10.7 Cr (2.15%) -- a modest absolute change, but it means the worked example is not using the same effective tax rate the regulatory design's own tax table establishes for the identical income type.",
+      "suggested_fix": "Use the regulatory design's own effective-rate table consistently: cap the 15% surcharge only on the equity LT/ST (capital-gains) components, and apply the full slab-based surcharge (up to 25%, i.e. ~39% all-in) to the debt component, matching design_regulatory.md §3's own reference table.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "allocation / cross-domain (SAA detail)",
+      "target": "International equity sleeve target: design_allocation.md §3.1 Moderate model = 5% (₹25 Cr); design_regulatory.md §5.3 IPS band table = 7.5% (₹37.5 Cr); design_performance.md Table 3 = 7% (₹35 Cr)",
+      "issue_type": "inconsistent",
+      "severity": "medium",
+      "detail": "A concrete, easily-checked instance of the broader SAA mismatch (see the top cross-domain finding): the international-equity target for the same mandate is given as three different numbers in three documents (5%, 7%, 7.5%), a 50% relative spread on a sleeve whose access is already constrained by the industry-wide USD 7bn overseas-fund cap discussed in all three documents. Since the international sleeve is one of the most capacity- and premium-constrained sleeves in the whole book (design_selection.md §8, design_regulatory.md §4), the target actually adopted materially changes the achievable Year-1 build plan.",
+      "suggested_fix": "Resolve to a single number as part of the SAA reconciliation (top finding); design_regulatory.md §4's own 'realistic international sleeve: target 7.5%... achievable Year-1 ₹10-15 Cr' suggests 7.5% may be the intended house number, in which case design_allocation.md's Moderate model (5%) needs updating, not the other two.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "selection / allocation (portfolio construction detail)",
+      "target": "design_allocation.md §3.1/§3.2 direct-equity line ('20-25 names' Moderate, '25 names' Aggressive) vs design_selection.md §6.2 ('25-35 names (30 as base case)')",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "The house rule for the direct-equity scorecard sleeve's name count differs slightly between the allocation design (20-25 Moderate) and the selection design's general portfolio-construction rule (25-35, 30 base case). At the position sizes involved (₹1.6-2.7 Cr average ticket against a 5-8% AUM single-name cap) the practical risk difference is small, but the two documents should state the same target range for the same sleeve.",
+      "suggested_fix": "Align to one stated range (recommend keeping the allocation design's model-specific 20-25/25 since it ties directly to the ~40-60 Cr sleeve size already built into the risk limits) and have the selection design reference it rather than restate a different range.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "performance (attribution documentation)",
+      "target": "design_performance.md §3.7 waterfall: 'MF/PMS/AIF selection (+0.440%) + direct security selection (+0.460%) + other selection incl. FI, gold, intl (+0.019%)'",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "Recomputation confirms the full waterfall totals tie out exactly to Table 4's R1 (10.584%), but the intermediate decomposition is opaque: §3.2 splits domestic-equity selection (+0.880%) into direct (+0.46), MF/PMS/AIF (+0.44) and ETF/index tracking difference (-0.02), summing to 0.88. §3.7's waterfall then re-groups 'MF/PMS/AIF (0.44) + direct (0.46)' as if that pair already summed to domestic selection, which it does not (0.90 vs 0.88) -- the missing -0.02 ETF tracking-difference line is silently absorbed into the 'other selection (FI, gold, intl)' bucket (+0.019, not the ~+0.039 one would get by summing the other five sleeves' own selection effects in Table 4). The totals are correct; a reader tracing the domestic-equity decomposition through to the full-portfolio waterfall cannot reconcile the two sections without noticing this reassignment.",
+      "suggested_fix": "State explicitly in §3.7 that the 'other selection' bucket also nets in the -0.02% ETF/index tracking-difference component carried from §3.2's domestic-equity split, so the two sections' numbers are traceable without independent reverse-engineering.",
+      "confidence": "high"
+    },
+    {
+      "domain": "performance (benchmark tier definition)",
+      "target": "design_performance.md §2.2 Table 3 note: 'International equity ... Index: S&P 500 TRI in INR (or MSCI ACWI NR INR when the sleeve diversifies)'",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "The Policy Composite's international-equity benchmark is defined as an either/or between two structurally different indices (US-only S&P 500 vs globally diversified MSCI ACWI) with no stated trigger for when the switch happens, no stated version-control step for the switch (design_performance.md §2.2 elsewhere insists 'never back-fill a benchmark with a different series without a footnote and a dated version number' -- this ambiguity pre-emptively violates that rule for the one sleeve where it is stated as a live possibility).",
+      "suggested_fix": "Either commit to S&P 500 TRI (INR) as the T2 benchmark for the life of the current international sub-allocation (matching the allocation design's current build plan, which is US-index-fund-only), or specify the exact AUM/holdings trigger and version-bump procedure for switching to MSCI ACWI.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "allocation / regulatory (band completeness)",
+      "target": "design_allocation.md §7 IPS feasibility table ('Silver >1%... AVOID [concentration]') vs design_regulatory.md §5.3 IPS band table ('Gold/silver ETFs, SGB secondary 7.5% ±2.5, none' -- no separate silver sub-cap column)",
+      "issue_type": "missing",
+      "severity": "low",
+      "detail": "The allocation design states a house rule that silver should never exceed 1% of AUM (concentration/volatility risk, silver SD ~26-27% per data_market.md), and the Moderate/Aggressive model portfolios both respect this (1% each). But the regulatory design's IPS band table (the document meant to carry the actual bindable agreement limits) only has a single combined 'Gold/silver' band (7.5% ±2.5%) with no silver-specific sub-limit -- so the 1% silver discipline exists only as narrative guidance in one document, not as an enforceable IPS band in the document that is supposed to be the client-facing limit schedule.",
+      "suggested_fix": "Add an explicit silver sub-cap (e.g. ≤1.5% of AUM) as its own row in design_regulatory.md §5.3's IPS band table, consistent with design_allocation.md's stated house rule.",
+      "confidence": "medium"
+    },
+    {
+      "domain": "risk (indicator board consistency)",
+      "target": "design_risk.md §6 early-warning board: 'AA-AAA spread (approx. 100-260 bp range [design_allocation.md])' green<150bp, red>260bp vs design_allocation.md §1 CMA table ('AA corporate credit... AA spread 100-260 bps [32]')",
+      "issue_type": "inconsistent",
+      "severity": "low",
+      "detail": "The risk note treats 100-260bp as the CURRENT spread range and sets a red trigger at >260bp, i.e. at the very top of the range design_allocation.md cites as the general market range for AA-rated paper (not a point-in-time level) -- conflating a structural, always-wide range for a credit category with a time-varying spread level that should have its own current reading and historical band, the way the AAA-vs-Gsec spread row correctly does (current 221bp vs historical band). As written, the red trigger for AA spreads is effectively unreachable in most market conditions since 260bp is already the top of the stated 'normal' range for the asset class.",
+      "suggested_fix": "Source a current point-in-time AA-vs-AAA (or AA-vs-Gsec) spread reading (not the structural 100-260bp range) and set green/amber/red bands around that current level and its own historical distribution, mirroring how the AAA-vs-Gsec row in the same table is built.",
+      "confidence": "medium"
+    }
+  ],
+  "top_missing_items": [
+    "A single canonical, version-controlled SAA / Policy-Composite table that every other document references by pointer rather than independently restating -- currently re-derived at least four times with four different answers.",
+    "A model-risk governance process for the quant engines themselves: no stated back-testing plan (e.g. Kupiec/traffic-light test) for the parametric VaR model once live NAV history exists, no common-random-number discipline for the rebalancing Monte Carlo, and no independent QA sign-off step for risk_calc.py / sel/tco.py before their numbers reach the IC.",
+    "A liquidity stress test of the illiquid sleeve (9-15% AUM locked in Cat II/III AIFs for 3-7 years) against a CLIENT-SIDE redemption or mandate-reduction scenario -- every liquidity discussion in the risk/rebalancing notes stress-tests market-side ADV, never a client wanting a partial redemption while a meaningful slice is locked.",
+    "Explicit uncertainty bands / downside scenarios on the illiquid-sleeve CMAs (Cat II private credit 11.5% net, Cat III/SIF 10.0% net, Pre-IPO/PE 15.0% gross) -- these are point estimates with no confidence interval, unlike the well-caveated listed-market CMAs.",
+    "A quantified cost/pricing of the FX hedge the risk note only gestures at ('consider partial USDINR forward/NDF hedge') -- the equity tail-hedge gets a full Black-Scholes cost table; the currency hedge gets one sentence and no bps estimate.",
+    "A decision on whether Ionic itself charges a performance fee on this mandate (regulatory design floats '0.30% fixed + 10% performance over house benchmark with HWM' as a worked illustration) and, if so, how R2/R3/DTL and the IC scorecard change -- every other cost/alpha model in the set assumes a pure fixed fee.",
+    "A stated MWRR-TWRR (XIRR vs TWRR) divergence threshold that triggers a client conversation -- both are reported monthly but nothing defines what gap is 'normal' during deployment vs a red flag afterward.",
+    "A formal, automated reconciliation checklist to run before the seven notes are merged (SAA weights, PM fee bps, TE bands, correlation/vol assumptions, market-data as-of date) -- this review found the mismatches by hand; the merge process needs a cross-check script, not a human re-read.",
+    "A backtesting/validation plan for the stress-library capture-ratio claims once 12+ months of live NAV exist -- the 45-55%/65-75% ranges are currently a single beta/sleeve-sensitivity model pass, not validated against realised drawdowns."
+  ],
+  "what_is_strong": [
+    "The Brinson-Fachler + Carino attribution worked year (performance design, Table 4 and §3.7) -- independently recomputed cell-by-cell and ties out exactly (allocation + selection + interaction = active return, by sleeve and in total); the cleanest, most rigorous attribution example in the set.",
+    "The parametric VaR/ES/EWMA-vol risk engine (risk design §2.3-2.4) -- every VaR-95/99 (1-day/1-month) and ES-97.5 cell reproduces exactly from the stated vol/beta inputs using standard z-scores and the normal-tail ES multiplier; the EWMA vol-shock worked example matches to the third decimal.",
+    "The Black-Scholes hedge-cost table (risk design §5.2) -- independently recomputed via Black-Scholes with the stated S/K/r/q/sigma/T inputs and reproduced the 5% OTM put premium (~0.73%/qtr) and 10% OTM put premium (~0.23%/qtr) almost exactly.",
+    "The consent-latency sqrt(time) cost formula and its ~₹79-lakh (10-day) / ~₹35-lakh (2-day) worked number is derived once and reused identically and correctly across the regulatory, rebalancing, risk and operations notes -- a genuine example of cross-document consistency and evidence the NDPMS-latency framing is load-bearing, not decorative.",
+    "The SIF-vs-Cat-III post-tax comparison (selection design §5.1) correctly applies the surcharge-inclusive effective LTCG rate (14.95%, not the headline 12.5%) and reproduces the stated +1.98pp post-tax/post-fee gap exactly.",
+    "The rebalancing design's explicit honesty about its own Monte Carlo's limitations (flags 'independent random path, not common random numbers,' separates 'reliable' turnover/cost/tax columns from the 'noisy' CAGR column) -- the right instinct, even though the caveat should extend to the TE column as well (see findings)."
+  ]
+}

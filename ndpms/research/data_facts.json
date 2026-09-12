@@ -1,0 +1,1413 @@
+{
+  "pack": "Verified via WebSearch across SEBI, RBI/FEMA, AMFI/APMI, incometaxindia and press sources gathered in this session (primary SEBI/APMI/RBI PDF pages were largely blocked by the network egress proxy, so facts rest on secondary extracts of those primary documents — circular numbers and dates are cited wherever a secondary source quoted them, and cross-checked against a second source where possible). Solid: PMS Regs 2020 core mechanics (non-discretionary definition, 25% unlisted cap, no-leverage/no-borrowing rule, fee caps, exit-load schedule, custodian, Reg 22 associate limits, Master Circular 16-Jul-2025), APMI TWRR/benchmarking regime, accredited-investor and AIF Cat I/II/III thresholds and 2025 amendments (CIV, LVF Rs 25cr, Cat III 2x leverage cap), the SIF framework (Rs 10 lakh PAN-level minimum, 25% unhedged-short cap), FY2026-27 capital-gains/STT/TCS rates, RBI/FEMA LRS and OPI/ODI caps, and settlement/market-structure mechanics (T+1 mandatory, T+0 optional top-500, block-deal Rs 25 cr floor, MF RFQ 10% mandate). Approximate/unverified this session: the exact text of SEBI's July 2026 draft PMS Regulations 2026 (treated throughout as pipeline, not law), the bulk-deal 0.5% disclosure threshold (well-established industry rule, not re-confirmed against a primary SEBI/exchange circular this session), current PMS/MF TER slab tables, and India-specific ETF bid-ask/impact-cost data beyond the single NSE impact-cost data point found. Anything not independently corroborated is labelled 'approx.' in the tables below rather than presented as settled fact.",
+  "tables": [
+    {
+      "title": "T1. NDPMS investment universe — hard regulatory limits (SEBI PMS Regs 2020, as amended to 12-Sep-2026)",
+      "columns": [
+        "Item",
+        "Rule",
+        "Limit/condition",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Listed equity, listed bonds/G-secs/SDLs, listed REIT/InvIT, ETFs, MF direct plans",
+          "Allowed for both DPMS and NDPMS",
+          "No PMS-specific cap",
+          "PMS Regs Reg 24"
+        ],
+        [
+          "Unlisted securities (AIF units, unlisted REIT/InvIT, pre-IPO, unlisted debt)",
+          "NDPMS/advisory only, not discretionary PMS",
+          "≤25% of client AUM (10% sub-cap for unlisted unrated debt/hybrid of non-associates)",
+          "Reg 24(4)"
+        ],
+        [
+          "Below-investment-grade listed securities",
+          "Prohibited for NDPMS",
+          "Nil",
+          "Master Circular"
+        ],
+        [
+          "Derivatives",
+          "Allowed",
+          "No leverage; total exposure ≤ portfolio funds; hedging/rebalancing framed by consent",
+          "Reg 24"
+        ],
+        [
+          "Own associates/related-party securities",
+          "Allowed with prior client consent",
+          "15% single / 25% aggregate per asset class (equity; debt+hybrid); 30% combined cap; no unrated related-party debt",
+          "Aug-2022 circular"
+        ],
+        [
+          "MF units",
+          "Direct plans only",
+          "No distribution fee chargeable to client",
+          "PMS Regs"
+        ],
+        [
+          "Advice from/outsourcing to another entity",
+          "Prohibited (Reg 24(10))",
+          "PM must make its own investment decisions incl. quantities/timing/execution",
+          "Reg 24(10); First Global order May-2026"
+        ],
+        [
+          "Borrowing on behalf of clients",
+          "Prohibited",
+          "Nil",
+          "PMS Regs"
+        ],
+        [
+          "Minimum client investment",
+          "₹50 lakh (LVAI: ₹10 crore agreement, bespoke terms)",
+          "₹50 lakh / ₹10 crore (LVAI)",
+          "PMS Regs / LVAI circular"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html",
+        "https://taxguru.in/sebi/sebi-portfolio-managers-regulations-2020.html",
+        "https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf"
+      ],
+      "note": "Primary SEBI regulation text (exact regulation/sub-clause numbers) could not be fetched directly through the network egress proxy this session; figures are corroborated across 3+ secondary legal/press sources each. 2026 draft PMS overhaul (unhedged short up to 50% AUM, foreign securities, MF-PMS) is NOT reflected here as it is not yet law."
+    },
+    {
+      "title": "T2. PMS fees, exit load and reporting cadence (SEBI Feb-2020 guidelines + Master Circular 16-Jul-2025)",
+      "columns": [
+        "Item",
+        "Rule",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Upfront fee",
+          "Prohibited, directly or indirectly",
+          "SEBI/HO/IMD/DF1/CIR/P/2020/26"
+        ],
+        [
+          "Operating expenses (ex-brokerage)",
+          "≤0.50% p.a. of average daily AUM",
+          "Same circular"
+        ],
+        [
+          "Brokerage",
+          "At actuals",
+          "Same circular"
+        ],
+        [
+          "Exit load",
+          "≤3% (yr1) / 2% (yr2) / 1% (yr3) / nil after",
+          "Same circular"
+        ],
+        [
+          "Performance/profit-share fee",
+          "High-water-mark basis over life of investment; fee illustration mandatory (Annexure 4A)",
+          "Master Circular 7-Jun-2024 / 16-Jul-2025"
+        ],
+        [
+          "Client reporting",
+          "Periodic report ≤ every 3 months (composition/value of portfolio, transactions, expenses, risk/defaults)",
+          "Reg 31"
+        ],
+        [
+          "Monthly regulatory reporting",
+          "To SEBI and APMI within 7 working days of month-end",
+          "APMI Dec-2022 circular"
+        ],
+        [
+          "Firm-level performance audit",
+          "Annual (DPMS+NDPMS combined), confirmation to SEBI within 60 days of FY-end",
+          "SEBI/HO/IMD/IMD-PoD-1/P/CIR/2023/133"
+        ],
+        [
+          "MITC (Most Important Terms & Conditions)",
+          "Mandatory acknowledged document; new clients from 1-Oct-2024, existing clients informed by 1-Jan-2025",
+          "SEBI/HO/IMD/IMD-PoD-1/P/CIR/2024/35"
+        ],
+        [
+          "Custodian",
+          "SEBI-registered custodian required (at least before commodity-derivatives dealing; broader net-worth requirement raised to ₹75 cr for custodians generally in 2025)",
+          "2023 amendment / Sep-2025 custodian net-worth news"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee",
+        "https://taxguru.in/sebi/sebi-circular-digital-onboarding-portfolio-managers.html",
+        "https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/"
+      ],
+      "note": "No SEBI-mandated cap exists on the headline management-fee % or performance-fee % themselves — only the HWM computation method, the 0.50% opex cap and the exit-load schedule are prescribed; the commonly quoted '0.25-2.5% management / 10-20% performance' figures are market practice, not regulation."
+    },
+    {
+      "title": "T3. APMI performance benchmarking & TWRR reporting standard (SEBI circular 2022/172, effective 1-Apr-2023)",
+      "columns": [
+        "Element",
+        "Rule",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Strategy classification",
+          "Every Investment Approach (IA) tagged to one Strategy: Equity, Debt, Hybrid or Multi-Asset",
+          "APMI Circular, Dec-2022"
+        ],
+        [
+          "Benchmark selection",
+          "APMI prescribes up to 3 benchmarks per Strategy; PM selects the one best reflecting the IA's philosophy; changing benchmark requires an exit-load-free exit option for existing clients",
+          "Same"
+        ],
+        [
+          "Return methodology",
+          "Time-Weighted Rate of Return (TWRR) is the basis for all IA performance measurement and disclosure",
+          "Same"
+        ],
+        [
+          "Investor-level reporting",
+          "XIRR reported per investor per IA, alongside min/max/median XIRR across all investors in that IA",
+          "Same"
+        ],
+        [
+          "Peer disclosure",
+          "Marketing material must show performance relative to benchmark AND relative to other PMs within the same Strategy",
+          "Same"
+        ],
+        [
+          "Reporting cadence",
+          "Monthly report to APMI and SEBI within 7 working days of month-end, across 1M/3M/6M/1Y/2Y/3Y/4Y/5Y/since-inception buckets",
+          "Same"
+        ],
+        [
+          "Valuation norms",
+          "APMI-standardised valuation norms (mirroring MF norms) for debt/money-market securities; empanelled agencies: NSE Indices Ltd, ICRA Analytics, CRISIL",
+          "Same"
+        ],
+        [
+          "Firm-level audit",
+          "Standardised ToR for annual firm-level performance audit (DPMS+NDPMS+published IA), effective 1-Oct-2023",
+          "SEBI/HO/IMD/IMD-PoD-1/P/CIR/2023/133"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://taxguru.in/sebi/performance-benchmarking-reporting-performance-portfolio-managers.html",
+        "https://aifpms.com/blog/performance-reporting-benchmarking-by-portfolio-manager/"
+      ],
+      "note": "The primary APMI circular PDF (apmiindia.org) could not be fetched through the proxy this session; content is drawn from 3+ converging secondary summaries. Exact benchmark index names (e.g., which 3 indices APMI assigns to 'Hybrid') were not verified."
+    },
+    {
+      "title": "T4. Accredited Investor thresholds (SEBI framework, as amended)",
+      "columns": [
+        "Investor type",
+        "Qualifying threshold",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Individual / HUF / family trust / sole proprietorship",
+          "Annual income ≥₹2 cr, OR net worth ≥₹7.5 cr (≥50% financial assets), OR income ≥₹1 cr + net worth ≥₹5 cr (≥50% financial assets)",
+          "SEBI 2021 framework"
+        ],
+        [
+          "Trusts (other than family trusts)",
+          "Net worth ≥₹50 crore",
+          "Same"
+        ],
+        [
+          "Body corporates",
+          "Net worth ≥₹50 crore",
+          "Same"
+        ],
+        [
+          "Partnership firm",
+          "Each partner independently qualifies",
+          "Same"
+        ],
+        [
+          "Large Value Accredited Investor (LVAI) — PMS-specific",
+          "Accredited investor + PMS agreement ≥₹10 crore",
+          "Dec-2021 PMS circular"
+        ],
+        [
+          "Proposed new route (not yet notified)",
+          "₹5 cr securities-market assets (individual) / ₹20 cr (corporate/non-family trust), irrespective of income/net worth; manager-led accreditation option; possible deemed-AI status for NRIs",
+          "Aug/Sep-2025 SEBI proposals"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html",
+        "https://taxguru.in/sebi/portfolio-management-services-accredited-investors.html",
+        "https://www.harunraaj.com/blog/net-worth-certificate-sebi-accredited-investor-january-2026"
+      ],
+      "note": "Accreditation validity period (commonly cited as 1-2 years, renewable) was not independently confirmed against a primary SEBI source this session — treat as approx."
+    },
+    {
+      "title": "T5. AIF Category I/II/III — comparison (SEBI AIF Regulations 2012, as amended to 2025-26)",
+      "columns": [
+        "Feature",
+        "Category I",
+        "Category II",
+        "Category III"
+      ],
+      "rows": [
+        [
+          "Examples",
+          "Venture capital, SME, social/infra funds, angel funds",
+          "PE, debt/private-credit funds not using Cat III leverage",
+          "Long-short, hedge, arbitrage strategies"
+        ],
+        [
+          "Minimum investment",
+          "₹1 crore (₹25 lakh employees/directors; AI exempt)",
+          "Same",
+          "Same"
+        ],
+        [
+          "Structure/tenure",
+          "Close-ended, ≥3 years from final close",
+          "Close-ended, ≥3 years",
+          "Open- or close-ended; close-ended ≥3 years, open-ended soft-locked 1-3yr typical"
+        ],
+        [
+          "Leverage",
+          "Generally not permitted (limited borrowing for temporary funding needs)",
+          "Same",
+          "Capped at 2x NAV, daily reporting to SEBI"
+        ],
+        [
+          "Tax treatment",
+          "Pass-through (s.115UB); non-business income exempt at fund, taxed in investor's hands; business income taxed at fund",
+          "Same as Cat I",
+          "No pass-through; taxed at fund level — LTCG 12.5%+surcharge/cess, STCG 20%+surcharge/cess, business/F&O income at MMR ≈42.7%"
+        ],
+        [
+          "2025-26 changes",
+          "Mandatory demat units (new schemes); CIV co-investment scheme option (Reg 17A, accredited investors only)",
+          "Same + LVF min cut to ₹25 cr (from ₹70 cr)",
+          "2x leverage cap + daily reporting formalised"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://elementone.fund/sebi-aif-regulations-2026-guide/",
+        "https://treelife.in/taxation/category-iii-aif-taxation-in-india/",
+        "https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/"
+      ],
+      "note": "Category II 'no leverage' is a simplification — Cat II may borrow temporarily up to 30 days, ≤4 times a year, ≤10% of investable funds, per general AIF Reg 16(4); this specific sub-rule was not re-verified this session and should be checked before use."
+    },
+    {
+      "title": "T6. Specialized Investment Fund (SIF) — framework at a glance (effective 1-Apr-2025)",
+      "columns": [
+        "Element",
+        "Rule",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Minimum investment",
+          "₹10 lakh at PAN level across all SIF strategies of one AMC (excludes AI, and excludes co-held regular MF units)",
+          "SEBI Feb-2025 circular"
+        ],
+        [
+          "Who can launch",
+          "MF AMC with ≥₹10,000 cr average AUM over 3 years, OR alternate route via experienced CIO (≥10 yrs, ≥₹5,000 cr) + fund manager (≥3 yrs, ≥₹500 cr); no s.11/11B/24 action pending",
+          "Same"
+        ],
+        [
+          "Strategy categories",
+          "Equity-oriented, Debt-oriented, Hybrid — incl. long-short, sector rotation, tactical allocation",
+          "Same"
+        ],
+        [
+          "Derivatives",
+          "Unhedged short exposure via exchange-traded derivatives up to 25% of net assets",
+          "Sep-2025 SEBI clarification"
+        ],
+        [
+          "Redemption",
+          "Daily to quarterly depending on strategy; notice period up to 15 working days",
+          "Industry summaries"
+        ],
+        [
+          "AUM trajectory",
+          "≈₹2,010 cr (Oct-2025) → ≈₹9,711 cr (Feb-2026) → ₹13,814 cr (May-2026); hybrid long-short ≈76% of assets",
+          "Press (multiple)"
+        ],
+        [
+          "2026 tightening",
+          "Standardised SIF compliance-reporting formats introduced Jan-2026",
+          "Press"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.business-standard.com/amp/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html",
+        "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained",
+        "https://groww.in/blog/specialised-investment-funds"
+      ],
+      "note": "The SEBI SIF circular PDFs (sebi.gov.in) were blocked from direct fetch this session; single-issuer/sector/REIT-InvIT sub-limits often quoted for SIF (e.g., 10% single company, 20% single debt issuer) could not be independently corroborated this session and are omitted rather than guessed."
+    },
+    {
+      "title": "T7. Mutual fund operating rules relevant to NDPMS execution",
+      "columns": [
+        "Rule",
+        "Detail",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Overseas investment cap",
+          "USD 7 bn industry-wide / USD 1 bn overseas-ETF sub-cap / USD 1 bn per-AMC; near-exhausted through 2026, multiple AMCs pausing fresh lump-sum subscriptions",
+          "Press (multiple)"
+        ],
+        [
+          "Direct-plan mandate for PMS",
+          "PM must invest client funds in MF units only via direct plans; no distributor fee chargeable to client",
+          "PMS Regs"
+        ],
+        [
+          "Cut-off times",
+          "Liquid/overnight: 1:30pm purchase / 3:00pm redemption; other schemes: 3:00pm; NAV keyed to date of fund realisation, not application",
+          "SEBI circular 17-Sep-2020"
+        ],
+        [
+          "Exit loads (market practice, not a uniform SEBI rate)",
+          "Liquid: graded 0.0070%→nil over 7 days; arbitrage: ≈0.25% within 15-30 days; equity: ≈1% within 365 days",
+          "Scheme-specific, multiple AMC pages"
+        ],
+        [
+          "ETF direct-with-AMC threshold",
+          "≥₹25 crore orders may transact directly with AMC without exit load, in creation-unit multiples; APs/market-makers exempt from the threshold",
+          "SEBI circular 2022/145, eff. 1-May-2023"
+        ],
+        [
+          "Corporate-bond RFQ mandate",
+          "MFs and PMS must route ≥10% of secondary corporate-bond trades by value through exchange RFQ platforms, monthly rolling basis, from 1-Apr-2022",
+          "SEBI circular 2021"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn",
+        "https://www.indmoney.com/blog/mutual-funds/sebi-new-mutual-fund-cut-off-timings-explained",
+        "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html"
+      ],
+      "note": "TER (total expense ratio) slabs by AUM size were not found/verified this session — treat any TER slab table elsewhere as approximate until checked against the current SEBI MF Regulations Schedule."
+    },
+    {
+      "title": "T8. Income tax by instrument — FY2026-27 (resident individual/HUF, new regime, top slab; surcharge capped at 15% on capital gains/dividends; cess 4%)",
+      "columns": [
+        "Instrument",
+        "LTCG holding",
+        "LTCG rate",
+        "STCG rate",
+        "Income component",
+        "Key transaction tax"
+      ],
+      "rows": [
+        [
+          "Listed equity / equity MF / equity ETF (STT-paid)",
+          "12 months",
+          "12.5% above ₹1.25 lakh/yr (≈14.95% incl. surcharge+cess)",
+          "20% (≈23.92%)",
+          "Dividend at slab (surcharge cap 15%); TDS 10%>₹10,000",
+          "STT 0.1% buy+sell; stamp 0.015% buy"
+        ],
+        [
+          "Debt/'specified' MF (>65% debt, bought ≥1-Apr-2023)",
+          "N/A — no LTCG",
+          "N/A",
+          "Deemed STCG at slab (≈39% top slab)",
+          "—",
+          "Stamp 0.005% units"
+        ],
+        [
+          "Listed bonds / G-secs / SDLs",
+          "12 months",
+          "12.5% (≈14.95%)",
+          "Slab (≈39%)",
+          "Coupon at slab",
+          "Stamp ≈0.0001% (approx.)"
+        ],
+        [
+          "Unlisted bonds/debentures (transferred/matured ≥23-Jul-2024)",
+          "N/A — deemed STCG",
+          "N/A",
+          "Slab (≈39%), any holding period",
+          "Slab",
+          "—"
+        ],
+        [
+          "Gold/silver ETF (listed units)",
+          "12 months",
+          "12.5% (≈14.95%)",
+          "Slab (≈39%)",
+          "—",
+          "Stamp 0.005%"
+        ],
+        [
+          "Gold MF/FoF, international FoF (unlisted units)",
+          "24 months",
+          "12.5% (≈14.95%)",
+          "Slab (≈39%)",
+          "—",
+          "Stamp 0.005%"
+        ],
+        [
+          "SGB — original subscriber to 8-yr RBI maturity",
+          "8 years",
+          "Exempt (s.47(viic), narrowed Budget 2026)",
+          "N/A",
+          "2.5% coupon at slab",
+          "—"
+        ],
+        [
+          "SGB — secondary sale / premature redemption",
+          "12 months",
+          "12.5% (≈14.95%)",
+          "Slab (≈39%)",
+          "Coupon at slab",
+          "—"
+        ],
+        [
+          "REIT/InvIT units",
+          "12 months",
+          "12.5% (≈14.95%)",
+          "20% (≈23.92%)",
+          "Interest/rent at slab (TDS 10%); dividend exempt from 1-Apr-2026 per pending 2026 Bill",
+          "STT ≈0.1% (approx.)"
+        ],
+        [
+          "AIF Cat I/II (pass-through)",
+          "As underlying",
+          "As underlying",
+          "As underlying",
+          "TDS 10% u/s 194LBB; business income at fund level",
+          "—"
+        ],
+        [
+          "AIF Cat III (fund-level tax)",
+          "N/A (fund pays)",
+          "12.5%+surcharge(≤15%)+cess at fund",
+          "20%+surcharge+cess at fund",
+          "Business/F&O income at MMR ≈42.7% (indeterminate trust)",
+          "STT: futures 0.05%, options premium 0.15% (from 1-Apr-2026)"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax",
+        "https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27",
+        "https://treelife.in/taxation/category-iii-aif-taxation-in-india/",
+        "https://www.caalley.com/news-updates/budget-2026/budget-2026-changes-sgb-tax-rules-ends-blanket-capital-gains-exemption"
+      ],
+      "note": "Effective 'all-in' percentages (e.g. 14.95%, 23.92%, 39%) assume top-slab surcharge (25% under new regime, capped at 15% for capital gains/dividends per s.111A/112/112A) plus 4% cess — verify against the client's actual slab/surcharge band before use; REIT/InvIT dividend exemption is a pending 2026 Bill, not yet confirmed enacted."
+    },
+    {
+      "title": "T9. RBI / FEMA — international-exposure routes",
+      "columns": [
+        "Route",
+        "Cap",
+        "Status FY2026-27",
+        "Source"
+      ],
+      "rows": [
+        [
+          "LRS (resident individuals)",
+          "USD 250,000 per FY, all purposes combined",
+          "Unchanged; TCS-free up to ₹10 lakh cumulative, 20% TCS above (investment purpose)",
+          "RBI LRS Master Direction"
+        ],
+        [
+          "OPI — listed Indian companies",
+          "≤50% of net worth (last audited balance sheet)",
+          "Available; not extended to unlisted cos/individuals",
+          "OI Rules 2022"
+        ],
+        [
+          "ODI — all Indian entities",
+          "≤400% of net worth",
+          "Available",
+          "OI Rules 2022"
+        ],
+        [
+          "GIFT-IFSC fund route (resident individuals)",
+          "Counts against USD 250,000 LRS cap",
+          "≈5 outbound retail funds live (min ≈USD 5,000); IFSC PMS-style min ≈USD 75,000 (approx.)",
+          "Press, mid-2026"
+        ],
+        [
+          "Gifting of foreign securities between resident relatives",
+          "No specific FEMA value cap",
+          "Permitted since 2022 OI framework",
+          "OI Rules 2022"
+        ],
+        [
+          "MF overseas investment (industry route, not client-direct)",
+          "USD 7 bn industry / USD 1 bn ETF / USD 1 bn per-AMC",
+          "Near-exhausted; several AMCs pausing fresh subscriptions through 2026",
+          "RBI/SEBI, Feb-2022 framework"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://www.indmoney.com/learn/us-stocks/what-is-lrs-liberalised-remittance-scheme",
+        "https://corporate.cyrilamarchandblogs.com/2022/09/new-odi-regime-what-rbi-needs-to-clarify/",
+        "https://www.valueresearchonline.com/stories/226923/indians-get-new-route-worlds-markets-gift-city/"
+      ],
+      "note": "GIFT-IFSC fund minimum tickets and fund count are approximate — sourced from a single press summary, not cross-checked against IFSCA's live fund registry."
+    },
+    {
+      "title": "T10. Market structure — settlement, block/bulk deals, ETF and G-sec access (as of 12-Sep-2026)",
+      "columns": [
+        "Mechanism",
+        "Rule",
+        "Source"
+      ],
+      "rows": [
+        [
+          "Equity settlement — standard",
+          "Mandatory T+1 since Jan-2023",
+          "Multiple press"
+        ],
+        [
+          "Equity settlement — optional fast lane",
+          "Optional T+0 for top-500 stocks by market cap (phased from Dec-2024, largely complete by 2026); T+1 remains available/mandatory fallback",
+          "SEBI circulars, press"
+        ],
+        [
+          "Block deal window",
+          "₹25 crore minimum order (raised from ₹10 cr); windows 8:45-9:00am (ref=prior close) and 2:05-2:20pm (ref=VWAP 1:45-2:00pm); ±3% price band; compulsory delivery",
+          "SEBI 2026 framework"
+        ],
+        [
+          "Bulk deal disclosure",
+          "Trade quantity >0.5% of a company's listed shares in a day triggers same-day exchange disclosure (long-standing rule; not re-verified against a primary source this session)",
+          "Secondary sources — approx."
+        ],
+        [
+          "Corporate bond settlement",
+          "T+0 to T+2 via RFQ/CBRICS/CCIL, funds/securities pay-in by 5:45pm",
+          "NSE Clearing"
+        ],
+        [
+          "G-sec/SDL/T-bill settlement",
+          "T+1 only",
+          "NSE Clearing"
+        ],
+        [
+          "G-sec secondary trading venue",
+          "RBI NDS-OM (institutional OTC) + NSE/BSE exchange segments; broker access to NDS-OM widened Feb-2025",
+          "RBI/press"
+        ],
+        [
+          "RBI Retail Direct",
+          "Free G-sec/SDL/T-bill access for individuals, no broker/demat; 361,402 accounts by Apr-2026 (+54% YoY)",
+          "Press, Apr-2026"
+        ],
+        [
+          "ETF creation/redemption",
+          "Creation-unit lot dealing directly with AMC (e.g., Nifty BeES: 50,000 units); ≥₹25 cr large-investor threshold exempt from exchange-only routing; ≥2 market makers required per ETF",
+          "SEBI 2022 circular, eff. May-2023"
+        ],
+        [
+          "Corporate bond RFQ mandate",
+          "MFs/PMS: ≥10% of secondary CB trades via RFQ (monthly rolling); FPIs: ≥10% quarterly",
+          "SEBI circulars 2021-2023"
+        ]
+      ],
+      "accuracy": "partially_verified",
+      "source_urls": [
+        "https://razorpay.com/blog/settlement-cycle-in-india-t1-t0-impact/",
+        "https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore",
+        "https://www.nseclearing.in/clearing-settlement/corporate-bond/settlement-schedule",
+        "https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/"
+      ],
+      "note": "Bulk-deal 0.5% threshold is included as commonly-cited market knowledge but explicitly flagged low-confidence/approx. since it could not be matched to a primary NSE/SEBI circular this session."
+    }
+  ],
+  "facts": [
+    {
+      "topic": "NDPMS definition",
+      "fact": "Non-discretionary PM manages funds only per client's express directions; cannot exercise independent investment discretion",
+      "value": "PM Regs 2020, Reg 2 definitions",
+      "source_url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html",
+      "confidence": "high",
+      "as_of": "2023-02-07"
+    },
+    {
+      "topic": "Unlisted securities cap",
+      "fact": "Non-discretionary/advisory PM may invest up to 25% of client AUM in unlisted securities (discretionary PM restricted to listed only)",
+      "value": "25% of AUM (Reg 24(4))",
+      "source_url": "https://taxguru.in/sebi/sebi-portfolio-managers-regulations-2020.html",
+      "confidence": "high",
+      "as_of": "2020-02-13"
+    },
+    {
+      "topic": "Unlisted unrated debt sub-limit",
+      "fact": "Within the 25% unlisted cap, non-discretionary PM may put up to 10% of AUM into unlisted unrated debt/hybrid securities of non-associates",
+      "value": "10% of AUM sub-limit inside 25% cap",
+      "source_url": "https://taxguru.in/sebi/sebi-portfolio-managers-regulations-2020.html",
+      "confidence": "medium",
+      "as_of": "2020-02-13"
+    },
+    {
+      "topic": "Below-investment-grade ban",
+      "fact": "Non-discretionary PMs shall not invest client funds in below-investment-grade listed securities",
+      "value": "Prohibited",
+      "source_url": "https://www.sebi.gov.in/legal/regulations/aug-2022/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-august-22-2022-_62407.html",
+      "confidence": "medium",
+      "as_of": "2022-08-22"
+    },
+    {
+      "topic": "Derivatives/leverage restriction",
+      "fact": "PM shall not leverage the client portfolio for investment in derivatives; total derivatives exposure not to exceed portfolio funds available",
+      "value": "No leverage; hedging/rebalancing only",
+      "source_url": "https://taxguru.in/sebi/sebi-portfolio-managers-regulations-2020.html",
+      "confidence": "high",
+      "as_of": "2020-02-13"
+    },
+    {
+      "topic": "Related-party/associate investment cap",
+      "fact": "PM may invest client funds in own associates/related-party securities up to 15% (single) / 25% (aggregate) of AUM each for equity and for debt+hybrid, capped at 30% combined, only unrated for related-party debt is prohibited, and only after prior client consent",
+      "value": "15%/25% per asset class; 30% combined; consent required",
+      "source_url": "https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf",
+      "confidence": "high",
+      "as_of": "2022-08-26"
+    },
+    {
+      "topic": "Minimum PMS investment",
+      "fact": "Minimum investment amount for a PMS client is Rs 50 lakh (per client per PM)",
+      "value": "₹50 lakh",
+      "source_url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html",
+      "confidence": "high",
+      "as_of": "2020-02-13"
+    },
+    {
+      "topic": "MF investment route",
+      "fact": "PM may invest client funds in mutual funds only through direct plans; no distribution-related fee may be charged to the client for such investment",
+      "value": "Direct plans only, no distributor fee",
+      "source_url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html",
+      "confidence": "high",
+      "as_of": "2020-02-13"
+    },
+    {
+      "topic": "No upfront fee",
+      "fact": "PM shall not charge any upfront fee, directly or indirectly, to clients",
+      "value": "Prohibited",
+      "source_url": "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee",
+      "confidence": "high",
+      "as_of": "2020-10-01"
+    },
+    {
+      "topic": "Operating expense cap",
+      "fact": "Operating expenses excluding brokerage, over and above PMS fees, capped at 0.50% p.a. of client's average daily AUM",
+      "value": "≤0.50% p.a. of average daily AUM",
+      "source_url": "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee",
+      "confidence": "high",
+      "as_of": "2020-10-01"
+    },
+    {
+      "topic": "Exit load schedule",
+      "fact": "Maximum exit load on redemption is graded: 3% (year 1), 2% (year 2), 1% (year 3), nil after 3 years",
+      "value": "3%/2%/1%/nil",
+      "source_url": "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee",
+      "confidence": "high",
+      "as_of": "2020-10-01"
+    },
+    {
+      "topic": "High-water mark rule",
+      "fact": "Performance/profit-sharing fee must be computed on a high-water-mark basis over the life of the investment; no fee on gains that merely restore a prior peak",
+      "value": "HWM principle mandatory",
+      "source_url": "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee",
+      "confidence": "high",
+      "as_of": "2020-10-01"
+    },
+    {
+      "topic": "Custodian requirement",
+      "fact": "PM must appoint a SEBI-registered custodian at least before dealing in exchange-traded commodity derivatives; broader custodian mandate tightened via 2023 amendments",
+      "value": "Mandatory custodian",
+      "source_url": "https://www.sebi.gov.in/legal/regulations/aug-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-august-18-2023-_76366.html",
+      "confidence": "medium",
+      "as_of": "2023-08-18"
+    },
+    {
+      "topic": "MITC requirement",
+      "fact": "PM must give clients a SEBI/APMI-standardised 'Most Important Terms and Conditions' (MITC) document, acknowledged by the client, before/at onboarding",
+      "value": "Mandatory since new clients 1-Oct-2024; existing clients informed by 1-Jan-2025",
+      "source_url": "https://taxguru.in/sebi/sebi-circular-digital-onboarding-portfolio-managers.html",
+      "confidence": "high",
+      "as_of": "2024-05-02"
+    },
+    {
+      "topic": "Digital onboarding timeline",
+      "fact": "Digital onboarding cuts client-activation time from ~7-10 working days (physical) to ~2-3 working days",
+      "value": "2-3 working days digital vs 7-10 physical",
+      "source_url": "https://taxguru.in/sebi/sebi-circular-digital-onboarding-portfolio-managers.html",
+      "confidence": "medium",
+      "as_of": "2024-05-02"
+    },
+    {
+      "topic": "RFQ 10% mandate",
+      "fact": "PMs (and MFs) must transact at least 10% of secondary-market corporate-bond trades by value through the exchange RFQ platform (OTO/OTM), computed on a rolling 3-month basis",
+      "value": "≥10% of CB secondary trades via RFQ",
+      "source_url": "https://www.business-standard.com/amp/article/markets/pms-to-undertake-10-transactions-in-corp-bonds-via-rfq-platform-sebi-121120901140_1.html",
+      "confidence": "high",
+      "as_of": "2022-04-01"
+    },
+    {
+      "topic": "Firm-level performance audit",
+      "fact": "PM must get firm-level performance data (covering both DPMS and NDPMS clients) audited annually and confirm compliance to SEBI within 60 days of FY-end, per APMI standardised Terms of Reference effective 1-Oct-2023",
+      "value": "Annual audit, 60-day confirmation",
+      "source_url": "https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/",
+      "confidence": "high",
+      "as_of": "2023-08-02"
+    },
+    {
+      "topic": "Outsourcing prohibition",
+      "fact": "PM shall not invest client funds based on the advice of any other entity (Reg 24(10)); SEBI's May-2026 First Global order held 'investment decisions' include quantities, timing and client-level execution — outsourcing any of these is a violation",
+      "value": "Absolute prohibition on outsourcing core investment function",
+      "source_url": "https://www.moneylife.in/article/sebi-slaps-42-lakh-fine-on-first-global-finance-for-outsourcing-core-pms-functions-and-decisions-bars-from-taking-new-clients-for-21-days/80583.html",
+      "confidence": "high",
+      "as_of": "2026-05-26"
+    },
+    {
+      "topic": "2026 draft PMS overhaul — status",
+      "fact": "SEBI's 23-Jul-2026 consultation paper proposing a comprehensive PMS Regulations 2026 overhaul (MF-PMS category at ₹25 lakh, foreign securities, to-be-listed securities, unhedged short via derivatives up to 50% of AUM within 1.25x total exposure) closed for comment 13-Aug-2026 and is NOT yet notified as law",
+      "value": "Draft/consultation stage only, not law as of 12-Sep-2026",
+      "source_url": "https://corporate.cyrilamarchandblogs.com/2026/08/sebis-proposed-overhaul-of-the-pms-regulatory-framework/",
+      "confidence": "high",
+      "as_of": "2026-08-13"
+    },
+    {
+      "topic": "PMS industry scale",
+      "fact": "PMS industry AUM grew from ₹18.07 lakh crore (Apr-2019) to ₹42.61 lakh crore (May-2026); registered portfolio managers grew from 226 to 515 over the same period",
+      "value": "₹42.61 lakh cr AUM, 515 PMs (May-2026)",
+      "source_url": "https://x.com/ActusDei/status/2080290312644350431",
+      "confidence": "medium",
+      "as_of": "2026-05-01"
+    },
+    {
+      "topic": "Accredited investor — individual/HUF/family trust",
+      "fact": "Individual, HUF, family trust or sole proprietorship qualifies if annual income ≥ ₹2 crore, OR net worth ≥ ₹7.5 crore (≥half in financial assets), OR income ≥ ₹1 crore AND net worth ≥ ₹5 crore (≥half in financial assets)",
+      "value": "₹2 cr income / ₹7.5 cr net worth / ₹1cr+₹5cr combined",
+      "source_url": "https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html",
+      "confidence": "high",
+      "as_of": "2021-08-06"
+    },
+    {
+      "topic": "Accredited investor — corporates/other trusts",
+      "fact": "Body corporates and trusts other than family trusts need net worth ≥ ₹50 crore to qualify as accredited investors; partnership firm partners must each independently qualify",
+      "value": "₹50 crore net worth",
+      "source_url": "https://www.sebi.gov.in/sebi_data/meetingfiles/jul-2021/1626434827210_1.pdf",
+      "confidence": "high",
+      "as_of": "2021-08-06"
+    },
+    {
+      "topic": "Accreditation agencies",
+      "fact": "Accreditation is granted by SEBI-designated accreditation agencies operated by BSE, NSE, NSDL and CDSL",
+      "value": "BSE/NSE/NSDL/CDSL agencies",
+      "source_url": "https://www.altportfunds.com/sebi-accredited-investor-certificate-india/",
+      "confidence": "medium",
+      "as_of": "2021-08-06"
+    },
+    {
+      "topic": "Net-worth certificate change",
+      "fact": "SEBI circular HO/19/34/11(9)2025-AFD-POD1/I/2286/2026 (9-Jan-2026) changed net-worth-certificate requirements for accredited-investor onboarding, requiring the certificate to identify which qualifying threshold is being used",
+      "value": "New CA certificate format mandatory",
+      "source_url": "https://www.harunraaj.com/blog/net-worth-certificate-sebi-accredited-investor-january-2026",
+      "confidence": "medium",
+      "as_of": "2026-01-09"
+    },
+    {
+      "topic": "Proposed new accreditation route (2025-26)",
+      "fact": "SEBI's Aug-2025/Sep-2025 proposals: a new ₹5 crore securities-market-assets route for individuals (₹20 crore for corporates/non-family trusts) to qualify as accredited investors irrespective of income/net-worth, plus an optional manager-led accreditation process alongside accreditation agencies, and possible deemed-AI status for NRIs/other non-residents — NOT yet notified",
+      "value": "₹5cr (individual) / ₹20cr (corporate) securities-asset route — proposed",
+      "source_url": "https://www.thehawk.in/news/economy-and-business/sebi-proposes-rs-5-crore-securities-assets-route-for-accredited-investor-status",
+      "confidence": "medium",
+      "as_of": "2025-09-01"
+    },
+    {
+      "topic": "Large Value Accredited Investor (LVAI) definition",
+      "fact": "'Large value accredited investor' under PMS Regs means an accredited investor who has entered into an agreement with the PM for a minimum investment of ₹10 crore",
+      "value": "₹10 crore minimum agreement",
+      "source_url": "https://taxguru.in/sebi/portfolio-management-services-accredited-investors.html",
+      "confidence": "high",
+      "as_of": "2021-12-21"
+    },
+    {
+      "topic": "LVAI relaxations",
+      "fact": "LVAI clients and their PM may enter into a bespoke agreement (Schedule IV terms not mandatory), giving flexibility on fees, exit terms and other contractual provisions not available to a standard ₹50 lakh client",
+      "value": "Bespoke agreement permitted",
+      "source_url": "https://compfie.aparajitha.com/circular-on-portfolio-management-services-for-accredited-investors-dated-21-12-2021-sebi/",
+      "confidence": "medium",
+      "as_of": "2021-12-21"
+    },
+    {
+      "topic": "AIF minimum investment",
+      "fact": "Minimum investment in any AIF (Cat I/II/III) is ₹1 crore per investor; employees/directors of the AIF or its manager may invest a minimum of ₹25 lakh; Accredited Investors are exempt from the ₹1 crore floor",
+      "value": "₹1 cr (₹25 lakh employees; AI exempt)",
+      "source_url": "https://elementone.fund/sebi-aif-regulations-2026-guide/",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Cat I/II AIF tenure",
+      "fact": "Category I and II AIFs are mandatorily close-ended with a minimum tenure of 3 years from final closing; no redemption before maturity except secondary transfer",
+      "value": "Min 3-year close-ended",
+      "source_url": "https://treelife.in/finance/alternative-investment-funds-in-india/",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Cat III AIF structure/tenure",
+      "fact": "Category III AIFs may be open- or close-ended; close-ended schemes have a minimum 3-year tenure; open-ended schemes typically run periodic subscription/redemption windows with a 1-3 year soft lock-in and exit loads",
+      "value": "Open or close-ended; 1-3yr soft lock typical",
+      "source_url": "https://www.pmsaifworld.com/aif-category-3/",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Cat III AIF leverage cap",
+      "fact": "Category III AIF leverage is capped at 2x of the fund's NAV, with mandatory daily leverage-position reporting to SEBI",
+      "value": "2x NAV cap",
+      "source_url": "https://elementone.fund/sebi-aif-regulations-2026-guide/",
+      "confidence": "high",
+      "as_of": "2025-01-01"
+    },
+    {
+      "topic": "Cat I/II tax pass-through",
+      "fact": "Under s.115UB, Category I/II AIF non-business income is exempt at fund level and taxed directly in investors' hands with character preserved (pass-through); business income alone is taxed at the fund level; TDS 10% under s.194LBB on distributions",
+      "value": "Pass-through (except business income)",
+      "source_url": "https://www.finnovate.in/learn/blog/aif-taxation-india",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Finance Act 2025 — AIF capital-asset clarification",
+      "fact": "Finance Act 2025 amended s.2(14) so securities held by an 'investment fund' under s.115UB are deemed capital assets — gains are capital gains, not business income — effective AY 2026-27 onwards",
+      "value": "Capital-asset deeming, AY2026-27+",
+      "source_url": "https://www.lexology.com/library/detail.aspx?g=a8345261-0ec2-4031-b2e1-211c964e83cd",
+      "confidence": "high",
+      "as_of": "2025-04-01"
+    },
+    {
+      "topic": "Cat III AIF taxation",
+      "fact": "Category III AIFs do NOT get s.115UB pass-through; taxed at fund level — LTCG 12.5%+surcharge(≤15%)+cess, STCG 20%+surcharge+cess on listed securities, and business/F&O income at Maximum Marginal Rate (~42.7% for an indeterminate trust: 30% + 37% surcharge + 4% cess)",
+      "value": "Fund-level tax; MMR ≈42.7% on business income",
+      "source_url": "https://treelife.in/taxation/category-iii-aif-taxation-in-india/",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Category II private credit yields",
+      "fact": "Category II AIF mid-market corporate-lending strategies have generated gross portfolio yields of ~16-20% p.a., with net investor returns of ~12-16% after fees (2026)",
+      "value": "~12-16% net p.a. (approx.)",
+      "source_url": "https://www.ey.com/en_in/insights/strategy-transactions/onwards-and-upwards-a-positive-outlook-for-private-credit-in-india",
+      "confidence": "low",
+      "as_of": "2026-08-01"
+    },
+    {
+      "topic": "AIF Second Amendment 2025 — CIV",
+      "fact": "SEBI (AIF) (Second Amendment) Regulations 2025 introduced Co-Investment Vehicle (CIV) schemes under Reg 17A: accredited investors of Cat I/II AIFs can co-invest in unlisted investee companies alongside the main fund; CIV cannot borrow/leverage and must ring-fence assets in a separate bank/demat account",
+      "value": "CIV framework, no leverage, ring-fenced",
+      "source_url": "https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/",
+      "confidence": "high",
+      "as_of": "2025-09-09"
+    },
+    {
+      "topic": "Large Value Fund (LVF) threshold",
+      "fact": "Minimum investment for a Large Value Fund (AIF scheme restricted to accredited investors) reduced from ₹70 crore to ₹25 crore per investor, per SEBI's Nov-Dec 2025 Third Amendment / migration circular",
+      "value": "₹25 crore (was ₹70 crore)",
+      "source_url": "https://www.sebi.gov.in/legal/circulars/dec-2025/modalities-for-migration-to-ai-only-schemes-and-relaxations-to-large-value-funds-for-accredited-investors-under-sebi-alternative-investment-funds-regulations-2012_98244.html",
+      "confidence": "high",
+      "as_of": "2025-12-01"
+    },
+    {
+      "topic": "AIF unit dematerialisation",
+      "fact": "SEBI has mandated that all new AIF schemes issue units in dematerialised form",
+      "value": "Mandatory demat for new schemes",
+      "source_url": "https://sarafpartners.com/sebi-issues-frameworks-for-angel-funds-and-co-investment-vehicles-under-the-sebi-aif-regulations/",
+      "confidence": "medium",
+      "as_of": "2024-01-01"
+    },
+    {
+      "topic": "AIF valuation frequency",
+      "fact": "Cat I/II AIFs must value investments at least every 6 months via an independent valuer (12 months if approved by 75% of investors by value); Cat III AIFs must disclose NAV at least quarterly (close-ended) or monthly (open-ended), independent of the fund-management function",
+      "value": "6-monthly (I/II); monthly/quarterly (III)",
+      "source_url": "https://treelife.in/finance/aif-valuation-in-india/",
+      "confidence": "medium",
+      "as_of": "2024-01-01"
+    },
+    {
+      "topic": "SIF framework effective date",
+      "fact": "SEBI's Specialized Investment Fund (SIF) framework, introduced via Feb-2025 circular under the SEBI (Mutual Funds) Regulations 1996 (2024 amendment), became effective 1-Apr-2025",
+      "value": "Effective 1-Apr-2025",
+      "source_url": "https://www.business-standard.com/amp/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html",
+      "confidence": "high",
+      "as_of": "2025-04-01"
+    },
+    {
+      "topic": "SIF minimum investment",
+      "fact": "Minimum investment in SIF strategies is ₹10 lakh, applied at the PAN level across all SIF strategies of a single AMC (not per strategy); accredited investors are exempt",
+      "value": "₹10 lakh at PAN level; AI exempt",
+      "source_url": "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained",
+      "confidence": "high",
+      "as_of": "2025-04-01"
+    },
+    {
+      "topic": "SIF AMC eligibility",
+      "fact": "AMC must have ≥₹10,000 crore average AUM over the preceding 3 years (or an alternate route via an experienced CIO/fund manager) and no SEBI Act s.11/11B/24 action against sponsor/AMC, to launch a SIF",
+      "value": "≥₹10,000 cr 3-yr AUM route",
+      "source_url": "https://groww.in/blog/specialised-investment-funds",
+      "confidence": "medium",
+      "as_of": "2024-12-18"
+    },
+    {
+      "topic": "SIF derivative/short limit",
+      "fact": "SIF strategies may take unhedged short exposure via permissible exchange-traded derivatives up to 25% of net assets (for purposes other than hedging/rebalancing)",
+      "value": "≤25% of net assets unhedged short",
+      "source_url": "https://www.taxtmi.com/tmi_blog_details?id=802553",
+      "confidence": "high",
+      "as_of": "2025-09-01"
+    },
+    {
+      "topic": "SIF strategy categories",
+      "fact": "SIFs offer strategies across three broad categories — Equity-oriented, Debt-oriented and Hybrid — including long-short, sector rotation and tactical asset allocation approaches",
+      "value": "Equity/Debt/Hybrid categories",
+      "source_url": "https://groww.in/blog/specialised-investment-funds",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "SIF redemption/notice terms",
+      "fact": "SIF redemption frequency varies daily to quarterly by strategy, with notice periods of up to 15 working days permitted",
+      "value": "Up to 15 working-day notice",
+      "source_url": "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained",
+      "confidence": "medium",
+      "as_of": "2025-09-01"
+    },
+    {
+      "topic": "SIF AUM growth",
+      "fact": "SIF category AUM grew from ~₹2,010 crore (Oct-2025) to ~₹9,711 crore (Feb-2026) to ₹13,814 crore (May-2026); hybrid long-short strategies account for ~76% of SIF assets",
+      "value": "₹13,814 cr AUM (May-2026)",
+      "source_url": "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained",
+      "confidence": "medium",
+      "as_of": "2026-05-01"
+    },
+    {
+      "topic": "SIF compliance reporting 2026",
+      "fact": "SEBI introduced standardised compliance-reporting formats for SIFs in January 2026, tightening supervisory oversight of the ₹10-lakh threshold monitoring introduced July 2025",
+      "value": "Standardised reporting from Jan-2026",
+      "source_url": "https://www.business-standard.com/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "MF overseas investment cap",
+      "fact": "Industry-wide RBI/SEBI cap on Indian mutual funds' overseas investment is USD 7 billion (≈₹58,000-60,000 crore), with a USD 1 billion sub-cap for overseas ETFs and a USD 1 billion per-AMC sub-limit; near-exhausted through 2026, several AMCs (Axis, Nippon, Kotak) pausing fresh subscriptions",
+      "value": "USD 7bn industry / USD 1bn ETF / USD 1bn per-AMC",
+      "source_url": "https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn",
+      "confidence": "high",
+      "as_of": "2026-06-01"
+    },
+    {
+      "topic": "MF overseas cap — no increase announced",
+      "fact": "As of mid-2026 there is no announced plan to raise the USD 7 billion cap, despite repeated AMFI requests",
+      "value": "No increase as of Jun-2026",
+      "source_url": "https://mfreturns.com/blog/why-international-mutual-funds-closed-sebi-cap-2026/",
+      "confidence": "medium",
+      "as_of": "2026-06-01"
+    },
+    {
+      "topic": "MF cut-off times",
+      "fact": "Liquid/overnight funds: 1:30pm purchase / 3:00pm redemption cut-off (prior-day NAV if before cut-off); other funds (equity/debt/hybrid): 3:00pm cut-off for same-day NAV; NAV allotted on date of realisation of funds, not date of application (SEBI circular 17-Sep-2020)",
+      "value": "1:30pm/3:00pm cut-offs; NAV on realisation",
+      "source_url": "https://www.indmoney.com/blog/mutual-funds/sebi-new-mutual-fund-cut-off-timings-explained",
+      "confidence": "high",
+      "as_of": "2020-09-17"
+    },
+    {
+      "topic": "Liquid fund exit load",
+      "fact": "Liquid funds carry a graded exit load for redemption within 7 days: Day1 0.0070% down to Day6 0.0045%, nil from Day 7",
+      "value": "0.0070%→nil over 7 days",
+      "source_url": "https://groww.in/blog/sebi-rolls-out-graded-exit-load-on-liquid-funds-what-does-it-mean-for-you-as-an-investor",
+      "confidence": "medium",
+      "as_of": "2019-10-01"
+    },
+    {
+      "topic": "Arbitrage fund exit load",
+      "fact": "Typical arbitrage fund exit load is 0.25% for redemption within 15-30 days of allotment, nil thereafter (scheme-specific, not a SEBI-mandated rate)",
+      "value": "≈0.25% within 15-30 days (scheme-specific)",
+      "source_url": "https://groww.in/blog/arbitrage-fund-vs-liquid-fund",
+      "confidence": "low",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Equity fund exit load (market norm)",
+      "fact": "Most active equity schemes charge ~1% exit load if redeemed within 365 days of allotment (scheme-specific, not SEBI-mandated)",
+      "value": "≈1% within 365 days (scheme-specific)",
+      "source_url": "https://lakshmishree.com/blog/exit-load-in-mutual-fund/",
+      "confidence": "low",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "ETF direct-with-AMC threshold",
+      "fact": "SEBI circular SEBI/HO/IMD/DOF2/P/CIR/2022/145 (28-Oct-2022, effective 1-May-2023) lets investors transact ETF units directly with the AMC (without exit load) for orders ≥₹25 crore; Authorised Participants/Market Makers are exempt from the threshold and deal in creation-unit multiples",
+      "value": "₹25 crore direct-with-AMC threshold",
+      "source_url": "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html",
+      "confidence": "high",
+      "as_of": "2023-05-01"
+    },
+    {
+      "topic": "Nifty BeES creation unit",
+      "fact": "Nifty BeES (Nippon India ETF Nifty 50 BeES) creation-unit size for direct AMC subscription/redemption is 50,000 units; on-exchange trading is by single unit",
+      "value": "50,000-unit creation lot",
+      "source_url": "https://groww.in/etfs/reliance-etf-nifty-bees",
+      "confidence": "medium",
+      "as_of": "2026-05-06"
+    },
+    {
+      "topic": "Corporate bond RFQ mandate — MFs/PMS",
+      "fact": "Registered MFs and PMS must route at least 10% of secondary-market corporate-bond trades (by value, monthly) through the exchange RFQ platform, effective 1-Apr-2022 (FPIs: 10% quarterly from 1-Oct-2023)",
+      "value": "≥10% via RFQ",
+      "source_url": "https://vinodkothari.com/2020/08/sebi-requires-mutual-funds-to-carry-out-10-trades-in-corporate-bonds-through-rfq-platform/",
+      "confidence": "high",
+      "as_of": "2022-04-01"
+    },
+    {
+      "topic": "Equity LTCG rate/exemption",
+      "fact": "LTCG on listed equity/equity MF (STT-paid) taxed at 12.5% on gains above ₹1.25 lakh/year (combined exemption across equity shares + equity MFs); 12-month holding period; no indexation",
+      "value": "12.5% above ₹1.25 lakh; 12-month holding",
+      "source_url": "https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax",
+      "confidence": "high",
+      "as_of": "2026-02-01"
+    },
+    {
+      "topic": "Equity STCG rate",
+      "fact": "STCG on listed equity/equity MF under s.111A is 20% (raised from 15% by Finance (No.2) Act 2024, effective 23-Jul-2024); unchanged for FY2026-27",
+      "value": "20%",
+      "source_url": "https://taxgarden.in/blog/income-tax-on-sale-of-listed-shares-stcg-ltcg-india-ay-2026-27",
+      "confidence": "high",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "Non-equity LTCG rate & holding",
+      "fact": "For non-equity long-term assets (debt MF pre-Apr-2023 vintage, unlisted shares, gold, property) LTCG is a uniform 12.5% without indexation; 24-month holding for non-equity/non-listed assets, 12 months for listed non-equity (bonds/G-secs)",
+      "value": "12.5% flat, no indexation; 24m (unlisted)/12m (listed)",
+      "source_url": "https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27",
+      "confidence": "high",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "Debt MF taxation (post-Apr-2023)",
+      "fact": "Debt/'specified' mutual funds (>65% in debt/money-market instruments) acquired on/after 1-Apr-2023 get no LTCG benefit at all — all gains deemed short-term under s.50AA, taxed at slab rate regardless of holding period",
+      "value": "Deemed STCG at slab, any holding period",
+      "source_url": "https://taxguru.in/income-tax/amendment-specified-mutual-fund-definition-section-50aa-budget-2024.html",
+      "confidence": "high",
+      "as_of": "2023-04-01"
+    },
+    {
+      "topic": "Section 50AA narrowed (FY2025-26+)",
+      "fact": "Finance (No.2) Act 2024 narrowed 'specified mutual fund' under s.50AA to funds investing >65% of proceeds in debt/money-market instruments (from the old ≤35% domestic-equity test), effective FY2025-26 — freeing gold ETFs/FoFs and international FoFs from the STCG-deeming rule",
+      "value": "65% debt threshold (from 35% equity threshold)",
+      "source_url": "https://www.finnovate.in/learn/blog/debt-fund-taxation-india-fair-treatment",
+      "confidence": "high",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "Gold/international ETF & FoF taxation (FY2025-26+)",
+      "fact": "Gold ETFs and Indian-listed international ETFs now follow normal listed-securities rules: 12-month holding for 12.5% LTCG, slab-rate STCG; gold FoFs/international FoFs (unlisted units) get 12.5% LTCG after 24 months, slab STCG before",
+      "value": "12m/12.5% (listed ETF); 24m/12.5% (FoF)",
+      "source_url": "https://www.finnovate.in/learn/blog/etf-taxation-india",
+      "confidence": "high",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "Unlisted bonds/debentures taxation",
+      "fact": "Capital gains on unlisted bonds/debentures transferred, redeemed or matured on/after 23-Jul-2024 are deemed short-term (s.50AA) irrespective of holding period, taxed at slab rate",
+      "value": "Deemed STCG at slab, any holding period",
+      "source_url": "https://taxguru.in/income-tax/deeming-gains-asset-section-50aa-lens.html",
+      "confidence": "high",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "Listed bonds/G-sec/SDL taxation",
+      "fact": "Listed bonds, G-secs and SDLs get LTCG treatment (12.5%, no indexation) after a 12-month holding period; coupon/interest taxed at slab rate",
+      "value": "12.5% LTCG after 12 months; coupon at slab",
+      "source_url": "https://taxguru.in/income-tax/capital-gains-income-tax-act-2025-tax-period-2026-27.html",
+      "confidence": "medium",
+      "as_of": "2024-07-23"
+    },
+    {
+      "topic": "SGB taxation — original subscriber to maturity",
+      "fact": "Budget 2026 narrowed the s.47(viic) redemption exemption: only original SGB subscribers who hold to the RBI's 8-year maturity get capital-gains exemption on redemption; premature redemption (even after the 5-year lock-in) or secondary-market purchase no longer qualifies for exemption",
+      "value": "Exemption only for original holder to 8-yr maturity (narrowed, Budget 2026)",
+      "source_url": "https://www.caalley.com/news-updates/budget-2026/budget-2026-changes-sgb-tax-rules-ends-blanket-capital-gains-exemption",
+      "confidence": "high",
+      "as_of": "2026-02-01"
+    },
+    {
+      "topic": "SGB — secondary-market/premature sale",
+      "fact": "A secondary-market sale or premature redemption of an SGB is taxed as capital gains: 12.5% LTCG after 12-month holding, else slab-rate STCG; 2.5% p.a. coupon always taxable at slab",
+      "value": "12.5% LTCG (>12m) / slab STCG",
+      "source_url": "https://www.taxscan.in/top-stories/sovereign-gold-bond-tax-rules-for-itr-ay-2026-27-interest-redemption-capital-gains-and-reporting-1448954",
+      "confidence": "high",
+      "as_of": "2026-02-01"
+    },
+    {
+      "topic": "SGB new issuance status",
+      "fact": "No new SGB tranche has been issued since Feb-2024 (Series IV, 2023-24); no issuance calendar announced for FY2026-27; existing bonds remain tradeable on NSE/BSE and redeemable at 8-year maturity; 33 tranches eligible for premature redemption Apr-Sep 2026",
+      "value": "Discontinued since Feb-2024",
+      "source_url": "https://goldenpi.com/blog/bond-news/sovereign-gold-bond-scheme-discontinued-for-new-issues/",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "REIT/InvIT distribution taxation",
+      "fact": "REIT/InvIT distributions (Form 64B) split into interest (slab, 10% TDS), dividend, rental/other income and repayment-of-debt components; capital gains on unit sale: 20% STCG / 12.5% LTCG (12-month holding)",
+      "value": "Multi-component; 20%/12.5% on units",
+      "source_url": "https://taxgarden.in/blog/reit-invit-taxation-india-ay-2026-27-section-115ua-distributions-capital-gains",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "REIT/InvIT dividend exemption change (2026)",
+      "fact": "Taxation and Other Laws (Amendment) Bill 2026 proposes exempting the dividend component of REIT/InvIT distributions even where the underlying SPV opted for the concessional corporate-tax regime, effective 1-Apr-2026; also proposes taxing 'repayment of debt' distributions as unit-holder income where they exceed cost",
+      "value": "Dividend component exempt from 1-Apr-2026 (Bill; verify enactment)",
+      "source_url": "https://upstox.com/news/personal-finance/tax/reit-in-vit-dividend-income-what-is-tax-free-under-the-taxation-and-other-laws-amendment-bill-2026/article-198414/",
+      "confidence": "medium",
+      "as_of": "2026-08-01"
+    },
+    {
+      "topic": "STT rates — equity delivery/MF (unchanged)",
+      "fact": "STT on equity delivery remains 0.1% (buy+sell); STT on equity-MF-unit sale/redemption 0.001%; unchanged by Budget 2026",
+      "value": "0.1% delivery; 0.001% equity MF redemption",
+      "source_url": "https://groww.in/blog/what-is-stt",
+      "confidence": "high",
+      "as_of": "2026-04-01"
+    },
+    {
+      "topic": "STT rates — F&O hike (1-Apr-2026)",
+      "fact": "Budget 2026 raised STT on equity futures from 0.02% to 0.05% (sell side) and on options premium from 0.10%/0.125% to 0.15% (sale/exercise), effective 1-Apr-2026",
+      "value": "Futures 0.05%; options premium 0.15%",
+      "source_url": "https://upstox.com/news/personal-finance/tax/explained-how-the-stt-hike-on-equity-futures-and-options-affects-traders-and-investors/article-189260/",
+      "confidence": "high",
+      "as_of": "2026-04-01"
+    },
+    {
+      "topic": "Stamp duty on securities",
+      "fact": "Stamp duty: 0.015% on equity delivery purchase (buyer); 0.005% on mutual fund unit issuance (uniform across equity/debt/hybrid/ETF schemes)",
+      "value": "0.015% equity; 0.005% MF units",
+      "source_url": "https://ipobaazi.com/stamp-duty-on-mutual-funds/",
+      "confidence": "medium",
+      "as_of": "2025-12-01"
+    },
+    {
+      "topic": "FIFO for demat securities",
+      "fact": "Cost of acquisition and holding period for dematerialised securities are determined on a First-In-First-Out (FIFO) basis per security per demat account (s.45(2A); CBDT Circular 768 of 24-Jun-1998 applies FIFO per demat account, not across accounts)",
+      "value": "FIFO per demat account",
+      "source_url": "https://www.incometaxindia.gov.in/w/section-45-64",
+      "confidence": "high",
+      "as_of": "1998-06-24"
+    },
+    {
+      "topic": "Dividend/bonus stripping anti-avoidance",
+      "fact": "s.94(7): loss on securities/units bought within 3 months before and sold within 3 months (securities)/9 months (units) after a dividend record date is disallowed up to the dividend received; s.94(8) (extended to equity shares from 1-Apr-2023) similarly disallows bonus-stripping losses",
+      "value": "3m/9m dividend-stripping window; bonus-stripping covers shares from FY2023-24",
+      "source_url": "https://learn.quicko.com/dividend-stripping-section-94-7-income-tax-act",
+      "confidence": "medium",
+      "as_of": "2023-04-01"
+    },
+    {
+      "topic": "Capital loss set-off/carry-forward",
+      "fact": "Short-term capital loss can be set off against both STCG and LTCG; long-term capital loss only against LTCG; both carried forward 8 assessment years",
+      "value": "8-year carry-forward",
+      "source_url": "https://cleartax.in/s/set-off-carry-forward-capital-losses",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "PMS fee deductibility (case law)",
+      "fact": "PMS management fees have been litigated on deductibility from capital gains under s.48; tribunal rulings are mixed/fact-specific — fixed PMS fee is often disallowed as a mere overlay cost (not 'wholly and exclusively' for transfer) while some rulings allow it; no blanket statutory deduction exists",
+      "value": "Contested/fact-specific — no blanket deduction",
+      "source_url": "https://bcajonline.org/journal/allowability-of-portfolio-management-fees-in-computing-capital-gains/",
+      "confidence": "medium",
+      "as_of": "2024-01-01"
+    },
+    {
+      "topic": "Income-tax Act 2025 — section renumbering",
+      "fact": "The new Income-tax Act 2025 (Presidential assent 21-Aug-2025) renumbers s.112A (equity LTCG) as s.198 and s.111A (equity STCG) as s.196; the substantive 12.5%/20% rates and holding periods are unchanged",
+      "value": "s.112A→198; s.111A→196",
+      "source_url": "https://tax2win.in/guide/section-112a-income-tax-ltcg-exemption",
+      "confidence": "medium",
+      "as_of": "2025-08-21"
+    },
+    {
+      "topic": "Company tax rate reference (s.115BAA)",
+      "fact": "A domestic company opting for the concessional regime under s.115BAA is taxed at 22% (effective ~25.17% with surcharge+cess) on ordinary income; capital-gains rates (12.5%/20%) apply separately with a lower surcharge cap",
+      "value": "≈25.17% effective (s.115BAA)",
+      "source_url": "https://www.taxmann.com/post/blog/tax-rates-surcharge-cess",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "LRS annual limit",
+      "fact": "Liberalised Remittance Scheme (LRS) limit for resident individuals is USD 250,000 per financial year, covering all permitted current and capital account transactions combined (investment, education, travel, gifts, etc.)",
+      "value": "USD 250,000/FY per individual",
+      "source_url": "https://www.indmoney.com/learn/us-stocks/what-is-lrs-liberalised-remittance-scheme",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "LRS TCS threshold/rate",
+      "fact": "TCS-free LRS threshold is ₹10 lakh cumulative per FY (all purposes combined); TCS at 20% applies on investment-purpose remittances above ₹10 lakh (education-loan-funded and medical remittances have separate, lower rates)",
+      "value": "₹10 lakh nil; 20% TCS above (investment)",
+      "source_url": "https://cleartax.in/s/tax-on-foreign-remittance",
+      "confidence": "high",
+      "as_of": "2025-04-01"
+    },
+    {
+      "topic": "OPI cap — listed Indian companies",
+      "fact": "A listed Indian company may make Overseas Portfolio Investment (OPI) up to 50% of its net worth (per last audited balance sheet); this 50% OPI headroom is available only to listed Indian entities, not unlisted companies or resident individuals (who use LRS instead)",
+      "value": "≤50% of net worth (listed cos only)",
+      "source_url": "https://corporate.cyrilamarchandblogs.com/2022/09/new-odi-regime-what-rbi-needs-to-clarify/",
+      "confidence": "medium",
+      "as_of": "2022-08-22"
+    },
+    {
+      "topic": "ODI cap — all Indian entities",
+      "fact": "Total financial commitment by an Indian entity under Overseas Direct Investment (ODI) is capped at 400% of its net worth (per last audited balance sheet)",
+      "value": "≤400% of net worth",
+      "source_url": "https://www.dealplexus.com/blog/overseas-direct-investment-by-indian-companies-rbi-rules-and-lrs-limits",
+      "confidence": "medium",
+      "as_of": "2022-08-22"
+    },
+    {
+      "topic": "GIFT-IFSC route for residents",
+      "fact": "Resident individuals/entities may invest in units of an investment fund/vehicle set up in an IFSC (GIFT City) as OPI; for individuals this counts against and consumes the USD 250,000 LRS limit",
+      "value": "Counts against LRS cap for individuals",
+      "source_url": "https://corporate.cyrilamarchandblogs.com/2022/09/new-odi-regime-what-rbi-needs-to-clarify/",
+      "confidence": "medium",
+      "as_of": "2022-08-22"
+    },
+    {
+      "topic": "Gifting of foreign securities",
+      "fact": "The 2022 Overseas Investment framework newly permits gifting of foreign securities between resident individuals who are relatives, without a specific value cap under FEMA",
+      "value": "Permitted, no specific FEMA cap",
+      "source_url": "https://www.azbpartners.com/bank/gift-of-foreign-securities-to-indian-individuals-a-fema-refresher/",
+      "confidence": "low",
+      "as_of": "2022-08-22"
+    },
+    {
+      "topic": "GIFT City outbound funds (2026)",
+      "fact": "By mid-2026 India had ~5 GIFT-IFSC 'outbound retail' funds live for resident investment (minimum ticket ~USD 5,000), and IFSC PMS-style structures with a minimum ticket of ~USD 75,000",
+      "value": "USD 5,000 (retail fund) / USD 75,000 (IFSC PMS) — approx.",
+      "source_url": "https://www.valueresearchonline.com/stories/226923/indians-get-new-route-worlds-markets-gift-city/",
+      "confidence": "low",
+      "as_of": "2026-07-01"
+    },
+    {
+      "topic": "Block deal minimum size (2026 revamp)",
+      "fact": "SEBI's revised block-deal framework raised the minimum order size to ₹25 crore (from ₹10 crore); morning window 8:45-9:00am (ref. price = prior close), afternoon window 2:05-2:20pm (ref. price = VWAP of 1:45-2:00pm trades); orders within ±3% of reference price; compulsory delivery, no intra-window reversal",
+      "value": "₹25 crore minimum; 8:45-9:00am & 2:05-2:20pm windows; ±3% band",
+      "source_url": "https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Bulk deal disclosure threshold",
+      "fact": "A 'bulk deal' is a trade where total quantity bought/sold in a single scrip on a single day exceeds 0.5% of the number of listed shares of the company; exchanges disclose bulk deals same-day (a long-standing NSE/BSE rule; not independently re-verified against a primary circular this session)",
+      "value": "0.5% of listed shares — approx./not re-verified",
+      "source_url": "https://www.equityresearchindia.com/post/block-deals-and-bulk-deals-why-big-institutional-trades-move-sentiment",
+      "confidence": "low",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "T+1 settlement — mandatory baseline",
+      "fact": "India moved to mandatory T+1 equity settlement in January 2023, one of the first major markets globally to do so",
+      "value": "Mandatory T+1 since Jan-2023",
+      "source_url": "https://razorpay.com/blog/settlement-cycle-in-india-t1-t0-impact/",
+      "confidence": "high",
+      "as_of": "2023-01-01"
+    },
+    {
+      "topic": "T+0 settlement — optional, top 500",
+      "fact": "SEBI's optional T+0 (same-day) settlement, phased in from Dec-2024, covers the top 500 stocks by market cap by 2026; remains optional, alongside mandatory T+1 for all other trades; brokers may charge differential brokerage for T+0 vs T+1",
+      "value": "Optional, top 500 stocks, phased through 2026",
+      "source_url": "https://moneylife.in/article/sebi-introduces-optional-t0-settlement-for-top500-stocks/75841.html",
+      "confidence": "high",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "Corporate bond/debt settlement windows",
+      "fact": "Exchange RFQ/CBRICS/CCIL platforms allow T+0 to T+2 settlement for corporate bonds/non-government securities (funds/securities pay-in by 5:45pm); G-secs, T-bills and SDLs settle only at T+1",
+      "value": "T+0/T+1/T+2 (corp bonds); T+1 only (G-sec/SDL)",
+      "source_url": "https://www.nseclearing.in/clearing-settlement/corporate-bond/settlement-schedule",
+      "confidence": "medium",
+      "as_of": "2026-01-01"
+    },
+    {
+      "topic": "NDS-OM access",
+      "fact": "G-secs trade OTC via RBI's NDS-OM screen-based order-matching system (primary institutional venue) alongside NSE/BSE exchange-traded G-sec segments; RBI opened NDS-OM access to stockbrokers (for retail-client routing) from Feb-2025",
+      "value": "NDS-OM + exchange segments; broker access from Feb-2025",
+      "source_url": "https://www.business-standard.com/amp/markets/news/rbi-opens-nds-om-platform-for-stock-brokers-to-boost-retail-participation-125020701711_1.html",
+      "confidence": "medium",
+      "as_of": "2025-02-07"
+    },
+    {
+      "topic": "RBI Retail Direct scale (2026)",
+      "fact": "RBI Retail Direct (launched Nov-2021, no broker/demat/fee needed for G-secs/SDLs/T-bills) crossed 361,402 accounts by Apr-2026 (+54% YoY); NDS-OM Retail secondary-market volumes nearly tripled to ₹9,167 crore in Apr-2026 from ₹2,322 crore a year earlier",
+      "value": "361,402 accounts; ₹9,167 cr monthly secondary volume (Apr-2026)",
+      "source_url": "https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/",
+      "confidence": "medium",
+      "as_of": "2026-04-01"
+    },
+    {
+      "topic": "ETF direct-with-AMC / creation unit mechanics",
+      "fact": "Investors/APs can subscribe/redeem ETF units directly with the AMC in 'creation unit' size at intraday NAV on an ongoing basis; large-investor direct transactions ≥₹25 crore are exempt from exchange-only routing; AMC must appoint ≥2 registered market makers per ETF for continuous on-exchange liquidity",
+      "value": "Creation-unit direct dealing; ≥2 market makers per ETF",
+      "source_url": "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html",
+      "confidence": "high",
+      "as_of": "2023-05-01"
+    },
+    {
+      "topic": "NSE cash-market turnover (FY26)",
+      "fact": "Average daily turnover (ADTV) in the NSE+BSE equity cash segment fell ~6% YoY to ₹1.13 trillion in FY26 (from ₹1.21 trillion in FY25)",
+      "value": "₹1.13 trillion/day (FY26)",
+      "source_url": "https://www.business-standard.com/markets/news/trading-volumes-fy26-regulation-stt-rbi-impact-126040200232_1.html",
+      "confidence": "medium",
+      "as_of": "2026-04-01"
+    },
+    {
+      "topic": "India ETF industry scale (2026)",
+      "fact": "India's ETF segment held ~₹8.75 lakh crore AUM across ~260 funds by early 2026, with average daily ETF turnover rising from ₹237 crore (FY21) to over ₹4,200 crore (Apr-2025 to Feb-2026), an ~18x rise in 5 years",
+      "value": "≈₹8.75 lakh cr AUM; ₹4,200 cr avg daily turnover",
+      "source_url": "https://www.equityresearchindia.com/post/gold-fund-and-gold-etf-aum-trends-amid-recent-gold-price-volatility-july-2026",
+      "confidence": "low",
+      "as_of": "2026-02-01"
+    }
+  ],
+  "misconceptions": [
+    "‘Non-discretionary’ just means light-touch oversight — wrong: NDPMS legally requires an evidenced client direction/consent before every trade; the PM cannot exercise independent investment discretion at all (Reg 2 definitions, Reg 24).",
+    "SGBs are still available to buy fresh from the government — wrong: no new tranche has been issued since Feb-2024; only secondary-market purchase or holding existing bonds to 8-year maturity is possible, and Budget 2026 narrowed the redemption tax exemption to original subscribers who hold to maturity.",
+    "Debt mutual funds still get LTCG/indexation benefits after a long holding period — wrong: debt/'specified' MF units bought on or after 1-Apr-2023 get NO long-term capital gains treatment at all; all gains are deemed short-term and taxed at slab rate under s.50AA regardless of holding period.",
+    "Any asset held long-term gets indexation-adjusted LTCG — wrong: indexation was removed economy-wide for transfers on/after 23-Jul-2024 (Finance Act 2024); LTCG is now a flat 12.5% without indexation across virtually all asset classes.",
+    "AIF Category III gets the same pass-through tax treatment as Category I/II — wrong: only Cat I/II get s.115UB pass-through; Cat III is taxed at the fund level, with business/F&O income taxed near the Maximum Marginal Rate (~42.7% for an indeterminate trust).",
+    "AIF minimum investment is always ₹1 crore — wrong: employees/directors of the AIF/manager can invest from ₹25 lakh, and Accredited Investors are exempt from the ₹1 crore floor entirely.",
+    "SIF is basically a mutual fund with a slightly higher ticket size — wrong: while SIF sits under the SEBI (Mutual Funds) Regulations umbrella, it is a distinct product line permitting long-short strategies and unhedged derivative exposure up to 25% of net assets, which ordinary MF schemes cannot do; minimum entry is ₹10 lakh at the PAN level across all of an AMC's SIF strategies, not per scheme.",
+    "PMS clients can still enter with ₹25 lakh — wrong: the current PMS Regulations (2020, in force) set the minimum client investment at ₹50 lakh (except LVAI's ₹10 crore agreement route); ₹25 lakh was an older, now-superseded threshold.",
+    "There is a SEBI-mandated ceiling on PMS management/performance fee percentages — wrong: SEBI prescribes only the high-water-mark computation method for performance fees, the 0.50% operating-expense cap, and the graded exit-load schedule; the headline fee % itself is a bilateral contractual matter.",
+    "Block deals still have a ₹10 crore minimum — wrong: SEBI's 2026 revamp raised the minimum block-deal order size to ₹25 crore and added a same-day ±3% reference-price band with compulsory delivery.",
+    "T+0 settlement is now the norm for Indian equities — wrong: T+0 remains strictly optional and limited to the top ~500 stocks by market cap; T+1 is the mandatory baseline for everything else, and brokers may charge extra for T+0.",
+    "Mutual funds are banned from investing overseas — wrong: there is no ban, only an industry-wide USD 7 billion aggregate cap (plus USD 1bn ETF and USD 1bn per-AMC sub-caps) that is periodically exhausted, causing individual AMCs to pause fresh subscriptions rather than a permanent prohibition.",
+    "A portfolio manager can invest client money in another PMS's strategy or in the PM's own group PMS product freely — wrong: PMS 'units' are not classified as securities the same way MF units are, and Reg 24(10)'s bar on investing based on 'the advice of any other entity' plus the outsourcing prohibition (reinforced by SEBI's May-2026 enforcement order) makes routing client funds into another PM's discretion a live enforcement risk, not a routine option.",
+    "Accredited-investor status, once granted, is permanent — wrong: accreditation has a limited validity requiring periodic renewal, and both the qualifying thresholds and the certification format have changed multiple times (2021 introduction, Jan-2026 net-worth-certificate change, proposed Aug/Sep-2025 new routes) — treat it as a status to actively track, not a one-time checkbox.",
+    "The July 2026 SEBI consultation paper (MF-PMS category, foreign securities, 50% unhedged short via derivatives) is already the law governing PMS — wrong: as of 12-Sep-2026 it is a draft that closed for comment on 13-Aug-2026 and has not been notified; today's binding rules remain the 2020 PMS Regulations plus the 16-Jul-2025 Master Circular.",
+    "REIT/InvIT distributions are simply 'tax-free dividends' — wrong: a single distribution is typically a blend of interest (taxable at slab, 10% TDS), dividend, rental/other income and return-of-capital/'repayment of debt' components, each with different tax treatment reported on Form 64B; the 2026 dividend-exemption change is itself a pending Bill, not yet confirmed enacted.",
+    "Corporate bond RFQ routing is only an FPI/mutual-fund requirement — wrong: SEBI-registered PMS (discretionary and non-discretionary alike) must also route at least 10% of secondary-market corporate-bond trades by value through the exchange RFQ platform on a rolling basis, from 1-Apr-2022."
+  ],
+  "detailed_markdown": "# NDPMS ₹500 Cr Mandate — Verified Regulatory, Tax and Product Fact Base\n\n*Status date: 12-Sep-2026. Verified via WebSearch across SEBI, RBI/FEMA, AMFI/APMI, incometaxindia and press sources gathered in this session (primary SEBI/APMI/RBI PDF pages were largely blocked by the network egress proxy, so facts rest on secondary extracts of those primary documents — circular numbers and dates are cited wherever a secondary source quoted them, and cross-checked against a second source where possible). Solid: PMS Regs 2020 core mechanics (non-discretionary definition, 25% unlisted cap, no-leverage/no-borrowing rule, fee caps, exit-load schedule, custodian, Reg 22 associate limits, Master Circular 16-Jul-2025), APMI TWRR/benchmarking regime, accredited-investor and AIF Cat I/II/III thresholds and 2025 amendments (CIV, LVF Rs 25cr, Cat III 2x leverage cap), the SIF framework (Rs 10 lakh PAN-level minimum, 25% unhedged-short cap), FY2026-27 capital-gains/STT/TCS rates, RBI/FEMA LRS and OPI/ODI caps, and settlement/market-structure mechanics (T+1 mandatory, T+0 optional top-500, block-deal Rs 25 cr floor, MF RFQ 10% mandate). Approximate/unverified this session: the exact text of SEBI's July 2026 draft PMS Regulations 2026 (treated throughout as pipeline, not law), the bulk-deal 0.5% disclosure threshold (well-established industry rule, not re-confirmed against a primary SEBI/exchange circular this session), current PMS/MF TER slab tables, and India-specific ETF bid-ask/impact-cost data beyond the single NSE impact-cost data point found. Anything not independently corroborated is labelled 'approx.' in the tables below rather than presented as settled fact.*\n\n\n## How to read this pack\n\nEvery table below states an **accuracy** flag (verified / partially_verified / approx.) and cites source URLs. Every atomic fact in the companion facts list carries its own confidence (high/medium/low) and as-of date. Where SEBI/RBI/APMI primary PDFs were blocked by the network egress proxy this session, the fact rests on 2-3 converging secondary (legal-update or financial-press) sources instead — this is flagged in each table's note. Nothing below should be read as a substitute for pulling the primary circular text before the mandate goes live; treat every 'approx.' item as a to-verify action item for the compliance team.\n\n\n## T1. NDPMS investment universe — hard regulatory limits (SEBI PMS Regs 2020, as amended to 12-Sep-2026)\n\n*Accuracy: partially_verified*\n\n| Item | Rule | Limit/condition | Source |\n|---|---|---|---|\n| Listed equity, listed bonds/G-secs/SDLs, listed REIT/InvIT, ETFs, MF direct plans | Allowed for both DPMS and NDPMS | No PMS-specific cap | PMS Regs Reg 24 |\n| Unlisted securities (AIF units, unlisted REIT/InvIT, pre-IPO, unlisted debt) | NDPMS/advisory only, not discretionary PMS | ≤25% of client AUM (10% sub-cap for unlisted unrated debt/hybrid of non-associates) | Reg 24(4) |\n| Below-investment-grade listed securities | Prohibited for NDPMS | Nil | Master Circular |\n| Derivatives | Allowed | No leverage; total exposure ≤ portfolio funds; hedging/rebalancing framed by consent | Reg 24 |\n| Own associates/related-party securities | Allowed with prior client consent | 15% single / 25% aggregate per asset class (equity; debt+hybrid); 30% combined cap; no unrated related-party debt | Aug-2022 circular |\n| MF units | Direct plans only | No distribution fee chargeable to client | PMS Regs |\n| Advice from/outsourcing to another entity | Prohibited (Reg 24(10)) | PM must make its own investment decisions incl. quantities/timing/execution | Reg 24(10); First Global order May-2026 |\n| Borrowing on behalf of clients | Prohibited | Nil | PMS Regs |\n| Minimum client investment | ₹50 lakh (LVAI: ₹10 crore agreement, bespoke terms) | ₹50 lakh / ₹10 crore (LVAI) | PMS Regs / LVAI circular |\n\n*Note: Primary SEBI regulation text (exact regulation/sub-clause numbers) could not be fetched directly through the network egress proxy this session; figures are corroborated across 3+ secondary legal/press sources each. 2026 draft PMS overhaul (unhedged short up to 50% AUM, foreign securities, MF-PMS) is NOT reflected here as it is not yet law.*\n\n\n## T2. PMS fees, exit load and reporting cadence (SEBI Feb-2020 guidelines + Master Circular 16-Jul-2025)\n\n*Accuracy: partially_verified*\n\n| Item | Rule | Source |\n|---|---|---|\n| Upfront fee | Prohibited, directly or indirectly | SEBI/HO/IMD/DF1/CIR/P/2020/26 |\n| Operating expenses (ex-brokerage) | ≤0.50% p.a. of average daily AUM | Same circular |\n| Brokerage | At actuals | Same circular |\n| Exit load | ≤3% (yr1) / 2% (yr2) / 1% (yr3) / nil after | Same circular |\n| Performance/profit-share fee | High-water-mark basis over life of investment; fee illustration mandatory (Annexure 4A) | Master Circular 7-Jun-2024 / 16-Jul-2025 |\n| Client reporting | Periodic report ≤ every 3 months (composition/value of portfolio, transactions, expenses, risk/defaults) | Reg 31 |\n| Monthly regulatory reporting | To SEBI and APMI within 7 working days of month-end | APMI Dec-2022 circular |\n| Firm-level performance audit | Annual (DPMS+NDPMS combined), confirmation to SEBI within 60 days of FY-end | SEBI/HO/IMD/IMD-PoD-1/P/CIR/2023/133 |\n| MITC (Most Important Terms & Conditions) | Mandatory acknowledged document; new clients from 1-Oct-2024, existing clients informed by 1-Jan-2025 | SEBI/HO/IMD/IMD-PoD-1/P/CIR/2024/35 |\n| Custodian | SEBI-registered custodian required (at least before commodity-derivatives dealing; broader net-worth requirement raised to ₹75 cr for custodians generally in 2025) | 2023 amendment / Sep-2025 custodian net-worth news |\n\n*Note: No SEBI-mandated cap exists on the headline management-fee % or performance-fee % themselves — only the HWM computation method, the 0.50% opex cap and the exit-load schedule are prescribed; the commonly quoted '0.25-2.5% management / 10-20% performance' figures are market practice, not regulation.*\n\n\n## T3. APMI performance benchmarking & TWRR reporting standard (SEBI circular 2022/172, effective 1-Apr-2023)\n\n*Accuracy: partially_verified*\n\n| Element | Rule | Source |\n|---|---|---|\n| Strategy classification | Every Investment Approach (IA) tagged to one Strategy: Equity, Debt, Hybrid or Multi-Asset | APMI Circular, Dec-2022 |\n| Benchmark selection | APMI prescribes up to 3 benchmarks per Strategy; PM selects the one best reflecting the IA's philosophy; changing benchmark requires an exit-load-free exit option for existing clients | Same |\n| Return methodology | Time-Weighted Rate of Return (TWRR) is the basis for all IA performance measurement and disclosure | Same |\n| Investor-level reporting | XIRR reported per investor per IA, alongside min/max/median XIRR across all investors in that IA | Same |\n| Peer disclosure | Marketing material must show performance relative to benchmark AND relative to other PMs within the same Strategy | Same |\n| Reporting cadence | Monthly report to APMI and SEBI within 7 working days of month-end, across 1M/3M/6M/1Y/2Y/3Y/4Y/5Y/since-inception buckets | Same |\n| Valuation norms | APMI-standardised valuation norms (mirroring MF norms) for debt/money-market securities; empanelled agencies: NSE Indices Ltd, ICRA Analytics, CRISIL | Same |\n| Firm-level audit | Standardised ToR for annual firm-level performance audit (DPMS+NDPMS+published IA), effective 1-Oct-2023 | SEBI/HO/IMD/IMD-PoD-1/P/CIR/2023/133 |\n\n*Note: The primary APMI circular PDF (apmiindia.org) could not be fetched through the proxy this session; content is drawn from 3+ converging secondary summaries. Exact benchmark index names (e.g., which 3 indices APMI assigns to 'Hybrid') were not verified.*\n\n\n## T4. Accredited Investor thresholds (SEBI framework, as amended)\n\n*Accuracy: partially_verified*\n\n| Investor type | Qualifying threshold | Source |\n|---|---|---|\n| Individual / HUF / family trust / sole proprietorship | Annual income ≥₹2 cr, OR net worth ≥₹7.5 cr (≥50% financial assets), OR income ≥₹1 cr + net worth ≥₹5 cr (≥50% financial assets) | SEBI 2021 framework |\n| Trusts (other than family trusts) | Net worth ≥₹50 crore | Same |\n| Body corporates | Net worth ≥₹50 crore | Same |\n| Partnership firm | Each partner independently qualifies | Same |\n| Large Value Accredited Investor (LVAI) — PMS-specific | Accredited investor + PMS agreement ≥₹10 crore | Dec-2021 PMS circular |\n| Proposed new route (not yet notified) | ₹5 cr securities-market assets (individual) / ₹20 cr (corporate/non-family trust), irrespective of income/net worth; manager-led accreditation option; possible deemed-AI status for NRIs | Aug/Sep-2025 SEBI proposals |\n\n*Note: Accreditation validity period (commonly cited as 1-2 years, renewable) was not independently confirmed against a primary SEBI source this session — treat as approx.*\n\n\n## T5. AIF Category I/II/III — comparison (SEBI AIF Regulations 2012, as amended to 2025-26)\n\n*Accuracy: partially_verified*\n\n| Feature | Category I | Category II | Category III |\n|---|---|---|---|\n| Examples | Venture capital, SME, social/infra funds, angel funds | PE, debt/private-credit funds not using Cat III leverage | Long-short, hedge, arbitrage strategies |\n| Minimum investment | ₹1 crore (₹25 lakh employees/directors; AI exempt) | Same | Same |\n| Structure/tenure | Close-ended, ≥3 years from final close | Close-ended, ≥3 years | Open- or close-ended; close-ended ≥3 years, open-ended soft-locked 1-3yr typical |\n| Leverage | Generally not permitted (limited borrowing for temporary funding needs) | Same | Capped at 2x NAV, daily reporting to SEBI |\n| Tax treatment | Pass-through (s.115UB); non-business income exempt at fund, taxed in investor's hands; business income taxed at fund | Same as Cat I | No pass-through; taxed at fund level — LTCG 12.5%+surcharge/cess, STCG 20%+surcharge/cess, business/F&O income at MMR ≈42.7% |\n| 2025-26 changes | Mandatory demat units (new schemes); CIV co-investment scheme option (Reg 17A, accredited investors only) | Same + LVF min cut to ₹25 cr (from ₹70 cr) | 2x leverage cap + daily reporting formalised |\n\n*Note: Category II 'no leverage' is a simplification — Cat II may borrow temporarily up to 30 days, ≤4 times a year, ≤10% of investable funds, per general AIF Reg 16(4); this specific sub-rule was not re-verified this session and should be checked before use.*\n\n\n## T6. Specialized Investment Fund (SIF) — framework at a glance (effective 1-Apr-2025)\n\n*Accuracy: partially_verified*\n\n| Element | Rule | Source |\n|---|---|---|\n| Minimum investment | ₹10 lakh at PAN level across all SIF strategies of one AMC (excludes AI, and excludes co-held regular MF units) | SEBI Feb-2025 circular |\n| Who can launch | MF AMC with ≥₹10,000 cr average AUM over 3 years, OR alternate route via experienced CIO (≥10 yrs, ≥₹5,000 cr) + fund manager (≥3 yrs, ≥₹500 cr); no s.11/11B/24 action pending | Same |\n| Strategy categories | Equity-oriented, Debt-oriented, Hybrid — incl. long-short, sector rotation, tactical allocation | Same |\n| Derivatives | Unhedged short exposure via exchange-traded derivatives up to 25% of net assets | Sep-2025 SEBI clarification |\n| Redemption | Daily to quarterly depending on strategy; notice period up to 15 working days | Industry summaries |\n| AUM trajectory | ≈₹2,010 cr (Oct-2025) → ≈₹9,711 cr (Feb-2026) → ₹13,814 cr (May-2026); hybrid long-short ≈76% of assets | Press (multiple) |\n| 2026 tightening | Standardised SIF compliance-reporting formats introduced Jan-2026 | Press |\n\n*Note: The SEBI SIF circular PDFs (sebi.gov.in) were blocked from direct fetch this session; single-issuer/sector/REIT-InvIT sub-limits often quoted for SIF (e.g., 10% single company, 20% single debt issuer) could not be independently corroborated this session and are omitted rather than guessed.*\n\n\n## T7. Mutual fund operating rules relevant to NDPMS execution\n\n*Accuracy: partially_verified*\n\n| Rule | Detail | Source |\n|---|---|---|\n| Overseas investment cap | USD 7 bn industry-wide / USD 1 bn overseas-ETF sub-cap / USD 1 bn per-AMC; near-exhausted through 2026, multiple AMCs pausing fresh lump-sum subscriptions | Press (multiple) |\n| Direct-plan mandate for PMS | PM must invest client funds in MF units only via direct plans; no distributor fee chargeable to client | PMS Regs |\n| Cut-off times | Liquid/overnight: 1:30pm purchase / 3:00pm redemption; other schemes: 3:00pm; NAV keyed to date of fund realisation, not application | SEBI circular 17-Sep-2020 |\n| Exit loads (market practice, not a uniform SEBI rate) | Liquid: graded 0.0070%→nil over 7 days; arbitrage: ≈0.25% within 15-30 days; equity: ≈1% within 365 days | Scheme-specific, multiple AMC pages |\n| ETF direct-with-AMC threshold | ≥₹25 crore orders may transact directly with AMC without exit load, in creation-unit multiples; APs/market-makers exempt from the threshold | SEBI circular 2022/145, eff. 1-May-2023 |\n| Corporate-bond RFQ mandate | MFs and PMS must route ≥10% of secondary corporate-bond trades by value through exchange RFQ platforms, monthly rolling basis, from 1-Apr-2022 | SEBI circular 2021 |\n\n*Note: TER (total expense ratio) slabs by AUM size were not found/verified this session — treat any TER slab table elsewhere as approximate until checked against the current SEBI MF Regulations Schedule.*\n\n\n## T8. Income tax by instrument — FY2026-27 (resident individual/HUF, new regime, top slab; surcharge capped at 15% on capital gains/dividends; cess 4%)\n\n*Accuracy: partially_verified*\n\n| Instrument | LTCG holding | LTCG rate | STCG rate | Income component | Key transaction tax |\n|---|---|---|---|---|---|\n| Listed equity / equity MF / equity ETF (STT-paid) | 12 months | 12.5% above ₹1.25 lakh/yr (≈14.95% incl. surcharge+cess) | 20% (≈23.92%) | Dividend at slab (surcharge cap 15%); TDS 10%>₹10,000 | STT 0.1% buy+sell; stamp 0.015% buy |\n| Debt/'specified' MF (>65% debt, bought ≥1-Apr-2023) | N/A — no LTCG | N/A | Deemed STCG at slab (≈39% top slab) | — | Stamp 0.005% units |\n| Listed bonds / G-secs / SDLs | 12 months | 12.5% (≈14.95%) | Slab (≈39%) | Coupon at slab | Stamp ≈0.0001% (approx.) |\n| Unlisted bonds/debentures (transferred/matured ≥23-Jul-2024) | N/A — deemed STCG | N/A | Slab (≈39%), any holding period | Slab | — |\n| Gold/silver ETF (listed units) | 12 months | 12.5% (≈14.95%) | Slab (≈39%) | — | Stamp 0.005% |\n| Gold MF/FoF, international FoF (unlisted units) | 24 months | 12.5% (≈14.95%) | Slab (≈39%) | — | Stamp 0.005% |\n| SGB — original subscriber to 8-yr RBI maturity | 8 years | Exempt (s.47(viic), narrowed Budget 2026) | N/A | 2.5% coupon at slab | — |\n| SGB — secondary sale / premature redemption | 12 months | 12.5% (≈14.95%) | Slab (≈39%) | Coupon at slab | — |\n| REIT/InvIT units | 12 months | 12.5% (≈14.95%) | 20% (≈23.92%) | Interest/rent at slab (TDS 10%); dividend exempt from 1-Apr-2026 per pending 2026 Bill | STT ≈0.1% (approx.) |\n| AIF Cat I/II (pass-through) | As underlying | As underlying | As underlying | TDS 10% u/s 194LBB; business income at fund level | — |\n| AIF Cat III (fund-level tax) | N/A (fund pays) | 12.5%+surcharge(≤15%)+cess at fund | 20%+surcharge+cess at fund | Business/F&O income at MMR ≈42.7% (indeterminate trust) | STT: futures 0.05%, options premium 0.15% (from 1-Apr-2026) |\n\n*Note: Effective 'all-in' percentages (e.g. 14.95%, 23.92%, 39%) assume top-slab surcharge (25% under new regime, capped at 15% for capital gains/dividends per s.111A/112/112A) plus 4% cess — verify against the client's actual slab/surcharge band before use; REIT/InvIT dividend exemption is a pending 2026 Bill, not yet confirmed enacted.*\n\n\n## T9. RBI / FEMA — international-exposure routes\n\n*Accuracy: partially_verified*\n\n| Route | Cap | Status FY2026-27 | Source |\n|---|---|---|---|\n| LRS (resident individuals) | USD 250,000 per FY, all purposes combined | Unchanged; TCS-free up to ₹10 lakh cumulative, 20% TCS above (investment purpose) | RBI LRS Master Direction |\n| OPI — listed Indian companies | ≤50% of net worth (last audited balance sheet) | Available; not extended to unlisted cos/individuals | OI Rules 2022 |\n| ODI — all Indian entities | ≤400% of net worth | Available | OI Rules 2022 |\n| GIFT-IFSC fund route (resident individuals) | Counts against USD 250,000 LRS cap | ≈5 outbound retail funds live (min ≈USD 5,000); IFSC PMS-style min ≈USD 75,000 (approx.) | Press, mid-2026 |\n| Gifting of foreign securities between resident relatives | No specific FEMA value cap | Permitted since 2022 OI framework | OI Rules 2022 |\n| MF overseas investment (industry route, not client-direct) | USD 7 bn industry / USD 1 bn ETF / USD 1 bn per-AMC | Near-exhausted; several AMCs pausing fresh subscriptions through 2026 | RBI/SEBI, Feb-2022 framework |\n\n*Note: GIFT-IFSC fund minimum tickets and fund count are approximate — sourced from a single press summary, not cross-checked against IFSCA's live fund registry.*\n\n\n## T10. Market structure — settlement, block/bulk deals, ETF and G-sec access (as of 12-Sep-2026)\n\n*Accuracy: partially_verified*\n\n| Mechanism | Rule | Source |\n|---|---|---|\n| Equity settlement — standard | Mandatory T+1 since Jan-2023 | Multiple press |\n| Equity settlement — optional fast lane | Optional T+0 for top-500 stocks by market cap (phased from Dec-2024, largely complete by 2026); T+1 remains available/mandatory fallback | SEBI circulars, press |\n| Block deal window | ₹25 crore minimum order (raised from ₹10 cr); windows 8:45-9:00am (ref=prior close) and 2:05-2:20pm (ref=VWAP 1:45-2:00pm); ±3% price band; compulsory delivery | SEBI 2026 framework |\n| Bulk deal disclosure | Trade quantity >0.5% of a company's listed shares in a day triggers same-day exchange disclosure (long-standing rule; not re-verified against a primary source this session) | Secondary sources — approx. |\n| Corporate bond settlement | T+0 to T+2 via RFQ/CBRICS/CCIL, funds/securities pay-in by 5:45pm | NSE Clearing |\n| G-sec/SDL/T-bill settlement | T+1 only | NSE Clearing |\n| G-sec secondary trading venue | RBI NDS-OM (institutional OTC) + NSE/BSE exchange segments; broker access to NDS-OM widened Feb-2025 | RBI/press |\n| RBI Retail Direct | Free G-sec/SDL/T-bill access for individuals, no broker/demat; 361,402 accounts by Apr-2026 (+54% YoY) | Press, Apr-2026 |\n| ETF creation/redemption | Creation-unit lot dealing directly with AMC (e.g., Nifty BeES: 50,000 units); ≥₹25 cr large-investor threshold exempt from exchange-only routing; ≥2 market makers required per ETF | SEBI 2022 circular, eff. May-2023 |\n| Corporate bond RFQ mandate | MFs/PMS: ≥10% of secondary CB trades via RFQ (monthly rolling); FPIs: ≥10% quarterly | SEBI circulars 2021-2023 |\n\n*Note: Bulk-deal 0.5% threshold is included as commonly-cited market knowledge but explicitly flagged low-confidence/approx. since it could not be matched to a primary NSE/SEBI circular this session.*\n\n\n## Supplementary facts not fully captured in the tables above\nThe tables (T1-T10) render the load-bearing figures. The companion JSON's `facts` array carries all 95 atomic facts with individual source URLs, confidence and as-of dates — the ones below are the material items the tables compress or omit.\n- **PMS industry scale** — PMS industry AUM grew from ₹18.07 lakh crore (Apr-2019) to ₹42.61 lakh crore (May-2026); registered portfolio managers grew from 226 to 515 over the same period: **₹42.61 lakh cr AUM, 515 PMs (May-2026)** (medium, 2026-05-01, x.com)\n- **2026 draft PMS overhaul — status** — SEBI's 23-Jul-2026 consultation paper proposing a comprehensive PMS Regulations 2026 overhaul (MF-PMS category at ₹25 lakh, foreign securities, to-be-listed securities, unhedged short via derivatives up to 50% of AUM within 1.25x total exposure) closed for comment 13-Aug-2026 and is NOT yet notified as law: **Draft/consultation stage only, not law as of 12-Sep-2026** (high, 2026-08-13, corporate.cyrilamarchandblogs.com)\n- **LVAI relaxations** — LVAI clients and their PM may enter into a bespoke agreement (Schedule IV terms not mandatory), giving flexibility on fees, exit terms and other contractual provisions not available to a standard ₹50 lakh client: **Bespoke agreement permitted** (medium, 2021-12-21, compfie.aparajitha.com)\n- **Category II private credit yields** — Category II AIF mid-market corporate-lending strategies have generated gross portfolio yields of ~16-20% p.a., with net investor returns of ~12-16% after fees (2026): **~12-16% net p.a. (approx.)** (low, 2026-08-01, ey.com)\n- **AIF unit dematerialisation** — SEBI has mandated that all new AIF schemes issue units in dematerialised form: **Mandatory demat for new schemes** (medium, 2024-01-01, sarafpartners.com)\n- **Capital loss set-off/carry-forward** — Short-term capital loss can be set off against both STCG and LTCG; long-term capital loss only against LTCG; both carried forward 8 assessment years: **8-year carry-forward** (high, 2026-01-01, cleartax.in)\n- **FIFO for demat securities** — Cost of acquisition and holding period for dematerialised securities are determined on a First-In-First-Out (FIFO) basis per security per demat account (s.45(2A); CBDT Circular 768 of 24-Jun-1998 applies FIFO per demat account, not across accounts): **FIFO per demat account** (high, 1998-06-24, incometaxindia.gov.in)\n- **Dividend/bonus stripping anti-avoidance** — s.94(7): loss on securities/units bought within 3 months before and sold within 3 months (securities)/9 months (units) after a dividend record date is disallowed up to the dividend received; s.94(8) (extended to equity shares from 1-Apr-2023) similarly disallows bonus-stripping losses: **3m/9m dividend-stripping window; bonus-stripping covers shares from FY2023-24** (medium, 2023-04-01, learn.quicko.com)\n- **PMS fee deductibility (case law)** — PMS management fees have been litigated on deductibility from capital gains under s.48; tribunal rulings are mixed/fact-specific — fixed PMS fee is often disallowed as a mere overlay cost (not 'wholly and exclusively' for transfer) while some rulings allow it; no blanket statutory deduction exists: **Contested/fact-specific — no blanket deduction** (medium, 2024-01-01, bcajonline.org)\n- **Income-tax Act 2025 — section renumbering** — The new Income-tax Act 2025 (Presidential assent 21-Aug-2025) renumbers s.112A (equity LTCG) as s.198 and s.111A (equity STCG) as s.196; the substantive 12.5%/20% rates and holding periods are unchanged: **s.112A→198; s.111A→196** (medium, 2025-08-21, tax2win.in)\n- **Company tax rate reference (s.115BAA)** — A domestic company opting for the concessional regime under s.115BAA is taxed at 22% (effective ~25.17% with surcharge+cess) on ordinary income; capital-gains rates (12.5%/20%) apply separately with a lower surcharge cap: **≈25.17% effective (s.115BAA)** (medium, 2026-01-01, taxmann.com)\n- **Gifting of foreign securities** — The 2022 Overseas Investment framework newly permits gifting of foreign securities between resident individuals who are relatives, without a specific value cap under FEMA: **Permitted, no specific FEMA cap** (low, 2022-08-22, azbpartners.com)\n- **GIFT City outbound funds (2026)** — By mid-2026 India had ~5 GIFT-IFSC 'outbound retail' funds live for resident investment (minimum ticket ~USD 5,000), and IFSC PMS-style structures with a minimum ticket of ~USD 75,000: **USD 5,000 (retail fund) / USD 75,000 (IFSC PMS) — approx.** (low, 2026-07-01, valueresearchonline.com)\n- **NSE cash-market turnover (FY26)** — Average daily turnover (ADTV) in the NSE+BSE equity cash segment fell ~6% YoY to ₹1.13 trillion in FY26 (from ₹1.21 trillion in FY25): **₹1.13 trillion/day (FY26)** (medium, 2026-04-01, business-standard.com)\n- **India ETF industry scale (2026)** — India's ETF segment held ~₹8.75 lakh crore AUM across ~260 funds by early 2026, with average daily ETF turnover rising from ₹237 crore (FY21) to over ₹4,200 crore (Apr-2025 to Feb-2026), an ~18x rise in 5 years: **≈₹8.75 lakh cr AUM; ₹4,200 cr avg daily turnover** (low, 2026-02-01, equityresearchindia.com)\n- **RBI Retail Direct scale (2026)** — RBI Retail Direct (launched Nov-2021, no broker/demat/fee needed for G-secs/SDLs/T-bills) crossed 361,402 accounts by Apr-2026 (+54% YoY); NDS-OM Retail secondary-market volumes nearly tripled to ₹9,167 crore in Apr-2026 from ₹2,322 crore a year earlier: **361,402 accounts; ₹9,167 cr monthly secondary volume (Apr-2026)** (medium, 2026-04-01, primeinvestor.in)\n- **NDS-OM access** — G-secs trade OTC via RBI's NDS-OM screen-based order-matching system (primary institutional venue) alongside NSE/BSE exchange-traded G-sec segments; RBI opened NDS-OM access to stockbrokers (for retail-client routing) from Feb-2025: **NDS-OM + exchange segments; broker access from Feb-2025** (medium, 2025-02-07, business-standard.com)\n- **SIF AUM growth** — SIF category AUM grew from ~₹2,010 crore (Oct-2025) to ~₹9,711 crore (Feb-2026) to ₹13,814 crore (May-2026); hybrid long-short strategies account for ~76% of SIF assets: **₹13,814 cr AUM (May-2026)** (medium, 2026-05-01, finnovate.in)\n- **SIF compliance reporting 2026** — SEBI introduced standardised compliance-reporting formats for SIFs in January 2026, tightening supervisory oversight of the ₹10-lakh threshold monitoring introduced July 2025: **Standardised reporting from Jan-2026** (medium, 2026-01-01, business-standard.com)\n- **Digital onboarding timeline** — Digital onboarding cuts client-activation time from ~7-10 working days (physical) to ~2-3 working days: **2-3 working days digital vs 7-10 physical** (medium, 2024-05-02, taxguru.in)\n- **Outsourcing prohibition** — PM shall not invest client funds based on the advice of any other entity (Reg 24(10)); SEBI's May-2026 First Global order held 'investment decisions' include quantities, timing and client-level execution — outsourcing any of these is a violation: **Absolute prohibition on outsourcing core investment function** (high, 2026-05-26, moneylife.in)\n- **MF overseas cap — no increase announced** — As of mid-2026 there is no announced plan to raise the USD 7 billion cap, despite repeated AMFI requests: **No increase as of Jun-2026** (medium, 2026-06-01, mfreturns.com)\n\n## Things commonly believed but wrong or outdated (relevant to this mandate)\n\n1. ‘Non-discretionary’ just means light-touch oversight — wrong: NDPMS legally requires an evidenced client direction/consent before every trade; the PM cannot exercise independent investment discretion at all (Reg 2 definitions, Reg 24).\n2. SGBs are still available to buy fresh from the government — wrong: no new tranche has been issued since Feb-2024; only secondary-market purchase or holding existing bonds to 8-year maturity is possible, and Budget 2026 narrowed the redemption tax exemption to original subscribers who hold to maturity.\n3. Debt mutual funds still get LTCG/indexation benefits after a long holding period — wrong: debt/'specified' MF units bought on or after 1-Apr-2023 get NO long-term capital gains treatment at all; all gains are deemed short-term and taxed at slab rate under s.50AA regardless of holding period.\n4. Any asset held long-term gets indexation-adjusted LTCG — wrong: indexation was removed economy-wide for transfers on/after 23-Jul-2024 (Finance Act 2024); LTCG is now a flat 12.5% without indexation across virtually all asset classes.\n5. AIF Category III gets the same pass-through tax treatment as Category I/II — wrong: only Cat I/II get s.115UB pass-through; Cat III is taxed at the fund level, with business/F&O income taxed near the Maximum Marginal Rate (~42.7% for an indeterminate trust).\n6. AIF minimum investment is always ₹1 crore — wrong: employees/directors of the AIF/manager can invest from ₹25 lakh, and Accredited Investors are exempt from the ₹1 crore floor entirely.\n7. SIF is basically a mutual fund with a slightly higher ticket size — wrong: while SIF sits under the SEBI (Mutual Funds) Regulations umbrella, it is a distinct product line permitting long-short strategies and unhedged derivative exposure up to 25% of net assets, which ordinary MF schemes cannot do; minimum entry is ₹10 lakh at the PAN level across all of an AMC's SIF strategies, not per scheme.\n8. PMS clients can still enter with ₹25 lakh — wrong: the current PMS Regulations (2020, in force) set the minimum client investment at ₹50 lakh (except LVAI's ₹10 crore agreement route); ₹25 lakh was an older, now-superseded threshold.\n9. There is a SEBI-mandated ceiling on PMS management/performance fee percentages — wrong: SEBI prescribes only the high-water-mark computation method for performance fees, the 0.50% operating-expense cap, and the graded exit-load schedule; the headline fee % itself is a bilateral contractual matter.\n10. Block deals still have a ₹10 crore minimum — wrong: SEBI's 2026 revamp raised the minimum block-deal order size to ₹25 crore and added a same-day ±3% reference-price band with compulsory delivery.\n11. T+0 settlement is now the norm for Indian equities — wrong: T+0 remains strictly optional and limited to the top ~500 stocks by market cap; T+1 is the mandatory baseline for everything else, and brokers may charge extra for T+0.\n12. Mutual funds are banned from investing overseas — wrong: there is no ban, only an industry-wide USD 7 billion aggregate cap (plus USD 1bn ETF and USD 1bn per-AMC sub-caps) that is periodically exhausted, causing individual AMCs to pause fresh subscriptions rather than a permanent prohibition.\n13. A portfolio manager can invest client money in another PMS's strategy or in the PM's own group PMS product freely — wrong: PMS 'units' are not classified as securities the same way MF units are, and Reg 24(10)'s bar on investing based on 'the advice of any other entity' plus the outsourcing prohibition (reinforced by SEBI's May-2026 enforcement order) makes routing client funds into another PM's discretion a live enforcement risk, not a routine option.\n14. Accredited-investor status, once granted, is permanent — wrong: accreditation has a limited validity requiring periodic renewal, and both the qualifying thresholds and the certification format have changed multiple times (2021 introduction, Jan-2026 net-worth-certificate change, proposed Aug/Sep-2025 new routes) — treat it as a status to actively track, not a one-time checkbox.\n15. The July 2026 SEBI consultation paper (MF-PMS category, foreign securities, 50% unhedged short via derivatives) is already the law governing PMS — wrong: as of 12-Sep-2026 it is a draft that closed for comment on 13-Aug-2026 and has not been notified; today's binding rules remain the 2020 PMS Regulations plus the 16-Jul-2025 Master Circular.\n16. REIT/InvIT distributions are simply 'tax-free dividends' — wrong: a single distribution is typically a blend of interest (taxable at slab, 10% TDS), dividend, rental/other income and return-of-capital/'repayment of debt' components, each with different tax treatment reported on Form 64B; the 2026 dividend-exemption change is itself a pending Bill, not yet confirmed enacted.\n17. Corporate bond RFQ routing is only an FPI/mutual-fund requirement — wrong: SEBI-registered PMS (discretionary and non-discretionary alike) must also route at least 10% of secondary-market corporate-bond trades by value through the exchange RFQ platform on a rolling basis, from 1-Apr-2022.\n\n## Sources (all URLs cited above, deduplicated)\n\n1. https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html\n2. https://taxguru.in/sebi/sebi-portfolio-managers-regulations-2020.html\n3. https://www.sebi.gov.in/legal/regulations/aug-2022/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-august-22-2022-_62407.html\n4. https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf\n5. https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee\n6. https://www.sebi.gov.in/legal/regulations/aug-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-august-18-2023-_76366.html\n7. https://taxguru.in/sebi/sebi-circular-digital-onboarding-portfolio-managers.html\n8. https://www.business-standard.com/amp/article/markets/pms-to-undertake-10-transactions-in-corp-bonds-via-rfq-platform-sebi-121120901140_1.html\n9. https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/\n10. https://www.moneylife.in/article/sebi-slaps-42-lakh-fine-on-first-global-finance-for-outsourcing-core-pms-functions-and-decisions-bars-from-taking-new-clients-for-21-days/80583.html\n11. https://corporate.cyrilamarchandblogs.com/2026/08/sebis-proposed-overhaul-of-the-pms-regulatory-framework/\n12. https://x.com/ActusDei/status/2080290312644350431\n13. https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html\n14. https://www.sebi.gov.in/sebi_data/meetingfiles/jul-2021/1626434827210_1.pdf\n15. https://www.altportfunds.com/sebi-accredited-investor-certificate-india/\n16. https://www.harunraaj.com/blog/net-worth-certificate-sebi-accredited-investor-january-2026\n17. https://www.thehawk.in/news/economy-and-business/sebi-proposes-rs-5-crore-securities-assets-route-for-accredited-investor-status\n18. https://taxguru.in/sebi/portfolio-management-services-accredited-investors.html\n19. https://compfie.aparajitha.com/circular-on-portfolio-management-services-for-accredited-investors-dated-21-12-2021-sebi/\n20. https://elementone.fund/sebi-aif-regulations-2026-guide/\n21. https://treelife.in/finance/alternative-investment-funds-in-india/\n22. https://www.pmsaifworld.com/aif-category-3/\n23. https://www.finnovate.in/learn/blog/aif-taxation-india\n24. https://www.lexology.com/library/detail.aspx?g=a8345261-0ec2-4031-b2e1-211c964e83cd\n25. https://treelife.in/taxation/category-iii-aif-taxation-in-india/\n26. https://www.ey.com/en_in/insights/strategy-transactions/onwards-and-upwards-a-positive-outlook-for-private-credit-in-india\n27. https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/\n28. https://www.sebi.gov.in/legal/circulars/dec-2025/modalities-for-migration-to-ai-only-schemes-and-relaxations-to-large-value-funds-for-accredited-investors-under-sebi-alternative-investment-funds-regulations-2012_98244.html\n29. https://sarafpartners.com/sebi-issues-frameworks-for-angel-funds-and-co-investment-vehicles-under-the-sebi-aif-regulations/\n30. https://treelife.in/finance/aif-valuation-in-india/\n31. https://www.business-standard.com/amp/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html\n32. https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained\n33. https://groww.in/blog/specialised-investment-funds\n34. https://www.taxtmi.com/tmi_blog_details?id=802553\n35. https://www.business-standard.com/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html\n36. https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn\n37. https://mfreturns.com/blog/why-international-mutual-funds-closed-sebi-cap-2026/\n38. https://www.indmoney.com/blog/mutual-funds/sebi-new-mutual-fund-cut-off-timings-explained\n39. https://groww.in/blog/sebi-rolls-out-graded-exit-load-on-liquid-funds-what-does-it-mean-for-you-as-an-investor\n40. https://groww.in/blog/arbitrage-fund-vs-liquid-fund\n41. https://lakshmishree.com/blog/exit-load-in-mutual-fund/\n42. https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html\n43. https://groww.in/etfs/reliance-etf-nifty-bees\n44. https://vinodkothari.com/2020/08/sebi-requires-mutual-funds-to-carry-out-10-trades-in-corporate-bonds-through-rfq-platform/\n45. https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax\n46. https://taxgarden.in/blog/income-tax-on-sale-of-listed-shares-stcg-ltcg-india-ay-2026-27\n47. https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27\n48. https://taxguru.in/income-tax/amendment-specified-mutual-fund-definition-section-50aa-budget-2024.html\n49. https://www.finnovate.in/learn/blog/debt-fund-taxation-india-fair-treatment\n50. https://www.finnovate.in/learn/blog/etf-taxation-india\n51. https://taxguru.in/income-tax/deeming-gains-asset-section-50aa-lens.html\n52. https://taxguru.in/income-tax/capital-gains-income-tax-act-2025-tax-period-2026-27.html\n53. https://www.caalley.com/news-updates/budget-2026/budget-2026-changes-sgb-tax-rules-ends-blanket-capital-gains-exemption\n54. https://www.taxscan.in/top-stories/sovereign-gold-bond-tax-rules-for-itr-ay-2026-27-interest-redemption-capital-gains-and-reporting-1448954\n55. https://goldenpi.com/blog/bond-news/sovereign-gold-bond-scheme-discontinued-for-new-issues/\n56. https://taxgarden.in/blog/reit-invit-taxation-india-ay-2026-27-section-115ua-distributions-capital-gains\n57. https://upstox.com/news/personal-finance/tax/reit-in-vit-dividend-income-what-is-tax-free-under-the-taxation-and-other-laws-amendment-bill-2026/article-198414/\n58. https://groww.in/blog/what-is-stt\n59. https://upstox.com/news/personal-finance/tax/explained-how-the-stt-hike-on-equity-futures-and-options-affects-traders-and-investors/article-189260/\n60. https://ipobaazi.com/stamp-duty-on-mutual-funds/\n61. https://www.incometaxindia.gov.in/w/section-45-64\n62. https://learn.quicko.com/dividend-stripping-section-94-7-income-tax-act\n63. https://cleartax.in/s/set-off-carry-forward-capital-losses\n64. https://bcajonline.org/journal/allowability-of-portfolio-management-fees-in-computing-capital-gains/\n65. https://tax2win.in/guide/section-112a-income-tax-ltcg-exemption\n66. https://www.taxmann.com/post/blog/tax-rates-surcharge-cess\n67. https://www.indmoney.com/learn/us-stocks/what-is-lrs-liberalised-remittance-scheme\n68. https://cleartax.in/s/tax-on-foreign-remittance\n69. https://corporate.cyrilamarchandblogs.com/2022/09/new-odi-regime-what-rbi-needs-to-clarify/\n70. https://www.dealplexus.com/blog/overseas-direct-investment-by-indian-companies-rbi-rules-and-lrs-limits\n71. https://www.azbpartners.com/bank/gift-of-foreign-securities-to-indian-individuals-a-fema-refresher/\n72. https://www.valueresearchonline.com/stories/226923/indians-get-new-route-worlds-markets-gift-city/\n73. https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore\n74. https://www.equityresearchindia.com/post/block-deals-and-bulk-deals-why-big-institutional-trades-move-sentiment\n75. https://razorpay.com/blog/settlement-cycle-in-india-t1-t0-impact/\n76. https://moneylife.in/article/sebi-introduces-optional-t0-settlement-for-top500-stocks/75841.html\n77. https://www.nseclearing.in/clearing-settlement/corporate-bond/settlement-schedule\n78. https://www.business-standard.com/amp/markets/news/rbi-opens-nds-om-platform-for-stock-brokers-to-boost-retail-participation-125020701711_1.html\n79. https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/\n80. https://www.business-standard.com/markets/news/trading-volumes-fy26-regulation-stt-rbi-impact-126040200232_1.html\n81. https://www.equityresearchindia.com/post/gold-fund-and-gold-etf-aum-trends-amid-recent-gold-price-volatility-july-2026\n82. https://taxguru.in/sebi/performance-benchmarking-reporting-performance-portfolio-managers.html\n83. https://aifpms.com/blog/performance-reporting-benchmarking-by-portfolio-manager/"
+}

@@ -1,0 +1,3824 @@
+{
+ "matrix": [
+  {
+   "item": "Onboard every investing entity as LVAI (≥₹10 Cr agreement)",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Unlocks bespoke agreement, 100% unlisted headroom, CIV eligibility; a commercial relaxation only — it does not itself resolve the standing-instruction discretion question.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Legal-entity structuring proposal for the ₹500 Cr (individual/HUF/trust/holding co)",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Every LVAI, AIF/SIF minimum, tax rate and FEMA route downstream depends on entity choice; currently unresolved across all seven design notes per compliance review.",
+   "owner": "Compliance/Legal",
+   "phase": "0-30d"
+  },
+  {
+   "item": "AML/KYC/PMLA beneficial-ownership and source-of-funds framework",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "A ₹500 Cr single-mandate inflow triggers enhanced PMLA due diligence; absent from every design note reviewed — critical gap flagged by compliance critique.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Monthly omnibus Rebalance Proposal Pack (RPP) as sole consent instrument",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Batches 50+ line items into one lawful, auditable client-directed instruction, satisfying Reg 24's per-trade direction requirement without per-trade friction.",
+   "owner": "PM/Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Narrow, revocable Standing Instructions Register (sweeps, reinvestment, tranche execution, hedge roll)",
+   "domain": "Regulatory",
+   "verdict": "should",
+   "ndpms_feasibility": "unclear_verify",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "event-driven",
+   "rationale": "Removes trivial friction on mechanical actions; downgraded from 'must' to 'should, pending legal opinion' per compliance critique until counsel/Informal Guidance clears it.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Pre-authorised sell-side de-risk trigger that self-executes without fresh consent (before legal clearance)",
+   "domain": "Regulatory",
+   "verdict": "avoid",
+   "ndpms_feasibility": "unclear_verify",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "event-driven",
+   "rationale": "Regulatory and risk notes flag this unresolved; rebalancing/ops marked it 'must' in error. Route via same-day ad hoc mini-RPP until a legal opinion or SEBI Informal Guidance clears it.",
+   "owner": "Compliance",
+   "phase": "—"
+  },
+  {
+   "item": "Client-name segregated demat and bank accounts, no pooling",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "PMS Regulations require per-client custody; pooling this client's assets with any other client is a straightforward, easily-inspected breach.",
+   "owner": "Ops/Custodian",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Purpose-segregated demat accounts (Core/Tactical/Harvest) for FIFO management",
+   "domain": "Regulatory",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "FIFO is mandatory per demat account (Sec 45(2A)); segregation is the only lever for tax-aware lot selection and must exist before the first trade, not retrofitted later.",
+   "owner": "Ops",
+   "phase": "0-30d"
+  },
+  {
+   "item": "In-specie transfer-in of existing holdings at onboarding",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Avoids a day-one tax event and preserves LTCG holding periods versus liquidating and re-buying into the NDPMS account.",
+   "owner": "Ops/Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Tax-aware rebalance hurdle rule (no STCG realisation unless alpha exceeds the tax gap)",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Every 1% of AUM realised as STCG instead of LTCG costs ~1.8bps of NAV; this rule is the single largest controllable tax lever in the operating model.",
+   "owner": "PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Associate/group-security cap at 10% IPS (vs 15/25/30% SEBI ceiling), one-time consent + IC minute",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "event-driven",
+   "rationale": "Angel One is both group and executing broker; a tighter self-imposed cap plus real-time alert monitoring manages the structural conflict a captive wealth arm faces at inspection.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "SEBI SCORES / Ombudsman grievance-redressal process and SLA",
+   "domain": "Regulatory",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "Standard registered-PM obligation, absent from every design note reviewed; needed in the Disclosure Document and client communication cadence.",
+   "owner": "Compliance",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Third-party PMS booked strictly outside NDPMS AUM, look-through reporting only",
+   "domain": "Regulatory",
+   "verdict": "must",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "Reg 24 bars investing on another entity's advice; three critics independently flagged a draft that priced a PMS sleeve inside the ₹500 Cr book — corrected here to sit outside AUM.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Derivatives only as a pre-approved tail-hedge protocol, ≤25% notional, no leverage",
+   "domain": "Regulatory",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Hedging/rebalancing is the only permitted derivative purpose under Reg 24; monthly RPP pre-approves notional and premium budget so hedge rolls need no fresh per-trade consent.",
+   "owner": "Risk/PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "International sleeve via Indian-listed ETFs/FoFs only, ≤1% iNAV premium",
+   "domain": "Regulatory",
+   "verdict": "should",
+   "ndpms_feasibility": "restricted",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Foreign securities are not yet permitted inside PMS; the USD 7bn MF overseas cap is near-exhausted, so buy-only-at-low-premium discipline avoids overpaying when creations are paused.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Adopt one canonical Model Master (16-line Moderate/Aggressive sleeve tables)",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Four documents independently restated the SAA with different weights; one authoritative table (referenced, not re-derived) is required before any risk limit or cost budget is sized.",
+   "owner": "IC/CIO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Core beta via Nifty 50/100 ETFs + index fund, AP/creation-unit route ≥₹25 Cr",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "3-10bps TER, unlimited capacity, and AP dealing removes on-screen impact and price risk during the consent lag for the largest single sleeve (22-25% of AUM).",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Factor tilt sleeve (Quality/Low-Vol/Momentum index funds), momentum capped 2-4%",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Cheapest implementation of house style tilts; momentum's ~-60% historical drawdown and near-zero 1-yr return justify a hard cap, not a core weight.",
+   "owner": "PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Direct-equity NIFTY-750 scorecard book, 20-25 names, score×liquidity sizing",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "This is where the house's own quant alpha is owned; liquidity-capped sizing (≤20% of 5-day ADV, ≤3% NAV/name) keeps each consent-line trade executable within the monthly window.",
+   "owner": "PM/Research",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Active MF sleeve restricted to mid/small-cap, direct plans, ≤1% of scheme AUM",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "rationale": "Alpha persistence evidence exists in Indian mid/small, not large-cap; the 1% scheme-AUM ticket cap preserves exit liquidity and avoids becoming a capacity problem.",
+   "owner": "Research",
+   "phase": "30-90d"
+  },
+  {
+   "item": "International equity 5% (Moderate)/7% (Aggressive) via India-listed ETFs/FoFs",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "restricted",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Reconciled to the allocation model's own sleeve tables (not the 7.5% figure used elsewhere); park in arbitrage when AMC overseas-cap windows are paused.",
+   "owner": "PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Fixed income via target-maturity funds + direct G-sec/SDL, not debt mutual funds",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Debt MFs are taxed as deemed short-term at slab (~39%) regardless of holding period; listed paper held >12m gets 12.5% LTCG — a permanent, avoidable tax drag otherwise.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Cap AA-rated corporate credit at ≤10% of the fixed-income sleeve",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "The original Moderate model's AA line (4% of AUM = 16.7% of the FI sleeve) breached the risk framework's own 90%-AAA/AA+ floor; trimmed here to close that inconsistency.",
+   "owner": "Risk/PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Gold 4-5% via ETF (AP route), silver capped at ≤1% of AUM",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Gold's ~-0.10 correlation to Nifty is the cheapest tail offset; silver's ~27% volatility and -54% historical drawdown make it unsuitable beyond a tactical sliver.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Listed REIT/InvIT sleeve, 4-5 names, 2-4% of AUM",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "quarterly",
+   "rationale": "6-10% distribution yield with partial tax-free return of capital and only ~0.35 correlation to Nifty 50.",
+   "owner": "PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "AIF Cat II private credit, ~5% of AUM, 2 managers",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "quarterly",
+   "rationale": "NDPMS's 25% unlisted allowance is the mandate's structural edge over discretionary PMS; pass-through taxation and 11-15% net carry are largely uncorrelated to listed markets.",
+   "owner": "Research/PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "AIF Cat III / SIF hybrid long-short, 2.5-5% of AUM, prefer SIF where strategies overlap",
+   "domain": "Allocation",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "rationale": "SIF gets investor-level ~12.5% LTCG taxation versus Cat III's fund-level tax up to ~42.7% MMR on identical gross returns — a ~2pp post-tax edge on the same idea.",
+   "owner": "Research/PM",
+   "phase": "90-180d"
+  },
+  {
+   "item": "Deployment ladder: 8 weekly equity-like tranches (₹37.5 Cr) + 4 fixed-income tranches (₹30 Cr) + alternatives over 6-18 months, acceleration via pre-drafted mini-RPPs (Phase 1) / SI #7 (Phase 2)",
+   "domain": "Allocation",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Reduces cash-drag on a ~20x P/E, 8% still-below-peak market while keeping every acceleration step pre-authorised so a sell-off does not need a fresh mid-event consent.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Momentum factor allocation above 5% standalone (Moderate)",
+   "domain": "Allocation",
+   "verdict": "avoid",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "monthly",
+   "rationale": "Semi-annual reconstitution turnover, ~-60% historical drawdowns at regime turns and a near-zero 1-year return make this a size-limited satellite, not a core holding.",
+   "owner": "PM",
+   "phase": "never"
+  },
+  {
+   "item": "Pooled/omnibus execution across clients or netting against Allocate books",
+   "domain": "Allocation",
+   "verdict": "avoid",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "daily",
+   "rationale": "PMS Regulations require client-name holding and a per-client instruction trail; aggregating orders in a house account is a straightforward custody/consent breach.",
+   "owner": "Dealing",
+   "phase": "never"
+  },
+  {
+   "item": "Hybrid band design (Strategy H): monthly review, trade breaches to inner band edge, plus event overlay",
+   "domain": "Rebalancing",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Simulation shows ~4.4% turnover and ~12bps p.a. cost+tax versus ~52bps for naive monthly-full rebalancing, while an event overlay still catches large excursions within 1-2 days.",
+   "owner": "PM/Risk",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Minimum RPP trade ticket ₹1 Cr (20 bps of AUM); every line ≥₹1.5 Cr except silver",
+   "domain": "Rebalancing",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Below this size transaction cost and consent overhead exceed the tracking-error benefit of trading; smaller drifts wait for the next monthly cycle.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Cash-flow-first rebalancing: inflows/dividends fund underweights before any overweight is sold",
+   "domain": "Rebalancing",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Closes drift at zero transaction cost and zero realised tax on a growing book; must be a pre-agreed standing instruction, not a per-month judgment call.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Route ETF legs ≥₹25 Cr via AP/AMC-direct; direct-equity legs ≥₹25 Cr via block-deal window",
+   "domain": "Rebalancing",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Saves ~10bps versus on-screen execution on a large ETF switch and avoids market impact on large single-stock tickets; requires an empanelled AP relationship before go-live.",
+   "owner": "Dealing",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Participation cap ≤10-15% of ADV/session; VWAP/TWAP staggering for tickets >2% of ADV",
+   "domain": "Rebalancing",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Controls market impact at ₹500 Cr scale without needing block-deal-sized tickets every month; keeps slippage within the 15bps-vs-arrival budget.",
+   "owner": "Dealing",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Annual LTCG-exemption harvesting and FY-end loss-netting review",
+   "domain": "Rebalancing",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "annual",
+   "rationale": "Direct, low-risk tax alpha; LTCG losses can only offset LTCG gains, so netting must be planned client-wide before 31 March, not sleeve-by-sleeve.",
+   "owner": "PM/Compliance",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Deployment-ladder acceleration as its own named Standing Instruction with a legal-opinion gate",
+   "domain": "Rebalancing",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "A 12-week, ~50-line auto-accelerating deployment authorised by one week-0 signature is a stronger standing-discretion fact pattern than routine band trades; it was missing from the SI register entirely.",
+   "owner": "Compliance/PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "AIF capital-call funding as a pre-authorised standing sweep from the liquid/arbitrage sleeve",
+   "domain": "Rebalancing",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "event-driven",
+   "rationale": "A missed ~10-business-day drawdown notice risks PPM default remedies (forced sale, forfeiture); this closes a real, avoidable money-losing gap the ops review identified.",
+   "owner": "Ops/PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Re-run the rebalancing Monte Carlo with common random numbers before relying on exact TE ranking",
+   "domain": "Rebalancing",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "The current independent-random-path simulation shows tracking error falling as average drift rises across matched strategy pairs — a sign of simulation noise, not a real result.",
+   "owner": "Risk/Quant",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Intraday trading, HFT overlays or options-overwriting inside the client account",
+   "domain": "Rebalancing",
+   "verdict": "avoid",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "daily",
+   "rationale": "Structurally incompatible with a per-instruction consent regime; if wanted, express it inside a Cat III AIF or SIF wrapper where the manager holds discretion.",
+   "owner": "Dealing",
+   "phase": "never"
+  },
+  {
+   "item": "14-limit two-tier framework (sleeve/name/sector/AIF/manager/3P-PMS/credit/duration/illiquid/derivative/liquidity/FX/associate/absolute drawdown)",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Two-tier house/legal limits with passive-vs-active breach handling give compliance and the IC one document to pre-clear every RPP against.",
+   "owner": "Risk/Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Parametric + historical VaR/CVaR and EWMA volatility (λ=0.94), daily",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Parametric VaR alone understates fat-tailed Indian equity/credit risk (2018 IL&FS, 2020 COVID); the historical cross-check and same-day EWMA update catch regime shifts faster.",
+   "owner": "Risk",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Tail-risk dashboard as a fifth tab on the existing IPS/attribution/deployment HTML suite",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Shares the house palette and data pipeline rather than duplicating plumbing; NDPMS removes the option to react intraday, so the dashboard must surface breaches early enough for the 2-day consent SLA to still work.",
+   "owner": "Risk",
+   "phase": "30-90d"
+  },
+  {
+   "item": "12-indicator early-warning board with USDINR anchored at the verified ~95.79 level",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Corrects a stale ₹88/USD reference used in three design notes against the verified 11-Sep-2026 spot of ~95.79, which otherwise misjudges every FX-move threshold from day one.",
+   "owner": "Risk",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Partial tail hedge: 95/85 put spreads on 25-40% of the equity sleeve, premium ≤1% AUM p.a., initiated when India VIX <15 (5% OTM put is the costing reference only)",
+   "domain": "Risk",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "quarterly",
+   "rationale": "At ~290bps p.a. (today's low VIX) the programme pays off strongly in sharp crashes but is a running cost in grinding regimes — partial, not full, notional coverage is the efficient size.",
+   "owner": "Risk/PM",
+   "phase": "90-180d"
+  },
+  {
+   "item": "Cat III/SIF gross-notional (not NAV-only) look-through feeding the illiquid-aggregate limit",
+   "domain": "Risk",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "If Cat III leverage runs up to ~2x NAV, a nominal 4% AUM allocation could be ₹40 Cr of true gross exposure — materially changing concentration and VaR contribution versus a NAV-only view.",
+   "owner": "Risk",
+   "phase": "30-90d"
+  },
+  {
+   "item": "2% always-on cash/arbitrage liquidity buffer",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Funds the first days of any consent-latency gap in a crisis without touching the AIF or equity book.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Legal opinion / SEBI Informal Guidance on standing-instruction and de-risk-trigger design before go-live",
+   "domain": "Risk",
+   "verdict": "must",
+   "ndpms_feasibility": "unclear_verify",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "The single biggest legal risk in the whole framework is recharacterisation as disguised discretion; better resolved before an inspection does it for the firm.",
+   "owner": "Compliance/Legal",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Tactical gold overweight (+2-3pp vs SAA) inside the existing rebalance band",
+   "domain": "Risk",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "No derivatives, no extra consent friction beyond the normal RPP line; gold rallied 30-38% in the GFC and tariff-shock windows.",
+   "owner": "PM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Full-notional (100% AUM) unhedged derivative overlay",
+   "domain": "Risk",
+   "verdict": "avoid",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "low",
+   "cadence": "quarterly",
+   "rationale": "Running cost of ~290bps+ p.a. (~₹14.5 Cr/yr) on the whole book for a payoff that only shows up in sharp crashes and is a pure loss in the more common grinding regime.",
+   "owner": "Risk",
+   "phase": "never"
+  },
+  {
+   "item": "Trigger-based automatic de-risking executed without a fresh per-instance client consent",
+   "domain": "Risk",
+   "verdict": "avoid",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "event-driven",
+   "rationale": "This is disguised discretion under NDPMS and the single most likely finding in a SEBI inspection of the risk framework.",
+   "owner": "Compliance",
+   "phase": "never"
+  },
+  {
+   "item": "Daily TWRR engine, one fixed cash-flow convention, feeding the R0-R4 return hierarchy",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "A single engine prevents spreadsheet forks; separating paper, gross, net, and post-tax returns lets alpha, tax drag and implementation shortfall each be owned separately.",
+   "owner": "Performance/PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Client XIRR with IA min/median/max",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Explicit SEBI/APMI requirement and the only fair lens on a staggered-deployment year where TWRR and XIRR diverge materially.",
+   "owner": "Performance",
+   "phase": "30-90d"
+  },
+  {
+   "item": "T1 APMI benchmark tagging (Multi Asset Strategy) with 7-working-day monthly filing",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Non-negotiable regulatory floor; a benchmark change later requires an exit-load-free client exit offer, so getting T1 right at onboarding avoids a costly re-paper.",
+   "owner": "Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "One canonical Policy Composite (T2) benchmark, single owner and sign-off date",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Four documents produced four different 'policy composite' tables; alpha, fees and the IC scorecard all depend on one reconciled yardstick before the IPS is signed.",
+   "owner": "IC/CIO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Brinson-Fachler attribution, Carino-linked, monthly, with look-through manager and factor splits",
+   "domain": "Performance",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Separates TAA calls from manager/security selection when both are being judged; the worked-year example ties out exactly to the decimal and is worth keeping as the house standard.",
+   "owner": "Performance",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Reconcile the PM fee to one rate (0.30% fixed) across every cost and alpha table",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Regulatory/operations modelled 0.30% while performance modelled 0.50% for the identical fee line — a 20bp swing large enough to flip the net-alpha conclusion from roughly breakeven to clearly negative.",
+   "owner": "CIO/Finance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Disclose that Year 1-3 net alpha is expected near-breakeven to modestly negative pending fee/cost optimisation",
+   "domain": "Performance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "On the allocation design's own CMAs, gross active return (+88bps) does not clear even the reconciled ~118bps of fees, opex, brokerage, implementation shortfall and realised tax — this must be disclosed, not hidden behind an unreconciled +100bps target.",
+   "owner": "IC/CIO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Quarterly IC scorecard with named per-line owners, published to the client annually",
+   "domain": "Performance",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "quarterly",
+   "rationale": "Ties variable pay and client trust to specific, attributable line items (SAA, TAA, selection, implementation, costs, taxes) rather than one blended return number.",
+   "owner": "IC",
+   "phase": "90-180d"
+  },
+  {
+   "item": "Do not present the house 80/20 benchmark as the mandate's headline target",
+   "domain": "Performance",
+   "verdict": "avoid",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "The 7-sleeve Policy Composite is expected to trail the 80/20 by ~1-1.5% p.a. in strong equity years by design; conflating the two would misstate what the team is actually managing to.",
+   "owner": "Performance",
+   "phase": "never"
+  },
+  {
+   "item": "Do not charge a performance fee on unrealised AIF marks",
+   "domain": "Performance",
+   "verdict": "avoid",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "rationale": "SEBI's fee circular ties performance fees to a high-water-mark principle on realised gains; unrealised AIF NAVs are themselves subject to stale-pricing risk.",
+   "owner": "Finance",
+   "phase": "never"
+  },
+  {
+   "item": "Direct-with-AMC ETF dealing for any tranche ≥₹25 Cr",
+   "domain": "Selection",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "rationale": "Cuts round-trip cost from ~15bps on-screen to ~5-7bps via the AP/AMC-direct route that exists specifically for this ticket size.",
+   "owner": "Dealing",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Rolling 3Y/5Y alpha-consistency screen for active MFs; direct-plan-only mandate",
+   "domain": "Selection",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "quarterly",
+   "rationale": "Point-in-time trailing returns overstate manager skill; rolling-window hit-rate is the closer proxy to persistence, and direct plans are a hard SEBI requirement, not a choice.",
+   "owner": "Research",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Fix the TCO tax-drag model before presenting a 'tax dominates cost' conclusion to the IC",
+   "domain": "Selection",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "The current model shows gold/silver/arbitrage/REIT annual tax drag exceeding those sleeves' entire expected return — a scaling bug independently caught by three reviewers; must be corrected before any client-facing TCO figure is used.",
+   "owner": "Quant/Research",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Discontinue new Sovereign Gold Bond purchases; use Gold ETF for all fresh gold exposure",
+   "domain": "Selection",
+   "verdict": "avoid",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "SGBs have not been issued since Feb-2024 and Budget 2026 narrowed the capital-gains exemption to original subscribers held to maturity, removing the historic reason to buy in the secondary market.",
+   "owner": "PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Prefer SIF over Cat III AIF wherever the strategy overlaps",
+   "domain": "Selection",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "Investor-level ~12.5% LTCG taxation versus Cat III's fund-level tax up to ~42.7% MMR is a large, structural post-tax advantage on an identical gross-return idea.",
+   "owner": "Research",
+   "phase": "30-90d"
+  },
+  {
+   "item": "No outsourcing of trade sizing, timing or execution to a third-party model or vendor",
+   "domain": "Selection",
+   "verdict": "avoid",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "event-driven",
+   "rationale": "SEBI's May-2026 First Global order held that outsourcing 'investment decisions' this broadly — even via a technology vendor — is an absolute Reg 24(10) violation.",
+   "owner": "PM/Compliance",
+   "phase": "never"
+  },
+  {
+   "item": "Onboard third-party PMS via APMI-vetted due diligence, structured as the client's own separate contract",
+   "domain": "Selection",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "Extends the addressable strategy set without building in-house capability; the same conflicts protocol used for Angel One group products must extend to any fee-paying referral relationship.",
+   "owner": "Compliance/Research",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Consent ledger: every OMS order carries a foreign key to its RPP or standing-instruction ID",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "This is the actual inspection-proof of non-discretion, not a policy document; orders without a valid, unexpired match are blocked at release.",
+   "owner": "Ops/IT",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Aadhaar e-Sign/DSC consent capture with OTP-email fallback, both hash-logged",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "SEBI's digital-onboarding circular permits fully digital PMS consent artifacts; a hashed, time-stamped record is the primary evidence base at inspection.",
+   "owner": "Ops/IT",
+   "phase": "0-30d"
+  },
+  {
+   "item": "IC of five voting members (CIO chair, PM, Head of Risk, Head of Compliance, independent advisor) plus non-voting Trading/Ops seat; quorum 4 of 5 incl. a non-investment vote",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "rationale": "Corrects an internal miscount (Trading/Ops is explicitly non-voting); quorum should be stated as 4-of-5 voting members, not 4-of-6, to avoid an ambiguous governance bar.",
+   "owner": "IC",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Raise Ops/fund-accounting to 2.0-2.5 FTE and Compliance to a dedicated 1.0 FTE, with named backups",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "The original 1.5/0.5 FTE sizing leaves no rehearsed backup for the PM or Compliance sign-off seats; a single absence during a live event would stall the entire consent machinery.",
+   "owner": "COO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Pre-trade compliance rule engine in the OMS (unlisted/associate headroom, no-leverage, MF direct-plan flag)",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Automates the Reg 24 hard limits at order entry rather than relying on manual review across a multi-instrument book.",
+   "owner": "Compliance/IT",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Extend the house cash-recon automation with an AIF capital-call ledger and bond/G-sec settlement leg",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "AIF units have no exchange order flow and the existing single-strategy recon assumes only listed instruments; without this extension the alternatives sleeve is invisible to daily monitoring.",
+   "owner": "Ops",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Consent-tracker dashboard (RPP status, SLA breaches, standing-instruction log)",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "daily",
+   "rationale": "Turns the 2-day consent SLA from a policy statement into a monitored, escalating metric visible to Compliance and RM.",
+   "owner": "Compliance/RM",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Redesign the client RPP as a one-page executive summary with full 50-line detail as an appendix",
+   "domain": "Operations",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Walking a family through 50+ trade lines in 30 minutes every month either becomes a rubber-stamp or triples RM/PM time; track engagement depth as an operating KPI instead.",
+   "owner": "RM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Dependency-gated build sequence: custodian → OMS rules → AP relationship, before parallelising automation",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Custodian onboarding, OMS compliance-rule configuration and AP empanelment cannot realistically complete together in 30 days; sequencing avoids a rushed, unverified go-live.",
+   "owner": "COO/Ops",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Change-control/UAT gate for compute engines (risk model, TCO model, rebalancing simulation)",
+   "domain": "Operations",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "This project's own design phase produced a materially wrong tax-drag output that a basic peer review would have caught before it reached a client-facing conclusion.",
+   "owner": "Quant/IT",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Professional-indemnity insurance or a funded error-reserve backing the error-trade policy",
+   "domain": "Operations",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "one-time",
+   "rationale": "The error-trade policy commits the firm to absorb certain losses via a segregated account, but no cost line currently funds that promise.",
+   "owner": "Finance/COO",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Second-mandate-ready platform build, not a bespoke one-off",
+   "domain": "Operations",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Fixed operating cost (~₹1.8-3.2 Cr/yr) approaches the single mandate's fee revenue; the economics only work if a second NDPMS client can be onboarded on the same infrastructure within 12-18 months.",
+   "owner": "COO",
+   "phase": "90-180d"
+  },
+  {
+   "item": "Client-signatory succession/incapacity annex (nominee, registered PoA, executor path, preservation mode)",
+   "domain": "Regulatory/Ops",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time / annual refresh",
+   "rationale": "Without it no one can lawfully approve an RPP if a sole individual signatory dies or is incapacitated; preservation mode keeps only mechanical SIs running.",
+   "owner": "RM + Compliance + client counsel",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Group-instrument best-execution control (group_instrument tag, second-broker/NAV routing, separate quarterly TCA bucket)",
+   "domain": "Execution/Compliance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "daily / quarterly",
+   "rationale": "Angel One is both group and executing broker; inspection probes execution quality on group-product trades specifically.",
+   "owner": "Dealing + Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Tax-adviser and index-licence/data-vendor engagement letters as dated gating deliverables",
+   "domain": "Ops/Compliance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Load-bearing tax calls (TMF vs direct bond, REIT dividend, entity mix) and T2 index rights cannot stay 'review items' past day 15-20.",
+   "owner": "COO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Realised drawdown-capture validation of the stress library (±10 pp tolerance per episode)",
+   "domain": "Risk",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "per episode / annual",
+   "rationale": "Capture ratios (39-63% / 62-81%) are single-pass model output until checked against realised NAV drawdowns.",
+   "owner": "Risk",
+   "phase": "90-180d"
+  },
+  {
+   "item": "FX-hedge decision costed (≈2.8% forward premium ≈ ₹0.7 Cr/yr on ₹25 Cr) and left unhedged by design",
+   "domain": "Risk",
+   "verdict": "could",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "annual",
+   "rationale": "Currency risk is left open deliberately; the IC sees the bps cost of the choice, not just 'unavailable'.",
+   "owner": "Risk",
+   "phase": "30-90d"
+  },
+  {
+   "item": "Annual merge/IPS reconciliation with automated cross-check (reconciliation_checklist) and two-person sign-off",
+   "domain": "Governance/Ops",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "event + annual",
+   "rationale": "The stale-JSON/double-count error class caught in this review recurs at every FY-end IPS reset unless a named step exists.",
+   "owner": "Data + Risk",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Business-income-heavy Cat III tax scenario modelled alongside the SIF base case (rate grid 14.95% → 42.7%)",
+   "domain": "Selection",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "per fund",
+   "rationale": "Cat III strategies vary widely on the capital-gains/business-income axis; the SIF edge ranges from +0.7 pp to +3.4 pp and reverses if the SIF is not equity-oriented.",
+   "owner": "PM/RA",
+   "phase": "30-90d"
+  },
+  {
+   "item": "NRI/FEMA branch (PIS/NRE/NRO accounts, repatriation basis, TDS u/s 195, DSC consent, time-zone SLA) if any family member is non-resident",
+   "domain": "Regulatory",
+   "verdict": "must (conditional)",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "One NRI holder changes custody, tax withholding, consent channel and the international-sleeve logic for that entity.",
+   "owner": "Compliance + RM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Higher-selection SAA (direct 12%, active 14%) quantified end-to-end as option (b) for the IC",
+   "domain": "Allocation/Performance",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "one-time / 3Y review",
+   "rationale": "Both SAAs the IC must choose between now carry a worked alpha, TE, cost and IR case.",
+   "owner": "CIO/PM",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Risk-tolerance questionnaire (10 questions, capacity vs willingness) and IC suitability minute",
+   "domain": "Regulatory/Governance",
+   "verdict": "must",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time / annual",
+   "rationale": "Suitability (why Moderate vs Aggressive for this family) is the first thing an inspection or dispute asks for.",
+   "owner": "RM + Compliance + IC",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Custodian contingency: ≥3 RFPs by day 5, decision by day 20, listed-only interim custody fallback, ladder start tied to custodian go-live",
+   "domain": "Ops",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "rationale": "Custodian independence from the group is a hard requirement; a slow search must not pull the ladder forward on an unready stack.",
+   "owner": "Ops + Compliance",
+   "phase": "0-30d"
+  },
+  {
+   "item": "Second-mandate pipeline with named owner and milestones (3 prospects/6m, term sheet/12m, signed/18m); break-even ≈₹1,000-1,400 Cr platform AUM at 0.30%",
+   "domain": "Governance",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "quarterly",
+   "rationale": "The platform's cost case rests on this happening; it needs an accountable owner.",
+   "owner": "CIO + Head of Wealth",
+   "phase": "later"
+  },
+  {
+   "item": "Aggressive-variant TCO table reconciled (≈142 bps pre-PM-layer / ≈187 bps all-in)",
+   "domain": "Selection/Costs",
+   "verdict": "should",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "annual",
+   "rationale": "If the client picks Aggressive the IC has a reconciled cost table; cost_bps in the data pack now ties to it.",
+   "owner": "COO",
+   "phase": "0-30d"
+  },
+  {
+   "item": "PME (Kaplan-Schoar + Direct Alpha) for AIF sleeves, Campisi FI attribution and GIPS-style single-client composite — specified with formulas and worked examples",
+   "domain": "Performance",
+   "verdict": "could",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "low",
+   "cadence": "quarterly / annual",
+   "rationale": "Named deliverables now have a spec, not just a label.",
+   "owner": "Performance",
+   "phase": "later"
+  }
+ ],
+ "roadmap": [
+  {
+   "phase": "0-30d",
+   "window": "Days 1-30: Legal, custodian, consent-portal foundation",
+   "owner": "COO/Compliance",
+   "dependencies": [],
+   "deliverables": [
+    "Legal-entity structuring decision + LVAI accreditation filed for every investing entity",
+    "NDPMS agreement with Model Master/band annexure signed; PM fee fixed at one reconciled rate (0.30% + 10% performance over Policy Composite, HWM)",
+    "AML/KYC/PMLA beneficial-ownership and source-of-funds file completed",
+    "Custodian selected and onboarding started (client-name demat + bank accounts, no pooling)",
+    "Purpose-segregated demat accounts (Core/Tactical/Harvest) opened; in-specie transfer-in of legacy holdings",
+    "Consent-ledger schema and e-Sign/DSC+OTP portal specified; hash-chain design signed off",
+    "IC constituted (5 voting + 1 non-voting seat), 4-eyes control points documented",
+    "14-limit risk limit framework and canonical Model Master approved by IC",
+    "Legal opinion / SEBI Informal Guidance request filed on standing-instruction and de-risk-trigger design",
+    "Early-warning board and tail-risk dashboard spec drafted with corrected (verified) USDINR/Nifty reference levels",
+    "Day 5: RFPs to ≥3 SEBI-registered, non-group custodians offering equity + MF + AIF + bond/G-sec servicing; day 20: decision; contingency if none signed by day 30 — listed-only interim custody (equity/MF) with bonds/AIF added when the full-stack custodian is live, deployment-ladder start date tied to custodian go-live (never a group custodian)",
+    "Day 15: tax-adviser engagement letter signed (scope: TMF vs direct listed bond after-tax by entity, REIT/InvIT dividend treatment pending enactment, fee deductibility, entity-mix rates, NRI withholding if applicable) — gates IPS §7 and §7.7",
+    "Day 20: index-licence and data-vendor letters (NSE Indices for Nifty 500 TRI / Composite Debt / REITs & InvITs / Arbitrage; S&P DJI for S&P 500 TR; CRISIL fallback; IBJA gold/silver; APMI-empanelled valuation agency; CCIL) — gates T2 publication in the agreement",
+    "Risk-tolerance questionnaire completed by every entity's decision-maker and IC suitability minute signed (Moderate vs Aggressive vs blend) before IPS sign-off",
+    "Signatory succession/incapacity annex executed: nominee registration on every demat/MF folio, registered PoA holder per individual, executor/legal-heir path, preservation-mode rules",
+    "Residency confirmation for every beneficial owner (any NRI → NRI/FEMA branch workflow: PIS/NRE/NRO custody, DSC consent channel, TDS u/s 195 set-up)",
+    "Data-pack reconciliation closed: Nifty BeES AUM ₹66,777 Cr (9-Sep-2026, verified) replaces the ₹53,989 Cr pack figure; Sharpe/limits/deployment ladder tied to blueprint_data.json v1.1",
+    "Group-instrument tag configured in OMS with routing rule (second broker or NAV/AP for group securities) and separate TCA bucket"
+   ]
+  },
+  {
+   "phase": "30-90d",
+   "window": "Days 30-90: Consent portal live, first monthly cycle, automation extension",
+   "owner": "Ops/Compliance/PM",
+   "dependencies": [
+    "0-30d custodian + consent-ledger schema"
+   ],
+   "deliverables": [
+    "Consent portal v1 (e-Sign/OTP RPP workflow) live; Standing Instructions Register activated (sweeps, reinvestment, tranche execution, hedge roll, AIF capital-call funding, deployment-ladder acceleration)",
+    "AP/AMC-direct ETF relationship and second (non-group) broker relationship empanelled",
+    "Pre-trade compliance rule engine configured in the OMS (unlisted/associate headroom, no-leverage, direct-plan flag)",
+    "First live monthly RPP → consent → execution → recon → report cycle, compliance-audited dry run",
+    "AIF capital-call ledger and bond/G-sec settlement recon leg added to the house cash-recon automation",
+    "Consent-tracker dashboard live (RPP status, SLA breaches, standing-instruction log)",
+    "Tail-risk dashboard (5th tab) live with 12-indicator early-warning board",
+    "Deployment ladder executed (8 equity-like + 4 FI Thursday tranches; alternatives on drawdown schedules) with acceleration triggers monitored",
+    "Manager/third-party-PMS due diligence (AIF Cat II/III, SIF, active MF screens) completed for Year-1 sleeve",
+    "Day 45: live AA−AAA spread series stored (CRISIL/ICRA/indiamacroindicators); provisional 100/150 bp thresholds replaced by 60-day mean ±1σ/+2σ",
+    "Cat III income-mix due-diligence question added to ODD (LTCG/STCG/business split) and SIF equity-orientation test (≥65% domestic equity) before any commitment",
+    "FX-hedge cost memo to IC (forward premium sourced live from CCIL/FBIL)"
+   ]
+  },
+  {
+   "phase": "90-180d",
+   "window": "Days 90-180: Full automation, governance cadence, BCP",
+   "owner": "IC/Ops/Risk",
+   "dependencies": [
+    "30-90d live consent cycle"
+   ],
+   "deliverables": [
+    "Full daily 01:00-02:30 IST ingest-validate-compute-publish pipeline automated across all dashboards",
+    "Brinson-Fachler/Carino attribution with look-through manager and factor splits live monthly",
+    "Quarterly IC scorecard (named per-line owners) and manager watchlist scorecard operating",
+    "Automated best-execution TCA report vs a non-group broker benchmark, quarterly",
+    "BCP/DR drill (custodian outage + tail event) executed and documented",
+    "TCO/tax-drag model rebuilt and independently re-verified (fixes the gold/silver/arbitrage/REIT scaling bug)",
+    "First AIF Cat II/III and SIF commitments drawn per the deployment schedule",
+    "PI insurance or funded error-reserve in place",
+    "Capture-ratio validation log opened: every Nifty drawdown ≥5% logged with realised vs model capture (±10 pp tolerance)",
+    "PME (Kaplan-Schoar, Direct Alpha) computed on the first Cat II statements; Campisi FI attribution prototype on the ₹120 Cr FI sleeve"
+   ]
+  },
+  {
+   "phase": "later",
+   "window": "Months 6-18: Scale and refinement",
+   "owner": "CIO/COO",
+   "dependencies": [
+    "90-180d automation complete"
+   ],
+   "deliverables": [
+    "Second NDPMS (or DPMS) mandate onboarded onto the same platform to make the cost base sustainable",
+    "Annual firm-level performance audit (DPMS+NDPMS combined) completed and confirmed to SEBI within 60 days of FY-end",
+    "Annual CMA refresh, band-width review and IPS/SAA reset with the IC",
+    "March tax-loss harvesting and LTCG-exemption harvesting cycle run for the first full year",
+    "GIPS-style composite reporting adopted (without certification) if the client/board wants it",
+    "Re-consent / re-paper NDPMS agreement if the 2026 PMS Regulations overhaul (foreign securities, 1.25x derivatives) is notified",
+    "SIF sleeve expanded once the category has 2-3 years of live track record",
+    "Second-mandate pipeline owned by Head of Wealth with CIO: 3 qualified prospects (≥₹100 Cr accredited family offices or Allocate DPMS clients ≥₹50 Cr) by month 6, term sheet by month 12, signed by month 18; break-even ≈₹1,000-1,400 Cr platform AUM at 0.30% fixed (approx.)",
+    "Annual merge/IPS reconciliation run (reconciliation_checklist) at the FY-end CMA refresh and band reset, two-person sign-off, before any client document"
+   ]
+  }
+ ],
+ "operating_calendar": [
+  {
+   "cadence": "daily",
+   "time_ist": "06:30",
+   "owner": "Ops",
+   "activities": [
+    "Pre-market pipeline check (AMFI NAV, custodian EOD, NSE/CCIL feeds)",
+    "Cash sweep >₹50L to liquid/overnight per standing instruction",
+    "Corporate-action processing per standing instruction",
+    "Cash/holdings/MF-folio/dividend recon vs custodian and RTA"
+   ]
+  },
+  {
+   "cadence": "daily",
+   "time_ist": "09:00-15:30",
+   "owner": "Dealing/Risk",
+   "activities": [
+    "Execute any pre-authorised standing-instruction trades (sweeps, hedge rolls, capital-call funding)",
+    "Monitor unlisted-cap (alert at 18% vs 25% legal), associate-limit and derivative-notional headroom pre-trade",
+    "Daily VaR/CVaR, EWMA vol, tracking-error and drawdown-from-peak refresh",
+    "Early-warning 12-indicator board refresh and escalation check"
+   ]
+  },
+  {
+   "cadence": "daily",
+   "time_ist": "17:00-18:00",
+   "owner": "Ops/Risk",
+   "activities": [
+    "NAV/valuation flash (debt via APMI-empanelled agencies) and stale-price flagging",
+    "Consent-tracker update (RPP status, SLA clock, standing-instruction log)",
+    "Recon-break board update; same-day escalation for cash breaks >₹10L"
+   ]
+  },
+  {
+   "cadence": "weekly",
+   "time_ist": "Monday 09:00 / Thursday deployment window",
+   "owner": "PM/Dealing",
+   "activities": [
+    "Monday: redemption leg of the weekly tranche cycle; ADV/liquidity refresh for the direct-stock sleeve",
+    "Thursday: deployment leg (new inflows, deployment-ladder tranche, band-restoring trades already consented)",
+    "Event-trigger screen: band breach ≥1.5x, equity-aggregate drift >3pp, VIX/drawdown triggers",
+    "AIF/PMS capital-call and distribution tracking"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "T-5 (last Wed of month)",
+   "owner": "IC/PM",
+   "activities": [
+    "IC house-view meeting: macro/pillar scorecard, SAA drift report vs Model Master bands, TAA tilt sign-off"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "T-3",
+   "owner": "PM/Compliance",
+   "activities": [
+    "RPP build: every trade line with ISIN, side, ₹ amount, execution channel, cost/tax estimate, band flag",
+    "Pre-trade compliance sign-off (unlisted/associate/derivative headroom checks)"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "T-1",
+   "owner": "RM",
+   "activities": [
+    "Client walkthrough of the one-page RPP executive summary (full 50-line detail as appendix)"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "T0 (1st Thursday)",
+   "owner": "Client/RM",
+   "activities": [
+    "Client e-signs RPP (whole pack or line-item); 10-trading-day validity begins; 2-business-day SLA with 48h RM call / 72h CIO escalation"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "T0 to T+7",
+   "owner": "Dealing/Ops",
+   "activities": [
+    "Execution across weekly Mon/Thu tranches; slippage-vs-arrival tracked to the ≤15bps budget",
+    "Post-trade recon: fills vs RPP, realised slippage/cost/tax, updated weights"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "Month-end + 5 business days",
+   "owner": "Ops/Compliance",
+   "activities": [
+    "Client monthly statement (Reg 31 content: composition/valuation, transactions, expenses, risks, associate exposure, TWRR vs Policy Composite)"
+   ]
+  },
+  {
+   "cadence": "monthly",
+   "time_ist": "Month-end + 7 working days",
+   "owner": "Compliance",
+   "activities": [
+    "SEBI/APMI monthly TWRR and benchmark filing"
+   ]
+  },
+  {
+   "cadence": "quarterly",
+   "time_ist": "Within the quarter + 5-10 business days",
+   "owner": "IC/Performance/Compliance",
+   "activities": [
+    "IC scorecard (SAA, TAA, selection, implementation, costs, taxes, valuation quality) with named owners",
+    "Manager/third-party-PMS/AIF watchlist scoring vs hurdle rate and style drift",
+    "Associate-limit audit and KYC refresh sample",
+    "Best-execution TCA report vs non-group broker benchmark"
+   ]
+  },
+  {
+   "cadence": "annual",
+   "time_ist": "Jan-Mar",
+   "owner": "PM/Compliance/Tax adviser",
+   "activities": [
+    "LTCG-exemption harvesting (up to ₹1.25L per FY) and FY-end loss-netting review",
+    "Annual firm-level performance audit (DPMS+NDPMS combined); confirmation to SEBI within 60 days of FY-end",
+    "Annual CMA refresh, band-width and line-count review with the IC",
+    "Accreditation renewal check (LVAI, before certificate expiry)",
+    "BCP/DR drill (custodian outage + tail-event scenario)"
+   ]
+  },
+  {
+   "cadence": "event-driven",
+   "time_ist": "Same/next business day to 2 business days",
+   "owner": "RM/PM/Compliance",
+   "activities": [
+    "Corporate-action active elections (rights, buyback, merger) — always ad hoc consent, never a standing instruction",
+    "Large inflow (>₹10 Cr): same-day sweep to liquid, deployment per pre-agreed ladder",
+    "Large outflow/redemption: fund from cash/liquid first, then pro-rata trim, ad hoc consent on specific trims",
+    "Severe tail event (Nifty -10% from 20-day high or VIX>25): same-day mini-RPP with explicit consent-lapse clause",
+    "AIF capital-call notice: standing sweep executes, client notified same day"
+   ]
+  }
+ ],
+ "sample_allocation": [
+  {
+   "sleeve": "Nifty 50/100 core beta",
+   "instruments": "2 ETFs (AP route) + 1 index fund",
+   "moderate_pct": 22,
+   "aggressive_pct": 25,
+   "exp_return_pct": 11.0,
+   "exp_vol_pct": 17.0,
+   "band_pct": 5.0,
+   "liquidity_days": "1-2",
+   "line_items": "3",
+   "moderate_cr": 110,
+   "aggressive_cr": 125
+  },
+  {
+   "sleeve": "Factor tilt (Quality/Low-Vol/Momentum)",
+   "instruments": "3 index funds, momentum capped 2-4%",
+   "moderate_pct": 10,
+   "aggressive_pct": 12,
+   "exp_return_pct": 11.5,
+   "exp_vol_pct": 17.0,
+   "band_pct": 2.0,
+   "liquidity_days": "2-3",
+   "line_items": "3",
+   "moderate_cr": 50,
+   "aggressive_cr": 60
+  },
+  {
+   "sleeve": "Active mid-cap MF (direct plan)",
+   "instruments": "2 active MFs, ≤1% scheme AUM",
+   "moderate_pct": 7,
+   "aggressive_pct": 10,
+   "exp_return_pct": 12.5,
+   "exp_vol_pct": 21.0,
+   "band_pct": 1.5,
+   "liquidity_days": "3",
+   "line_items": "2",
+   "moderate_cr": 35,
+   "aggressive_cr": 50
+  },
+  {
+   "sleeve": "Active small-cap MF (direct plan)",
+   "instruments": "1-2 active MFs, ≤1% scheme AUM",
+   "moderate_pct": 3,
+   "aggressive_pct": 5,
+   "exp_return_pct": 13.0,
+   "exp_vol_pct": 25.0,
+   "band_pct": 1.0,
+   "liquidity_days": "3-5",
+   "line_items": "2",
+   "moderate_cr": 15,
+   "aggressive_cr": 25
+  },
+  {
+   "sleeve": "Direct equity (NIFTY-750 scorecard)",
+   "instruments": "20-25 names, score x liquidity sizing",
+   "moderate_pct": 8,
+   "aggressive_pct": 12,
+   "exp_return_pct": 12.0,
+   "exp_vol_pct": 19.0,
+   "band_pct": 3.0,
+   "liquidity_days": "1-4",
+   "line_items": "22-25",
+   "moderate_cr": 40,
+   "aggressive_cr": 60
+  },
+  {
+   "sleeve": "International equity (India-listed)",
+   "instruments": "1-2 index funds/FoF, buy at ≤1% iNAV premium",
+   "moderate_pct": 5,
+   "aggressive_pct": 7,
+   "exp_return_pct": 10.5,
+   "exp_vol_pct": 16.0,
+   "band_pct": 1.5,
+   "liquidity_days": "3-5",
+   "line_items": "2",
+   "moderate_cr": 25,
+   "aggressive_cr": 35
+  },
+  {
+   "sleeve": "Target-maturity AAA/SDL funds",
+   "instruments": "2 TMFs, laddered",
+   "moderate_pct": 13,
+   "aggressive_pct": 4,
+   "exp_return_pct": 6.9,
+   "exp_vol_pct": 2.5,
+   "band_pct": 3.0,
+   "liquidity_days": "2",
+   "line_items": "2",
+   "moderate_cr": 65,
+   "aggressive_cr": 20
+  },
+  {
+   "sleeve": "10-yr G-sec / dynamic duration",
+   "instruments": "Direct G-sec via NDS-OM (custodian/PD) + 1 ETF; RBI Retail Direct is retail-scale only",
+   "moderate_pct": 6,
+   "aggressive_pct": 2,
+   "exp_return_pct": 7.0,
+   "exp_vol_pct": 5.5,
+   "band_pct": 2.0,
+   "liquidity_days": "1",
+   "line_items": "2",
+   "moderate_cr": 30,
+   "aggressive_cr": 10
+  },
+  {
+   "sleeve": "AA-rated corporate credit (AA = minimum issuer rating; AAA/AA+ ≥90% of FI sleeve)",
+   "instruments": "1 corporate-bond/credit fund",
+   "moderate_pct": 2,
+   "aggressive_pct": 0,
+   "exp_return_pct": 8.2,
+   "exp_vol_pct": 3.5,
+   "band_pct": 1.0,
+   "liquidity_days": "3-5",
+   "line_items": "1-2",
+   "moderate_cr": 10,
+   "aggressive_cr": 0
+  },
+  {
+   "sleeve": "Cash / short-duration / arbitrage (Moderate = 3% short-duration fund + 2% arbitrage; Aggressive = 2% + 2%)",
+   "instruments": "Arbitrage fund (>1mo) + overnight (<1wk)",
+   "moderate_pct": 5,
+   "aggressive_pct": 4,
+   "exp_return_pct": 6.4,
+   "exp_vol_pct": 0.8,
+   "band_pct": 3.0,
+   "liquidity_days": "1-2",
+   "line_items": "2",
+   "moderate_cr": 25,
+   "aggressive_cr": 20
+  },
+  {
+   "sleeve": "Gold ETF",
+   "instruments": "1 ETF, AP route",
+   "moderate_pct": 5,
+   "aggressive_pct": 4,
+   "exp_return_pct": 8.0,
+   "exp_vol_pct": 15.0,
+   "band_pct": 1.5,
+   "liquidity_days": "1",
+   "line_items": "1",
+   "moderate_cr": 25,
+   "aggressive_cr": 20
+  },
+  {
+   "sleeve": "Silver ETF",
+   "instruments": "1 ETF, tactical only",
+   "moderate_pct": 1,
+   "aggressive_pct": 1,
+   "exp_return_pct": 8.5,
+   "exp_vol_pct": 27.0,
+   "band_pct": 0.5,
+   "liquidity_days": "1",
+   "line_items": "1",
+   "moderate_cr": 5,
+   "aggressive_cr": 5
+  },
+  {
+   "sleeve": "Listed REIT/InvIT",
+   "instruments": "4-5 trusts",
+   "moderate_pct": 4,
+   "aggressive_pct": 2,
+   "exp_return_pct": 9.5,
+   "exp_vol_pct": 14.0,
+   "band_pct": 1.0,
+   "liquidity_days": "2-5",
+   "line_items": "4-5",
+   "moderate_cr": 20,
+   "aggressive_cr": 10
+  },
+  {
+   "sleeve": "AIF Cat I/II private credit + pre-IPO/PE",
+   "instruments": "2-4 funds, ₹1 Cr min per fund",
+   "moderate_pct": 5,
+   "aggressive_pct": 7,
+   "exp_return_pct": 11.5,
+   "exp_vol_pct": 4.0,
+   "band_pct": 0.0,
+   "liquidity_days": "Locked 3-7 yrs",
+   "line_items": "2-4",
+   "moderate_cr": 25,
+   "aggressive_cr": 35
+  },
+  {
+   "sleeve": "AIF Cat III / SIF hybrid long-short",
+   "instruments": "1-2 wrappers, prefer SIF (₹10L min)",
+   "moderate_pct": 4,
+   "aggressive_pct": 5,
+   "exp_return_pct": 10.0,
+   "exp_vol_pct": 9.0,
+   "band_pct": 0.0,
+   "liquidity_days": "30-90",
+   "line_items": "1-2",
+   "moderate_cr": 20,
+   "aggressive_cr": 25
+  }
+ ],
+ "portfolio_stats": [
+  {
+   "portfolio": "Moderate (NDPMS ₹500 Cr)",
+   "exp_return_pct": 10.0,
+   "exp_vol_pct": 9.7,
+   "sharpe": 0.41,
+   "exp_max_dd_pct": -25.0,
+   "equity_beta": 0.55,
+   "cost_bps": 186.1,
+   "liquidity_90d_pct": 91.0,
+   "cost_bps_pre_pm_layer": 140.7,
+   "stress_gfc_pct": -32.0
+  },
+  {
+   "portfolio": "Aggressive (NDPMS ₹500 Cr)",
+   "exp_return_pct": 10.9,
+   "exp_vol_pct": 12.5,
+   "sharpe": 0.39,
+   "exp_max_dd_pct": -33.0,
+   "equity_beta": 0.72,
+   "cost_bps": 187.7,
+   "liquidity_90d_pct": 88.0,
+   "cost_bps_pre_pm_layer": 142.3,
+   "stress_gfc_pct": -43.0
+  },
+  {
+   "portfolio": "Allocate house benchmark (80% Nifty50 TRI/20% Nifty Arbitrage)",
+   "exp_return_pct": 10.0,
+   "exp_vol_pct": 13.6,
+   "sharpe": 0.29,
+   "exp_max_dd_pct": -35.0,
+   "equity_beta": 0.8,
+   "cost_bps": 15.0,
+   "liquidity_90d_pct": 100.0,
+   "stress_gfc_pct": null
+  },
+  {
+   "portfolio": "Nifty 50 TRI (reference)",
+   "exp_return_pct": 11.0,
+   "exp_vol_pct": 17.0,
+   "sharpe": 0.29,
+   "exp_max_dd_pct": -44.0,
+   "equity_beta": 1.0,
+   "cost_bps": 8.0,
+   "liquidity_90d_pct": 100.0,
+   "stress_gfc_pct": null
+  }
+ ],
+ "cma": [
+  {
+   "asset_class": "Indian large cap (Nifty 50/100)",
+   "exp_return_pct": 11.0,
+   "exp_vol_pct": 17.0,
+   "hist_max_dd_pct": -60.0,
+   "corr_nifty50": 1.0,
+   "hist_cagr_pct": "12.41% TRI since inception (verified); 20Y CAGR",
+   "source_note": "Nifty 50 TRI, verified 20Y CAGR to Feb-2026"
+  },
+  {
+   "asset_class": "Mid cap (Nifty Midcap 150)",
+   "exp_return_pct": 12.5,
+   "exp_vol_pct": 21.0,
+   "hist_max_dd_pct": -65.0,
+   "corr_nifty50": 0.85,
+   "hist_cagr_pct": "~18.3% 10Y (computed, approx.)",
+   "source_note": "Edelweiss/Axis factsheets via search"
+  },
+  {
+   "asset_class": "Small cap (Nifty Smallcap 250)",
+   "exp_return_pct": 13.0,
+   "exp_vol_pct": 25.0,
+   "hist_max_dd_pct": -70.0,
+   "corr_nifty50": 0.78,
+   "hist_cagr_pct": "~14.8% 10Y (computed, approx.)",
+   "source_note": "Edelweiss/Axis factsheets via search"
+  },
+  {
+   "asset_class": "Factor: Low Vol 30",
+   "exp_return_pct": 10.5,
+   "exp_vol_pct": 14.0,
+   "hist_max_dd_pct": -45.0,
+   "corr_nifty50": 0.85,
+   "hist_cagr_pct": "approx., factsheet-level",
+   "source_note": "House CMA, approx."
+  },
+  {
+   "asset_class": "Factor: Momentum 30",
+   "exp_return_pct": 13.0,
+   "exp_vol_pct": 21.0,
+   "hist_max_dd_pct": -60.0,
+   "corr_nifty50": 0.8,
+   "hist_cagr_pct": "5Y 11.6%, 1Y ~0% (verified)",
+   "source_note": "UTI Nifty200 Momentum 30 Index Fund"
+  },
+  {
+   "asset_class": "Factor: Quality 30",
+   "exp_return_pct": 11.0,
+   "exp_vol_pct": 16.0,
+   "hist_max_dd_pct": -50.0,
+   "corr_nifty50": 0.9,
+   "hist_cagr_pct": "5Y 9.66%, 1Y -3.2% (verified)",
+   "source_note": "SBI Nifty 200 Quality 30 ETF"
+  },
+  {
+   "asset_class": "Factor: Value 50",
+   "exp_return_pct": 12.0,
+   "exp_vol_pct": 19.0,
+   "hist_max_dd_pct": -60.0,
+   "corr_nifty50": 0.9,
+   "hist_cagr_pct": "Nifty 500 TR 5Y 12.4% (approx.)",
+   "source_note": "House CMA, approx."
+  },
+  {
+   "asset_class": "Short duration / money market",
+   "exp_return_pct": 6.6,
+   "exp_vol_pct": 1.2,
+   "hist_max_dd_pct": 0.0,
+   "corr_nifty50": 0.05,
+   "hist_cagr_pct": "Liquid Index 1Y 6.4% (verified)",
+   "source_note": "CRISIL Liquid Fund Index"
+  },
+  {
+   "asset_class": "Target maturity 3-5yr AAA/SDL",
+   "exp_return_pct": 6.9,
+   "exp_vol_pct": 2.5,
+   "hist_max_dd_pct": -4.0,
+   "corr_nifty50": 0.05,
+   "hist_cagr_pct": "Bharat Bond 2030 5Y 6.83% (verified)",
+   "source_note": "Bharat Bond ETF factsheet"
+  },
+  {
+   "asset_class": "10-yr G-sec",
+   "exp_return_pct": 7.0,
+   "exp_vol_pct": 5.5,
+   "hist_max_dd_pct": -10.0,
+   "corr_nifty50": 0.1,
+   "hist_cagr_pct": "YTM ~7.0% (verified, 11-Sep-2026)",
+   "source_note": "Trading Economics / RBI"
+  },
+  {
+   "asset_class": "AAA corporate 3-5yr",
+   "exp_return_pct": 7.1,
+   "exp_vol_pct": 2.5,
+   "hist_max_dd_pct": -4.0,
+   "corr_nifty50": 0.05,
+   "hist_cagr_pct": "3Y AAA spread ~111bp (approx.)",
+   "source_note": "India Macro Indicators"
+  },
+  {
+   "asset_class": "AA corporate",
+   "exp_return_pct": 8.2,
+   "exp_vol_pct": 3.5,
+   "hist_max_dd_pct": -8.0,
+   "corr_nifty50": 0.15,
+   "hist_cagr_pct": "Spread 100-260bp (approx.)",
+   "source_note": "India Macro Indicators"
+  },
+  {
+   "asset_class": "Arbitrage / liquid / overnight",
+   "exp_return_pct": 6.2,
+   "exp_vol_pct": 0.7,
+   "hist_max_dd_pct": 0.0,
+   "corr_nifty50": 0.05,
+   "hist_cagr_pct": "1Y 6.72% (verified)",
+   "source_note": "Kotak Equity Arbitrage Fund"
+  },
+  {
+   "asset_class": "Gold (INR)",
+   "exp_return_pct": 8.0,
+   "exp_vol_pct": 15.0,
+   "hist_max_dd_pct": -25.0,
+   "corr_nifty50": -0.1,
+   "hist_cagr_pct": "10Y ~11-15% (approx.); spot ₹1,52,650/10g verified 11-Sep-2026",
+   "source_note": "ClearTax / Aditya Birla Capital"
+  },
+  {
+   "asset_class": "Silver (INR)",
+   "exp_return_pct": 8.5,
+   "exp_vol_pct": 27.0,
+   "hist_max_dd_pct": -54.0,
+   "corr_nifty50": 0.2,
+   "hist_cagr_pct": "SD ~26.6% (verified, Motilal Oswal study)",
+   "source_note": "Business Standard / Aditya Birla Capital"
+  },
+  {
+   "asset_class": "REIT / InvIT (listed)",
+   "exp_return_pct": 9.5,
+   "exp_vol_pct": 14.0,
+   "hist_max_dd_pct": -40.0,
+   "corr_nifty50": 0.35,
+   "hist_cagr_pct": "Index 1Y +22.1% (approx.); yield 6.5-10%",
+   "source_note": "Nifty REITs & InvITs Index factsheet"
+  },
+  {
+   "asset_class": "International DM equity (INR, unhedged)",
+   "exp_return_pct": 10.5,
+   "exp_vol_pct": 16.0,
+   "hist_max_dd_pct": -35.0,
+   "corr_nifty50": 0.45,
+   "hist_cagr_pct": "S&P500 5Y 17.64% INR (verified, 1-Sep-2026)",
+   "source_note": "Motilal Oswal S&P 500 Index Fund"
+  },
+  {
+   "asset_class": "AIF Cat II private credit",
+   "exp_return_pct": 11.5,
+   "exp_vol_pct": 4.0,
+   "hist_max_dd_pct": -15.0,
+   "corr_nifty50": 0.2,
+   "hist_cagr_pct": "Net 12-16% hist. (approx.)",
+   "source_note": "House CMA; India private credit market, approx."
+  },
+  {
+   "asset_class": "AIF Cat III long-short / SIF hybrid LS",
+   "exp_return_pct": 10.0,
+   "exp_vol_pct": 9.0,
+   "hist_max_dd_pct": -20.0,
+   "corr_nifty50": 0.4,
+   "hist_cagr_pct": "SIF category AUM ₹13,814 Cr (verified, May-2026)",
+   "source_note": "SEBI SIF framework; fund-level tax ~42.7% for Cat III"
+  },
+  {
+   "asset_class": "Pre-IPO / PE (Cat II)",
+   "exp_return_pct": 15.0,
+   "exp_vol_pct": 25.0,
+   "hist_max_dd_pct": -40.0,
+   "corr_nifty50": 0.5,
+   "hist_cagr_pct": "Target IRR 18-22% gross (approx.)",
+   "source_note": "House CMA, approx."
+  }
+ ],
+ "calendar_returns": [
+  {
+   "year": "2006",
+   "nifty50_tri": "41.9",
+   "midcap150_tri": "30.4",
+   "smallcap250_tri": "27.6",
+   "gold_inr": "21.1",
+   "bonds": "4.5",
+   "liquid": "6.5",
+   "sp500_inr": "n/a"
+  },
+  {
+   "year": "2007",
+   "nifty50_tri": "56.8",
+   "midcap150_tri": "78.4",
+   "smallcap250_tri": "97.0",
+   "gold_inr": "16.3",
+   "bonds": "7.0",
+   "liquid": "7.6",
+   "sp500_inr": "n/a"
+  },
+  {
+   "year": "2008",
+   "nifty50_tri": "-51.3",
+   "midcap150_tri": "-64.9",
+   "smallcap250_tri": "-68.6",
+   "gold_inr": "26.2",
+   "bonds": "9.9",
+   "liquid": "8.8",
+   "sp500_inr": "-22.6"
+  },
+  {
+   "year": "2009",
+   "nifty50_tri": "77.6",
+   "midcap150_tri": "114.0",
+   "smallcap250_tri": "117.0",
+   "gold_inr": "24.4",
+   "bonds": "3.5",
+   "liquid": "4.9",
+   "sp500_inr": "21.9"
+  },
+  {
+   "year": "2010",
+   "nifty50_tri": "19.2",
+   "midcap150_tri": "20.0",
+   "smallcap250_tri": "17.6",
+   "gold_inr": "23.2",
+   "bonds": "5.0",
+   "liquid": "5.4",
+   "sp500_inr": "10.5"
+  },
+  {
+   "year": "2011",
+   "nifty50_tri": "-23.8",
+   "midcap150_tri": "-31.0",
+   "smallcap250_tri": "-35.1",
+   "gold_inr": "31.9",
+   "bonds": "6.9",
+   "liquid": "8.2",
+   "sp500_inr": "21.4"
+  },
+  {
+   "year": "2012",
+   "nifty50_tri": "29.4",
+   "midcap150_tri": "46.7",
+   "smallcap250_tri": "39.8",
+   "gold_inr": "12.1",
+   "bonds": "9.4",
+   "liquid": "8.5",
+   "sp500_inr": "19.3"
+  },
+  {
+   "year": "2013",
+   "nifty50_tri": "8.1",
+   "midcap150_tri": "-1.3",
+   "smallcap250_tri": "-6.4",
+   "gold_inr": "-4.9",
+   "bonds": "3.8",
+   "liquid": "9.0",
+   "sp500_inr": "49.6"
+  },
+  {
+   "year": "2014",
+   "nifty50_tri": "32.9",
+   "midcap150_tri": "62.7",
+   "smallcap250_tri": "71.7",
+   "gold_inr": "-7.6",
+   "bonds": "14.3",
+   "liquid": "9.2",
+   "sp500_inr": "15.8"
+  },
+  {
+   "year": "2015",
+   "nifty50_tri": "-3.0",
+   "midcap150_tri": "9.7",
+   "smallcap250_tri": "11.3",
+   "gold_inr": "-6.7",
+   "bonds": "8.6",
+   "liquid": "8.2",
+   "sp500_inr": "6.4"
+  },
+  {
+   "year": "2016",
+   "nifty50_tri": "4.4",
+   "midcap150_tri": "6.5",
+   "smallcap250_tri": "1.4",
+   "gold_inr": "11.2",
+   "bonds": "12.9",
+   "liquid": "7.5",
+   "sp500_inr": "15.0"
+  },
+  {
+   "year": "2017",
+   "nifty50_tri": "30.3",
+   "midcap150_tri": "55.7",
+   "smallcap250_tri": "58.5",
+   "gold_inr": "5.4",
+   "bonds": "4.7",
+   "liquid": "6.7",
+   "sp500_inr": "14.5"
+  },
+  {
+   "year": "2018",
+   "nifty50_tri": "4.6",
+   "midcap150_tri": "-12.6",
+   "smallcap250_tri": "-26.1",
+   "gold_inr": "7.5",
+   "bonds": "5.9",
+   "liquid": "7.6",
+   "sp500_inr": "4.5"
+  },
+  {
+   "year": "2019",
+   "nifty50_tri": "13.5",
+   "midcap150_tri": "0.6",
+   "smallcap250_tri": "-7.3",
+   "gold_inr": "23.7",
+   "bonds": "10.7",
+   "liquid": "6.9",
+   "sp500_inr": "34.3"
+  },
+  {
+   "year": "2020",
+   "nifty50_tri": "16.1",
+   "midcap150_tri": "25.6",
+   "smallcap250_tri": "26.5",
+   "gold_inr": "28.3",
+   "bonds": "12.3",
+   "liquid": "4.6",
+   "sp500_inr": "21.4"
+  },
+  {
+   "year": "2021",
+   "nifty50_tri": "25.6",
+   "midcap150_tri": "48.2",
+   "smallcap250_tri": "63.3",
+   "gold_inr": "-3.9",
+   "bonds": "3.4",
+   "liquid": "3.6",
+   "sp500_inr": "30.9"
+  },
+  {
+   "year": "2022",
+   "nifty50_tri": "5.7",
+   "midcap150_tri": "3.9",
+   "smallcap250_tri": "-2.6",
+   "gold_inr": "13.9",
+   "bonds": "3.0",
+   "liquid": "5.1",
+   "sp500_inr": "-8.8"
+  },
+  {
+   "year": "2023",
+   "nifty50_tri": "21.3",
+   "midcap150_tri": "44.6",
+   "smallcap250_tri": "49.1",
+   "gold_inr": "15.1",
+   "bonds": "7.3",
+   "liquid": "7.1",
+   "sp500_inr": "27.0"
+  },
+  {
+   "year": "2024",
+   "nifty50_tri": "10.1",
+   "midcap150_tri": "24.5",
+   "smallcap250_tri": "27.2",
+   "gold_inr": "21.0",
+   "bonds": "8.8",
+   "liquid": "7.3",
+   "sp500_inr": "28.6"
+  },
+  {
+   "year": "2025",
+   "nifty50_tri": "11.7",
+   "midcap150_tri": "6.0",
+   "smallcap250_tri": "-5.5",
+   "gold_inr": "74.1",
+   "bonds": "7.5",
+   "liquid": "6.6",
+   "sp500_inr": "23.5"
+  },
+  {
+   "year": "2026 YTD (to 11-Sep)",
+   "nifty50_tri": "n/a",
+   "midcap150_tri": "positive (approx.)",
+   "smallcap250_tri": "n/a",
+   "gold_inr": "14.6",
+   "bonds": "n/a",
+   "liquid": "n/a",
+   "sp500_inr": "n/a"
+  }
+ ],
+ "stress_scenarios": [
+  {
+   "scenario": "Global Financial Crisis",
+   "period": "Jan-2008 to Mar-2009",
+   "nifty50_pct": -60.0,
+   "moderate_pnl_cr": -160.0,
+   "aggressive_pnl_cr": -215.0,
+   "vix_peak": "~85 (approx.)",
+   "recovery_months": "34-59 (sources disagree; treat as 3-5 yrs)",
+   "bonds_pct": 9.9,
+   "gold_inr_pct": 32.0,
+   "usdinr_pct": 32.0,
+   "note": "Beta/vol-scaled (Moderate beta 0.55, Aggressive 0.72) re-pricing of the Nifty move to the ₹500 Cr book; pre-2020 magnitudes are approx. consensus, not independently re-verified this session."
+  },
+  {
+   "scenario": "2011 EU crisis / RBI tightening",
+   "period": "Nov-2010 to Dec-2011",
+   "nifty50_pct": -28.0,
+   "moderate_pnl_cr": -72.0,
+   "aggressive_pnl_cr": -99.0,
+   "vix_peak": "~37 (approx.)",
+   "recovery_months": "37",
+   "bonds_pct": 6.9,
+   "gold_inr_pct": 35.0,
+   "usdinr_pct": 20.0,
+   "note": "Beta-scaled; approx. throughout."
+  },
+  {
+   "scenario": "2013 Taper tantrum",
+   "period": "May-Aug 2013",
+   "nifty50_pct": -15.2,
+   "moderate_pnl_cr": -48.0,
+   "aggressive_pnl_cr": -56.0,
+   "vix_peak": "~32 (approx.)",
+   "recovery_months": "5",
+   "bonds_pct": 3.8,
+   "gold_inr_pct": 27.0,
+   "usdinr_pct": 25.0,
+   "note": "Beta-scaled; partially verified vs data pack."
+  },
+  {
+   "scenario": "2018-19 IL&FS / mid-small bear",
+   "period": "Sep-2018 to Aug-2019",
+   "nifty50_pct": -15.0,
+   "moderate_pnl_cr": -47.0,
+   "aggressive_pnl_cr": -61.0,
+   "vix_peak": "~21 (approx.)",
+   "recovery_months": "7-14",
+   "bonds_pct": 5.9,
+   "gold_inr_pct": 30.0,
+   "usdinr_pct": 13.0,
+   "note": "Beta-scaled; smallcap -61% to Mar-2020 verified separately."
+  },
+  {
+   "scenario": "COVID crash",
+   "period": "Feb-Mar 2020",
+   "nifty50_pct": -38.4,
+   "moderate_pnl_cr": -114.0,
+   "aggressive_pnl_cr": -144.0,
+   "vix_peak": "86.64 (verified)",
+   "recovery_months": "8",
+   "bonds_pct": 12.3,
+   "gold_inr_pct": 2.0,
+   "usdinr_pct": 8.0,
+   "note": "Nifty drawdown and VIX peak verified in data pack; ₹ P&L is beta/vol-scaled to the Moderate/Aggressive books, not independently modelled instrument-by-instrument."
+  },
+  {
+   "scenario": "2022 Fed hikes / Ukraine / rate shock",
+   "period": "Oct-2021 to Jun-2022",
+   "nifty50_pct": -17.2,
+   "moderate_pnl_cr": -50.0,
+   "aggressive_pnl_cr": -68.0,
+   "vix_peak": "~34 (approx.)",
+   "recovery_months": "13.5",
+   "bonds_pct": 3.0,
+   "gold_inr_pct": 7.0,
+   "usdinr_pct": 10.0,
+   "note": "Beta-scaled; a grinding regime where the tail-hedge programme itself is a weak/losing proposition per the hedge payoff table."
+  },
+  {
+   "scenario": "Election-day crash (single day)",
+   "period": "4-Jun-2024",
+   "nifty50_pct": -5.9,
+   "moderate_pnl_cr": -17.0,
+   "aggressive_pnl_cr": -21.0,
+   "vix_peak": "26.7 (verified)",
+   "recovery_months": "0.1 (3 sessions)",
+   "bonds_pct": 0.0,
+   "gold_inr_pct": 0.0,
+   "usdinr_pct": 0.5,
+   "note": "Verified one-day Nifty move and VIX print; ₹ P&L beta-scaled."
+  },
+  {
+   "scenario": "2024-25 correction incl. Apr-2025 tariff shock",
+   "period": "Sep-2024 to Apr-2025",
+   "nifty50_pct": -17.0,
+   "moderate_pnl_cr": -33.0,
+   "aggressive_pnl_cr": -53.0,
+   "vix_peak": "~23 (approx.); one-day VIX +66% to 22.8 on 7-Apr-25",
+   "recovery_months": "~9 (approx., partial)",
+   "bonds_pct": -0.3,
+   "gold_inr_pct": 23.0,
+   "usdinr_pct": 5.0,
+   "note": "Beta-scaled; a 'choppy, no-payoff' regime for the standing put programme per the hedge payoff table."
+  },
+  {
+   "scenario": "2026 correction + Sep-2026 oil/rupee/rate stress",
+   "period": "Jan-2026 to 11-Sep-2026",
+   "nifty50_pct": -8.0,
+   "moderate_pnl_cr": -30.0,
+   "aggressive_pnl_cr": -40.0,
+   "vix_peak": "12.42 (verified, 11-Sep-2026; 52-wk high 28.9)",
+   "recovery_months": "in progress",
+   "bonds_pct": 0.5,
+   "gold_inr_pct": 14.6,
+   "usdinr_pct": 6.8,
+   "note": "Nifty ~8% below 2026 peak (verified, 12-Aug-2026), USDINR 95.79 and 10Y >7% verified 11-Sep-2026; ₹ P&L beta-scaled to the current book."
+  },
+  {
+   "scenario": "Hypothetical: Equity -25% (mid -32%, small -38%, intl -15%, VIX→40)",
+   "period": "Forward scenario",
+   "nifty50_pct": -25.0,
+   "moderate_pnl_cr": -72.6,
+   "aggressive_pnl_cr": -96.0,
+   "vix_peak": "40 (assumed)",
+   "recovery_months": "n/a (forward scenario)",
+   "bonds_pct": 0.0,
+   "gold_inr_pct": 5.0,
+   "usdinr_pct": 3.0,
+   "note": "risk_calc.py model output on live sleeve weights, not a historical episode; liquidity needed: none forced, ~₹50 Cr if a 10% de-risk is instructed."
+  },
+  {
+   "scenario": "Hypothetical: Rates +200bp parallel shift",
+   "period": "Forward scenario",
+   "nifty50_pct": 0.0,
+   "moderate_pnl_cr": -44.9,
+   "aggressive_pnl_cr": -48.3,
+   "vix_peak": "n/a",
+   "recovery_months": "n/a",
+   "bonds_pct": -8.0,
+   "gold_inr_pct": 0.0,
+   "usdinr_pct": 0.0,
+   "note": "FI sleeve MTM only; no forced sales — risk_calc.py duration-based re-pricing of the fixed-income sleeve."
+  },
+  {
+   "scenario": "Hypothetical: Credit event — one Cat II fund marks -40%",
+   "period": "Forward scenario",
+   "nifty50_pct": 0.0,
+   "moderate_pnl_cr": -6.6,
+   "aggressive_pnl_cr": -4.0,
+   "vix_peak": "n/a",
+   "recovery_months": "n/a (locked 3-7 yrs)",
+   "bonds_pct": 0.0,
+   "gold_inr_pct": 0.0,
+   "usdinr_pct": 0.0,
+   "note": "Sized to one ₹12.5 Cr fund position (50% of the ₹25 Cr single-fund cap, per the reconciled AIF limit), not a fully-cap-utilised fund; pure MTM hit, zero incremental liquidity available."
+  }
+ ],
+ "risk_limits": [
+  {
+   "metric": "Sleeve band (Core beta/Satellite/Alternatives/Stabilisers/Liquidity)",
+   "limit": "±3-5pp of Model Master SAA",
+   "warning": "±80% of band",
+   "action": "Passive breach: flag in monthly drift report; active breach: blocked pre-trade",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Single-name direct stock",
+   "limit": "3% of AUM target cap (₹15 Cr); 5% hard cap (₹25 Cr)",
+   "warning": "3-5%",
+   "action": "3-5%: no new buys, IC review; >5%: trim to ≤3% in next RPP (5-trading-day SLA if price-driven)",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Sector/industry concentration",
+   "limit": "25% of equity sleeve",
+   "warning": "20-25%",
+   "action": "Block new sector buys; trim within 10 trading days if from price move",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Single AIF/fund",
+   "limit": "5% of AUM (₹25 Cr); ≤2 funds per manager",
+   "warning": "4-5%",
+   "action": "New commitments blocked at cap; no forced redemption (illiquid)",
+   "cadence": "monthly"
+  },
+  {
+   "metric": "Single manager/AMC (look-through, incl. Cat III gross notional)",
+   "limit": "15% of AUM (₹75 Cr)",
+   "warning": "12-15%",
+   "action": "No new subscriptions to that AMC above cap; Cat III/SIF shown at gross notional, not NAV, if internally levered",
+   "cadence": "monthly"
+  },
+  {
+   "metric": "Third-party PMS manager",
+   "limit": "3% of AUM (₹15 Cr), 1 manager (booked outside NDPMS AUM)",
+   "warning": "n/a",
+   "action": "Cap reached: no top-up; annual manager review",
+   "cadence": "quarterly"
+  },
+  {
+   "metric": "Credit floor — fixed-income sleeve",
+   "limit": "AAA/AA+ ≥90% of FI sleeve; AA is the minimum issuer rating (Moderate AA line 2% of AUM = 8.3% of the 24% FI sleeve — passes); hard AA ceiling 2.4% of AUM",
+   "warning": "AAA/AA+ 90-92%",
+   "action": "Downgrade below AA-: exit proposal (mini-RPP) in 5 trading days; sub-investment-grade listed paper: immediate pre-trade block",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Duration band (FI sleeve)",
+   "limit": "2.5-4.5 yrs blended; ≤6.5 yrs single G-sec line",
+   "warning": "outside band by <1yr",
+   "action": "Rebalancing trade proposed in next monthly RPP",
+   "cadence": "monthly"
+  },
+  {
+   "metric": "Illiquid/unlisted aggregate",
+   "limit": "15% of AUM (₹75 Cr) house target; 25% (₹125 Cr) legal (100% for LVAI entities)",
+   "warning": "15-18%",
+   "action": "15-18%: IC sign-off; >18%: no new commitments; >25%: hard block (no cure window for an active breach)",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Derivative notional (hedge only)",
+   "limit": "≤25% of AUM (₹125 Cr) for tail hedges; premium budget ≤1% p.a.",
+   "warning": "premium >0.75% p.a. run-rate",
+   "action": "Requires pre-approved Hedge Protocol standing instruction + RPP line",
+   "cadence": "monthly"
+  },
+  {
+   "metric": "Liquidity floor (20% ADV rule)",
+   "limit": "≥80% of book liquidable ≤5 days; ≥95% ≤10 days",
+   "warning": "75-80% at 5 days",
+   "action": "New illiquid commitments paused until restored",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Currency / unhedged FX exposure",
+   "limit": "≤15% of AUM unhedged (international + gold/silver combined)",
+   "warning": "13-15%",
+   "action": "No further international top-ups above 15%",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Associate/group securities (all sleeves)",
+   "limit": "10% of AUM (₹50 Cr) house target vs 15/25/30% legal",
+   "warning": "8-10%",
+   "action": "One-time positive consent + IC best-selection minute before first purchase; real-time alert at 80% of cap",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Drawdown from peak (absolute floor)",
+   "limit": "≤18% absolute (Moderate); ≤25% (Aggressive)",
+   "warning": "within 3pp of floor",
+   "action": "IC review; consider hedge activation or de-risk mini-RPP",
+   "cadence": "daily"
+  }
+ ],
+ "early_warning": [
+  {
+   "indicator": "India VIX (spot ~12.4, 11-Sep-2026)",
+   "green": "<15",
+   "amber": "15-22",
+   "red": ">22 (52-wk high 28.9)",
+   "action_on_red": "Same-day IC review of hedge sizing",
+   "source": "hdfcsky.com, verified 11-Sep-2026"
+  },
+  {
+   "indicator": "Nifty breadth (20-day advance/decline)",
+   "green": ">1.2",
+   "amber": "0.8-1.2",
+   "red": "<0.8 (5 sessions)",
+   "action_on_red": "Check momentum/trend filter; review factor tilt sizing",
+   "source": "House model"
+  },
+  {
+   "indicator": "FII net equity flows (monthly)",
+   "green": "Net buy / <₹10k Cr out",
+   "amber": "₹10-40k Cr out",
+   "red": ">₹40k Cr out",
+   "action_on_red": "Prep de-risk mini-RPP (not executed until consented)",
+   "source": "NSDL FPI report"
+  },
+  {
+   "indicator": "AAA-10Y G-sec spread (~221bp, 15-Aug-2026)",
+   "green": "<180bp",
+   "amber": "180-260bp",
+   "red": ">260bp",
+   "action_on_red": "Credit-floor review; no new AA adds",
+   "source": "India Macro Indicators"
+  },
+  {
+   "indicator": "AA − AAA spread (3-5Y corporate; provisional thresholds until a live daily series is stored)",
+   "green": "<100 bp (provisional)",
+   "amber": "100-150 bp (provisional)",
+   "red": ">150 bp (provisional) — replaced by live 60-day mean ±1σ / +2σ once 60 readings exist (roadmap day 45)",
+   "action_on_red": "Trim AA sleeve toward AAA",
+   "source": "Derived from 2026 range prints: AAA 50-140 bp and AA 100-260 bp over G-sec (bondscanner/altifi, approx.) → AA−AAA ≈50-120 bp; live series from CRISIL/ICRA/indiamacroindicators"
+  },
+  {
+   "indicator": "10Y G-sec yield (~7.0%, 11-Sep-2026, 10-month high)",
+   "green": "±25bp/3mo avg",
+   "amber": "±25-75bp/month",
+   "red": ">75bp/month",
+   "action_on_red": "Duration-band review",
+   "source": "TradingEconomics, verified"
+  },
+  {
+   "indicator": "USDINR (spot ~95.79, 11-Sep-2026 — corrected from a stale ₹88 reference used elsewhere)",
+   "green": "<1% monthly move",
+   "amber": "1-3% monthly",
+   "red": ">3% monthly",
+   "action_on_red": "FX-hedge discussion; gold-sleeve check",
+   "source": "hdfcsky.com, verified 11-Sep-2026"
+  },
+  {
+   "indicator": "Real rates (10Y - CPI YoY)",
+   "green": ">1.5%",
+   "amber": "0.5-1.5%",
+   "red": "<0.5% or negative",
+   "action_on_red": "Flag inflation-hedge assets (gold, TIPS-equivalents)",
+   "source": "House model"
+  },
+  {
+   "indicator": "US VIX",
+   "green": "<18",
+   "amber": "18-28",
+   "red": ">28",
+   "action_on_red": "Correlate with India VIX; review international sleeve",
+   "source": "House model"
+  },
+  {
+   "indicator": "Brent crude (USD/bbl, ~$110, 11-Sep-2026)",
+   "green": "<$75",
+   "amber": "$75-95",
+   "red": ">$95 (current level)",
+   "action_on_red": "Re-run oil+50% scenario live; already in red as of 11-Sep-2026",
+   "source": "hdfcsky.com, verified"
+  },
+  {
+   "indicator": "Nifty forward P/E percentile (10yr; trailing 19.8-20.2x vs 5Y median 22.0x)",
+   "green": "<60th",
+   "amber": "60th-85th",
+   "red": ">85th",
+   "action_on_red": "No new large-cap adds; tilt Value/Quality",
+   "source": "Trendlyne/IndexPE, verified"
+  },
+  {
+   "indicator": "Nifty vs 200-DMA",
+   "green": "Above, DMA rising",
+   "amber": "±3% of DMA",
+   "red": "Below, DMA falling",
+   "action_on_red": "Trigger dynamic de-risk standing instruction (pending legal clearance)",
+   "source": "House model"
+  }
+ ],
+ "hedge_menu": [
+  {
+   "hedge": "5% OTM Nifty put (rolling, 3-month tenor)",
+   "annual_cost_bps": "292",
+   "protection_in_minus25": "Strong — full downside beyond strike",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Could — reference instrument for costing; the adopted default is the 95/85 put spread"
+  },
+  {
+   "hedge": "5% OTM put, stressed-roll (high-IV re-strike)",
+   "annual_cost_bps": "612-1284",
+   "protection_in_minus25": "Strong but expensive to maintain in a crisis",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Could — pre-consent the higher cost band so a crisis roll doesn't need fresh consent"
+  },
+  {
+   "hedge": "95/85 Nifty put spread",
+   "annual_cost_bps": "265",
+   "protection_in_minus25": "Capped at 10% downside, cheaper carry",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Should — ADOPTED default: 25-40% of equity sleeve (₹75-120 Cr notional, ≈500-800 lots), premium ≤1% of AUM p.a. (₹5 Cr), initiated via RPP when India VIX <15, auto-rolled via SI #5"
+  },
+  {
+   "hedge": "95P/105C zero-cost collar",
+   "annual_cost_bps": "-116 (net credit)",
+   "protection_in_minus25": "Downside protected, upside capped at strike",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Could — use after a strong rally to de-risk without realising gains/tax"
+  },
+  {
+   "hedge": "10% OTM put",
+   "annual_cost_bps": "94",
+   "protection_in_minus25": "Only tail-beyond-10% protected",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Could — cheapest pure tail cover, weak on moderate drawdowns"
+  },
+  {
+   "hedge": "Tactical gold overweight (+2-3pp vs SAA)",
+   "annual_cost_bps": "opportunity cost only (E[R] 8% vs 11% on +2-3 pp ≈ ₹0.3-0.45 Cr/yr)",
+   "protection_in_minus25": "Partial — gold +30-38% in GFC/tariff-shock windows",
+   "ndpms_feasibility": "allowed",
+   "verdict": "Should — friction-free, no derivatives, no extra consent event"
+  },
+  {
+   "hedge": "1-2% long-vol / market-neutral Cat III AIF or SIF",
+   "annual_cost_bps": "~190 (fund fee, embedded)",
+   "protection_in_minus25": "Covers grinding/choppy regimes where puts lose money",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Could — complements, does not replace, the put programme"
+  },
+  {
+   "hedge": "Full-notional (100% AUM) unhedged derivative overlay",
+   "annual_cost_bps": "~290+",
+   "protection_in_minus25": "Full but at ~₹14.5 Cr/yr running cost",
+   "ndpms_feasibility": "allowed_with_consent",
+   "verdict": "Avoid — pure loss in the more common grinding regime"
+  }
+ ],
+ "kpis": [
+  {
+   "kpi": "Net alpha vs Policy Composite (3Y rolling)",
+   "target": "≥0 (1Y floor); ≥+50 bps (3Y); ≥+75 bps (5Y), R2 basis",
+   "owner": "CIO",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Information ratio (36M)",
+   "target": "≥0.25 (3Y); ≥0.35 (5Y)",
+   "owner": "Performance",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Tracking error vs Policy Composite",
+   "target": "1.5-3.5% Moderate / 2.0-4.5% Aggressive (green)",
+   "owner": "Risk",
+   "cadence": "monthly"
+  },
+  {
+   "kpi": "Consent latency (decision to execution, median)",
+   "target": "≤3 business days",
+   "owner": "Compliance/Ops",
+   "cadence": "monthly"
+  },
+  {
+   "kpi": "Implementation shortfall (Perold, R0-R1)",
+   "target": "≤25 bps p.a.; consent-latency component ≤15 bps",
+   "owner": "PM/Dealing",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Total controllable cost (fee+opex+brokerage+impact)",
+   "target": "fee + GST + opex + booked trading ≤60 bps; weighted TER ≤45 bps; all-in cash TCO ≤190 bps",
+   "owner": "COO",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Realised tax drag (R2-R3)",
+   "target": "≤80 bps p.a.; zero STCG realised for rebalancing unless hurdle cleared; March harvesting executed",
+   "owner": "PM/Tax adviser",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Annual liquid-book turnover",
+   "target": "15-25%/yr liquid book (Strategy H design point ≈4-5% rebalancing turnover + TAA ≤10%/month cap)",
+   "owner": "PM",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Max drawdown vs benchmark ratio",
+   "target": "≤1.10x Policy Composite MDD",
+   "owner": "Risk",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Batting average (% months R2 > benchmark)",
+   "target": "≥55% (36M)",
+   "owner": "Performance",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "TAA hit rate (trailing 12 calls)",
+   "target": "≥55%, payoff ratio ≥1.2",
+   "owner": "CIO",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Active share (direct-equity sleeve)",
+   "target": "60-80%",
+   "owner": "PM",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Stale-priced assets (% of NAV)",
+   "target": "≤5%",
+   "owner": "Performance/Ops",
+   "cadence": "monthly"
+  },
+  {
+   "kpi": "Unlisted-cap utilisation",
+   "target": "≤15% IPS target (alert at 18%); never >25% legal",
+   "owner": "Compliance",
+   "cadence": "daily"
+  },
+  {
+   "kpi": "Associate/group-product utilisation",
+   "target": "≤10% house target (alert at 8%)",
+   "owner": "Compliance",
+   "cadence": "daily"
+  },
+  {
+   "kpi": "RPP consent SLA adherence",
+   "target": "≥90% of packs consented within 2 business days",
+   "owner": "RM/Compliance",
+   "cadence": "monthly"
+  },
+  {
+   "kpi": "Recon break resolution",
+   "target": "100% same-day for cash breaks >₹10L; T+1 otherwise",
+   "owner": "Ops",
+   "cadence": "daily"
+  },
+  {
+   "kpi": "Client engagement depth on RPP (read-through, questions raised)",
+   "target": "Track and report; flag if <2 questions/quarter (rubber-stamp risk)",
+   "owner": "RM",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Group-instrument execution quality",
+   "target": "slippage on Angel One group-instrument trades ≤ non-group median + 3 bps per quarter; 100% of listed group securities routed via second broker or NAV/AP route",
+   "owner": "Dealing/Compliance",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Platform economics",
+   "target": "second mandate: 3 qualified prospects by month 6, term sheet by month 12, signed by month 18; opex/AUM ≤0.85% by year 2",
+   "owner": "CIO/COO (Head of Wealth as pipeline owner)",
+   "cadence": "quarterly"
+  },
+  {
+   "kpi": "Merge/IPS reconciliation",
+   "target": "automated cross-check (reconciliation_checklist) passes with zero open items before every model-version bump, CMA refresh and client document",
+   "owner": "Data + Risk (second reviewer)",
+   "cadence": "event + annual"
+  }
+ ],
+ "cost_stack": [
+  {
+   "sleeve": "Nifty 50/100 ETF (AP) + index fund",
+   "moderate_pct": 22,
+   "aggressive_pct": 25,
+   "ter_mgmt_bps": 8,
+   "embedded_fund_cost_bps": 3,
+   "our_txn_bps": 2,
+   "cash_tax_bps_pa": 22,
+   "illiquidity_latency_bps": 3,
+   "total_cash_tco_bps": 38,
+   "moderate_cr_per_yr": 0.42,
+   "aggressive_cr_per_yr": 0.47,
+   "memo_dtl_accrual_bps": 120,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Factor index funds",
+   "moderate_pct": 10,
+   "aggressive_pct": 12,
+   "ter_mgmt_bps": 30,
+   "embedded_fund_cost_bps": 25,
+   "our_txn_bps": 2,
+   "cash_tax_bps_pa": 45,
+   "illiquidity_latency_bps": 3,
+   "total_cash_tco_bps": 105,
+   "moderate_cr_per_yr": 0.53,
+   "aggressive_cr_per_yr": 0.63,
+   "memo_dtl_accrual_bps": 110,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Active mid-cap MF",
+   "moderate_pct": 7,
+   "aggressive_pct": 10,
+   "ter_mgmt_bps": 70,
+   "embedded_fund_cost_bps": 35,
+   "our_txn_bps": 1,
+   "cash_tax_bps_pa": 26,
+   "illiquidity_latency_bps": 2,
+   "total_cash_tco_bps": 134,
+   "moderate_cr_per_yr": 0.47,
+   "aggressive_cr_per_yr": 0.67,
+   "memo_dtl_accrual_bps": 140,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Active small-cap MF",
+   "moderate_pct": 3,
+   "aggressive_pct": 5,
+   "ter_mgmt_bps": 80,
+   "embedded_fund_cost_bps": 45,
+   "our_txn_bps": 1,
+   "cash_tax_bps_pa": 26,
+   "illiquidity_latency_bps": 2,
+   "total_cash_tco_bps": 154,
+   "moderate_cr_per_yr": 0.23,
+   "aggressive_cr_per_yr": 0.39,
+   "memo_dtl_accrual_bps": 150,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Direct stocks",
+   "moderate_pct": 8,
+   "aggressive_pct": 12,
+   "ter_mgmt_bps": 0,
+   "embedded_fund_cost_bps": 0,
+   "our_txn_bps": 12.6,
+   "cash_tax_bps_pa": 155,
+   "illiquidity_latency_bps": 8,
+   "total_cash_tco_bps": 175.6,
+   "moderate_cr_per_yr": 0.7,
+   "aggressive_cr_per_yr": 1.05,
+   "memo_dtl_accrual_bps": 60,
+   "tax_note": "dividend 43 + realised LTCG 112"
+  },
+  {
+   "sleeve": "International index fund/ETF",
+   "moderate_pct": 5,
+   "aggressive_pct": 7,
+   "ter_mgmt_bps": 65,
+   "embedded_fund_cost_bps": 15,
+   "our_txn_bps": 3,
+   "cash_tax_bps_pa": 30,
+   "illiquidity_latency_bps": 10,
+   "total_cash_tco_bps": 123,
+   "moderate_cr_per_yr": 0.31,
+   "aggressive_cr_per_yr": 0.43,
+   "memo_dtl_accrual_bps": 110,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Short-duration / MM fund",
+   "moderate_pct": 3,
+   "aggressive_pct": 2,
+   "ter_mgmt_bps": 25,
+   "embedded_fund_cost_bps": 5,
+   "our_txn_bps": 0,
+   "cash_tax_bps_pa": 130,
+   "illiquidity_latency_bps": 0,
+   "total_cash_tco_bps": 160,
+   "moderate_cr_per_yr": 0.24,
+   "aggressive_cr_per_yr": 0.16,
+   "memo_dtl_accrual_bps": 130,
+   "tax_note": "50% churn at slab"
+  },
+  {
+   "sleeve": "Target-maturity AAA/SDL funds",
+   "moderate_pct": 13,
+   "aggressive_pct": 4,
+   "ter_mgmt_bps": 18,
+   "embedded_fund_cost_bps": 5,
+   "our_txn_bps": 1,
+   "cash_tax_bps_pa": 0,
+   "illiquidity_latency_bps": 0,
+   "total_cash_tco_bps": 24,
+   "moderate_cr_per_yr": 0.16,
+   "aggressive_cr_per_yr": 0.05,
+   "memo_dtl_accrual_bps": 269,
+   "tax_note": "deferred to redemption"
+  },
+  {
+   "sleeve": "10-yr G-sec direct",
+   "moderate_pct": 6,
+   "aggressive_pct": 2,
+   "ter_mgmt_bps": 0,
+   "embedded_fund_cost_bps": 0,
+   "our_txn_bps": 3,
+   "cash_tax_bps_pa": 273,
+   "illiquidity_latency_bps": 0,
+   "total_cash_tco_bps": 276,
+   "moderate_cr_per_yr": 0.83,
+   "aggressive_cr_per_yr": 0.28,
+   "memo_dtl_accrual_bps": 0,
+   "tax_note": "coupon at slab"
+  },
+  {
+   "sleeve": "AA credit via funds",
+   "moderate_pct": 2,
+   "aggressive_pct": 0,
+   "ter_mgmt_bps": 70,
+   "embedded_fund_cost_bps": 10,
+   "our_txn_bps": 1,
+   "cash_tax_bps_pa": 0,
+   "illiquidity_latency_bps": 0,
+   "total_cash_tco_bps": 81,
+   "moderate_cr_per_yr": 0.08,
+   "aggressive_cr_per_yr": 0.0,
+   "memo_dtl_accrual_bps": 320,
+   "tax_note": "deferred"
+  },
+  {
+   "sleeve": "Arbitrage fund",
+   "moderate_pct": 2,
+   "aggressive_pct": 2,
+   "ter_mgmt_bps": 35,
+   "embedded_fund_cost_bps": 10,
+   "our_txn_bps": 1,
+   "cash_tax_bps_pa": 19,
+   "illiquidity_latency_bps": 0,
+   "total_cash_tco_bps": 65,
+   "moderate_cr_per_yr": 0.07,
+   "aggressive_cr_per_yr": 0.07,
+   "memo_dtl_accrual_bps": 58,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Gold ETF",
+   "moderate_pct": 5,
+   "aggressive_pct": 4,
+   "ter_mgmt_bps": 60,
+   "embedded_fund_cost_bps": 5,
+   "our_txn_bps": 2,
+   "cash_tax_bps_pa": 12,
+   "illiquidity_latency_bps": 2,
+   "total_cash_tco_bps": 81,
+   "moderate_cr_per_yr": 0.2,
+   "aggressive_cr_per_yr": 0.16,
+   "memo_dtl_accrual_bps": 108,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Silver ETF",
+   "moderate_pct": 1,
+   "aggressive_pct": 1,
+   "ter_mgmt_bps": 55,
+   "embedded_fund_cost_bps": 10,
+   "our_txn_bps": 3,
+   "cash_tax_bps_pa": 25,
+   "illiquidity_latency_bps": 5,
+   "total_cash_tco_bps": 98,
+   "moderate_cr_per_yr": 0.05,
+   "aggressive_cr_per_yr": 0.05,
+   "memo_dtl_accrual_bps": 100,
+   "tax_note": ""
+  },
+  {
+   "sleeve": "Listed REIT/InvIT",
+   "moderate_pct": 4,
+   "aggressive_pct": 2,
+   "ter_mgmt_bps": 0,
+   "embedded_fund_cost_bps": 0,
+   "our_txn_bps": 6,
+   "cash_tax_bps_pa": 160,
+   "illiquidity_latency_bps": 5,
+   "total_cash_tco_bps": 171,
+   "moderate_cr_per_yr": 0.34,
+   "aggressive_cr_per_yr": 0.17,
+   "memo_dtl_accrual_bps": 20,
+   "tax_note": "interest/rent at slab"
+  },
+  {
+   "sleeve": "Cat II private credit (x2)",
+   "moderate_pct": 5,
+   "aggressive_pct": 4,
+   "ter_mgmt_bps": 175,
+   "embedded_fund_cost_bps": 0,
+   "our_txn_bps": 0,
+   "cash_tax_bps_pa": 468,
+   "illiquidity_latency_bps": 40,
+   "total_cash_tco_bps": 683,
+   "moderate_cr_per_yr": 1.71,
+   "aggressive_cr_per_yr": 1.37,
+   "memo_dtl_accrual_bps": 0,
+   "tax_note": "interest at slab"
+  },
+  {
+   "sleeve": "Cat III LS AIF",
+   "moderate_pct": 2,
+   "aggressive_pct": 2,
+   "ter_mgmt_bps": 190,
+   "embedded_fund_cost_bps": 30,
+   "our_txn_bps": 0,
+   "cash_tax_bps_pa": 308,
+   "illiquidity_latency_bps": 15,
+   "total_cash_tco_bps": 543,
+   "moderate_cr_per_yr": 0.54,
+   "aggressive_cr_per_yr": 0.54,
+   "memo_dtl_accrual_bps": 0,
+   "tax_note": "fund-level"
+  },
+  {
+   "sleeve": "SIF hybrid LS",
+   "moderate_pct": 2,
+   "aggressive_pct": 3,
+   "ter_mgmt_bps": 125,
+   "embedded_fund_cost_bps": 30,
+   "our_txn_bps": 0,
+   "cash_tax_bps_pa": 0,
+   "illiquidity_latency_bps": 15,
+   "total_cash_tco_bps": 170,
+   "moderate_cr_per_yr": 0.17,
+   "aggressive_cr_per_yr": 0.26,
+   "memo_dtl_accrual_bps": 165,
+   "tax_note": "deferred; equity LTCG on exit"
+  },
+  {
+   "sleeve": "Pre-IPO / PE Cat II (Aggressive only; approx.)",
+   "moderate_pct": 0,
+   "aggressive_pct": 3,
+   "ter_mgmt_bps": 200,
+   "embedded_fund_cost_bps": 0,
+   "our_txn_bps": 0,
+   "cash_tax_bps_pa": 0,
+   "illiquidity_latency_bps": 50,
+   "total_cash_tco_bps": 250,
+   "moderate_cr_per_yr": 0.0,
+   "aggressive_cr_per_yr": 0.38,
+   "memo_dtl_accrual_bps": 150,
+   "tax_note": "pass-through capital gains realised only on exit; approx."
+  }
+ ],
+ "rebalance_comparison": [
+  {
+   "policy": "A. Monthly calendar, full rebalance to target",
+   "turnover_pct_pa": 26.0,
+   "trades_per_year": 96,
+   "cost_bps": 2.8,
+   "tax_bps": 49.7,
+   "cost_plus_tax_bps": 52.5,
+   "cr_per_year": 2.63,
+   "avg_drift_pp_summed": 4.3,
+   "consent_events_per_year": 12,
+   "verdict": "Avoid — highest cost+tax for no reliable TE benefit"
+  },
+  {
+   "policy": "B. Quarterly calendar",
+   "turnover_pct_pa": 15.1,
+   "trades_per_year": 39,
+   "cost_bps": 1.7,
+   "tax_bps": 36.1,
+   "cost_plus_tax_bps": 37.8,
+   "cr_per_year": 1.89,
+   "avg_drift_pp_summed": 5.1,
+   "consent_events_per_year": 4,
+   "verdict": "Avoid — still tax-heavy; no event overlay"
+  },
+  {
+   "policy": "C. Annual calendar",
+   "turnover_pct_pa": 7.7,
+   "trades_per_year": 12,
+   "cost_bps": 0.9,
+   "tax_bps": 23.5,
+   "cost_plus_tax_bps": 24.4,
+   "cr_per_year": 1.22,
+   "avg_drift_pp_summed": 7.3,
+   "consent_events_per_year": 1,
+   "verdict": "Avoid — drifts 5-7 pp between resets"
+  },
+  {
+   "policy": "D. Band-only, continuous monitor, to target",
+   "turnover_pct_pa": 6.5,
+   "trades_per_year": 4,
+   "cost_bps": 0.5,
+   "tax_bps": 13.4,
+   "cost_plus_tax_bps": 13.9,
+   "cr_per_year": 0.7,
+   "avg_drift_pp_summed": 11.6,
+   "consent_events_per_year": "ad hoc",
+   "verdict": "Avoid under NDPMS — 'whenever' needs standing discretion or constant ad-hoc consent"
+  },
+  {
+   "policy": "E. Hybrid monthly, breach → target",
+   "turnover_pct_pa": 6.1,
+   "trades_per_year": 4,
+   "cost_bps": 0.5,
+   "tax_bps": 13.1,
+   "cost_plus_tax_bps": 13.6,
+   "cr_per_year": 0.68,
+   "avg_drift_pp_summed": 11.9,
+   "consent_events_per_year": 12,
+   "verdict": "Could"
+  },
+  {
+   "policy": "F. Hybrid monthly, breach → inner band edge",
+   "turnover_pct_pa": 4.0,
+   "trades_per_year": 4,
+   "cost_bps": 0.3,
+   "tax_bps": 10.1,
+   "cost_plus_tax_bps": 10.4,
+   "cr_per_year": 0.52,
+   "avg_drift_pp_summed": 12.4,
+   "consent_events_per_year": 12,
+   "verdict": "Should — cheapest of the calendar-anchored family; no event overlay"
+  },
+  {
+   "policy": "G. Hybrid + event overlay, to target",
+   "turnover_pct_pa": 8.2,
+   "trades_per_year": 7,
+   "cost_bps": 0.7,
+   "tax_bps": 17.7,
+   "cost_plus_tax_bps": 18.4,
+   "cr_per_year": 0.92,
+   "avg_drift_pp_summed": 8.6,
+   "consent_events_per_year": "12 + events",
+   "verdict": "Could"
+  },
+  {
+   "policy": "H. Hybrid + event overlay, inner edge (ADOPTED)",
+   "turnover_pct_pa": 4.4,
+   "trades_per_year": 14,
+   "cost_bps": 0.4,
+   "tax_bps": 11.6,
+   "cost_plus_tax_bps": 12.0,
+   "cr_per_year": 0.6,
+   "avg_drift_pp_summed": 10.0,
+   "consent_events_per_year": "12 + events",
+   "verdict": "Recommended — ≈4-5x cheaper than A for a comparable drift profile; event overlay catches excursions inside 1-2 days. Monte Carlo (1,500 runs, independent paths) — CAGR/TE columns are noise until rebuilt with common random numbers; decision rests on turnover/cost/tax only"
+  }
+ ],
+ "return_decomposition": [
+  {
+   "component": "Policy Composite (T2) return — reference, not summed",
+   "illustrative_bps": 970.5,
+   "summed_in_waterfall": false,
+   "how_measured": "9-component composite, monthly reset",
+   "owner": "Performance"
+  },
+  {
+   "component": "Allocation/TAA effect",
+   "illustrative_bps": -6.5,
+   "summed_in_waterfall": true,
+   "how_measured": "Brinson-Fachler allocation term vs T2, worked FY example (R1 basis)",
+   "owner": "CIO"
+  },
+  {
+   "component": "Manager & fund selection (MF/AIF/SIF look-through; third-party PMS memo only)",
+   "illustrative_bps": 44.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Brinson-Fachler selection term, look-through by manager",
+   "owner": "Head of Research"
+  },
+  {
+   "component": "Direct equity security selection (NIFTY-750 scorecard)",
+   "illustrative_bps": 46.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Brinson-Fachler selection term, direct sleeve vs Nifty 500 TRI",
+   "owner": "Equity PM"
+  },
+  {
+   "component": "ETF/index tracking difference",
+   "illustrative_bps": -2.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Fund return vs index TR, passive sleeves",
+   "owner": "PM"
+  },
+  {
+   "component": "Other sleeve selection (FI, international, AIF, gold, cash — net)",
+   "illustrative_bps": 3.9,
+   "summed_in_waterfall": true,
+   "how_measured": "Residual selection across non-equity sleeves",
+   "owner": "PM"
+  },
+  {
+   "component": "Interaction effect",
+   "illustrative_bps": 2.5,
+   "summed_in_waterfall": true,
+   "how_measured": "Brinson-Fachler interaction, Carino-linked",
+   "owner": "Performance"
+  },
+  {
+   "component": "= Gross active return R1 − T2",
+   "illustrative_bps": 87.9,
+   "summed_in_waterfall": false,
+   "how_measured": "Σ of the six effects above; 10.584% − 9.705%",
+   "owner": "Performance"
+  },
+  {
+   "component": "Memo: implementation shortfall R0 − R1 (consent latency + dealing + impact) — already inside the R1-basis effects; NOT subtracted again",
+   "illustrative_bps": -20.0,
+   "summed_in_waterfall": false,
+   "how_measured": "Perold decomposition: decision vs consent vs arrival vs fill price; R0 = 10.784%",
+   "owner": "PM + Client Ops"
+  },
+  {
+   "component": "PM fixed fee + 18% GST (0.30% × 1.18)",
+   "illustrative_bps": -35.4,
+   "summed_in_waterfall": true,
+   "how_measured": "Contracted fee × average AUM",
+   "owner": "Finance"
+  },
+  {
+   "component": "Operating expenses (custody, FA, audit, RTA, valuation feeds)",
+   "illustrative_bps": -10.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Invoiced opex vs 0.50% cap",
+   "owner": "COO"
+  },
+  {
+   "component": "Booked brokerage, STT, stamp, exchange charges",
+   "illustrative_bps": -8.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Contract notes at design turnover",
+   "owner": "Dealing"
+  },
+  {
+   "component": "= Net alpha vs T2 on R2 (post-fee, pre-tax) — the accountability metric",
+   "illustrative_bps": 34.5,
+   "summed_in_waterfall": false,
+   "how_measured": "87.9 − 53.4; 10.05% R2 − 9.705% T2",
+   "owner": "CIO"
+  },
+  {
+   "component": "Realised cash tax drag (R2 − R3)",
+   "illustrative_bps": -45.0,
+   "summed_in_waterfall": true,
+   "how_measured": "Tax-lot engine, FIFO per demat account",
+   "owner": "PM + tax adviser"
+  },
+  {
+   "component": "= Year-1 net alpha vs T2 on R3 (post-fee, post-tax)",
+   "illustrative_bps": -10.5,
+   "summed_in_waterfall": false,
+   "how_measured": "34.5 − 45.0; 9.60% R3 − 9.705% T2. Disclosed to IC/client as the reconciled Year-1 expectation (T2 is itself pre-tax, so R3-basis alpha is a conservative comparison)",
+   "owner": "CIO"
+  }
+ ],
+ "dashboard_panels": [
+  {
+   "dashboard": "Tail-risk",
+   "panel": "Headline VaR/CVaR/EWMA vol",
+   "metrics": "1-day & 1-month VaR 95/99, ES 97.5, EWMA vol",
+   "refresh": "daily",
+   "alert_rule": "1-day VaR >90% of limit"
+  },
+  {
+   "dashboard": "Tail-risk",
+   "panel": "Stress library (live re-run)",
+   "metrics": "10 historical episodes re-priced on live weights, ₹ P&L",
+   "refresh": "daily",
+   "alert_rule": "none — monitoring only"
+  },
+  {
+   "dashboard": "Tail-risk",
+   "panel": "Hedge book",
+   "metrics": "Put/spread notional, premium spent vs budget, payoff-to-date",
+   "refresh": "daily",
+   "alert_rule": "Premium run-rate >0.75% p.a."
+  },
+  {
+   "dashboard": "Tail-risk",
+   "panel": "Early-warning board",
+   "metrics": "12-indicator green/amber/red board",
+   "refresh": "daily",
+   "alert_rule": "1 Red or 2+ simultaneous Ambers → same-day IC escalation"
+  },
+  {
+   "dashboard": "Tail-risk",
+   "panel": "Correlation regime monitor",
+   "metrics": "Rolling 60-day average pairwise sleeve correlation",
+   "refresh": "daily",
+   "alert_rule": ">0.60 average correlation"
+  },
+  {
+   "dashboard": "Performance",
+   "panel": "Headline returns",
+   "metrics": "R1-R4, XIRR, alpha vs T1/T2/T3 for 1D/MTD/FYTD/1Y/3Y/SI",
+   "refresh": "daily 10:00 IST",
+   "alert_rule": "none — reporting"
+  },
+  {
+   "dashboard": "Performance",
+   "panel": "Growth of ₹100 & drawdown",
+   "metrics": "Cumulative R2 vs 3 benchmarks, rolling 12M/36M alpha",
+   "refresh": "daily",
+   "alert_rule": "Drawdown >1.10x benchmark MDD"
+  },
+  {
+   "dashboard": "Performance",
+   "panel": "Brinson-Fachler attribution",
+   "metrics": "Allocation/selection/interaction by sleeve, Carino-linked, look-through manager table",
+   "refresh": "daily, final at month-end",
+   "alert_rule": "none — reporting"
+  },
+  {
+   "dashboard": "Performance",
+   "panel": "Risk-adjusted metrics (RAG)",
+   "metrics": "IR, Sharpe, Sortino, Calmar, capture ratios, batting average, TAA hit rate, active share",
+   "refresh": "weekly (Fri)",
+   "alert_rule": "Any primary metric red for 2 consecutive quarters"
+  },
+  {
+   "dashboard": "Drift/IPS",
+   "panel": "SAA drift vs Model Master",
+   "metrics": "Actual vs target weight by sleeve, band status",
+   "refresh": "daily compute, weekly publish",
+   "alert_rule": "Any sleeve outside its band"
+  },
+  {
+   "dashboard": "Drift/IPS",
+   "panel": "Unlisted-cap and associate-limit monitor",
+   "metrics": "% AUM unlisted, % AUM associate securities, headroom to legal cap",
+   "refresh": "daily",
+   "alert_rule": "Unlisted >18%; associate >80% of house cap"
+  },
+  {
+   "dashboard": "Drift/IPS",
+   "panel": "Composite/model deviation recon",
+   "metrics": "Actual weights vs Model Master IPS targets, sub-category composite rules",
+   "refresh": "monthly + weekly interim",
+   "alert_rule": "Composite rule breach (e.g. FI+ESS >20%)"
+  },
+  {
+   "dashboard": "Liquidity",
+   "panel": "Liquidity ladder",
+   "metrics": "% AUM liquidable in 1/5/10/30/90 days, ADV-based",
+   "refresh": "weekly",
+   "alert_rule": "<80% liquidable in 5 days"
+  },
+  {
+   "dashboard": "Liquidity",
+   "panel": "AIF capital-call & distribution tracker",
+   "metrics": "Committed/called/distributed, drawdown-notice calendar, IRR/DPI/TVPI",
+   "refresh": "weekly",
+   "alert_rule": "Capital call due <5 business days without funding confirmed"
+  },
+  {
+   "dashboard": "Liquidity",
+   "panel": "Cash ladder",
+   "metrics": "Overnight/liquid/arbitrage split by intended holding horizon",
+   "refresh": "daily",
+   "alert_rule": "Idle cash >₹50L not swept"
+  },
+  {
+   "dashboard": "Consent tracker",
+   "panel": "RPP status board",
+   "metrics": "Sent/viewed/approved/rejected/lapsed, days-to-consent",
+   "refresh": "daily",
+   "alert_rule": "Approaching 48h with no action"
+  },
+  {
+   "dashboard": "Consent tracker",
+   "panel": "Standing Instructions log",
+   "metrics": "Every SI trigger fired, instrument, ₹ amount, timestamp",
+   "refresh": "daily",
+   "alert_rule": "SI fired outside its pre-specified parameters"
+  },
+  {
+   "dashboard": "Consent tracker",
+   "panel": "Consent-latency cost log",
+   "metrics": "₹ cost of decision-to-execution delay per trade (Perold shortfall)",
+   "refresh": "daily",
+   "alert_rule": "Cumulative latency cost >25bps p.a. run-rate"
+  },
+  {
+   "dashboard": "Cost/tax",
+   "panel": "Cost & tax drag budget vs actuals",
+   "metrics": "Fee/expense/tax lines vs Table 5 budget, by owner",
+   "refresh": "monthly",
+   "alert_rule": "Any line >130% of budget"
+  },
+  {
+   "dashboard": "Cost/tax",
+   "panel": "Tax-lot / harvest candidates",
+   "metrics": "Unrealised gain/loss by lot, LTCG-exemption headroom, loss carry-forward",
+   "refresh": "daily",
+   "alert_rule": "March: harvest candidates flagged for review"
+  },
+  {
+   "dashboard": "Cost/tax",
+   "panel": "Deferred tax liability (DTL)",
+   "metrics": "R4 unrealised-gain DTL by instrument and surcharge band",
+   "refresh": "daily",
+   "alert_rule": "none — reporting"
+  },
+  {
+   "dashboard": "Manager watchlist",
+   "panel": "Active MF/PMS/AIF scorecard",
+   "metrics": "Rolling 3Y/5Y alpha consistency, style drift, redemption-notice status",
+   "refresh": "quarterly",
+   "alert_rule": "Score <65/100 or manager-change in trailing 12 months"
+  },
+  {
+   "dashboard": "Manager watchlist",
+   "panel": "Capacity monitor",
+   "metrics": "Scheme AUM vs our ticket %, fund-size vs stated capacity",
+   "refresh": "quarterly",
+   "alert_rule": "Ticket >1% of scheme AUM (active) / >5% (passive)"
+  },
+  {
+   "dashboard": "Manager watchlist",
+   "panel": "Third-party PMS look-through",
+   "metrics": "Consolidated TWRR, holdings overlap with direct book, style drift",
+   "refresh": "monthly",
+   "alert_rule": "NAV gap vs manager statement >0.10%"
+  },
+  {
+   "dashboard": "Deployment",
+   "panel": "Weekly tranche tracker",
+   "metrics": "Tranche executed vs schedule, cumulative % deployed, cash remaining",
+   "refresh": "weekly",
+   "alert_rule": "Tranche missed or acceleration trigger fired"
+  },
+  {
+   "dashboard": "Recon",
+   "panel": "Recon break board",
+   "metrics": "Cash/holdings/MF-folio/CA/dividend/fee breaks by age",
+   "refresh": "daily",
+   "alert_rule": "Any break >₹10L or aged >T+1"
+  },
+  {
+   "dashboard": "Valuation quality",
+   "panel": "Stale-price & NAV-lag monitor",
+   "metrics": "% NAV stale-priced by asset class, AIF NAV age",
+   "refresh": "daily",
+   "alert_rule": "Stale >8% of NAV; AIF NAV >100 days old"
+  }
+ ],
+ "deployment_plan": [
+  {
+   "week": "Week 0 (Thu after agreement + custodian live)",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 30.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 67.5,
+   "cumulative_deployed_pct": 13.5,
+   "parked_in_arbitrage_cr": 432.5,
+   "what": "Equity-like tranche 1 of 8 (₹37.5 Cr: Nifty ETF via AP/AMC-direct, factor & international index funds, gold ETF); FI tranche 1 of 4 (₹30 Cr: TMF + G-sec); AIF/SIF commitments signed (₹45 Cr, undrawn); balance swept to arbitrage fund; first RPP includes the 95/85 put-spread hedge (VIX 12.4)",
+   "acceleration_rule": "Nifty ≥5% below week-0 level (or India VIX >22 for 3 sessions) → +1 equity tranche via pre-drafted one-click mini-RPP (24h SLA); Phase 2 = SI #7 after legal opinion"
+  },
+  {
+   "week": "Week 1",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 30.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 67.5,
+   "cumulative_deployed_pct": 27.0,
+   "parked_in_arbitrage_cr": 365.0,
+   "what": "Equity tranche 2; FI tranche 2; direct-stock names begin (≤15% ADV/session)",
+   "acceleration_rule": "Nifty ≥5% below week-0 level (or India VIX >22 for 3 sessions) → +1 equity tranche via pre-drafted one-click mini-RPP (24h SLA); Phase 2 = SI #7 after legal opinion"
+  },
+  {
+   "week": "Week 2",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 30.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 67.5,
+   "cumulative_deployed_pct": 40.5,
+   "parked_in_arbitrage_cr": 297.5,
+   "what": "Equity tranche 3; FI tranche 3",
+   "acceleration_rule": "Nifty ≥10% below week-0 → +2 tranches; ≥15% → deploy all remaining equity within 2 weeks; 10Y yield ≥25 bp above week-0 → pull forward the duration tranche"
+  },
+  {
+   "week": "Week 3",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 30.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 67.5,
+   "cumulative_deployed_pct": 54.0,
+   "parked_in_arbitrage_cr": 230.0,
+   "what": "Equity tranche 4; FI tranche 4 — fixed income fully deployed (₹120 Cr)",
+   "acceleration_rule": "Nifty ≥10% below week-0 → +2 tranches; ≥15% → deploy all remaining equity within 2 weeks; 10Y yield ≥25 bp above week-0 → pull forward the duration tranche"
+  },
+  {
+   "week": "Week 4",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 5.0,
+   "deployed_this_week_cr": 42.5,
+   "cumulative_deployed_pct": 62.5,
+   "parked_in_arbitrage_cr": 187.5,
+   "what": "Equity tranche 5; MID-DEPLOYMENT RE-CONFIRMATION by client (one click); first AIF capital call (≈₹5 Cr) funded via SI #6",
+   "acceleration_rule": "Nifty ≥10% below week-0 → +2 tranches; ≥15% → deploy all remaining equity within 2 weeks; 10Y yield ≥25 bp above week-0 → pull forward the duration tranche"
+  },
+  {
+   "week": "Week 5",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 37.5,
+   "cumulative_deployed_pct": 70.0,
+   "parked_in_arbitrage_cr": 150.0,
+   "what": "Equity tranche 6",
+   "acceleration_rule": "Nifty ≥10% below week-0 → +2 tranches; ≥15% → deploy all remaining equity within 2 weeks; 10Y yield ≥25 bp above week-0 → pull forward the duration tranche"
+  },
+  {
+   "week": "Week 6",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 37.5,
+   "cumulative_deployed_pct": 77.5,
+   "parked_in_arbitrage_cr": 112.5,
+   "what": "Equity tranche 7 (international only if AMC window open, else held in arbitrage and re-queued)",
+   "acceleration_rule": "Nifty ≥10% below week-0 → +2 tranches; ≥15% → deploy all remaining equity within 2 weeks; 10Y yield ≥25 bp above week-0 → pull forward the duration tranche"
+  },
+  {
+   "week": "Week 7",
+   "equity_like_cr": 37.5,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 37.5,
+   "cumulative_deployed_pct": 85.0,
+   "parked_in_arbitrage_cr": 75.0,
+   "what": "Equity tranche 8 of 8 — equity-like ₹300 Cr complete",
+   "acceleration_rule": "Never decelerate on rallies"
+  },
+  {
+   "week": "Week 8",
+   "equity_like_cr": 25.0,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 0.0,
+   "deployed_this_week_cr": 25.0,
+   "cumulative_deployed_pct": 90.0,
+   "parked_in_arbitrage_cr": 50.0,
+   "what": "Closing tranche: REIT/InvIT ₹20 Cr + silver ₹5 Cr (iNAV-limit) + band true-up; ladder closed; residual parked = ₹40 Cr undrawn AIF commitments + ₹10 Cr (2%) arbitrage sleeve",
+   "acceleration_rule": "Ladder complete — acceleration rules retired"
+  },
+  {
+   "week": "Months 3-18",
+   "equity_like_cr": 0.0,
+   "fixed_income_cr": 0.0,
+   "alternatives_drawdown_cr": 40.0,
+   "deployed_this_week_cr": 40.0,
+   "cumulative_deployed_pct": 98.0,
+   "parked_in_arbitrage_cr": 10.0,
+   "what": "Remaining AIF Cat II/III + SIF drawdowns as called (≈25%/quarter) from the arbitrage parking via SI #6; undrawn commitments reported in the cash sleeve; expected drag ≈₹0.8-1.6 Cr",
+   "acceleration_rule": "n/a — manager drawdown schedules"
+  }
+ ],
+ "team_raci": [
+  {
+   "activity": "IC house-view & Model Master sign-off",
+   "pm": "C",
+   "analyst": "C",
+   "risk": "C",
+   "compliance": "I",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "RPP build & pre-trade compliance sign-off",
+   "pm": "R",
+   "analyst": "C",
+   "risk": "C",
+   "compliance": "A",
+   "ops": "C",
+   "rm": "I"
+  },
+  {
+   "activity": "Client consent walkthrough & e-Sign capture",
+   "pm": "I",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "C",
+   "ops": "C",
+   "rm": "R/A"
+  },
+  {
+   "activity": "Trade execution (weekly Mon/Thu tranches)",
+   "pm": "A",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "I",
+   "ops": "C",
+   "rm": "I"
+  },
+  {
+   "activity": "Post-trade recon & settlement",
+   "pm": "I",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "I",
+   "ops": "R/A",
+   "rm": "I"
+  },
+  {
+   "activity": "Daily VaR/CVaR/EWMA vol & early-warning board",
+   "pm": "C",
+   "analyst": "C",
+   "risk": "R/A",
+   "compliance": "I",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "Tail-risk dashboard & hedge-protocol execution",
+   "pm": "C",
+   "analyst": "I",
+   "risk": "R/A",
+   "compliance": "C",
+   "ops": "C",
+   "rm": "I"
+  },
+  {
+   "activity": "Monthly TWRR/attribution & IC scorecard",
+   "pm": "C",
+   "analyst": "C",
+   "risk": "I",
+   "compliance": "I",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "AIF capital-call tracking & funding",
+   "pm": "C",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "I",
+   "ops": "R/A",
+   "rm": "I"
+  },
+  {
+   "activity": "Associate/group-security limit monitoring",
+   "pm": "I",
+   "analyst": "I",
+   "risk": "C",
+   "compliance": "R/A",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "Manager/third-party-PMS watchlist scoring",
+   "pm": "C",
+   "analyst": "R/A",
+   "risk": "I",
+   "compliance": "I",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "Annual firm-level performance audit",
+   "pm": "I",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "R/A",
+   "ops": "C",
+   "rm": "I"
+  },
+  {
+   "activity": "BCP/DR drill",
+   "pm": "C",
+   "analyst": "I",
+   "risk": "C",
+   "compliance": "C",
+   "ops": "R/A",
+   "rm": "I"
+  },
+  {
+   "activity": "Error-trade handling & disclosure",
+   "pm": "C",
+   "analyst": "I",
+   "risk": "C",
+   "compliance": "A",
+   "ops": "R",
+   "rm": "C"
+  },
+  {
+   "activity": "Annual tax-loss harvesting & FY-end netting",
+   "pm": "R",
+   "analyst": "C",
+   "risk": "I",
+   "compliance": "C",
+   "ops": "I",
+   "rm": "I"
+  },
+  {
+   "activity": "Legal-entity structuring & LVAI accreditation",
+   "pm": "I",
+   "analyst": "I",
+   "risk": "I",
+   "compliance": "R/A",
+   "ops": "C",
+   "rm": "C"
+  }
+ ],
+ "sources": [
+  {
+   "title": "SEBI (Portfolio Managers) Regulations, 2020 (as amended)",
+   "url": "https://www.sebi.gov.in/legal/regulations/feb-2023/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-february-07-2023-_69223.html"
+  },
+  {
+   "title": "SEBI Master Circular for Portfolio Managers, 16 July 2025",
+   "url": "https://www.sebi.gov.in/legal/master-circulars/jul-2025/master-circular-for-portfolio-managers_95347.html"
+  },
+  {
+   "title": "SEBI circular — related-party/associate investment limits, 26 Aug 2022",
+   "url": "https://www.apmiindia.org/storagebox/images/Circulars/Related-Party-Circular-26thAug'22.pdf"
+  },
+  {
+   "title": "SEBI circular — PMS for accredited investors, 21 Dec 2021",
+   "url": "https://compfie.aparajitha.com/circular-on-portfolio-management-services-for-accredited-investors-dated-21-12-2021-sebi/"
+  },
+  {
+   "title": "SEBI circular — digital onboarding of PMS clients, 2 May 2024",
+   "url": "https://www.apmiindia.org/storagebox/images/Circulars/Facilitating%20ease%20in%20digital%20on-boarding%20process%20for%20clients%20and%20enhancing%20transparency%20-%202nd%20May'24.pdf"
+  },
+  {
+   "title": "SEBI circular — performance benchmarking and reporting, 16 Dec 2022",
+   "url": "https://www.apmiindia.org/storagebox/images/Circulars/Performance-Benchmarking-16th-Dec'22.pdf"
+  },
+  {
+   "title": "SEBI circular — audit of firm-level performance data, 2 Aug 2023",
+   "url": "https://compfie.aparajitha.com/circular-on-audit-of-firm-level-performance-data-of-portfolio-managers-dated-02-08-2023-sebi/"
+  },
+  {
+   "title": "SEBI order — First Global Finance, 26 May 2026 (outsourcing of core PMS functions)",
+   "url": "https://www.sebi.gov.in/sebi_data/attachdocs/may-2026/1779810509185.pdf"
+  },
+  {
+   "title": "Cyril Amarchand Mangaldas — SEBI's Proposed Overhaul of the PMS Regulatory Framework (Aug 2026)",
+   "url": "https://corporate.cyrilamarchandblogs.com/2026/08/sebis-proposed-overhaul-of-the-pms-regulatory-framework/"
+  },
+  {
+   "title": "SEBI CIV circular 2025/126 — co-investment within AIF structure",
+   "url": "https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/"
+  },
+  {
+   "title": "SEBI AIF Regulations 2026 guide (Cat I/II/III)",
+   "url": "https://elementone.fund/sebi-aif-regulations-2026-guide/"
+  },
+  {
+   "title": "SEBI SIF framework (effective 1-Apr-2025)",
+   "url": "https://www.business-standard.com/amp/markets/capital-market-news/sebi-issues-new-regulatory-framework-for-specialized-investment-funds-125022800217_1.html"
+  },
+  {
+   "title": "SIF explained 2026",
+   "url": "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained"
+  },
+  {
+   "title": "Accredited investor eligibility and benefits",
+   "url": "https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html"
+  },
+  {
+   "title": "SEBI expense cap / fee circular for PMS, 13 Feb 2020",
+   "url": "https://cafemutual.com/news/industry/31-sebi-redefines-and-refines-the-pms-fee"
+  },
+  {
+   "title": "SEBI block-deal framework revision — ₹25 crore minimum",
+   "url": "https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore"
+  },
+  {
+   "title": "ETF direct-with-AMC ₹25 crore threshold, eff. 1-May-2023",
+   "url": "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html"
+  },
+  {
+   "title": "PMS corporate-bond RFQ 10% mandate",
+   "url": "https://www.business-standard.com/amp/article/markets/pms-to-undertake-10-transactions-in-corp-bonds-via-rfq-platform-sebi-121120901140_1.html"
+  },
+  {
+   "title": "RBI Retail Direct — buying G-secs",
+   "url": "https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/"
+  },
+  {
+   "title": "Income-tax Act 2025 / FY2026-27 capital-gains ready-reckoner",
+   "url": "https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27"
+  },
+  {
+   "title": "LTCG/STCG FY2026-27 rates",
+   "url": "https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax"
+  },
+  {
+   "title": "Budget 2026 — SGB tax-exemption narrowed to original subscribers",
+   "url": "https://www.caalley.com/news-updates/budget-2026/budget-2026-changes-sgb-tax-rules-ends-blanket-capital-gains-exemption"
+  },
+  {
+   "title": "AIF taxation India 2026 (Cat I/II/III comparison)",
+   "url": "https://greenportfolio.co/blog/aif-taxation-india-2026-category-1-2-3-comparison/"
+  },
+  {
+   "title": "Category III AIF strategies, tax, PMS comparison",
+   "url": "https://www.finnovate.in/learn/blog/aif-category-iii-india"
+  },
+  {
+   "title": "LRS Master Direction / GIFT-IFSC routes",
+   "url": "https://www.indmoney.com/learn/us-stocks/what-is-lrs-liberalised-remittance-scheme"
+  },
+  {
+   "title": "SEBI overseas-MF USD 7bn industry cap",
+   "url": "https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn"
+  },
+  {
+   "title": "Nifty 50 historical returns (Bajaj AMC)",
+   "url": "https://www.bajajamc.com/knowledge-centre/nifty-50-historical-returns"
+  },
+  {
+   "title": "Nifty 50/Midcap 150/Smallcap 250 comparison, 2005-2026",
+   "url": "https://personalfinanceplan.in/nifty-50-vs-midcap-150-vs-smallcap-250-vs-nifty-500-cap-based-indices-performance-comparison-2005-2026/"
+  },
+  {
+   "title": "Motilal Oswal S&P 500 Index Fund performance (verified 1-Sep-2026)",
+   "url": "https://www.indmoney.com/mutual-funds/motilal-oswal-sp-500-index-fund-direct-growth"
+  },
+  {
+   "title": "Gold price history India (ClearTax)",
+   "url": "https://cleartax.in/s/gold-history-in-india"
+  },
+  {
+   "title": "Silver volatility vs Indian equities (Motilal Oswal study via Business Standard)",
+   "url": "https://www.business-standard.com/finance/personal-finance/silver-shows-similar-volatility-to-indian-stocks-says-motilal-oswal-report-124112501341_1.html"
+  },
+  {
+   "title": "India VIX, USDINR, 10Y yield, Brent snapshot 11-Sep-2026",
+   "url": "https://hdfcsky.com/news/india-vix-rises-4-66percent-to-12-42-as-oil-rupee-and-global-yields-pressure-indian-markets-september-11-2026"
+  },
+  {
+   "title": "Nifty 50 ~8% below 2026 peak (Business Standard, 12-Aug-2026)",
+   "url": "https://www.business-standard.com/finance/personal-finance/nifty-50-needs-8-rebound-to-reclaim-peak-but-midcaps-are-almost-back-126081200474_1.html"
+  },
+  {
+   "title": "Nifty 50 trailing P/E (Trendlyne)",
+   "url": "https://trendlyne.com/equity/PE/NIFTY/1887/nifty-50-price-to-earning-ratios/"
+  },
+  {
+   "title": "Nifty REITs & InvITs Index factsheet",
+   "url": "https://www.niftyindices.com/Factsheet/Factsheet_REITs_InvITs.pdf"
+  },
+  {
+   "title": "Bharat Bond ETF April 2030 factsheet",
+   "url": "https://www.valueresearchonline.com/funds/40483/bharat-bond-etf-april-2030/"
+  },
+  {
+   "title": "AAA vs G-sec 10Y credit spread (India Macro Indicators)",
+   "url": "https://indiamacroindicators.co.in/economic-indicators/10-year-credit-spread-aaa-rated-bonds-g-sec"
+  },
+  {
+   "title": "India 10Y G-sec yield (Trading Economics)",
+   "url": "https://tradingeconomics.com/india/government-bond-yield"
+  },
+  {
+   "title": "SEBI block deal minimum ₹25 crore + windows (Taxmann)",
+   "url": "https://www.taxmann.com/post/blog/sebi-revises-block-deal-framework-minimum-order-size-rs-25-crore"
+  },
+  {
+   "title": "Nippon India ETF Nifty 50 BeES AUM ₹66,777.21 Cr (9-Sep-2026)",
+   "url": "https://www.tickertape.in/etfs/nippon-india-nifty-50-bees-etf-NBES"
+  },
+  {
+   "title": "USD/INR forward premia curve (12M ≈2.82% annualised, 10-Jul-2026 print)",
+   "url": "https://capera.co/data/India/usdinr-forwards"
+  },
+  {
+   "title": "AAA vs AA vs A spreads 2026 (AAA 50-140 bp, AA 100-260 bp over G-sec)",
+   "url": "https://altifi.ai/blogs/bonds/aaa-vs-aa-vs-a-spreads"
+  },
+  {
+   "title": "SEBI circular 19-Sep-2025: transmission of securities from nominee to legal heir (TLH code)",
+   "url": "https://moneylife.in/article/sebi-simplifies-transferring-securities-from-nominee-to-legal-heir/78346.html"
+  },
+  {
+   "title": "PMS for NRIs: PIS permission, NRE/NRO, repatriation (NRO ≤USD 1 mn/FY)",
+   "url": "https://www.nobroker.in/nri/guides/pms-for-nri/"
+  }
+ ],
+ "_meta": {
+  "version": "1.1 (final blueprint pack)",
+  "as_of": "2026-09-12",
+  "canonical_for": "allocation %, ₹ Cr, limits, costs, KPIs, deployment ladder, return waterfall",
+  "reconciled_against": "blueprint_final.md §2.4, §2.8, §4.2, §5.1, §5.2, §6.3, §7.9, §11",
+  "notes": [
+   "All Moderate/Aggressive sleeves sum to 100% / ₹500 Cr (asserted at build).",
+   "Risk limits = 14 hard limits (risk_limits); monitored metric bands live in risk_metric_bands; pre-trade hard blocks in pre_trade_hard_blocks.",
+   "Return waterfall: rows with summed_in_waterfall=false are memo items (R0−R1 shortfall is already inside the R1-basis effects and is never subtracted twice).",
+   "Every figure marked approx. is an analyst reconstruction; verified figures carry a dated source."
+  ]
+ },
+ "cost_stack_totals": {
+  "Moderate": {
+   "weighted_ter_mgmt_bps": 39.1,
+   "weighted_embedded_bps": 10.5,
+   "weighted_txn_bps": 2.6,
+   "weighted_cash_tax_bps": 83.3,
+   "weighted_illiquidity_bps": 5.2,
+   "cash_tco_pre_pm_layer_bps": 140.7,
+   "cash_tco_pre_pm_layer_cr": 7.04,
+   "pm_layer_bps": 45.4,
+   "pm_layer_cr": 2.27,
+   "all_in_cash_tco_bps": 186.1,
+   "all_in_cash_tco_cr": 9.31,
+   "memo_dtl_accrual_bps": 118.9,
+   "non_tax_tco_bps": 57.4
+  },
+  "Aggressive": {
+   "weighted_ter_mgmt_bps": 46.6,
+   "weighted_embedded_bps": 12.8,
+   "weighted_txn_bps": 3.0,
+   "weighted_cash_tax_bps": 72.8,
+   "weighted_illiquidity_bps": 7.2,
+   "cash_tco_pre_pm_layer_bps": 142.3,
+   "cash_tco_pre_pm_layer_cr": 7.11,
+   "pm_layer_bps": 45.4,
+   "pm_layer_cr": 2.27,
+   "all_in_cash_tco_bps": 187.7,
+   "all_in_cash_tco_cr": 9.38,
+   "memo_dtl_accrual_bps": 109.3,
+   "non_tax_tco_bps": 69.5
+  }
+ },
+ "portfolio_stats_notes": {
+  "cost_bps": "all-in cash TCO incl. PM layer (0.30% fee + GST + ≈10 bps opex), bps p.a. of AUM, per §7.9; benchmark rows = index/ETF cost only",
+  "sharpe": "(E[R] − 6.0% Rf) / vol, rounded to 2 dp — canonical (narrative aligned to 0.41 / 0.39 / 0.29)",
+  "exp_max_dd_pct": "model expected 10-yr max drawdown, approx.; the GFC re-pricing in stress_scenarios (−32% / −43%) is the tail case written into the IPS risk acknowledgement"
+ },
+ "risk_metric_bands": [
+  {
+   "metric": "1-day VaR (95%)",
+   "limit": "≤1.5% of AUM (Moderate); ≤2.0% (Aggressive)",
+   "warning": "90% of limit",
+   "action": "Same-day IC review of sizing/hedge",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Tracking error vs Policy Composite (ex-ante)",
+   "limit": "1.5-3.5% Moderate; 2.0-4.5% Aggressive (green); amber to 4.5% / 6.0%; red >4.5% / >6.0% or <1.0% / <1.5% (closet indexing)",
+   "warning": "below floor (closet-indexing) or above ceiling",
+   "action": "IC review of active-weight sizing (TAA conviction units, direct-stock count)",
+   "cadence": "monthly"
+  },
+  {
+   "metric": "Rolling 60-day average pairwise sleeve correlation",
+   "limit": "<0.60",
+   "warning": "0.55-0.60",
+   "action": "Flag regime-shift risk to IC; re-check VaR diversification assumption",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Consent latency (decision to execution)",
+   "limit": "Median ≤3 business days; red >5 days",
+   "warning": "4-5 days",
+   "action": "Escalate per SLA (48h RM call, 72h CIO call); log cost to consent-latency dashboard",
+   "cadence": "daily"
+  },
+  {
+   "metric": "1-month VaR (95%, parametric)",
+   "limit": "amber if >6% (Moderate) / >7.5% (Aggressive); baseline 4.59% / 5.95%",
+   "warning": "5.5-6% / 7-7.5%",
+   "action": "IC review of sizing/hedge",
+   "cadence": "daily"
+  },
+  {
+   "metric": "EWMA volatility (λ=0.94)",
+   "limit": ">1.5x 60-day realised = amber",
+   "warning": "1.3-1.5x",
+   "action": "stress multiplier on VaR; hedge review",
+   "cadence": "daily"
+  },
+  {
+   "metric": "Realised drawdown-capture vs model (validation)",
+   "limit": "realised NAV drawdown ÷ Nifty drawdown within ±10 pp of model-predicted capture (Moderate median 54%, Aggressive 71%) for every Nifty drawdown ≥5%",
+   "warning": "5-10 pp gap",
+   "action": "re-estimate betas/correlations; re-run stress library; log in model-validation file",
+   "cadence": "per episode; annual review"
+  }
+ ],
+ "pre_trade_hard_blocks": [
+  "No borrowing/margin/leverage on the client account (PMS Regulations); any use = immediate compliance breach",
+  "No short selling (only exchange SLB with client authorisation annex)",
+  "Direct-plan flag on every MF/index fund/SIF order",
+  "Valid, unexpired rpp_id or standing_instruction_id on every order",
+  "Unlisted headroom (15% IPS / 25% legal), associate headroom (10% IPS / 15-25-30% SEBI), derivative notional ≤25% AUM, credit floor, single-name/sector/AMC caps, demat-account routing",
+  "group_instrument=true tag on any Angel One group security/scheme → routed per the group-trade best-execution rule (second broker or NAV/AP route), separate TCA bucket"
+ ],
+ "deployment_plan_notes": {
+  "tracks": "equity-like ₹300 Cr in 8 Thursday tranches of ₹37.5 Cr (weeks 0-7) + ₹25 Cr stabiliser closing tranche (REIT/InvIT + silver, week 8) = ₹325 Cr; fixed income ₹120 Cr in 4 tranches of ₹30 Cr (weeks 0-3); alternatives ₹45 Cr committed week 0, drawn over 6-18 months; arbitrage sleeve ₹10 Cr (2%) is a permanent target, so SAA is reached at 98% deployed + undrawn commitments",
+  "parked_cash_vehicle": "arbitrage fund (equity-taxed), overnight fund only for <1 week",
+  "conservative_alternative": "12 weekly equity tranches of ₹25 Cr (cash drag ≈₹2.0-2.5 Cr vs ≈₹1.4-1.7 Cr)"
+ },
+ "fx_hedge_costing": {
+  "sleeve": "International 5% (₹25 Cr) unhedged USD exposure",
+  "instrument": "USD/INR exchange-traded currency futures/options (NSE/BSE) — use inside PMS AUM is restricted/verify (hedging-only derivative rule; currency segment access for PMS clients to be confirmed with custodian/exchange)",
+  "cost_driver": "12M USD/INR forward premium ≈2.82% annualised (Capera, 10-Jul-2026 print — approx. for Sep-2026; source live from CCIL/FBIL)",
+  "cost_cr_per_yr": "≈₹0.70 Cr/yr on ₹25 Cr (≈14 bps of AUM) + roll/margin ops",
+  "risk_removed": "USD/INR vol ≈5.5% p.a. on ₹25 Cr = ₹1.4 Cr 1-σ annual dispersion",
+  "portfolio_effect": "equity–USD/INR correlation ≈ −0.35 (A3): the unhedged sleeve is a natural FPI-outflow hedge; hedging it removes ≈₹0.9 Cr/yr of expected INR-depreciation carry embedded in the CMA and slightly raises portfolio vol",
+  "decision": "leave unhedged; the sleeve size (5%, band 2.5-7.5%) is the hedge; report the cost of the choice (≈14 bps of AUM p.a. saved) in the annual review; revisit if the sleeve exceeds 10% household look-through or if SEBI notifies specified foreign securities",
+  "status": "approx. — forward premium not re-verified for 11-Sep-2026"
+ },
+ "reconciliation_checklist": [
+  {
+   "check": "SAA weights sum to 100% and ₹500 Cr for every variant, in IPS YAML, Model Master, blueprint_data.json and every narrative table",
+   "tolerance": "exact",
+   "source_of_truth": "Model Master YAML (versioned)"
+  },
+  {
+   "check": "Every sleeve %/₹ Cr appears identically in SAA, TCO, T2 composite weights, deployment ladder totals and band table",
+   "tolerance": "exact",
+   "source_of_truth": "Model Master YAML"
+  },
+  {
+   "check": "Risk-limit values (single-name, credit floor, unlisted, associate, derivative, drawdown) identical in IPS §6, OMS rule engine config, RMS config, risk_limits array, §5.1",
+   "tolerance": "exact",
+   "source_of_truth": "IPS §6"
+  },
+  {
+   "check": "Fee bps, GST, opex identical in agreement, return waterfall, TCO PM layer, KPI table",
+   "tolerance": "exact",
+   "source_of_truth": "Agreement §7"
+  },
+  {
+   "check": "Return waterfall sums: Σ summed rows = R3 − T2; memo rows not summed; R1 − T2 = Σ Brinson effects",
+   "tolerance": "±0.1 bp",
+   "source_of_truth": "TWRR engine"
+  },
+  {
+   "check": "TE bands, IR/alpha ladder identical in §5.2, §6.4, §11, KPIs, risk_metric_bands",
+   "tolerance": "exact",
+   "source_of_truth": "§6.4"
+  },
+  {
+   "check": "Single dated market snapshot (Nifty, VIX, 10Y, USD/INR, gold) used everywhere; no stale anchors (e.g., ₹88)",
+   "tolerance": "as-of date match",
+   "source_of_truth": "Appendix A4"
+  },
+  {
+   "check": "Deployment ladder totals = SAA sleeve totals (equity-like, FI, alternatives, arbitrage)",
+   "tolerance": "exact",
+   "source_of_truth": "§2.8"
+  },
+  {
+   "check": "Limit count and enumeration identical in TL;DR, §5.1, §9, JSON",
+   "tolerance": "exact",
+   "source_of_truth": "§5.1"
+  },
+  {
+   "check": "Engine outputs (risk_calc, tco, rebalancing MC, TWRR) re-run and diffed vs prior version; unit sanity (bps vs %, ₹ Cr vs lakh) asserted",
+   "tolerance": "documented diff",
+   "source_of_truth": "change-control ticket"
+  },
+  {
+   "check": "Every 'approx.'/'verify' label reviewed: verified → dated source added; else label retained",
+   "tolerance": "n/a",
+   "source_of_truth": "Appendix B"
+  }
+ ]
+}

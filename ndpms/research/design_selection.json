@@ -1,0 +1,1125 @@
+{
+ "domain": "Instrument and manager selection: due-diligence frameworks and total cost of ownership",
+ "executive_summary": "Selection is where NDPMS economics are actually won or lost: our own modelling of the ₹500 Cr Moderate allocation shows an all-in total cost of ownership of ~424 bps/yr (~₹21.2 Cr), of which only ~60 bps is TER/embedded-cost/transaction-cost/illiquidity — the remaining ~317 bps is tax drag baked into instrument-wrapper choice (arbitrage vs liquid, ETF vs SGB, Cat III AIF vs SIF, gold ETF vs REIT). The single highest-leverage design decision is therefore wrapper selection, not manager alpha-picking. Concretely: prefer AMC-direct ETF dealing above ₹25 Cr tickets, index/factor funds for large-cap and structured-active exposure, capacity-screened active MFs only in mid/small/flexi-cap via direct plans, a 25-35 name NIFTY-750 scorecard equity sleeve sized by score x liquidity, a laddered target-maturity/G-sec fixed-income core routed via RBI Retail Direct/NDS-OM, Gold ETF (not SGB, which is discontinued for new issuance), and a ~12-15% illiquid sleeve split across Cat II private credit, Cat III long-short AIF and the new SIF category (SIF preferred over Cat III where strategy overlap exists, on post-tax economics and lower ticket friction). Third-party PMS must be structured as the client's own separate account, never as delegated discretion, to stay clear of the Reg. 24(10) prohibition on investing on another entity's advice. Every screen and every consent-batch cadence must be built assuming a 2-5 day gap between recommendation and execution — this is the defining constraint NDPMS places on the entire selection layer.",
+ "can_do": [
+  {
+   "item": "Direct-with-AMC ETF dealing ≥ ₹25 Cr",
+   "what": "Route any ETF tranche ≥ ₹25 Cr directly to the AMC at intraday NAV instead of on-screen.",
+   "why": "Cuts round-trip cost from ~15 bps (on-screen) to ~4-6 bps; regulatory route exists specifically for this size (SEBI circular eff. 1-May-2023).",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Index fund vs ETF break-even rule",
+   "what": "Use the break-even-holding formula to choose index fund over ETF for sub-threshold tickets and heavily-rebalanced sleeves.",
+   "why": "Avoids paying repeated bid-ask/impact cost on a monthly-rebalanced sleeve where NAV dealing has zero spread.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "ADV-based ticket cap on ETFs/index funds",
+   "what": "Cap any single ETF/index-fund ticket at ≤20% of 5-day cumulative ADV.",
+   "why": "Prevents market impact and protects execution quality given the 2-5 day consent-to-execution lag.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Rolling 3Y/5Y alpha-consistency screen for active MFs",
+   "what": "Score every active MF on % of rolling 3Y/5Y windows beating benchmark, not point-in-time trailing return.",
+   "why": "Point-in-time returns overstate manager skill; rolling-window hit-rate is the closest proxy to persistence.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "quarterly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Direct-plan-only mandate for all MF investments",
+   "what": "Invest in mutual funds only via direct plans; never charge or accept a distribution fee.",
+   "why": "SEBI's Feb-2020 PMS circular mandates this explicitly; violating it is a compliance breach, not a choice.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "Ticket-size vs scheme-AUM cap",
+   "what": "Cap any single active-MF ticket at ≤1% of scheme AUM (≤5% for passive/index schemes).",
+   "why": "Preserves our own exit liquidity and avoids becoming a capacity problem for the scheme's other investors.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Factor/smart-beta index funds as the 'structured active' sleeve",
+   "what": "Use quality/low-vol/momentum index funds instead of discretionary active funds for large-cap tilts.",
+   "why": "Delivers persistent factor premia at 20-40 bps direct-plan TER vs 70-100+ bps for a discretionary equivalent.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Third-party PMS onboarding via APMI-vetted DD",
+   "what": "Onboard 2-3 third-party PMS strategies for niche mandates using the 8-point DD checklist and firm-level performance audit.",
+   "why": "Extends the house's addressable strategy set (e.g., special situations) without building in-house capability.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "medium",
+   "cadence": "one-time",
+   "recommendation": "should"
+  },
+  {
+   "item": "Structure 3rd-party PMS as a separate client contract",
+   "what": "Ensure every third-party PMS allocation is its own client-PM contract with segregated accounts, not sub-advisory to us.",
+   "why": "Keeps the arrangement outside Reg. 24(10)'s prohibition on investing client funds on another entity's advice.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "Consolidate 3rd-party PMS reporting into house dashboard",
+   "what": "Pull monthly third-party PMS statements and reconcile TWRR into the house attribution dashboard as a distinct line.",
+   "why": "Gives the CIO team a single consolidated performance view across in-house and third-party sleeves.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Cat II private credit AIF allocation (2-3 managers)",
+   "what": "Allocate ~5% of AUM to Cat II private-credit AIFs, capped illiquid sleeve, ODD-screened.",
+   "why": "Adds a return stream largely uncorrelated to listed markets; pass-through tax structure is investor-favourable relative to Cat III.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "should"
+  },
+  {
+   "item": "Cat III long-short/market-neutral AIF for downside ballast",
+   "what": "Allocate a smaller sleeve (~3-4%) to a Cat III strategy for hedged/market-neutral exposure.",
+   "why": "Provides drawdown protection the long-only sleeves cannot; sized down given fund-level tax drag.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "one-time",
+   "recommendation": "could"
+  },
+  {
+   "item": "Accredited-investor route for AIF minimums",
+   "what": "Use the client's Accredited Investor status (if independently qualified) to waive the ₹1 Cr AIF minimum where useful.",
+   "why": "Only relevant if the client separately qualifies (net worth/income thresholds); not something the PM manufactures.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "one-time",
+   "recommendation": "could"
+  },
+  {
+   "item": "Avoid high-leverage/high-churn Cat III AIFs",
+   "what": "Screen out Cat III strategies with heavy embedded leverage/turnover given fund-level tax drag approaching MMR.",
+   "why": "Fund-level tax (up to ~42.7% on business income) can erase the strategy's gross-return edge versus investor-level 12.5% LTCG alternatives.",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "SIF hybrid long-short as the SEBI-preferred lower-ticket alternative",
+   "what": "Use SIF (₹10 lakh PAN-level minimum) hybrid/equity long-short strategies where available in place of Cat III AIF.",
+   "why": "Better post-tax economics (investor-level LTCG 12.5% vs fund-level ~28% blended) and far lower ticket friction.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "one-time",
+   "recommendation": "should"
+  },
+  {
+   "item": "NIFTY-750 scorecard direct-equity sleeve (25-35 names)",
+   "what": "Build the direct-equity sleeve from the house quant scorecard with liquidity-capped position sizing.",
+   "why": "Captures house alpha at zero fund-level TER, but needs disciplined sizing given the monthly-only rebalancing cadence.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Score x liquidity position sizing formula",
+   "what": "Size each direct-equity position as min(score-based weight, 20%-of-ADV liquidity cap).",
+   "why": "Prevents a high-score but illiquid name from taking an oversized, hard-to-exit position.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "RBI Retail Direct / NDS-OM for G-secs/SDLs",
+   "what": "Route G-sec/SDL purchases through RBI Retail Direct (primary) and NDS-OM (secondary) rather than only via bond funds.",
+   "why": "Zero distributor fee and no fund TER for positions intended to be held to maturity.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "event-driven",
+   "recommendation": "should"
+  },
+  {
+   "item": "Target-maturity funds/ETFs for the laddered AAA/SDL sleeve",
+   "what": "Use Bharat Bond-style target-maturity funds/ETFs instead of single-issuer direct bonds for diversified laddering.",
+   "why": "Achieves issuer diversification impossible via a handful of direct bond tickets at this scale.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "should"
+  },
+  {
+   "item": "10% RFQ-platform corporate-bond execution",
+   "what": "Route at least 10% of secondary corporate-bond trades by value through the RFQ platform.",
+   "why": "This is a SEBI-mandated floor for PMS, not optional; compliance-critical.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Discontinue new Sovereign Gold Bond purchases",
+   "what": "Stop recommending new SGB allocations; use Gold ETF instead for all fresh gold exposure.",
+   "why": "SGBs have not been issued since Feb-2024, and the capital-gains exemption on maturity no longer follows secondary-market buyers.",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "ongoing",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Gold ETF via AP/creation-unit route",
+   "what": "Use the AP/creation-unit route for gold ETF tranches at or above creation-unit size.",
+   "why": "Cuts bid-ask spread cost versus on-screen dealing at this ticket size.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Cap silver as a tactical, not core, sleeve",
+   "what": "Limit silver ETF allocation to ~1-2% of AUM given equity-like volatility and wider spreads than gold.",
+   "why": "Silver's ~26-27% volatility and deep historical drawdowns make it unsuitable as a core defensive holding.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "could"
+  },
+  {
+   "item": "GIFT City / LRS routing for international once domestic caps bind",
+   "what": "Fall back to GIFT City feeder funds (or client-level LRS, held outside the NDPMS account) when the SEBI USD 7bn domestic MF overseas cap pauses subscriptions.",
+   "why": "Keeps international exposure achievable even when India-listed international funds are closed to fresh money.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "should"
+  },
+  {
+   "item": "No PM fee-layering beyond the disclosed portfolio fee",
+   "what": "Never charge a second management-fee layer on top of an MF/AIF/SIF wrapper's own fee; keep MF investments direct-plan only.",
+   "why": "This is a hard SEBI requirement (no upfront fee, no distribution fee, direct plans only) and a client-trust issue.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "Annual firm-level performance audit (APMI ToR)",
+   "what": "Commission the mandatory annual audit of firm-level performance data covering DPMS+NDPMS+IA combined.",
+   "why": "Non-negotiable SEBI/APMI requirement; also the basis on which any third-party PMS DD should itself be judged.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "annual",
+   "recommendation": "must"
+  },
+  {
+   "item": "Monthly TWRR/benchmark reporting to APMI/SEBI",
+   "what": "Report Strategy-level TWRR against ≤3 APMI benchmarks, uploaded within 7 working days of month-end.",
+   "why": "Mandatory performance-benchmarking regime for all portfolio managers since 1-Apr-2023.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "No outsourcing of trade sizing/timing to third parties",
+   "what": "Keep all downstream execution decisions (quantities, timing, client-level trades) in-house, even when a third-party model or vendor informs the idea.",
+   "why": "A 2026 SEBI enforcement order held that outsourcing 'investment decisions' this broadly, even via technology vendors, is an absolute prohibition.",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "ongoing",
+   "recommendation": "avoid"
+  }
+ ],
+ "tables": [
+  {
+   "title": "ETF/Index-fund screening thresholds",
+   "columns": [
+    "Metric",
+    "Definition",
+    "Pass threshold at ₹500 Cr",
+    "Cadence"
+   ],
+   "rows": [
+    [
+     "Tracking difference",
+     "Fund return - index TR return, 1Y trailing",
+     "≤25 bps equity / ≤15 bps debt index",
+     "Monthly"
+    ],
+    [
+     "Tracking error",
+     "Annualised SD of daily TD",
+     "≤50 bps large-cap / ≤100 bps mid-small-factor",
+     "Monthly"
+    ],
+    [
+     "Scheme AUM",
+     "-",
+     "≥₹1,000 Cr for any ticket >₹15 Cr",
+     "Monthly"
+    ],
+    [
+     "On-screen ADV (3-month)",
+     "NSE+BSE combined",
+     "Ticket ≤20% of 5-day cumulative ADV",
+     "Daily/weekly"
+    ],
+    [
+     "Bid-ask spread",
+     "Screen-quoted mid-session",
+     "≤10 bps Nifty/Sensex; ≤25 bps factor/intl",
+     "At order time"
+    ],
+    [
+     "iNAV discount/premium",
+     "(Price-iNAV)/iNAV",
+     "Abs ≤15 bps at execution, else route to AMC",
+     "Real-time"
+    ],
+    [
+     "Replication",
+     "Physical vs synthetic",
+     "Physical only",
+     "One-time"
+    ],
+    [
+     "Securities lending",
+     "AMC's SLB policy",
+     "Accept only if fully collateralised & disclosed",
+     "One-time DD"
+    ],
+    [
+     "Expense ratio (BER, post 1-Apr-2026)",
+     "AMC base fee ex-statutory levies",
+     "Equity index/ETF ≤20 bps",
+     "Annual"
+    ]
+   ],
+   "source_note": "SEBI 2026 MF Regulations cut index fund/ETF BER cap to 0.90% [31]; SEBI ETF direct-with-AMC threshold ₹25 Cr [1]."
+  },
+  {
+   "title": "Liquid Indian ETFs by category (approx., Sept 2026)",
+   "columns": [
+    "Category",
+    "Representative ETF(s)",
+    "AUM (₹ Cr, approx.)",
+    "Note"
+   ],
+   "rows": [
+    [
+     "Nifty 50",
+     "Nippon India ETF Nifty BeES",
+     "~66,777 (9-Sep-2026)",
+     "Deepest Indian ETF liquidity; creation unit 50,000 units"
+    ],
+    [
+     "Bank Nifty",
+     "Nippon India ETF Nifty Bank BeES",
+     "~8,379 (9-Sep-2026)",
+     "Sector-concentrated, not core beta"
+    ],
+    [
+     "Gold",
+     "Nippon/HDFC/SBI/ICICI Gold ETFs (industry)",
+     "Industry ≈₹1.71-1.85 lakh Cr (Mar-May 2026)",
+     "+191-195% YoY; AP route recommended"
+    ],
+    [
+     "Silver",
+     "Nippon/ICICI Silver ETFs",
+     "Industry inflow-led, net outflow ≈₹2,133 Cr May-2026",
+     "Wider spreads than gold; tactical only"
+    ],
+    [
+     "International (India-listed)",
+     "Motilal Oswal Nasdaq 100 and peers",
+     "Constrained by SEBI USD 7bn/USD 1bn ETF cap",
+     "Expect premium risk / subscription pauses"
+    ],
+    [
+     "Target-maturity (debt)",
+     "Bharat Bond ETF/FOF series (2030-2033)",
+     "Multi-thousand-crore series AUM",
+     "5Y return ≈6.83% p.a. (Apr-2030 series)"
+    ]
+   ],
+   "source_note": "AUM/turnover figures approx., aggregated from multiple 2026 web sources [2][4][5][29]; verify at time of trade."
+  },
+  {
+   "title": "Active MF scoring template (100-point scorecard)",
+   "columns": [
+    "Factor",
+    "Weight",
+    "Pass/scoring rule"
+   ],
+   "rows": [
+    [
+     "Rolling 3Y alpha consistency",
+     "20",
+     "Score = % of rolling 3Y monthly windows (5Y history) beating benchmark"
+    ],
+    [
+     "Rolling 5Y alpha consistency",
+     "15",
+     "Same methodology, longer window"
+    ],
+    [
+     "Up/down capture ratio",
+     "15",
+     "Target ratio ≥1.15 (up ≥100%, down ≤85%); linear score, 0 below 1.0"
+    ],
+    [
+     "Active share",
+     "10",
+     "≥60% required if charging active fees; <60% + TER>100bps = hard fail"
+    ],
+    [
+     "Fund size vs strategy capacity",
+     "15",
+     "Penalise AUM >1.5x stated capacity; ticket capped at ≤1% of scheme AUM regardless"
+    ],
+    [
+     "Manager tenure on this scheme",
+     "10",
+     "≥3 years; reset to 0 on manager change in trailing 12 months"
+    ],
+    [
+     "Direct-plan TER",
+     "10",
+     "Large/flexi ≤70bps, mid ≤90bps, small ≤100bps; score inverse within band"
+    ],
+    [
+     "Concentration/style drift",
+     "5",
+     "Top-10 ≤45% unless concentrated mandate; style consistency over 8 rolling quarters"
+    ]
+   ],
+   "source_note": "House framework; onboard only ≥65/100 with no factor <40/100; re-score every 6 months."
+  },
+  {
+   "title": "Third-party PMS DD checklist and scoring",
+   "columns": [
+    "Check",
+    "What to verify",
+    "Source"
+   ],
+   "rows": [
+    [
+     "APMI-disclosed firm TWRR",
+     "Strategy-level TWRR, ≥3Y history where available",
+     "APMI performance portal"
+    ],
+    [
+     "Live vs back-tested",
+     "Confirm live client-money track record via annual firm-level performance audit",
+     "Firm compliance team"
+    ],
+    [
+     "Benchmark & strategy tagging",
+     "Strategy = Equity/Debt/Hybrid/Multi-asset, ≤3 APMI benchmarks",
+     "Disclosure Document"
+    ],
+    [
+     "Capacity",
+     "IA AUM vs stated capacity ceiling; watch rapid post-good-year growth",
+     "Monthly APMI filing"
+    ],
+    [
+     "Fee structure",
+     "Fixed 25-250bps, perf 10-20% over hurdle, mandatory HWM",
+     "Client Agreement/MITC"
+    ],
+    [
+     "Concentration",
+     "Top-10 %, single-stock cap, sector cap vs house limits",
+     "Monthly portfolio statement"
+    ],
+    [
+     "Valuation independence",
+     "APMI-empanelled valuation agencies for debt/MM (NSE Indices, ICRA, CRISIL)",
+     "Valuation policy doc"
+    ],
+    [
+     "Custodian",
+     "SEBI-registered custodian, per-client segregation, no pooling",
+     "Custodian confirmation"
+    ]
+   ],
+   "source_note": "Onboard only strategies scoring ≥80/100 (8 checks x 12.5 pts) with zero red flags on capacity/valuation [21][22][23]."
+  },
+  {
+   "title": "AIF Cat II vs Cat III — economics and sizing at ₹500 Cr",
+   "columns": [
+    "Dimension",
+    "Cat II Private Credit",
+    "Cat III Long-Short/Market-Neutral"
+   ],
+   "rows": [
+    [
+     "Typical gross yield/return",
+     "16-20% gross; 12-16% net to investor",
+     "Strategy-dependent; historically high-single to low-double digit net"
+    ],
+    [
+     "Fee stack",
+     "1.5-2.0% mgmt + 10-15% carry over hurdle (blended ≈150-200bps)",
+     "1.5-2.0% mgmt + 15-20% performance"
+    ],
+    [
+     "Tax treatment",
+     "Pass-through; interest at investor slab (~39% top HNI)",
+     "Fund-level; can approach MMR ~42.74% on business income, or 12.5-20% if genuine capital gains/determinate trust"
+    ],
+    [
+     "Minimum ticket",
+     "₹1 Cr (₹25 lakh employees/directors); waived for Accredited Investors",
+     "Same"
+    ],
+    [
+     "Suggested ₹500 Cr sizing",
+     "~5% (₹25 Cr), 2 managers, ₹10-15 Cr/ticket",
+     "~3-4% (₹15-20 Cr), 1-2 managers"
+    ],
+    [
+     "Undrawn-commitment drag",
+     "₹25 Cr drawn over 15 months ≈₹0.83 Cr foregone return",
+     "N/A (typically funded on subscription)"
+    ]
+   ],
+   "source_note": "[8][10][12][13][14]; Cat III leverage cap figure (~2x NAV) flagged unclear_verify."
+  },
+  {
+   "title": "SIF vs Cat III AIF — post-tax comparison (12% gross return, illustrative)",
+   "columns": [
+    "Metric",
+    "Cat III AIF",
+    "SIF"
+   ],
+   "rows": [
+    [
+     "Fee",
+     "≈1.75% + 15% over 10% hurdle ≈2.05% total",
+     "≈1.25% BER-style fee"
+    ],
+    [
+     "Net-of-fee return",
+     "≈9.95%",
+     "≈10.75%"
+    ],
+    [
+     "Tax treatment",
+     "Fund-level, blended ≈28% (LTCG/STCG/MMR mix)",
+     "Investor-level equity taxation, LTCG 12.5%"
+    ],
+    [
+     "Net post-tax return",
+     "≈7.16%",
+     "≈9.14%"
+    ],
+    [
+     "Gap (SIF advantage)",
+     "-",
+     "≈+1.98 percentage points (~₹39.6 lakh/yr on ₹20 Cr ticket)"
+    ],
+    [
+     "Minimum ticket",
+     "₹1 Cr",
+     "₹10 lakh (PAN-level, all strategies of one AMC)"
+    ]
+   ],
+   "source_note": "Illustrative, house model (sel/tco.py); SIF framework facts [17]; default to SIF where strategy overlap exists."
+  },
+  {
+   "title": "Direct-equity position sizing (NIFTY-750 scorecard, ₹40 Cr sleeve)",
+   "columns": [
+    "Score",
+    "5-day ADV (₹ Cr)",
+    "Base weight",
+    "Liquidity cap",
+    "Final weight",
+    "₹ Cr",
+    "bps of AUM"
+   ],
+   "rows": [
+    [
+     "85",
+     "60",
+     "5.0%",
+     "8.0% (uncapped)",
+     "5.0%",
+     "2.00",
+     "40"
+    ],
+    [
+     "72",
+     "25",
+     "4.1%",
+     "8.0%",
+     "4.1%",
+     "1.65",
+     "33"
+    ],
+    [
+     "78",
+     "8",
+     "4.5%",
+     "8.0%*",
+     "4.5%",
+     "1.81",
+     "36"
+    ]
+   ],
+   "source_note": "Formula: base=4%+2%x(score-70)/30 capped 6%; liquidity cap=min(20% x 5-day ADV x5days/sleeve, 8%). *binds lower for larger sleeves — recompute per sleeve size."
+  },
+  {
+   "title": "Fixed income: direct vs fund decision inputs",
+   "columns": [
+    "Consideration",
+    "Favours direct G-sec/SDL/corp bond",
+    "Favours fund/index/target-maturity"
+   ],
+   "rows": [
+    [
+     "Ticket size per issue",
+     "≥₹10-15 Cr",
+     "<₹10 Cr per issuer"
+    ],
+    [
+     "Intended hold",
+     "To maturity, laddered",
+     "Rolling/duration-managed"
+    ],
+    [
+     "Issuer count achievable",
+     "≥8-10 distinct issuers direct",
+     "Fewer direct — needs fund wrapper for diversification"
+    ],
+    [
+     "Execution venue",
+     "RBI Retail Direct (primary, T+1) / NDS-OM (secondary, near real-time)",
+     "AMC subscription/redemption at NAV"
+    ],
+    [
+     "Regulatory floor",
+     "≥10% of secondary corp-bond trades via RFQ platform (mandatory)",
+     "N/A"
+    ],
+    [
+     "Spread guide (2026, approx.)",
+     "AAA PSU 10-60bps, AAA private NBFC 50-140bps, AA 100-260bps over G-sec",
+     "Target-maturity fund/ETF YTM quoted at purchase"
+    ]
+   ],
+   "source_note": "[26][27][28][30]."
+  },
+  {
+   "title": "TCO by instrument — ₹500 Cr Moderate model, steady state",
+   "columns": [
+    "Sleeve",
+    "Wt %",
+    "₹ Cr",
+    "TER/mgmt bps",
+    "Embedded fund cost bps",
+    "Our txn cost bps",
+    "Tax drag bps",
+    "Illiquidity/latency bps",
+    "Total bps",
+    "₹ Cr/yr"
+   ],
+   "rows": [
+    [
+     "Nifty 50/100 ETF+index fund",
+     "22",
+     "110.0",
+     "8",
+     "3",
+     "2.0",
+     "22",
+     "3",
+     "38",
+     "0.42"
+    ],
+    [
+     "Factor index funds (quality/low-vol/momentum)",
+     "10",
+     "50.0",
+     "30",
+     "25",
+     "2.0",
+     "45",
+     "3",
+     "105",
+     "0.52"
+    ],
+    [
+     "Active mid-cap MF (direct)",
+     "7",
+     "35.0",
+     "70",
+     "35",
+     "1.0",
+     "26",
+     "2",
+     "134",
+     "0.47"
+    ],
+    [
+     "Active small-cap MF (direct)",
+     "3",
+     "15.0",
+     "80",
+     "45",
+     "1.0",
+     "26",
+     "2",
+     "154",
+     "0.23"
+    ],
+    [
+     "Direct equity (NIFTY-750 scorecard)",
+     "8",
+     "40.0",
+     "0",
+     "0",
+     "12.6",
+     "155",
+     "8",
+     "176",
+     "0.70"
+    ],
+    [
+     "International FoF/ETF",
+     "5",
+     "25.0",
+     "65",
+     "15",
+     "3.0",
+     "30",
+     "10",
+     "123",
+     "0.31"
+    ],
+    [
+     "Short-duration/money-market fund",
+     "3",
+     "15.0",
+     "25",
+     "5",
+     "0.0",
+     "257",
+     "0",
+     "287",
+     "0.43"
+    ],
+    [
+     "Target-maturity AAA/SDL funds/ETFs",
+     "11",
+     "55.0",
+     "18",
+     "5",
+     "1.0",
+     "269",
+     "0",
+     "293",
+     "1.61"
+    ],
+    [
+     "10-yr G-sec (direct)",
+     "6",
+     "30.0",
+     "0",
+     "0",
+     "3.0",
+     "273",
+     "0",
+     "276",
+     "0.83"
+    ],
+    [
+     "AA corporate credit (via funds)",
+     "4",
+     "20.0",
+     "70",
+     "10",
+     "1.0",
+     "320",
+     "0",
+     "401",
+     "0.80"
+    ],
+    [
+     "Arbitrage fund (cash sleeve)",
+     "2",
+     "10.0",
+     "35",
+     "10",
+     "1.0",
+     "1914",
+     "0",
+     "1960",
+     "1.96"
+    ],
+    [
+     "Gold ETF (AP route)",
+     "5",
+     "25.0",
+     "60",
+     "5",
+     "2.0",
+     "1196",
+     "2",
+     "1265",
+     "3.16"
+    ],
+    [
+     "Silver ETF",
+     "1",
+     "5.0",
+     "55",
+     "10",
+     "3.0",
+     "2542",
+     "5",
+     "2615",
+     "1.31"
+    ],
+    [
+     "Listed REITs/InvITs",
+     "4",
+     "20.0",
+     "0",
+     "0",
+     "6.0",
+     "1624",
+     "5",
+     "1635",
+     "3.27"
+    ],
+    [
+     "Cat II private credit AIF (x2)",
+     "5",
+     "25.0",
+     "175",
+     "0",
+     "0.0",
+     "468",
+     "40",
+     "683",
+     "1.71"
+    ],
+    [
+     "Cat III LS AIF / SIF hybrid",
+     "4",
+     "20.0",
+     "190",
+     "30",
+     "0.0",
+     "308",
+     "15",
+     "543",
+     "1.09"
+    ],
+    [
+     "WEIGHTED PORTFOLIO TOTAL",
+     "100",
+     "500.0",
+     "41",
+     "11",
+     "3",
+     "317",
+     "5",
+     "376",
+     "18.82"
+    ]
+   ],
+   "source_note": "House model, sel/tco.py. Add PM fee layer (0.30% fixed + 18% GST + ~12bps opex) ≈47bps/₹2.37Cr → all-in TCO ≈424bps/₹21.2Cr/yr."
+  },
+  {
+   "title": "Fee-layering rules by wrapper",
+   "columns": [
+    "Wrapper",
+    "PM fee on this sleeve",
+    "Distribution fee",
+    "Note"
+   ],
+   "rows": [
+    [
+     "MF (any)",
+     "PM's overall portfolio fee only — no separate layer",
+     "Prohibited",
+     "Must be direct plan [19]"
+    ],
+    [
+     "ETF",
+     "PM's overall fee only",
+     "N/A (no distributor)",
+     "-"
+    ],
+    [
+     "3rd-party PMS",
+     "PM fee on allocation decision/monitoring only, not a second full mgmt fee",
+     "N/A",
+     "Third-party PM charges its own fee directly to the client's separate account"
+    ],
+    [
+     "AIF (Cat II/III)",
+     "PM's fee at portfolio level only",
+     "N/A",
+     "AIF's own mgmt fee/carry is separate; disclose full stack in MITC"
+    ],
+    [
+     "SIF",
+     "PM's own fee only",
+     "N/A",
+     "SIF's own BER-style fee is separate"
+    ],
+    [
+     "Direct equity/bonds",
+     "PM's fee only",
+     "N/A",
+     "Brokerage charged at actuals [19]"
+    ]
+   ],
+   "source_note": "Derived from SEBI PMS fee circular 2020 [19] and Master Circular 2025 [20]."
+  }
+ ],
+ "detailed_markdown": "# Instrument & Manager Selection — Due Diligence Frameworks and Total Cost of Ownership\n### Ionic Wealth · ₹500 Cr NDPMS mandate · design date 2026-09-12\n\nThis is the selection layer beneath the Allocate IPS/Model Master. It answers, for every rupee the Model Master says goes into an asset class: **which specific instrument or manager, at what size, screened how, monitored how, and at what all-in cost** — inside the constraint that NDPMS means every trade is a recommendation the client must consent to, not a discretionary click.\n\n---\n\n## 0. NDPMS design constraints on the selection layer\n\n- **No intraday/HFT selection logic.** Every screen must produce a recommendation batch consumable in the monthly (core) or weekly-tranche (deployment) consent cycle. Anything that needs same-day execution to work (index-arb capture, momentum chasing at the margin) is disqualified by the operating model, not by the instrument's own merit.\n- **Consent latency is a cost, not a nuisance.** A recommendation issued Day T is typically executed Day T+2 to T+5 (client review + signed instruction + order placement). Every liquidity/impact-cost screen below must price in this lag, not just point-in-time ADV.\n- **Fee-layering discipline.** SEBI's Feb 2020 PMS circular (SEBI/HO/IMD/DF1/CIR/P/2020/26, eff. 1-Oct-2020) caps opex ex-brokerage at 0.50% p.a. of average daily AUM, bars upfront fees, and mandates MF investment **only via direct plans with no distribution fee** [19]. The Master Circular consolidation of 16-Jul-2025 carries these forward [20]. This means: the PM's fee is charged once, at the portfolio level; it is **not** layered again inside the MF/AIF wrapper beyond what that wrapper's own manager charges its own investors.\n- **PM cannot outsource discretion.** Reg. 24(10)-type prohibition bars investing \"on the advice of any other entity\" [25]; a May-2026 SEBI enforcement order confirmed this extends to trade sizing/timing/execution, not just model selection [25]. Practical effect: a third-party PMS allocation must be structured as the **client's own separate account** with that PM — our house recommends and the client consents to the allocation size — never as us delegating our NDPMS mandate to them.\n\n---\n\n## 1. ETFs and Index Funds\n\n### 1.1 Screening dimensions and thresholds\n\n| Metric | Definition | Pass threshold at ₹500 Cr scale | Data source / cadence |\n|---|---|---|---|\n| Tracking difference (TD) | Fund return − index TR return, trailing 1Y | ≤ 25 bps (equity), ≤ 15 bps (debt index) | Monthly, from factsheet |\n| Tracking error (TE) | Annualised SD of daily TD | ≤ 50 bps (large-cap equity), ≤ 100 bps (mid/small/factor) | Monthly |\n| Scheme AUM | — | ≥ ₹1,000 Cr for any ticket > ₹15 Cr (see §1.3 rule) | Monthly |\n| On-screen ADV (3-month) | NSE+BSE combined | Ticket ≤ 20% of 5-day cumulative ADV | Daily/weekly |\n| Bid-ask spread | Screen-quoted, mid-session | ≤ 10 bps (Nifty/Sensex ETFs), ≤ 25 bps (factor/international) | Sampled at order time |\n| iNAV discount/premium | (Price − iNAV)/iNAV | Abs ≤ 15 bps at order time; abort/route to AMC if breached | Real-time at execution |\n| Replication | Physical (full/optimised sampling) vs synthetic | Physical only — no swap-based ETFs for this mandate | One-time |\n| Securities lending | AMC's SLB policy on the ETF's underlying basket | Accept only if fully collateralised and disclosed in SID; avoid uncollateralised or opaque SLB | One-time DD |\n| Expense ratio (BER from 1-Apr-2026) | AMC's base fee, ex-statutory levies | Equity index/ETF ≤ 20 bps; the regulatory cap itself was cut to 0.90% BER for index funds/ETFs on the 2026 MF overhaul [31] | Annual |\n\n**Key regulatory facts (verified):**\n- SEBI's Feb-2020-vintage ETF liquidity circular lets any investor transact **directly with the AMC at intraday NAV for orders ≥ ₹25 Cr**, bypassing the exchange spread entirely; APs/market-makers are exempt from the threshold (SEBI/HO/IMD/DOF2/P/CIR/2022/145, 28-Oct-2022, effective 1-May-2023) [1].\n- From 1-Apr-2026, SEBI's MF Regulations 2026 replace TER with a **Base Expense Ratio (BER)**: statutory levies (STT, stamp duty, GST, SEBI fee, exchange charges) are now billed separately/at actuals, and cash-market brokerage caps were cut from 12 bps to 6 bps (derivatives 5→2 bps) [31]. This narrows the AMC-controllable cost further but does **not** remove STT/stamp duty from your transaction bill.\n- NSE's own published impact cost for a ₹50 lakh Nifty 50 basket was ~0.02% (Mar-2026) [3] — trivial at basket level, but our tranches are 40–80× that size, so impact cost must be modelled off the ETF's own ADV, not the index's basket impact cost.\n\n### 1.2 Liquid Indian ETFs by category (approx., verify AUM at time of trade — figures below are dated Sept 2026)\n\n| Category | Representative ETF(s) | AUM (₹ Cr, approx.) | Notes |\n|---|---|---|---|\n| Nifty 50 | Nippon India ETF Nifty BeES | ~66,777 (9-Sep-2026) [2] | Deepest liquidity of any Indian ETF; creation unit 50,000 units [2] |\n| Bank Nifty | Nippon India ETF Nifty Bank BeES | ~8,379 (9-Sep-2026) [2] | Sector-concentrated — not core beta |\n| Gold | Nippon/HDFC/SBI/ICICI Gold ETFs (industry) | Industry Gold ETF AUM ~₹1.71–1.85 lakh Cr (Mar–May 2026), +191–195% YoY [4][5] | AP creation-unit route recommended above ~₹20–25 Cr ticket |\n| Silver | Nippon/ICICI Silver ETFs | Industry inflow-led growth through 2025, net outflow ~₹2,133 Cr in May-2026 (profit booking) [4] | Wider spreads than gold; treat as tactical sleeve |\n| International (India-listed) | Motilal Oswal Nasdaq 100, etc. | Constrained by SEBI's industry-wide USD 7 bn overseas MF cap (near-exhausted through 2026; ETF sub-cap USD 1 bn) [35] | Expect premiums to iNAV / subscription pauses — budget 10 bps premium risk |\n| Target-maturity (debt) | Bharat Bond ETF/FOF series (2030/2031/2032/2033) | Multi-thousand-crore series AUM; 5Y return ~6.83% p.a. (Apr-2030 series, to Jul-2026) [29] | Best vehicle for laddered AAA/SDL exposure at this ticket size |\n\n**Overall market context:** India's ETF industry AUM had crossed ~₹8.75–10 lakh Cr with ~260 schemes by early 2026, and average daily ETF turnover rose from ₹237 Cr (FY21) to over ₹4,200 Cr (Apr-2025–Feb-2026) — an 18x rise — though commodity-ETF turnover (~₹2,700 Cr/day) now exceeds equity-ETF turnover (~₹745 Cr/day) [4]. **Implication:** equity-ETF secondary liquidity, while vastly improved, is still thinner than gold/silver ETF liquidity in relative terms — size equity ETF tickets conservatively against ADV even though AUM looks large.\n\n### 1.3 ETF vs index fund — when to prefer which\n\n**Decision rule (break-even holding period):**\n```\nBreak-even years = ETF round-trip cost (bps) / (Index fund TER − ETF TER, bps)\n```\nWorked example: ETF TER 4 bps, round-trip (spread + brokerage + STT) ≈ 12 bps, comparable index fund TER 18 bps →\nBreak-even ≈ 12 / (18 − 4) = **0.86 years**.\n\n**Rule of thumb for the ₹500 Cr book:**\n- **Use the ETF (AP/AMC-direct route)** for any position expected to be held **> 1 year** and where the ticket is ≥ the creation-unit-equivalent size (typically ≥ ₹25 Cr, qualifying for direct-AMC dealing under [1]) — captures the lower running cost and avoids exchange spread on entry via the AP route.\n- **Use the index fund** for (a) tickets below the AMC-direct threshold where on-screen ETF impact cost would exceed the TER differential, (b) any sleeve subject to **frequent monthly rebalancing** (tilt/band rebalancing churns an ETF's bid-ask/impact cost repeatedly, whereas the index fund's NAV-based transaction has zero spread — only 1 day of NAV/settlement risk, budgeted at ≈ 1-day × portfolio volatility, ≈ ₹25 lakh 1-sigma on a ₹25 Cr tranche), and (c) any sleeve intended for **SIP-like systematic monthly investing** where at-NAV dealing removes execution risk entirely.\n- **Never** use an ETF that trades at a persistent iNAV premium/discount > 15 bps intraday for size — route to AMC-direct or switch to the index fund.\n\n### 1.4 Execution routing table (₹25 Cr Nifty tranche, illustrative)\n\n| Route | Modelled cost | When to use |\n|---|---|---|\n| On-screen (exchange) | ~15 bps (impact ~12 bps + brokerage/charges ~3 bps) | Tickets < ₹25 Cr, or when AP/AMC route unavailable same-day |\n| AP creation-unit route | ~6–7 bps (basket impact ~3–4 bps + AP fee ~3 bps) | Tickets ≥ creation-unit size, held > 1Y |\n| Direct-with-AMC (≥ ₹25 Cr) | ~4–6 bps, intraday NAV-based [1] | Any qualifying large tranche — default route above threshold |\n| Index fund at NAV | 0 bps transaction cost, T+1 NAV risk ≈ 1-day vol | Monthly tranche/rebalance sleeves; sub-₹25 Cr tickets |\n\n---\n\n## 2. Active Mutual Funds\n\n### 2.1 Scoring template (100-point weighted scorecard)\n\n| Factor | Weight | Pass / scoring rule |\n|---|---|---|\n| Rolling 3Y alpha consistency | 20 | % of monthly rolling 3Y windows (trailing 5Y history) beating category benchmark; score = that % (e.g., 65% hit-rate → 65/100 on this factor) |\n| Rolling 5Y alpha consistency | 15 | Same methodology, longer window; weights toward genuine cycle-tested skill |\n| Up-capture / down-capture ratio | 15 | Target: up-capture ≥ 100%, down-capture ≤ 85%, i.e., ratio ≥ 1.15; score scaled linearly, 0 below ratio 1.0 |\n| Active share | 10 | ≥ 60% for a fund charging active fees; below 60% is \"closet indexing\" — hard fail if also charging > 100 bps direct TER |\n| Fund size vs. strategy capacity | 15 | Penalise if scheme AUM > 1.5× the manager's stated/historic capacity for that style (esp. small/mid-cap); hard cap our ticket at ≤ 1% of scheme AUM regardless |\n| Manager tenure on this scheme | 10 | ≥ 3 years managing this specific scheme; reset score to 0 on manager change in trailing 12 months pending re-underwrite |\n| Direct-plan TER | 10 | Large/flexi-cap ≤ 70 bps good, mid-cap ≤ 90 bps, small-cap ≤ 100 bps (direct); score inversely to TER within band |\n| Concentration / style drift | 5 | Top-10 holdings ≤ 45% (unless explicitly concentrated mandate); sector/style consistency vs stated mandate over 8 rolling quarters |\n\n**Selection gate:** onboard only funds scoring ≥ 65/100 with **no factor below 40/100**; re-score every 6 months; a fund dropping below 50/100 or losing its manager triggers a **redemption recommendation** in the next monthly cycle (not an immediate sale — NDPMS requires the consent step).\n\n### 2.2 Active vs passive by category — the house rule\n\n| Category | House stance | Rationale |\n|---|---|---|\n| Large-cap / Nifty 50-100 | **Passive** (index fund/ETF) core, ≤ 10% satellite active only for a scorecard-verified alpha-consistent manager | Large-cap active alpha persistence is weak and expensive net of TER; index cost ~4–20 bps vs active ~70–100+ bps |\n| Flexi-cap / multi-cap | **Active**, selectively (2–3 managers, scorecard-screened) | Genuine benchmark-agnostic mandates can add value; but screen hard for closet-large-cap behaviour |\n| Mid-cap | **Active**, capacity-capped | Persistent, capacity-constrained alpha exists; cap ticket ≤ 1% of scheme AUM and watch AUM growth quarterly |\n| Small-cap | **Active**, tightly capacity-capped, smaller allocation | Highest alpha potential but also highest capacity risk and highest embedded trading-cost drag (~40–45 bps) — size down |\n| Factor/smart-beta (quality, low-vol, momentum) | **Passive index fund**, used as the \"structured active\" substitute | Delivers persistent factor premia at 20–40 bps vs 70+ bps for a discretionary equivalent; momentum funds carry the highest embedded rebalancing cost (~25 bps) of the factor set — size accordingly |\n\n### 2.3 Active-MF hurdle rate (does the manager earn their fee?)\n\n```\nRequired net alpha (bps p.a.) = (Active TER − comparable index TER)\n                                + (embedded fund-level churn-cost differential)\n                                + margin of safety (100 bps)\n```\nWorked example (mid-cap active vs a mid-cap index fund, ₹35 Cr sleeve): TER gap 60 bps + churn-cost gap 30 bps + 100 bps margin = **190 bps p.a. hurdle**, i.e. the manager must beat the passive alternative by ≈ ₹66.5 lakh/year on this sleeve before the active bet is judged to be earning its keep. Track trailing-3Y realised alpha against this hurdle at every semi-annual re-score.\n\n---\n\n## 3. Third-Party PMS Strategies\n\n### 3.1 Due-diligence checklist and scoring\n\n| Check | What to verify | Data source |\n|---|---|---|\n| APMI-disclosed firm TWRR | Strategy-level TWRR, ≥ 3Y history where available, per APMI's Dec-2022 benchmarking circular [21] | APMI performance portal (apmiindia.org) |\n| Live vs back-tested | Confirm the disclosed track record is **live client money**, not a model/back-test; APMI mandates an **annual firm-level performance audit** covering all DPMS+NDPMS+IA books combined (SEBI/HO/IMD/IMD-PoD-1/P/CIR/2023/133, 2-Aug-2023) [22] — ask for the audit certificate | Firm's compliance team |\n| Benchmark & strategy tagging | Strategy = Equity/Debt/Hybrid/Multi-asset, ≤ 3 APMI-prescribed benchmarks; confirm no benchmark-hop history without exit-load-free client option [21] | Disclosure Document |\n| Capacity | AUM in this specific Investment Approach (IA) vs the manager's own stated capacity ceiling; check AUM growth trend (rapid growth post-good-year = capacity risk) | Monthly APMI filing |\n| Fee structure | Fixed (25–250 bps), performance (10–20% over hurdle), high-water-mark mandatory [19]; model 3–4 fee scenarios (see §9 table) | Client Agreement / MITC |\n| Concentration | Top-10 holdings %, single-stock cap, sector cap vs house limits | Monthly portfolio statement |\n| Valuation independence | Confirms use of APMI-empanelled valuation agencies for debt/MM instruments (NSE Indices Ltd, ICRA Analytics, CRISIL) [23] | Valuation policy doc |\n| Custodian | SEBI-registered custodian in place, client funds/securities segregated per-client (no pooling) | Custodian confirmation |\n\n**Score:** 8 checks × 12.5 pts; onboard only strategies scoring ≥ 80/100 with **zero red flags** on capacity or valuation independence.\n\n### 3.2 Fee-structure economics (₹500 Cr context, illustrative gross return 15%)\n\n| Structure | Fixed | Perf. | Hurdle | Total fee | Net-of-fee (pre-GST) | Net after 18% GST on fee |\n|---|---|---|---|---|---|---|\n| Pure fixed | 2.5% | — | — | 2.50% | 12.50% | 12.05% |\n| Hybrid, low hurdle | 1.5% | 15% | 10% | 2.25% | 12.75% | 12.35% |\n| Hybrid, standard | 1.0% | 20% | 10% | 2.00% | 13.00% | 12.64% |\n| Pure performance | 0% | 20% | 8% | 1.40% | 13.60% | 13.35% |\n\nPerformance fee is charged strictly on **new gains above the high-water mark** [19] — model every proposed strategy against this table before allocating, and reject any structure charging performance fee without a documented HWM mechanism.\n\n### 3.3 Legal structuring vs the NDPMS mandate, and reporting consolidation\n\n- A third-party PMS allocation is **not** a security the house PM holds in the client's NDPMS account — it is a **separate contractual relationship** between the client and the third-party portfolio manager, with its own separate bank/demat/custodian accounts (SEBI mandates per-client segregation, no pooling). Ionic recommends the allocation size and strategy (subject to client consent, consistent with the NDPMS model), but does not itself exercise trading discretion inside that account — this is what keeps the structure outside the Reg. 24(10) \"advice of another entity\" prohibition [25] rather than inside it.\n- **Consolidation:** pull the third-party PMS's monthly client statement (holdings + TWRR) via a data-sharing agreement (or the client's own statement) and reconcile it into the house TWRR/attribution dashboard as a distinct \"asset class = Third-Party PMS, Strategy = X\" line, using the third-party's own APMI-reported TWRR as the return series and the house's own weighting logic for blended-portfolio attribution. Do **not** let the third-party PM's reported number silently become \"our\" alpha — attribute it as pass-through with an explicit selection/monitoring value-add note.\n\n---\n\n## 4. Alternative Investment Funds (Cat II / Cat III)\n\n### 4.1 ODD checklist (score 1–5 per item, flag any ≤ 2)\n\n| Dimension | What to check |\n|---|---|\n| Manager pedigree & team stability | Track record of key investment personnel across cycles, not just fund since-inception |\n| Firm-level AUM & concentration | Single-LP concentration in the fund (avoid > 20% from one family/institution) |\n| Fee stack | Management fee (1.5–2.5%), carry (10–20%), hurdle (8–12%), catch-up clause, GST on fees |\n| Drawdown/capital-call schedule | Commitment period, capital-call notice period (typically 10–15 business days), penalty for default |\n| Lock-in / liquidity terms | Cat I/II: close-ended, **minimum 3-year tenure** from final close, hard lock-in except secondary transfer [10]; Cat III: open or close-ended — open-ended typically carries a **soft lock-in of 1–3 years with exit load** [10] |\n| Leverage | Cat III leverage reportedly capped at **~2x NAV with daily reporting to SEBI** post the 2025 amendments — **verify against the current AIF Regulations text before relying on this as a hard limit**, sources conflict on whether this is a blanket cap or a disclosed fund-specific ceiling [11] |\n| Valuation independence | Cat I/II: independent valuer every 6 months (or 12 months with 75%-by-value investor consent); Cat III: NAV monthly (open-ended) / quarterly (close-ended), computation independent of the fund-management function [12] |\n| Tax structure | Cat I/II pass-through under Sec. 115UB (non-business income taxed in investor's hands, character preserved); Cat III taxed at fund level — LTCG 12.5%+surcharge(cap 15%)+cess, STCG 20%+surcharge+cess, business income at MMR ≈ 42.74% for an indeterminate trust [14] |\n| Dematerialisation | All new AIF units must be issued in demat form (2025 amendment) — confirm compliance |\n\n### 4.2 Category economics and sizing at ₹500 Cr\n\n| | Cat II Private Credit | Cat III Long-Short / Market-Neutral |\n|---|---|---|\n| Typical gross yield/return | 16–20% gross portfolio yield; 12–16% net to investor after fees [13] | Strategy-dependent; historically high-single to low-double digits net |\n| Fee stack | 1.5–2.0% mgmt + 10–15% carry over hurdle (blended ≈ 150–200 bps) | 1.5–2.0% mgmt + 15–20% perf. |\n| Tax treatment | Pass-through; interest taxed at investor slab (~39% incl. surcharge/cess for top-bracket HNI) [13] | Fund-level tax; effective drag can approach MMR on business income, or 12.5–20% on genuine capital gains if structured/taxed as a determinate trust [14] |\n| Minimum ticket | ₹1 Cr per investor (₹25 lakh for fund employees/directors); waived for Accredited Investors [8] | Same |\n| Suggested ₹500 Cr sizing | ~5% (₹25 Cr) across 2 managers, ₹10–15 Cr per ticket | ~3–4% (₹15–20 Cr), 1–2 managers |\n| Undrawn-commitment drag | Material — a ₹25 Cr commitment drawn over 15 months at a ~5.3pp cash-vs-target yield gap costs ≈ **₹0.83 Cr** in foregone return over the drawdown period (linear-draw approximation) | N/A (typically funded on subscription) |\n\n**Illiquidity budget:** Cat II + Cat III + REIT/InvIT (semi-liquid) together should not exceed **≈ 12–15% of the ₹500 Cr book** given NDPMS's consent-latency constraint on any rebalancing that would require unwinding illiquid sleeves under stress.\n\n### 4.3 Newer AIF structuring options\n- **Large Value Funds (LVF):** minimum now ₹25 Cr per accredited investor (cut from ₹70 Cr under the Nov-2025 Third Amendment) [9] — relevant if the client later wants a bespoke single-strategy vehicle rather than a commingled fund.\n- **Co-Investment Vehicles (CIV):** Sept-2025 framework lets accredited investors of a Cat I/II AIF co-invest alongside the main fund in a specific deal via a ring-fenced, no-leverage CIV scheme under Reg. 17A [16] — worth using selectively for concentrated conviction ideas sourced through an existing Cat II manager, subject to client accreditation and consent.\n\n---\n\n## 5. Specialized Investment Funds (SIF) — new since April 2025\n\nSIFs sit **between mutual funds and PMS**: a mutual-fund-regulated vehicle (SEBI (MF) Regulations, 1996, as amended) offering PMS-like strategy flexibility at a much lower ticket than PMS's ₹50 lakh floor.\n\n| Feature | Detail |\n|---|---|\n| Effective date | 1-Apr-2025 (framework issued Feb-2025, clarified further through 2025–26) [17] |\n| Minimum investment | **₹10 lakh per investor, at the PAN level across all SIF strategies of one AMC** (not per strategy); waived for Accredited Investors [17] |\n| AMC eligibility | ≥ ₹10,000 Cr average AUM for 3 years, or an alternate CIO/fund-manager-experience route |\n| Strategy categories | Equity-oriented, Debt-oriented, Hybrid — including named long-short variants (equity LS, sector-rotation LS, debt LS, hybrid LS, active-asset-allocator LS, etc.) |\n| Derivative/short exposure | Up to **25% of net assets** in unhedged short exposure via exchange-traded derivatives (not just hedging/rebalancing) [17] |\n| Redemption | Daily to quarterly depending on strategy, notice period up to ~15 working days |\n| Market growth (approx.) | AUM ≈ ₹2,010 Cr (Oct-2025) → ≈ ₹9,711 Cr (Feb-2026) → ≈ ₹13,814 Cr (May-2026); hybrid long-short strategies ≈ 76% of total SIF AUM [17] — this is still a **small, young category**: treat as tactical/satellite, not core, until 2–3 years of live track record accumulate |\n\n### 5.1 SIF vs Cat III AIF — post-tax comparison (gross return 12%, illustrative)\n\n| | Cat III AIF | SIF |\n|---|---|---|\n| Fee | ≈1.75% + 15% over 10% hurdle ≈ 1.75%+0.30% = 2.05% (worked: net-of-fee ≈ 9.95%) | ≈1.25% BER-style fee (net-of-fee ≈ 10.75%) |\n| Tax | Fund-level, blended ≈ 28% (mix of LTCG/STCG/MMR exposure) → net ≈ 7.16% | Investor-level equity-fund taxation, LTCG 12.5% → net ≈ 9.14% |\n| **Post-tax, post-fee gap** | — | **≈ +1.98 percentage points** in the SIF's favour on this illustrative return, ≈ ₹39.6 lakh/yr on a ₹20 Cr ticket |\n\n**Rule:** for any strategy available in **both** a SIF and a Cat III AIF wrapper at comparable quality, **default to the SIF** on post-tax economics and the far lower ₹10 lakh ticket friction — reserve Cat III AIF allocation for strategies (e.g., higher-leverage, more illiquid, longer track record) not yet offered in SIF form. Given the category's youth, cap combined SIF exposure at ≈ 3–5% of AUM until 2027–28 track records mature.\n\n---\n\n## 6. Direct Equity — the NIFTY-750 Scorecard Sleeve\n\n### 6.1 Sizing framework\n```\nBase weight (%)   = 4% + 2% × (Score − 70) / 30   [capped at 6%]\nLiquidity cap (%) = min( 20% × 5-day ADV × 5 days / Sleeve size , 8% )\nFinal weight      = min(Base weight, Liquidity cap)\n```\n(20% of ADV per day, over a 5-day execution window, is the standard \"we will not move the stock\" constraint; consent latency argues for using a **trailing** ADV, not a spot one.)\n\n| Score | 5-day ADV (₹ Cr) | Base wt | Liquidity cap | Final wt | ₹ Cr (₹40 Cr sleeve) | bps of AUM |\n|---|---|---|---|---|---|---|\n| 85 | 60 | 5.0% | 8.0% (uncapped) | 5.0% | 2.00 | 40 |\n| 72 | 25 | 4.1% | 8.0% | 4.1% | 1.65 | 33 |\n| 78 | 8 | 4.5% | 8.0%* | 4.5% | 1.81 | 36 |\n\n*At small ADV the liquidity formula can bind well below 8% for larger sleeves — always run the sleeve-specific number, not the illustrative cap.\n\n### 6.2 Portfolio construction rules\n- **25–35 names** (30 as base case): enough for single-name idiosyncratic diversification, few enough that the NIFTY-750 quality/growth/value/momentum/macro composite score remains a meaningful differentiator per name.\n- **Sector cap:** house rule ≤ 25% per NIC/GICS sector (tighter than the composite benchmark's own sector weight + 5pp, whichever is lower).\n- **Entry/exit rules synced to monthly cadence:** a name enters the recommendation list only if it has cleared the composite-score threshold for **2 consecutive monthly scorecard runs** (avoids one-month score noise triggering a churn that then needs a consent round-trip); exits are immediate on a **hard trigger** (rating downgrade below investment grade equivalent proxy, accounting red flag, promoter-pledge spike) even mid-month, escalated as an out-of-cycle consent request — everything else queues to the next monthly cycle.\n- **Overlap control vs active MFs:** run a monthly overlap report (% of direct-equity sleeve names also held in the top-20 of each active MF the book holds); flag any name where combined direct + look-through MF exposure exceeds the house single-stock cap, and prefer trimming the **direct** position first (it is the cheaper lever to adjust without disturbing the active manager's own book).\n\n---\n\n## 7. Fixed Income\n\n### 7.1 Direct vs fund — decision rule\n\n| Consideration | Favours **direct** G-sec/SDL/corp bond | Favours **fund/index/target-maturity** |\n|---|---|---|\n| Ticket size per issue | ≥ ₹10–15 Cr (achievable diversification even direct) | < ₹10 Cr per issuer |\n| Intended hold | To maturity, laddered | Rolling/duration-managed |\n| Issuer count achievable | ≥ 8–10 distinct issuers within the sleeve | Fewer — diversification needs a fund wrapper |\n| Tax view | Slab-taxed coupon is unavoidable either way for direct debt; a **listed target-maturity ETF's LTCG at 12.5% (>12m)** vs a bond's slab-taxed coupon can create a meaningful after-tax gap — **model faces genuine complexity here and should be reviewed by tax counsel per client**, flagged as unverified planning position, not a house-wide rule | Sub-₹10 Cr issuer tickets, or when the manager's stated capacity to source at scale is the limiting factor |\n\n- **G-sec/SDL:** use **RBI Retail Direct** for primary auctions (free, no distributor fee, T+1 settlement) [27] and **NDS-OM** (via a bank/PD) for secondary-market trades, which settle near-real-time to T+1 [27]. At ₹500 Cr this account almost certainly needs a custodian/bank NDS-OM/CSGL relationship rather than the retail-facing Retail Direct portal for size.\n- **Corporate bonds:** rating floor **AA and above** for the core sleeve (BBB carve-out, if any, only via a dedicated high-yield AIF, never direct); single-issuer cap ≤ 3% of the fixed-income sleeve; **≥ 10% of secondary corporate-bond trades by value must go through the RFQ platform** — this is a regulatory floor for PMS, not a house choice, rolling 3-month basis [26].\n- **Spread targets (2026, approx.):** AAA PSU 10–60 bps over G-sec, AAA private NBFC 50–140 bps, AA 100–260 bps [28]; 10-year AAA-vs-G-sec spread ≈ 2.21%, 3-year ≈ 1.11% (as of 15-Aug-2026) [28]. Use these as the entry-spread floor below which a corporate-bond purchase needs an explicit override rationale.\n- **Duration policy:** keep the core sleeve duration within ±1 year of the house fixed-income benchmark duration; use target-maturity funds/ETFs (Bharat Bond series, Nifty-SDL-dated indices) to express curve views without single-issuer risk — SDL index yields were running ≈ 5.96–5.99% on ~1.5-year maturity buckets through 2025–26 [30].\n\n---\n\n## 8. Gold/Silver, REITs/InvITs, International\n\n- **Gold:** **Sovereign Gold Bonds are discontinued for new issuance** since Feb-2024, and Budget 2026 further restricted the maturity capital-gains exemption to original PRIMARY subscribers who hold to the full 8-year maturity — secondary-market SGB buyers get **no** capital-gains exemption even if held to maturity [6]. **Use Gold ETF via the AP/creation-unit route for any new gold allocation** — the SGB era for this mandate is effectively over except for legacy positions the client may already hold. Gold ETF AUM industry-wide grew ~191–195% YoY to ≈ ₹1.71–1.85 lakh Cr through Mar–May 2026 [4][5], confirming ample liquidity for our ticket sizes.\n- **Silver:** volatility comparable to Indian equities (~26–27% SD, drawdowns to ~54%) [historical, approx.] — size as a **tactical**, not core, sleeve (house guide ≤ 1–2% of AUM), and expect wider ETF spreads than gold.\n- **REITs/InvITs:** the Nifty REITs & InvITs index carried a ~2.17% dividend yield with 1-year CAGR ≈ 22% as of Apr-2026 [7]; individual constituents range from Embassy REIT (~6.5% distribution yield) to IndiGrid (~9–10%) [7]. **Taxation is multi-component and must be read off each unit's own Form 64B statement** — interest and (per an amendment effective 1-Apr-2026) most dividend distributions are treated differently, rental income and \"repayment of debt\" distributions have their own separate treatment, and unit-level capital gains taxation and the applicable holding-period threshold for business-trust units should be **independently verified against the current Section 115UA framework before being relied on for portfolio tax planning** — this is flagged explicitly as an **open item for tax counsel**, not a settled house number.\n- **International:** three routes — (a) India-listed international ETFs/FoFs, subject to the industry-wide **USD 7 bn** SEBI overseas-investment cap (with a USD 1 bn ETF sub-cap) that has been running near-exhausted through 2026, causing intermittent subscription pauses at several AMCs [35]; (b) **GIFT City** structures (IFSC-based feeder funds), which sit outside the domestic MF overseas cap; (c) client-level **LRS** (Liberalised Remittance Scheme) direct overseas investment, which is a client (not PM) instrument and would need to sit outside the NDPMS account as a separate reportable holding. **House default:** try the domestic FoF/ETF route first; when subscriptions are paused, move to GIFT City feeders for size, and treat LRS as a client-directed parallel holding to be captured in consolidated reporting only, not as an NDPMS-executed instruction.\n\n---\n\n## 9. Total Cost of Ownership — ₹500 Cr Moderate-model illustration\n\nTCO = TER/management fee + embedded fund-level trading cost + our own transaction cost + tax drag + illiquidity/consent-latency cost, all expressed in bps of NAV and ₹ Cr/yr. (Full computation in `sel/tco.py`; figures below are the base run.)\n\n| Sleeve | Wt % | ₹ Cr | TER/mgmt (bps) | Embedded fund cost (bps) | Our txn cost (bps) | Tax drag (bps) | Illiquidity/latency (bps) | **Total (bps)** | **₹ Cr/yr** |\n|---|---|---|---|---|---|---|---|---|---|\n| Nifty 50/100 ETF+index fund | 22 | 110.0 | 8 | 3 | 2.0 | 22 | 3 | **38** | 0.42 |\n| Factor index funds (quality/low-vol/momentum) | 10 | 50.0 | 30 | 25 | 2.0 | 45 | 3 | **105** | 0.52 |\n| Active mid-cap MF (direct) | 7 | 35.0 | 70 | 35 | 1.0 | 26 | 2 | **134** | 0.47 |\n| Active small-cap MF (direct) | 3 | 15.0 | 80 | 45 | 1.0 | 26 | 2 | **154** | 0.23 |\n| Direct equity (NIFTY-750 scorecard) | 8 | 40.0 | 0 | 0 | 12.6 | 155 | 8 | **176** | 0.70 |\n| International FoF/ETF | 5 | 25.0 | 65 | 15 | 3.0 | 30 | 10 | **123** | 0.31 |\n| Short-duration/money-market fund | 3 | 15.0 | 25 | 5 | 0.0 | 257 | 0 | **287** | 0.43 |\n| Target-maturity AAA/SDL funds/ETFs | 11 | 55.0 | 18 | 5 | 1.0 | 269 | 0 | **293** | 1.61 |\n| 10-yr G-sec (direct) | 6 | 30.0 | 0 | 0 | 3.0 | 273 | 0 | **276** | 0.83 |\n| AA corporate credit (via funds) | 4 | 20.0 | 70 | 10 | 1.0 | 320 | 0 | **401** | 0.80 |\n| Arbitrage fund (cash sleeve) | 2 | 10.0 | 35 | 10 | 1.0 | 1,914 | 0 | **1,960** | 1.96 |\n| Gold ETF (AP route) | 5 | 25.0 | 60 | 5 | 2.0 | 1,196 | 2 | **1,265** | 3.16 |\n| Silver ETF | 1 | 5.0 | 55 | 10 | 3.0 | 2,542 | 5 | **2,615** | 1.31 |\n| Listed REITs/InvITs | 4 | 20.0 | 0 | 0 | 6.0 | 1,624 | 5 | **1,635** | 3.27 |\n| Cat II private credit AIF (×2) | 5 | 25.0 | 175 | 0 | 0.0 | 468 | 40 | **683** | 1.71 |\n| Cat III LS AIF / SIF hybrid | 4 | 20.0 | 190 | 30 | 0.0 | 308 | 15 | **543** | 1.09 |\n| **Weighted portfolio total** | **100** | **500.0** | **41** | **11** | **3** | **317** | **5** | **376 bps** | **18.82** |\n\nAdd the PM's own fee layer: a 0.30% fixed fee ≈ ₹1.50 Cr + 18% GST ≈ ₹0.27 Cr + ~12 bps opex ≈ ₹0.60 Cr → **₹2.37 Cr (47 bps)**. **All-in TCO ≈ 424 bps ≈ ₹21.2 Cr/yr on ₹500 Cr.**\n\n**Read:** the **tax-drag line dominates** the TCO at 317 of 376 bps pre-PM-fee — this is a portfolio-construction signal, not just a cost-accounting one: every instrument choice above (arbitrage vs liquid, ETF vs SGB, Cat III AIF vs SIF, direct bond vs fund) should be re-examined first through this tax lens, because non-tax TCO (TER + embedded cost + our txn cost + illiquidity) is only **60 bps (₹3.0 Cr/yr)** — the manager-selection and execution-quality work earns real money, but the biggest single lever available is **instrument-tax-form selection**, not manager alpha or spread-shaving.\n\n### 9.1 Fee-layering rules — what the PM may charge on each wrapper\n\n| Wrapper | PM management fee on this sleeve | Distribution fee | Notes |\n|---|---|---|---|\n| MF (any) | Charged only at the PM's overall portfolio-fee rate — **no separate layer**; must be a **direct plan**, zero distribution fee to the PM [19] | **Prohibited** [19] | Double-charging (PM fee + regular-plan trail) is exactly what the direct-plan mandate exists to prevent |\n| ETF | Same — PM's overall fee only | N/A (no distributor in an ETF) | — |\n| 3rd-party PMS | PM's own portfolio fee on the **allocation decision and monitoring**, not a second full management fee on top of the third-party PM's own fee (that fee is charged by the third-party PM directly to the client's separate account) | N/A | Avoid economically \"fee on fee\" without disclosed value-add |\n| AIF (Cat II/III) | PM's fee at portfolio level only; AIF's own management/carry fee is separate and charged by the AIF | N/A | Disclose the AIF's full fee stack in the MITC illustration |\n| SIF | Same principle as MF — PM's own fee only, SIF's BER-style fee is separate | N/A | — |\n| Direct equity/bonds | PM's fee only; brokerage charged **at actuals** [19] | N/A | — |\n\n---\n\n## 10. CAN / SHOULD / AVOID — condensed\n\n**CAN (regulatorily permitted, fits NDPMS):** direct-with-AMC ETF dealing ≥₹25 Cr; index funds/factor funds as passive/structured-active core; capacity-screened active MFs via direct plans; third-party PMS as a separate consented account; Cat II/III AIF and SIF allocation (accredited-investor exemptions where applicable); direct equity via the NIFTY-750 scorecard; RBI Retail Direct/NDS-OM for G-secs; RFQ-routed corporate bonds; Gold ETF (AP route); REITs/InvITs; GIFT City/LRS for international when domestic caps bind.\n\n**SHOULD (do in first 6 months):** build the AMC-direct ETF execution relationship; formalise the active-MF and PMS scorecards into the monthly recommendation-pack workflow; size the illiquid (AIF/REIT) sleeve to the 12–15% cap; stand up the target-maturity-fund ladder; build the direct-equity liquidity-capped sizing tool; wire third-party PMS statements into the house TWRR dashboard.\n\n**AVOID:** new SGB purchases (discontinued, and the tax-exemption carve-out no longer follows secondary buyers) [6]; Cat III AIF exposure to strategies also available in cheaper/more tax-efficient SIF form once the SIF has an adequate track record; any structure where the PM's own fee is layered on top of a regular (non-direct) MF plan; outsourcing trade sizing/timing to a third-party PMS or vendor beyond model-level advice (2026 enforcement risk) [25]; over-sizing silver given its equity-like volatility with weaker liquidity than gold.\n\n---\n\n## Sources consulted\n\n[1] SEBI ETF direct-with-AMC ₹25 Cr threshold — https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html\n[2] Nifty BeES AUM/creation unit — https://etf.nipponindiaim.com/Funds/details/14 ; https://www.tickertape.in/etfs/nippon-india-nifty-50-bees-etf-NBES\n[3] NSE Nifty 50 impact cost — https://www.nseindia.com/static/products-services/indices-nifty50-index\n[4] ETF industry AUM/turnover, gold ETF AUM growth — https://www.businesstoday.in/personal-finance/investment/story/can-gold-etfs-sustain-record-inflows-after-aum-surged-191-in-fy26-528200-2026-04-30\n[5] Gold/silver ETF inflows FY26 — https://www.indmoney.com/blog/mutual-funds/gold-silver-etf-inflows-fy26-india\n[6] SGB discontinuation and Budget 2026 tax change — https://goldenpi.com/blog/bond-news/sovereign-gold-bond-scheme-discontinued-for-new-issues/ ; https://www.taxscan.in/top-stories/sovereign-gold-bond-tax-rules-for-itr-ay-2026-27-interest-redemption-capital-gains-and-reporting-1448954\n[7] REIT/InvIT index yield and 2026 dividend-tax amendment — https://www.niftyindices.com/Factsheet/Factsheet_REITs_InvITs.pdf ; https://www.business-standard.com/amp/finance/personal-finance/reit-invit-dividend-tax-break-experts-explain-what-changes-and-the-catch-126080701364_1.html\n[8] AIF minimum ticket / accredited investor thresholds — https://www.incorpx.io/blog/aif-registration-sebi-categories-india ; https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html\n[9] Large Value Fund ₹25 Cr (Nov-2025 Third Amendment) — https://elementone.fund/sebi-aif-regulations-2026-guide/\n[10] AIF tenure/lock-in by category — https://treelife.in/finance/alternative-investment-funds-in-india/ ; https://www.pmsaifworld.com/aif-category-3/\n[11] Cat III leverage cap (approx., verify) — https://elementone.fund/sebi-aif-regulations-2026-guide/\n[12] AIF valuation frequency — https://treelife.in/finance/aif-valuation-in-india/\n[13] Cat II private credit yields/tax — https://www.ey.com/en_in/insights/strategy-transactions/onwards-and-upwards-a-positive-outlook-for-private-credit-in-india ; https://rurashfin.com/india-private-credit-market-2026-investor-risks/\n[14] Cat III AIF taxation, MMR — https://www.finnovate.in/learn/blog/aif-taxation-india\n[15] Finance Act 2025, Sec. 2(14) Cat I/II capital-asset clarification — https://www.lexology.com/library/detail.aspx?g=a8345261-0ec2-4031-b2e1-211c964e83cd\n[16] AIF Co-Investment Vehicle framework (Sept-2025) — https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/\n[17] SIF framework — https://www.impriindia.com/insights/policy-update/a-new-asset-class/ ; https://groww.in/blog/specialised-investment-funds ; https://upstox.com/news/business-news/financial-regulations/sebi-framework-for-specialized-investment-funds-si-fs-10-lakh-entry-sector-caps-and-more/article-149031/ ; https://www.business-standard.com/markets/news/sebi-clarifies-regulatory-framework-for-specialized-investment-funds-125040901078_1.html\n[19] SEBI PMS fee/expense circular 2020 — https://www.business-standard.com/amp/article/markets/sebi-puts-expense-cap-on-pms-providers-lays-down-performance-standards-120021301918_1.html\n[20] PMS Master Circular consolidation 16-Jul-2025 — https://www.lexibox.in/pms/master-circular-for-portfolio-managers-2025/\n[21] APMI TWRR/benchmarking circular Dec-2022 — https://taxguru.in/sebi/performance-benchmarking-reporting-performance-portfolio-managers.html\n[22] APMI firm-level performance audit Aug-2023 — https://taxguru.in/sebi/sebi-circular-portfolio-managers-firm-level-performance-data-audit.html\n[23] APMI empanelled valuation agencies — https://www.gktoday.in/sebi-new-benchmarking-norms-for-portfolio-managers/\n[24] PMS unlisted-securities 25% cap — https://www.business-standard.com/amp/article/markets/pms-players-had-to-change-plans-after-restrictions-on-unlisted-securities-120010700492_1.html\n[25] PM prohibited from investing on another entity's advice; 2026 outsourcing enforcement — https://corporate.cyrilamarchandblogs.com/2026/06/sebi-order-penalises-outsourcing-of-core-functions-structuring-lessons-for-asset-management-industry/\n[26] PMS 10% RFQ corporate-bond rule — https://www.business-standard.com/amp/article/markets/pms-to-undertake-10-transactions-in-corp-bonds-via-rfq-platform-sebi-121120901140_1.html\n[27] RBI Retail Direct / NDS-OM — https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/\n[28] AAA/AA credit spreads 2026 — https://indiamacroindicators.co.in/economic-indicators/10-year-credit-spread-aaa-rated-bonds-g-sec\n[29] Bharat Bond / Nifty 10Y G-sec ETF returns — https://www.valueresearchonline.com/funds/41060/bharat-bond-etf-april-2031/\n[30] SDL yield — https://www.niftyindices.com/Factsheet/Nifty_SDLSep2026V1Index_Factsheet.pdf\n[31] SEBI MF Regulations 2026 (BER/TER overhaul) — https://www.businesstoday.in/mutual-funds/story/exiting-mutual-funds-may-get-cheaper-as-sebi-cuts-maximum-exit-load-cap-to-3-547787-2026-08-07\n[35] SEBI overseas MF USD 7bn cap — https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn\n\n*(Note: several primary SEBI/APMI PDF circulars were blocked by the network egress proxy during research; facts drawn from them are sourced instead via secondary summaries of those same circulars (taxguru, business-standard, lexibox, etc.) as cited above, and higher-stakes figures are flagged \"approx./verify\" in the text where the underlying circular text could not be directly confirmed.)*\n",
+ "risks_and_pitfalls": [
+  "Tax drag (~317 of 376 bps pre-PM-fee TCO) dominates instrument economics far more than TER or manager alpha — a selection process that screens only on TER/alpha and ignores wrapper-level tax treatment will systematically under-perform.",
+  "Cat III AIF leverage-cap figures (~2x NAV) found in secondary sources conflict with older descriptions of a fund-specific disclosed ceiling; relying on the wrong number in an IC memo or client disclosure is a compliance risk — verify against the current AIF Regulations text before publishing.",
+  "REIT/InvIT unit-level capital-gains holding-period and rate rules were inconsistently described across sources (some cite the standard 12-month/20%-STCG/12.5%-LTCG equity convention, but business-trust units have historically carried different thresholds) — do not rely on the figure in this document for client tax advice.",
+  "Third-party PMS allocations risk breaching Reg. 24(10) (no investing on another entity's advice) if the house PM is seen to be delegating trade sizing/timing rather than merely recommending an allocation size — the May-2026 SEBI enforcement order shows this line is drawn broadly.",
+  "SEBI's overseas-MF USD 7bn industry cap is intermittently exhausted, causing India-listed international fund/ETF subscription pauses with little notice — an international sleeve built assuming continuous access to domestic FoFs will periodically be undeliverable.",
+  "SIF is a young category (AUM ≈₹13,814 Cr as of May-2026, hybrid long-short ≈76% of it) — allocating meaningfully before 2-3 years of live track record risks concentrating the illiquid sleeve in unproven strategies.",
+  "Small/mid-cap active MF capacity can erode quickly after a strong performance year draws inflows; a scorecard run only every 6 months may miss a capacity breach that happens mid-cycle — consider a capacity-trigger alert between scheduled re-scores.",
+  "SGB legacy holdings (if the client already owns any) now carry a materially different tax treatment for secondary-market buyers vs original subscribers post-Budget-2026 — any client onboarding existing SGB positions needs this checked position-by-position, not assumed uniform.",
+  "Gold ETF and silver ETF spreads/liquidity are not identical — treating silver as 'gold's cheaper cousin' in sizing risks materially higher transaction costs than modelled.",
+  "The direct-equity sleeve's monthly-only rebalancing cadence means a 2-consecutive-month confirmation rule for entries will lag a genuine fast-moving opportunity by 4-8 weeks — acceptable under NDPMS, but must be disclosed to the client as a structural feature, not hidden as an execution shortfall.",
+  "Several primary SEBI/APMI circular PDFs could not be fetched directly (network egress blocked) during this research; facts sourced only via secondary summaries carry residual restatement risk and should be checked against the primary text before being relied on in a client-facing document.",
+  "Undrawn AIF commitment drag is modelled as a linear-draw approximation; actual capital-call timing (lumpy, event-driven) can materially differ from this assumption and should be re-modelled once actual manager call schedules are known.",
+  "Fee-layering discipline (no PM fee on top of a regular MF plan) is easy to state as a rule but easy to violate accidentally if a legacy regular-plan holding is transferred into the NDPMS account without conversion to direct plan — build an automated direct-plan check into onboarding."
+ ],
+ "open_questions": [
+  "What is the client's own Accredited Investor status (net worth/income), and should the house help the client pursue accreditation given the AIF/SIF minimum-waiver and LVF benefits this would unlock?",
+  "Should the ~12-15% illiquid-sleeve cap (Cat II + Cat III + REIT/InvIT) be a hard IPS limit or a soft guideline the IC can override with documented rationale?",
+  "For the international sleeve, what is the client's appetite for a GIFT City feeder structure (different custody/reporting/cost profile) versus simply waiting out domestic FoF subscription pauses?",
+  "Does the client want any LRS-routed direct international holding tracked in the consolidated house dashboard even though it sits legally outside the NDPMS account?",
+  "What is the house's risk appetite for allocating to SIF strategies with under 12 months of live track record, given the category's youth?",
+  "Should the direct-equity sleeve's 2-consecutive-month entry-confirmation rule have an IC-level override for high-conviction, time-sensitive ideas, and if so what governance wraps that override?",
+  "Who owns the tax-counsel review flagged in this document for REIT/InvIT unit-level capital gains and for direct-bond-vs-target-maturity-fund after-tax comparison — in-house or external counsel?",
+  "What data-sharing agreement (if any) exists or can be negotiated with prospective third-party PMS managers to get monthly statements in a format the house dashboard can ingest without manual re-keying?",
+  "Should the Cat III leverage-cap figure be independently re-verified against the current AIF Regulations before it appears in any IC paper or client disclosure?",
+  "What is the acceptable illiquidity/consent-latency budget the IC wants encoded as a hard breach trigger, versus treated as a soft monitoring flag, in the monthly recon?"
+ ],
+ "sources": [
+  {
+   "title": "SEBI ETF direct-with-AMC ₹25 crore threshold",
+   "url": "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html"
+  },
+  {
+   "title": "Nippon India ETF Nifty 50 BeES fund page",
+   "url": "https://etf.nipponindiaim.com/Funds/details/14"
+  },
+  {
+   "title": "Nippon India ETF Nifty 50 BeES (tickertape)",
+   "url": "https://www.tickertape.in/etfs/nippon-india-nifty-50-bees-etf-NBES"
+  },
+  {
+   "title": "NSE Nifty 50 Index statistics (impact cost)",
+   "url": "https://www.nseindia.com/static/products-services/indices-nifty50-index"
+  },
+  {
+   "title": "Gold ETF AUM surge FY26 (BusinessToday)",
+   "url": "https://www.businesstoday.in/personal-finance/investment/story/can-gold-etfs-sustain-record-inflows-after-aum-surged-191-in-fy26-528200-2026-04-30"
+  },
+  {
+   "title": "Gold/silver ETF inflows FY26 (IndMoney)",
+   "url": "https://www.indmoney.com/blog/mutual-funds/gold-silver-etf-inflows-fy26-india"
+  },
+  {
+   "title": "Sovereign Gold Bond scheme discontinued for new issues",
+   "url": "https://goldenpi.com/blog/bond-news/sovereign-gold-bond-scheme-discontinued-for-new-issues/"
+  },
+  {
+   "title": "SGB tax rules for ITR AY2026-27 (Taxscan)",
+   "url": "https://www.taxscan.in/top-stories/sovereign-gold-bond-tax-rules-for-itr-ay-2026-27-interest-redemption-capital-gains-and-reporting-1448954"
+  },
+  {
+   "title": "Nifty REITs & InvITs Index factsheet",
+   "url": "https://www.niftyindices.com/Factsheet/Factsheet_REITs_InvITs.pdf"
+  },
+  {
+   "title": "REIT/InvIT dividend tax break, Budget 2026 (Business Standard)",
+   "url": "https://www.business-standard.com/amp/finance/personal-finance/reit-invit-dividend-tax-break-experts-explain-what-changes-and-the-catch-126080701364_1.html"
+  },
+  {
+   "title": "AIF Registration in India: SEBI Categories I, II, III Explained",
+   "url": "https://www.incorpx.io/blog/aif-registration-sebi-categories-india"
+  },
+  {
+   "title": "What are Accredited Investors — eligibility criteria (Business Standard)",
+   "url": "https://www.business-standard.com/amp/article/markets/what-are-accredited-investors-the-eligibility-criteria-and-benefits-121022500517_1.html"
+  },
+  {
+   "title": "SEBI AIF Regulations 2026: Complete Guide (Element One)",
+   "url": "https://elementone.fund/sebi-aif-regulations-2026-guide/"
+  },
+  {
+   "title": "Alternative Investment Funds in India — framework, types, regulations (Treelife)",
+   "url": "https://treelife.in/finance/alternative-investment-funds-in-india/"
+  },
+  {
+   "title": "Category III AIFs in India — strategies, returns, regulations (PMSAIFWorld)",
+   "url": "https://www.pmsaifworld.com/aif-category-3/"
+  },
+  {
+   "title": "AIF Valuation in India — SEBI framework (Treelife)",
+   "url": "https://treelife.in/finance/aif-valuation-in-india/"
+  },
+  {
+   "title": "Private credit outlook in India (EY)",
+   "url": "https://www.ey.com/en_in/insights/strategy-transactions/onwards-and-upwards-a-positive-outlook-for-private-credit-in-india"
+  },
+  {
+   "title": "India's private credit market 2026 — investor risks (Rurash Financials)",
+   "url": "https://rurashfin.com/india-private-credit-market-2026-investor-risks/"
+  },
+  {
+   "title": "AIF Taxation in India — Category-wise guide (Finnovate)",
+   "url": "https://www.finnovate.in/learn/blog/aif-taxation-india"
+  },
+  {
+   "title": "Union Budget 2025 — tax treatment of securities held by AIF Cat I/II (Lexology)",
+   "url": "https://www.lexology.com/library/detail.aspx?g=a8345261-0ec2-4031-b2e1-211c964e83cd"
+  },
+  {
+   "title": "Beyond CPMS Route: SEBI unlocks Co-Investment Schemes for AIFs",
+   "url": "https://corporate.cyrilamarchandblogs.com/2025/09/beyond-cpms-route-sebi-unlocks-co-investment-schemes-for-aifs/"
+  },
+  {
+   "title": "A New Asset Class: Decoding SEBI's SIF Framework (IMPRI India)",
+   "url": "https://www.impriindia.com/insights/policy-update/a-new-asset-class/"
+  },
+  {
+   "title": "SEBI Introduces Specialised Investment Funds (Groww)",
+   "url": "https://groww.in/blog/specialised-investment-funds"
+  },
+  {
+   "title": "SEBI framework for SIFs: ₹10 lakh entry, sector caps (Upstox)",
+   "url": "https://upstox.com/news/business-news/financial-regulations/sebi-framework-for-specialized-investment-funds-si-fs-10-lakh-entry-sector-caps-and-more/article-149031/"
+  },
+  {
+   "title": "SEBI clarifies regulatory framework for SIFs (Business Standard)",
+   "url": "https://www.business-standard.com/markets/news/sebi-clarifies-regulatory-framework-for-specialized-investment-funds-125040901078_1.html"
+  },
+  {
+   "title": "SEBI puts expense cap on PMS providers, performance standards (Business Standard)",
+   "url": "https://www.business-standard.com/amp/article/markets/sebi-puts-expense-cap-on-pms-providers-lays-down-performance-standards-120021301918_1.html"
+  },
+  {
+   "title": "Master Circular for Portfolio Managers 2025 (LexiBox)",
+   "url": "https://www.lexibox.in/pms/master-circular-for-portfolio-managers-2025/"
+  },
+  {
+   "title": "Performance Benchmarking and Reporting by Portfolio Managers (TaxGuru)",
+   "url": "https://taxguru.in/sebi/performance-benchmarking-reporting-performance-portfolio-managers.html"
+  },
+  {
+   "title": "SEBI circular on Portfolio Managers' firm-level performance data audit (TaxGuru)",
+   "url": "https://taxguru.in/sebi/sebi-circular-portfolio-managers-firm-level-performance-data-audit.html"
+  },
+  {
+   "title": "SEBI new benchmarking norms for Portfolio Managers (GKToday)",
+   "url": "https://www.gktoday.in/sebi-new-benchmarking-norms-for-portfolio-managers/"
+  },
+  {
+   "title": "PMS players had to change plans after restrictions on unlisted securities (Business Standard)",
+   "url": "https://www.business-standard.com/amp/article/markets/pms-players-had-to-change-plans-after-restrictions-on-unlisted-securities-120010700492_1.html"
+  },
+  {
+   "title": "SEBI order penalises outsourcing of core functions (Cyril Amarchand Mangaldas)",
+   "url": "https://corporate.cyrilamarchandblogs.com/2026/06/sebi-order-penalises-outsourcing-of-core-functions-structuring-lessons-for-asset-management-industry/"
+  },
+  {
+   "title": "PMS to undertake 10% transactions in corp bonds via RFQ (Business Standard)",
+   "url": "https://www.business-standard.com/amp/article/markets/pms-to-undertake-10-transactions-in-corp-bonds-via-rfq-platform-sebi-121120901140_1.html"
+  },
+  {
+   "title": "5 steps to buy G-secs on RBI Retail Direct (PrimeInvestor)",
+   "url": "https://primeinvestor.in/reports/buy-g-secs-on-rbi-retail-direct-platform/"
+  },
+  {
+   "title": "India's Credit Spread AAA vs G-Sec (10Y) (India Macro Indicators)",
+   "url": "https://indiamacroindicators.co.in/economic-indicators/10-year-credit-spread-aaa-rated-bonds-g-sec"
+  },
+  {
+   "title": "BHARAT Bond ETF April 2031 overview (Value Research)",
+   "url": "https://www.valueresearchonline.com/funds/41060/bharat-bond-etf-april-2031/"
+  },
+  {
+   "title": "Nifty SDL Sep 2026 V1 Index factsheet",
+   "url": "https://www.niftyindices.com/Factsheet/Nifty_SDLSep2026V1Index_Factsheet.pdf"
+  },
+  {
+   "title": "Exiting mutual funds may get cheaper as SEBI cuts exit-load cap (BusinessToday)",
+   "url": "https://www.businesstoday.in/mutual-funds/story/exiting-mutual-funds-may-get-cheaper-as-sebi-cuts-maximum-exit-load-cap-to-3-547787-2026-08-07"
+  },
+  {
+   "title": "SEBI international fund overseas investment limit USD 7bn (Oquilia)",
+   "url": "https://www.oquilia.com/news/sebi-international-fund-overseas-investment-limit-7bn"
+  }
+ ]
+}

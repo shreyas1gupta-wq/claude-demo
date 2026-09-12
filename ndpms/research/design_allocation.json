@@ -1,0 +1,1559 @@
+{
+ "domain": "Strategic asset allocation, house-view implementation and portfolio construction for the ₹500 Cr NDPMS mandate",
+ "executive_summary": "The non-discretionary constraint, not the asset mix, is the design driver. We propose a pre-agreed Model Master with rebalance bands written into the IPS so the monthly consent pack becomes a short list of band-restoring and TAA trades executed on the existing Thursday cycle. Instruments are chosen for low cost, low turnover and low consent friction: index funds and ETFs via AP creation units for core beta (32–37%), factor index funds (Quality/Low Vol/Momentum) for the house tilt, a 20–25 name direct-stock book from the NIFTY-750 scorecard capped at 8–12%, active MFs only where alpha persistence is documented (mid/small), and high-turnover ideas pushed inside wrappers where the manager holds discretion (Cat III AIF, SIF hybrid long-short, one third-party PMS). NDPMS uniquely permits up to 25% of client AUM in unlisted securities; we use 9% (Moderate) / 12% (Aggressive) for Cat II private credit, long-short and pre-IPO, leaving headroom. Two fully sized books: Moderate — E[R] 10.0%, vol 9.7%, Sharpe 0.42, beta 0.55, GFC-type shock −30%; Aggressive — E[R] 10.9%, vol 12.5%, Sharpe 0.39, beta 0.72, shock −40%; versus the Allocate 80/20 at 10.0% / 13.6% / 0.30 / −43%. We recommend investable composite benchmarks matched to sleeve weights (Moderate: 55% Nifty 500 TRI, 5% S&P 500 INR, 25% CRISIL Composite Bond, 5% gold, 10% Nifty 50 Arbitrage) with the 80/20 house benchmark as a secondary line. Deploy over 8–12 weekly tranches from an arbitrage fund (equity-taxed) with pre-consented acceleration on every −5% Nifty move; expected one-off cash drag ₹2.0–2.5 Cr. Owned controllable cost budget ~125–145 bps p.a., of which realised tax (60–80 bps) is the largest — turnover discipline (TAA ≤10% NAV/month, direct-stock churn <30% p.a.) is therefore a return decision, not an ops nicety. Open legal item: whether a pre-authorised band-execution matrix satisfies the \"on client instruction\" test; the design works without it.",
+ "can_do": [
+  {
+   "item": "Pre-agreed Model Master with SAA weights and rebalance bands embedded in the IPS schedule",
+   "what": "Sign sleeve weights, per-line bands (core ±5%, satellite ±3%, alternatives ±2%, FI ±3%, gold ±1.5%), composite benchmark and deployment schedule at onboarding as an annexure to the Reg 22 written agreement.",
+   "why": "Converts every month's rebalance from a debate into a confirmation; halves consent latency and gives the team a contract to be measured against.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must",
+   "notes": "Reg 22(1) requires written agreement [3]; annexure is the natural home."
+  },
+  {
+   "item": "Monthly batched consent pack aligned to the Thursday deployment cycle",
+   "what": "One document per month: band breaches, TAA tilts with conviction scores, corporate-action elections, cash sweep; client e-signs by Wednesday, execution Thursday.",
+   "why": "NDPMS requires instruction per trade; batching is the only way to keep turnover cost and latency bounded.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Standing instruction for band-restoring trades within pre-agreed ranges",
+   "what": "Client pre-authorises execution of any trade that only restores a breached band, without fresh sign-off.",
+   "why": "Would remove most latency cost; but whether it satisfies the non-discretionary test is not settled.",
+   "ndpms_feasibility": "unclear_verify",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "one-time",
+   "recommendation": "could",
+   "notes": "Obtain written legal opinion before relying on it; design pack to work without it."
+  },
+  {
+   "item": "Core beta via Nifty 50/100 ETFs through AP creation units plus index funds (direct plan)",
+   "what": "₹110–125 Cr in 2 ETFs + 1 index fund; orders >₹5 Cr routed to APs (Nifty BeES CU 50,000 units) rather than on-screen.",
+   "why": "3–10 bps TER, unlimited capacity, no price risk during consent lag when using NAV-based index fund orders; equity ETF on-screen ADV only ~₹745 Cr/day [45].",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Factor sleeve via index funds (Quality 30, Low Vol 30, Momentum 30)",
+   "what": "10–12% split roughly 5/3/2 (Moderate) or 5/3/4 (Aggressive); TAA tilts expressed here first.",
+   "why": "Cheapest way to implement 'overweight large-cap quality'; Quality has lagged 3 years and is cheap [52].",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should",
+   "notes": "Momentum capped at 2–4%: crash-prone at turns, 1-yr return ~0% [51]."
+  },
+  {
+   "item": "Direct-stock book of 20–25 quality-tilted names from the NIFTY-750 scorecard, capped at 8–12%",
+   "what": "Avg position ₹1.6–2.4 Cr; inclusion needs ADV ≥₹20 Cr; ≤1% of float, ≤20% ADV/day, ≤3% of NAV per name; turnover <30% p.a.",
+   "why": "This is where the team's scorecard alpha is owned; but every trade is a consent line, so size and turnover must stay low.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Active mutual funds only for mid/small cap, direct plans, ticket ≤1% of scheme AUM",
+   "what": "2 mid-cap + 1–2 small-cap schemes with ≥₹2,500 Cr AUM; selection bar: 3-yr rolling alpha >150 bps net in ≥60% of windows.",
+   "why": "Alpha persistence evidence exists in Indian mid/small, not large cap; Master Circular requires direct plans for PM-routed MF investments [4].",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "should"
+  },
+  {
+   "item": "One concentrated third-party PMS (mid/small specialist), ₹10–15 Cr",
+   "what": "Client signs the PMS agreement; we monitor holdings overlap with our direct book and style drift.",
+   "why": "Access to boutique capacity our MF filter excludes; ₹50 lakh minimum is trivial at this size [1][2].",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "low",
+   "cadence": "quarterly",
+   "recommendation": "could",
+   "notes": "Avoid 3+ PMS managers — reporting sprawl and look-through complexity."
+  },
+  {
+   "item": "Use the NDPMS-only 25% unlisted allowance for Cat II private credit, Cat III long-short and pre-IPO",
+   "what": "9% (Moderate) / 12% (Aggressive) across 6–8 AIF commitments of ₹5–15 Cr each; hard internal cap 15%.",
+   "why": "Discretionary PMS cannot hold unlisted; this is the mandate's structural edge and delivers 11–15% pre-tax carry uncorrelated to Nifty [1][2][57].",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "quarterly",
+   "recommendation": "should",
+   "notes": "AIF units count as unlisted; ₹1 Cr minimum per fund [7]; Cat I/II close-ended ≥3 yrs [60]."
+  },
+  {
+   "item": "SIF hybrid long-short as the preferred long-short wrapper once 12–18 months live track exists",
+   "what": "₹10–20 Cr in 1–2 SIF strategies (₹10 lakh minimum); up to 25% unhedged short allowed inside the wrapper [9][11].",
+   "why": "MF-platform taxation likely cheaper than Cat III trust-level tax (~42.7%) [15]; discretion sits with the AMC so no consent per trade.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "could",
+   "notes": "Category AUM only ₹13,814 Cr (May 2026) [10]; verify each scheme's tax classification."
+  },
+  {
+   "item": "Fixed income via target-maturity funds and direct 10-yr G-sec rather than direct corporate paper",
+   "what": "Moderate: 11% TMF (AAA PSU/SDL 3–5 yr), 6% 10-yr G-sec/dynamic, 4% AA via credit funds, 3% short duration.",
+   "why": "Carry deficit to equity is the lowest in a decade (10-yr at 6.96% vs 11% equity E[R]) [21]; corporate lots are illiquid below a ₹50 Cr sleeve.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Gold 4–5% via ETF (AP route), silver capped at 1%",
+   "what": "1 gold ETF, 1 silver ETF; bands ±1.5% / ±0.5%.",
+   "why": "Gold's −0.1 correlation and +25% in 2008-type shocks is the only cheap tail hedge; silver has equity-like vol (26.6%) and −54% max DD [35].",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Listed REIT/InvIT sleeve of 4–5 names at 2–4%",
+   "what": "Embassy, Mindspace, Brookfield, Nexus, IndiGrid; each ≤₹6 Cr; band ±1%.",
+   "why": "6–10% distribution yield with partial tax-free return of capital; 0.35 correlation [37][38].",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "quarterly",
+   "recommendation": "should"
+  },
+  {
+   "item": "International DM equity 5–7% via 2 feeder index funds plus 1 backup route",
+   "what": "S&P 500 / MSCI World index funds or FoF; hold in arbitrage if subscription windows close.",
+   "why": "0.45 correlation and INR depreciation tailwind (~3.7% p.a. approx.); but the USD 7 bn industry cap has already paused several AMCs [28][29].",
+   "ndpms_feasibility": "restricted",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should",
+   "notes": "Overseas direct securities not permitted for PMS today; SEBI Jul-2026 consultation may change this [5][6]."
+  },
+  {
+   "item": "Arbitrage fund (not liquid fund) as the parking and liquidity asset",
+   "what": "2% steady state, 1–4% band; all undeployed equity money during deployment.",
+   "why": "6.7% 1-yr return with equity taxation (12.5% LTCG) vs slab-taxed liquid at 6.4% [48][50]; ~15 bps post-tax advantage for a 39% slab client.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "daily",
+   "recommendation": "must"
+  },
+  {
+   "item": "Composite benchmark matched to SAA, with Allocate 80/20 as secondary line",
+   "what": "Moderate: 55% Nifty 500 TRI + 5% S&P 500 INR + 25% CRISIL Composite Bond + 5% gold + 10% Nifty 50 Arbitrage; Aggressive: 75/7/8/5/5.",
+   "why": "Owning returns requires a benchmark the book can actually hold; TE vs composite 1.5–2.1% vs 3.2–4.8% against 80/20.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "TAA sizing by conviction score × tracking-error budget with an evidence bar",
+   "what": "tilt = C(−3..+3) × unit (~1.0 pp Moderate, 1.5 pp Aggressive); TE budget 2%/3%; move only if 2 of 3 evidence tests pass (valuation |z|≥1, revision breadth 2 months, scorecard quintile); auto-halve after 6 months.",
+   "why": "Turns the IC view into bounded, auditable trades; prevents turnover creep that the tax drag punishes.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Staggered deployment: 8–12 weekly Thursday tranches with pre-consented acceleration rules",
+   "what": "Equity-like 8.33%/week (12-wk) or 12.5% (8-wk); FI in 4 weeks; +1 tranche per −5% Nifty from T, +2 at −10%, all-in at −15%; India VIX >22 counts as −5%; never decelerate on rallies.",
+   "why": "Expected cash drag ₹2.0–2.5 Cr (12-wk) or ₹1.4–1.7 Cr (8-wk); acceleration rules are pre-consented so no fresh instruction is needed in a sell-off.",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "Minimum trade size ₹1 Cr and monthly TAA turnover cap 10% of NAV",
+   "what": "Drifts smaller than 20 bps wait for next month; aggregate active weight ≤10 pp Moderate / 15 pp Aggressive.",
+   "why": "Consent latency cost (~6 bps expected, ±30 bps 1σ) and realised tax (60–80 bps) scale with turnover.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Unlisted-cap and concentration monitor in the daily risk dashboard",
+   "what": "Daily check: unlisted ≤25% (alert at 18%), single stock ≤3%, single AIF ≤4%, single MF scheme ticket ≤1% of scheme AUM, gold+silver ≤7%.",
+   "why": "Regulatory breach of the 25% cap is a compliance event; AIF NAV lag can push the ratio up in equity drawdowns.",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "daily",
+   "recommendation": "must"
+  },
+  {
+   "item": "Annual CMA refresh and band/line-count review",
+   "what": "Re-estimate E[R], vol, correlations; confirm ≤60 line items and each ≥₹1.5 Cr (silver excepted).",
+   "why": "CMAs drift with valuations (Nifty at 20× vs 23× median today); line sprawl kills consent-pack readability.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "annual",
+   "recommendation": "should"
+  },
+  {
+   "item": "Intraday, HFT, options overwriting or covered-call programs inside the client account",
+   "what": "Any strategy needing same-day execution decisions.",
+   "why": "Consent latency makes them uneconomic and arguably non-compliant; if wanted, buy them inside a Cat III AIF or SIF.",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "high",
+   "impact": "low",
+   "cadence": "daily",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Momentum factor >5% standalone in the Moderate book",
+   "what": "Large Momentum 30 allocation as a core holding.",
+   "why": "Semi-annual reconstitution turnover, −60% approx. drawdowns at regime turns, and 1-yr return near zero [51].",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "monthly",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Direct corporate bonds below a ₹50 Cr sleeve, or more than 3 PMS managers, or silver >1%",
+   "what": "Concentration and operational sprawl choices that look attractive on yield or diversification grounds.",
+   "why": "Illiquid lots, per-ISIN consent lines, reporting complexity, and silver's −54% max DD.",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "low",
+   "cadence": "quarterly",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Pooled/omnibus execution across clients or netting against Allocate books",
+   "what": "Aggregating orders in a house account.",
+   "why": "PMS requires client-name holding and per-client instruction; not permitted.",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "daily",
+   "recommendation": "avoid"
+  }
+ ],
+ "tables": [
+  {
+   "title": "Capital-market assumptions (10-yr forward, INR, pre-tax)",
+   "columns": [
+    "Asset class",
+    "Verified historical anchor",
+    "Fwd E[R]",
+    "Fwd vol",
+    "Hist. max DD",
+    "Corr to Nifty 50 (approx.)"
+   ],
+   "rows": [
+    [
+     "Indian large cap (Nifty 50/100)",
+     "Nifty 50 TRI 12.41% since inception; SD 20.7%; max DD −59.9% [16]",
+     "11.0%",
+     "17%",
+     "−60%",
+     "1.00"
+    ],
+    [
+     "Mid cap (Midcap 150)",
+     "10-yr CAGR 19.2% (Feb-26) [17]; −60.8% worst 12m [20]",
+     "12.5%",
+     "21%",
+     "−65% approx.",
+     "0.85"
+    ],
+    [
+     "Small cap (Smallcap 250)",
+     "10-yr CAGR 16.1%; −69.1% in 2008; 2018-20 DD −46% [17][18]",
+     "13.0%",
+     "25%",
+     "−70%",
+     "0.78"
+    ],
+    [
+     "Factor: Low Vol 30",
+     "Premium vs Nifty at lows 2024-25 (approx.)",
+     "10.5%",
+     "14%",
+     "−45% approx.",
+     "0.85"
+    ],
+    [
+     "Factor: Momentum 30",
+     "Fund 5-yr 11.6%, 1-yr ~0% [51]",
+     "13.0%",
+     "21%",
+     "−60% approx.",
+     "0.80"
+    ],
+    [
+     "Factor: Quality 30",
+     "ETF 5-yr 9.66%, 1-yr −3.2% [52]",
+     "11.0%",
+     "16%",
+     "−50% approx.",
+     "0.90"
+    ],
+    [
+     "Factor: Value 50",
+     "Nifty 500 TR 5-yr 12.4% [53]",
+     "12.0%",
+     "19%",
+     "−60% approx.",
+     "0.90"
+    ],
+    [
+     "Short duration / money market",
+     "Liquid 1-yr 6.4% [50]",
+     "6.6%",
+     "1.2%",
+     "~0",
+     "0.05"
+    ],
+    [
+     "Target maturity 3-5 yr AAA/SDL",
+     "Bharat Bond 2030 5-yr 6.83% [56]",
+     "6.9%",
+     "2.5%",
+     "−4% approx.",
+     "0.05"
+    ],
+    [
+     "10-yr G-sec",
+     "YTM 6.96%; index 3-yr 7.80%, 5-yr 5.51% [21][54]",
+     "7.0%",
+     "5.5%",
+     "−10% approx.",
+     "0.10"
+    ],
+    [
+     "AAA corporate 3-5 yr",
+     "3-yr AAA spread ~111 bps [31]",
+     "7.1%",
+     "2.5%",
+     "−4% approx.",
+     "0.05"
+    ],
+    [
+     "AA corporate",
+     "Spread 100-260 bps [32]",
+     "8.2%",
+     "3.5%",
+     "−8% approx.",
+     "0.15"
+    ],
+    [
+     "Arbitrage / liquid / overnight",
+     "Kotak Eq Arbitrage 1-yr 6.72% [48]",
+     "6.2%",
+     "0.7%",
+     "~0",
+     "0.05"
+    ],
+    [
+     "Gold (INR)",
+     "10-yr CAGR 11-15% [33][34]; ATH ₹1,69,349/10g Mar-26",
+     "8.0%",
+     "15%",
+     "−25% approx.",
+     "−0.10"
+    ],
+    [
+     "Silver (INR)",
+     "SD 26.6%, max DD −54% [35]",
+     "8.5%",
+     "27%",
+     "−54%",
+     "0.20"
+    ],
+    [
+     "REIT / InvIT",
+     "Index 1-yr +22.1%; yields 6.5-10% [37][38]",
+     "9.5%",
+     "14%",
+     "−40% approx.",
+     "0.35"
+    ],
+    [
+     "Intl DM equity in INR",
+     "S&P 500 10-yr 15.2% USD [39]; INR ~3.7% p.a. dep. approx.",
+     "10.5%",
+     "16%",
+     "−35% approx.",
+     "0.45"
+    ],
+    [
+     "Cat II private credit",
+     "Net 12-16% hist.; 12-15% target [57][58]",
+     "11.5%",
+     "4% smoothed",
+     "−15% approx.",
+     "0.20"
+    ],
+    [
+     "Cat III long-short / SIF LS",
+     "Fund-level tax ~42.7% [15]; SIF AUM ₹13,814 Cr [10]",
+     "10.0%",
+     "9%",
+     "−20% approx.",
+     "0.40"
+    ],
+    [
+     "Pre-IPO / PE Cat II",
+     "Target IRR 18-22% gross approx.",
+     "15.0%",
+     "25%",
+     "−40% approx.",
+     "0.50"
+    ]
+   ],
+   "source_note": "Forward numbers are house assumptions; anchors carry source numbers from detailed_markdown; correlations approx."
+  },
+  {
+   "title": "Moderate model portfolio — ₹500 Cr",
+   "columns": [
+    "Line",
+    "%",
+    "₹ Cr",
+    "Instrument",
+    "# lines",
+    "E[R] contrib (pp)",
+    "Risk contrib %",
+    "Days to liquidate (20% ADV)",
+    "Band"
+   ],
+   "rows": [
+    [
+     "Nifty 50/100 passive",
+     "22",
+     "110",
+     "2 ETFs (AP) + 1 index fund",
+     "3",
+     "2.42",
+     "37.6",
+     "1-2",
+     "±5"
+    ],
+    [
+     "Factor blend Q5/LV3/M2",
+     "10",
+     "50",
+     "Index funds",
+     "3",
+     "1.15",
+     "16.4",
+     "2-3",
+     "±2 each"
+    ],
+    [
+     "Active mid cap",
+     "7",
+     "35",
+     "2 active MFs",
+     "2",
+     "0.88",
+     "13.4",
+     "3",
+     "±1.5"
+    ],
+    [
+     "Active small cap",
+     "3",
+     "15",
+     "1 MF or PMS",
+     "1",
+     "0.39",
+     "6.4",
+     "3-10",
+     "±1"
+    ],
+    [
+     "Direct stocks (scorecard)",
+     "8",
+     "40",
+     "20-25 names",
+     "22",
+     "1.00",
+     "14.5",
+     "1-3",
+     "±3 / 50 bps per name"
+    ],
+    [
+     "International DM",
+     "5",
+     "25",
+     "1-2 index funds/FoF",
+     "2",
+     "0.52",
+     "4.1",
+     "3-5",
+     "±1.5"
+    ],
+    [
+     "Short duration",
+     "3",
+     "15",
+     "1 fund",
+     "1",
+     "0.20",
+     "0.0",
+     "1",
+     "±1"
+    ],
+    [
+     "Target maturity AAA/SDL",
+     "11",
+     "55",
+     "2 TMF",
+     "2",
+     "0.76",
+     "0.3",
+     "2",
+     "±3"
+    ],
+    [
+     "10-yr G-sec / dynamic",
+     "6",
+     "30",
+     "Direct + 1 ETF",
+     "2",
+     "0.42",
+     "0.6",
+     "1",
+     "±2"
+    ],
+    [
+     "AA credit",
+     "4",
+     "20",
+     "1-2 funds",
+     "2",
+     "0.33",
+     "0.3",
+     "3-5",
+     "±1"
+    ],
+    [
+     "Arbitrage",
+     "2",
+     "10",
+     "1 fund",
+     "1",
+     "0.12",
+     "0.0",
+     "1-2",
+     "1-4"
+    ],
+    [
+     "Gold",
+     "5",
+     "25",
+     "1 ETF",
+     "1",
+     "0.40",
+     "0.0",
+     "1",
+     "±1.5"
+    ],
+    [
+     "Silver",
+     "1",
+     "5",
+     "1 ETF",
+     "1",
+     "0.08",
+     "0.8",
+     "1",
+     "±0.5"
+    ],
+    [
+     "REIT/InvIT",
+     "4",
+     "20",
+     "4-5 trusts",
+     "5",
+     "0.38",
+     "3.0",
+     "2-5",
+     "±1"
+    ],
+    [
+     "Cat II private credit",
+     "5",
+     "25",
+     "2 funds",
+     "2",
+     "0.58",
+     "0.5",
+     "Locked 3-5 yrs",
+     "n/a"
+    ],
+    [
+     "Cat III LS / SIF",
+     "4",
+     "20",
+     "1-2",
+     "2",
+     "0.40",
+     "1.9",
+     "30-90",
+     "n/a"
+    ],
+    [
+     "Total",
+     "100",
+     "500",
+     "",
+     "~52",
+     "10.03",
+     "100",
+     "80% ≤5 days",
+     "Unlisted 9%"
+    ]
+   ]
+  },
+  {
+   "title": "Aggressive model portfolio — ₹500 Cr",
+   "columns": [
+    "Line",
+    "%",
+    "₹ Cr",
+    "Instrument",
+    "# lines",
+    "E[R] contrib (pp)",
+    "Risk contrib %",
+    "Days to liquidate",
+    "Band"
+   ],
+   "rows": [
+    [
+     "Nifty 50/100 passive",
+     "25",
+     "125",
+     "2 ETFs + 1 index fund",
+     "3",
+     "2.75",
+     "33.0",
+     "1-2",
+     "±5"
+    ],
+    [
+     "Factor blend Q5/M4/LV3",
+     "12",
+     "60",
+     "Index funds",
+     "3",
+     "1.38",
+     "15.2",
+     "2-3",
+     "±2 each"
+    ],
+    [
+     "Active mid cap",
+     "10",
+     "50",
+     "2 MFs + 1 PMS",
+     "3",
+     "1.25",
+     "14.9",
+     "3-20",
+     "±2"
+    ],
+    [
+     "Active small cap",
+     "5",
+     "25",
+     "1-2 MFs",
+     "2",
+     "0.65",
+     "8.4",
+     "3-5",
+     "±1.5"
+    ],
+    [
+     "Direct stocks",
+     "12",
+     "60",
+     "25 names",
+     "25",
+     "1.50",
+     "16.9",
+     "1-4",
+     "±3 / 60 bps"
+    ],
+    [
+     "International DM",
+     "7",
+     "35",
+     "2 funds",
+     "2",
+     "0.74",
+     "4.5",
+     "3-5",
+     "±2"
+    ],
+    [
+     "Short duration",
+     "2",
+     "10",
+     "1",
+     "1",
+     "0.13",
+     "0.0",
+     "1",
+     "±1"
+    ],
+    [
+     "Target maturity",
+     "4",
+     "20",
+     "1",
+     "1",
+     "0.28",
+     "0.1",
+     "2",
+     "±1.5"
+    ],
+    [
+     "10-yr G-sec",
+     "2",
+     "10",
+     "Direct",
+     "1",
+     "0.14",
+     "0.1",
+     "1",
+     "±1"
+    ],
+    [
+     "Arbitrage",
+     "2",
+     "10",
+     "1",
+     "1",
+     "0.12",
+     "0.0",
+     "1-2",
+     "1-4"
+    ],
+    [
+     "Gold",
+     "4",
+     "20",
+     "1 ETF",
+     "1",
+     "0.32",
+     "−0.2",
+     "1",
+     "±1.5"
+    ],
+    [
+     "Silver",
+     "1",
+     "5",
+     "1 ETF",
+     "1",
+     "0.08",
+     "0.5",
+     "1",
+     "±0.5"
+    ],
+    [
+     "REIT/InvIT",
+     "2",
+     "10",
+     "3",
+     "3",
+     "0.19",
+     "1.1",
+     "2-5",
+     "±1"
+    ],
+    [
+     "Cat II private credit",
+     "4",
+     "20",
+     "2",
+     "2",
+     "0.46",
+     "0.3",
+     "Locked",
+     "n/a"
+    ],
+    [
+     "Cat III LS / SIF",
+     "5",
+     "25",
+     "2",
+     "2",
+     "0.50",
+     "1.9",
+     "30-90",
+     "n/a"
+    ],
+    [
+     "Pre-IPO / PE",
+     "3",
+     "15",
+     "1-2",
+     "2",
+     "0.45",
+     "3.3",
+     "Locked 5-7 yrs",
+     "n/a"
+    ],
+    [
+     "Total",
+     "100",
+     "500",
+     "",
+     "~53",
+     "10.94",
+     "100",
+     "75% ≤5 days",
+     "Unlisted 12%"
+    ]
+   ]
+  },
+  {
+   "title": "Portfolio statistics vs benchmarks (model outputs; correlations approx.)",
+   "columns": [
+    "Metric",
+    "Allocate 80/20",
+    "Moderate",
+    "Aggressive",
+    "Composite (Mod)",
+    "Composite (Agg)"
+   ],
+   "rows": [
+    [
+     "E[R] pre-tax gross fees",
+     "10.0%",
+     "10.0%",
+     "10.9%",
+     "9.5%",
+     "10.5%"
+    ],
+    [
+     "Vol",
+     "13.6%",
+     "9.7%",
+     "12.5%",
+     "9.9%",
+     "13.6%"
+    ],
+    [
+     "Sharpe (Rf 6%)",
+     "0.30",
+     "0.42",
+     "0.39",
+     "0.35",
+     "0.33"
+    ],
+    [
+     "Beta to Nifty 50",
+     "0.80",
+     "0.55",
+     "0.72",
+     "0.58",
+     "0.79"
+    ],
+    [
+     "1-yr 95% VaR",
+     "−12.4%",
+     "−5.9%",
+     "−9.7%",
+     "—",
+     "—"
+    ],
+    [
+     "Heuristic max DD (2.6×vol)",
+     "−35%",
+     "−25%",
+     "−33%",
+     "—",
+     "—"
+    ],
+    [
+     "GFC-type shock",
+     "−42.6%",
+     "−29.5%",
+     "−39.8%",
+     "−29.2%",
+     "−42.7%"
+    ],
+    [
+     "COVID-type shock",
+     "−29.4%",
+     "−19.7%",
+     "−26.8%",
+     "−19.5%",
+     "−28.7%"
+    ],
+    [
+     "2022 rate shock",
+     "−7.2%",
+     "−5.4%",
+     "−7.8%",
+     "−5.2%",
+     "−8.1%"
+    ],
+    [
+     "TE vs 80/20",
+     "—",
+     "4.8%",
+     "3.2%",
+     "—",
+     "—"
+    ],
+    [
+     "TE vs own composite",
+     "—",
+     "1.5%",
+     "2.1%",
+     "—",
+     "—"
+    ],
+    [
+     "Composite definition",
+     "80% Nifty 50 TRI + 20% Nifty 50 Arbitrage",
+     "",
+     "",
+     "55% Nifty 500 TRI + 5% S&P 500 INR + 25% CRISIL Composite Bond + 5% gold + 10% Nifty 50 Arb",
+     "75% Nifty 500 TRI + 7% S&P 500 INR + 8% CRISIL Composite Bond + 5% gold + 5% Arb"
+    ]
+   ]
+  },
+  {
+   "title": "Capacity and liquidity limits at ₹500 Cr",
+   "columns": [
+    "Item",
+    "Constraint",
+    "Number",
+    "Implication"
+   ],
+   "rows": [
+    [
+     "ETF on-screen vs AP creation",
+     "Equity ETF ADV ~₹745 Cr/day; all-ETF ₹4,200 Cr [45]",
+     "₹50 Cr tranche = ~7% of equity-ETF ADV",
+     "Route >₹5 Cr via AP; CU 50,000 units ≈ ₹1.2 Cr approx. [43]"
+    ],
+    [
+     "Direct stock position",
+     "≤20% of 20-day ADV/day; ≤1% free float; ADV ≥₹20 Cr",
+     "₹2 Cr avg position → 1 day at ADV ₹10 Cr",
+     "Universe ~450 of NIFTY-750 (approx.); ≤3% NAV per name"
+    ],
+    [
+     "MF scheme size",
+     "Ticket ≤1% scheme AUM (active), ≤5% (passive)",
+     "₹25 Cr ticket → scheme ≥₹2,500 Cr",
+     "Excludes boutique funds; use PMS instead"
+    ],
+    [
+     "AIF minimum / tenure",
+     "₹1 Cr per fund [7]; Cat I/II close-ended ≥3 yrs [60]; LVF ₹25 Cr",
+     "6-8 commitments of ₹5-15 Cr",
+     "Client is unit-holder; accreditation may ease thresholds [8]"
+    ],
+    [
+     "Unlisted cap (NDPMS)",
+     "25% of client AUM incl. AIF units [1][2]",
+     "₹125 Cr ceiling; use ₹45-60 Cr",
+     "Internal alert 18%, hard cap 15% of SAA"
+    ],
+    [
+     "Third-party PMS",
+     "₹50 lakh minimum [1][2]",
+     "1 manager, ₹10-15 Cr",
+     "Max 2 managers ever"
+    ],
+    [
+     "International",
+     "USD 7 bn industry cap; USD 1 bn/AMC; pauses since May-26 [28][29]",
+     "₹25-35 Cr needed",
+     "2 feeders + 1 backup; park in arbitrage if shut"
+    ],
+    [
+     "Corporate bonds direct",
+     "Lots ₹1-5 Cr; thin secondary",
+     "₹20 Cr AA sleeve",
+     "Funds, not direct paper, below ₹50 Cr"
+    ],
+    [
+     "Line items",
+     "Consent readability",
+     "50-55 lines",
+     "Hard cap 60; each ≥₹1.5 Cr"
+    ]
+   ]
+  },
+  {
+   "title": "TAA sizing and governance thresholds",
+   "columns": [
+    "Parameter",
+    "Moderate",
+    "Aggressive",
+    "Rule"
+   ],
+   "rows": [
+    [
+     "TE budget vs composite (ex-ante)",
+     "2.0%",
+     "3.0%",
+     "Hard stop 3.0% / 4.5%"
+    ],
+    [
+     "Conviction unit",
+     "~1.0 pp",
+     "~1.5 pp",
+     "tilt = C × unit, C ∈ {−3..+3}"
+    ],
+    [
+     "Max aggregate active weight",
+     "10 pp",
+     "15 pp",
+     "Sum of |tilts|"
+    ],
+    [
+     "Max TAA turnover per month",
+     "10% NAV",
+     "10% NAV",
+     "Excludes band restorations"
+    ],
+    [
+     "Minimum trade",
+     "₹1 Cr (20 bps)",
+     "₹1 Cr",
+     "Smaller drifts wait a month"
+    ],
+    [
+     "Evidence bar",
+     "2 of 3: valuation |z|≥1; revision breadth 2 months; scorecard quintile",
+     "Same",
+     "C=±3 needs all 3 + IC unanimity"
+    ],
+    [
+     "Tilt decay",
+     "6 months",
+     "6 months",
+     "Auto-halve if not reaffirmed"
+    ],
+    [
+     "Intra-month emergency trigger",
+     "Nifty −10% from 20-day high; VIX >25; 10-yr ±50 bps in month",
+     "Same",
+     "Ad-hoc consent within 2 business days"
+    ],
+    [
+     "Sep-2026 worked example (Mod)",
+     "Quality 5→7; small 3→2 + mid 7→6; G-sec 6→8, TMF 11→9; gold 5",
+     "—",
+     "~₹35 Cr gross = 7% turnover; TE added ~0.6%"
+    ]
+   ]
+  },
+  {
+   "title": "Deployment schedule and cash drag (Moderate)",
+   "columns": [
+    "Week",
+    "Equity-like (₹300 Cr)",
+    "Fixed income (₹120 Cr)",
+    "Alternatives (₹45 Cr)",
+    "Parked in arbitrage (approx.)",
+    "Acceleration rule"
+   ],
+   "rows": [
+    [
+     "0",
+     "₹25 Cr",
+     "₹30 Cr",
+     "Commitments signed",
+     "₹445 Cr",
+     "Nifty −5% from T → +1 tranche"
+    ],
+    [
+     "1-3",
+     "₹25 Cr/wk",
+     "₹30 Cr/wk (done wk 3)",
+     "—",
+     "₹340 → ₹280 Cr",
+     "−10% → +2 tranches"
+    ],
+    [
+     "4-11",
+     "₹25 Cr/wk",
+     "—",
+     "Drawdowns ~25%/qtr",
+     "₹255 → ₹55 Cr",
+     "−15% → all remaining in 2 wks"
+    ],
+    [
+     "12",
+     "Final ₹25 Cr",
+     "—",
+     "—",
+     "₹45 Cr",
+     "VIX >22 (3 days) = −5% trigger"
+    ],
+    [
+     "Expected drag 12-wk",
+     "₹2.0 Cr (Agg ₹2.5 Cr)",
+     "₹0.05 Cr",
+     "₹1.2 Cr (Agg ₹1.6 Cr)",
+     "—",
+     "Never decelerate on rallies"
+    ],
+    [
+     "Expected drag 8-wk",
+     "₹1.4 Cr (Agg ₹1.7 Cr)",
+     "₹0.05 Cr",
+     "₹1.2 Cr",
+     "—",
+     "IC recommendation: 8 weeks at today's 20× P/E"
+    ]
+   ]
+  },
+  {
+   "title": "Owned cost and tax budget (Moderate, bps p.a. of NAV)",
+   "columns": [
+    "Layer",
+    "Estimate",
+    "Driver"
+   ],
+   "rows": [
+    [
+     "Weighted TER",
+     "~40 bps",
+     "Passive 8 bps × 37%, active 80 × 10%, alts 180 × 9%, FI 25 × 20%"
+    ],
+    [
+     "Trading impact + brokerage",
+     "~8 bps",
+     "7% TAA + 10% band + 3% direct churn"
+    ],
+    [
+     "Consent latency cost",
+     "~6 bps expected; ±30 bps 1σ",
+     "3-day lag × 20% NAV traded × 17% vol"
+    ],
+    [
+     "Realised tax drag",
+     "60-80 bps approx.",
+     "Equity LTCG 12.5% / STCG 20% [12]; FI coupons at slab; private-credit interest ~39% [14]"
+    ],
+    [
+     "Cash drag steady state",
+     "~10 bps",
+     "2% arbitrage vs equity"
+    ],
+    [
+     "Total controllable",
+     "~125-145 bps",
+     "Report monthly vs budget"
+    ]
+   ]
+  },
+  {
+   "title": "NDPMS feasibility map",
+   "columns": [
+    "Element",
+    "Status",
+    "Note"
+   ],
+   "rows": [
+    [
+     "Model Master + bands in IPS",
+     "SHOULD (consent)",
+     "Reg 22 written agreement annexure [3]"
+    ],
+    [
+     "Standing instruction for band trades",
+     "UNCLEAR — verify",
+     "Legal opinion needed"
+    ],
+    [
+     "Monthly batched consent pack",
+     "MUST",
+     "Operating heartbeat"
+    ],
+    [
+     "Index funds / ETFs via AP",
+     "CAN / SHOULD",
+     "Lowest friction"
+    ],
+    [
+     "Active MF direct plans",
+     "CAN",
+     "Direct plans required [4]"
+    ],
+    [
+     "Direct stocks ≤12%, low turnover",
+     "CAN",
+     "Each trade a consent line"
+    ],
+    [
+     "Third-party PMS (1)",
+     "CAN",
+     "Client signs directly"
+    ],
+    [
+     "AIF Cat II/III ≤25% unlisted",
+     "CAN (NDPMS privilege)",
+     "Use ≤12% [1][2]"
+    ],
+    [
+     "SIF hybrid LS",
+     "CAN, small",
+     "₹10 lakh min; young track [9][10]"
+    ],
+    [
+     "Pre-IPO unlisted",
+     "CAN, Aggressive 3%",
+     "Valuation burden"
+    ],
+    [
+     "Intraday / HFT / options overwriting",
+     "NOT FEASIBLE",
+     "Do inside Cat III / SIF"
+    ],
+    [
+     "Momentum >5% (Moderate)",
+     "AVOID",
+     "Turnover, crash risk"
+    ],
+    [
+     "Silver >1%, stock >3%, AIF >4%",
+     "AVOID",
+     "Concentration"
+    ],
+    [
+     "Overseas direct stocks",
+     "NOT ALLOWED today",
+     "SEBI Jul-26 consultation [5][6]"
+    ],
+    [
+     "Pooled / omnibus execution",
+     "NOT ALLOWED",
+     "Client-name holding"
+    ]
+   ]
+  }
+ ],
+ "detailed_markdown": "# Strategic Asset Allocation, House-View Implementation and Portfolio Construction — ₹500 Cr NDPMS Mandate\n\n*Ionic Wealth (Angel One) · Design note for the CIO/PM team · As of 12 Sep 2026. Verified facts carry a bracketed source number; anything marked \"approx.\" is an estimate or an unverified figure. Full file: /tmp/claude-0/-home-user-claude-demo/f31f9728-4a4d-5703-8958-ff115211d242/scratchpad/ndpms/design_allocation.md*\n\n## 0. Design stance in one paragraph\n\nThe mandate is ₹500 Cr under **non-discretionary** PMS: we recommend, the client consents, we execute. That single constraint drives everything below. We therefore (a) build the portfolio from a **pre-agreed Model Master with rebalance bands** so that the monthly consent pack is a short list of band-restoring and tilt trades rather than a fresh debate; (b) favour instruments that are **cheap to hold, cheap to trade and slow-moving** (index funds, ETFs via APs, target-maturity debt, quality-tilted direct stocks, listed REITs/InvITs) and keep high-turnover ideas inside vehicles where the manager holds the discretion (Cat III AIF, SIF long-short, third-party PMS); (c) use the NDPMS-only privilege of **up to 25% of client AUM in unlisted securities** (AIF units, unlisted debt) [1][2] deliberately but not fully — 9% Moderate / 12% Aggressive — to leave headroom; and (d) own the outcome with a **composite benchmark that is investable and matches the sleeve weights**, with the Allocate 80/20 house benchmark retained as a secondary reference.\n\nMarket context that matters for CMAs and deployment today: Nifty 50 ~23,200–23,500, a three-month low, trailing P/E ~19.8–20.2 vs a 10-yr median ~23.3 [23][24][25][26]; FY27E Nifty EPS growth consensus 15–17% but skewed to the downside on crude [27]; 10-yr G-sec 6.96% with repo at 5.25% [21][22]; USD/INR ~95.7 [42]; 10-yr AAA spread over G-sec ~221 bps and 3-yr ~111 bps per one tracker [30][31] (dealers quote AAA PSU 10–60 bps, AAA NBFC 50–140 bps, AA 100–260 bps [32]) — so the term-premium-plus-credit stack is unusually generous relative to the last five years.\n\n---\n\n## 1. Capital-market assumptions (10-year forward, INR, pre-tax, gross of our fees)\n\nMethod: forward equity return = dividend yield (~1.2%) + real earnings growth + inflation (~4.5%) ± valuation drift; Nifty 50 at ~20× trailing vs 23× median implies roughly +1% p.a. of valuation tailwind over 10 years, which we net against a slower nominal GDP path than the last decade. Bonds = current YTM ± roll. Gold = INR depreciation (~3.5% approx.) + real-rate/central-bank demand premium. Alternatives = manager target IRR net of fees, haircut 200–300 bps for selection risk. Correlations are to Nifty 50 TRI and are approx. unless sourced.\n\n| Asset class (proxy) | Historical anchor (verified) | Fwd 10-yr E[R] | Fwd vol | Hist. max DD | Corr to Nifty 50 (approx.) | Notes |\n|---|---|---|---|---|---|---|\n| Indian large cap (Nifty 50 / 100 TRI) | Nifty 50 TRI 12.41% since inception (Jun-2026 factsheet), 12.44% 20-yr to Feb-2026; SD 20.7%, max DD −59.9% (2008) [16] | **11.0%** | 17% | −60% | 1.00 | Valuation now ~8% below 5-yr median [26] |\n| Mid cap (Nifty Midcap 150) | 10-yr CAGR 19.2% (Feb-2026) [17]; −60.8% worst 12-mo (2008-09) [20]; 5-yr vol 19.0% vs 18.9% Nifty 100 [19] | **12.5%** | 21% | −65% approx. | 0.85 | Highest Sharpe of the three cap buckets historically (0.45 vs 0.29 Nifty) [17] |\n| Small cap (Nifty Smallcap 250) | 10-yr CAGR 16.1% (Feb-2026) [17]; −69.1% in 2008; 2018-20 DD −46%, 591 trading days to recover [18] | **13.0%** | 25% | −70% | 0.78 | Loses to Midcap 150 in ~80% of 5-yr rolling windows [17] |\n| Factor: Low Vol (Nifty 100 LV30) | Long-run premium vs Nifty 50 narrowed to lows in 2024-25 (approx.) | 10.5% | 14% | −45% approx. | 0.85 | Defensive; underperforms in sharp beta rallies |\n| Factor: Momentum (Nifty 200 Mom 30) | Index fund 5-yr CAGR 11.6%, 1-yr ~+4% to −1% [51] | 13.0% | 21% | −60% approx. | 0.80 | Highest turnover, crash-prone at turns |\n| Factor: Quality (Nifty 200 Q30) | ETF 5-yr 9.66%, 1-yr −3.2% (Aug-2026) [52] | 11.0% | 16% | −50% approx. | 0.90 | Cheap now after 3-yr lag; fits \"large-cap quality\" house view |\n| Factor: Value (Nifty 500 Value 50) | Nifty 500 TR 5-yr 12.4%, 1-yr −1.7% (Jun-2026) [53] | 12.0% | 19% | −60% approx. | 0.90 | Cyclical/PSU-heavy; pairs with Quality |\n| Short duration / money market (1–3 yr) | Liquid fund 1-yr 6.4% (Sep-2026) [50]; SDL 1.5-yr index YTM ~6.0% (2025) | 6.6% | 1.2% | ~0 | 0.05 | Slab-taxed |\n| Target maturity 3–5 yr (AAA PSU/SDL) | Bharat Bond 2030 5-yr 6.83% (Jul-2026) [56] | 6.9% | 2.5% | −4% approx. | 0.05 | Hold-to-maturity; slab-taxed |\n| 10-yr G-sec | Nifty 10-yr G-sec index 1-yr 5.17%, 3-yr 7.80%, 5-yr 5.51% [54][55]; YTM 6.96% [21] | 7.0% | 5.5% | −10% approx. | 0.10 | Duration lever for house view |\n| AAA corporate 3–5 yr | 3-yr AAA spread ~111 bps [31] | 7.1% | 2.5% | −4% approx. | 0.05 | Prefer via TMF/index funds for scale |\n| AA corporate credit | AA spread 100–260 bps [32] | 8.2% | 3.5% | −8% approx. | 0.15 | 4% cap Moderate |\n| Arbitrage / liquid / overnight | Kotak Equity Arbitrage 1-yr 6.72% (Sep-2026), AUM ₹74,399 Cr [48][49] | 6.2% | 0.7% | ~0 | 0.05 | Equity-taxed — the parking asset |\n| Gold (INR) | 10-yr CAGR ~11.1% to ~15% depending on window [33][34]; ATH ₹1,69,349/10g Mar-2026 [34] | 8.0% | 15% | −25% approx. | −0.10 | Gold ETF AUM ₹1.85 lakh Cr May-2026 [47] |\n| Silver (INR) | SD 26.6%, max DD −54% [35]; ₹2,36,860/kg Aug-2026 [36] | 8.5% | 27% | −54% | 0.20 | Cap at 1%; ETF outflows ₹2,133 Cr May-2026 [47] |\n| REIT / InvIT | Index 1-yr +22.1% (Apr-2026); Embassy yield ~6.5%, IndiGrid 9–10% [37][38] | 9.5% | 14% | −40% approx. | 0.35 | Yield partly tax-free return of capital |\n| International DM equity in INR | S&P 500 10-yr 15.2% USD [39]; MSCI World 10-yr 15.6% net USD [40]; MO S&P 500 fund 5-yr 17.6% INR [41]; INR ~66→95.7 over 10 yrs ≈ 3.7% p.a. approx. [42] | 10.5% | 16% | −35% approx. | 0.45 | USD 7 bn industry cap [28][29] |\n| Cat II private credit AIF | Net 12–16% historically; 12–15% target senior secured [57][58] | 11.5% net pre-tax | 4% (smoothed) | −15% approx. | 0.20 | Interest at slab ~39% [14] |\n| Cat III long-short AIF / SIF hybrid LS | Trust-level tax up to ~42.7% [15]; SIF AUM ₹13,814 Cr May-2026, 76% hybrid LS [10] | 10.0% | 9% | −20% approx. | 0.40 | Buys us discretion inside a wrapper |\n| Pre-IPO / PE (Cat II) | Target IRR 18–22% gross approx.; J-curve 3–4 yrs | 15.0% | 25% | −40% approx. | 0.50 | Aggressive only, 3% |\n\n**Reading the table.** Large cap is priced to deliver ~11% nominal; the \"extra\" for mid/small is +150–200 bps for +4–8 points of vol and much deeper drawdowns — worth owning through the cycle but sized, not chased. Bonds at 6.6–7.1% with near-zero equity correlation give a 4–5-point carry deficit to equity, the lowest in a decade, so the Moderate book can hold 24% fixed income without a large return sacrifice. Gold's expected 8% is below its trailing 11–15% because the last three years front-loaded the central-bank bid.\n\n---\n\n## 2. Sleeve architecture and instrument-choice logic\n\n### 2.1 Five sleeves\n\n| Sleeve | Purpose | Moderate | Aggressive | Instruments | Rebalance band |\n|---|---|---|---|---|---|\n| **Core beta** | Cheap, capacity-unlimited Indian large cap + factor tilts | 32% | 37% | Nifty 50/100 ETFs (AP creation), index funds; factor index funds | ±5% sleeve / ±2% per factor |\n| **Satellite alpha** | Stock/manager selection we own: scorecard direct stocks, active mid/small MFs, 1 PMS, international | 33% | 44% | Direct stocks 20–25 names; 2–3 active MFs; 1 PMS (₹10–15 Cr); 1–2 international index funds | ±3% sleeve / ±1.5% per line |\n| **Alternatives** | Return sources not in listed markets; manager discretion inside wrapper | 9% | 12% | Cat II private credit (2), Cat III LS or SIF hybrid LS (1–2), pre-IPO/PE (Aggressive) | ±2%; no forced rebalancing |\n| **Stabilisers** | Drawdown control and carry | 24% FI + 4% REIT/InvIT + 6% gold/silver | 8% + 2% + 5% | TMF index funds, 10-yr G-sec, AA credit funds, gold/silver ETF, 4–5 REIT/InvITs | ±3% FI / ±1.5% gold / ±1% REIT |\n| **Liquidity** | Fee/tax/consent-latency buffer, deployment parking | 2% | 2% | Arbitrage fund, overnight fund | 1–4% hard range |\n\n### 2.2 Instrument decision matrix\n\nScore each candidate 1–5 on six criteria; weight cost 20%, tax 20%, liquidity 15%, capacity 15%, alpha evidence 15%, NDPMS consent friction 15%. Anything <3.0 is not used.\n\n| Vehicle | Cost (bps p.a.) | Tax | Liquidity | Capacity at ₹500 Cr | Alpha evidence needed | NDPMS consent friction | Verdict |\n|---|---|---|---|---|---|---|---|\n| Index ETF via AP creation unit | 3–10 TER + 5–15 impact | Equity 12.5% LTCG >12m [12][13] | T+1/T+2 | Unlimited (Nifty BeES AUM ₹66,777 Cr; CU 50,000 units) [43][44] | None | Low | **Core beta, gold** |\n| Index fund (direct) | 10–20 | Same | T+2/T+3 | Unlimited | None | Lowest — NAV order, no price risk in consent lag | **Core, factor, international** |\n| Active MF (direct) | 60–110 | Equity 12.5%/20% | T+2/T+3 | Ticket ≤1% of scheme AUM | 3-yr rolling alpha >150 bps net in ≥60% of windows | Low | **Mid/small only** |\n| Third-party PMS | 100–250 + perf | Pass-through; STCG churn risk | 1–4 weeks | Min ₹50 lakh [1][2] | 5-yr live, IR >0.4 | Low once onboarded | **One manager ≤3%** |\n| Direct stocks | 0 TER; 15–40 impact | We control realisation | 1–3 days | ≤1% float, ≤20% ADV | Live scorecard record | **Highest** | **8–12% cap** |\n| AIF Cat II | 150–200 + carry | Pass-through; interest at slab [14] | Locked 3–7 yrs [60][61] | ₹1 Cr min [7]; 25% unlisted cap [1][2] | DPI/IRR, default record | Low after commitment | **Private credit, PE** |\n| AIF Cat III | 150–250 + perf | Fund-level up to ~42.7% [15] | Monthly/quarterly | ₹1 Cr min | Net-of-tax Sharpe >0.8 | Low | **Long-short** |\n| SIF | 100–150 approx. | MF category taxation (verify per scheme) | Daily–quarterly, notice ≤15 working days [11] | ₹10 lakh min [9] | 12–18 months live | Low | **Prefer over Cat III LS once track exists** |\n| Bonds direct | 0; 5–25 bid-offer | Coupon slab; LTCG 12.5% >12m listed | G-sec deep; corporate patchy | Corporate lots ₹1–5 Cr | None | Medium | **10-yr G-sec direct; corporate via funds** |\n| REIT/InvIT | 0; 10–30 impact | Dividend part exempt; interest slab | 1–5 days | 4–5 names ≤₹6 Cr each | None | Low | **Stabiliser yield** |\n\n**Active vs passive rule.** Passive unless the sleeve passes all three: (i) documented persistence of manager alpha in that segment (Indian mid/small yes; large cap no), (ii) our ticket ≤1% of scheme AUM, (iii) net-of-tax expected alpha exceeds the TER differential by ≥100 bps.\n\n---\n\n## 3. Model portfolios sized to ₹500 Cr\n\n### 3.1 Moderate / balanced (target: house-benchmark return at ~70% of its risk)\n\n| Sleeve / line | % | ₹ Cr | Instrument | # lines | E[R] contrib (pp) | Risk contrib (%) | Days to liquidate at 20% ADV | Band |\n|---|---|---|---|---|---|---|---|---|\n| Nifty 50 / 100 passive | 22 | 110 | 2 ETFs via AP + 1 index fund | 3 | 2.42 | 37.6 | 1–2 | ±5 |\n| Factor blend (Q5 / LV3 / M2) | 10 | 50 | Index funds | 3 | 1.15 | 16.4 | 2–3 | ±2 each |\n| Active mid cap | 7 | 35 | 2 active MFs | 2 | 0.88 | 13.4 | 3 | ±1.5 |\n| Active small cap | 3 | 15 | 1 MF or PMS | 1 | 0.39 | 6.4 | 3–10 | ±1 |\n| Direct stocks (scorecard, quality tilt) | 8 | 40 | 20–25 names, avg ₹1.6–2 Cr | 22 | 1.00 | 14.5 | 1–3 | ±3 / 50 bps per name |\n| International DM | 5 | 25 | 1–2 index funds / FoF | 2 | 0.52 | 4.1 | 3–5 | ±1.5 |\n| Short duration | 3 | 15 | 1 fund | 1 | 0.20 | 0.0 | 1 | ±1 |\n| Target maturity 3–5 yr AAA/SDL | 11 | 55 | 2 TMF | 2 | 0.76 | 0.3 | 2 | ±3 |\n| 10-yr G-sec / dynamic | 6 | 30 | Direct + 1 ETF | 2 | 0.42 | 0.6 | 1 | ±2 |\n| AA corporate credit | 4 | 20 | 1–2 funds | 2 | 0.33 | 0.3 | 3–5 | ±1 |\n| Arbitrage / overnight | 2 | 10 | 1 fund | 1 | 0.12 | 0.0 | 1–2 | 1–4 |\n| Gold | 5 | 25 | 1 ETF (AP) | 1 | 0.40 | 0.0 | 1 | ±1.5 |\n| Silver | 1 | 5 | 1 ETF | 1 | 0.08 | 0.8 | 1 | ±0.5 |\n| REIT / InvIT | 4 | 20 | 4–5 trusts | 5 | 0.38 | 3.0 | 2–5 | ±1 |\n| Cat II private credit | 5 | 25 | 2 funds | 2 | 0.58 | 0.5 | Locked 3–5 yrs | n/a |\n| Cat III LS / SIF | 4 | 20 | 1–2 | 2 | 0.40 | 1.9 | 30–90 | n/a |\n| **Total** | **100** | **500** | | **~52** | **10.03** | **100** | 80% in ≤5 days | |\n\nUnlisted exposure = 9% vs 25% ceiling [1][2]. Beta to Nifty ≈ 0.55.\n\n### 3.2 Aggressive / growth (target: beat house benchmark by ≥100 bps at ≤ its risk)\n\n| Sleeve / line | % | ₹ Cr | Instrument | # lines | E[R] contrib (pp) | Risk contrib (%) | Days to liquidate | Band |\n|---|---|---|---|---|---|---|---|---|\n| Nifty 50 / 100 passive | 25 | 125 | 2 ETFs + 1 index fund | 3 | 2.75 | 33.0 | 1–2 | ±5 |\n| Factor blend (Q5 / M4 / LV3) | 12 | 60 | Index funds | 3 | 1.38 | 15.2 | 2–3 | ±2 each |\n| Active mid cap | 10 | 50 | 2 MFs + 1 PMS (₹15 Cr) | 3 | 1.25 | 14.9 | 3–20 | ±2 |\n| Active small cap | 5 | 25 | 1–2 MFs | 2 | 0.65 | 8.4 | 3–5 | ±1.5 |\n| Direct stocks | 12 | 60 | 25 names, avg ₹2.4 Cr | 25 | 1.50 | 16.9 | 1–4 | ±3 / 60 bps |\n| International DM | 7 | 35 | 2 funds | 2 | 0.74 | 4.5 | 3–5 | ±2 |\n| Short duration | 2 | 10 | 1 | 1 | 0.13 | 0.0 | 1 | ±1 |\n| Target maturity | 4 | 20 | 1 | 1 | 0.28 | 0.1 | 2 | ±1.5 |\n| 10-yr G-sec | 2 | 10 | Direct | 1 | 0.14 | 0.1 | 1 | ±1 |\n| Arbitrage | 2 | 10 | 1 | 1 | 0.12 | 0.0 | 1–2 | 1–4 |\n| Gold | 4 | 20 | 1 ETF | 1 | 0.32 | −0.2 | 1 | ±1.5 |\n| Silver | 1 | 5 | 1 ETF | 1 | 0.08 | 0.5 | 1 | ±0.5 |\n| REIT / InvIT | 2 | 10 | 3 | 3 | 0.19 | 1.1 | 2–5 | ±1 |\n| Cat II private credit | 4 | 20 | 2 | 2 | 0.46 | 0.3 | Locked | n/a |\n| Cat III LS / SIF | 5 | 25 | 2 | 2 | 0.50 | 1.9 | 30–90 | n/a |\n| Pre-IPO / PE | 3 | 15 | 1–2 | 2 | 0.45 | 3.3 | Locked 5–7 yrs | n/a |\n| **Total** | **100** | **500** | | **~53** | **10.94** | **100** | 75% in ≤5 days | |\n\nUnlisted = 12%. Beta ≈ 0.72.\n\n### 3.3 Portfolio-level statistics vs benchmarks (model outputs; correlations approx.)\n\n| Metric | Allocate 80/20 | Moderate | Aggressive | Composite (Mod) | Composite (Agg) |\n|---|---|---|---|---|---|\n| E[R] (pre-tax, gross fees) | 10.0% | 10.0% | 10.9% | 9.5% | 10.5% |\n| Vol | 13.6% | 9.7% | 12.5% | 9.9% | 13.6% |\n| Sharpe (Rf 6.0%) | 0.30 | 0.42 | 0.39 | 0.35 | 0.33 |\n| Beta to Nifty 50 | 0.80 | 0.55 | 0.72 | 0.58 | 0.79 |\n| 1-yr 95% VaR | −12.4% | −5.9% | −9.7% | | |\n| Heuristic max DD (≈2.6×vol) | −35% | −25% | −33% | | |\n| GFC-type shock | −42.6% | −29.5% | −39.8% | −29.2% | −42.7% |\n| COVID-type shock | −29.4% | −19.7% | −26.8% | −19.5% | −28.7% |\n| 2022 rate shock | −7.2% | −5.4% | −7.8% | −5.2% | −8.1% |\n| TE vs 80/20 | — | 4.8% | 3.2% | | |\n| TE vs own composite | — | 1.5% | 2.1% | | |\n| Expected alpha vs own composite | — | +55 bps | +45 bps | | |\n\n**Composite benchmark proposal.** Moderate: **55% Nifty 500 TRI + 5% S&P 500 TRI (INR) + 25% CRISIL Composite Bond Fund Index + 5% domestic gold + 10% Nifty 50 Arbitrage Index**. Aggressive: **75% Nifty 500 TRI + 7% S&P 500 TRI (INR) + 8% CRISIL Composite Bond + 5% gold + 5% Nifty 50 Arbitrage**. Investable, published daily, weights match the SAA, and it prices alternatives at their public-market equivalent (private credit → bond index + 300 bps hurdle reported separately; long-short → arbitrage + 50% Nifty). Keep the Allocate 80/20 as a secondary line on every report; a Moderate book that matches the 80/20 return at 70% of its vol is the honest story, not \"beat 80/20\".\n\n---\n\n## 4. Capacity and liquidity at ₹500 Cr\n\n| Item | Constraint | Number | Implication |\n|---|---|---|---|\n| ETF on-screen vs creation | All-ETF ADV ₹4,200 Cr (Apr-25–Feb-26) but equity ETFs only ~₹745 Cr/day, commodity ~₹2,700 Cr [45] | ₹50 Cr tranche = ~7% of equity-ETF ADV | Route any order >₹5 Cr via AP/creation unit (Nifty BeES CU 50,000 units ≈ ₹1.2 Cr approx.) [43]; on-screen only <₹2 Cr |\n| Direct stock position | ≤20% of 20-day ADV/day; ≤1% free float; ADV ≥₹20 Cr for inclusion | ₹2 Cr position → 1 day at ADV ₹10 Cr | Universe ~450 of NIFTY-750 (approx.); no stock >3% of book |\n| MF scheme size | Ticket ≤1% scheme AUM (active), ≤5% (passive) | ₹25 Cr → scheme ≥₹2,500 Cr | Excludes boutique small-cap funds; use PMS instead |\n| AIF minimums | ₹1 Cr per fund [7]; Cat I/II close-ended ≥3 yrs [60]; LVF ₹25 Cr [7] | 6–8 commitments of ₹5–15 Cr | Client is unit-holder; accredited status (₹5 Cr securities-assets route proposed Aug-2026) may ease thresholds [8] |\n| Unlisted cap (NDPMS) | 25% of client AUM incl. AIF units [1][2] | ₹125 Cr ceiling; use ₹45–60 Cr | Headroom; SEBI Jul-2026 consultation may add overseas + unlisted debt for discretionary PMS [5][6] |\n| Third-party PMS | ₹50 lakh minimum [1][2] | 1 manager at ₹10–15 Cr | Avoid 3+ PMS |\n| International | USD 7 bn industry cap, USD 1 bn/AMC; pauses since May-2026 [28][29] | ₹25–35 Cr | 2 feeders + 1 ETF backup; hold as arbitrage if shut |\n| Corporate bonds direct | Lots ₹1–5 Cr, patchy secondary | ₹20 Cr AA sleeve | Funds, not direct paper, below ₹50 Cr sleeve |\n| Line-item count | Consent readability; ops recon | 50–55 lines | Hard cap 60; each ≥₹1.5 Cr (silver excepted) |\n\nLiquidity ladder (Moderate): 42% same/next day, 38% in 2–5 days, 4% in 30–90 days, 9% locked, 7% TMF (liquid but marked if pre-maturity).\n\n---\n\n## 5. Translating the monthly house view into TAA\n\n### 5.1 Framework\n\n1. **SAA is the contract.** Model Master weights + bands sit in the IPS schedule signed at onboarding. Band-restoring trades need only a confirmation.\n2. **TAA is the IC's monthly vote**, expressed as conviction scores C ∈ {−3…+3} per view axis (large vs mid/small; quality vs value/momentum; duration; credit; gold; international; alternatives pace).\n3. **Sizing:** tilt (pp) = C × unit, where unit = TE budget ÷ (Σ|C| × view vol), capped by the sleeve band. With TE budget 2.0% (Moderate) / 3.0% (Aggressive) vs own composite, a unit is ~1.0 pp Moderate / 1.5 pp Aggressive.\n4. **Evidence bar:** a view must clear two of three — (a) valuation z-score |z| ≥1 vs 10-yr history, (b) earnings/macro revision breadth in the view's direction for ≥2 months, (c) scorecard pillar spread in top/bottom quintile. C=±3 requires all three plus IC unanimity.\n5. **Decay:** each tilt carries a 6-month review; if not reaffirmed it halves automatically.\n\n### 5.2 Worked example (Moderate, Sep-2026 IC): overweight large-cap quality (+2), underweight small cap (−2), duration long (+2), gold neutral (0)\n\n| View axis | C | Unit (pp) | Tilt (pp) | From → To | ₹ Cr moved | Instrument | Band check |\n|---|---|---|---|---|---|---|---|\n| Large-cap quality | +2 | 1.0 | +2.0 | Quality factor 5 → 7 | +10 | Nifty 200 Quality 30 index fund | within ±2 |\n| Small cap | −2 | 1.0 | −2.0 | Active small 3 → 1 | −10 | Redeem small-cap MF | breaches ±1 → cap at −1 (₹5 Cr), take remaining −1 from mid cap |\n| Duration | +2 | 1.0 | +2.0 | 10-yr G-sec 6 → 8; TMF 11 → 9 | +10 / −10 | Direct G-sec 2036 | within ±2 |\n| Gold | 0 | — | 0 | 5 → 5 | 0 | — | — |\n| Net | | | | | ~₹35 Cr gross ≈ 7% turnover | | TE added ≈ 0.6% |\n\nThe consent pack that month has **5 TAA lines + band restorations**, all executable on the Thursday cycle.\n\n### 5.3 Governance thresholds\n\n| Item | Threshold |\n|---|---|\n| Max aggregate active weight vs SAA | 10 pp Moderate / 15 pp Aggressive |\n| Max TAA turnover per month | 10% of NAV |\n| TE budget vs composite | 2.0% / 3.0% ex-ante; hard stop 3.0% / 4.5% |\n| Minimum trade size | ₹1 Cr (20 bps) |\n| Tilt review | 6 months, auto-halve |\n| Emergency (intra-month) | Band breach >1.5× band, or Nifty −10% from 20-day high, India VIX >25, 10-yr yield ±50 bps in a month → ad-hoc consent within 2 business days |\n\n---\n\n## 6. Deployment plan for fresh ₹500 Cr\n\n**Baseline: 12 weekly Thursday tranches for equity-like sleeves, 4 for fixed income, alternatives on manager drawdown schedules over 6–18 months.** Undeployed equity money sits in an arbitrage fund (6.2% E[R], equity-taxed) rather than a liquid fund (slab-taxed) — worth ~15 bps post-tax on the parked balance for a 39%-slab client.\n\n| Week | Equity-like (60% Mod = ₹300 Cr) | Fixed income (24% = ₹120 Cr) | Alternatives (9% = ₹45 Cr) | Parked in arbitrage |\n|---|---|---|---|---|\n| 0 | ₹25 Cr | ₹30 Cr | Commitments signed | ₹445 Cr |\n| 1–3 | ₹25 Cr/wk | ₹30 Cr/wk (done wk 3) | — | ₹340 → ₹280 Cr |\n| 4–11 | ₹25 Cr/wk | — | Drawdowns ~25%/qtr | ₹255 → ₹55 Cr |\n| 12 | Final ₹25 Cr | — | — | ₹45 Cr |\n\n**Acceleration rules (pre-consented in the schedule):** Nifty ≥5% below T → +1 tranche that week; ≥10% → +2; ≥15% → all remaining within 2 weeks; India VIX >22 for 3 days = −5% trigger; never decelerate on rallies (asymmetric rule avoids chasing); 10-yr yield +25 bps from T → pull forward the duration tranche.\n\n**Expected cash drag:** equity-like sleeve over 12 weeks carries ~6.5 weeks of the ~5-point equity-minus-arbitrage gap → **≈ ₹2.0 Cr Moderate / ₹2.5 Cr Aggressive** (40–50 bps one-off). FI drag ≈ ₹0.05 Cr. Alternatives drag ≈ ₹1.2–1.6 Cr (committed, undrawn ~6 months). An 8-week schedule cuts equity drag to ₹1.4–1.7 Cr; at 20× P/E with the market already −6% off highs, the IC should choose 8 weeks with acceleration rules armed.\n\n---\n\n## 7. NDPMS feasibility map\n\n| Element | Status | Note |\n|---|---|---|\n| Model Master + bands in IPS | **SHOULD** (consent) | Reg 22(1) written agreement [3] |\n| Standing instruction for band trades | **UNCLEAR — verify** | Legal opinion; design works without it |\n| Monthly batched consent pack | **MUST** | Operating heartbeat |\n| Index funds/ETFs via AP | **CAN / SHOULD** | Lowest friction |\n| Active MF direct plans | **CAN** | Direct plans required for PM-routed MF [4] (verify clause) |\n| Direct stocks ≤12%, low turnover | **CAN** | Each trade a consent line |\n| Third-party PMS (1) | **CAN** | Client signs directly |\n| AIF Cat II/III up to 25% | **CAN (NDPMS privilege)** | Use ≤12% [1][2] |\n| SIF hybrid LS | **CAN, small** | ₹10 lakh min [9]; young track |\n| Pre-IPO unlisted | **CAN, Aggressive 3%** | Valuation burden |\n| Intraday/HFT/options overwriting | **NOT FEASIBLE** | Inside Cat III/SIF only |\n| Momentum >5% (Moderate) | **AVOID** | Turnover, crash risk |\n| Silver >1%, stock >3%, AIF >4% | **AVOID** | Concentration |\n| Overseas direct stocks | **Not allowed today** | SEBI Jul-2026 consultation [5][6] |\n| Pooled/omnibus execution | **Not allowed** | Client-name holding |\n\n---\n\n## 8. Costs and taxes we own (bps p.a. of NAV, Moderate)\n\n| Layer | Estimate | Comment |\n|---|---|---|\n| Weighted TER | ~40 bps | Passive 8 × 37%, active 80 × 10%, alts 180 × 9%, FI 25 × 20% |\n| Trading impact + brokerage | ~8 bps | 7% TAA + 10% band + 3% direct churn |\n| Consent latency cost | ~6 bps expected, ±30 bps 1σ | 3-day lag × 20% NAV traded × 17% vol × √(3/252) |\n| Realised tax drag | 60–80 bps approx. | Largest owned cost — governs turnover |\n| Cash drag steady state | ~10 bps | 2% arbitrage vs equity |\n| **Total controllable** | **~125–145 bps** | Report monthly vs budget |\n\nTax reference: equity LTCG 12.5% above ₹1.25 lakh, STCG 20%, >12-month holding [12][13]; debt fund units bought after 1-Apr-2023 at slab; \"specified mutual fund\" narrowed from 1-Apr-2026 to >65% debt [13]; Cat II pass-through with interest at slab ~39% [14]; Cat III at fund level up to ~42.7% [15].\n\n---\n\n## 9. Build sequence (first 6 months)\n\n1. **Week 0–2:** Sign IPS with Model Master, bands, deployment schedule + acceleration rules, composite benchmark. Legal opinion on standing-instruction scope.\n2. **Week 0–4:** AP relationships for Nifty/gold ETFs; select 2 TMF, 2 mid-cap, 1 small-cap, 2 international feeders (+1 backup), 4–5 REIT/InvITs; run scorecard for the 22-name direct book.\n3. **Week 0–12:** Deploy per §6; first monthly consent pack in week 5.\n4. **Month 2–3:** AIF diligence (2 private credit, 1 long-short, 1 SIF); sign commitments; unlisted-cap monitor live.\n5. **Month 3:** First TAA cycle with conviction scoring; TE attribution vs composite live in the dashboard.\n6. **Month 6:** Review CMAs, bands, line count; decide on standing instructions; decide on PMS/SIF additions.\n\n---\n\n## Sources\n\n[1] SEBI FAQ – Portfolio Managers (Oct 2020): https://www.sebi.gov.in/sebi_data/faqfiles/oct-2020/1603946323909.pdf\n[2] Shardul Amarchand Mangaldas – SEBI (Portfolio Managers) Regulations 2020: https://www.amsshardul.com/insight/sebi-portfolio-managers-regulations-2020/\n[3] SEBI (Portfolio Managers) Regulations, 2020 [amended 03-Sep-2025]: https://www.sebi.gov.in/legal/regulations/sep-2025/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-september-03-2025-_96560.html\n[4] APMI – Master Circular for Portfolio Managers (7 Jun 2024): https://www.apmiindia.org/storagebox/images/Circulars/Master%20Circular%20for%20Portfolio%20Managers%20-%207th%20June'24.pdf\n[5] Moneylife – SEBI PMS reform consultation (Jul 2026): https://www.moneylife.in/article/sebi-unveils-sweeping-reforms-for-portfolio-managers-proposes-overseas-investing-simplified-regulations-and-new-mfpms-framework/81148.html\n[6] WealthMunshi – SEBI PMS overhaul 2026: https://wealthmunshi.com/sebi-pms-overhaul-2026-mf-pms-nri-impact/\n[7] ElementOne – SEBI AIF Regulations 2026 guide: https://elementone.fund/sebi-aif-regulations-2026-guide/\n[8] Rurash – SEBI accredited investor review 2026: https://rurashfin.com/sebi-accredited-investor-review-2026/\n[9] Groww – SEBI SIF framework: https://groww.in/blog/specialised-investment-funds\n[10] Finnovate – SIF explained (2026): https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained\n[11] Cyril Amarchand – SIF new product: https://privateclient.cyrilamarchandblogs.com/2025/06/specialized-investment-funds-new-investment-product-of-the-hour/\n[12] Bajaj AMC – LTCG on mutual funds 2026: https://www.bajajamc.com/knowledge-centre/common-things-to-know-about-ltcg-on-mutual-funds\n[13] WealthMunshi – Capital gains tax on MFs 2026: https://wealthmunshi.com/capital-gains-tax-on-mutual-funds-india-2026/\n[14] GreenPortfolio – AIF taxation 2026: https://greenportfolio.co/blog/aif-taxation-india-2026-category-1-2-3-comparison/\n[15] Finnovate – Cat III AIF: https://www.finnovate.in/learn/blog/aif-category-iii-india\n[16] Bajaj AMC – Nifty 50 historical returns: https://www.bajajamc.com/knowledge-centre/nifty-50-historical-returns\n[17] PersonalFinancePlan – Nifty 50 vs Midcap 150 vs Smallcap 250 (2005–2026): https://personalfinanceplan.in/nifty-50-vs-midcap-150-vs-smallcap-250-vs-nifty-500-cap-based-indices-performance-comparison-2005-2026/\n[18] Zerodha In the Money – Nifty 500 / Midcap 150 / Smallcap 250: https://inthemoneybyzerodha.substack.com/p/nifty-500-midcap-150-smallcap-250\n[19] Zerodha Fund House – Nifty LargeMidcap 250 factsheet: https://assets.zerodhafundhouse.com/indices/NIFTY_LargeMidcap_250/factsheet.pdf\n[20] bmsmoney – Nifty Midcap performance trends: https://www.bmsmoney.com/article/full/nifty-midcap-index-performance-trends/\n[21] Trading Economics – India 10Y: https://tradingeconomics.com/india/government-bond-yield\n[22] India Macro Indicators – 10Y G-sec: https://indiamacroindicators.co.in/economic-indicators/10y-g-sec-yield\n[23] Kotak Neo – Market update 7 Sep 2026: https://www.kotakneo.com/news/market-news/stock-market-update-7september-2026-sensex-nifty/\n[24] Univest – Nifty 50 prediction 7 Sep 2026: https://univest.in/blogs/nifty-50-prediction-for-monday-7-september-2026\n[25] India Macro Indicators – Nifty 50 P/E: https://indiamacroindicators.co.in/key-economic-indicators/nifty-50-pe-ratio\n[26] IndexPE – Nifty 50: https://indexpe.in/nifty-50\n[27] Business Standard – JM Financial Q4FY26 / FY27 EPS: https://www.business-standard.com/markets/news/nifty50-earnings-outlook-deep-dive-hits-misses-of-q4fy26-earnings-season-jm-financial-126061101166_1.html\n[28] Vested – SEBI overseas limits: https://vestedfinance.com/in/globed/accessing-global-markets/global-investing-through-domestic-funds-and-etfs/sebi-limits-on-overseas-investment-by-mutual-funds/\n[29] MFReturns – USD 7 bn cap 2026: https://mfreturns.com/blog/why-international-mutual-funds-closed-sebi-cap-2026/\n[30] India Macro Indicators – AAA vs G-sec 10Y spread: https://indiamacroindicators.co.in/economic-indicators/10-year-credit-spread-aaa-rated-bonds-g-sec\n[31] India Macro Indicators – AAA vs G-sec 3Y spread: https://indiamacroindicators.co.in/economic-indicators/3-year-credit-spread-aaa-rated-bonds-g-sec\n[32] BondScanner – Corporate bond rates 2026: https://bondscanner.com/blog/corporate-bond-interest-rates-india-2026\n[33] OroPocket – Gold 10-yr CAGR: https://blog.oropocket.com/return-on-gold-in-last-10-years-cagr-year-by-year-table-what-it-means-for-2026/\n[34] ClearTax – Gold price history India: https://cleartax.in/s/gold-history-in-india\n[35] Business Standard – Silver volatility (Motilal Oswal study): https://www.business-standard.com/finance/personal-finance/silver-shows-similar-volatility-to-indian-stocks-says-motilal-oswal-report-124112501341_1.html\n[36] Aditya Birla Capital – Silver returns history: https://www.adityabirlacapital.com/abc-of-money/silver-returns-over-years-historical-data\n[37] IndexScreener – Nifty REITs & InvITs: https://indexscreener.in/indices/reits-and-invits\n[38] Univest – REITs in India 2026: https://univest.in/blogs/best-reit-stocks-in-india-2026\n[39] ChartRow – S&P 500 trailing returns: https://chartrow.com/sp500/trailing-returns\n[40] MSCI – World 100 Index factsheet: https://www.msci.com/documents/10199/255599/msci-world-100-index-usd-net.pdf\n[41] Tickertape – Motilal Oswal S&P 500 Index Fund: https://www.tickertape.in/mutualfunds/motilal-oswal-sp-500-index-fund-M_MOTA\n[42] Federal Reserve H.10 – INR: https://www.federalreserve.gov/releases/h10/hist/dat00_in.htm\n[43] Nippon India – Nifty BeES product note: https://mf.nipponindiaim.com/FundsAndPerformance/ProductNotes/NipponIndia-ETF-Nifty-BeES.pdf\n[44] Tickertape – NIFTYBEES: https://www.tickertape.in/etfs/nippon-india-nifty-50-bees-etf-NBES\n[45] Sahi – ETF investing guide 2026: https://www.sahi.com/blogs/etf-investing-guide-india\n[46] BusinessToday – Gold ETF AUM FY26: https://www.businesstoday.in/personal-finance/investment/story/can-gold-etfs-sustain-record-inflows-after-aum-surged-191-in-fy26-528200-2026-04-30\n[47] EquityResearchIndia – Gold ETF AUM Jul 2026: https://www.equityresearchindia.com/post/gold-fund-and-gold-etf-aum-trends-amid-recent-gold-price-volatility-july-2026\n[48] Kotak MF – Kotak Arbitrage Fund: https://www.kotakmf.com/mutual-funds/hybrid-funds/kotak-arbitrage-fund/dir-g\n[49] Paytm Money – Kotak Equity Arbitrage: https://www.paytmmoney.com/mutual-funds/scheme/kotak-equity-arbitrage-fund-direct-growth/inf174k01lc6\n[50] Fincash – Kotak Liquid Fund: https://www.fincash.com/l/mutual-funds/kotak-liquid-fund\n[51] Groww – UTI Nifty200 Momentum 30: https://groww.in/mutual-funds/uti-nifty200-momentum-30-index-fund-direct-growth\n[52] Value Research – SBI Nifty 200 Quality 30 ETF: https://www.valueresearchonline.com/funds/38348/sbi-nifty-200-quality-30-etf/\n[53] Wikipedia – NIFTY 500: https://en.wikipedia.org/wiki/NIFTY_500\n[54] Value Research – SBI Nifty 10 yr G-Sec ETF: https://www.valueresearchonline.com/funds/32486/sbi-nifty-10-yr-benchmark-g-sec-etf/\n[55] Anand Rathi – Nifty 10 Yr Benchmark G-Sec: https://anandrathi.com/indices/nifty-10-yr-benchmark-g-sec\n[56] Value Research – Bharat Bond ETF Apr 2030: https://www.valueresearchonline.com/funds/40483/bharat-bond-etf-april-2030/\n[57] ElementOne – Private credit vs high yield 2026: https://elementone.fund/private-credit-vs-high-yield-bonds-india-2026/\n[58] Altport – Private credit India 2026: https://www.altportfunds.com/what-is-private-credit-india-2026/\n[59] Rurash – India private credit H1 2026: https://rurashfin.com/india-private-credit-market-2026-investor-risks/\n[60] Treelife – AIF framework: https://treelife.in/finance/alternative-investment-funds-in-india/\n[61] Steptrade – AIF lock-in periods: https://steptrade.capital/aif-lock-in-period/\n[62] Chhota CFO – LVF reforms 2025: https://www.chhotacfo.com/blog/large-value-funds-sebi-reforms-2025/\n[63] Nifty 50 Arbitrage Index factsheet (mirror): https://www.scribd.com/document/848529111/Factsheet-Nifty-50-Arbitrage-Index\n[64] Ionic – AIF categories & tax guide: https://ionic.in/blogs/aif-categories-india-tax-guide-hni",
+ "risks_and_pitfalls": [
+  "Consent latency turns into a systematic cost: a 3-day lag on 20% NAV/year of trades has ~6 bps expected cost but ±30 bps 1σ; in a fast sell-off the acceleration tranches will execute days late unless they are pre-consented in the schedule.",
+  "Legal ambiguity on standing instructions: if a pre-authorised band-execution matrix is later judged to be discretion in disguise, the PM could be in breach; get a written opinion and design the pack to work without it.",
+  "Unlisted-cap creep: AIF NAVs lag and are smoothed, so in an equity drawdown of −30% a 12% unlisted sleeve becomes ~16% of NAV mechanically; set the internal alert at 18% and never commit above 15% at SAA.",
+  "International access risk: the USD 7 bn industry overseas cap has already forced AMCs to pause inflows (May 2026); a 5–7% sleeve may be unfillable for months, and redemptions elsewhere could reset our access.",
+  "Momentum and small-cap crash asymmetry: Smallcap 250 fell 69% in 2008 and took 591 trading days to recover post-COVID; Momentum 30 1-yr return is ~0% after a −60% approx. historical drawdown; sizing beyond the bands will dominate realised drawdown.",
+  "Tax drag is the largest owned cost (60–80 bps approx.): private-credit interest at ~39% slab and Cat III fund-level tax at ~42.7% can wipe out the alternatives' return advantage; run everything on post-tax expected return before sizing.",
+  "Correlation and volatility assumptions are approximate: primary index factsheets (niftyindices.com, NSE archives) were not reachable during this exercise, so vol/correlation inputs should be re-estimated from downloaded index histories before the IC signs the CMAs.",
+  "Benchmark mismatch politics: the Moderate book is designed to match the 80/20 house benchmark's return at 70% of its vol; if the client or RM judges only on headline return vs 80/20, the design will look like underperformance in bull years.",
+  "Liquidity mismatch in a redemption: 9–12% locked plus 4–5% in 30–90-day Cat III/SIF means a 25% client redemption would be met entirely from listed sleeves, distorting the SAA and forcing a consent cycle to rebalance.",
+  "Direct-stock book concentration and scorecard drift: 20–25 names at 8–12% NAV; a single 3% position halving costs 150 bps; every stock trade is a consent line so error-correction is slow.",
+  "Silver and gold regime risk: gold's 10-yr CAGR of 11–15% was front-loaded by central-bank buying; a reversal of the 2024–26 rally would hit 5–6% of NAV; silver's −54% historical drawdown justifies the 1% cap.",
+  "Manager and scheme-size risk in active MFs and PMS: a ₹25 Cr ticket into a scheme under ₹2,500 Cr AUM moves the manager's book; boutique small-cap capacity is limited and exit takes 3–10 days at best.",
+  "Private credit cycle risk: India private credit reached USD 3.5 bn in H1 2026 with softer returns and record defaults globally; senior-secured discipline and two-manager diversification are mandatory.",
+  "Regulatory change risk: SEBI's Jul-2026 PMS consultation (overseas investing, unlisted debt, MF-PMS) and Aug-2026 accredited-investor proposals could widen the toolkit or change the 25% unlisted definition; the SAA should have a regulatory-change review clause."
+ ],
+ "open_questions": [
+  "Will the client sign a pre-authorised execution matrix for band-restoring trades within stated ranges, and does external counsel confirm this satisfies the non-discretionary 'client instruction' requirement under the PMS Regulations?",
+  "Which variant is the mandate — Moderate or Aggressive — and does the client accept the composite benchmark (Nifty 500 TRI-based) as primary with the Allocate 80/20 as secondary?",
+  "What is the client's marginal tax rate and entity type (individual/HUF/family trust/company)? Post-tax sizing of private credit, Cat III and debt funds depends entirely on this.",
+  "Is the client an SEBI accredited investor (or willing to obtain accreditation under the proposed ₹5 Cr securities-assets route)? This changes AIF minimums and potentially PMS large-value flexibilities.",
+  "What is the client's liquidity need profile: any planned withdrawals over 3 years, and is a 9–12% locked allocation acceptable?",
+  "How much drawdown can the client tolerate before instructing a de-risk — is the expected GFC-type −30% (Moderate) / −40% (Aggressive) explicitly acknowledged in the IPS?",
+  "Deployment speed: does the IC prefer 8 or 12 weeks given Nifty at ~20× trailing P/E and −6% off highs, and does the client accept the pre-consented acceleration rules?",
+  "Does the client already hold international, AIF or PMS positions elsewhere that we should net against (e.g., USD 7 bn cap access, existing AIF commitments)?",
+  "Which existing Allocate direct-stock names may be reused in the NDPMS direct book, and does the client accept holdings overlap with Allocate model portfolios?",
+  "Is the client willing to accept a SIF allocation despite the category's short (<18-month) live track record, in exchange for cheaper taxation than Cat III?",
+  "Should the performance fee (if any) be measured against the composite benchmark or the 80/20, and on pre- or post-tax returns?",
+  "Who at the client signs the monthly consent pack, in what turnaround time, and what is the fallback if the signatory is unavailable during a tail event?"
+ ],
+ "sources": [
+  {
+   "title": "SEBI FAQ – Portfolio Managers (Oct 2020)",
+   "url": "https://www.sebi.gov.in/sebi_data/faqfiles/oct-2020/1603946323909.pdf"
+  },
+  {
+   "title": "Shardul Amarchand Mangaldas – SEBI (Portfolio Managers) Regulations 2020",
+   "url": "https://www.amsshardul.com/insight/sebi-portfolio-managers-regulations-2020/"
+  },
+  {
+   "title": "SEBI (Portfolio Managers) Regulations, 2020 [amended 03-Sep-2025]",
+   "url": "https://www.sebi.gov.in/legal/regulations/sep-2025/securities-and-exchange-board-of-india-portfolio-managers-regulations-2020-last-amended-on-september-03-2025-_96560.html"
+  },
+  {
+   "title": "APMI – Master Circular for Portfolio Managers (7 Jun 2024)",
+   "url": "https://www.apmiindia.org/storagebox/images/Circulars/Master%20Circular%20for%20Portfolio%20Managers%20-%207th%20June'24.pdf"
+  },
+  {
+   "title": "Moneylife – SEBI PMS reform consultation (Jul 2026)",
+   "url": "https://www.moneylife.in/article/sebi-unveils-sweeping-reforms-for-portfolio-managers-proposes-overseas-investing-simplified-regulations-and-new-mfpms-framework/81148.html"
+  },
+  {
+   "title": "WealthMunshi – SEBI PMS overhaul 2026",
+   "url": "https://wealthmunshi.com/sebi-pms-overhaul-2026-mf-pms-nri-impact/"
+  },
+  {
+   "title": "ElementOne – SEBI AIF Regulations 2026 guide",
+   "url": "https://elementone.fund/sebi-aif-regulations-2026-guide/"
+  },
+  {
+   "title": "Rurash – SEBI accredited investor review 2026",
+   "url": "https://rurashfin.com/sebi-accredited-investor-review-2026/"
+  },
+  {
+   "title": "Groww – SEBI SIF framework",
+   "url": "https://groww.in/blog/specialised-investment-funds"
+  },
+  {
+   "title": "Finnovate – SIF explained (2026)",
+   "url": "https://www.finnovate.in/learn/blog/what-is-specialized-investment-fund-sif-explained"
+  },
+  {
+   "title": "Cyril Amarchand – Specialized Investment Funds",
+   "url": "https://privateclient.cyrilamarchandblogs.com/2025/06/specialized-investment-funds-new-investment-product-of-the-hour/"
+  },
+  {
+   "title": "Bajaj AMC – LTCG on mutual funds 2026",
+   "url": "https://www.bajajamc.com/knowledge-centre/common-things-to-know-about-ltcg-on-mutual-funds"
+  },
+  {
+   "title": "WealthMunshi – Capital gains tax on MFs 2026",
+   "url": "https://wealthmunshi.com/capital-gains-tax-on-mutual-funds-india-2026/"
+  },
+  {
+   "title": "GreenPortfolio – AIF taxation 2026",
+   "url": "https://greenportfolio.co/blog/aif-taxation-india-2026-category-1-2-3-comparison/"
+  },
+  {
+   "title": "Finnovate – Cat III AIF",
+   "url": "https://www.finnovate.in/learn/blog/aif-category-iii-india"
+  },
+  {
+   "title": "Bajaj AMC – Nifty 50 historical returns",
+   "url": "https://www.bajajamc.com/knowledge-centre/nifty-50-historical-returns"
+  },
+  {
+   "title": "PersonalFinancePlan – Cap-based indices comparison 2005–2026",
+   "url": "https://personalfinanceplan.in/nifty-50-vs-midcap-150-vs-smallcap-250-vs-nifty-500-cap-based-indices-performance-comparison-2005-2026/"
+  },
+  {
+   "title": "Zerodha In the Money – Nifty 500 / Midcap 150 / Smallcap 250",
+   "url": "https://inthemoneybyzerodha.substack.com/p/nifty-500-midcap-150-smallcap-250"
+  },
+  {
+   "title": "Zerodha Fund House – Nifty LargeMidcap 250 factsheet",
+   "url": "https://assets.zerodhafundhouse.com/indices/NIFTY_LargeMidcap_250/factsheet.pdf"
+  },
+  {
+   "title": "bmsmoney – Nifty Midcap performance trends",
+   "url": "https://www.bmsmoney.com/article/full/nifty-midcap-index-performance-trends/"
+  },
+  {
+   "title": "Trading Economics – India 10Y bond yield",
+   "url": "https://tradingeconomics.com/india/government-bond-yield"
+  },
+  {
+   "title": "India Macro Indicators – 10Y G-sec yield",
+   "url": "https://indiamacroindicators.co.in/economic-indicators/10y-g-sec-yield"
+  },
+  {
+   "title": "Kotak Neo – Market update 7 Sep 2026",
+   "url": "https://www.kotakneo.com/news/market-news/stock-market-update-7september-2026-sensex-nifty/"
+  },
+  {
+   "title": "Univest – Nifty 50 prediction 7 Sep 2026",
+   "url": "https://univest.in/blogs/nifty-50-prediction-for-monday-7-september-2026"
+  },
+  {
+   "title": "India Macro Indicators – Nifty 50 P/E",
+   "url": "https://indiamacroindicators.co.in/key-economic-indicators/nifty-50-pe-ratio"
+  },
+  {
+   "title": "IndexPE – Nifty 50 PE ratio",
+   "url": "https://indexpe.in/nifty-50"
+  },
+  {
+   "title": "Business Standard – JM Financial Q4FY26 / FY27 EPS outlook",
+   "url": "https://www.business-standard.com/markets/news/nifty50-earnings-outlook-deep-dive-hits-misses-of-q4fy26-earnings-season-jm-financial-126061101166_1.html"
+  },
+  {
+   "title": "Vested – SEBI limits on overseas investment by MFs",
+   "url": "https://vestedfinance.com/in/globed/accessing-global-markets/global-investing-through-domestic-funds-and-etfs/sebi-limits-on-overseas-investment-by-mutual-funds/"
+  },
+  {
+   "title": "MFReturns – USD 7 bn SEBI cap 2026",
+   "url": "https://mfreturns.com/blog/why-international-mutual-funds-closed-sebi-cap-2026/"
+  },
+  {
+   "title": "India Macro Indicators – AAA vs G-sec 10Y spread",
+   "url": "https://indiamacroindicators.co.in/economic-indicators/10-year-credit-spread-aaa-rated-bonds-g-sec"
+  },
+  {
+   "title": "India Macro Indicators – AAA vs G-sec 3Y spread",
+   "url": "https://indiamacroindicators.co.in/economic-indicators/3-year-credit-spread-aaa-rated-bonds-g-sec"
+  },
+  {
+   "title": "BondScanner – Corporate bond interest rates India 2026",
+   "url": "https://bondscanner.com/blog/corporate-bond-interest-rates-india-2026"
+  },
+  {
+   "title": "OroPocket – Gold 10-yr CAGR",
+   "url": "https://blog.oropocket.com/return-on-gold-in-last-10-years-cagr-year-by-year-table-what-it-means-for-2026/"
+  },
+  {
+   "title": "ClearTax – Gold price history India",
+   "url": "https://cleartax.in/s/gold-history-in-india"
+  },
+  {
+   "title": "Business Standard – Silver volatility (Motilal Oswal study)",
+   "url": "https://www.business-standard.com/finance/personal-finance/silver-shows-similar-volatility-to-indian-stocks-says-motilal-oswal-report-124112501341_1.html"
+  },
+  {
+   "title": "Aditya Birla Capital – Silver returns history",
+   "url": "https://www.adityabirlacapital.com/abc-of-money/silver-returns-over-years-historical-data"
+  },
+  {
+   "title": "IndexScreener – Nifty REITs & InvITs Index",
+   "url": "https://indexscreener.in/indices/reits-and-invits"
+  },
+  {
+   "title": "Univest – Best REITs in India 2026",
+   "url": "https://univest.in/blogs/best-reit-stocks-in-india-2026"
+  },
+  {
+   "title": "ChartRow – S&P 500 trailing returns",
+   "url": "https://chartrow.com/sp500/trailing-returns"
+  },
+  {
+   "title": "MSCI – World 100 Index factsheet",
+   "url": "https://www.msci.com/documents/10199/255599/msci-world-100-index-usd-net.pdf"
+  },
+  {
+   "title": "Tickertape – Motilal Oswal S&P 500 Index Fund",
+   "url": "https://www.tickertape.in/mutualfunds/motilal-oswal-sp-500-index-fund-M_MOTA"
+  },
+  {
+   "title": "Federal Reserve H.10 – INR exchange rates",
+   "url": "https://www.federalreserve.gov/releases/h10/hist/dat00_in.htm"
+  },
+  {
+   "title": "Nippon India – Nifty BeES product note",
+   "url": "https://mf.nipponindiaim.com/FundsAndPerformance/ProductNotes/NipponIndia-ETF-Nifty-BeES.pdf"
+  },
+  {
+   "title": "Tickertape – NIFTYBEES",
+   "url": "https://www.tickertape.in/etfs/nippon-india-nifty-50-bees-etf-NBES"
+  },
+  {
+   "title": "Sahi – ETF investing guide India 2026",
+   "url": "https://www.sahi.com/blogs/etf-investing-guide-india"
+  },
+  {
+   "title": "BusinessToday – Gold ETF AUM surge FY26",
+   "url": "https://www.businesstoday.in/personal-finance/investment/story/can-gold-etfs-sustain-record-inflows-after-aum-surged-191-in-fy26-528200-2026-04-30"
+  },
+  {
+   "title": "EquityResearchIndia – Gold ETF AUM trends Jul 2026",
+   "url": "https://www.equityresearchindia.com/post/gold-fund-and-gold-etf-aum-trends-amid-recent-gold-price-volatility-july-2026"
+  },
+  {
+   "title": "Kotak MF – Kotak Arbitrage Fund Direct",
+   "url": "https://www.kotakmf.com/mutual-funds/hybrid-funds/kotak-arbitrage-fund/dir-g"
+  },
+  {
+   "title": "Paytm Money – Kotak Equity Arbitrage Fund",
+   "url": "https://www.paytmmoney.com/mutual-funds/scheme/kotak-equity-arbitrage-fund-direct-growth/inf174k01lc6"
+  },
+  {
+   "title": "Fincash – Kotak Liquid Fund",
+   "url": "https://www.fincash.com/l/mutual-funds/kotak-liquid-fund"
+  },
+  {
+   "title": "Groww – UTI Nifty200 Momentum 30 Index Fund",
+   "url": "https://groww.in/mutual-funds/uti-nifty200-momentum-30-index-fund-direct-growth"
+  },
+  {
+   "title": "Value Research – SBI Nifty 200 Quality 30 ETF",
+   "url": "https://www.valueresearchonline.com/funds/38348/sbi-nifty-200-quality-30-etf/"
+  },
+  {
+   "title": "Wikipedia – NIFTY 500",
+   "url": "https://en.wikipedia.org/wiki/NIFTY_500"
+  },
+  {
+   "title": "Value Research – SBI Nifty 10 yr Benchmark G-Sec ETF",
+   "url": "https://www.valueresearchonline.com/funds/32486/sbi-nifty-10-yr-benchmark-g-sec-etf/"
+  },
+  {
+   "title": "Anand Rathi – Nifty 10 Yr Benchmark G-Sec",
+   "url": "https://anandrathi.com/indices/nifty-10-yr-benchmark-g-sec"
+  },
+  {
+   "title": "Value Research – Bharat Bond ETF April 2030",
+   "url": "https://www.valueresearchonline.com/funds/40483/bharat-bond-etf-april-2030/"
+  },
+  {
+   "title": "ElementOne – Private credit vs high yield bonds India 2026",
+   "url": "https://elementone.fund/private-credit-vs-high-yield-bonds-india-2026/"
+  },
+  {
+   "title": "Altport – Private credit India 2026",
+   "url": "https://www.altportfunds.com/what-is-private-credit-india-2026/"
+  },
+  {
+   "title": "Rurash – India private credit market H1 2026",
+   "url": "https://rurashfin.com/india-private-credit-market-2026-investor-risks/"
+  },
+  {
+   "title": "Treelife – AIF framework India",
+   "url": "https://treelife.in/finance/alternative-investment-funds-in-india/"
+  },
+  {
+   "title": "Steptrade – AIF lock-in periods",
+   "url": "https://steptrade.capital/aif-lock-in-period/"
+  },
+  {
+   "title": "Chhota CFO – Large Value Fund reforms 2025",
+   "url": "https://www.chhotacfo.com/blog/large-value-funds-sebi-reforms-2025/"
+  },
+  {
+   "title": "Nifty 50 Arbitrage Index factsheet (mirror)",
+   "url": "https://www.scribd.com/document/848529111/Factsheet-Nifty-50-Arbitrage-Index"
+  },
+  {
+   "title": "Ionic – AIF categories and tax guide",
+   "url": "https://ionic.in/blogs/aif-categories-india-tax-guide-hni"
+  }
+ ]
+}

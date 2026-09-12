@@ -1,0 +1,1178 @@
+{
+ "domain": "Monthly rebalancing policy, execution and trading under NDPMS consent",
+ "executive_summary": "Design the rebalance/execution layer around one governing fact: under NDPMS every trade needs the client's instruction, so the operating model must make consent cheap without becoming discretion in substance. The answer is a hybrid band design riding on the house's existing monthly-IC/weekly-deployment cadence: check every sleeve against absolute bands (large/liquid lines) or relative 20-25%-of-target bands (small lines) on one fixed monthly date, bundle only the breaching lines into a single omnibus e-signed Rebalance Proposal Pack (RPP), and trade to the inner band edge rather than full target for everything except regulatory/IPS hard ceilings. Our simulation on the ₹500 Cr Moderate book shows this design (turnover ~4.4%/yr, cost+tax ~10-12 bps p.a.) beats naive monthly-calendar-full-rebalancing (turnover 26%/yr, cost+tax ~52 bps p.a.) by 4-5x on cost and tax while holding tracking error to SAA tighter than a pure band-only design, because a narrow pre-authorised event overlay (band breach >=1.5x, equity-aggregate drift >3pp, VIX/drawdown triggers) catches the large excursions a monthly-only check would miss for up to 30 days. Two worked examples make the same point twice: on a routine ₹15 Cr trim, execution cost (~25 bps) is dwarfed by the LTCG tax on the same trim (~50 bps at a plausible gain ratio); on a ₹40 Cr ETF switch, routing through the AP/AMC-direct channel (mandatory design rule above the ₹25 Cr threshold) saves ~10 bps of execution cost, versus ~₹1.25 Cr of tax if the switch is not sequenced around lot age. Because FIFO is legally mandatory per demat account (Sec 45(2A)), the only tax-lot lever is running 2-3 purpose-segregated demat accounts from day one - retrofitting this after go-live is not possible. Recommended build sequence: stand up the RPP e-consent portal and the segregated demat structure before the first trade; adopt Strategy H (hybrid, inner-edge, event overlay) as the default band policy; route every ETF leg >=Rs25 Cr via AP and every direct-equity leg >=Rs25 Cr via the block-deal window; and treat the monthly cash-flow-first rebalancing rule (deploy inflows/dividends to underweights before ever selling an overweight) as a standing instruction, not a discretionary choice.",
+ "can_do": [
+  {
+   "item": "Single monthly omnibus Rebalance Proposal Pack (RPP) as the sole consent event",
+   "what": "Bundle the month's entire trade list (ISIN, side, amount, channel, cost/tax estimate) into one e-signed client instruction, with line-item override available",
+   "why": "Compresses 50+ potential per-trade consents into one review, while remaining a genuine client-directed instruction under Reg 24",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Standing Instructions Register for mechanical, revocable actions",
+   "what": "Pre-authorise cash sweeps, dividend reinvestment, approved tranche execution and hedge-roll without a fresh monthly consent",
+   "why": "Removes friction from actions that carry no new investment decision, while keeping asset-class/security changes inside the RPP",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "E-sign/DSC consent portal with hashed, time-stamped audit trail",
+   "what": "Build the OMS-linked portal that captures and hashes every RPP approval and standing-instruction trigger",
+   "why": "Regulatory floor for evidencing 'directions of the client'; also the inspection defence against a discretion recharacterisation",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "must"
+  },
+  {
+   "item": "Hybrid band design: monthly review, trade only breaching lines, to inner band edge",
+   "what": "Absolute bands for large/liquid sleeves, 20-25%-of-target relative bands for small sleeves; trade to inner edge except where a regulatory/IPS ceiling requires trading to target",
+   "why": "Simulation shows ~4-5x lower turnover/cost/tax than full-rebalance-every-month for a comparable or tighter tracking error when paired with an event overlay",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Minimum trade ticket floor (~Rs75L-1Cr, 15-20bps of AUM)",
+   "what": "Suppress any RPP line below this size even if technically band-breached",
+   "why": "Below this size, transaction cost/spread exceeds the tracking-error benefit of trading",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "IPS-level annual turnover budget for the liquid book (15-25%/yr, Moderate)",
+   "what": "Set and review an explicit turnover ceiling ex-AIF/PMS sleeves",
+   "why": "Gives the IC and client a single number to govern cost/tax drag against, reviewed annually vs realised outcomes",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "annual",
+   "recommendation": "should"
+  },
+  {
+   "item": "Pre-authorised event-driven playbook (band breach >=1.5x, equity-aggregate drift >3pp, VIX/drawdown triggers)",
+   "what": "Standing instructions for de-risking trims and pull-forward deployment between monthly reviews, with a narrow ad hoc consent gate for sell-side de-risking beyond the pre-set trim",
+   "why": "Catches large excursions a monthly-only check would miss for up to 30 days, without becoming intraday/HFT trading",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "event-driven",
+   "recommendation": "must"
+  },
+  {
+   "item": "Staggered deployment/redemption ladder for large inflows/outflows",
+   "what": "Sweep to liquid same day, deploy 20%/week over the existing Thursday cadence for inflows; fund outflows from cash first, then pro-rata trim underweights-avoiding sleeves",
+   "why": "Avoids both a cash drag and a single-day market-impact spike; reuses house infrastructure",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "event-driven",
+   "recommendation": "must"
+  },
+  {
+   "item": "2-3 purpose-segregated demat accounts (core / tactical / tax-lot)",
+   "what": "Split holdings across accounts by function so FIFO-per-account gives coarse control over which tax lot is disturbed by a rebalance sell",
+   "why": "FIFO is mandatory per Sec 45(2A); specific identification within one account is not permitted - account structure is the only lever, and must be set up before the first trade",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "should"
+  },
+  {
+   "item": "Annual LTCG-exemption harvesting (sell+immediately rebuy near FY-end)",
+   "what": "Realise up to Rs1.25 lakh of otherwise-untaxed LTCG per FY on the oldest, smallest-gain lots, then repurchase immediately (no Indian wash-sale rule)",
+   "why": "Recurring, close-to-zero-risk tax saving; must be coordinated with the client's personal-book exemption use",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "annual",
+   "recommendation": "should"
+  },
+  {
+   "item": "FY-end loss harvesting and cross-sleeve netting",
+   "what": "Pull the client-level cumulative realised gain/loss ledger before 31 March and net STCG losses (equity and debt-fund alike) against any capital gain; LTCG losses only against LTCG gains",
+   "why": "Netting decisions made sleeve-by-sleeve are wrong; losses carry forward 8 years if unused",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "annual",
+   "recommendation": "should"
+  },
+  {
+   "item": "Mandatory FIFO lot sequencing (no specific identification within an account)",
+   "what": "Accept and design around Sec 45(2A) FIFO; do not attempt cherry-picked-lot selling within a single demat account",
+   "why": "Not optional - it is the law, and tribunals have rejected attempts at selective identification as tax avoidance",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Cash-flow-first rebalancing (inflows/dividends to underweights before any sell)",
+   "what": "Standing instruction to route every inflow, coupon and distribution to the most underweight sleeve(s) before the RPP includes any overweight-sleeve sell",
+   "why": "Closes drift with zero tax and zero transaction cost; typically closes a large share of monthly drift on a growing book",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "Route direct-equity tickets >=Rs25 Cr through the NSE/BSE block-deal window",
+   "what": "Use the 8:45-9:00 AM / 2:05-2:20 PM windows, +-3% price band, for large single-line trades",
+   "why": "Avoids on-screen market impact for a size that would otherwise move the stock; compulsory delivery removes settlement risk",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "event-driven",
+   "recommendation": "should"
+  },
+  {
+   "item": "Route ETF orders >=Rs25 Cr direct with the AMC (AP creation/redemption)",
+   "what": "Bypass the exchange order book for large ETF legs via an empanelled Authorised Participant",
+   "why": "Worked example shows ~10 bps saving vs on-screen execution on a Rs40 Cr switch; must empanel an AP before go-live",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "must"
+  },
+  {
+   "item": "VWAP/TWAP staggering for direct-stock tickets >2% of ADV",
+   "what": "Split execution over 2-5 sessions inside the monthly execution window rather than one print",
+   "why": "Keeps within the ~10-15% ADV participation cap and the 15bps slippage-vs-arrival budget",
+   "ndpms_feasibility": "allowed",
+   "effort": "medium",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Participation cap <=10-15% of ADV per session on direct stocks",
+   "what": "Hard-code a participation ceiling into the execution algo/desk rules",
+   "why": "Controls market impact at Rs500 Cr scale without needing block-deal-sized tickets every time",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "should"
+  },
+  {
+   "item": "Overnight/liquid/arbitrage cash ladder by holding horizon",
+   "what": "Tier undeployed and redemption-pending cash into overnight (<1wk), liquid (1wk-1mo) and arbitrage (>1mo) vehicles by expected holding period",
+   "why": "Arbitrage's equity taxation (12.5% LTCG >12m) beats liquid's slab-taxed gains once cash is parked beyond ~30 days",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "daily",
+   "recommendation": "must"
+  },
+  {
+   "item": "MF cut-off-aware order timing",
+   "what": "Submit MF orders ahead of each category's NAV cut-off to avoid an unintended one-day NAV/settlement slip",
+   "why": "A missed cut-off shifts execution a business day, creating a cash or exposure mismatch against the RPP window",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "low",
+   "cadence": "daily",
+   "recommendation": "should"
+  },
+  {
+   "item": "Time-stamped dealing-room OMS ahead of the SEBI Rs1,000 Cr AUM trigger",
+   "what": "Adopt automated order time-stamping and a recorded dealing-room policy now, even though this mandate is below the regulatory AUM threshold that makes it compulsory",
+   "why": "Builds the audit-trail muscle memory before it is mandatory and strengthens the discretion-recharacterisation defence",
+   "ndpms_feasibility": "allowed",
+   "effort": "high",
+   "impact": "high",
+   "cadence": "one-time",
+   "recommendation": "should"
+  },
+  {
+   "item": "Intraday trading or high-frequency rebalancing",
+   "what": "Any strategy that trades on an intraday signal or holds positions for less than a day",
+   "why": "Structurally incompatible with a consent-per-instruction regime and the multi-day settlement/consent latency already built into the calendar",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "daily",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Broad pre-approval with the PM choosing exact timing/size afterward",
+   "what": "A 'standing instruction' so generic it effectively hands sizing and timing discretion to the PM",
+   "why": "Recharacterisation risk at inspection - SEBI's 2026 enforcement action treated quantities, timing and client-level execution as 'investment decisions', not just model approval",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Executing on a third-party PMS/model feed inside the NDPMS book without independent IC sign-off",
+   "what": "Letting an external manager's tactical calls flow directly into NDPMS trades",
+   "why": "Reg 24 bars investing client funds 'on the advice of any other entity'; every RPP line must be independently owned by Ionic's IC",
+   "ndpms_feasibility": "not_allowed",
+   "effort": "low",
+   "impact": "high",
+   "cadence": "monthly",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Rights-issue subscription via standing instruction",
+   "what": "Auto-subscribing to a rights issue without a fresh RPP/ad hoc consent",
+   "why": "A rights subscription is an 'active' unlisted-securities event that can push the book over the 25% NDPMS unlisted cap - must always be gated through explicit consent",
+   "ndpms_feasibility": "restricted",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "event-driven",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Debt mutual funds as the default long-duration fixed-income vehicle",
+   "what": "Using debt MFs (rather than listed bonds/target-maturity funds) for core duration exposure",
+   "why": "Sec 50AA taxes all debt-MF gains as deemed short-term at slab (~39% approx.) regardless of holding period - a permanent, avoidable tax drag versus listed-bond LTCG at 12.5%",
+   "ndpms_feasibility": "allowed",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "monthly",
+   "recommendation": "avoid"
+  },
+  {
+   "item": "Quarterly-or-slower calendar rebalancing as the sole discipline",
+   "what": "Relying only on an infrequent full-rebalance-to-target calendar with no band/event overlay",
+   "why": "Simulation shows this both drifts further from SAA (5-7pp average) and, when it does trade, realises more tax than a disciplined hybrid - worst of both worlds versus the mandate's monthly cadence",
+   "ndpms_feasibility": "allowed_with_consent",
+   "effort": "low",
+   "impact": "medium",
+   "cadence": "quarterly",
+   "recommendation": "avoid"
+  }
+ ],
+ "tables": [
+  {
+   "title": "Monthly rebalance calendar (T-minus steps)",
+   "columns": [
+    "Step",
+    "Day",
+    "What happens",
+    "Owner",
+    "Output/SLA"
+   ],
+   "rows": [
+    [
+     "1. Data close",
+     "T-5",
+     "NAV, holdings, corporate actions, accruals frozen; ADV/liquidity refresh",
+     "Ops",
+     "Golden EOD snapshot, time-stamped"
+    ],
+    [
+     "2. Drift report",
+     "T-5",
+     "Actual vs SAA by sleeve/line; band-breach flags; unlisted/associate/derivative ceiling checks",
+     "Risk/Compliance",
+     "Drift report v1"
+    ],
+    [
+     "3. IC view",
+     "T-5 to T-4",
+     "House monthly tilt applied to targets within governance caps",
+     "IC",
+     "Signed tilt sheet"
+    ],
+    [
+     "4. RPP build",
+     "T-3",
+     "Every trade: ISIN, side, amount, channel, cost estimate, tax estimate, band flag",
+     "PM + Compliance",
+     "RPP v1, pre-trade compliance sign-off"
+    ],
+    [
+     "5. Client walkthrough",
+     "T-1",
+     "30-min portal/call review of pack, costs, tax, flagged items",
+     "RM",
+     "Client Q&A closed"
+    ],
+    [
+     "6. Client consent",
+     "T0 (1st Thursday)",
+     "E-sign (Aadhaar/DSC) whole pack or line-item; 10 trading day validity",
+     "Client",
+     "Hashed consent record in OMS"
+    ],
+    [
+     "7. Execution window",
+     "T0 to T+7",
+     "Trades released into weekly Mon-redeem/Thu-deploy pipeline; participation/algo rules applied",
+     "Dealing",
+     "Slippage vs arrival <=15bps"
+    ],
+    [
+     "8. Settlement",
+     "T+1 (equity) to T+2/3 (MF, by category)",
+     "Pay-in/pay-out, demat credit/debit, MF allotment",
+     "Ops/Custodian",
+     "Zero settlement fails"
+    ],
+    [
+     "9. Post-trade recon",
+     "T+8",
+     "Fills vs RPP, realised slippage/cost/tax, updated weights",
+     "Ops",
+     "Recon pack, same-day exceptions"
+    ],
+    [
+     "10. Client confirmation",
+     "Month-end+5 bd",
+     "Monthly statement (Reg 31 content)",
+     "Ops/Compliance",
+     "Statement issued"
+    ]
+   ],
+   "source_note": "Execution-desk expansion of the mandate's consent calendar (regulatory design note, s5.2); reuses the house's existing Mon/Thu weekly deployment rhythm."
+  },
+  {
+   "title": "Band design comparison, Rs500 Cr Moderate book (Monte Carlo, 10yr weekly, 1,500 paths)",
+   "columns": [
+    "Strategy",
+    "Turnover %/yr",
+    "Trades/yr",
+    "Cost bps p.a.",
+    "Tax bps p.a.",
+    "Total cost+tax bps p.a.",
+    "Rs Cr/yr on Rs500Cr",
+    "TE vs SAA %/yr",
+    "Avg |drift| pp (summed, 16 lines)"
+   ],
+   "rows": [
+    [
+     "A. Monthly calendar, full to target",
+     "26.0",
+     "95.8",
+     "2.8",
+     "49.7",
+     "52.5",
+     "2.63",
+     "0.28",
+     "4.3"
+    ],
+    [
+     "B. Quarterly calendar, full to target",
+     "15.1",
+     "38.9",
+     "1.7",
+     "36.1",
+     "37.8",
+     "1.89",
+     "0.38",
+     "5.1"
+    ],
+    [
+     "C. Annual calendar, full to target",
+     "7.7",
+     "11.8",
+     "0.9",
+     "23.5",
+     "24.4",
+     "1.22",
+     "0.57",
+     "7.3"
+    ],
+    [
+     "D. Band-only, continuous monitor, to target",
+     "6.5",
+     "4.1",
+     "0.5",
+     "13.4",
+     "13.9",
+     "0.70",
+     "0.89",
+     "11.6"
+    ],
+    [
+     "E. Hybrid: monthly review, breach->target",
+     "6.1",
+     "3.7",
+     "0.5",
+     "13.1",
+     "13.6",
+     "0.68",
+     "0.89",
+     "11.9"
+    ],
+    [
+     "F. Hybrid: monthly review, breach->inner edge",
+     "4.0",
+     "4.4",
+     "0.3",
+     "10.1",
+     "10.4",
+     "0.52",
+     "0.78",
+     "12.4"
+    ],
+    [
+     "G. Hybrid+event overlay (1.5x band, +3pp equity-aggregate), to target",
+     "8.2",
+     "6.8",
+     "0.7",
+     "17.7",
+     "18.4",
+     "0.92",
+     "0.79",
+     "8.6"
+    ],
+    [
+     "H. Hybrid+event overlay, inner edge (recommended)",
+     "4.4",
+     "13.6",
+     "0.4",
+     "11.6",
+     "12.0",
+     "0.60",
+     "0.61",
+     "10.0"
+    ]
+   ],
+   "source_note": "Illustrative simulation built for this note using house CMAs/correlations and the Moderate model's 16-line SAA and bands (allocation design note). Each row uses an independent random path (not paired/common random numbers), so turnover/cost/tax/TE columns are the reliable relative signal; treat exact bps as approx."
+  },
+  {
+   "title": "Band widths by sleeve (Moderate model, Rs500 Cr)",
+   "columns": [
+    "Sleeve",
+    "Target %",
+    "Rs Cr",
+    "Band type",
+    "Band width",
+    "Trade-to rule"
+   ],
+   "rows": [
+    [
+     "Nifty 50/100 passive (ETF+index)",
+     "22",
+     "110",
+     "Absolute",
+     "+-5pp",
+     "Inner edge"
+    ],
+    [
+     "Factor blend (Quality/LowVol/Momentum)",
+     "10",
+     "50",
+     "Absolute (per sub-line)",
+     "+-2pp each",
+     "Inner edge"
+    ],
+    [
+     "Active mid-cap MF",
+     "7",
+     "35",
+     "Absolute",
+     "+-1.5pp",
+     "Inner edge"
+    ],
+    [
+     "Active small-cap MF",
+     "3",
+     "15",
+     "Relative (~33% of target)",
+     "+-1pp",
+     "Inner edge"
+    ],
+    [
+     "Direct stocks (scorecard)",
+     "8",
+     "40",
+     "Absolute (sleeve) + per-name",
+     "+-3pp sleeve / 50bps per name",
+     "Target (name-level risk control)"
+    ],
+    [
+     "International DM equity",
+     "5",
+     "25",
+     "Relative (30% of target)",
+     "+-1.5pp",
+     "Inner edge"
+    ],
+    [
+     "Short duration/money market",
+     "3",
+     "15",
+     "Relative (33% of target)",
+     "+-1pp",
+     "Inner edge"
+    ],
+    [
+     "Target-maturity AAA/SDL",
+     "11",
+     "55",
+     "Absolute",
+     "+-3pp",
+     "Inner edge"
+    ],
+    [
+     "10-yr G-sec/dynamic duration",
+     "6",
+     "30",
+     "Absolute",
+     "+-2pp",
+     "Inner edge"
+    ],
+    [
+     "AA corporate credit",
+     "4",
+     "20",
+     "Relative (25% of target)",
+     "+-1pp",
+     "Inner edge"
+    ],
+    [
+     "Arbitrage/overnight",
+     "2",
+     "10",
+     "Asymmetric",
+     "1-4pp band (skewed up)",
+     "Target (cash-plug sleeve)"
+    ],
+    [
+     "Gold",
+     "5",
+     "25",
+     "Relative (30% of target)",
+     "+-1.5pp",
+     "Inner edge"
+    ],
+    [
+     "Silver",
+     "1",
+     "5",
+     "Relative (50% of target)",
+     "+-0.5pp",
+     "Inner edge"
+    ],
+    [
+     "REIT/InvIT (listed)",
+     "4",
+     "20",
+     "Relative (25% of target)",
+     "+-1pp",
+     "Inner edge"
+    ],
+    [
+     "AIF Cat II private credit",
+     "5",
+     "25",
+     "No tradable band (locked)",
+     "Monitor only",
+     "n/a - sizing via new commitments only"
+    ],
+    [
+     "AIF Cat III / SIF hybrid LS",
+     "4",
+     "20",
+     "No tradable band (locked/soft lock-in)",
+     "Monitor only",
+     "n/a"
+    ]
+   ],
+   "source_note": "Bands consistent with the allocation design note's Moderate-model table; classified here as absolute vs relative and mapped to the trade-to rule recommended in s2.2."
+  },
+  {
+   "title": "Event-driven triggers and consent mode",
+   "columns": [
+    "Trigger",
+    "Threshold",
+    "Pre-authorised action",
+    "Consent mode",
+    "Max response time"
+   ],
+   "rows": [
+    [
+     "Sleeve band breach >=1.5x normal band",
+     "e.g. equity core >27.5% vs 22%+-5",
+     "Trim breaching line to outer normal band edge (de-risk only)",
+     "Pre-authorised (Standing Instruction), reported next cycle",
+     "Same/next business day"
+    ],
+    [
+     "Equity-aggregate drift",
+     "Sum of equity sleeves vs target >3pp",
+     "Proportional trim across equity lines",
+     "Pre-authorised",
+     "1 business day"
+    ],
+    [
+     "Drawdown/vol regime (buy side)",
+     "Nifty -5% from 20-day high, or VIX>22 for 3 consecutive days",
+     "Pull forward next scheduled deployment tranche",
+     "Pre-authorised (buy side only)",
+     "1 business day"
+    ],
+    [
+     "Severe tail event",
+     "Nifty -10% from 20-day high, or VIX>25",
+     "RM same-day call with one-page recommendation (hedge/accelerated deployment)",
+     "Ad hoc, verbal-then-e-sign within 24h",
+     "2 business days"
+    ],
+    [
+     "Large inflow (>Rs10 Cr)",
+     "Any",
+     "Sweep to liquid same day; deploy per pre-agreed ladder",
+     "Pre-authorised (instrument/ratio pre-approved)",
+     "Same day sweep, ladder over following weeks"
+    ],
+    [
+     "Large outflow (redemption)",
+     "Any",
+     "Fund from cash/liquid first, then pro-rata trim away from under-target sleeves",
+     "Ad hoc consent on specific trim amounts",
+     "2 business days"
+    ],
+    [
+     "Corporate action needing active election (rights, buyback, merger)",
+     "Any",
+     "No standing instruction - always gated",
+     "Ad hoc consent required",
+     "Before corporate-action deadline"
+    ],
+    [
+     "Index reconstitution (passive sleeves)",
+     "Quarterly, per index provider",
+     "Follows automatically inside fund/ETF; direct-stock sleeve flagged",
+     "Next monthly RPP",
+     "Monthly"
+    ]
+   ],
+   "source_note": "Playbook triggers designed to be pre-authorised (not ad hoc) wherever the action is mechanical and bounded, per Reg 24's client-direction requirement; VIX/drawdown thresholds consistent with the allocation design note's tail-risk triggers."
+  },
+  {
+   "title": "Transaction cost stack by instrument (one-way, steady state, Rs500 Cr scale)",
+   "columns": [
+    "Instrument",
+    "STT",
+    "Stamp duty",
+    "Exchange+SEBI charges",
+    "Institutional brokerage",
+    "GST",
+    "Bid-ask/impact",
+    "MF exit load / AIF terms",
+    "Round-trip total (ex-impact, ex-tax)"
+   ],
+   "rows": [
+    [
+     "Direct listed equity (delivery)",
+     "0.1% each leg = 20bps RT",
+     "0.015% buy-side only ~1.5bps",
+     "~0.3bps/leg NSE + 0.01bps/leg SEBI",
+     "~3-5bps/leg (negotiated)",
+     "~18% x (brokerage+exch+SEBI) ~1.5bps RT",
+     "function of %ADV, separate",
+     "-",
+     "~27-31bps + impact"
+    ],
+    [
+     "ETF, on-screen secondary",
+     "0.001% sell-side",
+     "as equity, buy-side",
+     "as equity",
+     "as equity, often tighter",
+     "as equity",
+     "3-15bps spread (liquidity-dependent)",
+     "-",
+     "~10-14bps + spread"
+    ],
+    [
+     "ETF, via AP/direct-with-AMC (>=Rs25 Cr)",
+     "0.001% sell-side only",
+     "none (not an exchange trade)",
+     "none",
+     "AMC/AP handling ~2-3bps approx.",
+     "minimal",
+     "basket/creation impact ~2-4bps approx.",
+     "none (no exit load on ETFs)",
+     "~5-7bps"
+    ],
+    [
+     "Index fund (direct plan)",
+     "0.001% on redemption",
+     "none",
+     "none",
+     "none",
+     "none",
+     "none (NAV-based)",
+     "none typically",
+     "~0-1bp (TER separate)"
+    ],
+    [
+     "Active MF (direct plan)",
+     "0.001% on redemption",
+     "none",
+     "none",
+     "none",
+     "none",
+     "none",
+     "exit load capped 3% max, typ. 0-1% after 12m equity",
+     "0-1bp if >12m; up to 100bps if early"
+    ],
+    [
+     "Listed G-sec/SDL/corp bond",
+     "none (STT n/a to debt)",
+     "~0.005% approx. (unverified)",
+     "minimal",
+     "embedded in dealer spread",
+     "-",
+     "bid-offer 3-8bps approx.",
+     "-",
+     "~4-9bps"
+    ],
+    [
+     "REIT/InvIT (listed units)",
+     "unclear_verify - treated as equity-like 0.1% pending confirmation",
+     "as equity",
+     "as equity",
+     "as equity",
+     "as equity",
+     "15-30bps approx. (lower float)",
+     "-",
+     "~35-55bps, verify STT line"
+    ],
+    [
+     "AIF Cat I/II",
+     "none (private placement)",
+     "none",
+     "-",
+     "-",
+     "-",
+     "-",
+     "locked, 3-7yr close-ended tenure",
+     "n/a - commitment-drawdown drag instead"
+    ],
+    [
+     "AIF Cat III (open-ended)",
+     "none",
+     "none",
+     "-",
+     "-",
+     "-",
+     "-",
+     "soft lock-in ~1-3yr + exit load approx. 1-2%",
+     "n/a"
+    ]
+   ],
+   "source_note": "STT/stamp/exchange/SEBI/GST figures verified this session (sources 8,9 below); brokerage, impact and some stamp-duty/REIT figures are negotiated or approx. and flagged accordingly."
+  },
+  {
+   "title": "Worked example A - Rs15 Cr trim of a large-cap direct-equity name",
+   "columns": [
+    "Component",
+    "Basis",
+    "Rs",
+    "bps of trade"
+   ],
+   "rows": [
+    [
+     "STT (sell only, delivery)",
+     "0.1% x Rs15 Cr",
+     "Rs15.0 lakh",
+     "10.0"
+    ],
+    [
+     "Exchange charges",
+     "0.00297% x Rs15 Cr",
+     "Rs0.45 lakh",
+     "0.3"
+    ],
+    [
+     "SEBI turnover fee",
+     "0.0001% x Rs15 Cr",
+     "Rs0.015 lakh",
+     "0.01"
+    ],
+    [
+     "Brokerage (institutional)",
+     "4bps x Rs15 Cr",
+     "Rs6.0 lakh",
+     "4.0"
+    ],
+    [
+     "GST @18% on brokerage+exch+SEBI",
+     "18% x ~4.3bps",
+     "Rs1.2 lakh",
+     "0.8"
+    ],
+    [
+     "Explicit cost subtotal",
+     "",
+     "~Rs22.6 lakh",
+     "~15"
+    ],
+    [
+     "Market impact (large-cap, ADV>Rs100Cr)",
+     "8-12bps approx.",
+     "Rs12-18 lakh",
+     "8-12"
+    ],
+    [
+     "All-in execution cost",
+     "",
+     "~Rs35-41 lakh",
+     "~23-27"
+    ],
+    [
+     "LTCG tax, illustrative 40% embedded gain ratio",
+     "12.5% x 40% x Rs15 Cr",
+     "~Rs75 lakh",
+     "~50"
+    ]
+   ],
+   "source_note": "Execution cost built from verified STT/exchange/SEBI/GST rates (sources 8,9); brokerage and impact are approx.; tax uses the verified FY2026-27 LTCG rate (source 6) on an illustrative gain ratio."
+  },
+  {
+   "title": "Worked example B - Rs40 Cr ETF switch: AP/AMC-direct vs on-screen routing",
+   "columns": [
+    "Route",
+    "STT",
+    "AP/AMC handling",
+    "Spread/impact",
+    "Brokerage+GST",
+    "Total"
+   ],
+   "rows": [
+    [
+     "AP / direct-with-AMC (>=Rs25 Cr threshold)",
+     "Rs0.4 lakh (0.1bp)",
+     "Rs12 lakh (3bps)",
+     "Rs8 lakh (2bps)",
+     "-",
+     "~Rs20 lakh (~5bps)"
+    ],
+    [
+     "On-screen secondary market",
+     "Rs0.4 lakh (0.1bp)",
+     "-",
+     "Rs40 lakh (10bps, both legs)",
+     "Rs19 lakh (~4bps incl. GST)",
+     "~Rs59 lakh (~15bps)"
+    ],
+    [
+     "Saving from AP/AMC routing",
+     "",
+     "",
+     "",
+     "",
+     "~Rs39 lakh (~10bps)"
+    ]
+   ],
+   "source_note": "AP/AMC-direct threshold and mechanism verified (source 10); handling-fee and spread figures approx. If the switch crystallises gains at an illustrative 25% embedded-gain ratio, LTCG tax alone is ~Rs1.25 Cr - an order of magnitude larger than the routing saving."
+  },
+  {
+   "title": "Execution policy limits and thresholds",
+   "columns": [
+    "Parameter",
+    "Limit/Rule",
+    "Basis"
+   ],
+   "rows": [
+    [
+     "Max participation rate, direct-stock order",
+     "<=10-15% of trailing 20-day ADV per session",
+     "Standard institutional practice; ties to allocation note's liquidity sizing"
+    ],
+    [
+     "Multi-day staggering trigger",
+     "Ticket >2% of ADV split via VWAP/TWAP over 2-5 sessions",
+     "Keeps within participation cap inside the T0-T+7 window"
+    ],
+    [
+     "Slippage budget",
+     "<=15bps vs arrival price",
+     "Monthly calendar SLA (s1)"
+    ],
+    [
+     "Block-deal minimum order size",
+     "Rs25 Cr (raised from Rs10 Cr)",
+     "SEBI revised block-deal framework [13][14]"
+    ],
+    [
+     "Block-deal windows",
+     "Morning 8:45-9:00 AM (prior close ref.); afternoon 2:05-2:20 PM (1:45-2:00 PM VWAP ref.)",
+     "[13][14]"
+    ],
+    [
+     "Block-deal price band",
+     "+-3% of reference price, compulsory delivery",
+     "[13][14]"
+    ],
+    [
+     "Bulk-deal disclosure check",
+     "approx. 0.5% of listed shares (unclear_verify - reconfirm before use)",
+     "Not re-verified this session; budget exhausted"
+    ],
+    [
+     "ETF AP/AMC-direct threshold",
+     "Orders >=Rs25 Cr may transact directly with AMC; below compulsory exchange route",
+     "[10]"
+    ],
+    [
+     "Minimum RPP trade ticket",
+     "Rs75 lakh-1 Cr (~15-20bps of AUM)",
+     "Design rule, s2.2"
+    ],
+    [
+     "Annual turnover budget (liquid book)",
+     "15-25%/yr, Moderate",
+     "Design rule, s2.2"
+    ]
+   ],
+   "source_note": "Bracketed numbers refer to the Sources list in detailed_markdown."
+  },
+  {
+   "title": "Daily / weekly / monthly task split for the trading/ops desk",
+   "columns": [
+    "Cadence",
+    "Task",
+    "Owner",
+    "CAN/SHOULD/MUST/AVOID"
+   ],
+   "rows": [
+    [
+     "Daily",
+     "NAV/valuation checks, price/corporate-action feed validation",
+     "Ops",
+     "SHOULD"
+    ],
+    [
+     "Daily",
+     "Corporate-action processing per standing instruction",
+     "Ops",
+     "SHOULD"
+    ],
+    [
+     "Daily",
+     "Idle-cash sweep >Rs50L to liquid/overnight fund",
+     "Dealing (standing instruction)",
+     "CAN (pre-authorised)"
+    ],
+    [
+     "Daily",
+     "Settlement/fails monitoring, demat reconciliation",
+     "Ops",
+     "MUST"
+    ],
+    [
+     "Daily",
+     "Risk dashboard: VaR, drawdown, VIX/regime monitor",
+     "Risk",
+     "SHOULD"
+    ],
+    [
+     "Daily",
+     "Discretionary trade outside an approved RPP/Standing Instruction",
+     "Dealing",
+     "AVOID / not_allowed"
+    ],
+    [
+     "Daily",
+     "Intraday trading, F&O speculation, naked shorting",
+     "Dealing",
+     "AVOID / not_allowed"
+    ],
+    [
+     "Weekly",
+     "Execute the week's RPP tranche (Mon redemption/Thu deployment)",
+     "Dealing",
+     "SHOULD (core cadence)"
+    ],
+    [
+     "Weekly",
+     "ADV/liquidity refresh, direct-stock sleeve",
+     "Risk/Dealing",
+     "SHOULD"
+    ],
+    [
+     "Weekly",
+     "Event-trigger screen (band>=1.5x, equity-aggregate 3pp, VIX/drawdown)",
+     "Risk",
+     "MUST"
+    ],
+    [
+     "Weekly",
+     "AIF/PMS capital-call and distribution tracking",
+     "Ops",
+     "SHOULD"
+    ],
+    [
+     "Monthly",
+     "Full drift report, RPP build, consent cycle, execution, recon, statement",
+     "PM/RM/Ops/Compliance",
+     "MUST (core cadence)"
+    ],
+    [
+     "Monthly",
+     "SEBI/APMI regulatory report",
+     "Compliance",
+     "MUST"
+    ],
+    [
+     "Quarterly",
+     "Index reconstitution pass-through check",
+     "PM",
+     "SHOULD"
+    ],
+    [
+     "Quarterly",
+     "AIF/third-party PMS manager due-diligence refresh",
+     "PM",
+     "SHOULD"
+    ],
+    [
+     "Annual (Jan-Mar)",
+     "LTCG exemption harvesting and loss-netting review",
+     "PM/Compliance",
+     "MUST"
+    ],
+    [
+     "Annual",
+     "IPS/SAA and band-width reset review",
+     "IC",
+     "SHOULD"
+    ],
+    [
+     "Ad hoc",
+     "Rights issue / scheme-merger active election",
+     "RM/PM",
+     "Ad hoc consent - never standing instruction"
+    ]
+   ],
+   "source_note": "Consolidates s1, s3 and s7 of detailed_markdown into a single operating checklist."
+  }
+ ],
+ "detailed_markdown": "# NDPMS ₹500 Cr Mandate — Monthly Rebalancing, Execution and Trading Design\n\nStatus date: 12 September 2026. This note sits alongside the regulatory design note (mandate architecture, consent legal structure, SAA bands) and the allocation design note (CMAs, sleeve weights) already produced for this mandate — figures here reuse the Moderate model's ₹500 Cr sleeve weights and bands so all three documents tie out. This note goes one layer deeper: the actual monthly operating calendar, the quantitative case for a hybrid band design, event-driven playbooks, tax-lot mechanics, a bps-level transaction-cost model with two worked ₹500 Cr trades, execution-desk policy (participation limits, block-deal/AP routing, MF cut-offs), and the daily/weekly/monthly task split.\n\n**Governing constraint.** Under NDPMS the PM proposes; the client's dated, evidenced instruction is the only thing that authorises a trade (SEBI (Portfolio Managers) Regulations 2020, Reg 24 read with Reg 2 definitions of discretionary/non-discretionary) [1]. Every design choice below is built to make that instruction cheap to obtain (one omnibus monthly consent) without becoming, in substance, a standing discretion.\n\n---\n\n## 1. The monthly rebalance cycle\n\nThe house already runs a weekly deployment cadence (Monday redemption / Thursday deployment). NDPMS does not change that execution rhythm — it inserts one consent gate before the month's trades are allowed to enter that weekly pipeline. The monthly cycle below is the execution-desk expansion of the consent calendar already fixed in the mandate design (T-5 IC sign-off → T-3 pack build → T-1 client walkthrough → T0 consent → T0–T+7 execution → T+8 post-trade report → month-end+5 statement → month-end+7 working days SEBI/APMI report) [2].\n\n| Step | Day | What happens | Owner | Output / SLA |\n|---|---|---|---|---|\n| 1. Data close | T-5 (last business day before IC week) | NAV, holdings, corporate actions, accruals frozen for the month; ADV/liquidity refresh for direct-stock sleeve | Ops | Golden EOD snapshot, time-stamped |\n| 2. Drift report | T-5 | Actual vs SAA target by sleeve and by line; band-breach flags; unlisted-%, associate-%, derivative-notional checks against IPS ceilings | Risk/Compliance | Drift report v1 |\n| 3. IC view | T-5 to T-4 | House monthly view (over/underweight tilts) applied to targets; tilt magnitude capped by governance thresholds already fixed in the allocation note | IC | Signed tilt sheet |\n| 4. Proposal pack (RPP) build | T-3 | Every trade: ISIN/scheme, side, ₹ amount or quantity, execution channel (on-screen/block/AP/AMC-direct), limit or participation rule, execution window, cost estimate (bps model, §5), tax estimate (realised gain, LTCG/STCG split, exemption headroom), band-compliance flag | PM + Compliance | RPP v1, pre-trade compliance sign-off |\n| 5. Client walkthrough | T-1 | 30-minute call/portal walkthrough of the pack, cost and tax numbers, any flagged unlisted/associate items | RM | Client Q&A closed |\n| 6. Client consent | T0 (1st Thursday of month, aligned to the existing deployment Thursday) | Client e-signs (Aadhaar e-sign/DSC) the pack as a whole, or line-item, on the portal; validity 10 trading days | Client | Hashed consent record in OMS audit trail |\n| 7. Execution window | T0 to T+7 | Trades released into the existing weekly Mon-redeem/Thu-deploy pipeline, staggered per §6; algo/participation rules applied | Dealing | Slippage vs arrival price ≤ 15 bps target |\n| 8. Settlement | T+1 (equity, CDSL/NSDL) to T+2/T+3 (MF, category-dependent) | Pay-in/pay-out, demat credit/debit, MF unit allotment | Ops/Custodian | Zero settlement fails |\n| 9. Post-trade recon | T+8 | Fills vs RPP, realised slippage, actual cost/tax booked, updated weights vs SAA | Ops | Recon pack, exceptions escalated same day |\n| 10. Client confirmation | Month-end + 5 business days | Monthly statement (Reg 31 content: composition, transactions, expenses, risk) | Ops/Compliance | Statement issued |\n\n**Compressing consent friction.** Three design choices do the work:\n- **One omnibus pack, not N separate approvals** — the RPP bundles the month's entire trade list into a single e-signed instruction; line-item override is available but the default flow is \"approve all.\"\n- **A Standing Instructions Register (Annex C of the agreement)** carries mechanical, revocable, fully-parameterised actions that never need a fresh consent each month: idle-cash sweep (>₹50 lakh into a named liquid/overnight fund, daily), dividend/coupon reinvestment routing, execution of an already-approved multi-week tranche schedule, and hedge-roll at the same notional. Anything that changes an asset-class weight or introduces a new security stays inside the RPP.\n- **Pre-agreed bands function as the \"reason code\"** for each trade line — the RPP does not re-litigate the model each month, it only asks the client to confirm the specific ₹ amounts computed off already-approved targets and bands.\n\nLatency cost is real and must be underwritten explicitly, not waved away: expected tracking cost of a delay ≈ (undeployed weight) × (daily vol) × √(days). On ₹500 Cr, a 5% (₹25 Cr) equity underweight left unresolved for 10 days at ~1% daily index vol costs ≈ ₹79 lakh of 1-sigma tracking risk; cutting the consent SLA from 10 to 2 business days cuts that to ≈ ₹35 lakh [3]. This is why the SLA table above targets a 2-business-day consent turnaround with a 48-hour escalation call.\n\n---\n\n## 2. Band design: calendar vs threshold vs hybrid\n\n### 2.1 Three designs, and why hybrid wins\n\n| Design | Rule | Pro | Con |\n|---|---|---|---|\n| **Calendar** | Trade every sleeve fully back to target on a fixed date, regardless of drift size | Simple to consent (same date every month); predictable ops load | Trades even when drift is inside noise; highest turnover, tax and cost for the least control of tracking error |\n| **Threshold (band-only)** | Trade only sleeves that have breached their band, whenever that happens, checked continuously | Lowest turnover/cost/tax for a given tracking-error tolerance | Under NDPMS, \"whenever\" is not compatible with a monthly consent gate — needs either standing pre-authorisation (discretion risk) or constant ad hoc consent (friction) |\n| **Hybrid (recommended)** | Check every sleeve against its band on the fixed monthly review date; trade **only the breaching lines**, inside the single monthly RPP; add a narrow pre-authorised event sleeve (§3) for genuine tail moves between reviews | Matches the mandate's monthly consent cadence exactly; captures most of the threshold design's cost/tax efficiency | Requires the client to accept that some months have zero trades and others have many — needs to be set as an expectation up front |\n\n### 2.2 Absolute vs relative bands, and where to trade to\n\n- **Large/liquid sleeves (equity core, target-maturity debt, cash/arbitrage): absolute (percentage-point) bands.** A ±1pp band on a 2% sleeve is unworkable (50% relative tolerance is too tight to avoid noise trading); a ±5pp band on a 22% sleeve is proportionate (~23% relative).\n- **Small sleeves (silver, REIT, active small-cap): relative bands, 20–25% of target.** A 1% target sleeve gets a ±0.20–0.25pp band, not a flat ±1pp (which would be a 100%+ relative swing before any trade triggers).\n- **Illiquid/locked sleeves (AIF Cat I/II, Cat III/SIF hybrid LS): no tradable band** — they cannot be rebalanced by selling (lock-in), only by sizing new commitments and letting the liquid sleeves flex around them. Track drift for reporting only.\n- **Trade to target vs trade to the inner band edge:** trading fully back to **target** removes drift risk but forces a slightly larger trade every time a line breaches, which raises turnover for lines that oscillate around the edge. Trading to the **inner edge of the band** (i.e., only enough to bring the line back inside tolerance) cuts turnover and lets the position \"ride\" naturally; the cost is a permanently wider realised tracking error. **Recommendation: trade to target for sleeves with regulatory/IPS hard ceilings (unlisted %, associate %) and trade to the inner edge for everything else** — this is strategy F/H below and is the best cost/TE trade-off in the simulation.\n- **Minimum trade size.** Set a floor of **₹75 lakh–₹1 Cr (≈15–20 bps of AUM)** per line before a trade is released, even if the band is technically breached — below this, transaction cost and bid-ask spread exceed the tracking-error benefit of trading. (Used as the noise floor in the simulation below.)\n- **Turnover budget.** Set an IPS-level annual turnover ceiling for the *liquid* book (ex-AIF/PMS) of **15–25%/yr** for Moderate, reviewed annually against realised cost and tax drag.\n\n### 2.3 Quantified comparison for the ₹500 Cr Moderate book\n\nMonte Carlo simulation (10-yr weekly paths, 1,500 runs, house CMAs and correlations from the allocation note, 16-line Moderate SAA and bands exactly as designed there) comparing calendar, band-only and hybrid designs. **Modelling note: each strategy row uses an independent random path (not common random numbers), so the CAGR columns carry simulation noise and should not be read as \"strategy X beats the market\" — only the turnover/cost/tax/TE columns, which are the object of this comparison, are reliable relative signals.** Assumptions: one-way transaction cost 3–35 bps by sleeve (ETF 2, factor index 2, active MF 1, direct stock 12.6 incl. impact, international 3, debt 0–3, arbitrage 1, gold/silver 2–3, REIT 6, illiquid AIFs 0 (untraded)); tax on realised gains at LTCG 12.5% for equity-like sleeves >12m and slab (~39%) for debt-like sleeves; ₹1 Cr minimum ticket.\n\n| Strategy | Turnover %/yr | Trades/yr | Cost bps p.a. | Tax bps p.a. | Total cost+tax bps p.a. | ₹ Cr/yr on ₹500 Cr | TE vs SAA %/yr | Avg \\|drift\\| (pp, summed across 16 lines) |\n|---|---|---|---|---|---|---|---|---|\n| A. Monthly calendar, full to target | 26.0 | 95.8 | 2.8 | 49.7 | **52.5** | 2.63 | 0.28 | 4.3 |\n| B. Quarterly calendar, full to target | 15.1 | 38.9 | 1.7 | 36.1 | 37.8 | 1.89 | 0.38 | 5.1 |\n| C. Annual calendar, full to target | 7.7 | 11.8 | 0.9 | 23.5 | 24.4 | 1.22 | 0.57 | 7.3 |\n| D. Band-only, continuous monitoring, trade to target | 6.5 | 4.1 | 0.5 | 13.4 | 13.9 | 0.70 | 0.89 | 11.6 |\n| E. Hybrid: monthly review, breach → target | 6.1 | 3.7 | 0.5 | 13.1 | 13.6 | 0.68 | 0.89 | 11.9 |\n| **F. Hybrid: monthly review, breach → inner band edge** | **4.0** | **4.4** | **0.3** | **10.1** | **10.4** | **0.52** | 0.78 | 12.4 |\n| G. Hybrid + event overlay (1.5× band any day, + equity-aggregate 3pp trigger) | 8.2 | 6.8 | 0.7 | 17.7 | 18.4 | 0.92 | 0.79 | 8.6 |\n| H. Hybrid + event overlay, inner edge | 4.4 | 13.6 | 0.4 | 11.6 | 12.0 | 0.60 | 0.61 | 10.0 |\n\n**Reading it:** monthly-calendar-full-rebalance (A) costs **~4-5x** more in tax+cost than a disciplined hybrid (F/H) for a *narrower* average drift band — most of that cost is realised gains tax from selling lines that were only marginally off target. **Recommendation: Strategy H — monthly review with breach-to-inner-edge trading, plus the pre-authorised event overlay (§3) for tail moves** — gives the best combination of low turnover (4.4%/yr), low realised tax (11.6 bps), and the *tightest* tracking error of the threshold family (0.61%) because the event overlay catches the large excursions that a pure monthly check would otherwise miss for up to 30 days. Budget **≈₹0.5–0.7 Cr/yr** (10–14 bps) of cost+tax drag for rebalancing the liquid book at this design point, separate from the PM fee and the sleeve-level TER/TCO already quantified in the allocation note.\n\n---\n\n## 3. Event-driven rebalances (not HFT)\n\nEvent triggers exist to catch moves too large or too fast to wait for the monthly review — they are pre-authorised playbook responses, not discretionary trading, and not intraday.\n\n| Trigger | Threshold | Pre-authorised action (Standing Instruction) | Consent mode | Max response time |\n|---|---|---|---|---|\n| Sleeve band breach ≥1.5× the normal band | e.g. equity core >27.5% (band ±5, 1.5× = ±7.5) | De-risk only: trim the breaching line back to the *outer* normal band edge (not full target) | Pre-authorised in IPS; executed, then reported at next monthly cycle | Same/next business day |\n| Equity-aggregate drift | Sum of equity sleeves vs target equity >3pp | Same as above, sized proportionally across equity lines | Pre-authorised | 1 business day |\n| Drawdown/vol regime | Nifty 50 closes ≥5% below its 20-day high, or India VIX >22 for 3 consecutive days [4] | Pull forward the next scheduled deployment tranche; do not sell into the drawdown without fresh consent | Pre-authorised for the *buy* side; ad hoc consent required for any *sell*-side de-risking beyond the 1.5×-band trim above | 1 business day |\n| Severe tail event | Nifty ≥10% below 20-day high, or VIX >25 | Ad hoc: RM calls client same day with a specific one-page recommendation (e.g. tail-hedge activation, or accelerated deployment) | Ad hoc consent, verbal-then-e-sign within 24h with a follow-up written confirmation | 2 business days |\n| Large inflow (>₹10 Cr, e.g. dividend from listed holding, maturity proceeds) | — | Sweep to liquid/overnight same day; deploy per the pre-agreed staggered ladder (below) without a fresh full-pack consent, since the *instrument and ratio* were pre-approved | Pre-authorised (Standing Instruction) | Same day sweep; ladder per §6 |\n| Large outflow (redemption request) | — | Fund from cash/liquid first, then pro-rata trim across sleeves *away* from anything currently under-target | Ad hoc consent for the specific trim list (amounts only, not instrument selection, since sizing formula is pre-agreed) | 2 business days |\n| Corporate action requiring an active election (rights issue, buyback, scheme merger) | Any | **No standing instruction** — a rights subscription is an \"active\" unlisted-cap event and must go through the RPP or an ad hoc consent | Ad hoc consent required | Before the corporate-action deadline |\n| Index reconstitution / benchmark rebalance (Nifty 50/500 quarterly changes) | — | Passive sleeves follow automatically inside the fund/ETF; direct-stock sleeve additions/deletions flagged for the next RPP | Next monthly RPP (not urgent) | Monthly |\n\nDeployment ladder for a large inflow (illustrative, ₹25 Cr fresh capital): 40% into liquid/overnight day 1; 20%/week into the pre-approved instrument mix over the next 3 weeks via the existing Thursday deployment slot — this reuses the house's staggered-tranche logic rather than inventing a new one for NDPMS.\n\n---\n\n## 4. Tax-aware and cost-aware rebalancing\n\n### 4.1 Lot selection: FIFO is mandatory, not a choice, for demat holdings\n\nSection 45(2A) of the Income-tax Act (framework carried into the Income-tax Act, 2025) provides that for securities held in dematerialised form, cost of acquisition and period of holding are determined on a **first-in-first-out (FIFO)** basis; CBDT Circular No. 768 (24-June-1998) clarifies that where an investor holds the *same* security across **multiple demat accounts**, FIFO is applied **account-by-account**, not pooled across accounts [5]. Specific identification (picking an arbitrary high-cost lot to sell) is **not permitted** within a single demat account and has been rejected by tribunals as a \"colourable device\" when attempted [5].\n\n**Operational consequence — the only lever available is account structure, not lot choice within an account.** Run the mandate across **2–3 purpose-segregated demat accounts** (e.g., (i) Core/strategic direct-equity book, rarely traded; (ii) Tactical/rebalancing book, where the monthly RPP trims and adds; (iii) a small tax-lot/harvesting book used only in Q4/Jan-Mar for loss or gain harvesting). Because FIFO applies *per account*, choosing **which account** to sell out of is economically equivalent to a coarse form of specific identification — sell from the account whose oldest lot has the tax profile you want (long-held small gain to harvest the exemption; long-held large loss to harvest against other gains), leaving the other accounts' lots undisturbed. **This decision must be made before the first trade** — retrofitting account segregation after a single demat account already holds a mixed-cost position does not help.\n\n### 4.2 LTCG exemption harvesting\n\nListed equity/equity-MF LTCG is taxed at **12.5% above an annual exemption of ₹1.25 lakh per FY** (aggregated across all such gains for the investor, not per security) [6]. India has **no wash-sale rule** — a security can be sold to crystallise a gain (or loss) and immediately repurchased at the same price to step up the cost basis, with no minimum holding-period restriction on the repurchase. **Do this every FY, near year-end, on the oldest long-held lots with the largest embedded gain that still fits under the ₹1.25 lakh exemption** (per PAN, and this exemption is shared with the client's own personal book outside the PMS — coordinate with the client/RM). On a ₹500 Cr book with an 8–12% direct-equity sleeve, this is a small but recurring, zero-cost-basis-risk tax saving that should be a **standing, pre-authorised** March instruction, not a fresh ad hoc consent each year.\n\n### 4.3 Avoiding STCG, and why FIFO actually helps\n\nSTCG on STT-paid listed equity is taxed at **20%** vs LTCG's 12.5% [6] — an 8pp difference that should drive trade sequencing whenever a sleeve has both a >12-month and a <12-month lot outstanding and only a partial trim is needed. Convenient side-effect: **FIFO sells the oldest lot first by construction**, which is usually the long-held (LTCG-eligible) lot — so the mandatory tax-lot rule is *already* biased toward the tax-efficient outcome for a steadily-accumulating position. The exception to watch: a sleeve that has just received a large fresh purchase (e.g., post-inflow deployment) now has its *newest* shares at the front of the FIFO queue in economic terms but at the *back* of the literal FIFO order (oldest-first) — so a forced sell shortly after a big top-up will still hit old, LTCG lots first, which is fine, but means the desk cannot \"protect\" the old lots by choice; it is automatic. Where a full band-breach requires selling *through* the LTCG lots into STCG territory, flag this explicitly in the RPP cost/tax estimate line so the client sees the STCG hit before consenting.\n\n### 4.4 Use inflows and income to rebalance before selling\n\nEvery month, before generating any sell-side RPP lines: (i) sweep matured coupons/dividends/distributions and (ii) any fresh client inflow toward the **most underweight** sleeve(s) first. This closes drift without realising any gain at all on the overweight side. Only after this cash-flow-based rebalancing is exhausted should the RPP include actual sells of overweight lines. This single rule is typically responsible for closing a large share of monthly drift on a growing/income-generating book at no tax or transaction cost.\n\n### 4.5 Netting across sleeves\n\n- **STCG losses** can be set off against **any** capital gain — STCG or LTCG, equity or debt-fund (Sec 50AA deemed-STCG income counts) [6][7].\n- **LTCG losses** can only be set off against **LTCG gains** — an LTCG loss cannot shelter an STCG or debt-fund gain.\n- **Unused capital losses carry forward 8 assessment years** — track them at the client level (not per sleeve) so a loss realised trimming, say, the small-cap MF sleeve in a down month is available to net against an equity direct-stock gain realised six months later in a different sleeve.\n- Before any FY-end (31 March) harvesting instruction, Ops must pull the client's **cumulative realised gain/loss ledger across all sleeves** — netting decisions are wrong if made sleeve-by-sleeve.\n\n---\n\n## 5. Transaction cost model (bps, ₹500 Cr scale)\n\n### 5.1 Cost stack by instrument (one-way, steady state; verified components cited, spread/impact and brokerage are negotiated/approx.)\n\n| Instrument | STT | Stamp duty | Exchange + SEBI charges | Institutional brokerage | GST (18% on brokerage+exch+SEBI) | Bid-ask / impact | MF exit load / AIF terms | Round-trip total (ex-impact, ex-tax) |\n|---|---|---|---|---|---|---|---|---|\n| Direct listed equity (delivery) | 0.1% each leg = 20 bps RT [8] | 0.015% buy-side only ≈1.5 bps [9] | ≈0.3 bps/leg (NSE) + 0.01 bps/leg (SEBI turnover fee, ₹10/crore) [9] | ~3–5 bps/leg (negotiated, institutional) | ~18% × (brokerage+exch+SEBI) ≈1.5 bps RT | function of %ADV (§6.1) — separate | — | **≈27–31 bps** + impact |\n| ETF, on-screen secondary market | 0.001% sell-side (MF-unit-sale rate) [8] | as equity, buy-side | as equity | as equity, often tighter | as equity | bid-ask spread, 3–15 bps depending on ETF liquidity | — | ≈10–14 bps + spread |\n| ETF, via AP / direct-with-AMC (≥₹25 Cr) [10] | 0.001% sell-side only | none (not an exchange trade) | none | AMC/AP handling fee ~2–3 bps approx. | minimal | basket/creation impact ~2–4 bps approx. | none (no exit load on ETFs) | **≈5–7 bps** |\n| Index fund (direct plan) | 0.001% on redemption | none | none | none | none | none (NAV-based) | none typically | **≈0–1 bp** (embedded TER separately, see allocation note) |\n| Active MF (direct plan) | 0.001% on redemption | none | none | none | none | none | exit load now capped at 3% max, typically 0–1% after 12m for equity funds [11] | **0–1 bp** if held >12m; up to 100 bps if redeemed early |\n| Listed G-sec / SDL / corporate bond | none (STT does not apply to debt securities) | ~0.005% approx. (unverified this session) | minimal | dealer spread embeds cost | — | bid-offer 3–8 bps approx. | — | **≈4–9 bps** |\n| REIT/InvIT (listed units) | applicability to REIT/InvIT units is **unclear_verify** this session — treat as equity-like (0.1%) until confirmed | as equity | as equity | as equity | as equity | wider spread, 15–30 bps approx. (lower float) | — | ≈35–55 bps, verify STT line |\n| AIF Cat I/II | none (private placement) | none | — | — | — | — | no exit (locked, 3–7 yr close-ended tenure) [12] | n/a — commitment-drawdown drag instead (see allocation note) |\n| AIF Cat III (open-ended) | none | none | — | — | — | — | soft lock-in ~1–3 yr + exit load approx. 1–2% within window [12] | n/a |\n\n### 5.2 Worked example A — ₹15 Cr trim of a large-cap direct-equity name\n\n| Component | Basis | ₹ | bps of trade |\n|---|---|---|---|\n| STT (sell only, delivery) | 0.1% × ₹15 Cr | ₹15.0 lakh | 10.0 |\n| Exchange charges | 0.00297% × ₹15 Cr | ₹0.45 lakh | 0.3 |\n| SEBI turnover fee | 0.0001% × ₹15 Cr | ₹0.015 lakh | 0.01 |\n| Brokerage (institutional) | 4 bps × ₹15 Cr | ₹6.0 lakh | 4.0 |\n| GST @18% on brokerage+exch+SEBI | 18% × (4.0+0.3+0.01) bps | ₹1.2 lakh | 0.8 |\n| **Explicit cost subtotal** | | **≈₹22.6 lakh** | **≈15 bps** |\n| Market impact (participation-based, large-cap, ADV comfortably >₹100 Cr) | 8–12 bps approx. | ₹12–18 lakh | 8–12 |\n| **All-in execution cost** | | **≈₹35–41 lakh** | **≈23–27 bps** |\n| **LTCG tax, illustrative 40% embedded gain ratio** | 12.5% × 40% × ₹15 Cr | **≈₹75 lakh** | **≈50 bps** |\n\n**The lesson this example is built to teach:** tax dominates. Execution cost on a routine trim is ~25 bps; the tax on the same trim, at a plausible embedded-gain ratio, is ~2x that even at the *lower* LTCG rate. This is why §4 (sequencing, netting, harvesting) is worth materially more to net-of-tax return than shaving another few bps off execution.\n\n### 5.3 Worked example B — ₹40 Cr ETF switch (e.g., rebalancing between two Nifty-linked ETF/index vehicles)\n\n| Route | STT | AP/AMC handling | Spread/impact | Brokerage+GST | **Total** |\n|---|---|---|---|---|---|\n| **AP / direct-with-AMC** (order ≥₹25 Cr threshold) [10] | ₹0.4 lakh (0.1 bp) | ₹12 lakh (3 bps) | ₹8 lakh (2 bps) | — | **≈₹20 lakh (≈5 bps)** |\n| **On-screen secondary market** | ₹0.4 lakh (0.1 bp) | — | ₹40 lakh (10 bps, crossing the book on both legs) | ₹19 lakh (16+3 bps incl. GST) | **≈₹59 lakh (≈15 bps)** |\n| **Saving from routing via AP/AMC** | | | | | **≈₹39 lakh (≈10 bps)** |\n\nPlus, if the switch crystallises gains: illustrative 25% embedded-gain ratio → LTCG tax ≈ 12.5% × 25% × ₹40 Cr ≈ **₹1.25 Cr** — again an order of magnitude larger than the execution-routing saving, reinforcing that **any switch between two similar vehicles should be evaluated post-tax**, and that the ₹25 Cr AP threshold (§6) is a hard rule for any ETF order at or above that size.\n\n---\n\n## 6. Execution policy\n\n### 6.1 Participation limits and algo execution\n\n| Parameter | Rule | Basis |\n|---|---|---|\n| Max participation rate, direct-stock order | ≤10–15% of that stock's trailing 20-day ADV per session | Standard institutional practice; ties to the ≥20% ADV/5-day liquidity assumption already used to size direct-stock lines in the allocation note |\n| Multi-day staggering | Any ticket >2% of ADV is split via VWAP/TWAP over 2–5 sessions inside the T0–T+7 execution window | Keeps within participation limit without missing the window |\n| Order type | Limit orders referenced to arrival price ± a cost-model band; no market orders on illiquid names | Controls slippage; matches the RPP's stated cost estimate |\n| Slippage budget | ≤15 bps vs arrival price (from the monthly calendar SLA, §1) | Escalate to RM/IC if breached |\n\n### 6.2 Block-deal and bulk-deal windows\n\n- **Block deal window** (current framework): minimum order size **₹25 Cr** (raised from ₹10 Cr) [13]; **morning window 8:45–9:00 AM**, reference price = previous day's close; **afternoon window 2:05–2:20 PM**, reference price = VWAP of trades 1:45–2:00 PM; orders must be within **±3%** of the reference price; trades result in **compulsory delivery** — no same-window square-off [13][14]. **Use this window for any single-line direct-equity ticket ≥₹25 Cr** (large concentrated adds/trims, e.g. an IC-directed initiation) — it avoids the on-screen impact-cost curve entirely for a size that would otherwise move the market.\n- **Bulk deal disclosure** threshold (percentage-of-listed-shares trigger requiring same-day exchange disclosure) — **unclear_verify this session** (web search budget exhausted before this could be re-confirmed); treat any single-line trade near **0.5% of a company's listed shares** as needing a bulk-deal disclosure check before release, and verify the exact current threshold with the exchange before the first ticket of this size.\n- Below ₹25 Cr, a direct-equity ticket goes through the normal VWAP/TWAP on-screen process of §6.1.\n\n### 6.3 ETF creation/redemption via Authorised Participants\n\nOrders of **₹25 Cr or more** in a single ETF may transact **directly with the AMC** (in-kind creation/redemption via an Authorised Participant, or cash creation) instead of the exchange order book; below ₹25 Cr, the exchange route is compulsory [10]. Nippon India ETF Nifty BeES, illustratively, has a direct-purchase creation-unit size of 50,000 units (exchange-traded in single units) [15]. **Design rule: any ETF rebalancing leg ≥₹25 Cr must route through the AP/AMC-direct channel** (worked example B, §5.3, shows the ~10 bps saving); the mandate should empanel at least one AP relationship before go-live so this is available on day one rather than defaulting to on-screen execution by omission.\n\n### 6.4 Mutual fund cut-off and settlement timing\n\nCut-off and NAV-applicability rules differ materially by fund category — **liquid/overnight funds** cut off earlier in the day than equity/other funds, and above the SEBI large-transaction threshold NAV applicability turns on when funds are actually realised by the AMC, not on submission time (approx., general industry practice — not re-verified this session; confirm the current cut-off clock and threshold with each AMC/RTA before building the order calendar). **Settlement/credit timing is category-dependent** — overnight/liquid funds settle fastest (approx. T+1), equity/hybrid and debt funds typically T+1 to T+3 depending on category and AMC — again approx., to be pinned down operationally rather than assumed, since a mis-timed MF order can leave a one-day cash or exposure mismatch against the RPP's execution-window SLA.\n\n### 6.5 Cash management ladder\n\n| Horizon | Vehicle | Purpose |\n|---|---|---|\n| Overnight / <1 week | Overnight fund or bank sweep | Idle cash from redemptions/inflows pending deployment |\n| 1 week – 1 month | Liquid fund | Redemption-pending and short deployment-pipeline cash |\n| >1 month, <12 months | Arbitrage fund | Equity taxation (12.5% LTCG >12m) beats liquid fund's slab-taxed gains for cash the desk expects to hold a few months; standing instruction sweeps here once a liquid-fund balance has been idle >30 days |\n| Redemption/settlement mismatch buffer | Overnight fund, sized to the largest single week's net redemption in the trailing 12 months | Covers the gap between a client's T+1 cash need and a T+2/T+3 MF/AIF settlement on the asset being sold to fund it |\n\n### 6.6 Stagger schedules\n\nThe monthly RPP's approved trades enter the **existing weekly Monday-redemption / Thursday-deployment cadence** — this both reuses house infrastructure and naturally staggers execution over up to four weekly tranches inside the 10-trading-day consent validity window, rather than concentrating the whole month's flow into a single day (which would both breach participation limits on the larger tickets and create a predictable, front-runnable pattern).\n\n---\n\n## 7. Daily / weekly / monthly task split\n\n| Cadence | Task | Owner | CAN / SHOULD / AVOID |\n|---|---|---|---|\n| Daily | NAV/valuation checks, price/corporate-action feed validation | Ops | SHOULD |\n| Daily | Corporate-action processing (dividends, bonus, splits) per standing instruction | Ops | SHOULD |\n| Daily | Idle-cash sweep >₹50 lakh into named liquid/overnight fund | Dealing (auto/standing instruction) | CAN (pre-authorised) |\n| Daily | Settlement/fails monitoring, demat reconciliation | Ops | MUST (non-negotiable control) |\n| Daily | Risk dashboard: VaR, drawdown, VIX/regime trigger monitor | Risk | SHOULD |\n| Daily | Any discretionary trade outside an approved RPP or Standing Instruction | Dealing | **AVOID / not_allowed** — the core NDPMS boundary |\n| Daily | Intraday trading, F&O speculation, naked shorting | Dealing | **AVOID / not_allowed** |\n| Weekly | Execute the week's tranche of the current RPP (Mon redemption / Thu deployment) | Dealing | SHOULD (core cadence) |\n| Weekly | ADV/liquidity refresh for the direct-stock sleeve | Risk/Dealing | SHOULD |\n| Weekly | Informal drift snapshot (no trading action, monitoring only) | Risk | CAN |\n| Weekly | AIF/PMS capital-call and distribution tracking | Ops | SHOULD |\n| Weekly | Event-trigger screen (band ≥1.5×, equity-aggregate 3pp, VIX/drawdown) | Risk | MUST |\n| Monthly | Full drift report, RPP build, consent cycle, execution window, post-trade recon, client statement | PM/RM/Ops/Compliance | MUST (core cadence) |\n| Monthly | SEBI/APMI regulatory report | Compliance | MUST |\n| Quarterly | Index reconstitution pass-through check for passive sleeves | PM | SHOULD |\n| Quarterly | AIF/third-party PMS manager due-diligence refresh | PM | SHOULD |\n| Annual (Q4/Jan–Mar) | LTCG exemption harvesting and loss-netting review across all sleeves and demat accounts | PM/Compliance | MUST (recurring tax alpha) |\n| Annual | IPS/SAA and band-width reset review against realised turnover, TE and cost | IC | SHOULD |\n| Annual | CMA and benchmark refresh (feeds the allocation note) | IC | SHOULD |\n| Ad hoc | Rights issue / scheme-merger corporate action needing an active election | RM/PM | Ad hoc consent required — **never** via standing instruction |\n| Ad hoc | Large inflow/outflow deployment or redemption ladder | Dealing | CAN (pre-authorised sizing; ad hoc consent only for outflow instrument selection) |\n\n---\n\n## Sources\n\n[1] SEBI (Portfolio Managers) Regulations, 2020, Reg 2/24 (discretionary vs non-discretionary; client-directed trading) — as summarised in the mandate's regulatory design note; primary SEBI hosts were egress-blocked this session.\n[2] Internal cross-reference: this mandate's regulatory design note, §5.2 (\"Consent SLA and monthly calendar\") and §5.3 (\"SAA bands and hard limits\").\n[3] Internal cross-reference: regulatory design note §5.2, latency-cost formula and worked ₹500 Cr numbers (§6).\n[4] Internal cross-reference: allocation design note, event triggers (Nifty −5%/−10% from 20-day high, India VIX >22/>25); Nifty 50 closed 23,398.10 on 11-Sep-2026 — https://www.5paisa.com/blog/post-market-update-us-futures-gain-nifty-sensex-lower-bank-nifty-gains-september-11-2026\n[5] FIFO for dematerialised securities, Sec 45(2A)/CBDT Circular 768 (24-6-1998), and ITAT ruling rejecting selective-lot identification — https://taxguru.in/income-tax/fifo-wins-cherry-picked-shares-mumbai-itat-calls-selective-share-identification-colourable-device-tax-avoidance.html ; https://www.incometaxindia.gov.in/w/768-circular-no.-768-dated-24-6-1998-1 ; https://www.incometaxindia.gov.in/w/section-45-64\n[6] LTCG 12.5% above ₹1.25 lakh/FY, STCG 20% (Sec 111A), FY2026-27 unchanged by Budget 2026 — https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax ; https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27\n[7] Debt mutual funds acquired on/after 1-Apr-2023 taxed as deemed short-term under Sec 50AA at slab, regardless of holding period — https://taxgarden.in/blog/capital-gains-tax-india-ltcg-stcg-ay-2026-27\n[8] STT: equity delivery 0.1% both legs; MF/ETF unit sale 0.001% — https://cleartax.in/s/securities-transaction-tax-stt ; https://bigul.co/blog/market-update/stt-increase-in-fo-what-every-trader-must-know-before-april-1-2026\n[9] Stamp duty 0.015% (equity delivery, buyer-side), NSE transaction charge ≈0.00297%, SEBI turnover fee 0.0001% (₹10/crore), GST 18% on brokerage+transaction+SEBI charges — https://www.angelone.in/smart-money/trading-courses/list-of-all-trading-fees-and-charges ; https://www.nseindia.com/static/invest/first-time-investor-sebi-turnover-fees-stt-other-levies\n[10] SEBI circular permitting direct AMC transactions for ETF orders ≥₹25 Cr (in-kind/cash creation-redemption); exchange route compulsory below that — https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html\n[11] SEBI (Mutual Funds) Regulations, 2026 — exit-load cap cut from 5% to 3%; BER/TER restructuring; brokerage caps cut to 6 bps (cash)/2 bps (derivatives), effective 1-Apr-2026 — https://www.businesstoday.in/mutual-funds/story/exiting-mutual-funds-may-get-cheaper-as-sebi-cuts-maximum-exit-load-cap-to-3-547787-2026-08-07 ; https://www.businesstoday.in/mutual-funds/story/sebi-overhauls-mutual-fund-rules-changes-made-to-ter-framework-check-details-507113-2025-12-17\n[12] AIF Category I/II close-ended, minimum 3-year tenure from final closing; Category III open- or close-ended, open-ended soft lock-in ~1–3 years with exit load — https://elementone.fund/sebi-aif-regulations-2026-guide/ ; https://www.finnovate.in/learn/blog/aif-category-iii-india\n[13] SEBI revised block-deal framework: minimum order size raised to ₹25 Cr; morning window 8:45–9:00 AM (previous close reference); afternoon window 2:05–2:20 PM (1:45–2:00 PM VWAP reference); ±3% price band; compulsory delivery — https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore ; https://www.taxmann.com/post/blog/sebi-revises-block-deal-framework-minimum-order-size-rs-25-crore\n[14] Same block-deal framework, corroborating summary — https://www.caalley.com/news-updates/indian-news/sebi-raises-minimum-block-deal-size-to-rs-25-crore-mandates-delivery-only-trades-check-key-takeaways\n[15] Nippon India ETF Nifty BeES creation-unit structure (50,000-unit direct creation size; single-unit exchange trading) — search-result summary of https://mf.nipponindiaim.com/FundsAndPerformance/ProductNotes/NipponIndia-ETF-Nifty-BeES.pdf (direct PDF fetch was egress-blocked; facts taken from indexed search summary, verify against the live factsheet before operational use)\n\n**Modelling disclosure:** the §2.3 turnover/cost/tax/TE comparison is a Monte Carlo simulation built for this note (10-yr weekly paths, 1,500 iterations, house CMAs/bands from the allocation note), not a market data source — treat the relative ranking as the finding, and the exact bps as illustrative/approx. pending a common-random-number rebuild before board sign-off. Two items in this note are explicitly flagged **unclear_verify** (bulk-deal disclosure threshold; REIT/InvIT STT applicability) because this session's web-search budget was exhausted before they could be pinned to a primary source — resolve both before the first trade in either category.\n",
+ "risks_and_pitfalls": [
+  "FIFO forces oldest-lot-out under Sec 45(2A); if only one demat account is used, tax-aware lot selection becomes impossible after the fact - segregation must happen before the first trade.",
+  "Consent-latency during a fast drawdown: even a 2-business-day SLA can leave 1-2% of slippage vs the recommended price on a Rs500 Cr book; the pre-authorised event overlay only covers the buy side without an ad hoc consent for sell-side de-risking.",
+  "Standing instructions drafted too broadly (PM effectively choosing timing/size) risk recharacterisation as discretion at SEBI inspection - the 2026 First Global Finance enforcement order treated quantities/timing/execution as 'investment decisions'.",
+  "Bunching all trades into the same weekly Thursday deployment slot every month creates a predictable, potentially front-runnable pattern for large tickets - mitigate with algo-randomised intra-window timing.",
+  "ETF/AP execution requires an empanelled Authorised Participant relationship in place before go-live; without it, large ETF orders default to on-screen execution and forfeit the ~10bps AP-route saving by omission, not by choice.",
+  "The Rs25 Cr block-deal minimum means most individual rebalance tickets (typically Rs5-20 Cr at this AUM) fall below the threshold and must absorb full on-screen impact cost regardless of size relative to the stock's liquidity.",
+  "Band-only design (no monthly backstop) can let genuinely illiquid or concentrated sleeves (AIF, direct-stock names) drift unnoticed between reviews if the band is set too wide relative to the sleeve's true volatility.",
+  "The Rs75L-1Cr minimum-ticket floor can cause small-weight sleeves (silver, REIT, ~1-4% of AUM) to be systematically under-rebalanced, since a 20-25% relative band on a small sleeve translates into a rupee move near or below the floor.",
+  "Tax netting mismatch: an LTCG loss can only offset LTCG gains, never STCG or debt-fund gains - a harvesting plan built without this rule creates a stranded loss.",
+  "AIF Cat III/SIF fund-level tax (approx. up to MMR ~42.7%) is invisible on our own books but is a real drag on the client's net return - must be modelled as an assumed tax cost in the sleeve TCO even though Ionic does not file it directly.",
+  "GST at 18% on brokerage/exchange/SEBI charges is a small per-trade percentage but compounds into a real annual cash cost that is easy to omit from a headline bps budget.",
+  "Missing a mutual fund's NAV cut-off shifts execution one business day, creating an unintended overnight cash or exposure mismatch against the RPP's stated execution window.",
+  "The s2.3 simulation uses one independent random path per strategy (no common random numbers); the CAGR-vs-benchmark columns are noisy and must not be read as a market-beating claim - only the turnover/cost/tax/TE relative ranking is reliable, and should be rebuilt with paired paths before board sign-off.",
+  "Reg 24 bars investing 'on the advice of any other entity' - an event-driven ad hoc consent request must still originate from Ionic's own IC assessment, never be a pass-through of a third-party PMS or model vendor's tactical call.",
+  "A rights-issue subscription accepted via a poorly-scoped standing instruction could push unlisted exposure over the 25% NDPMS cap as an 'active' breach, which SEBI treats more strictly than a passive (price-move) breach."
+ ],
+ "open_questions": [
+  "Will the client accept a single monthly omnibus e-sign consent, or insist on line-by-line approval - this materially changes the SLA, the escalation design and how much of the cost/tax modelling above actually holds in practice?",
+  "What is the client's tolerance for 1-2 business day consent latency during a >5% drawdown - should we pre-agree a wider standing de-risking band specifically for that scenario, separate from the routine monthly bands?",
+  "Should we open the 2-3 segregated demat accounts before the first trade, and who bears the incremental custody/RTA cost of maintaining multiple accounts for one client?",
+  "Does the client's chosen custodian/broker support algo (VWAP/TWAP) execution and AP-route ETF creation today, or does Ionic need to empanel a new broker/AP before go-live?",
+  "Is the client eligible for, and willing to be onboarded as, a Large Value Accredited Investor - this changes the unlisted cap from 25% to 100% and materially changes how much AIF/PMS exposure the rebalancing engine ever needs to manage against a hard ceiling?",
+  "What loss-carry-forward or other realised gains/losses does the client already hold in their personal book (outside this PMS) that the annual harvesting plan should net against, and will the client share that visibility?",
+  "Should the Rs25 Cr block-deal/AP-routing thresholds be treated as a hard rule, or a soft guideline where we sometimes accept worse execution to avoid signalling a large rebalance to the market?",
+  "What annual turnover budget does the IC/client actually want written into the IPS, given the simulated range runs from ~4%/yr (hybrid) to ~26%/yr (naive monthly calendar) for materially different cost/tax/TE outcomes?",
+  "Should Ionic build the time-stamped dealing-room OMS now (voluntarily, ahead of the Rs1,000 Cr AUM trigger) or defer the capital cost until the mandate approaches that scale?",
+  "How should Nifty put-spread tail-hedging interact with the monthly consent cycle - a standing hedge-roll instruction at fixed notional, or a fresh ad hoc consent each time a hedge is initiated or unwound?",
+  "What is the current, exchange-confirmed bulk-deal disclosure threshold (percent of listed shares), and does any line in the direct-stock sleeve risk tripping it at ticket sizes we consider routine?",
+  "Does REIT/InvIT unit sale actually attract STT at the equity rate, or a different/nil rate - this changes the cost-stack table meaningfully for a 4% sleeve and should be confirmed with the custodian/broker before the first REIT trade."
+ ],
+ "sources": [
+  {
+   "title": "Nifty 50 close 23,398.10, 11-Sep-2026 (5paisa market update)",
+   "url": "https://www.5paisa.com/blog/post-market-update-us-futures-gain-nifty-sensex-lower-bank-nifty-gains-september-11-2026"
+  },
+  {
+   "title": "FIFO wins: ITAT rejects cherry-picked-share identification as tax avoidance",
+   "url": "https://taxguru.in/income-tax/fifo-wins-cherry-picked-shares-mumbai-itat-calls-selective-share-identification-colourable-device-tax-avoidance.html"
+  },
+  {
+   "title": "CBDT Circular No. 768, dated 24-6-1998 (FIFO for dematerialised securities)",
+   "url": "https://www.incometaxindia.gov.in/w/768-circular-no.-768-dated-24-6-1998-1"
+  },
+  {
+   "title": "Income Tax Act, Section 45 (capital gains)",
+   "url": "https://www.incometaxindia.gov.in/w/section-45-64"
+  },
+  {
+   "title": "LTCG tax rate FY2026-27 and Rs1.25 lakh exemption",
+   "url": "https://www.bajajfinserv.in/investments/understanding-long-term-capital-gains-tax"
+  },
+  {
+   "title": "Capital gains tax rates ready-reckoner, AY2026-27",
+   "url": "https://taxgarden.in/blog/capital-gains-tax-rates-asset-class-ready-reckoner-india-ay-2026-27"
+  },
+  {
+   "title": "Capital gains tax India AY2026-27: LTCG, STCG, debt fund Sec 50AA",
+   "url": "https://taxgarden.in/blog/capital-gains-tax-india-ltcg-stcg-ay-2026-27"
+  },
+  {
+   "title": "Securities Transaction Tax (STT) rates and calculation",
+   "url": "https://cleartax.in/s/securities-transaction-tax-stt"
+  },
+  {
+   "title": "STT hike on F&O from April 1, 2026 (equity delivery/MF unit sale rates unchanged)",
+   "url": "https://bigul.co/blog/market-update/stt-increase-in-fo-what-every-trader-must-know-before-april-1-2026"
+  },
+  {
+   "title": "List of all stock market trading fees and charges in India",
+   "url": "https://www.angelone.in/smart-money/trading-courses/list-of-all-trading-fees-and-charges"
+  },
+  {
+   "title": "SEBI turnover fees, STT and other levies (NSE)",
+   "url": "https://www.nseindia.com/static/invest/first-time-investor-sebi-turnover-fees-stt-other-levies"
+  },
+  {
+   "title": "Exchange route mandatory for sub-Rs25 crore ETF deals (AP/AMC-direct threshold)",
+   "url": "https://www.business-standard.com/amp/india-news/after-two-deferments-exchange-route-compulsory-for-sub-rs-25-cr-etf-deals-123050100756_1.html"
+  },
+  {
+   "title": "SEBI cuts maximum mutual fund exit load cap to 3%",
+   "url": "https://www.businesstoday.in/mutual-funds/story/exiting-mutual-funds-may-get-cheaper-as-sebi-cuts-maximum-exit-load-cap-to-3-547787-2026-08-07"
+  },
+  {
+   "title": "SEBI overhauls mutual fund TER/BER framework, effective 1-Apr-2026",
+   "url": "https://www.businesstoday.in/mutual-funds/story/sebi-overhauls-mutual-fund-rules-changes-made-to-ter-framework-check-details-507113-2025-12-17"
+  },
+  {
+   "title": "SEBI AIF Regulations 2026 guide (Cat I/II/III tenure, minimum investment)",
+   "url": "https://elementone.fund/sebi-aif-regulations-2026-guide/"
+  },
+  {
+   "title": "Category III AIF in India: strategies, tax and PMS comparison",
+   "url": "https://www.finnovate.in/learn/blog/aif-category-iii-india"
+  },
+  {
+   "title": "SEBI tightens block deal rules, raises minimum trade size to Rs25 crore",
+   "url": "https://www.angelone.in/news/market-updates/sebi-tightens-block-deal-rules-raises-minimum-trade-size-to-25-crore"
+  },
+  {
+   "title": "SEBI revises block deal framework - minimum order size Rs25 crore",
+   "url": "https://www.taxmann.com/post/blog/sebi-revises-block-deal-framework-minimum-order-size-rs-25-crore"
+  },
+  {
+   "title": "SEBI raises minimum block deal size to Rs25 crore, mandates delivery-only trades",
+   "url": "https://www.caalley.com/news-updates/indian-news/sebi-raises-minimum-block-deal-size-to-rs-25-crore-mandates-delivery-only-trades-check-key-takeaways"
+  }
+ ]
+}
