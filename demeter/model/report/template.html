@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Reverse-Engineering Demeter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,12 +16,15 @@ __SHARED_STYLE__
 .ladder .b:last-of-type,.ladder .n:last-of-type{border-bottom:0}
 .ladder h4{margin:0 0 3px;font:600 14px var(--sans)}
 .ladder p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.ladder .n.delta{font-size:18px;color:var(--ink-3)}
 .trap{border:1px solid var(--neg);border-radius:6px;background:var(--neg-soft);padding:16px 18px}
 .trap h3{color:var(--ink)}
 .pill{display:inline-block;padding:2px 8px;border-radius:10px;font:600 11px var(--sans);letter-spacing:.03em;text-transform:uppercase}
 .pill.ok{background:var(--pos-soft);color:var(--pos)} .pill.bad{background:var(--neg-soft);color:var(--neg)} .pill.mid{background:var(--spy-soft);color:var(--spy)}
+.pill.flat{background:var(--band);color:var(--ink-3)}
 td.rank{color:var(--ink-3);width:26px}
 tr.hi td{background:var(--strategy-soft)}
+tr.dim td{color:var(--ink-3)}
 .rules-src{font-family:var(--mono);font-size:12px;white-space:pre-wrap;color:var(--ink-2);background:var(--band);padding:12px 14px;border-radius:6px;overflow-x:auto;max-height:340px;overflow-y:auto}
 .paramlist{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
 .paramlist code{font-family:var(--mono);font-size:12px;background:var(--band);border:1px solid var(--line);border-radius:4px;padding:3px 7px}
@@ -33,27 +37,42 @@ tr.hi td{background:var(--strategy-soft)}
 .limit li{margin-bottom:9px}
 .limit{padding-left:20px;font-size:14px;color:var(--ink-2);max-width:80ch}
 .limit b{color:var(--ink)}
+.cand-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:16px;margin-top:22px}
+.cand{border:1px solid var(--line);border-radius:6px;background:var(--surface);padding:15px 17px}
+.cand.refuted{border-left:3px solid var(--neg)} .cand.held{border-left:3px solid var(--pos)} .cand.gatefail{border-left:3px solid var(--ink-3)}
+.cand h4{margin:0;font:600 15px var(--sans);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cand .mech{font-size:13.5px;color:var(--ink-2);margin:8px 0 0}
+.cand .fact{font-size:12px;color:var(--ink-3);font-family:var(--mono);margin:8px 0 0}
+.cand dl{margin:10px 0 0;font-size:13px}
+.cand dt{font:600 11px var(--sans);letter-spacing:.03em;text-transform:uppercase;color:var(--ink-3);margin-top:9px}
+.cand dd{margin:2px 0 0;color:var(--ink-2)}
+.checks{list-style:none;padding:0;margin:0;font-size:13.5px}
+.checks li{display:flex;gap:9px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
+.checks li:last-child{border-bottom:0}
+.checks .mk{font-weight:700;min-width:14px}
+.checks .yes{color:var(--pos)} .checks .no{color:var(--neg)}
+.note{font-size:12.5px;color:var(--ink-3);margin-top:8px}
 </style>
 
 <div class="top"><div class="wrap">
   <a class="brand" href="#top">Replication <i>Study</i></a>
   <nav aria-label="Sections">
-    <a href="#verdict">Verdict</a><a href="#method">Method</a><a href="#fingerprint">Fingerprint</a><a href="#trap">The trap</a><a href="#leaderboard">Leaderboard</a><a href="#model">The model</a><a href="#versus">vs Demeter</a><a href="#sensitivity">Sensitivity</a><a href="#limits">Limits</a>
+    <a href="#verdict">Verdict</a><a href="#changed">Pass 2</a><a href="#method">Method</a><a href="#fingerprint">Fingerprint</a><a href="#trap">The trap</a><a href="#gauntlet">DEV gauntlet</a><a href="#look">The look</a><a href="#leaderboard">Leaderboard</a><a href="#model">The model</a><a href="#versus">vs Demeter</a><a href="#sensitivity">Sensitivity</a><a href="#limits">Limits</a>
   </nav>
 </div></div>
 
 <header class="hero" id="top"><div class="wrap">
   <div class="hero-grid">
     <div>
-      <div class="eyebrow">Replication study · S&amp;P 500 and NASDAQ, 1885–2026 · out-of-sample Jul 2012 – Jan 2026</div>
+      <div class="eyebrow" id="hero-eyebrow"></div>
       <h1 style="margin-top:10px">Can a rules-based dual-engine model match Demeter?</h1>
-      <p class="lede">Six candidate models built on 141 years of index data, each tuned only on data ending June 2012 and then run untouched across Demeter's live record. This is what the honest out-of-sample answer looks like — including one model that would have looked like a triumph if the test had started in 2012.</p>
+      <p class="lede" id="hero-lede"></p>
     </div>
     <dl class="meta-list">
-      <dt>Question</dt><dd>Reproduce or beat 31.1% a year at a −13.65% drawdown, with fewer trades</dd>
+      <dt>Question</dt><dd id="m-question"></dd>
       <dt>Development sample</dt><dd id="m-dev"></dd>
       <dt>Out-of-sample</dt><dd id="m-oos"></dd>
-      <dt>Engine</dt><dd>Daily close decision, applied next day; leverage 0–3× on S&amp;P 500 total return over T-bills; 2 bp per unit traded</dd>
+      <dt>Engine</dt><dd id="m-engine"></dd>
       <dt>Data</dt><dd id="m-data"></dd>
       <dt>Prepared by</dt><dd>Ionic Wealth research</dd>
     </dl>
@@ -63,16 +82,20 @@ tr.hi td{background:var(--strategy-soft)}
 </div></header>
 
 <main>
+<section id="changed"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Pass 2</div><h2>What changed, and why</h2><p id="changed-sub"></p></div></div>
+  <div class="tbl-wrap" id="t-changed"></div>
+  <div class="grid2" style="margin-top:22px">
+    <div class="card"><h3>The look budget, as spent</h3><div class="tbl-wrap" id="t-looklog"></div><p class="note" id="looklog-note"></p></div>
+    <div class="card"><h3>Process incidents, as logged</h3><ul class="limit" id="deviations-list"></ul></div>
+  </div>
+</div></section>
+
 <section id="method"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">How the test was run</div><h2>Method</h2><p>The discipline matters more than the models. Everything below was fixed before the out-of-sample window was looked at.</p></div></div>
+  <div class="sec-head"><div><div class="eyebrow">How the test was run</div><h2>Method</h2><p>The discipline matters more than the models. Everything below was fixed, in writing, before the out-of-sample window was looked at.</p></div></div>
   <div class="grid2">
     <div class="card"><h3>Rules of the exercise</h3>
-      <div class="ladder">
-        <div class="n">1</div><div class="b"><h4>Signal definition</h4><p>A model is a function of daily market data returning a target leverage between 0 and 3 for the next session. Leverage 0 is the cash engine, earning the 3-month T-bill.</p></div>
-        <div class="n">2</div><div class="b"><h4>Causality enforced by test</h4><p>Every model is re-run on truncated histories at five cut-off dates; if any signal value changes, the model is rejected. All six candidates pass.</p></div>
-        <div class="n">3</div><div class="b"><h4>Development window only</h4><p>Parameters were chosen on data ending 30 June 2012 and checked for a plateau on the longer 1950–2012 sample. Out-of-sample results were computed once per model, after freezing.</p></div>
-        <div class="n">4</div><div class="b"><h4>Costs charged</h4><p>2 bp of notional per unit of leverage traded, plus a financing-spread sensitivity of up to 50 bp a year on borrowed exposure. Cash earns the actual T-bill rate — Demeter books cash at 0%.</p></div>
-      </div>
+      <div class="ladder" id="method-ladder"></div>
     </div>
     <div class="card"><h3>Data and its limits</h3><div id="data-notes"></div>
       <h3 style="margin-top:16px">Return accounting</h3>
@@ -80,7 +103,7 @@ tr.hi td{background:var(--strategy-soft)}
       <div class="rules-src" style="max-height:none">r[t+1] = rf[t+1] + L·(total_return[t+1] − rf[t+1])
          − max(L−1, 0)·financing_spread/252
          − |L − L_prev|·cost_bps/10,000</div>
-      <p class="sub" style="margin-top:8px">This is a futures-like accounting: the levered leg pays financing above the risk-free rate, the cash leg earns it.</p>
+      <p class="sub" style="margin-top:8px">This is a futures-like accounting: the levered leg pays financing above the risk-free rate, the cash leg earns the T-bill. Demeter books cash at 0%, which is subtracted separately in the asymmetry rows.</p>
     </div>
   </div>
 </div></section>
@@ -96,24 +119,39 @@ tr.hi td{background:var(--strategy-soft)}
 </div></section>
 
 <section id="trap"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">The central finding</div><h2>The rule that looks brilliant — until you test it earlier</h2><p>The single best-fitting archetype for Demeter's record is "hold 3× while VIX is below its 10-day average, otherwise cash". Across Demeter's live window it compounds at 18.3% a year. Across 1990–2012 it loses money and draws down 92%.</p></div></div>
+  <div class="sec-head"><div><div class="eyebrow">The central finding</div><h2>The rule that looks brilliant — until you test it earlier</h2><p id="trap-sub"></p></div></div>
   <div class="grid2">
     <div class="card trap"><h3>Same rule, two eras</h3><div class="tbl-wrap" style="margin-top:10px" id="t-trap"></div>
       <p class="sub" style="margin-top:10px">Buying when implied volatility has just fallen is buying after up days. In a fourteen-year bull market that is a momentum tailwind; through 2000–02 and 2008 it is a whipsaw machine. A study that started its backtest in 2012 would have shipped this model.</p></div>
-    <div class="card"><h3>Development versus out-of-sample Sharpe, all candidates</h3><p class="sub">Models below the diagonal did worse out of sample than in development. Models far above it — top left — were selected by the recent regime, not by evidence.</p><div id="c-devoos"></div></div>
+    <div class="card"><h3>Development versus out-of-sample Sharpe</h3><p class="sub">Every candidate that has an out-of-sample number, both passes. Models below the diagonal did worse out of sample than in development. Models far above it — top left — were selected by the recent regime, not by evidence.</p><div id="c-devoos"></div></div>
   </div>
+  <div class="card" style="margin-top:22px"><h3>The same lesson, mirrored: pass 2's Sharpe was earned in one decade</h3><p class="sub" id="thirds-sub"></p><div class="tbl-wrap" id="t-thirds"></div>
+    <p class="note" id="thirds-note"></p></div>
+</div></section>
+
+<section id="gauntlet"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Pass 2, development window only</div><h2>The DEV gauntlet</h2><p id="gauntlet-sub"></p></div></div>
+  <div class="tbl-wrap" id="t-gauntlet"></div>
+  <p class="faint" style="font-size:12.5px;margin-top:8px" id="gauntlet-note"></p>
+  <div class="cand-cards" id="gauntlet-cards"></div>
+</div></section>
+
+<section id="look"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">The single out-of-sample look of pass 2</div><h2 id="look-title"></h2><p id="look-sub"></p></div></div>
+  <div id="look-body"></div>
 </div></section>
 
 <section id="leaderboard"><div class="wrap">
-  <div class="sec-head"><div><div class="eyebrow">All candidates</div><h2>Leaderboard</h2><p>Out-of-sample is Jul 2012 – Jan 2026 on S&amp;P 500 total return with 2 bp costs. Development is the window each model was tuned on. Demeter and the passive references are shown on the same window and accounting.</p></div></div>
+  <div class="sec-head"><div><div class="eyebrow">All candidates with an out-of-sample number</div><h2>Leaderboard</h2><p id="board-sub"></p></div></div>
   <div class="tbl-wrap" id="t-board"></div>
   <p class="faint" style="font-size:12.5px;margin-top:8px" id="board-note"></p>
+  <div class="card" style="margin-top:22px"><h3>Cost rows</h3><p class="sub" id="costrows-sub"></p><div class="tbl-wrap" id="t-costrows"></div></div>
 </div></section>
 
 <section id="model"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">Recommendation</div><h2 id="model-title"></h2><p id="model-sub"></p></div></div>
   <div class="grid2">
-    <div class="card"><h3>The rules</h3><div class="ladder" id="model-rules"></div><div class="paramlist" id="model-params"></div></div>
+    <div class="card"><h3>The rules</h3><div class="ladder" id="model-rules"></div><div class="paramlist" id="model-params"></div><p class="note" id="model-params-note"></p></div>
     <div class="card"><h3>Growth of $1,000, out of sample</h3><p class="sub">Log scale. Cash line is the T-bill engine alone — what the model earns when it is out of the market.</p><div class="legend"><span><i class="sw model"></i>Model</span><span><i class="sw spy"></i>SPY</span><span><i class="sw cash"></i>Cash (T-bills)</span></div><div id="c-eq"></div></div>
   </div>
   <div class="grid2" style="margin-top:22px">
@@ -121,14 +159,14 @@ tr.hi td{background:var(--strategy-soft)}
     <div class="card"><h3>Where the leverage sat</h3><p class="sub">Share of out-of-sample trading days at each target leverage, against Demeter's ~50% cash and 2:1–3:1 invested profile.</p><div id="c-lev"></div><div class="tbl-wrap" style="margin-top:12px" id="t-quad"></div></div>
   </div>
   <div class="card" style="margin-top:22px"><h3>Calendar years: model, Demeter and SPY</h3><p class="sub" id="years-sub"></p><div class="legend"><span><i class="sw model"></i>Recommended model</span><span><i class="sw dem"></i>Demeter</span><span><i class="sw spy"></i>SPY</span></div><div id="c-years"></div><div class="tbl-wrap" style="margin-top:14px" id="t-years"></div></div>
-  <div class="card" style="margin-top:22px"><h3>Behaviour across eras</h3><p class="sub">The same frozen parameters run over four sub-periods. The 1950–1989 result is the model's best era; 1990–2011 is the development window; the last two rows are out of sample.</p><div class="tbl-wrap" id="t-sub"></div></div>
+  <div class="card" style="margin-top:22px"><h3>Behaviour across eras</h3><p class="sub">The same frozen parameters run over four sub-periods. 1990–2011 is the development window; the last two rows are out of sample.</p><div class="tbl-wrap" id="t-sub"></div></div>
 </div></section>
 
 <section id="versus"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">Side by side</div><h2>Where the model falls short of Demeter</h2><p>The gap is not in returns — it is entirely in the downside. The models capture more of the market's upside than Demeter does and far more of its downside.</p></div></div>
   <div class="grid2">
     <div class="card"><h3>Head-to-head, out-of-sample window</h3><div class="tbl-wrap" id="t-versus"></div></div>
-    <div class="card"><h3>The months that define the record</h3><p class="sub">Demeter's four signature episodes and how the recommended model handled the same months.</p><div class="tbl-wrap" id="t-episodes"></div>
+    <div class="card"><h3>The months that define the record</h3><p class="sub">Demeter's signature episodes and how the recommended model handled the same months.</p><div class="tbl-wrap" id="t-episodes"></div>
       <p class="sub" style="margin-top:10px" id="episodes-note"></p></div>
   </div>
 </div></section>
@@ -136,23 +174,26 @@ tr.hi td{background:var(--strategy-soft)}
 <section id="sensitivity"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">Does it survive contact with reality</div><h2>Sensitivity</h2><p>Trading costs, financing spreads, parameter perturbations, a longer out-of-sample window and a different instrument.</p></div></div>
   <div class="grid2">
-    <div class="card"><h3>Costs and financing</h3><p class="sub">Annualised return at each trading cost and financing spread. A low-turnover model is barely affected by costs; the financing spread on levered exposure matters more.</p><div class="tbl-wrap" id="t-cost"></div></div>
+    <div class="card"><h3>Costs and financing</h3><p class="sub" id="cost-sub"></p><div class="tbl-wrap" id="t-cost"></div></div>
     <div class="card"><h3>What breaks it</h3><p class="sub">The model's weak spots, from the perturbation grid and the variant runs below.</p><ul class="limit" id="weak-list" style="margin-top:4px"></ul></div>
   </div>
-  <div class="card" style="margin-top:22px"><h3>Parameter perturbations</h3><p class="sub">Each of the six parameters moved ±15% and ±30% from its frozen value, re-run out of sample. A plateau — not a spike at the chosen value — is what robustness looks like.</p><div id="c-param"></div></div>
+  <div class="card" style="margin-top:22px"><h3>Parameter perturbations</h3><p class="sub" id="param-sub"></p><div id="c-param"></div></div>
   <div class="card" style="margin-top:22px"><h3>Different windows and instruments</h3><div class="tbl-wrap" id="t-variants"></div>
-    <p class="faint" style="font-size:12.5px;margin-top:8px">The 2005-start window includes the 2008 crisis, which is outside both the development sample's end and the Demeter comparison. The NASDAQ and E-mini futures rows use the actual futures series, which end 28 March 2024.</p></div>
+    <p class="faint" style="font-size:12.5px;margin-top:8px" id="variants-note"></p></div>
 </div></section>
 
 <section id="limits"><div class="wrap">
   <div class="sec-head"><div><div class="eyebrow">What this study does not establish</div><h2>Limitations</h2></div></div>
   <div class="grid2">
-    <div class="card"><h3>Caveats that bite</h3><ul class="limit" id="limits-list"></ul></div>
-    <div class="card"><h3>What would move the answer</h3><ul class="limit" id="next-list"></ul>
+    <div class="card"><h3>Caveats that bite</h3><ul class="limit" id="limits-list"></ul>
+      <h3 style="margin-top:16px">The lessons that generalise</h3><ol class="limit" id="lessons-list"></ol></div>
+    <div class="card"><h3>What would move the answer</h3><ol class="limit" id="next-list"></ol>
       <h3 style="margin-top:16px">Reproducing this</h3>
       <div class="rules-src" style="max-height:none">cd demeter/model
 python3 data/build_dataset.py            # market_daily.csv from raw/ mirrors
-python3 evaluate.py signals/final_model_fewtrades.py
+python3 dev_harness.py signals/&lt;name&gt;.py  # development window only, truncated at 2012-06-30
+python3 gate_check.py dev_results/&lt;name&gt;.json
+python3 oos_final.py signals/&lt;name&gt;.py    # refuses ungated modules and second looks
 python3 build_report.py                  # report/index.html</div>
       <p class="sub" style="margin-top:8px" id="overview-link"></p></div>
   </div>
@@ -164,6 +205,38 @@ python3 build_report.py                  # report/index.html</div>
 <script>
 const R = __REPORT_JSON__;
 __SHARED_HELPERS__
+
+/* ---------- local helpers ---------- */
+const DASH = '—';
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function md(s){ if(s==null||s==='') return DASH;
+  return esc(s).replace(/`([^`]+)`/g,'<span class="mono">$1</span>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>'); }
+function mdItems(text){ if(!text) return [];
+  const out=[]; let cur=null;
+  text.split('\n').forEach(line=>{ const m=line.match(/^\s*(?:[*-]|\d+\.)\s+(.*)$/);
+    if(m){ if(cur) out.push(cur); cur=m[1]; }
+    else if(cur!=null && line.trim()) cur+=' '+line.trim();
+    else if(cur!=null){ out.push(cur); cur=null; } });
+  if(cur) out.push(cur); return out; }
+function firstSentence(s, cap){ if(!s) return null;
+  let t=String(s).replace(/^[a-z0-9_]+:\s*/,'');
+  const i=t.search(/\.\s/); if(i>40) t=t.slice(0,i+1);
+  return t.length>(cap||300)? t.slice(0,cap||300).replace(/[,;\s]\S*$/,'')+'…' : t; }
+const N = (v,d=2)=> fmt.num(v,d), PC=(v,d=2,s=false)=> fmt.pct(v,d,s);
+const pillFor = v => v==null? `<span class="pill flat">${DASH}</span>`
+  : v==='REFUTED'? '<span class="pill bad">refuted</span>' : v==='holds'? '<span class="pill ok">holds</span>' : `<span class="pill mid">${esc(v)}</span>`;
+/* acceptance thresholds are read out of the criterion keys themselves, so nothing is hard-coded */
+function accNum(key){ const m=String(key).match(/-?\d+(?:\.\d+)?$/); return m? parseFloat(m[0]) : null; }
+function accLabel(key){
+  const v=accNum(key);
+  if(key.indexOf('sharpe_gt')===0) return `Out-of-sample Sharpe above ${N(v,2)}`;
+  if(key.indexOf('maxdd_ge')===0) return `Maximum drawdown no worse than ${PC(v,1)}`;
+  if(key.indexOf('changes_lt')===0) return `Fewer than ${N(v,0)} position changes a year`;
+  if(key==='no_ruinous_era') return 'No ruinous era before 2012 (CAGR > 0, drawdown better than −40%)';
+  if(key==='lookahead') return 'Causality test clean';
+  if(key.indexOf('survives_')===0) return `Edge survives the ${key.replace('survives_','').replace('_',' bp / ')} bp stress`;
+  return key.replace(/_/g,' ');
+}
 
 /* ---------- charts specific to this report ---------- */
 function scatterXY(node, pts, cfg){
@@ -201,46 +274,98 @@ function stackBar(node, rows, cfg){
 }
 
 /* ============================== render ============================== */
-const F_=R.final, FW=R.fewtrades, REC = FW || F_, REC_KEY = FW ? R.fewtrades_key : R.final_key;
-const DEM=F_.demeter_stats, SPY=F_.spy_stats_model_data, W=F_.window;
-const oosStart=F_.oos.start_date, oosEnd=F_.oos.end_date;
-$('#m-dev').textContent = `${F_.dev.start_date} to ${F_.dev.end_date} · parameters frozen at the end of it`;
-$('#m-oos').textContent = `${oosStart} to ${oosEnd} · ${W.n_months} months, never used for tuning`;
-const dc=R.dataset_checks;
-$('#m-data').textContent = `${fmt.int(dc.rows)} daily rows, ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}`;
+const P2=R.pass2, C=P2.counts, CAND=R.candidates;
+const REC=R.rec, REC_KEY=R.rec_key, F_=R.final;
+const DEM=REC.demeter_stats, SPY=REC.spy_stats_model_data, W=REC.window||{};
+const oosStart=REC.oos.start_date, oosEnd=REC.oos.end_date;
+const COST=`${N(REC.cost_bps,0)} bp / ${N(REC.financing_spread_bps,0)} bp`;
+const DEVROWS=P2.dev_table||[], ROW={}; DEVROWS.forEach(r=>ROW[r.name]=r);
+const QUAD=((R.inference||{}).quadrant)||{};
+const PANEL=DEVROWS.filter(r=>['pass2','reinstated','incumbent'].indexOf(r.panel)>=0);
+const LENSROWS=DEVROWS.filter(r=>r.panel==='pass2');
+const LOOKS=P2.looked||[];
+const nGates=Object.keys((DEVROWS[0]||{}).gates||{}).length;
+const nameOf=k=>k.replace(/_/g,' ');
 
-/* KPIs: recommended model vs Demeter vs SPY */
+/* hero + meta */
+$('#hero-eyebrow').textContent=`Replication study · pass ${R.pass} · out-of-sample ${fmt.mon(oosStart.slice(0,7))} – ${fmt.mon(oosEnd.slice(0,7))} · costs ${COST}`;
+$('#hero-lede').innerHTML=`Pass 1 built six candidates on 141 years of index data and ran them once across Demeter's live record. Pass 2 rebuilt the attempt under a pre-registered protocol in which the design harness could not see past 30 June 2012 at all: ${C.new_candidates} new candidates, ${nGates} gates, three adversarial verifiers per survivor and <b>${C.new_looks}</b> out-of-sample look. This is what the honest answer looks like when the process is tightened rather than the model.`;
+$('#m-question').innerHTML=`Reproduce or beat ${PC(DEM.annualized_return_pct,1)} a year at a ${PC(DEM.max_drawdown_pct,2)} drawdown, with fewer trades`;
+$('#m-dev').textContent=`${REC.dev.start_date} to ${REC.dev.end_date} · design harness truncated the data at 2012-06-30`;
+$('#m-oos').textContent=`${oosStart} to ${oosEnd} · ${W.n_months||REC.oos.n_months} months, never used for tuning`;
+$('#m-engine').innerHTML=`Daily close decision, applied next day; leverage 0–3× on S&amp;P 500 total return over T-bills; <b>${COST}</b> (headline), ${P2.cost_labels.c240} and ${P2.cost_labels.s690} also reported`;
+const dc=R.dataset_checks;
+$('#m-data').textContent=`${fmt.int(dc.rows)} daily rows, ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}`;
+
+/* KPIs */
 const kpi=[
- {l:'Model annualised return', v:fmt.pct(REC.oos.annualized_return_pct,1), s:`Demeter <b>${fmt.pct(DEM.annualized_return_pct,1)}</b> · SPY ${fmt.pct(SPY.annualized_return_pct,1)}`},
- {l:'Model maximum drawdown', v:fmt.pct(REC.oos.max_drawdown_pct,1), s:`Demeter <b>${fmt.pct(DEM.max_drawdown_pct,1)}</b> · SPY ${fmt.pct(SPY.max_drawdown_pct,1)}`},
- {l:'Model Sharpe ratio', v:fmt.num(REC.oos.sharpe,2), s:`Demeter <b>${fmt.num(DEM.sharpe,2)}</b> · SPY ${fmt.num(SPY.sharpe,2)}`},
- {l:'Model down capture', v:fmt.pct(REC.oos.down_capture_pct,0), s:`Demeter <b>${fmt.pct(DEM.down_capture_pct,0)}</b> · the unreplicated part`},
- {l:'Position changes a year', v:fmt.num(REC.oos.position_changes_per_year,1), s:`Demeter rebalances <b>daily</b>`},
- {l:'Days in cash', v:fmt.pct(REC.oos.pct_days_cash,0), s:`Demeter <b>~50%</b>`},
+ {l:'Model annualised return', v:PC(REC.oos.annualized_return_pct,1), s:`Demeter <b>${PC(DEM.annualized_return_pct,1)}</b> · SPY ${PC(SPY.annualized_return_pct,1)}`},
+ {l:'Model maximum drawdown', v:PC(REC.oos.max_drawdown_pct,1), s:`Demeter <b>${PC(DEM.max_drawdown_pct,1)}</b> · SPY ${PC(SPY.max_drawdown_pct,1)}`},
+ {l:'Model Sharpe ratio', v:N(REC.oos.sharpe,2), s:`Demeter <b>${N(DEM.sharpe,2)}</b> · SPY ${N(SPY.sharpe,2)}`},
+ {l:'Model down capture', v:PC(REC.oos.down_capture_pct,0), s:`Demeter <b>${PC(DEM.down_capture_pct,0)}</b> · the unreplicated part`},
+ {l:'Position changes a year', v:N(REC.oos.position_changes_per_year,1), s:`Demeter rebalances <b>daily</b>`},
+ {l:'Days in cash', v:PC(REC.oos.pct_days_cash,0), s:`Demeter <b>~50%</b>`},
 ];
 $('#kpis').append(...kpi.map(k=>h('div',{class:'kpi'},`<div class="eyebrow">${k.l}</div><div class="v">${k.v}</div><div class="s"><span>${oosStart.slice(0,7)}–${oosEnd.slice(0,7)}</span><span>${k.s}</span></div>`)));
 
-$('#verdict-text').innerHTML = `<p><b>No.</b> The recommended model — a slow trend gate, a volatility-tiered leverage ladder and a short forced-cash window after a volatility shock — compounds at <b>${fmt.pct(REC.oos.annualized_return_pct,1)}</b> a year out of sample against SPY's ${fmt.pct(SPY.annualized_return_pct,1)}, with a <b>${fmt.pct(REC.oos.max_drawdown_pct,1)}</b> drawdown and about <b>${fmt.num(REC.oos.position_changes_per_year,0)} position changes a year</b> instead of a daily rebalance. Demeter's published record is ${fmt.pct(DEM.annualized_return_pct,1)} a year at ${fmt.pct(DEM.max_drawdown_pct,2)}: roughly <b>${fmt.pct(DEM.annualized_return_pct-REC.oos.annualized_return_pct,1)} a year of return and ${fmt.pct(Math.abs(REC.oos.max_drawdown_pct)-Math.abs(DEM.max_drawdown_pct),0)} of drawdown</b> that these rules do not reach.</p>
-<p>The gap is one-sided. On the upside the models are competitive — up-capture ${fmt.pct(REC.oos.up_capture_pct,0)} against Demeter's ${fmt.pct(DEM.up_capture_pct,0)}. On the downside they are not close: down-capture <b>${fmt.pct(REC.oos.down_capture_pct,0)} versus ${fmt.pct(DEM.down_capture_pct,0)}</b>. What these rules cannot reproduce is being flat through the worst days and levered into the recovery — Demeter's March 2020 was <b>+55.3%</b> while SPY fell 12.4%. Monthly correlation between the model and Demeter is only ${fmt.num(REC.corr_with_demeter,2)}: this is a different strategy that happens to beat the index, not a replica.</p>
-<p>Note also that neither the model nor Demeter's own published Sharpe should be read as "better than the index at everything": over this window SPY's Sharpe was ${fmt.num(SPY.sharpe,2)}, above every model here. The models add return by taking leverage, and they add it unevenly across eras.</p>`;
-
-/* data notes */
+/* verdict — four parts, every number from the files */
 (function(){
-  const es=dc.es_vs_synthetic_demeter_window_2012_2024, esd=dc.es_vs_synthetic_daily_era_1990_2013;
-  $('#data-notes').innerHTML = `<p>The S&amp;P 500 total-return and 3-month T-bill series come from a public mirror of Yahoo and FRED data covering ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}; VIX from CBOE's own history (${dc.coverage.vix_close.first} onward); E-mini S&amp;P and NASDAQ futures from a back-adjusted futures archive ending ${dc.coverage.es_ret.last}.</p>
-  <p>Two checks worth stating: monthly total returns reproduce Demeter's own published SPY column with correlation 0.9998, and actual E-mini futures returns track the synthetic "total return minus T-bill" leg with daily correlation ${fmt.num(esd.daily_corr,3)} before 2013 and ${fmt.num(es.daily_corr,2)} after (weekly ${fmt.num(es.weekly_corr,2)}, monthly ${fmt.num(es.monthly_corr,2)}) — the later futures source is sparser, which is why the synthetic leg is the primary test asset and the futures leg is a cross-check.</p>
-  <p class="faint" style="font-size:12.5px">Daily index data ends ${dc.coverage.spx_px.last} and the T-bill series ends 2025-12-19 (held flat afterwards), so the comparison window stops at January 2026 while Demeter's factsheet runs to June 2026.</p>`;
+  const look=LOOKS.length?CAND[LOOKS[0]]:null, lrow=LOOKS.length?ROW[LOOKS[0]]:null;
+  const passers=LENSROWS.filter(r=>r.gates_pass);
+  const cash=passers.map(r=>r.pct_days_cash).filter(v=>v!=null).sort((a,b)=>a-b);
+  const lowLev=passers.map(r=>r.avg_leverage_when_invested).filter(v=>v!=null).sort((a,b)=>a-b);
+  const a=`<p><b>No.</b> Pass 1's finding stands: no rules-based model here reproduces the record. The recommended model compounds at <b>${PC(REC.oos.annualized_return_pct,1)}</b> a year out of sample at ${COST} with a <b>${PC(REC.oos.max_drawdown_pct,1)}</b> drawdown and Sharpe ${N(REC.oos.sharpe,2)}, against Demeter's published ${PC(DEM.annualized_return_pct,1)}, ${PC(DEM.max_drawdown_pct,2)} and ${N(DEM.sharpe,2)} — and against SPY's own Sharpe of ${N(SPY.sharpe,2)}, still above every model built in either pass. Monthly correlation with the record is ${N(REC.corr_with_demeter,2)}.</p>`;
+  const tt=PANEL.filter(r=>r.verdict==='REFUTED'&&r.true_tunables).map(r=>r.true_tunables);
+  const b=`<p>Pass 2 built <b>${C.new_candidates}</b> new candidates, one per pre-assigned lens, on a harness that hard-truncated the data at ${REC.dev.end_date}. <b>${C.gate_passers}</b> passed all ${nGates} pre-registered gates; adversarial verification then refuted <b>${C.refuted}</b> of them${LENSROWS.length-C.gate_passers?` (and ${LENSROWS.length-C.gate_passers} failed a gate outright)`:''} — every one on the same defect, "structural constants" whose values had been chosen by comparing development results, so true parameter counts ran ${Math.min(...tt)}–${Math.max(...tt)} against a budget of ${(DEVROWS[0].gates.G7_param_budget||{}).bar}. The single survivor, <span class="mono">${LOOKS[0]||DASH}</span>, spent the pass's one out-of-sample look and <b>failed it</b>: ${look?`Sharpe <b>${N(look.oos.sharpe,2)}</b>, ${PC(look.oos.annualized_return_pct,2)} a year, ${PC(look.oos.pct_days_cash,0)} of days in cash, ${N(look.oos.n_position_changes,0)} position changes in the whole window`:DASH}.</p>`;
+  const accKeys=Object.keys(((P2.summary_by_stem||{})[LOOKS[0]]||{}).acceptance||{}).filter(k=>k!=='ALL');
+  const critList=accKeys.map(k=>accLabel(k).toLowerCase()).join(', ');
+  const c=`<p>The recommendation is therefore unchanged: <b><span class="mono">${REC_KEY}</span></b>, pass 1's low-turnover model, re-measured at the pass-2 cost basis. ${P2.accepted.length?`(${P2.accepted.join(', ')} met every acceptance criterion and takes its place.)`:`No pass-2 candidate met the pre-registered acceptance criteria${critList?` — ${critList}`:''}.`}</p>`;
+  const d=`<p><b>The negative result is the finding.</b> Every rule that survived 1990–2012 did so by being out of the market most of the time — the gate passers sat in cash ${PC(cash[0],0)}–${PC(cash[cash.length-1],0)} of days, or held an average of ${N(lowLev[0],2)}× when invested — and that is exactly what a fourteen-year bull market punishes. The development window contains two grinding bears and pays for sitting them out; the live window did not.</p>`;
+  $('#verdict-text').innerHTML=a+b+c+d;
 })();
 
-/* fingerprint tiles */
+/* ---------- what changed in pass 2 ---------- */
+(function(){
+  const ch=P2.changed||{head:[],rows:[]};
+  $('#changed-sub').innerHTML=`Pass 1's discipline was a promise; pass 2's is a harness. Every row below is from <span class="mono">RESULTS.md</span>, and the gates, the look budget and the verification outcomes are pre-registered in <span class="mono">PREREG.md</span>.`;
+  if(ch.rows.length){
+    const cols=[{key:'a',label:ch.head[0]||'',cls:'lbl',fmt:v=>md(v)},{key:'b',label:ch.head[1]||'Pass 1',fmt:v=>md(v)},{key:'c',label:ch.head[2]||'Pass 2',fmt:v=>md(v)}];
+    $('#t-changed').appendChild(table(cols, ch.rows.map(r=>({a:r[0],b:r[1],c:r[2]})), {cls:'tbl-compact'}));
+  } else $('#t-changed').innerHTML=`<p class="sub">${DASH}</p>`;
+  const rows=(P2.look_log_rows||[]).map(r=>({when:r[0],module:r[1],setting:r[2],note:r[3]}));
+  if(rows.length) $('#t-looklog').appendChild(table([{key:'when',label:'When (IST)',cls:'lbl'},{key:'module',label:'Module',cls:'lbl'},{key:'setting',label:'Cost row'},{key:'note',label:'Note',cls:'lbl'}],rows,{cls:'tbl-compact'}));
+  else $('#t-looklog').innerHTML=`<p class="sub">${DASH}</p>`;
+  $('#looklog-note').innerHTML=`<span class="mono">results/OOS_LOOK_LOG.md</span>, append-only. New signal looks in pass 2: <b>${C.new_looks}</b>. The pass-1 panel was re-run at the three cost rows for a uniform leaderboard; those are re-runs of already-evaluated models, not new looks. Candidates with out-of-sample numbers across both passes: <b>${C.candidates_with_oos}</b>.`;
+  const dev=mdItems(P2.prereg.deviations);
+  $('#deviations-list').append(...(dev.length?dev:['—']).map(t=>h('li',{},md(t))));
+})();
+
+/* ---------- method ---------- */
+(function(){
+  const g=(DEVROWS[0]||{}).gates||{};
+  const steps=[
+    ['1','Signal contract','A model is a function of daily market data returning a target leverage between 0 and 3 for the next session. Leverage 0 is the cash engine, earning the 3-month T-bill. The engine, features and evaluator are pass 1’s, reused unmodified.'],
+    ['2','Development access, enforced by code',`Design and tuning ran through <span class="mono">dev_harness.py</span>, which truncates the market data at ${REC.dev.end_date} <i>before</i> the signal function is called, so the out-of-sample window is structurally invisible during design. Causality is re-tested at <b>${C.dev_cutoffs}</b> development cut-offs, and again at <b>${C.verify_cutoffs}</b> in verification.`],
+    ['3','Gates fixed in writing',`${nGates} pre-registered gates: causality; development Sharpe ≥ ${N((g.G2_dev1990_sharpe||{}).bar,3)} (the incumbent’s own score); drawdown no worse than ${PC((g.G3_dev1990_maxdd||{}).bar,0)}; no ruinous era; ≤ ${N((g.G5_changes_per_year||{}).bar,0)} changes a year; a plateau share ≥ ${PC(((g.G6_plateau||{}).bar||0)*100,0)}; ≤ ${N((g.G7_param_budget||{}).bar,0)} tunable parameters.`],
+    ['4','Three adversarial verifiers per survivor','Independent readers for causality &amp; code (L1), overfit &amp; plateau (L2), mechanism &amp; execution (L3). A SEVERE finding blocks the look. Their expected out-of-sample ranges were written down before the look was taken.'],
+    ['5','One look, three cost rows',`<span class="mono">oos_final.py</span> refuses ungated modules and second looks and writes every look to the log. Costs charged: <b>${COST}</b> as the headline (1.5× the measured 2 bp / 40 bp), with ${P2.cost_labels.c240} and ${P2.cost_labels.s690} as secondary and stress rows. Costs do not change the signal, so three cost rows are one look.`],
+  ];
+  $('#method-ladder').append(...steps.flatMap(([n,t,d])=>[h('div',{class:'n'},n), h('div',{class:'b'},`<h4>${t}</h4><p>${d}</p>`)]));
+  const es=dc.es_vs_synthetic_demeter_window_2012_2024, esd=dc.es_vs_synthetic_daily_era_1990_2013;
+  $('#data-notes').innerHTML=`<p>The S&amp;P 500 total-return and 3-month T-bill series come from a public mirror of Yahoo and FRED data covering ${dc.coverage.spx_px.first} to ${dc.coverage.spx_px.last}; VIX from CBOE's own history (${dc.coverage.vix_close.first} onward); E-mini S&amp;P and NASDAQ futures from a back-adjusted futures archive ending ${dc.coverage.es_ret.last}.</p>
+  <p>Two checks worth stating: monthly total returns reproduce Demeter's own published SPY column with correlation 0.9998, and actual E-mini futures returns track the synthetic "total return minus T-bill" leg with daily correlation ${N(esd.daily_corr,3)} before 2013 and ${N(es.daily_corr,2)} after (weekly ${N(es.weekly_corr,2)}, monthly ${N(es.monthly_corr,2)}).</p>
+  <p class="faint" style="font-size:12.5px">Daily index data ends ${dc.coverage.spx_px.last} and the T-bill series ends 2025-12-19 (held flat afterwards), so the comparison window stops at ${fmt.mon(oosEnd.slice(0,7))} while Demeter's factsheet runs to June 2026. VIX begins ${dc.coverage.vix_close.first}, so every VIX rule's "1950–2012" figure is forty years of forced cash plus 22.5 years of signal.</p>`;
+})();
+
+/* ---------- fingerprint (unchanged) ---------- */
 const inf=R.inference||{};
 (function(){
   const rows=(inf.exposure_rows||[]).filter(r=>r.exposure!=null);
   const ds=inf.down_summary||{}, r36=inf.rolling36||{};
   const tiles=[
-    ['Implied exposure, median', rows.length? fmt.num(rows.map(r=>r.exposure).sort((a,b)=>a-b)[Math.floor(rows.length/2)],2)+'×' : '—', `Across ${rows.length} months where SPY moved more than 2%. Mean of the SPY-down months: <b>${fmt.num(ds.mean_exposure,2)}×</b>.`],
+    ['Implied exposure, median', rows.length? N(rows.map(r=>r.exposure).sort((a,b)=>a-b)[Math.floor(rows.length/2)],2)+'×' : DASH, `Across ${rows.length} months where SPY moved more than 2%. Mean of the SPY-down months: <b>${N(ds.mean_exposure,2)}×</b>.`],
     ['Full-cash months', (inf.full_cash_months||[]).length, `Months printing exactly 0.00%: ${(inf.full_cash_months||[]).map(fmt.mon).join(', ')} — SPY fell 4.97%, 8.73% and 8.26% in them.`],
-    ['Rolling 36-month beta', `${fmt.num(r36.beta_min,2)} – ${fmt.num(r36.beta_max,2)}`, `Median ${fmt.num(r36.beta_median,2)}; down-capture median ${fmt.pct(r36.down_capture_median,0)}. Exposure is not a constant, and not a function of the volatility level.`],
+    ['Rolling 36-month beta', `${N(r36.beta_min,2)} – ${N(r36.beta_max,2)}`, `Median ${N(r36.beta_median,2)}; down-capture median ${PC(r36.down_capture_median,0)}. Exposure is not a constant, and not a function of the volatility level.`],
   ];
   $('#fp-tiles').append(...tiles.map(([l,v,s])=>h('div',{class:'card'},`<div class="eyebrow">${l}</div><div style="font-family:var(--serif);font-size:34px;line-height:1;margin:6px 0 6px">${v}</div><p class="sub" style="margin:0;color:var(--ink-2)">${s}</p>`)));
   const ing=[
@@ -260,154 +385,303 @@ const inf=R.inference||{};
   ];
   $('#fp-out').append(...out.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
   const ex=(inf.exposure_rows||[]);
-  barChart($('#c-exposure'),{cats:ex.map(r=>r.month),height:300,yFmt:v=>fmt.num(v,1)+'×',
+  barChart($('#c-exposure'),{cats:ex.map(r=>r.month),height:300,yFmt:v=>N(v,1)+'×',
     series:[{name:'Implied exposure',values:ex.map(r=>r.exposure),cls:'strat'}],
-    catTip:c=>fmt.mon(c), extraTip:[{name:'Strategy',values:ex.map(r=>r.strategy),fmt:v=>fmt.pct(v,2,true)},{name:'SPY',values:ex.map(r=>r.spy),fmt:v=>fmt.pct(v,2,true)}]});
+    catTip:c=>fmt.mon(c), extraTip:[{name:'Strategy',values:ex.map(r=>r.strategy),fmt:v=>PC(v,2,true)},{name:'SPY',values:ex.map(r=>r.spy),fmt:v=>PC(v,2,true)}]});
   const svg=$('#c-exposure').querySelector('svg');
-  if(svg){ svg.querySelectorAll('.tick').forEach((t,i)=>{ if(t.textContent && t.textContent.match(/^\d{4}-\d{2}$/)) t.textContent = t.textContent.endsWith('-01')? t.textContent.slice(0,4) : ''; }); }
+  if(svg){ svg.querySelectorAll('.tick').forEach(t=>{ if(t.textContent && t.textContent.match(/^\d{4}-\d{2}$/)) t.textContent = t.textContent.endsWith('-01')? t.textContent.slice(0,4) : ''; }); }
 })();
 
-/* the trap */
+/* ---------- the trap, plus pass 2's mirror image ---------- */
 (function(){
-  const trap=R.candidates['vix_dissipation'], rec=R.candidates[REC_KEY];
-  const rows=[
-    {w:'Development 1990 – Jun 2012', c:trap.dev.annualized_return_pct, s:trap.dev.sharpe, d:trap.dev.max_drawdown_pct, v:'bad'},
-    {w:'Out of sample Jul 2012 – 2026', c:trap.oos.annualized_return_pct, s:trap.oos.sharpe, d:trap.oos.max_drawdown_pct, v:'ok'},
-    {w:'Full history 1990 – 2026', c:trap.full.annualized_return_pct, s:trap.full.sharpe, d:trap.full.max_drawdown_pct, v:'bad'},
-  ];
-  $('#t-trap').appendChild(table([{key:'w',label:'Window',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max drawdown',fmt:v=>fmt.pct(v,1),color:true},{key:'v',label:'',fmt:v=>`<span class="pill ${v}">${v==='ok'?'looks great':'ruinous'}</span>`}],rows,{cls:'tbl-compact'}));
-  const pts=Object.entries(R.candidates).map(([k,c])=>({x:c.dev.sharpe, y:c.oos.sharpe, label:k.replace(/_/g,' '), short:k==='vix_dissipation'?'VIX rule':(k===REC_KEY?'recommended':''), hollow:k!==REC_KEY, extra:`${fmt.pct(c.oos.annualized_return_pct,1)} out-of-sample CAGR`}));
+  const trap=CAND['vix_dissipation'];
+  if(trap){
+    $('#trap-sub').innerHTML=`The single best-fitting archetype for Demeter's record is "hold 3× while VIX is below its 10-day average, otherwise cash". Across Demeter's live window it compounds at ${PC(trap.oos.annualized_return_pct,1)} a year at ${COST}. Across the development window it loses money and draws down ${PC(trap.dev.max_drawdown_pct,0)}.`;
+    const rows=[
+      {w:`Development ${trap.dev.start_date.slice(0,4)} – ${trap.dev.end_date.slice(0,7)}`, c:trap.dev.annualized_return_pct, s:trap.dev.sharpe, d:trap.dev.max_drawdown_pct, v:'bad'},
+      {w:`Out of sample ${trap.oos.start_date.slice(0,7)} – ${trap.oos.end_date.slice(0,4)}`, c:trap.oos.annualized_return_pct, s:trap.oos.sharpe, d:trap.oos.max_drawdown_pct, v:'ok'},
+      {w:`Full history ${trap.full.start_date.slice(0,4)} – ${trap.full.end_date.slice(0,4)}`, c:trap.full.annualized_return_pct, s:trap.full.sharpe, d:trap.full.max_drawdown_pct, v:'bad'},
+    ];
+    $('#t-trap').appendChild(table([{key:'w',label:'Window',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>PC(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>N(v,2)},{key:'d',label:'Max drawdown',fmt:v=>PC(v,1),color:true},{key:'v',label:'',fmt:v=>`<span class="pill ${v}">${v==='ok'?'looks great':'ruinous'}</span>`}],rows,{cls:'tbl-compact'}));
+  }
+  const pts=Object.entries(CAND).map(([k,c])=>({x:c.dev.sharpe, y:c.oos.sharpe, label:nameOf(k), short:k==='vix_dissipation'?'VIX rule':(k===REC_KEY?'recommended':(LOOKS.indexOf(k)>=0?'pass 2':'')), hollow:k!==REC_KEY, extra:`${PC(c.oos.annualized_return_pct,1)} out-of-sample CAGR`})).filter(p=>p.x!=null&&p.y!=null);
   const xs=pts.map(p=>p.x), ys=pts.map(p=>p.y);
   scatterXY($('#c-devoos'), pts, {x0:Math.min(-0.4,...xs)-0.1, x1:Math.max(...xs)+0.15, y0:Math.min(0,...ys)-0.1, y1:Math.max(...ys)+0.15, xLabel:'Development Sharpe', yLabel:'Out-of-sample Sharpe', aria:'Development versus out-of-sample Sharpe for each candidate'});
+  const tr=PANEL.filter(r=>r.thirds&&r.thirds.length);
+  const weakLast=tr.filter(r=>r.thirds[2]&&r.thirds[0]&&r.thirds[0].sharpe!=null&&r.thirds[2].sharpe!=null&&r.thirds[2].sharpe<r.thirds[0].sharpe).length;
+  $('#thirds-sub').innerHTML=`Pass 1's trap only worked after 2012. Pass 2's survivors are the mirror image: rules that only work before it. Splitting the development window into thirds, <b>${weakLast} of ${tr.length}</b> candidates scored their weakest third in the last one — the stretch closest in time and market structure to the live window. Sharpe by third, from <span class="mono">dev_results/&lt;name&gt;_VERIFY.json</span> and the verification digest.`;
+  if(tr.length){
+    const rows=tr.map(r=>{ const t=r.thirds, last=t[t.length-1];
+      return {n:nameOf(r.name), full:r.dev_sharpe, t1:t[0]?t[0].sharpe:null, t2:t[1]?t[1].sharpe:null, t3:t[2]?t[2].sharpe:null,
+        w:(t[0]&&last)?`${t[0].start.slice(0,4)}–${last.end.slice(0,4)}`:DASH, _cls:r.name===REC_KEY?'hi':''}; });
+    $('#t-thirds').appendChild(table([{key:'n',label:'Candidate',cls:'lbl'},{key:'full',label:'DEV Sharpe, full window',fmt:v=>N(v,2)},
+      {key:'t1',label:'First third',fmt:v=>v==null?DASH:N(v,2)},{key:'t2',label:'Second third',fmt:v=>v==null?'undefined (all cash)':N(v,2)},{key:'t3',label:'Last third',fmt:v=>v==null?DASH:N(v,2)},{key:'w',label:'Window',cls:'lbl'}],rows,{cls:'tbl-compact'}));
+  }
+  $('#thirds-note').innerHTML=`An "undefined" third is a stretch the rule spent entirely in cash with no position change. A rule that works in both windows was not found with daily closes; using both windows to select one is the obvious fix and the obvious way to over-fit.`;
 })();
 
-/* leaderboard */
+/* ---------- the DEV gauntlet ---------- */
 (function(){
-  const order=Object.entries(R.candidates).sort((a,b)=>b[1].oos.sharpe-a[1].oos.sharpe);
-  const rows=order.map(([k,c],i)=>({rank:i+1, name:k.replace(/_/g,' '), family:c.family, oc:c.oos.annualized_return_pct, os:c.oos.sharpe, od:c.oos.max_drawdown_pct, ch:c.oos.position_changes_per_year, cash:c.oos.pct_days_cash, dc:c.dev.annualized_return_pct, ds:c.dev.sharpe, dd:c.dev.max_drawdown_pct, la:c.lookahead_ok, corr:c.corr_with_demeter, _cls: k===REC_KEY?'hi':''}));
-  rows.push({rank:'', name:'Demeter (published)', family:'the target', oc:DEM.annualized_return_pct, os:DEM.sharpe, od:DEM.max_drawdown_pct, ch:null, cash:null, dc:null, ds:null, dd:null, la:null, corr:1});
-  rows.push({rank:'', name:'SPY buy & hold', family:'passive reference', oc:SPY.annualized_return_pct, os:SPY.sharpe, od:SPY.max_drawdown_pct, ch:0, cash:0, dc:null, ds:null, dd:null, la:null, corr:null, _cls:'spy-row'});
-  (R.bh_refs||[]).filter(r=>r.name!=='Buy & hold 1x').forEach(r=> rows.push({rank:'', name:r.name+' (no costs)', family:'levered passive reference', oc:r.cagr_pct, os:r.sharpe, od:r.max_dd_pct, ch:0, cash:0, dc:null, ds:null, dd:null, la:null, corr:null, _cls:'spy-row'}));
+  const budget=(DEVROWS[0].gates.G7_param_budget||{}).bar;
+  const ref=PANEL.find(r=>r.spy_dev_sharpe!=null)||{};
+  const reinstated=PANEL.filter(r=>r.panel==='reinstated').map(r=>`<span class="mono">${r.name}</span>`).join(', ');
+  $('#gauntlet-sub').innerHTML=`All numbers on the development window (${ref.dev_start||DASH} to ${ref.dev_end||DASH}) at ${COST}. SPY buy-and-hold scores Sharpe ${N(ref.spy_dev_sharpe,2)} on the same window (CAGR ${PC(ref.spy_dev_cagr_pct,2)}, drawdown ${PC(ref.spy_dev_maxdd_pct,1)}), and ${N(ref.spy_sharpe_1950,2)} over 1950–2012. ${C.new_candidates} lens candidates${reinstated?`, the reinstated pass-1 file ${reinstated}`:''}, and the incumbent for scale. <b>Refuted candidates carry no out-of-sample numbers anywhere on this page</b> — they were never run through <span class="mono">evaluate.py</span>, and a look cannot be un-taken.`;
+  const rows=PANEL.map(r=>({
+    n:nameOf(r.name), lens:r.lens, tun:(r.true_tunables&&r.true_tunables!==r.declared_tunables)?`${r.declared_tunables} → <b>${r.true_tunables}</b>`:(r.declared_tunables==null?DASH:String(r.declared_tunables)),
+    sh:r.dev_sharpe, cagr:r.dev_cagr_pct, dd:r.dev_maxdd_pct, chg:r.changes_per_year, cash:r.pct_days_cash, lev:r.avg_leverage_when_invested,
+    sh50:r.sharpe_1950, vix:r.uses_vix, g:r.gates_pass, gf:r.gates_failed, ver:r.verdict, vby:r.refuted_by, look:r.oos_look, sets:r.dev_param_sets, corr:r.dev_param_sets_corrected,
+    _cls:(r.panel==='incumbent'?'hi':(r.verdict==='REFUTED'||!r.gates_pass?'dim':''))}));
+  $('#t-gauntlet').appendChild(table([
+    {key:'n',label:'Candidate',cls:'lbl'},{key:'lens',label:'Lens',cls:'lbl'},
+    {key:'tun',label:'Tunables declared → true',fmt:v=>v},
+    {key:'sh',label:'DEV Sharpe',fmt:v=>N(v,2)},{key:'cagr',label:'DEV CAGR',fmt:v=>PC(v,2),color:true},{key:'dd',label:'DEV max DD',fmt:v=>PC(v,1),color:true},
+    {key:'chg',label:'Chg / yr',fmt:v=>N(v,1)},{key:'cash',label:'Cash %',fmt:v=>PC(v,0)},{key:'lev',label:'Avg lev. invested',fmt:v=>v==null?DASH:N(v,2)+'×'},
+    {key:'sh50',label:'1950–2012 Sharpe',fmt:(v,r)=>v==null?DASH:N(v,2)+(r.vix?' <span class="faint">(cash pre-1990)</span>':'')},
+    {key:'g',label:'Gates',fmt:(v,r)=>v?'<span class="pill ok">pass</span>':`<span class="pill bad">fail ${(r.gf||[]).join(' ')}</span>`},
+    {key:'ver',label:'Verification',fmt:(v,r)=>v==null?`<span class="pill flat">${r.g?'not re-verified':'not verified — gate failure'}</span>`:(v==='REFUTED'?`<span class="pill bad">refuted ${(r.vby||[]).join(' ')}</span>`:'<span class="pill ok">holds</span>')},
+    {key:'look',label:'OOS look',fmt:v=>v==null?'<span class="pill bad">no</span>':(v==='pass 2'?'<span class="pill mid">pass 2</span>':'<span class="pill flat">pass 1</span>')},
+    {key:'sets',label:'DEV param sets',fmt:(v,r)=>v==null?DASH:fmt.int(v)+(r.corr?'<span class="faint"> †</span>':'')}],rows,{cls:'tbl-compact'}));
+  $('#gauntlet-note').innerHTML=`Gates are recomputed at build time by <span class="mono">gate_check.py</span>; "true tunables" is a verifier's reading of the signal file, not a mechanical count — the mechanical gate counts declared parameters only and passed every one of them. † = the designer's self-reported count corrected by a verifier. Development parameter sets evaluated across the ${C.new_candidates} lens candidates: <b>${fmt.int(C.dev_param_sets_total)}</b>. Verifier reports filed: ${C.verifiers}.`;
+  const cards=PANEL.filter(r=>r.panel!=='incumbent').map(r=>{
+    const cls=r.verdict==='REFUTED'?'refuted':(r.verdict==='holds'?'held':'gatefail');
+    const state=!r.gates_pass?`<span class="pill bad">gate failure ${(r.gates_failed||[]).join(' ')}</span>`:(r.verdict==null?'<span class="pill flat">not verified</span>':pillFor(r.verdict));
+    const mech=firstSentence(r.headline,260)||r.family;
+    const dec=r.decisive?`${r.decisive_lens}: ${firstSentence(r.decisive,420)}`:null;
+    return h('div',{class:'cand '+cls},
+      `<h4><span>${nameOf(r.name)}</span>${state}</h4>
+       <p class="mech">${md(mech)}</p>
+       <p class="fact">DEV Sharpe ${N(r.dev_sharpe,2)} · maxDD ${PC(r.dev_maxdd_pct,1)} · cash ${PC(r.pct_days_cash,0)} · ${N(r.changes_per_year,1)} chg/yr · ${r.declared_tunables==null?DASH:r.declared_tunables} declared${r.true_tunables?` / ${r.true_tunables} true`:''} tunables</p>
+       <dl>
+         <dt>${r.verdict==='REFUTED'?'Decisive verifier finding':'What the verifiers found'}</dt><dd>${md(dec)}</dd>
+         <dt>Designer's own biggest weakness</dt><dd>${md(firstSentence(r.biggest_weakness,420))}</dd>
+         <dt>Verifiers' expected out-of-sample Sharpe, written before the look</dt><dd>${md(firstSentence(r.oos_range,220))}</dd>
+         <dt>Out-of-sample look</dt><dd>${r.oos_look==='pass 2'?'taken — see the next section':'none: '+(r.gates_pass?'refused after verification':'gate failure')+'. No out-of-sample number exists for this candidate.'}</dd>
+       </dl>`);
+  });
+  $('#gauntlet-cards').append(...cards);
+})();
+
+/* ---------- the one that got a look ---------- */
+(function(){
+  const body=$('#look-body');
+  if(!LOOKS.length){ $('#look-title').textContent='No out-of-sample look was earned'; $('#look-sub').textContent='Every pass-2 candidate either failed a gate or was refuted in verification.'; body.innerHTML=''; return; }
+  $('#look-title').innerHTML=`The one that got a look: <span class="mono">${LOOKS.join('</span>, <span class="mono">')}</span>`;
+  const first=ROW[LOOKS[0]]||{};
+  $('#look-sub').innerHTML=`${LOOKS.length===1?'One candidate':LOOKS.length+' candidates'} passed all ${nGates} gates and survived three verifiers, so ${LOOKS.length===1?'it':'they'} spent the pass's look budget: one frozen signal, three cost rows, logged at ${P2.looked_when[LOOKS[0]]||DASH} IST. The pre-registration named the choice before the window was opened.`;
+  LOOKS.forEach(key=>{
+    const c=CAND[key]; if(!c) return;
+    const row=ROW[key]||{}, sum=(P2.summary_by_stem||{})[key]||{}, pos=(P2.position_changes||{})[key];
+    const wrap=h('div',{});
+    /* head-to-head */
+    const metrics=[['Annualised return','annualized_return_pct','pct'],['Annualised std. dev.','annualized_std_dev','num'],['Sharpe','sharpe','num'],['Sortino','sortino','num'],['Calmar','calmar','num'],['Maximum drawdown','max_drawdown_pct','pct'],['% positive months','pct_positive_months','pct2'],['Beta to SPY','beta_to_spy','num'],['Up capture','up_capture_pct','pct0'],['Down capture','down_capture_pct','pct0'],['Growth of $1,000','growth_of_1000','money'],['Days in cash','pct_days_cash','pct0'],['Position changes, total','n_position_changes','int']];
+    const f=(kind,v)=> v==null?DASH:kind==='pct'?PC(v,2):kind==='pct2'?PC(v,2):kind==='pct0'?PC(v,0):kind==='money'?fmt.money(v):kind==='int'?fmt.int(v):N(v,2);
+    const h2h=metrics.map(([l,k,kind])=>({m:l, a:f(kind,c.oos[k]), b:f(kind,REC.oos[k]), c:f(kind,DEM[k]), d:f(kind,SPY[k])}));
+    h2h.push({m:'Monthly correlation with Demeter', a:N(c.corr_with_demeter,2), b:N(REC.corr_with_demeter,2), c:N(1,2), d:DASH});
+    const gridA=h('div',{class:'grid2'});
+    gridA.appendChild(h('div',{class:'card'},`<h3>Head to head, ${fmt.mon(c.oos.start_date.slice(0,7))} – ${fmt.mon(c.oos.end_date.slice(0,7))}, ${COST}</h3><div class="tbl-wrap" id="t-h2h-${key}"></div>`));
+    gridA.appendChild(h('div',{class:'card'},`<h3>What actually happened</h3><div id="story-${key}"></div><div class="tbl-wrap" style="margin-top:12px" id="t-dates-${key}"></div>`));
+    wrap.appendChild(gridA);
+    const gridB=h('div',{class:'grid2',style:'margin-top:22px'});
+    gridB.appendChild(h('div',{class:'card'},`<h3>Cost rows</h3><p class="sub">The same frozen signal at all three pre-registered cost bases.</p><div class="tbl-wrap" id="t-cost3-${key}"></div><h3 style="margin-top:16px">The two asymmetries in our favour, subtracted</h3><div class="tbl-wrap" id="t-asym-${key}"></div><p class="note" id="asym-note-${key}"></p>`));
+    gridB.appendChild(h('div',{class:'card'},`<h3>Acceptance criteria</h3><p class="sub">Pre-registered in <span class="mono">PREREG.md</span> before any out-of-sample run.</p><ul class="checks" id="accept-${key}"></ul><p class="note" id="accept-note-${key}"></p>`));
+    wrap.appendChild(gridB);
+    wrap.appendChild(h('div',{class:'card',style:'margin-top:22px'},`<h3>Where the leverage sat</h3><p class="sub">Share of out-of-sample trading days at each target leverage.</p><div id="c-lev-${key}"></div>`));
+    wrap.appendChild(h('div',{class:'card',style:'margin-top:22px'},`<h3>Calendar years</h3><div class="legend"><span><i class="sw model"></i>${nameOf(key)}</span><span><i class="sw dem"></i>Demeter</span><span><i class="sw spy"></i>SPY</span></div><div id="c-yr-${key}"></div><div class="tbl-wrap" style="margin-top:14px" id="t-yr-${key}"></div>`));
+    body.appendChild(wrap);
+
+    $(`#t-h2h-${key}`).appendChild(table([{key:'m',label:'',cls:'lbl'},{key:'a',label:nameOf(key),cls:'strat'},{key:'b',label:'Incumbent'},{key:'c',label:'Demeter'},{key:'d',label:'SPY'}],h2h,{cls:'tbl-compact'}));
+
+    const oosSubs=(c.sub_periods||[]).filter(p=>p.start>=oosStart);
+    const post2020=oosSubs.slice().sort((a,b)=>a.start<b.start?1:-1)[0];      // the latest-starting sub-period
+    const pre2020=oosSubs.filter(p=>p!==post2020&&p.end<(post2020||{}).start)[0];
+    const fire=(sum.fire_check||[]);
+    const invested=fire.filter(f=>f.position_in_effect>0).length;
+    $(`#story-${key}`).innerHTML=`<p class="sub" style="margin-top:0">${pos?`<b>${pos.n} position changes in ${N((c.oos.n_months||0)/12,1)} years</b>, the last on ${pos.since_last_change.date}. From that day to the end of the window the rule was in cash on <b>${PC(pos.since_last_change.pct_cash,0)}</b> of ${fmt.int(pos.since_last_change.n_days)} sessions`:DASH}${post2020?`, and the ${post2020.start.slice(0,4)}–${post2020.end.slice(0,4)} sub-period scores Sharpe <b>${N(post2020.sharpe,2)}</b> on ${PC(post2020.pct_days_cash,0)} cash`:''}.${pre2020?` Before that it was a ${PC(pre2020.pct_days_cash,0)}-cash filter: ${pre2020.start.slice(0,4)}–${pre2020.end.slice(0,4)} CAGR ${PC(pre2020.cagr_pct,1)}, Sharpe ${N(pre2020.sharpe,2)}.`:''}</p>
+      <p class="sub">Of the <b>${fire.length}</b> dated re-entries the record implies (the sessions around the ${[...new Set(fire.map(f=>f.date.slice(0,4)))].join(', ')} lows), this rule was invested at the close of <b>${invested}</b>. No candidate in either pass has fired on them.</p>`;
+    if(pos) $(`#t-dates-${key}`).appendChild(table([{key:'date',label:'Position change',cls:'lbl'},{key:'from',label:'From',fmt:v=>N(v,0)+'×'},{key:'to',label:'To',fmt:v=>N(v,0)+'×'}],pos.changes,{cls:'tbl-compact'}));
+
+    const cr=c.cost_rows||{};
+    const crRows=[['c240','c240'],['headline','headline'],['s690','s690']].map(([lab,k2])=>{const x=cr[k2]; return {l:P2.cost_labels[lab]+(k2==='headline'?' (headline)':(k2==='s690'?' (stress)':'')), c:x?x.cagr_pct:null, s:x?x.sharpe:null, d:x?x.max_drawdown_pct:null};});
+    $(`#t-cost3-${key}`).appendChild(table([{key:'l',label:'Cost basis',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>PC(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>N(v,2)},{key:'d',label:'Max drawdown',fmt:v=>PC(v,1),color:true}],crRows,{cls:'tbl-compact'}));
+    const adjOf=st=>{const s=(P2.summary_by_stem||{})[st]||{}; return s.adjusted||null;};
+    const aRows=[[key,adjOf(key)],[REC_KEY,adjOf(REC_KEY)]].filter(x=>x[1]).map(([n,ad])=>({
+      n:nameOf(n), base:`${PC(ad.base.cagr_pct,2)} / ${N(ad.base.sharpe,2)}`,
+      tb:`${PC(ad.tbill_zeroed_on_cash.cagr_pct,2)} / ${N(ad.tbill_zeroed_on_cash.sharpe,2)}`,
+      tbp:ad.tbill_on_cash_days_pct_annual, sl:`${PC(ad.clustered_slippage.cagr_pct,2)} / ${N(ad.clustered_slippage.sharpe,2)}`}));
+    if(aRows.length) $(`#t-asym-${key}`).appendChild(table([{key:'n',label:`At ${COST}`,cls:'lbl'},{key:'base',label:'As engineered'},{key:'tb',label:'T-bill zeroed on cash days'},{key:'tbp',label:'T-bill on cash days, %/yr',fmt:v=>PC(v,2)},{key:'sl',label:'Cost × max(1, RV21/15%)'}],aRows,{cls:'tbl-compact'}));
+    $(`#asym-note-${key}`).innerHTML=`Demeter books cash at 0%; this engine credits the T-bill. Clustered slippage is immaterial for both because neither trades often — the verifiers measured 1.3–1.5× the flat cost for the high-turnover VIX-level machines that were refused a look.`;
+    const acc=sum.acceptance||{};
+    const pre2012=(c.sub_periods||[]).filter(p=>p.start<'2012');
+    const worstPre=pre2012.length?Math.min(...pre2012.map(p=>p.max_dd_pct)):null;
+    const values=k2=> k2.indexOf('sharpe_gt')===0? N(c.oos.sharpe,2)
+      : k2.indexOf('maxdd_ge')===0? PC(c.oos.max_drawdown_pct,1)
+      : k2.indexOf('changes_lt')===0? N(c.oos.position_changes_per_year,1)+' a year'
+      : k2==='no_ruinous_era'? (worstPre!=null?`worst pre-2012 sub-period drawdown ${PC(worstPre,1)}`:DASH)
+      : k2==='lookahead'? (c.lookahead_ok?`clean at ${c.n_lookahead_cutoffs||C.dev_cutoffs} cut-offs`:'fail')
+      : k2.indexOf('survives_')===0? (cr.s690?`Sharpe ${N(cr.s690.sharpe,2)}`:DASH) : DASH;
+    const items=Object.keys(acc).filter(k2=>k2!=='ALL').map(k2=>h('li',{},`<span class="mk ${acc[k2]?'yes':'no'}">${acc[k2]?'✓':'✗'}</span><span>${accLabel(k2)} <span class="faint">— ${values(k2)}</span></span>`));
+    items.push(h('li',{},`<span class="mk ${acc.ALL?'yes':'no'}">${acc.ALL?'✓':'✗'}</span><span><b>All criteria met</b> <span class="faint">— ${acc.ALL?'accepted':'not a success; the incumbent stands'}</span></span>`));
+    $(`#accept-${key}`).append(...items);
+    $(`#accept-note-${key}`).innerHTML=`The era test is run on the pre-VIX 1950–2012 sample the rule never used in development; it is disclosed rather than waived. Out-of-sample parameter perturbations (${(c.param_sensitivity_oos||[]).length} variants, computed after the look as a disclosure, not a selection input) span Sharpe ${N(Math.min(...(c.param_sensitivity_oos||[]).map(p=>p.sharpe)),2)}–${N(Math.max(...(c.param_sensitivity_oos||[]).map(p=>p.sharpe)),2)}: the frozen point is mid-range, so the whole neighbourhood fails, not just this setting.`;
+    const ld=c.leverage_distribution_oos||{}, cols=['var(--cash)','var(--strategy)','var(--spy)','var(--pos)'];
+    const lk=Object.keys(ld).sort((x,y)=>parseFloat(x)-parseFloat(y));
+    const ldR=REC.leverage_distribution_oos||{}, lkR=Object.keys(ldR).sort((x,y)=>parseFloat(x)-parseFloat(y));
+    stackBar($(`#c-lev-${key}`),[
+      {label:nameOf(key), parts:lk.map(k2=>({name:`${parseFloat(k2)}×`, v:ld[k2], color:cols[Math.round(parseFloat(k2))]||'var(--ink-3)'}))},
+      {label:'Incumbent', parts:lkR.map(k2=>({name:`${parseFloat(k2)}×`, v:ldR[k2], color:cols[Math.round(parseFloat(k2))]||'var(--ink-3)'}))},
+      {label:'Demeter (published)', parts:[{name:'cash',v:QUAD.pct_cash,color:'var(--cash)'},{name:'invested at 1–3×',v:(QUAD.pct_cash==null?null:100-QUAD.pct_cash),color:'var(--strategy)'}]},
+    ],{width:600,height:190,aria:'Share of days at each leverage level'});
+    $(`#c-lev-${key}`).insertAdjacentHTML('afterend', `<div class="legend">${[0,1,2,3].map(i=>`<span><i class="sw box" style="background:${cols[i]}"></i>${i}×${i===0?' (cash engine)':''}</span>`).join('')}</div>`);
+    const yr=c.yearly_oos||[], recY=REC.yearly_oos||[];
+    barChart($(`#c-yr-${key}`),{cats:yr.map(y=>String(y.year)),height:300,yFmt:v=>PC(v,0),
+      series:[{name:nameOf(key),values:yr.map(y=>y.model),cls:'model'},{name:'Demeter',values:yr.map(y=>y.demeter),cls:'dem'},{name:'SPY',values:yr.map(y=>y.spy),cls:'spy'}],
+      catTip:(cc,i)=>`${cc}${yr[i].n_months<12?` (${yr[i].n_months} months)`:''}`});
+    const yrows=yr.map(y=>({year:y.year,n_months:y.n_months,model:y.model,inc:(recY.find(z=>z.year===y.year)||{}).model,demeter:y.demeter,spy:y.spy}));
+    $(`#t-yr-${key}`).appendChild(table([{key:'year',label:'Year',cls:'lbl',fmt:(v,r)=>v+(r.n_months<12?` <span class="faint">(${r.n_months} mo)</span>`:'')},{key:'model',label:nameOf(key),fmt:v=>PC(v,2,true),color:true},{key:'inc',label:'Incumbent',fmt:v=>v==null?DASH:PC(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>PC(v,2,true),color:true},{key:'spy',label:'SPY',fmt:v=>PC(v,2,true),color:true}],yrows,{cls:'tbl-compact'}));
+  });
+})();
+
+/* ---------- leaderboard ---------- */
+(function(){
+  $('#board-sub').innerHTML=`Out of sample is ${fmt.mon(oosStart.slice(0,7))} – ${fmt.mon(oosEnd.slice(0,7))} on S&amp;P 500 total return at <b>${COST}</b>, the pass-2 headline cost basis, for both passes' models. Development is the window each model was tuned on. Demeter and the passive references are shown on the same window and accounting.`;
+  const verdictOf=k=>((P2.verification||{})[k]||{}).verdict||null;
+  const order=Object.entries(CAND).sort((a,b)=>b[1].oos.sharpe-a[1].oos.sharpe);
+  const rows=order.map(([k,c],i)=>({rank:i+1, name:nameOf(k), family:c.family, look:(P2.oos_labels||{})[k]||null, ver:verdictOf(k),
+    oc:c.oos.annualized_return_pct, os:c.oos.sharpe, od:c.oos.max_drawdown_pct, ch:c.oos.position_changes_per_year, cash:c.oos.pct_days_cash,
+    dcap:c.oos.down_capture_pct, dc:c.dev.annualized_return_pct, ds:c.dev.sharpe, dd:c.dev.max_drawdown_pct, corr:c.corr_with_demeter, _cls:k===REC_KEY?'hi':''}));
+  rows.push({rank:'', name:'Demeter (published)', family:'the target', look:null, ver:null, oc:DEM.annualized_return_pct, os:DEM.sharpe, od:DEM.max_drawdown_pct, ch:null, cash:null, dcap:DEM.down_capture_pct, dc:null, ds:null, dd:null, corr:1});
+  rows.push({rank:'', name:'SPY buy & hold', family:'passive reference', look:null, ver:null, oc:SPY.annualized_return_pct, os:SPY.sharpe, od:SPY.max_drawdown_pct, ch:0, cash:0, dcap:100, dc:null, ds:null, dd:null, corr:null, _cls:'spy-row'});
+  (R.bh_refs||[]).filter(r=>r.name!=='Buy & hold 1x').forEach(r=> rows.push({rank:'', name:r.name+' (no costs)', family:'levered passive reference', look:null, ver:null, oc:r.cagr_pct, os:r.sharpe, od:r.max_dd_pct, ch:0, cash:0, dcap:null, dc:null, ds:null, dd:null, corr:null, _cls:'spy-row'}));
   $('#t-board').appendChild(table([
     {key:'rank',label:'',cls:'rank'},{key:'name',label:'Candidate',cls:'lbl'},{key:'family',label:'Family',cls:'lbl'},
-    {key:'oc',label:'OOS annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'os',label:'OOS Sharpe',fmt:v=>fmt.num(v,2)},{key:'od',label:'OOS max DD',fmt:v=>fmt.pct(v,1),color:true},
-    {key:'ch',label:'Changes / yr',fmt:v=>v==null?'—':fmt.num(v,1)},{key:'cash',label:'Days in cash',fmt:v=>v==null?'—':fmt.pct(v,0)},
-    {key:'dc',label:'DEV annualised',fmt:v=>v==null?'—':fmt.pct(v,2),color:true},{key:'ds',label:'DEV Sharpe',fmt:v=>v==null?'—':fmt.num(v,2)},{key:'dd',label:'DEV max DD',fmt:v=>v==null?'—':fmt.pct(v,1),color:true},
-    {key:'corr',label:'Monthly corr. with Demeter',fmt:v=>v==null?'—':fmt.num(v,2)},
-    {key:'la',label:'Causality test',fmt:v=>v==null?'—':(v?'<span class="pill ok">pass</span>':'<span class="pill bad">fail</span>')}],rows,{cls:'tbl-compact'}));
-  $('#board-note').innerHTML=`Sorted by out-of-sample Sharpe. The highlighted row is the recommendation — chosen on development evidence, not on this column. <b>${Object.values(R.candidates).filter(c=>c.dev.sharpe<0.2&&c.oos.sharpe>0.6).length} of ${Object.keys(R.candidates).length} candidates</b> look good out of sample while having been unusable in development; ranking on out-of-sample results alone would pick one of them. Levered passive references are shown without trading costs, which flatters them.`;
+    {key:'oc',label:'OOS annualised',fmt:v=>PC(v,2),color:true},{key:'os',label:'OOS Sharpe',fmt:v=>N(v,2)},{key:'od',label:'OOS max DD',fmt:v=>PC(v,1),color:true},
+    {key:'ch',label:'Changes / yr',fmt:v=>v==null?DASH:N(v,1)},{key:'cash',label:'Days in cash',fmt:v=>v==null?DASH:PC(v,0)},{key:'dcap',label:'Down-capture',fmt:v=>v==null?DASH:PC(v,0)},
+    {key:'ds',label:'DEV Sharpe',fmt:v=>v==null?DASH:N(v,2)},{key:'dd',label:'DEV max DD',fmt:v=>v==null?DASH:PC(v,1),color:true},
+    {key:'corr',label:'Corr. with Demeter',fmt:v=>v==null?DASH:N(v,2)},
+    {key:'look',label:'OOS look',fmt:v=>v==null?DASH:(v==='pass 2'?'<span class="pill mid">pass 2</span>':'<span class="pill flat">pass 1</span>')},
+    {key:'ver',label:'Verification',fmt:v=>v==null?'<span class="pill flat">not re-verified</span>':(v==='REFUTED'?'<span class="pill bad">refuted</span>':'<span class="pill ok">holds</span>')}],rows,{cls:'tbl-compact'}));
+  const nLook2=Object.values(P2.oos_labels||{}).filter(v=>v==='pass 2').length;
+  $('#board-note').innerHTML=`Sorted by out-of-sample Sharpe. The highlighted row is the recommendation — chosen on development evidence, not on this column. <b>Multiple comparisons:</b> ${C.candidates_with_oos} candidates now carry out-of-sample numbers across two passes (${C.candidates_with_oos-nLook2} from pass 1, ${nLook2} from pass 2), and in both passes the recommendation was chosen on development evidence before the window was opened — which blunts the best-of-N problem without eliminating it. In pass 2 the development choice was simply wrong. The ${C.refuted_all} refuted candidates were never evaluated out of sample, so their fate is unknown; the verifiers' pre-look Sharpe estimates, written before any look, say they would not have reached the bar. Levered passive references are shown without trading costs, which flatters them.`;
+  const crRows=[];
+  order.forEach(([k,c])=>{ const cr=c.cost_rows||{};
+    crRows.push({n:nameOf(k), a:cr.c240?`${PC(cr.c240.cagr_pct,2)} / ${N(cr.c240.sharpe,2)}`:DASH,
+      b:cr.headline?`${PC(cr.headline.cagr_pct,2)} / ${N(cr.headline.sharpe,2)}`:DASH,
+      c:cr.s690?`${PC(cr.s690.cagr_pct,2)} / ${N(cr.s690.sharpe,2)}, maxDD ${PC(cr.s690.max_drawdown_pct,1)}`:DASH,
+      d:(cr.c240&&cr.s690)?`${N(cr.headline.position_changes_per_year,1)} changes/yr; ${PC(cr.c240.cagr_pct-cr.s690.cagr_pct,2)} of annual return between the cheapest and dearest row`:DASH,
+      _cls:k===REC_KEY?'hi':''}); });
+  $('#costrows-sub').innerHTML=`Annualised return / Sharpe at each pre-registered cost basis. Costs do not change the signal, so these are three accountings of one look.`;
+  $('#t-costrows').appendChild(table([{key:'n',label:'Candidate',cls:'lbl'},{key:'a',label:P2.cost_labels.c240},{key:'b',label:P2.cost_labels.headline+' (headline)'},{key:'c',label:P2.cost_labels.s690+' (stress)'},{key:'d',label:'Where the edge dies',cls:'lbl'}],crRows,{cls:'tbl-compact'}));
 })();
 
-/* the model */
+/* ---------- the recommended model ---------- */
 (function(){
-  $('#model-title').textContent = REC_KEY==='final_model_fewtrades' ? 'The recommended model: fewer trades, better drawdown' : 'The recommended model';
-  $('#model-sub').innerHTML = `${REC.hypothesis}`;
-  const steps=[['1','Trend hysteresis','Enter when the index closes above its 100-day average; exit when it closes below its 200-day average. Between the two, the previous state persists.'],
-    ['2','Shock override','Force cash for five sessions after any daily loss worse than three trailing standard deviations.'],
-    ['3','Volatility tier','While invested: 3× below 10% realised volatility, 2× below 15%, otherwise 1×.'],
-    ['4','Weekly, sticky decisions','The level is read on the last trading day of each week and held for at least twenty sessions before it may change.']];
-  $('#model-rules').append(...steps.flatMap(([n,t,d])=>[h('div',{class:'n'},n), h('div',{class:'b'},`<h4>${t}</h4><p>${d}</p>`)]));
-  $('#model-params').append(...Object.entries(REC.params).map(([k,v])=>h('code',{},`${k} = ${v}`)), h('code',{},`shock_z = 3.0 (fixed)`), h('code',{},`${REC.n_params} tunable parameters`));
-  const s=REC_KEY===R.fewtrades_key ? R.fewtrades_series_oos : R.final_series_oos;
-  const jan=s.months.map((m,i)=> m.endsWith('-01')&&(+m.slice(0,4))%2===0?i:null).filter(i=>i!=null);
-  lineChart($('#c-eq'),{x:s.months,width:600,height:330,yType:'log',yFmt:v=>fmt.money(v),xTicks:jan,rightPad:78,aria:'Growth of 1000 dollars out of sample',
-    series:[{name:'Model',short:'Model',values:s.eq_model,cls:'model'},{name:'SPY',short:'SPY',values:s.eq_spy,cls:'spy'},{name:'Cash (T-bills)',short:'Cash',values:s.eq_cash,cls:'cash'}],
-    extraTip:[{name:'Average leverage',values:s.avg_lev,fmt:v=>fmt.num(v,2)+'×'}]});
-  lineChart($('#c-dd'),{x:s.months,width:600,height:300,yFmt:v=>fmt.pct(v,0),includeZero:true,xTicks:jan,rightPad:74,aria:'Drawdown of the model versus SPY',
-    series:[{name:'SPY',short:'SPY',values:s.dd_spy,cls:'spy',area:true},{name:'Model',short:'Model',values:s.dd_model,cls:'model',area:true}]});
-  $('#dd-sub').innerHTML=`Model worst drawdown <b>${fmt.pct(REC.oos.max_drawdown_pct,2)}</b> on month-end values (${fmt.pct(REC.oos.max_drawdown_daily_pct,2)} on daily), against SPY's ${fmt.pct(SPY.max_drawdown_pct,2)} and Demeter's ${fmt.pct(DEM.max_drawdown_pct,2)}.`;
-  const ld=REC.leverage_distribution_oos||{};
-  const cols=['var(--cash)','var(--strategy)','var(--spy)','var(--pos)'];
+  $('#model-title').innerHTML = `The recommended model: <span class="mono">${esc(REC_KEY)}</span>`;
+  $('#model-sub').innerHTML = `${esc(REC.hypothesis||'')}`;
+  const lad=R.rec_ladder||[];
+  if(lad.length) $('#model-rules').append(...lad.flatMap(s=>[h('div',{class:'n'+(s.kind==='delta'?' delta':'')},s.n), h('div',{class:'b'},`<h4>${md(s.title||'Rule')}</h4><p>${md(s.body)}</p>`)]));
+  else $('#model-rules').innerHTML=`<div class="rules-src">${esc(R.rec_rules_doc||DASH)}</div>`;
+  $('#model-params').append(...Object.entries(REC.params||{}).map(([k,v])=>h('code',{},`${k} = ${v}`)),
+    ...(R.rec_constants||[]).map(c=>h('code',{},`${c.name} = ${c.value} (fixed)`)),
+    h('code',{},`${REC.n_params} declared tunable parameters`));
+  const recRow=ROW[REC_KEY]||{};
+  $('#model-params-note').innerHTML=`Rules and constants are read from <span class="mono">${esc(REC.module||'')}</span> at build time. This model was not re-verified by the pass-2 lenses; by their standard the fixed shock threshold and the weekly-cadence choice are development-selected constants too, so its true count is 7–8 rather than ${REC.n_params}. Its development record: Sharpe ${N(recRow.dev_sharpe,2)}, maxDD ${PC(recRow.dev_maxdd_pct,1)}, ${N(recRow.changes_per_year,1)} changes a year.`;
+  const s=R.rec_series_oos;
+  if(s){
+    const jan=s.months.map((m,i)=> m.endsWith('-01')&&(+m.slice(0,4))%2===0?i:null).filter(i=>i!=null);
+    lineChart($('#c-eq'),{x:s.months,width:600,height:330,yType:'log',yFmt:v=>fmt.money(v),xTicks:jan,rightPad:78,aria:'Growth of 1000 dollars out of sample',
+      series:[{name:'Model',short:'Model',values:s.eq_model,cls:'model'},{name:'SPY',short:'SPY',values:s.eq_spy,cls:'spy'},{name:'Cash (T-bills)',short:'Cash',values:s.eq_cash,cls:'cash'}],
+      extraTip:[{name:'Average leverage',values:s.avg_lev,fmt:v=>N(v,2)+'×'}]});
+    lineChart($('#c-dd'),{x:s.months,width:600,height:300,yFmt:v=>PC(v,0),includeZero:true,xTicks:jan,rightPad:74,aria:'Drawdown of the model versus SPY',
+      series:[{name:'SPY',short:'SPY',values:s.dd_spy,cls:'spy',area:true},{name:'Model',short:'Model',values:s.dd_model,cls:'model',area:true}]});
+  }
+  $('#dd-sub').innerHTML=`Model worst drawdown <b>${PC(REC.oos.max_drawdown_pct,2)}</b> on month-end values (${PC(REC.oos.max_drawdown_daily_pct,2)} on daily), against SPY's ${PC(SPY.max_drawdown_pct,2)} and Demeter's ${PC(DEM.max_drawdown_pct,2)}.`;
+  const ld=REC.leverage_distribution_oos||{}, cols=['var(--cash)','var(--strategy)','var(--spy)','var(--pos)'];
   const lvKeys=Object.keys(ld).sort((a,b)=>parseFloat(a)-parseFloat(b));
   stackBar($('#c-lev'), [
     {label:'Recommended model', parts:lvKeys.map(k=>({name:`${parseFloat(k)}× leverage`, v:ld[k], color:cols[Math.round(parseFloat(k))]||'var(--ink-3)'}))},
-    {label:'Demeter (published)', parts:[{name:'cash',v:48.5,color:'var(--cash)'},{name:'invested at 1–3×',v:51.5,color:'var(--strategy)'}]},
+    {label:'Demeter (published)', parts:[{name:'cash',v:QUAD.pct_cash,color:'var(--cash)'},{name:'invested at 1–3×',v:(QUAD.pct_cash==null?null:100-QUAD.pct_cash),color:'var(--strategy)'}]},
   ], {width:600, height:150, aria:'Share of days at each leverage level'});
   $('#c-lev').insertAdjacentHTML('afterend', `<div class="legend">${lvKeys.map(k=>`<span><i class="sw box" style="background:${cols[Math.round(parseFloat(k))]}"></i>${parseFloat(k)}×${parseFloat(k)===0?' (cash engine)':''}</span>`).join('')}</div>`);
-  const q=REC.oos;
+  const q=REC.oos, qp=(QUAD.pct)||{};
   const qrows=[
-    {m:'Loss avoidance — in cash while the market fell', a:q.quad_loss_avoidance_pct, b:23.1},
-    {m:'Gain sacrifice — in cash while the market rose', a:q.quad_gain_sacrifice_pct, b:25.4},
-    {m:'Amplified gains — invested and the market rose', a:q.quad_amplified_gains_pct, b:29.4},
-    {m:'Amplified losses — invested and the market fell', a:q.quad_amplified_losses_pct, b:22.1}];
-  $('#t-quad').appendChild(table([{key:'m',label:'Four-quadrant day mix',cls:'lbl'},{key:'a',label:'Model',fmt:v=>fmt.pct(v,1)},{key:'b',label:'Demeter',fmt:v=>fmt.pct(v,1)}],qrows,{cls:'tbl-compact'}));
+    {m:'Loss avoidance — in cash while the market fell', a:q.quad_loss_avoidance_pct, b:qp.loss_avoidance},
+    {m:'Gain sacrifice — in cash while the market rose', a:q.quad_gain_sacrifice_pct, b:qp.gain_sacrifice},
+    {m:'Amplified gains — invested and the market rose', a:q.quad_amplified_gains_pct, b:qp.amplified_gains},
+    {m:'Amplified losses — invested and the market fell', a:q.quad_amplified_losses_pct, b:qp.amplified_losses}];
+  $('#t-quad').appendChild(table([{key:'m',label:'Four-quadrant day mix',cls:'lbl'},{key:'a',label:'Model',fmt:v=>PC(v,1)},{key:'b',label:'Demeter',fmt:v=>v==null?DASH:PC(v,1)}],qrows,{cls:'tbl-compact'}));
   const yr=REC.yearly_oos||[];
-  barChart($('#c-years'),{cats:yr.map(y=>String(y.year)),height:300,yFmt:v=>fmt.pct(v,0),
+  barChart($('#c-years'),{cats:yr.map(y=>String(y.year)),height:300,yFmt:v=>PC(v,0),
     series:[{name:'Model',values:yr.map(y=>y.model),cls:'model'},{name:'Demeter',values:yr.map(y=>y.demeter),cls:'dem'},{name:'SPY',values:yr.map(y=>y.spy),cls:'spy'}],
     catTip:(c,i)=>`${c}${yr[i].n_months<12?` (${yr[i].n_months} months)`:''}`});
-  const beat=yr.filter(y=>y.model>y.demeter).length;
-  $('#years-sub').innerHTML=`The model beat Demeter in <b>${beat} of ${yr.length}</b> calendar years, and beat SPY in ${yr.filter(y=>y.model>y.spy).length}. 2013 is the model's standout (${fmt.pct(yr.find(y=>y.year===2013).model,1)} against Demeter's ${fmt.pct(yr.find(y=>y.year===2013).demeter,1)}) — a calm, strongly trending year, exactly the regime the volatility tier levers into. 2020 and 2022 are where it loses the comparison.`;
-  $('#t-years').appendChild(table([{key:'year',label:'Year',cls:'lbl',fmt:(v,r)=>v+(r.n_months<12?` <span class="faint">(${r.n_months} mo)</span>`:'')},{key:'model',label:'Model',fmt:v=>fmt.pct(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>fmt.pct(v,2,true),color:true},{key:'spy',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'x',label:'Model − Demeter',fmt:(v,r)=>fmt.pct(r.model-r.demeter,2,true),color:false}],yr,{cls:'tbl-compact'}));
+  const beat=yr.filter(y=>y.model>y.demeter).length, best=yr.slice().sort((a,b)=>b.model-a.model)[0];
+  $('#years-sub').innerHTML=`The model beat Demeter in <b>${beat} of ${yr.length}</b> calendar years, and beat SPY in ${yr.filter(y=>y.model>y.spy).length}. ${best?`${best.year} is the model's standout (${PC(best.model,1)} against Demeter's ${PC(best.demeter,1)}) — a calm, strongly trending year, exactly the regime the volatility tier levers into.`:''} 2020 and 2022 are where it loses the comparison.`;
+  $('#t-years').appendChild(table([{key:'year',label:'Year',cls:'lbl',fmt:(v,r)=>v+(r.n_months<12?` <span class="faint">(${r.n_months} mo)</span>`:'')},{key:'model',label:'Model',fmt:v=>PC(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>PC(v,2,true),color:true},{key:'spy',label:'SPY',fmt:v=>PC(v,2,true),color:true},{key:'x',label:'Model − Demeter',fmt:(v,r)=>PC(r.model-r.demeter,2,true)}],yr,{cls:'tbl-compact'}));
   const sp=(REC.sub_periods||[]).map(p=>({...p, era: p.start.slice(0,4)+'–'+p.end.slice(0,4)}));
-  $('#t-sub').appendChild(table([{key:'era',label:'Period',cls:'lbl'},{key:'cagr_pct',label:'Model annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'spy_cagr_pct',label:'SPY annualised',fmt:v=>fmt.pct(v,2)},{key:'sharpe',label:'Model Sharpe',fmt:v=>fmt.num(v,2)},{key:'spy_sharpe',label:'SPY Sharpe',fmt:v=>fmt.num(v,2)},{key:'max_dd_pct',label:'Model max DD',fmt:v=>fmt.pct(v,1),color:true},{key:'spy_max_dd_pct',label:'SPY max DD',fmt:v=>fmt.pct(v,1)},{key:'pct_days_cash',label:'Days in cash',fmt:v=>fmt.pct(v,0)},{key:'changes_per_year',label:'Changes / yr',fmt:v=>fmt.num(v,1)}],sp,{cls:'tbl-compact'}));
+  $('#t-sub').appendChild(table([{key:'era',label:'Period',cls:'lbl'},{key:'cagr_pct',label:'Model annualised',fmt:v=>PC(v,2),color:true},{key:'spy_cagr_pct',label:'SPY annualised',fmt:v=>PC(v,2)},{key:'sharpe',label:'Model Sharpe',fmt:v=>N(v,2)},{key:'spy_sharpe',label:'SPY Sharpe',fmt:v=>N(v,2)},{key:'max_dd_pct',label:'Model max DD',fmt:v=>PC(v,1),color:true},{key:'spy_max_dd_pct',label:'SPY max DD',fmt:v=>PC(v,1)},{key:'pct_days_cash',label:'Days in cash',fmt:v=>PC(v,0)},{key:'changes_per_year',label:'Changes / yr',fmt:v=>N(v,1)}],sp,{cls:'tbl-compact'}));
 })();
 
-/* versus Demeter */
+/* ---------- versus Demeter ---------- */
 (function(){
   const rows=[['Annualised return','annualized_return_pct','pct'],['Annualised std. dev.','annualized_std_dev','num'],['Sharpe ratio','sharpe','num'],['Sortino ratio','sortino','num'],['Calmar ratio','calmar','num'],['Maximum drawdown','max_drawdown_pct','pct'],['% positive months','pct_positive_months','pct0'],['Beta to SPY','beta_to_spy','num'],['Correlation to SPY','correlation_to_spy','num'],['Alpha (ann., Jensen)','alpha_ann_jensen_pct','pct'],['Up capture','up_capture_pct','pct0'],['Down capture','down_capture_pct','pct0'],['Growth of $1,000','growth_of_1000','money']];
-  const f=(kind,v)=> v==null?'—':kind==='pct'?fmt.pct(v,2):kind==='pct0'?fmt.pct(v,0):kind==='money'?fmt.money(v):fmt.num(v,2);
+  const f=(kind,v)=> v==null?DASH:kind==='pct'?PC(v,2):kind==='pct0'?PC(v,0):kind==='money'?fmt.money(v):N(v,2);
   const data=rows.map(([l,k,kind])=>({m:l, a:f(kind,REC.oos[k]), b:f(kind,F_.oos[k]), c:f(kind,DEM[k]), d:f(kind,SPY[k])}));
   $('#t-versus').appendChild(table([{key:'m',label:'',cls:'lbl'},{key:'a',label:'Recommended',cls:'strat'},{key:'b',label:'Daily variant'},{key:'c',label:'Demeter'},{key:'d',label:'SPY'}],data,{cls:'tbl-compact'}));
   const monthly=REC.monthly_oos||[];
-  const pick=['2020-02','2020-03','2020-04','2022-04','2022-06','2022-10','2018-12','2015-08'];
-  const ep=pick.map(m=>monthly.find(x=>x.month===m)).filter(Boolean);
-  $('#t-episodes').appendChild(table([{key:'month',label:'Month',cls:'lbl',fmt:fmt.mon},{key:'spy',label:'SPY',fmt:v=>fmt.pct(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>fmt.pct(v,2,true),color:true},{key:'model',label:'Model',fmt:v=>fmt.pct(v,2,true),color:true}],ep,{cls:'tbl-compact'}));
+  const look=LOOKS.length?CAND[LOOKS[0]]:null;
+  const lookM=(LOOKS.length?((P2.looked_monthly||{})[LOOKS[0]]||[]):[])||[];
+  const pick=['2020-02','2020-03','2020-04','2022-04','2022-06','2022-10','2018-12','2015-08','2025-04'];
+  const ep=pick.map(m=>{ const x=monthly.find(y=>y.month===m); if(!x) return null;
+    const l=lookM.find(y=>y.month===m); return {...x, look:l?l.model:null}; }).filter(Boolean);
+  const cols=[{key:'month',label:'Month',cls:'lbl',fmt:fmt.mon},{key:'spy',label:'SPY',fmt:v=>PC(v,2,true),color:true},{key:'demeter',label:'Demeter',fmt:v=>PC(v,2,true),color:true},{key:'model',label:'Incumbent',fmt:v=>PC(v,2,true),color:true}];
+  if(look) cols.push({key:'look',label:nameOf(LOOKS[0]),fmt:v=>v==null?DASH:PC(v,2,true),color:true});
+  $('#t-episodes').appendChild(table(cols,ep,{cls:'tbl-compact'}));
   const mar=ep.find(e=>e.month==='2020-03');
-  $('#episodes-note').innerHTML=`March 2020 is the whole story in one row: Demeter <b>${fmt.pct(mar?mar.demeter:null,1,true)}</b>, the model <b>${fmt.pct(mar?mar.model:null,1,true)}</b>. A trend gate cannot be levered long in a month when the index spends every session below its 200-day average, and a volatility tier cannot lever into 80% realised volatility. Reproducing that month requires a rule that re-enters at 3× within a day of the low — which, on this evidence, no parameterisation reproduced without failing catastrophically in earlier decades. Monthly correlation with Demeter across the window: ${fmt.num(REC.corr_with_demeter,2)}; same-sign months ${fmt.pct(REC.same_sign_pct,0)}.`;
+  $('#episodes-note').innerHTML=`March 2020 is the whole story in one row: Demeter <b>${PC(mar?mar.demeter:null,1,true)}</b>, the recommended model <b>${PC(mar?mar.model:null,1,true)}</b>${look&&mar?`, the pass-2 survivor ${PC(mar.look,1,true)}`:''}. A trend gate cannot be levered long in a month when the index spends every session below its 200-day average, and a volatility tier cannot lever into 80% realised volatility. Reproducing that month requires a rule that re-enters at 3× within a day of the low — which, on this evidence across two passes, no parameterisation reproduced without failing catastrophically in earlier decades. Monthly correlation with Demeter: ${N(REC.corr_with_demeter,2)}; same-sign months ${PC(REC.same_sign_pct,0)}.`;
 })();
 
-/* sensitivity */
+/* ---------- sensitivity ---------- */
 (function(){
   const cs=REC.cost_sensitivity_oos||[];
-  $('#t-cost').appendChild(table([{key:'cost_bps',label:'Cost (bp)',cls:'lbl',fmt:v=>fmt.num(v,0)},{key:'fin_bps',label:'Financing (bp p.a.)',fmt:v=>fmt.num(v,0)},{key:'cagr_pct',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'sharpe',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'max_dd_pct',label:'Max drawdown',fmt:v=>fmt.pct(v,1)}],cs,{cls:'tbl-compact'}));
+  $('#cost-sub').innerHTML=`Annualised return at each trading cost and financing spread, out of sample. The headline basis is <b>${COST}</b>; a low-turnover model is barely affected by the per-trade cost, and the financing spread on levered exposure matters more.`;
+  $('#t-cost').appendChild(table([{key:'cost_bps',label:'Cost (bp)',cls:'lbl',fmt:v=>N(v,0)},{key:'fin_bps',label:'Financing (bp p.a.)',fmt:v=>N(v,0)},{key:'cagr_pct',label:'Annualised',fmt:v=>PC(v,2),color:true},{key:'sharpe',label:'Sharpe',fmt:v=>N(v,2)},{key:'max_dd_pct',label:'Max drawdown',fmt:v=>PC(v,1)}],cs,{cls:'tbl-compact'}));
   const ps=(REC.param_sensitivity_oos||[]);
   const base=ps.find(p=>p.variant==='base');
-  barChart($('#c-param'),{cats:ps.map(p=>p.variant.replace(/_/g,' ')),height:330,yFmt:v=>fmt.pct(v,0),rotateLabels:true,refLines:base?[{y:base.cagr_pct,label:'frozen parameters'}]:[],
+  $('#param-sub').innerHTML=ps.length?`Each parameter moved ±15% and ±30% from its frozen value and re-run out of sample at ${COST}. A plateau — not a spike at the chosen value — is what robustness looks like.`:DASH;
+  if(ps.length) barChart($('#c-param'),{cats:ps.map(p=>p.variant.replace(/_/g,' ')),height:330,yFmt:v=>PC(v,0),rotateLabels:true,refLines:base?[{y:base.cagr_pct,label:'frozen parameters'}]:[],
     series:[{name:'Annualised return',values:ps.map(p=>p.cagr_pct),cls:'model'}],
-    catTip:c=>c, extraTip:[{name:'Sharpe',values:ps.map(p=>p.sharpe),fmt:v=>fmt.num(v,2)},{name:'Max drawdown',values:ps.map(p=>p.max_dd_pct),fmt:v=>fmt.pct(v,1)},{name:'Changes / yr',values:ps.map(p=>p.changes_per_year),fmt:v=>fmt.num(v,1)}]});
+    catTip:c=>c, extraTip:[{name:'Sharpe',values:ps.map(p=>p.sharpe),fmt:v=>N(v,2)},{name:'Max drawdown',values:ps.map(p=>p.max_dd_pct),fmt:v=>PC(v,1)},{name:'Changes / yr',values:ps.map(p=>p.changes_per_year),fmt:v=>N(v,1)}]});
   const within=ps.filter(p=>base&&Math.abs(p.sharpe-base.sharpe)<=0.25*Math.abs(base.sharpe)).length;
   if(base){
     const worst=[...ps].filter(p=>p.variant!=='base').sort((a,b)=>a.sharpe-b.sharpe).slice(0,2);
     const ddw=[...ps].sort((a,b)=>a.max_dd_pct-b.max_dd_pct)[0];
     const chg=[...ps].sort((a,b)=>b.changes_per_year-a.changes_per_year)[0];
     const items=[
-      [`Sharpe range across perturbations`, `${fmt.num(Math.min(...ps.map(p=>p.sharpe)),2)} to ${fmt.num(Math.max(...ps.map(p=>p.sharpe)),2)} against ${fmt.num(base.sharpe,2)} at the frozen values — the frozen point is inside the plateau, not on a peak.`],
-      [`Weakest settings`, `${worst.map(w=>`<span class="mono">${w.variant.replace(/_/g,' ')}</span> (Sharpe ${fmt.num(w.sharpe,2)})`).join(' and ')}. Both shorten the trend gate, which is what protects the model in bear markets.`],
-      [`Worst drawdown under perturbation`, `${fmt.pct(ddw.max_dd_pct,1)} at <span class="mono">${ddw.variant.replace(/_/g,' ')}</span>, against ${fmt.pct(base.max_dd_pct,1)} at the frozen values.`],
-      [`Turnover is stable`, `the busiest perturbation trades ${fmt.num(chg.changes_per_year,1)} times a year against ${fmt.num(base.changes_per_year,1)} at the frozen values, so the low-turnover claim does not depend on a lucky parameter.`],
+      [`Sharpe range across perturbations`, `${N(Math.min(...ps.map(p=>p.sharpe)),2)} to ${N(Math.max(...ps.map(p=>p.sharpe)),2)} against ${N(base.sharpe,2)} at the frozen values — ${within} of ${ps.length} stay within 25% of the base, so the frozen point is inside the plateau, not on a peak.`],
+      [`Weakest settings`, `${worst.map(w=>`<span class="mono">${w.variant.replace(/_/g,' ')}</span> (Sharpe ${N(w.sharpe,2)})`).join(' and ')}. Both shorten the trend gate, which is what protects the model in bear markets.`],
+      [`Worst drawdown under perturbation`, `${PC(ddw.max_dd_pct,1)} at <span class="mono">${ddw.variant.replace(/_/g,' ')}</span>, against ${PC(base.max_dd_pct,1)} at the frozen values.`],
+      [`Turnover is stable`, `the busiest perturbation trades ${N(chg.changes_per_year,1)} times a year against ${N(base.changes_per_year,1)} at the frozen values, so the low-turnover claim does not depend on a lucky parameter.`],
+      [`The cost stress`, `at ${P2.cost_labels.s690} the model still earns ${PC((REC.cost_rows&&REC.cost_rows.s690)?REC.cost_rows.s690.cagr_pct:null,2)} a year at Sharpe ${N((REC.cost_rows&&REC.cost_rows.s690)?REC.cost_rows.s690.sharpe:null,2)}; the edge does not die at any cost level tested.`],
     ];
     $('#weak-list').append(...items.map(([t,d])=>h('li',{},`<b>${t}:</b> ${d}`)));
   }
-  const v=R.variants||{};
-  const vr=[];
-  if(v.oos2005) vr.push({w:'Longer out-of-sample from 2005 (includes 2008)', c:v.oos2005.oos.annualized_return_pct, s:v.oos2005.oos.sharpe, d:v.oos2005.oos.max_drawdown_pct, n:'Same frozen parameters; 2008 is outside the development window used for selection.'});
-  if(v.fin40) vr.push({w:'40 bp financing spread on levered exposure', c:v.fin40.oos.annualized_return_pct, s:v.fin40.oos.sharpe, d:v.fin40.oos.max_drawdown_pct, n:'A realistic futures financing cost above the T-bill rate.'});
-  if(v.es) vr.push({w:'Traded on actual E-mini S&P futures (to Mar 2024)', c:v.es.oos.annualized_return_pct, s:v.es.oos.sharpe, d:v.es.oos.max_drawdown_pct, n:'Uses the back-adjusted futures series rather than the synthetic leg; the post-2013 futures source is sparse.'});
-  if(v.nq) vr.push({w:'Traded on NASDAQ-100 futures (to Mar 2024)', c:v.nq.oos.annualized_return_pct, s:v.nq.oos.sharpe, d:v.nq.oos.max_drawdown_pct, n:'The signal is still computed on the S&P; only the traded instrument changes. Higher return and higher drawdown, as expected from a higher-beta index.'});
-  vr.push({w:'Base case (S&P 500 total return, 2 bp)', c:REC.oos.annualized_return_pct, s:REC.oos.sharpe, d:REC.oos.max_drawdown_pct, n:`${within} of ${ps.length} parameter perturbations keep Sharpe within 25% of the base.`});
-  $('#t-variants').appendChild(table([{key:'w',label:'Variant',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>fmt.pct(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>fmt.num(v,2)},{key:'d',label:'Max drawdown',fmt:v=>fmt.pct(v,1),color:true},{key:'n',label:'Note',cls:'lbl'}],vr,{cls:'tbl-compact'}));
+  const v=R.variants||{}, vr=[];
+  const costOf=x=> x? `${N(x.cost_bps,0)} bp / ${N(x.financing_spread_bps,0)} bp`:DASH;
+  if(v.oos2005) vr.push({w:'Longer out-of-sample from 2005 (includes 2008)', c:v.oos2005.oos.annualized_return_pct, s:v.oos2005.oos.sharpe, d:v.oos2005.oos.max_drawdown_pct, n:`Same frozen parameters, ${costOf(v.oos2005)}; 2008 is outside the development window used for selection.`});
+  if(v.fin40) vr.push({w:'40 bp financing spread on levered exposure', c:v.fin40.oos.annualized_return_pct, s:v.fin40.oos.sharpe, d:v.fin40.oos.max_drawdown_pct, n:`A realistic futures financing cost above the T-bill rate (${costOf(v.fin40)}).`});
+  if(v.es) vr.push({w:'Traded on actual E-mini S&P futures (to Mar 2024)', c:v.es.oos.annualized_return_pct, s:v.es.oos.sharpe, d:v.es.oos.max_drawdown_pct, n:`Uses the back-adjusted futures series rather than the synthetic leg (${costOf(v.es)}); the post-2013 futures source is sparse.`});
+  if(v.nq) vr.push({w:'Traded on NASDAQ-100 futures (to Mar 2024)', c:v.nq.oos.annualized_return_pct, s:v.nq.oos.sharpe, d:v.nq.oos.max_drawdown_pct, n:`The signal is still computed on the S&P; only the traded instrument changes (${costOf(v.nq)}).`});
+  vr.push({w:`Recommended model, base case (${COST})`, c:REC.oos.annualized_return_pct, s:REC.oos.sharpe, d:REC.oos.max_drawdown_pct, n:`${within} of ${ps.length} parameter perturbations keep Sharpe within 25% of the base.`});
+  $('#t-variants').appendChild(table([{key:'w',label:'Variant',cls:'lbl'},{key:'c',label:'Annualised',fmt:v=>PC(v,2),color:true},{key:'s',label:'Sharpe',fmt:v=>N(v,2)},{key:'d',label:'Max drawdown',fmt:v=>PC(v,1),color:true},{key:'n',label:'Note',cls:'lbl'}],vr,{cls:'tbl-compact'}));
+  $('#variants-note').innerHTML=`The window and instrument variants are the tagged pass-1 runs of the daily model <span class="mono">${R.final_key}</span> at the pass-1 cost basis, the only such runs on disk; pass 2 added no new tagged evaluations, because each would be a fresh out-of-sample look. The 2005-start window includes the 2008 crisis, which is outside both the development sample's end and the Demeter comparison. The NASDAQ and E-mini rows use the actual futures series, which end ${dc.coverage.es_ret.last}.`;
 })();
 
-/* limits */
+/* ---------- limits ---------- */
 (function(){
-  const n=Object.keys(R.candidates).length;
-  const lim=[
-    [`Six models were built and each was evaluated out of sample`, `Even with parameters frozen, running ${n} candidates against one window is a multiple-comparison exercise: the best of six will look better than any single honest test. The recommendation was chosen on development evidence to blunt this, not eliminate it.`],
-    ['The design process itself saw the record', `The inference section above was derived from Demeter's published monthly returns, which cover the out-of-sample window. Knowing that a shock exit and a volatility tier matter is itself information from that period, even though no parameter was fitted to it.`],
-    ['One market, one regime', `Out of sample is a single fourteen-year window dominated by a bull market with two short crashes. The 2005-start variant is the closest thing here to an independent stress test, and it returns materially less.`],
-    ['Costs are modelled, not measured', `2 bp per unit of notional and a flat financing spread are reasonable for E-mini futures but ignore slippage on gap days, margin calls at 3× leverage, roll costs and the tax treatment of futures gains. The 3:59 PM decision assumes execution at the close.`],
-    ['Demeter\'s returns are as published', `They are net figures from the manager's own factsheet, not audited statements, and the family-office period (Jul 2012 – Jul 2023) predates the commingled fund. The four-quadrant day counts published by the manager sum to 3,477 against a stated total of 3,219.`],
-    ['The data has seams', `The last 35 daily rows are extrapolated from a price index with an assumed dividend accrual, the T-bill rate is held flat after 19 December 2025, and the futures series ends in March 2024. None of these affect the headline conclusions, all are disclosed in the provenance file.`],
-  ];
-  $('#limits-list').append(...lim.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
-  const nxt=[
-    ['Get intraday and options data', `Demeter's edge lives inside the day and in the implied-volatility surface: the re-entry that produced March 2020 happened within a day of the low. Daily closes cannot see it. VIX futures term structure and the variance risk premium are the obvious next inputs.`],
-    ['Test on a genuinely untouched period', `The strongest available test is a walk-forward across 1950–2012 with re-selection every decade, plus a paper-traded live period going forward. Neither has been run here.`],
-    ['Model the crash exit properly', `A rule triggered by consecutive multi-sigma days plus an implied-volatility jump — rather than a trailing-vol threshold — is the most promising unexplored direction, and it is the one that separates the model's 146% down-capture from Demeter's 23%.`],
-    ['Decide what the mandate actually is', `If the objective is Demeter-like drawdown control rather than maximum return, the low-turnover model is already close on drawdown (${fmt.pct(REC.oos.max_drawdown_pct,1)}) and the remaining gap is mostly leverage applied in calm regimes.`],
-  ];
-  $('#next-list').append(...nxt.map(([t,d])=>h('li',{},`<b>${t}.</b> ${d}`)));
+  const lim=P2.limitations||[], les=P2.lessons||[], nxt=P2.next_steps||[];
+  $('#limits-list').append(...(lim.length?lim:[null]).map(t=>h('li',{},md(t))));
+  $('#lessons-list').append(...(les.length?les:[null]).map(t=>h('li',{},md(t))));
+  $('#next-list').append(...(nxt.length?nxt:[null]).map(t=>h('li',{},md(t))));
   if(R.overview_url) $('#overview-link').innerHTML=`Companion page: <a href="${R.overview_url}">Demeter Dual-Engine strategy overview →</a>`;
-  else $('#overview-link').innerHTML=`Companion page: the strategy overview at <span class="mono">demeter/overview/index.html</span>.`;
+  else $('#overview-link').innerHTML=`Companion page: the strategy overview at <span class="mono">demeter/overview/index.html</span>. Report generated ${R.generated} from <span class="mono">RESULTS.md</span>, <span class="mono">PREREG.md</span>, <span class="mono">results/</span> and <span class="mono">dev_results/</span>.`;
 })();
 </script>
